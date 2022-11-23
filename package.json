@@ -1,14 +1,24 @@
 {
   "name": "finform",
-  "version": "1.2.0",
+  "version": "1.2.9",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "module": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/olegstan/form.git"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.5",
+    "@babel/helper-call-delegate": "^7.12.13",
+    "@babel/helper-define-map": "^7.14.5",
+    "@babel/helper-regex": "^7.10.5",
+    "@babel/polyfill": "^7.12.1",
+    "react": "17.0.0",
+    "react-dom": "17.0.0",
+    "react-flatpickr": "^3.10.7",
+    "react-input-mask": "^2.0.4",
+    "styled-components": "^4.4.0"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +26,18 @@
   "bugs": {
     "url": "https://github.com/olegstan/form/issues"
   },
-  "homepage": "https://github.com/olegstan/form#readme"
+  "scripts": {
+    "build": ""
+  },
+  "homepage": "https://github.com/olegstan/form#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  }
 }
