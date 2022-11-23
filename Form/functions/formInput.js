@@ -1,9 +1,9 @@
 import React from 'react';
-import SlimInput from "./../SlimInput";
-import Input from "./../Input";
-import MaskedInput from "./../MaskedInput";
-import Number from "./../Number";
-import TextArea from "./../TextArea";
+import SlimInput from "../SlimInput";
+import Input from "../Input";
+import MaskedInput from "../MaskedInput";
+import Number from "../Number";
+import TextArea from "../TextArea";
 
 export default function formInput(Base)
 {

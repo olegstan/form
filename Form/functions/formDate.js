@@ -1,6 +1,6 @@
 import React from 'react';
-import Date from "./../Date";
-import DateTime from "./../DateTime";
+import Date from "../Date";
+import DateTime from "../DateTime";
 
 export default function formDate(Base)
 {

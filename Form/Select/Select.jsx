@@ -1,8 +1,8 @@
 import React from 'react';
-import BaseInput from './../BaseInput';
+import BaseInput from '../BaseInput';
 import {InputWrapper, Item, Select as StyledSelect, Selected} from './newstyles'
 import {Container} from './../styles/selectContainerStyle'
-import InputPopup from "./../InputPopup/InputPopup";
+import InputPopup from "../InputPopup/InputPopup";
 
 class Select extends BaseInput
 {

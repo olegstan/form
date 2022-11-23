@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseInput from './../BaseInput';
+import BaseInput from '../BaseInput';
 import {InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
 import Money from "../../../helpers/Money";
 import {Container} from './../styles/selectContainerStyle'

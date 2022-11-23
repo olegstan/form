@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import BaseInput from './../BaseInput';
+import BaseInput from '../BaseInput';
 import {
   CalendarContainer,
   Container,

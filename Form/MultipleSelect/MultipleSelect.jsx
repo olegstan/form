@@ -1,6 +1,6 @@
 import React from 'react';
-import BaseInput from './../BaseInput';
-import Checkbox from './../Checkbox';
+import BaseInput from '../BaseInput';
+import Checkbox from '../Checkbox';
 import {InputWrapper, Select as StyledSelect, Selected} from './styles'
 import {Container} from './../styles/selectContainerStyle'
 

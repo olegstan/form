@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseInput from './../BaseInput';
+import BaseInput from '../BaseInput';
 import {Container, Input as StyledInput, InputWrapper, Item, Select as StyledSelect} from './styles'
 
 class SearchWithButton extends BaseInput

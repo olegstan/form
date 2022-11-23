@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseInput from './../BaseInput';
+import BaseInput from '../BaseInput';
 import {
   Container,
   Input as StyledInput,
@@ -10,7 +10,7 @@ import {
   SubItem
 } from './newstyles'
 import {Loader} from './../newstyles'
-import InputPopup from "./../InputPopup/InputPopup";
+import InputPopup from "../InputPopup/InputPopup";
 
 class GroupRemoteSearch extends BaseInput
 {
