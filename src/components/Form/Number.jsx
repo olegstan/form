@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
-import Money from "../../helpers/Money";
+import Money from "../Helpers/Money";
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'
@@ -237,7 +237,7 @@ export default class Number extends BaseInput {
           }}
         />
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../../assets/icons/ic_close_only.svg')} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg')} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',
@@ -247,7 +247,7 @@ export default class Number extends BaseInput {
           });
         }} alt=''/>}
         {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../../assets/icons/error.svg')} alt='' onClick={() => {
+          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg')} alt='' onClick={() => {
           }}/>}>
           <label htmlFor={this.props.id} className="error">{error}</label>
         </InputPopup> : ''}

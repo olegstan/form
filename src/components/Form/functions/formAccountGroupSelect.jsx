@@ -1,7 +1,6 @@
 import React from 'react';
 import AccountGroupSelect from "../AccountGroupSelect/AccountGroupSelect";
 import SlimAccountGroupSelect from "../AccountGroupSelect/SlimAccountGroupSelect";
-import AccountConstants from "../../../constants/AccountConstants";
 
 export default function formAccountGroupSelect(Base)
 {
@@ -70,7 +69,7 @@ export default function formAccountGroupSelect(Base)
       />
     }
 
-    renderAccountGroupSelectStyle1Slim({field, items, text, defaultText, disabled = false, showDefault = false, callback, types = AccountConstants.TYPES, style = {}, onCloseCreateCallback = () => {}, textLength = 25, size} = {}) {
+    renderAccountGroupSelectStyle1Slim({field, items, text, defaultText, disabled = false, showDefault = false, callback, types = [1, 2, 3, 4], style = {}, onCloseCreateCallback = () => {}, textLength = 25, size} = {}) {
       return <SlimAccountGroupSelect
         textLength={textLength}
         types={types}

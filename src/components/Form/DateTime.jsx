@@ -177,9 +177,9 @@ export default class DateTime extends BaseInput
             }}
           />
           <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label>
-          {this.props.icon !== false && <img className='calendar' src={require('./../../assets/icons/calendar.svg')} alt=''/>}
+          {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg')} alt=''/>}
           {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../../assets/icons/error.svg')} alt='' onClick={() => {
+            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg')} alt='' onClick={() => {
             }}/>}>
             <label htmlFor={this.props.id} className="error">{error}</label>
           </InputPopup> : ''}

@@ -405,7 +405,7 @@ class Search extends BaseInput
           }}>
             {resItems.length ? resItems : (selected ? '' : <Item><span>Ничего не найдено</span></Item>)}
           </StyledSelect>
-          {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('../../assets/ic_close_only.svg')} onClick={(e) => {
+          {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg')} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false

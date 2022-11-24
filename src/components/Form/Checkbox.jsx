@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Checkbox as StyleCheckbox} from "./newstyles";
-import {Body} from "./../Text/styles";
+import {Checkbox as StyleCheckbox, Body} from "./newstyles";
 
 export default class Checkbox extends Component
 {

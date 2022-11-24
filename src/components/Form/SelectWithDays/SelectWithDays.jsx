@@ -11,7 +11,6 @@ import {
   Select as StyledSelect,
   Selected
 } from './styles'
-import ActiveConstants from "../../../constants/ActiveConstants";
 
 class SelectWithDays extends BaseInput
 {
@@ -127,10 +126,6 @@ class SelectWithDays extends BaseInput
     {
       switch (this.props.selected.id)
       {
-        case ActiveConstants.CUSTOM_PERIOD_WEEK:
-          return this.renderDaysWeek();
-        case ActiveConstants.CUSTOM_PERIOD_MONTH:
-          return this.renderDaysMonth();
       }
     }
   }

@@ -1,13 +1,12 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {InputContainer, StyledInput} from './newstyles'
-import {Container} from './styles/containerStyle'
+import {InputContainer, MaskedStyledInput} from './newstyles'
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
+import {Container} from './styles/containerStyle'
 
-
-export default class Input extends BaseInput {
-
+export default class MaskedInput extends BaseInput
+{
   constructor(props)
   {
     super(props);
@@ -37,12 +36,14 @@ export default class Input extends BaseInput {
     disabled: false,
     value: '',
     placeholder: '',
+    mask: '',
     icon: '',
     className: '',
     wrapperClassName: '',
-    error: '',
-    style: {}
+    error: ''
   };
+
+
 
   render()
   {
@@ -77,34 +78,24 @@ export default class Input extends BaseInput {
     }
 
     return <Container
-      style={style}
-      size={this.props.size}
-      disabled={this.props.disabled}
+      style={style} disabled={this.props.disabled} className={this.props.disabled ? 'disabled' : ''}
       onClick={(e) => {
         e.stopPropagation();
       }}
     >
       <InputContainer ref={this.setWrapperRef}>
-        <StyledInput
+        <MaskedStyledInput
           browser={browser && browser.name}
           id={this.props.id}
-          size={this.props.size}
-          autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
+          mask={this.props.mask}
+          autoComplete={'off'}
           disabled={this.props.disabled}
+          style={this.props.style}
           className={this.props.className}
           type={this.props.type}
           name={this.getName(name)}
           value={this.props.value}
-          placeholder={this.props.placeholder}
-          onClick={(e) => {
-            e.stopPropagation();
-
-            if(typeof this.props.onClick === 'function')
-            {
-              this.props.onClick(this);
-            }
-            // this.handleShowSelect(true);
-          }}
+          alwaysShowMask={true}
           onKeyPress={(e) => {
             if (typeof this.props.onKeyPress === 'function')
             {
@@ -131,12 +122,12 @@ export default class Input extends BaseInput {
             //   focused: false,
             //   hasError: false
             // }, () => {
-            //   this.onBlur(this.props.value);
+            //   this.onBlur();
             // });
           }}
         />
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../../assets/icons/ic_close_only.svg')} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg')} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',
@@ -146,14 +137,11 @@ export default class Input extends BaseInput {
           });
         }} alt=''/>}
         {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../../assets/icons/error.svg')} alt='' onClick={() => {
-        }}/>}>
+          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg')} alt='' onClick={() => {
+          }}/>}>
           <label htmlFor={this.props.id} className="error">{error}</label>
         </InputPopup> : ''}
       </InputContainer>
-      {/*{this.props.icon ? <InputLabel>*/}
-        {/*{this.props.icon}*/}
-      {/*</InputLabel> : null}*/}
     </Container>
   }
 }

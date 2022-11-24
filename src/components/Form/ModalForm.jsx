@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from "../../interface/modal/Modal";
+// import {Modal} from "../../interface/modal/Modal";
 import Form from "./Form";
 
 class ModalForm extends Form {
@@ -64,12 +64,12 @@ class ModalForm extends Form {
       {
         if(this.closeModal === true)
         {
-          Modal.handleClose();
+          // Modal.handleClose();
         }
       }else{
         if(this.props.closeModal === true)
         {
-          Modal.handleClose();
+          // Modal.handleClose();
         }
       }
 
@@ -99,7 +99,7 @@ class ModalForm extends Form {
     this.setState({
       show: true
     }, () => {
-      Modal.handleShow();
+      // Modal.handleShow();
     });
   }
 
