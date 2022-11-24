@@ -64,12 +64,12 @@ class ModalForm extends Form {
       {
         if(this.closeModal === true)
         {
-          // Modal.handleClose();
+          document.getElementById('modal').classList.remove("visible");
         }
       }else{
         if(this.props.closeModal === true)
         {
-          // Modal.handleClose();
+          document.getElementById('modal').classList.remove("visible");
         }
       }
 
@@ -99,7 +99,7 @@ class ModalForm extends Form {
     this.setState({
       show: true
     }, () => {
-      // Modal.handleShow();
+      document.getElementById('modal').classList.add("visible");
     });
   }
 

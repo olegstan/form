@@ -6,10 +6,34 @@ export default function formAccountGroupSelect(Base)
 {
   class FormAccountGroupSelect extends Base
   {
-    renderAccountGroupSelect({field, items, text, defaultText, disabled = false, showDefault = false, callback, types = [1, 2, 3, 4], style = {}, onCloseCreateCallback = () => {}, textLength = 25, size, getUserAccounts = () => {}, handleAddAccount = () => {}} = {}) {
+    renderAccountGroupSelect({
+                               field,
+                               items,
+                               text,
+                               defaultText,
+                               disabled = false,
+                               showDefault = false,
+                               callback,
+                               types = [1, 2, 3, 4],
+                               style = {},
+                               onCloseCreateCallback = () => {},
+                               textLength = 25,
+                               size,
+                               getUserAccounts = () => {},
+                               handleAddAccount = () => {},
+                               loadModule = () => {},
+                               getText = () => {},
+                               accountAddAvailable = false,
+    } = {}) {
       return <AccountGroupSelect
         textLength={textLength}
         types={types}
+        size={size}
+        accountAddAvailable={accountAddAvailable}
+        getUserAccounts={getUserAccounts}
+        handleAddAccount={handleAddAccount}
+        loadModule={loadModule}
+        getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         default={defaultText}
         placeholder={text}
@@ -36,11 +60,34 @@ export default function formAccountGroupSelect(Base)
       />
     }
 
-    renderAccountGroupSelectStyle1({field, items, text, defaultText, disabled = false, showDefault = false, callback, types = [1, 2, 3, 4], style = {}, onCloseCreateCallback = () => {}, textLength = 25, size} = {}) {
+    renderAccountGroupSelectStyle1({
+                                     field,
+                                     items,
+                                     text,
+                                     defaultText,
+                                     disabled = false,
+                                     showDefault = false,
+                                     callback,
+                                     types = [1, 2, 3, 4],
+                                     style = {},
+                                     onCloseCreateCallback = () => {},
+                                     textLength = 25,
+                                     size,
+                                     getUserAccounts = () => {},
+                                     handleAddAccount = () => {},
+                                     loadModule = () => {},
+                                     getText = () => {},
+                                     accountAddAvailable = false,
+                                   } = {}) {
       return <AccountGroupSelect
         textLength={textLength}
         types={types}
         size={size}
+        accountAddAvailable={accountAddAvailable}
+        getUserAccounts={getUserAccounts}
+        handleAddAccount={handleAddAccount}
+        loadModule={loadModule}
+        getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         style={style}
         className={'style1'}
@@ -69,10 +116,34 @@ export default function formAccountGroupSelect(Base)
       />
     }
 
-    renderAccountGroupSelectStyle1Slim({field, items, text, defaultText, disabled = false, showDefault = false, callback, types = [1, 2, 3, 4], style = {}, onCloseCreateCallback = () => {}, textLength = 25, size} = {}) {
+    renderAccountGroupSelectStyle1Slim({
+                                         field,
+                                         items,
+                                         text,
+                                         defaultText,
+                                         disabled = false,
+                                         showDefault = false,
+                                         callback,
+                                         types = [1, 2, 3, 4],
+                                         style = {},
+                                         onCloseCreateCallback = () => {},
+                                         textLength = 25,
+                                         size,
+                                         getUserAccounts = () => {},
+                                         handleAddAccount = () => {},
+                                         loadModule = () => {},
+                                         getText = () => {},
+                                         accountAddAvailable = false,
+                                       } = {}) {
       return <SlimAccountGroupSelect
         textLength={textLength}
         types={types}
+        size={size}
+        accountAddAvailable={accountAddAvailable}
+        getUserAccounts={getUserAccounts}
+        handleAddAccount={handleAddAccount}
+        loadModule={loadModule}
+        getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         style={style}
         className={'style1'}

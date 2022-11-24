@@ -43,8 +43,9 @@ class AccountGroupSelect extends BaseInput
 
   componentDidMount()
   {
-    // import("../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => this.setState({ module: module.default }));
-    import(this.props.embedComponentSrc).then(module => this.setState({ module: module.default }));
+    this.props.loadModule((module) => {
+      this.setState({ module: module.default })
+    })
 
     document.addEventListener('mousedown', this.handleClickOutside);
   }
@@ -160,9 +161,9 @@ class AccountGroupSelect extends BaseInput
               })}
             </HeaderItem>
           })}
-          <Add key={'add'} className='add' onClick={() => {this.handleAddAccount()}}>
+          {this.props.accountAddAvailable && <Add key={'add'} className='add' onClick={() => {this.handleAddAccount()}}>
             <span>Добавить счёт</span>
-          </Add>
+          </Add>}
         </StyledSelect>
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
         <img className='arrow' src={this.getArrow()} onClick={() => {
