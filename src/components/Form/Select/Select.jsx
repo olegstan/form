@@ -95,7 +95,7 @@ class Select extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg');
+    return require('../../assets/arrow.svg').default;
   }
 
   render()
@@ -152,7 +152,7 @@ class Select extends BaseInput
           this.handleShowSelect(true);
         }}/>
         {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg')} alt='' onClick={() => {
+          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
           }}/>}>
           <label htmlFor={this.props.id} className="error">{error}</label>
         </InputPopup> : ''}

@@ -157,7 +157,7 @@ class RemoteSearch extends BaseInput
 
     style.border = focus;
 
-    let loadImage = require('../../assets/loader.svg');
+    let loadImage = require('../../assets/loader.svg').default;
 
     return <Container className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
       <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
@@ -210,7 +210,7 @@ class RemoteSearch extends BaseInput
             {resItems.length ? resItems : (loading || selected ? '' : <Item><span>Ничего не найдено</span></Item>)}
           </StyledSelect>
           {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg')} alt='' onClick={() => {
+            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
             }}/>}>
             <label htmlFor={this.props.id} className="error">{error}</label>
           </InputPopup> : ''}

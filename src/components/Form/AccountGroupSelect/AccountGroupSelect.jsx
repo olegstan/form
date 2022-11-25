@@ -107,7 +107,7 @@ class AccountGroupSelect extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg');
+    return require('../../assets/arrow.svg').default;
   }
 
   handleAddAccount()
@@ -170,7 +170,7 @@ class AccountGroupSelect extends BaseInput
           this.handleShowSelect(true);
         }}/>
         {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg')} alt='' onClick={() => {
+          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
             this.handleShowSelect(true);
           }}/>}>
           <label htmlFor={this.props.id} className="error">{error}</label>

@@ -189,7 +189,7 @@ class SearchWithButton extends BaseInput
       </InputWrapper>
       <div className={'plus'}>
         <div onClick={() => {this.props.buttonClick()}}>
-          <img src={require('./images/plus.png')} alt='' />
+          <img src={require('./images/plus.png').default} alt='' />
         </div>
       </div>
     </Container>

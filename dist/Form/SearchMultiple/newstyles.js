@@ -9,8 +9,8 @@ var _newstyles = require("../newstyles");
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-let close = require('./images/close.svg');
-let closeHovered = require('./images/close_hovered.svg');
+let close = require('./images/close.svg').default;
+let closeHovered = require('./images/close_hovered.svg').default;
 const Container = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  ", "\n  \n  min-height: 46px;\n"])), _newstyles.sharedSearchContainer);
 exports.Container = Container;
 const TagText = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: inline-block !important;\n    width: auto !important;\n    font-size: 14px !important;\n    font-style: normal;\n    font-weight: 500;\n    color: #7F818D;\n    cursor: pointer;\n    background-color: #EFF2F5;\n    border-radius: 8px;\n    padding: 0px 5px 0px 8px;\n    margin: 2px;\n    \n    div{\n        margin-left: 4px;\n        display: inline-block !important;\n        background-image: url(", ");\n        cursor: pointer;\n        width: 12px !important; \n        height: 12px !important;\n        background-position: center;\n        background-repeat: no-repeat;\n        \n        :hover{\n          background-image: url(", ");\n        }\n    }\n    \n    ", "\n"])), close, closeHovered, props => props.size === 'incomes-and-expenses' && "\n\n      margin: 3px 0 !important;\n  ");

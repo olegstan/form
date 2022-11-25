@@ -237,7 +237,7 @@ export default class Number extends BaseInput {
           }}
         />
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg')} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',
@@ -247,7 +247,7 @@ export default class Number extends BaseInput {
           });
         }} alt=''/>}
         {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg')} alt='' onClick={() => {
+          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
           }}/>}>
           <label htmlFor={this.props.id} className="error">{error}</label>
         </InputPopup> : ''}

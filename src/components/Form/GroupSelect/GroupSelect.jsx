@@ -99,7 +99,7 @@ class GroupSelect extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg');
+    return require('../../assets/arrow.svg').default;
   }
 
   render()
