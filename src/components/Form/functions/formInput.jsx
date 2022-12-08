@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style} = {})
+    renderInput({field, text, disabled = false, callback, size, style, className} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -42,6 +42,7 @@ export default function formInput(Base)
         type="text"
         name={field}
         size={size}
+        className={className}
         disabled={this.getDisabled(disabled)}
         value={value}
         onChange={(e, {name, value}) => {
@@ -69,7 +70,7 @@ export default function formInput(Base)
       />
     }
 
-    renderSlimInput({field, text, disabled = false, callback, size, style} = {})
+    renderSlimInput({field, text, disabled = false, callback, size, style, className} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -79,6 +80,7 @@ export default function formInput(Base)
         style={style}
         type="text"
         name={field}
+        className={className}
         size={size}
         disabled={this.getDisabled(disabled)}
         value={value}

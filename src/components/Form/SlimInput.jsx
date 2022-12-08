@@ -36,6 +36,7 @@ export default class SlimInput extends Input {
       style={style}
       size={this.props.size}
       slim
+      className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       disabled={this.props.disabled}
       onClick={(e) => {
         e.stopPropagation();

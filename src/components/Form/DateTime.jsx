@@ -115,7 +115,7 @@ export default class DateTime extends BaseInput
       <Container
         size={this.props.size}
         style={focus}
-        className={this.props.disabled ? 'disabled' : ''}
+        className={this.props.className + (this.props.disabled ? ' disabled' : '')}
         disabled={this.props.disabled}
         onClick={(e) => {
         }}>

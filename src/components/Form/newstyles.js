@@ -91,6 +91,12 @@ export const placeholderStyle = css`
       display: none;
     `}
   }
+  
+  &.style1{
+    label.placeholder {
+      color: #6F7080;
+    }
+  }
 `
 
 export const sharedCheckboxStyle = css`
@@ -176,10 +182,14 @@ export const sharedCheckboxStyle = css`
 `
 
 export const placeholderActiveStyle = css`
+  &.style1::placeholder{
+    color: #6F7080 !important;
+  }
+  
   &::placeholder {
     font-size: 100%;
     transition: all 0.3s ease;
-    color: transparent;
+    color: transparent !important;
   }
 
   & + .placeholder {
@@ -215,7 +225,6 @@ export const errorStyle = css`
   box-shadow: rgb(38 38 38 / 4%) 0px 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
   width: 276px;
   display: block;
-  font-size: 14px;
   border-radius: 16px;
   padding: 20px;
   font-size: 14px;
@@ -661,6 +670,7 @@ export const sharedInputContainerStyle = css`
   }
 
   ${placeholderStyle}
+  
   img {
     z-index: 1000;
     cursor: pointer;
@@ -715,15 +725,13 @@ export const sharedInputStyle = css`
     outline: 0;
   }
 
-  ${placeholderActiveStyle}
-
-  .style1{
-    background-color: #454650!important;
+  &.style1{
+    background-color: #2B2D39!important;
     color: #fff!important;
+    border-bottom: 3px solid #2B2D39;
   }
-  .style1::placeholder{
-    color: #6F7080!important;
-  }
+  
+  ${placeholderActiveStyle}
   
   ${props => props.size === 'undersized' && `
 

@@ -15,6 +15,12 @@ export const sharedContainer = css`
   border-radius: 8px;
   position: relative;
   
+  &.style1
+  {
+    border: 1px solid #454650 !important;
+    background-color: #2B2D39 !important;
+  }
+  
   ${props => props.disabled === true && `
       background-color: #FAFAFA !important;
       

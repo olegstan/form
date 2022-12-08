@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {InputContainer, MaskedStyledInput} from './newstyles'
+import {InputContainer, MaskedStyledInput, StyledInput} from './newstyles'
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'
@@ -78,7 +78,8 @@ export default class MaskedInput extends BaseInput
     }
 
     return <Container
-      style={style} disabled={this.props.disabled} className={this.props.disabled ? 'disabled' : ''}
+      style={style} disabled={this.props.disabled}
+      className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       onClick={(e) => {
         e.stopPropagation();
       }}

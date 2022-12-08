@@ -80,6 +80,7 @@ export default class Input extends BaseInput {
       style={style}
       size={this.props.size}
       disabled={this.props.disabled}
+      className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       onClick={(e) => {
         e.stopPropagation();
       }}
