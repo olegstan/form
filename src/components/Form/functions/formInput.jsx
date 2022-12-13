@@ -196,7 +196,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea(field, text, disabled = false)
+    renderTextArea({field, text, disabled = false} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
