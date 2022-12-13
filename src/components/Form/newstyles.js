@@ -471,21 +471,6 @@ export const sharedButtonStyle = css`
     background: #F1F3F6;
   }
 
-  &.style3 {
-    background: #fff;
-    color: #4378FF;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: auto;
-    line-height: normal;
-
-    ${props => props.right && `
-        margin: 10px 40px 0 0;
-      `}
-  }
-
   &.style3:hover {
 
   }
@@ -497,6 +482,45 @@ export const sharedButtonStyle = css`
   &.style4 {
     background: #EFF2F5;
     color: #FF624D;
+    min-width: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    ${props => props.right && `
+        margin: 10px 40px 0 0;
+      `}
+  }
+
+  &.style5 {
+    background: rgb(43, 45, 57);
+    color: #4C89FE;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: auto;
+    line-height: normal;
+
+    ${props => props.right && `
+        margin: 10px 40px 0 0;
+      `}
+  }
+  
+  &.style6 {
+    background: #2B2D39;
+    color: #4C89FE;
+    min-width: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    ${props => props.right && `
+        margin: 10px 40px 0 0;
+      `}
+  }
+  
+  &.style7 {
+    background: #333443;
+    color: #4C89FE;
     min-width: auto;
     padding: 10px 20px;
     border-radius: 10px;
@@ -556,6 +580,12 @@ export const sharedSelectedStyle = css`
   background-color: #EFF2F5;
   border-radius: 8px;
 
+  &.style1
+  {
+    background-color: #333443;
+    color: #4C89FE;
+  }
+  
   span {
     display: block;
     text-align: left;

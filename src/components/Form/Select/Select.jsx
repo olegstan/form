@@ -120,7 +120,7 @@ class Select extends BaseInput
 
     return <Container size={this.props.size} className={this.props.className + ' ' + (this.state.select ? 'select' : '')} style={this.props.style}>
       <InputWrapper ref={this.setWrapperRef} className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} id={this.props.id + '-wrapper'}>
-        <Selected id={this.props.id} className='selected' onClick={() => {
+        <Selected  id={this.props.id} className={this.props.className + ' selected'} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
         {resItems.length > 0 ? this.state.select && <StyledSelect id={this.props.id + '-select'} className='select' select={true}>

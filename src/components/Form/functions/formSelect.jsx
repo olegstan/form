@@ -105,13 +105,14 @@ export default function formSelect(Base)
       }
     }
 
-    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25} = {})
+    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className} = {})
     {
       return <Select
         textLength={textLength}
         default={defaultText}
         placeholder={text}
         size={size}
+        className={className}
         id={this.getPrefix() + field}
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}

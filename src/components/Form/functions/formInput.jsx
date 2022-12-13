@@ -109,7 +109,7 @@ export default function formInput(Base)
       />
     }
 
-    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback} = {})
+    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -119,6 +119,7 @@ export default function formInput(Base)
         type="text"
         name={field}
         mask={mask}
+        className={className}
         autoComplete={autoComplete}
         disabled={this.getDisabled(disabled)}
         value={value}

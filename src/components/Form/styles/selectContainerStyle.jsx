@@ -18,9 +18,15 @@ export const sharedSelectContainerStyle = css`
   border-radius: 8px;
   position: relative;
     
-  &.select{
+  &.select
+  {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+  
+  &.style1
+  {
+    background-color: #333443;
   }
   
   ${props => props.size === 'small' && `
