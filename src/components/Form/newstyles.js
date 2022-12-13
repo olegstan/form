@@ -216,7 +216,7 @@ export const placeholderActiveStyle = css`
   }
 
   &.style1::placeholder{
-    color: #6F7080 !important;
+    color: transparent !important;
   }
 
   &.style1 + .placeholder {
