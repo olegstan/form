@@ -36,24 +36,26 @@ export default class TextArea extends BaseInput
   render()
   {
     let error = this.getError();
-    let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
-    if(this.state.hasError === true)
-    {
-      focus = {border: '1px solid #FF0000'};
-    }
+    // let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
+    // if(this.state.hasError === true)
+    // {
+    //   focus = {border: '1px solid #FF0000'};
+    // }
 
     const browser = detect();
 
     return (
-      <ContainerTextArea style={focus}>
+      <ContainerTextArea
+        className={this.props.className + (this.props.disabled ? ' disabled' : '')}
+      >
         <Container className={this.getWrapperClasses()}>
           <StyledTextArea
+            className={this.props.className}
             browser={browser && browser.name}
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
             style={this.props.style}
-            className={this.props.className}
             name={this.props.name}
             value={this.props.value ? this.props.value : ''}
             rows={this.props.rows}

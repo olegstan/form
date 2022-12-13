@@ -196,7 +196,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea({field, text, disabled = false} = {})
+    renderTextArea({field, text, disabled = false, className} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -204,6 +204,7 @@ export default function formInput(Base)
       return <TextArea
         id={this.getPrefix() + field}
         name={field}
+        className={className}
         disabled={this.getDisabled(disabled)}
         value={value}
         onChange={(e, {name, value}) => {

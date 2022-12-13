@@ -20,6 +20,12 @@ export const sharedContainer = css`
     border: 1px solid #454650 !important;
     background-color: #2B2D39 !important;
   }
+
+  &.style1{
+    label.placeholder {
+      color: #6F7080;
+    }
+  }
   
   ${props => props.disabled === true && `
       background-color: #FAFAFA !important;

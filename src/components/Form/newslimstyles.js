@@ -656,8 +656,6 @@ export const ContainerTextArea = styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    border-bottom: 1px solid #c4c4c4;
-    margin: 20px;
     flex: 1;
 `
 

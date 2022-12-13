@@ -58,7 +58,7 @@ const Link = _styledComponents.default.a(_templateObject20 || (_templateObject20
 exports.Link = Link;
 const ButtonLink = (0, _styledComponents.default)(_reactRouterDom.NavLink)(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n    ", "\n    \n    font-weight: 700 !important;\n    \n    ", "\n    \n    ", "\n    \n    ", "\n"])), sharedButtonStyle, props => props.flex && "\n      flex: 1;\n      max-width: none;\n      min-width: fit-content;\n    ", props => props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ", props => props.size === 'full' && "\n      width: 100%;\n    ");
 exports.ButtonLink = ButtonLink;
-const ContainerTextArea = _styledComponents.default.div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #fff;\n    border-bottom: 1px solid #c4c4c4;\n    margin: 20px;\n    flex: 1;\n"])));
+const ContainerTextArea = _styledComponents.default.div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #fff;\n    flex: 1;\n"])));
 exports.ContainerTextArea = ContainerTextArea;
 const Row = _styledComponents.default.div(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n    \n  ", "\n"])), props => props.flex && "\n    flex: 1;\n  ");
 exports.Row = Row;

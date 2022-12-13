@@ -91,12 +91,6 @@ export const placeholderStyle = css`
       display: none;
     `}
   }
-  
-  &.style1{
-    label.placeholder {
-      color: #6F7080;
-    }
-  }
 `
 
 export const sharedCheckboxStyle = css`
@@ -766,6 +760,7 @@ export const sharedInputStyle = css`
   width: 100%;
   line-height: 15px;
   border-width: 0;
+  user-select: none;
   z-index: ${zindex.input};
   color: #000;
   transition: border-color .25s ease-in-out;
@@ -944,7 +939,14 @@ export const ButtonLink = styled(NavLink)`
 `
 
 export const TextArea = styled.textarea`
+  width: 100%;
+  resize: vertical;
+  
+  &.style1{
+    border: 1px solid #454650 !important;
+  }
 
+  ${sharedInputStyle}
 `
 
 
@@ -954,9 +956,17 @@ export const ContainerTextArea = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid #c4c4c4;
-  margin: 20px;
   flex: 1;
+  
+  &.style1{
+    background-color: #2B2D39;
+  }
+
+  &.disabled {
+    background-color: #F7F9FB;
+  }
+
+  ${placeholderStyle}
 `
 
 export const Row = styled.div`
