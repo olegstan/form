@@ -466,6 +466,19 @@ export const sharedButtonStyle = css`
   padding: 10px 20px;
   font-family: 'Rubik', sans-serif;
 
+  &.style1 {
+    background: #EFF2F5;
+    color: #4378FF;
+  }
+
+  &.style1:hover {
+    background: #D7DADC;
+  }
+
+  &.style1:active {
+    background: #F1F3F6;
+  }
+  
   &.style2 {
     background: #4378FF;
     color: #FFFFFF;
@@ -479,19 +492,11 @@ export const sharedButtonStyle = css`
     background: #5685FF;
   }
 
-  &.style1 {
-    background: #EFF2F5;
+  &.style3 {
+    background: transparent;
     color: #4378FF;
   }
-
-  &.style1:hover {
-    background: #D7DADC;
-  }
-
-  &.style1:active {
-    background: #F1F3F6;
-  }
-
+  
   &.style3:hover {
 
   }
@@ -601,7 +606,7 @@ export const sharedSelectedStyle = css`
   background-color: #EFF2F5;
   border-radius: 8px;
 
-  &.style1
+  &.style2
   {
     background-color: #333443;
     color: #4C89FE;

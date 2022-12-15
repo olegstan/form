@@ -24,7 +24,7 @@ export const sharedSelectContainerStyle = css`
     border-bottom-right-radius: 0;
   }
   
-  &.style1
+  &.style2
   {
     background-color: #333443;
   }
