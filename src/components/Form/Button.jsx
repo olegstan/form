@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button as StyledButton, ButtonLink, Link} from './newstyles'
+import {Button as StyledButton, ButtonLink, Link, InlineLink} from './newstyles'
 
 
 export default class Button extends Component {
@@ -35,6 +35,26 @@ export default class Button extends Component {
           >
               {this.props.children}
           </Link>
+        );
+      case 'inline-link':
+        return (
+          <InlineLink
+            left={this.props.left}
+            slim={this.props.slim}
+            right={this.props.right}
+            flex={this.props.flex}
+            style={this.props.style}
+            size={this.props.size}
+            color={this.props.color}
+            className={this.props.className}
+            position={this.props.position}
+            id={this.props.id}
+            href={this.props.href}
+            target={this.props.target}
+            onClick={this.props.onClick}
+          >
+              {this.props.children}
+          </InlineLink>
         );
       case 'link':
         return (

@@ -922,6 +922,10 @@ export const Link = styled.a`
       width: 100%;
     `}
 `
+export const InlineLink = styled.a`
+  display: inline-block;
+  font-weight: 700 !important;
+`
 
 export const ButtonLink = styled(NavLink)`
   ${sharedButtonStyle}
