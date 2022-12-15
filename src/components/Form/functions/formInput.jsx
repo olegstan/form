@@ -131,7 +131,7 @@ export default function formInput(Base)
           }, () => {
             if(typeof callback === 'function')
             {
-              callback();
+              callback(value);
             }
           });
         }}
