@@ -17,7 +17,7 @@ const Selected = _styledComponents.default.div(_templateObject3 || (_templateObj
 exports.Selected = Selected;
 const Select = _styledComponents.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedSelectStyle);
 exports.Select = Select;
-const Item = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  ", "\n  \n  span:hover{\n    background-color: #EFF2F5;\n  }\n"])), _newstyles.sharedItemStyle);
+const Item = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  ", "\n  \n  span:hover{\n    background-color: #EFF2F5;\n  }\n\n  &.style2 span:hover\n  {\n    background-color: #414250;\n  }\n"])), _newstyles.sharedItemStyle);
 exports.Item = Item;
 const Input = _styledComponents.default.input(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedInputStyle);
 exports.Input = Input;

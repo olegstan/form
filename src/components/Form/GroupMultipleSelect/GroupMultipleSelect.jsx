@@ -115,10 +115,10 @@ class GroupMultipleSelect extends BaseInput
         <Selected id={this.props.id} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
-        <StyledSelect id={this.props.id + '-multi-select'} className='select' select={this.state.select}>
+        <StyledSelect id={this.props.id + '-multi-select'} className={this.props.className + ' select'} select={this.state.select}>
           {showAll ? this.renderSelectAll() : ''}
           {items.map((item, key) => (
-            <Item key={item.id} id={this.props.id + '-' + item.id}>
+            <Item key={item.id} id={this.props.id + '-' + item.id} className={this.props.className}>
               <span>{item.name}</span>
               {item.items.map((subItem, subKey) => (
                 <Checkbox

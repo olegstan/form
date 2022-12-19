@@ -15,7 +15,7 @@ const Selected = _styledComponents.default.div(_templateObject2 || (_templateObj
 exports.Selected = Selected;
 const Select = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  ", "\n"])), _newslimstyles.sharedSelectStyle);
 exports.Select = Select;
-const Item = _styledComponents.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  ", "\n\n  span:hover{\n    background-color: #EFF2F5;\n  }\n"])), _newslimstyles.sharedItemStyle);
+const Item = _styledComponents.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  ", "\n\n  span:hover{\n    background-color: #EFF2F5;\n  }\n\n  &.style2 span:hover\n  {\n    background-color: #414250;\n  }\n"])), _newslimstyles.sharedItemStyle);
 exports.Item = Item;
 const Add = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  ", "\n  \n  align-items: center;\n  color: #000;\n  cursor: pointer;\n  line-height: 40px;\n  display: flex;\n  padding: 0 15px;\n  border-bottom: 1px #fff solid !important;\n  user-select: none;\n\n  span{\n    text-align: left;\n    font-size: 14px;\n    font-weight: 600;\n    width: 100%;\n  }\n\n  &:last-child {\n    border-bottom: 0;\n  }\n\n  &:hover {\n    text-decoration: underline;\n    //background-color: ;\n  }\n"])), _newslimstyles.sharedItemStyle);
 exports.Add = Add;

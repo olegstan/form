@@ -126,7 +126,7 @@ class MultipleSelect extends BaseInput
         <Selected id={this.props.id} className='selected' onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
-        <StyledSelect id={this.props.id + '-multi-select'} className='select' select={this.state.select}>
+        <StyledSelect id={this.props.id + '-multi-select'} className={this.props.className + ' select'} select={this.state.select}>
           {this.renderSelectAll()}
           {items.map((item, key) => (
             <Checkbox

@@ -422,6 +422,9 @@ export const sharedSelectWrapperStyle = css`
   &.select .selected span {
     border-bottom: 1px solid #E1E6EC;
   }
+  &.select.style2 .selected span {
+    border-bottom: 1px solid #414250;
+  }
 
   input::placeholder {
     color: transparent;
@@ -634,6 +637,11 @@ export const sharedSelectStyle = css`
   max-height: 250px;
   background-color: #EFF2F5;
 
+  &.style2
+  {
+    background-color: #333443;
+  }  
+  
   ${props => props.select && `
     display: block;
   `}
@@ -668,6 +676,12 @@ export const sharedItemStyle = css`
   flex-wrap: wrap;
   border-bottom: 1px solid #E1E6EC;
 
+  &.style2
+  {
+    background-color: #333443;
+    border-bottom: 1px solid #333443;
+  }
+
   span {
     text-align: left;
     font-size: 14px;
@@ -688,6 +702,12 @@ export const sharedItemStyle = css`
   span:hover {
     background-color: #E1E6EC;
     border-radius: 8px;
+  }
+
+  &.style2 span:hover
+  {
+    background-color: #414250;
+    border-bottom: 1px solid #414250;
   }
 `
 export const sharedSubItemStyle = css`
@@ -973,6 +993,10 @@ export const ContainerTextArea = styled.div`
 
   &.disabled {
     background-color: #F7F9FB;
+  }
+  
+  &.style1.disabled {
+    background-color: #2B2D39;
   }
 
   ${placeholderStyle}

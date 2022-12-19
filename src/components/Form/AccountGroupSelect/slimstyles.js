@@ -25,6 +25,11 @@ export const Item = styled.div`
   span:hover{
     background-color: #EFF2F5;
   }
+
+  &.style2 span:hover
+  {
+    background-color: #414250;
+  }
 `
 
 export const Add = styled.div`

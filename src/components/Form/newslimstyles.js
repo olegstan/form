@@ -170,6 +170,9 @@ export const sharedSelectWrapperStyle = css`
   &.select .selected span{
     border-bottom: 1px solid #E1E6EC;
   }
+  &.select.style2 .selected span {
+    border-bottom: 1px solid #414250;
+  }
   
   input::placeholder
   {
@@ -379,6 +382,12 @@ export const sharedItemStyle = css`
     background-color: #E1E6EC;
     border-radius: 8px;
   }
+
+  &.style2 span:hover
+  {
+    background-color: #414250;
+    border-bottom: 1px solid #414250;
+  }
 `
 
 export const sharedSubItemStyle = css`
@@ -417,6 +426,12 @@ export const sharedSubItemStyle = css`
     background-color: #E1E6EC;
 
     border-radius: 8px;
+  }
+
+  &.style2 span:hover
+  {
+    background-color: #414250;
+    border-bottom: 1px solid #414250;
   }
 `
 

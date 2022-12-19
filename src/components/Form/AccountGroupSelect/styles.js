@@ -107,4 +107,10 @@ export const SubItem = styled.div`
     
     border-radius: 8px;
   }
+
+  &.style2 span:hover
+  {
+    background-color: #414250;
+    border-bottom: 1px solid #414250;
+  }
 `

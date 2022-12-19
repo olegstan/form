@@ -21,7 +21,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect
         <Selected id={this.props.id} className='selected' onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
-        <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select}>
+        <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select}>
           {showDefault && <Item key={'default'} className='item' onClick={() => {handle(null); this.handleShowSelect(false)}}>
             <span>{this.props.default}</span>
           </Item>}

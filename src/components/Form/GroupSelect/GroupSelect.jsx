@@ -127,7 +127,7 @@ class GroupSelect extends BaseInput
         {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
-        <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select}>
+        <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select}>
           {items.map((item, key) => {
             let name = item.name;
             let shortName = name;

@@ -123,7 +123,7 @@ class Select extends BaseInput
         <Selected  id={this.props.id} className={this.props.className + ' selected'} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
-        {resItems.length > 0 ? this.state.select && <StyledSelect id={this.props.id + '-select'} className='select' select={true}>
+        {resItems.length > 0 ? this.state.select && <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={true}>
           {resItems.map((item, key) => {
             let shortName = '';
             if(item.name && item.name.length > this.props.textLength)
@@ -133,15 +133,15 @@ class Select extends BaseInput
               shortName = item.name;
             }
 
-            return <Item key={item.id} id={this.props.id + '-' + item.id} className='item' onClick={() => {
+            return <Item key={item.id} id={this.props.id + '-' + item.id} className={this.props.className + ' item'} onClick={() => {
               handle(item);
               this.handleShowSelect(false)
             }}>
               <span>{shortName}</span>
             </Item>
           })}
-        </StyledSelect> : this.state.select && <StyledSelect id={this.props.id + '-select'} className='select' select={true}>
-          <Item onClick={() => {
+        </StyledSelect> : this.state.select && <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={true}>
+          <Item className={this.props.className + ' item'} onClick={() => {
             this.handleShowSelect(false)
           }}>
             <span>Нет элементов</span>

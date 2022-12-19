@@ -202,12 +202,12 @@ class SelectWithDays extends BaseInput
           <Selected id={this.props.id} onClick={() => {
             this.handleShowSelect(true);
           }}><span>{this.renderSelected()}</span></Selected>
-          <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select}>
+          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select}>
             <Item key={'default'} onClick={() => {handle(null); this.handleShowSelect(false)}}>
               <span>{this.props.default}</span>
             </Item>
             {items.map((item, key) => (
-              <Item key={item.id} id={this.props.id + '-' + item.id} onClick={() => {handle(item); this.handleShowSelect(false)}}>
+              <Item key={item.id} id={this.props.id + '-' + item.id} className={this.props.className} onClick={() => {handle(item); this.handleShowSelect(false)}}>
                 <span>{item.name}</span>
               </Item>
             ))}

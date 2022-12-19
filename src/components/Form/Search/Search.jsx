@@ -285,7 +285,7 @@ class Search extends BaseInput
       //   return  true;
       // })
       .map((item, key) => {
-        return <Item key={item.id + (item.type_id ? item.type_id : '')} className={'item ' + (this.state.hovered === key ? 'hovered' : '')} id={this.props.id + '-' + item.id} onClick={(e) => {
+        return <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + 'item ' + (this.state.hovered === key ? 'hovered' : '')} id={this.props.id + '-' + item.id} onClick={(e) => {
           e.stopPropagation();
 
           handle(item);
@@ -400,10 +400,10 @@ class Search extends BaseInput
             }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-          <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select || this.state.focused} size={size} style={selectStyle} onClick={(e) => {
+          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} size={size} style={selectStyle} onClick={(e) => {
             e.stopPropagation();
           }}>
-            {resItems.length ? resItems : (selected ? '' : <Item><span>Ничего не найдено</span></Item>)}
+            {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>Ничего не найдено</span></Item>)}
           </StyledSelect>
           {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({

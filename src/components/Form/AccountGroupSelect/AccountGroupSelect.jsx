@@ -134,7 +134,7 @@ class AccountGroupSelect extends BaseInput
         }}><span>{this.renderSelected()}</span></Selected>
         <StyledSelect style={{
           width: this.props.width ? this.props.width : '100%'
-        }} id={this.props.id + '-select'} className='select' select={this.state.select}>
+        }} id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select}>
           {showDefault && <Item key={'default'} className='item' onClick={() => {handle(null); this.handleShowSelect(false)}}>
             <span>{this.props.default}</span>
           </Item>}

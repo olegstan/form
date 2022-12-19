@@ -296,7 +296,7 @@ class InputWithCurrency extends BaseInput {
           <Selected id={'selected-currency'} className={this.getWrapperClasses()} onClick={() => {
             this.handleShowSelect(true);
           }}><span>{this.renderSelected()}</span></Selected>
-          <StyledSelect id={'select-currency'} className='select' select={this.state.select}>
+          <StyledSelect id={'select-currency'} className={this.props.className + ' select'} select={this.state.select}>
             {this.props.currencies.map((item, key) => (
               <Item key={item.id} onClick={() => {handle(item); this.handleShowSelect(false)}}>
                 <span id={'currency-' + item.id}>{item.code} - {item.name}</span>

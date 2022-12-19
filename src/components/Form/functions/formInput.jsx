@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style, className} = {})
+    renderInput({field, text, disabled = false, callback, size, style, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -57,6 +57,16 @@ export default function formInput(Base)
             }
           });
         }}
+        onKeyPress={(e) => {
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
+          }
+        }}
         onBlur={() => {
           this.setState((prv) => {
             this.clearFormError(prv, field);
@@ -70,7 +80,7 @@ export default function formInput(Base)
       />
     }
 
-    renderSlimInput({field, text, disabled = false, callback, size, style, className} = {})
+    renderSlimInput({field, text, disabled = false, callback, size, style, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -96,6 +106,16 @@ export default function formInput(Base)
             }
           });
         }}
+        onKeyPress={(e) => {
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
+          }
+        }}
         onBlur={() => {
           this.setState((prv) => {
             this.clearFormError(prv, field);
@@ -109,7 +129,7 @@ export default function formInput(Base)
       />
     }
 
-    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className} = {})
+    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -135,6 +155,16 @@ export default function formInput(Base)
             }
           });
         }}
+        onKeyPress={(e) => {
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
+          }
+        }}
         onBlur={() => {
           this.setState((prv) => {
             this.clearFormError(prv, field);
@@ -148,7 +178,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style, max = false, min = false, onKeyPress = () => {}} = {})
+    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -169,6 +199,11 @@ export default function formInput(Base)
         onKeyPress={(e) => {
           if (typeof onKeyPress === 'function') {
             onKeyPress(e);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         }}
         onChange={(e, {name, value}) => {
@@ -196,7 +231,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea({field, text, disabled = false, className} = {})
+    renderTextArea({field, text, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -213,6 +248,16 @@ export default function formInput(Base)
 
             return prv;
           });
+        }}
+        onKeyPress={(e) => {
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
+          }
+        }}
+        onKeyDown={(e) => {
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
+          }
         }}
         onBlur={() => {
           this.setState((prv) => {

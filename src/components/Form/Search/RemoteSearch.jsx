@@ -127,14 +127,14 @@ class RemoteSearch extends BaseInput
       //   return  true;
       // })
       .map((item, key) => (
-        <Item key={item.id + (item.type_id ? item.type_id : '')} className='item' id={this.props.id + '-' + item.id} onClick={() => {
+        <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + ' item'} id={this.props.id + '-' + item.id} onClick={() => {
           handle(item);
           this.handleShowSelect(false);
           this.setState({
             search: item.name
           });
         }}>
-          {resItems.length ? resItems : <Item><span>Не найдено</span></Item>}
+          {resItems.length ? resItems : <Item className={this.props.className}><span>Не найдено</span></Item>}
         </Item>
       ))
 
@@ -206,8 +206,8 @@ class RemoteSearch extends BaseInput
             // }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-          <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select || this.state.focused}>
-            {resItems.length ? resItems : (loading || selected ? '' : <Item><span>Ничего не найдено</span></Item>)}
+          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
+            {resItems.length ? resItems : (loading || selected ? '' : <Item className={this.props.className}><span>Ничего не найдено</span></Item>)}
           </StyledSelect>
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {

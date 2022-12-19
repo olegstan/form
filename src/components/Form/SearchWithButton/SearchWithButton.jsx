@@ -103,7 +103,7 @@ class SearchWithButton extends BaseInput
         }
       })
       .map((item, key) => (
-        <Item key={item.id} className='item' id={this.props.id + '-' + item.id} onClick={() => {
+        <Item key={item.id} className={this.props.className +' item'} id={this.props.id + '-' + item.id} onClick={() => {
           handle(item, item.name);
           this.handleShowSelect(false);
           this.setState({
@@ -182,7 +182,7 @@ class SearchWithButton extends BaseInput
           }}
         />
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-        <StyledSelect id={this.props.id + '-select'} className='select' select={this.state.select || this.state.focused}>
+        <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
           {resItems}
         </StyledSelect>
         {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
