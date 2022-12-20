@@ -48,7 +48,7 @@ export default class TextArea extends BaseInput
       <ContainerTextArea
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       >
-        <Container className={this.getWrapperClasses()}>
+        <Container className={this.props.className + ' ' + this.getWrapperClasses()}>
           <StyledTextArea
             className={this.props.className}
             browser={browser && browser.name}

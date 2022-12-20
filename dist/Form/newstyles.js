@@ -67,7 +67,7 @@ const InlineLink = _styledComponents.default.a(_templateObject25 || (_templateOb
 exports.InlineLink = InlineLink;
 const ButtonLink = (0, _styledComponents.default)(_reactRouterDom.NavLink)(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  ", "\n\n  font-weight: 700 !important;\n\n  ", "\n\n  ", "\n\n  ", "\n"])), sharedButtonStyle, props => props.flex && "\n      flex: 1;\n      max-width: none;\n      min-width: fit-content;\n    ", props => props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ", props => props.size === 'full' && "\n      width: 100%;\n    ");
 exports.ButtonLink = ButtonLink;
-const TextArea = _styledComponents.default.textarea(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  width: 100%;\n  resize: vertical;\n  \n  &.style1{\n    border: 1px solid #454650 !important;\n  }\n\n  ", "\n"])), sharedInputStyle);
+const TextArea = _styledComponents.default.textarea(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n  \n  &.style1{\n    border: 1px solid #454650 !important;\n  }\n\n  ", "\n"])), sharedInputStyle);
 exports.TextArea = TextArea;
 const ContainerTextArea = _styledComponents.default.div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  background-color: #fff;\n  flex: 1;\n  \n  &.style1{\n    background-color: #2B2D39;\n  }\n\n  &.disabled {\n    background-color: #F7F9FB;\n  }\n  \n  &.style1.disabled {\n    background-color: #2B2D39;\n  }\n\n  ", "\n"])), placeholderStyle);
 exports.ContainerTextArea = ContainerTextArea;
