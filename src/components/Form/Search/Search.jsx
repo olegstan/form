@@ -326,6 +326,12 @@ class Search extends BaseInput
     }
 
 
+    let styleInput = {...this.props.style};
+
+    if(this.props.className === 'style2')
+    {
+      styleInput.color = '#fff'
+    }
 
     //исправления бага автозаполнения
     //если name содержит слова такие как country, street
@@ -333,7 +339,7 @@ class Search extends BaseInput
     //решение: делаем намеренно ошибку с слове чтобы убрать подсказку
     return <Container className={this.props.className} size={size}>
       <InputWrapper
-        className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
+        className={this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
         size={size} style={style}
         onClick={(e) => {
           e.stopPropagation();
@@ -345,7 +351,7 @@ class Search extends BaseInput
             size={size}
             autoComplete={'off'}
             disabled={this.props.disabled}
-            style={this.props.style}
+            style={styleInput}
             className={this.props.className}
             type={this.props.type}
             name={this.getName(name)}

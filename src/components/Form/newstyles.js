@@ -295,6 +295,11 @@ export const sharedSearchContainer = css`
     background-color: #FAFAFA;
   }
 
+  &.style2
+  {
+    background-color: #2B2D39!important;
+  }
+  
   //&.style1 .item:nth-child(even), .item:nth-child(even)
   //{
   //  background-color: #E5E5E5;
@@ -337,6 +342,13 @@ export const sharedSearchInputWrapperStyle = css`
   border-radius: 8px;
   cursor: pointer;
 
+  &.style2
+  {
+    background-color: #2B2D39!important;
+    color: #fff!important;
+    border: 1px solid #454650;
+  }
+  
   input {
     padding: 24px 12px 8px 10px !important;
   }
@@ -804,7 +816,7 @@ export const sharedInputStyle = css`
   z-index: ${zindex.input};
   color: #000;
   transition: border-color .25s ease-in-out;
-  border-bottom: 3px solid rgba(255, 255, 255, .05);
+  border: none;
   background-color: transparent;
   padding: 24px 12px 8px 14px;
   font-size: 14px;
@@ -820,7 +832,6 @@ export const sharedInputStyle = css`
   &.style1{
     background-color: #2B2D39!important;
     color: #fff!important;
-    border-bottom: 3px solid #2B2D39;
   }
   
   ${placeholderActiveStyle}
