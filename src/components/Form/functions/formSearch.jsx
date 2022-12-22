@@ -7,12 +7,13 @@ export default function formSearch(Base)
 {
   class FormSearch extends Base
   {
-    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style, onClick, size, selectStyle = {}} = {})
+    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style, onClick, size, selectStyle = {}, className} = {})
     {
       return <Search
         default={defaultText}
         placeholder={text}
         size={size}
+        className={className}
         id={id ? id : this.getPrefix() + field}
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}
@@ -84,10 +85,11 @@ export default function formSearch(Base)
       />
     }
 
-    renderRemoteSearch(field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}) {
+    renderRemoteSearch(field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, className) {
       return <RemoteSearch
         default={defaultText}
         placeholder={text}
+        className={className}
         loading={loading}
         id={this.getPrefix() + field}
         name={field + '_id'}
@@ -122,10 +124,11 @@ export default function formSearch(Base)
     }
 
 
-    renderGroupRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback = () => {}, loading, disabled = false, style, size = ''} = {}) {
+    renderGroupRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback = () => {}, loading, disabled = false, style, size = '', className} = {}) {
       return <GroupRemoteSearch
         default={defaultText}
         size={size}
+        className={className}
         placeholder={text}
         loading={loading}
         id={this.getPrefix() + field}

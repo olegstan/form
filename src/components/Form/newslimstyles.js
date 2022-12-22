@@ -18,7 +18,7 @@ const rotate = keyframes`
 
 export const errorStyle = css`
     background-color: #fff;
-    box-shadow: rgb(38 38 38 / 4%) 0px 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
+    box-shadow: rgb(38 38 38 / 4%) 0 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
     width: 276px;
     display: block;
     font-size: 14px;

@@ -285,7 +285,7 @@ class Search extends BaseInput
       //   return  true;
       // })
       .map((item, key) => {
-        return <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + 'item ' + (this.state.hovered === key ? 'hovered' : '')} id={this.props.id + '-' + item.id} onClick={(e) => {
+        return <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + ' item ' + (this.state.hovered === key ? 'hovered' : '')} id={this.props.id + '-' + item.id} onClick={(e) => {
           e.stopPropagation();
 
           handle(item);

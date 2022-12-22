@@ -243,7 +243,7 @@ export const placeholderActiveStyle = css`
 
 export const errorStyle = css`
   background-color: #fff;
-  box-shadow: rgb(38 38 38 / 4%) 0px 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
+  box-shadow: rgb(38 38 38 / 4%) 0 1px 2px, rgb(38 38 38 / 16%) 0 4px 8px;
   width: 276px;
   display: block;
   border-radius: 16px;
@@ -639,12 +639,14 @@ export const sharedSelectStyle = css`
 
   &.style2
   {
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
     background-color: #333443;
   }  
   
   ${props => props.select && `
     display: block;
   `}
+  
   &::-webkit-scrollbar {
     width: 8px;
     background-color: #F5F6FB;
@@ -655,6 +657,19 @@ export const sharedSelectStyle = css`
     border-radius: 4px;
   }
 
+  &.style2::-webkit-scrollbar {
+    width: 8px;
+    background-color: #333443;
+  }
+  
+  &.style2::-webkit-scrollbar-track {
+    background: #454650;
+  }
+  
+  &.style2::-webkit-scrollbar-thumb {
+    //background-color: #454650;
+    border-radius: 4px;
+  }
 
   ${props => props.size === 'incomes-and-expenses' && `
       top: 30px;

@@ -24,7 +24,7 @@ export const PopupContainer = styled.div`
     user-select: none;
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: rgb(38 38 38 / 4%) 0px 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
+    box-shadow: rgb(38 38 38 / 4%) 0 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
     padding: 12px;
     
 `
