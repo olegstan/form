@@ -30,6 +30,12 @@ export const sharedContainer = css`
   ${props => props.disabled === true && `
       background-color: #FAFAFA !important;
       
+      &.style2
+      {
+        background-color: #2B2D39 !important;
+      }
+
+      
       &:-webkit-autofill,
       &:-webkit-autofill:hover, 
       &:-webkit-autofill:focus, 
