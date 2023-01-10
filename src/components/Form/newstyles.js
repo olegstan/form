@@ -770,6 +770,8 @@ export const sharedInputContainerStyle = css`
   flex: 1;
   height: 46px;
   padding: 0;
+  position: relative;
+  z-index: 100;
 
   &.disabled {
     background-color: #F7F9FB;
@@ -833,10 +835,6 @@ export const sharedInputStyle = css`
 
   &.style1{
     background-color: #2B2D39!important;
-    color: #fff!important;
-  }
-  
-  &.style2{
     color: #fff!important;
   }
   
