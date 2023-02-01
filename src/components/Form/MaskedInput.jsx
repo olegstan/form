@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {InputContainer, MaskedStyledInput, StyledInput} from './newstyles'
+import {InputContainer, MaskedStyledInput} from './newstyles'
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'

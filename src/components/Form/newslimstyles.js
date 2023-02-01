@@ -220,7 +220,6 @@ export const sharedButtonStyle = css`
   outline: none;
   font-style: normal;
   font-weight: 600;
-  margin: 15px 5px;
   text-align: center;
   box-sizing: border-box;
   padding: 10px 20px;

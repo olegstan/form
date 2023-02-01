@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button as StyledButton, ButtonLink, Link, InlineLink} from './newstyles'
+import {Button as StyledButton, ButtonLink, InlineLink, Link} from './newstyles'
 
 
 export default class Button extends Component {

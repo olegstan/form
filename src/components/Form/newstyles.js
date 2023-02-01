@@ -477,12 +477,11 @@ export const sharedButtonStyle = css`
   transition: .3s all;
   outline: none;
   font-style: normal;
-  font-weight: 600;
-  margin: 15px 5px;
   text-align: center;
   box-sizing: border-box;
   padding: 10px 20px;
-  font-family: 'Rubik', sans-serif;
+  font-family: inherit;
+  font-weight: 700;
 
   &.style1 {
     background: #EFF2F5;
@@ -538,10 +537,6 @@ export const sharedButtonStyle = css`
   &.style5 {
     background: rgb(43, 45, 57);
     color: #4C89FE;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
     height: auto;
     line-height: normal;
 
