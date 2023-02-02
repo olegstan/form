@@ -512,6 +512,8 @@ export const sharedButtonStyle = css`
   &.style3 {
     background: transparent;
     color: #4378FF;
+    height: 30px !important;
+    padding: 0 !important;
   }
   
   &.style3:hover {

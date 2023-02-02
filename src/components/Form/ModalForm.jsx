@@ -31,6 +31,14 @@ class ModalForm extends Form {
     }
   }
 
+  getButtonStyle() {
+    if (this.props.buttonStyle) {
+      return this.props.buttonStyle;
+    }
+
+    return {}
+  }
+
   getModalName()
   {
 
