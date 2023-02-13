@@ -214,22 +214,6 @@ const spendingFilterTag = styled.div`
   }
 `;
 
-const incomeDateTag = styled.div`
-  ${sharedContainer}
-  
-  max-width: 223px;
-  min-width: 223px;
-  margin: 15px 0;
-`;
-
-const incomeSumTag = styled.div`
-  ${sharedContainer}
-  
-  max-width: 307px;
-  min-width: 307px;
-  margin: 15px 15px 15px 15px;
-`;
-
 const budgetSum = styled.div`
   ${sharedContainer}
   
@@ -514,18 +498,6 @@ const tacticsMonthDate = styled.div`
   max-width: 200px !important;
   min-width: 200px !important;
 `;
-const obligationInvestSum = styled.div`
-  ${sharedContainer}
-  
-  max-width: 236px !important;
-  min-width: 236px !important;
-`;
-const obligationInvestCurrency = styled.div`
-  ${sharedContainer}
-  
-  max-width: 138px !important;
-  min-width: 138px !important;
-`;
 
 export const Container = ({children, tag = 'div', size = "container", ...props}) => {
 
@@ -610,12 +582,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
     case 'plan-number':
       ContainerTagVariable = planNumberTag;
       break;
-    case 'income-date':
-      ContainerTagVariable = incomeDateTag;
-      break;
-    case 'income-sum':
-      ContainerTagVariable = incomeSumTag;
-      break;
     case 'budget-sum':
       ContainerTagVariable = budgetSum;
       break;
@@ -627,12 +593,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'tactics-month-date':
       ContainerTagVariable = tacticsMonthDate;
-      break;
-    case 'obligation-invest-sum':
-      ContainerTagVariable = obligationInvestSum;
-      break;
-    case 'obligation-invest-currency':
-      ContainerTagVariable = obligationInvestCurrency;
       break;
     default:
       ContainerTagVariable = containerTag;

@@ -482,6 +482,7 @@ export const sharedButtonStyle = css`
   padding: 10px 20px;
   font-family: inherit;
   font-weight: 700;
+  margin: 15px 5px;
 
   &.style1 {
     background: #EFF2F5;
@@ -603,6 +604,9 @@ export const sharedButtonStyle = css`
   ${props => props.slim && `
     height: 40px;
     line-height: 20px;
+  `}
+  ${props => props.noMargin && `
+    margin: 0;
   `}
 `
 

@@ -156,9 +156,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
     case 'full':
       ContainerTagVariable = fullTag;
       break;
-    case 'income-currency':
-      ContainerTagVariable = incomeCurrencyeTag;
-      break;
     case 'tactics-month-select':
       ContainerTagVariable = tacticsMonthSelect;
       break;
