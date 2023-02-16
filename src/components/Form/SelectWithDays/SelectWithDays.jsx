@@ -48,7 +48,7 @@ class SelectWithDays extends BaseInput
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  componentWillReceiveProps(nextProps)
+  UNSAFE_componentWillReceiveProps(nextProps)
   {
     const { name, daysField } = this.props;
     if(nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)

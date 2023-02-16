@@ -8,7 +8,7 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function receivePropsUserId(Base) {
   class ReceivePropsUserId extends Base {
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
       if (this.props.client === null && nextProps.client) {
         this.setState(prv => {
           prv.form.user_id = nextProps.client.id;

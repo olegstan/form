@@ -96,7 +96,7 @@ class InputWithCurrency extends BaseInput {
     style: {}
   };
 
-  componentWillReceiveProps(nextProps)
+  UNSAFE_componentWillReceiveProps(nextProps)
   {
     const { name, handle, currencyField } = this.props;
     if((nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) || (nextProps.errors && typeof nextProps.errors[currencyField] !== 'undefined' && nextProps.errors[currencyField].length > 0))
