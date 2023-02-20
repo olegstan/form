@@ -159,7 +159,7 @@ class RemoteSearch extends BaseInput
 
     let loadImage = require('../../assets/loader.svg').default;
 
-    return <Container className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
+    return <Container style={this.props.containerStyle} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
       <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput

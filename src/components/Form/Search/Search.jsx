@@ -338,7 +338,7 @@ class Search extends BaseInput
     //если name содержит слова такие как country, street
     //то будет предлагаться подсказка, которая не нужна
     //решение: делаем намеренно ошибку с слове чтобы убрать подсказку
-    return <Container className={this.props.className} size={size}>
+    return <Container style={this.props.containerStyle} className={this.props.className} size={size}>
       <InputWrapper
         className={this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
         size={size} style={style}

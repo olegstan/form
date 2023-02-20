@@ -359,7 +359,7 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
 
 
 
-  renderSearchMultiple({field, items, text, defaultText, disabled = false, size = '', allowAdd = false, onCreate = (value) => {}, onAddElement, onRemoveElement, onOutsideClick = () => {}, id, style, containerStyle = {}, controlStyle = {}, valueContainerStyle = {}} = {}) {
+  renderSearchMultiple({field, items, text, defaultText, disabled = false, size = '', allowAdd = false, onCreate = (value) => {}, onAddElement, onRemoveElement, onOutsideClick = () => {}, id, style = {}, containerStyle = {}, controlStyle = {}, valueContainerStyle = {}, nativeContainerStyle = {}} = {}) {
     return <SearchMultiple
       size={size}
       allowAdd={allowAdd}
@@ -385,6 +385,7 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
       style={style}
       containerStyle={containerStyle}
       controlStyle={controlStyle}
+      nativeContainerStyle={nativeContainerStyle}
       items={items}
       errors={this.state.formErrors}
     />

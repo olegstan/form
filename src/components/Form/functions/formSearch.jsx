@@ -7,7 +7,7 @@ export default function formSearch(Base)
 {
   class FormSearch extends Base
   {
-    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style, onClick, size, selectStyle = {}, className} = {})
+    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style, onClick, size, selectStyle = {}, containerStyle = {}, className} = {})
     {
       return <Search
         default={defaultText}
@@ -22,6 +22,7 @@ export default function formSearch(Base)
         onSearch={onSearch}
         style={style}
         selectStyle={selectStyle}
+        containerStyle={containerStyle}
         onClick={onClick}
         handle={(item) => {
           this.setState((prv) => {
@@ -48,7 +49,7 @@ export default function formSearch(Base)
       />
     }
 
-    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style} = {}) {
+    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, style = {}, containerStyle = {}} = {}) {
       return <Search
         className={'style1'}
         default={defaultText}
@@ -60,6 +61,7 @@ export default function formSearch(Base)
         search={this.state.form[field + '_search']}
         onSearch={onSearch}
         style={style}
+        containerStyle={containerStyle}
         handle={(item) => {
           this.setState((prv) => {
             this.setValueSearch(prv, field, item);
@@ -85,7 +87,7 @@ export default function formSearch(Base)
       />
     }
 
-    renderRemoteSearch(field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, className) {
+    renderRemoteSearch(field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, containerStyle = {}, className) {
       return <RemoteSearch
         default={defaultText}
         placeholder={text}
@@ -95,6 +97,7 @@ export default function formSearch(Base)
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}
         style={style}
+        containerStyle={containerStyle}
         selected={this.getLink(field)}
         search={this.getLink(field + '_search')}
         onSearch={onSearch}
@@ -124,7 +127,7 @@ export default function formSearch(Base)
     }
 
 
-    renderGroupRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback = () => {}, loading, disabled = false, style, size = '', className} = {}) {
+    renderGroupRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback = () => {}, loading, disabled = false, style = {}, containerStyle = {}, size = '', className} = {}) {
       return <GroupRemoteSearch
         default={defaultText}
         size={size}
@@ -135,6 +138,7 @@ export default function formSearch(Base)
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}
         style={style}
+        containerStyle={containerStyle}
         selected={this.getLink(field)}
         search={this.getLink(field + '_search')}
         onSearch={onSearch}

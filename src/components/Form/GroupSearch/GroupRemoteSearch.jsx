@@ -174,7 +174,7 @@ class GroupRemoteSearch extends BaseInput
 
     style.border = focus;
 
-    return <Container className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
+    return <Container style={this.props.containerStyle} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
       <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput

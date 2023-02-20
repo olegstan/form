@@ -323,10 +323,6 @@ export const sharedSearchContainer = css`
       min-width: 110px !important;
       margin: 3px 10px;
   `}
-
-  ${props => props.size === 'portfolio-plan' && `
-      margin: 0px;
-  `}
 `
 
 export const sharedSearchInputWrapperStyle = css`
