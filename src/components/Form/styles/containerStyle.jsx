@@ -476,12 +476,7 @@ const smallTag = styled.div`
   
   max-width: 256px;
 `;
-const smallPlan = styled.div`
-  ${sharedContainer}
-  
-  max-width: 179px;
-  margin: 0 !important;
-`;
+
 const mediumTag = styled.div`
   ${sharedContainer}
   
@@ -505,9 +500,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
 
 
   switch (size) {
-    case 'small-plan':
-      ContainerTagVariable = smallPlan;
-      break;
     case 'small':
       ContainerTagVariable = smallTag;
       break;

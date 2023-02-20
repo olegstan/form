@@ -105,10 +105,8 @@ class Search extends BaseInput
 
               for(let i = 0; i < partsLength; i++)
               {
-                if(item?.name.toLowerCase().indexOf(parts[i]) === -1)
+                if(item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
                 {
-
-                }else{
                   partsFound++;
                 }
               }
@@ -255,12 +253,10 @@ class Search extends BaseInput
 
           for(let i = 0; i < partsLength; i++)
           {
-            if(item?.name.toLowerCase().indexOf(parts[i]) === -1)
+            if(item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
             {
-
-            }else{
-            partsFound++;
-          }
+              partsFound++;
+            }
           }
 
           if(partsFound > 0)

@@ -20,12 +20,6 @@ const smallProperty = styled.div`
   max-width: 179px;
   margin: 5px 8px;
 `;
-const smallPlan = styled.div`
-  ${sharedSearchContainer}
-  
-  max-width: 179px;
-  margin: 0 !important;
-`;
 
 export const containerTag = styled.div`
     ${sharedSearchContainer}
@@ -85,9 +79,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
 
   switch (size)
   {
-    case 'small-plan':
-      ContainerTagVariable = smallPlan;
-      break;
     case 'small-property':
       ContainerTagVariable = smallProperty;
       break;
