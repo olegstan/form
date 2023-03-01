@@ -365,14 +365,38 @@ const planPercentTag = styled.div`
 
 const goalItemNumberTag = styled.div`
   ${sharedContainer}
-  
+
   display: inline-block;
-  height: 31px;
-  font-size: 16px;
-  line-height: 25px;
-  padding: 2px 5px;
+  height: 30px;
+  line-height: 30px;
+  padding: 2px 1px;
   min-width: 47px;
   margin: 0;
+
+  & > div{
+    height: 30px;
+    width: 100% !important;
+  }
+
+  input{
+    font-size: 14px;
+    line-height: 23px;
+    padding: 0 9px  0 0;
+    height: 23px;
+    text-align: right;
+    margin: 0;
+    font-weight: 400;
+    border-radius: 0;
+
+    :disabled{
+      border-radius: 4px;
+    }
+  }
+
+
+  .placeholder, .error{
+    display: none;
+  }
 `;
 
 const couponDateTag = styled.div`

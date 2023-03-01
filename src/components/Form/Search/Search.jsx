@@ -105,7 +105,7 @@ class Search extends BaseInput
 
               for(let i = 0; i < partsLength; i++)
               {
-                if(item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+                if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
                 {
                   partsFound++;
                 }
@@ -253,7 +253,7 @@ class Search extends BaseInput
 
           for(let i = 0; i < partsLength; i++)
           {
-            if(item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+            if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
             {
               partsFound++;
             }
