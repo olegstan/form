@@ -4,6 +4,7 @@ import InputMask from "react-input-mask";
 import {NavLink} from 'react-router-dom'
 import Flatpickr from "react-flatpickr";
 import zindex from '../interface/zindex'
+import {sharedContainer} from './styles/containerStyle'
 
 export const Body = styled.div`
   font-size: 14px;
@@ -1028,6 +1029,10 @@ export const ContainerTextArea = styled.div`
   }
 
   ${placeholderStyle}
+`
+
+export const WrapperTextArea = styled.div`
+  ${sharedContainer}
 `
 
 export const Row = styled.div`

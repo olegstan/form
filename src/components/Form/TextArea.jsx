@@ -1,8 +1,7 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {ContainerTextArea, TextArea as StyledTextArea} from './newstyles'
+import {ContainerTextArea, WrapperTextArea, TextArea as StyledTextArea} from './newstyles'
 import {detect} from 'detect-browser'
-import {Container} from './styles/containerStyle'
 
 export default class TextArea extends BaseInput
 {
@@ -46,6 +45,14 @@ export default class TextArea extends BaseInput
         ...this.props.style
       };
     }
+    let wrapperStyle = {}
+
+    if(this.props.wrapperStyle)
+    {
+      wrapperStyle = {
+        ...this.props.wrapperStyle
+      };
+    }
 
     let error = this.getError();
     // let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
@@ -61,8 +68,9 @@ export default class TextArea extends BaseInput
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
         style={style}
       >
-        <Container
+        <WrapperTextArea
           ref={this.setWrapperRef}
+          style={wrapperStyle}
           className={this.props.className + ' ' + this.getWrapperClasses()}
         >
           <StyledTextArea
@@ -107,7 +115,7 @@ export default class TextArea extends BaseInput
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
           {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
-        </Container>
+        </WrapperTextArea>
       </ContainerTextArea>
     );
   }
