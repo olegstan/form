@@ -19,11 +19,6 @@ class GroupSelect extends BaseInput
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   handleClickOutside(e)
   {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target))

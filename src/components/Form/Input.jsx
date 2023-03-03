@@ -21,11 +21,6 @@ export default class Input extends BaseInput {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   /**
    *
    */

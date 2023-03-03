@@ -51,11 +51,6 @@ class SearchWithButton extends BaseInput
     }
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   handleClickOutside(e)
   {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {

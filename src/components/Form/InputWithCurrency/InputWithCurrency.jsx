@@ -38,11 +38,6 @@ class InputWithCurrency extends BaseInput {
     this.setInputRef = this.setInputRef.bind(this);
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   setInputRef(node)
   {
     if (node)

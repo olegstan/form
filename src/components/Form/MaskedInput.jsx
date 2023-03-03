@@ -20,11 +20,6 @@ export default class MaskedInput extends BaseInput
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   /**
    *
    */

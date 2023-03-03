@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 
 export default class BaseInput extends Component
 {
+  setWrapperRef(node)
+  {
+    this.wrapperRef = node;
+  }
+
   hasError()
   {
     const { name } = this.props;
@@ -28,6 +33,11 @@ export default class BaseInput extends Component
 
   handleClickOutside(e)
   {
+    console.log(this.wrapperRef)
+    console.log(!this.wrapperRef.contains(e.target))
+    console.log(this.state.focused)
+    console.log(typeof this.props.onOutsideClick === 'function')
+
     if (this.wrapperRef && !this.wrapperRef.contains(e.target))
     {
       if(this.state.focused === true)

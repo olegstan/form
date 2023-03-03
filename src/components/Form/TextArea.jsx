@@ -13,6 +13,9 @@ export default class TextArea extends BaseInput
       focused: false,
       hasError: false
     }
+
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   /**
@@ -35,6 +38,15 @@ export default class TextArea extends BaseInput
 
   render()
   {
+    let style = {}
+
+    if(this.props.style)
+    {
+      style = {
+        ...this.props.style
+      };
+    }
+
     let error = this.getError();
     // let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
     // if(this.state.hasError === true)
@@ -47,8 +59,12 @@ export default class TextArea extends BaseInput
     return (
       <ContainerTextArea
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
+        style={style}
       >
-        <Container className={this.props.className + ' ' + this.getWrapperClasses()}>
+        <Container
+          ref={this.setWrapperRef}
+          className={this.props.className + ' ' + this.getWrapperClasses()}
+        >
           <StyledTextArea
             className={this.props.className}
             browser={browser && browser.name}

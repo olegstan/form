@@ -35,11 +35,6 @@ export default class Number extends BaseInput {
     this.inputRef = node;
   }
 
-  setWrapperRef(node)
-  {
-    this.wrapperRef = node;
-  }
-
   /**
    *
    */
