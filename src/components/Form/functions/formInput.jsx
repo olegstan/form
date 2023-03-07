@@ -231,7 +231,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea({field, text, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderTextArea({field, text, rows = 3, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -240,6 +240,7 @@ export default function formInput(Base)
         id={this.getPrefix() + field}
         name={field}
         className={className}
+        rows={rows}
         disabled={this.getDisabled(disabled)}
         value={value}
         onChange={(e, {name, value}) => {

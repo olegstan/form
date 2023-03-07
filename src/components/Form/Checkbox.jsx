@@ -20,6 +20,15 @@ export default class Checkbox extends Component
 
   render()
   {
+    let style = {}
+
+    if(this.props.textStyle)
+    {
+      style = {
+        ...this.props.textStyle
+      };
+    }
+
     let props = {
 
     };
@@ -54,7 +63,7 @@ export default class Checkbox extends Component
             <span className="rotate"/>
           </span>
         </label>
-        <Body className='text' onClick={(e) => {e.preventDefault(); this.props.toggleCallback()}}>{this.props.text}</Body>
+        <Body style={style} className='text' onClick={(e) => {e.preventDefault(); this.props.toggleCallback()}}>{this.props.text}</Body>
       </div>
     </StyleCheckbox>
   }

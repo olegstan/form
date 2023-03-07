@@ -2,6 +2,7 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import {ContainerTextArea, WrapperTextArea, TextArea as StyledTextArea} from './newstyles'
 import {detect} from 'detect-browser'
+import InputPopup from "./InputPopup/InputPopup";
 
 export default class TextArea extends BaseInput
 {
@@ -105,16 +106,20 @@ export default class TextArea extends BaseInput
               })
             }}
             onBlur={() => {
-              this.setState({
-                focused: false,
-                hasError: false
-              }, () => {
-                this.onBlur();
-              })
+              // this.setState({
+              //   focused: false,
+              //   hasError: false
+              // }, () => {
+              //   this.onBlur();
+              // })
             }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-          {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
+          {this.state.hasError ? <InputPopup
+            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
+            }}/>}>
+            <label htmlFor={this.props.id} className="error">{error}</label>
+          </InputPopup> : ''}
         </WrapperTextArea>
       </ContainerTextArea>
     );

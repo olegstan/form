@@ -530,8 +530,8 @@ export const sharedButtonStyle = css`
     border-radius: 10px;
 
     ${props => props.right && `
-        margin: 10px 40px 0 0;
-      `}
+      margin: 10px 40px 0 0;
+    `}
   }
 
   &.style5 {
@@ -541,8 +541,8 @@ export const sharedButtonStyle = css`
     line-height: normal;
 
     ${props => props.right && `
-        margin: 10px 40px 0 0;
-      `}
+      margin: 10px 40px 0 0;
+    `}
   }
   
   &.style6 {
@@ -605,6 +605,14 @@ export const sharedButtonStyle = css`
   ${props => props.noMargin && `
     margin: 0;
   `}
+
+  @media (max-width: 1030px) {
+    font-size: 11px;
+    padding: 4px 8px;
+    font-family: inherit;
+    font-weight: 700;
+    margin: 8px 3px;
+  }
 `
 
 export const sharedSelectedStyle = css`
@@ -1047,12 +1055,6 @@ export const Row = styled.div`
     flex: 1;
   `}
 `
-
-export const Grid = styled.div`
-  display: grid;
-  width: 100%;
-`
-
 
 export const Checkbox = styled.div`
   ${sharedCheckboxStyle}

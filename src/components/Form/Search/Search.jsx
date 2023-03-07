@@ -321,12 +321,7 @@ class Search extends BaseInput
 
     if(this.props.className === 'style2')
     {
-      if(this.props.disabled)
-      {
-        styleInput.color = '#2B2D39';
-      }else{
         styleInput.color = '#fff';
-      }
     }
 
     //исправления бага автозаполнения
