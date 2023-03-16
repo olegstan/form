@@ -126,14 +126,20 @@ export default class DateTime extends BaseInput
                 fp.calendarContainer.id = this.props.id + '-container';
               }}
               onMonthChange={(value, dateStr, instance) => {
-                this.setDate(value, dateStr, instance, (date) => {
-                  date.setMonth(instance.currentMonth);
-                })
+                if(dateStr)
+                {
+                  this.setDate(value, dateStr, instance, (date) => {
+                    date.setMonth(instance.currentMonth);
+                  })
+                }
               }}
               onYearChange={(value, dateStr, instance) => {
-                this.setDate(value, dateStr, instance, (date) => {
-                  date.setYear(instance.currentYear);
-                })
+                if(dateStr)
+                {
+                  this.setDate(value, dateStr, instance, (date) => {
+                    date.setYear(instance.currentYear);
+                  })
+                }
               }}
               onKeyUp={(e) => {
                 let value = e.target.value;

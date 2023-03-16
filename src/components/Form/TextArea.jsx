@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {ContainerTextArea, WrapperTextArea, TextArea as StyledTextArea} from './newstyles'
+import {ContainerTextArea, TextArea as StyledTextArea, WrapperTextArea} from './newstyles'
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 
