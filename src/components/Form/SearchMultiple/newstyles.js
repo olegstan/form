@@ -91,9 +91,15 @@ export const InputWrapper = styled.div`
     }
     
     label.placeholder{
+      transition: .3s all;
+      top: 29px;
+      left: 12px;
+    }
+  
+    label.placeholder.active{
       top: 10px;
-      left: -13px;
-      transform: scale(0.8);
+      left: -20px;
+      transform: translate(0.25em,-15%) scale(.8);;
     }
     
     label.error{

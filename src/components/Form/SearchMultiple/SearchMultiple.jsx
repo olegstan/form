@@ -205,6 +205,9 @@ class SearchMultiple extends BaseInput
 
     style.border = focus;
 
+    console.log(resItems)
+    console.log(selected)
+
     const customStyles = {
       // option: (provided, state) => ({
       //   ...provided,
@@ -246,7 +249,7 @@ class SearchMultiple extends BaseInput
           e.stopPropagation();
         }}>
         {this.getComponent(resItems, customStyles)}
-        {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (1)} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || selected.length ? 'active' : '')} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
         {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
       </InputWrapper>
     </Container>
