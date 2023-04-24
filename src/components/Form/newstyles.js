@@ -861,16 +861,6 @@ export const sharedInputStyle = css`
     }
   `}
 
-  ${props => props.autoComplete === 'off' && `
-
-      input::-webkit-contacts-auto-fill-button, 
-      input::-webkit-credentials-auto-fill-button {
-        visibility: hidden;
-        position: absolute;
-        right: 0;
-      }
-  `}
-
   ${props => props.size === 'incomes-and-expenses' && `
     max-width: 90px !important;
     min-width: 90px !important;
