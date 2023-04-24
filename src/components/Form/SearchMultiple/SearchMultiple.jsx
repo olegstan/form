@@ -205,9 +205,6 @@ class SearchMultiple extends BaseInput
 
     style.border = focus;
 
-    console.log(resItems)
-    console.log(selected)
-
     const customStyles = {
       // option: (provided, state) => ({
       //   ...provided,
