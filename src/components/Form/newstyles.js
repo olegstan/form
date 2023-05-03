@@ -347,7 +347,7 @@ export const sharedSearchInputWrapperStyle = css`
   }
   
   input {
-    padding: 24px 12px 8px 10px !important;
+    //padding: 24px 12px 8px 10px !important;
   }
 
   &.select {

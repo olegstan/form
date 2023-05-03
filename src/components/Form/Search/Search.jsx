@@ -25,7 +25,7 @@ class Search extends BaseInput
   }
 
   static defaultProps = {
-    selectStyle: {}
+    styleSelect: {}
   };
 
   UNSAFE_componentWillReceiveProps(nextProps)
@@ -233,7 +233,7 @@ class Search extends BaseInput
 
   render()
   {
-    const { items, handle, selected, name, size, selectStyle } = this.props;
+    const { items, handle, selected, name, styleSelect } = this.props;
     const { focused } = this.state;
 
     let search = this.state.search ? this.state.search.toLowerCase() : '';
@@ -291,14 +291,14 @@ class Search extends BaseInput
         </Item>
       }) : [];
 
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
+    // let style = {}
+    //
+    // if(this.props.style)
+    // {
+    //   style = {
+    //     ...this.props.style
+    //   };
+    // }
 
     let error = this.getError();
     let focus = (this.state.hasError ? '1px solid #FF0000' : '');
@@ -307,7 +307,7 @@ class Search extends BaseInput
     //   focus = '1px solid #FF0000';
     // }
 
-    style.border = focus;
+    // style.border = focus;
 
     let empty = true;
 
@@ -317,29 +317,33 @@ class Search extends BaseInput
     }
 
 
-    let styleInput = {...this.props.style};
+    let styleInput = {...this.props.styleInput};
+    let styleWrapper = {...this.props.styleWrapper};
+    let styleContainer = {...this.props.styleContainer};
 
     if(this.props.className === 'style2')
     {
         styleInput.color = '#fff';
     }
 
+    console.log(selected)
+
     //исправления бага автозаполнения
     //если name содержит слова такие как country, street
     //то будет предлагаться подсказка, которая не нужна
-    //решение: делаем намеренно ошибку с слове чтобы убрать подсказку
-    return <Container style={this.props.containerStyle} className={this.props.className} size={size}>
+    //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
+    return <Container style={styleContainer} className={this.props.className}>
       <InputWrapper
         className={this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
-        size={size} style={style}
+        style={styleWrapper}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        <InputContainer ref={this.setWrapperRef} size={size}>
+        <InputContainer ref={this.setWrapperRef}>
           <StyledInput
+            selected={selected ? 1 : 2}
             id={this.props.id}
-            size={size}
             autoComplete={'off'}
             disabled={this.props.disabled}
             style={styleInput}
@@ -355,7 +359,6 @@ class Search extends BaseInput
               {
                   this.props.onClick(this);
               }
-              // this.handleShowSelect(true);
             }}
             onKeyPress={(e) => {
               if (typeof this.props.onKeyPress === 'function')
@@ -390,19 +393,16 @@ class Search extends BaseInput
               })
             }}
             onBlur={(e) => {
-              // if (typeof this.props.onBlur === 'function')
-              // {
-              //   this.props.onBlur(e);
-              // }
+
             }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} size={size} style={selectStyle} onClick={(e) => {
+          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} style={styleSelect} onClick={(e) => {
             e.stopPropagation();
           }}>
-            {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>Ничего не найдено</span></Item>)}
+            {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
+          {!empty && typeof this.props.showClearIcon && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false

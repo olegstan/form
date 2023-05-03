@@ -128,7 +128,7 @@ export default class Money {
     if(courses)
     {
       courses.map((item) => {
-        if(item.cb_currency.currency.id === id)
+        if(item.cb_currency.currency_id === id)
         {
           course = item
         }

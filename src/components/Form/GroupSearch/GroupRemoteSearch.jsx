@@ -169,10 +169,13 @@ class GroupRemoteSearch extends BaseInput
 
     style.border = focus;
 
+    console.log(selected)
+
     return <Container style={this.props.containerStyle} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
       <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
+            selected={selected ? JSON.stringify(selected) : ''}
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
@@ -229,7 +232,7 @@ class GroupRemoteSearch extends BaseInput
                   </SubItem>
                 })}
               </Item>
-            }) : (loading || selected ? '' : <Item className={this.props.className}><span>Ничего не найдено</span></Item>)}
+            }) : (loading || selected ? '' : <Item className={this.props.className}><span>{this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
