@@ -291,23 +291,17 @@ class Search extends BaseInput
         </Item>
       }) : [];
 
-    // let style = {}
-    //
-    // if(this.props.style)
-    // {
-    //   style = {
-    //     ...this.props.style
-    //   };
-    // }
+    let styleWrapper = {...this.props.styleWrapper};
+
 
     let error = this.getError();
-    let focus = (this.state.hasError ? '1px solid #FF0000' : '');
-    // if(this.state.hasError === true)
-    // {
-    //   focus = '1px solid #FF0000';
-    // }
+    let focus = (this.state.focused ? '1px solid #1874DE' : '')
+    if(this.state.hasError === true)
+    {
+      focus = '1px solid #FF0000';
+    }
 
-    // style.border = focus;
+    styleWrapper.border = focus;
 
     let empty = true;
 
@@ -318,7 +312,6 @@ class Search extends BaseInput
 
 
     let styleInput = {...this.props.styleInput};
-    let styleWrapper = {...this.props.styleWrapper};
     let styleContainer = {...this.props.styleContainer};
 
     if(this.props.className === 'style2')
