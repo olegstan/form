@@ -1017,10 +1017,6 @@ export const ContainerTextArea = styled.div`
   &.style1{
     background-color: #2B2D39;
   }
-
-  &.disabled {
-    background-color: #F7F9FB;
-  }
   
   &.style1.disabled {
     background-color: #2B2D39;

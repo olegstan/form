@@ -62,8 +62,11 @@ export default function formSearch(Base)
         selected={this.getLink(field)}
         search={this.state.form[field + '_search']}
         onSearch={onSearch}
-        style={style}
-        containerStyle={containerStyle}
+        styleInput={styleInput}
+        styleSelect={styleSelect}
+        styleContainer={styleContainer}
+        styleWrapper={styleWrapper}
+        showClearIcon={showClearIcon}
         handle={(item) => {
           this.setState((prv) => {
             this.setValueSearch(prv, field, item);

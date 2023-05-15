@@ -90,7 +90,7 @@ class SearchWithButton extends BaseInput
 
     let resItems = items ? items
       .filter((item) => {
-        if(item?.name.toLowerCase().indexOf(search) === -1)
+        if(item?.name?.toLowerCase().indexOf(search) === -1)
         {
           return false;
         }else{

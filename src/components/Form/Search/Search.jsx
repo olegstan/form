@@ -100,7 +100,7 @@ class Search extends BaseInput
 
               for(let i = 0; i < partsLength; i++)
               {
-                if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+                if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
                 {
                   partsFound++;
                 }
@@ -248,7 +248,7 @@ class Search extends BaseInput
 
           for(let i = 0; i < partsLength; i++)
           {
-            if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+            if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
             {
               partsFound++;
             }
@@ -318,8 +318,6 @@ class Search extends BaseInput
     {
         styleInput.color = '#fff';
     }
-
-    console.log(selected)
 
     //исправления бага автозаполнения
     //если name содержит слова такие как country, street
@@ -393,7 +391,7 @@ class Search extends BaseInput
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} style={styleSelect} onClick={(e) => {
             e.stopPropagation();
           }}>
-            {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
+            {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
           {!empty && typeof this.props.showClearIcon && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({
