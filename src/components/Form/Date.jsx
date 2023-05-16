@@ -119,7 +119,8 @@ export default class DateTime extends BaseInput
               options={{
                 dateFormat: 'd.m.Y',
                 allowInput: true,
-                position: "above"
+                position: "above",
+                disableMobile: "true"
               }}
               className={this.props.className}
               onReady={(_, __, fp) => {

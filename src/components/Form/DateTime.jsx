@@ -129,6 +129,7 @@ export default class DateTime extends BaseInput
               allowInput: true,
               enableTime: true,
               enableSeconds: true,
+              disableMobile: "true"
             }}
             className={this.props.className}
             onReady={(_, __, fp) => {
