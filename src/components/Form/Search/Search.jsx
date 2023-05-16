@@ -25,6 +25,7 @@ class Search extends BaseInput
   }
 
   static defaultProps = {
+    showClearIcon: true,
     styleSelect: {}
   };
 
