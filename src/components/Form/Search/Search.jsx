@@ -393,7 +393,7 @@ class Search extends BaseInput
           }}>
             {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {!empty && typeof this.props.showClearIcon && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
+          {!empty && this.props.showClearIcon && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false
