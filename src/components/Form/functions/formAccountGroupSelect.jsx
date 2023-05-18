@@ -21,7 +21,8 @@ export default function formAccountGroupSelect(Base)
                                size,
                                getUserAccounts = () => {},
                                handleAddAccount = () => {},
-                               loadModule = () => {},
+                               loadModuleAccountCreate = () => {},
+                               loadModuleAccountEdit = () => {},
                                getText = () => {},
                                accountAddAvailable = false,
     } = {}) {
@@ -32,7 +33,8 @@ export default function formAccountGroupSelect(Base)
         accountAddAvailable={accountAddAvailable}
         getUserAccounts={getUserAccounts}
         handleAddAccount={handleAddAccount}
-        loadModule={loadModule}
+        loadModuleAccountCreate={loadModuleAccountCreate}
+        loadModuleAccountEdit={loadModuleAccountEdit}
         getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         default={defaultText}
@@ -75,7 +77,8 @@ export default function formAccountGroupSelect(Base)
                                      size,
                                      getUserAccounts = () => {},
                                      handleAddAccount = () => {},
-                                     loadModule = () => {},
+                                     loadModuleAccountCreate = () => {},
+                                     loadModuleAccountEdit = () => {},
                                      getText = () => {},
                                      accountAddAvailable = false,
                                    } = {}) {
@@ -86,7 +89,8 @@ export default function formAccountGroupSelect(Base)
         accountAddAvailable={accountAddAvailable}
         getUserAccounts={getUserAccounts}
         handleAddAccount={handleAddAccount}
-        loadModule={loadModule}
+        loadModuleAccountCreate={loadModuleAccountCreate}
+        loadModuleAccountEdit={loadModuleAccountEdit}
         getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         style={style}
@@ -131,7 +135,8 @@ export default function formAccountGroupSelect(Base)
                                          size,
                                          getUserAccounts = () => {},
                                          handleAddAccount = () => {},
-                                         loadModule = () => {},
+                                         loadModuleAccountCreate = () => {},
+                                         loadModuleAccountEdit = () => {},
                                          getText = () => {},
                                          accountAddAvailable = false,
                                        } = {}) {
@@ -142,7 +147,8 @@ export default function formAccountGroupSelect(Base)
         accountAddAvailable={accountAddAvailable}
         getUserAccounts={getUserAccounts}
         handleAddAccount={handleAddAccount}
-        loadModule={loadModule}
+        loadModuleAccountCreate={loadModuleAccountCreate}
+        loadModuleAccountEdit={loadModuleAccountEdit}
         getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         style={style}

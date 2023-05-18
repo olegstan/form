@@ -16,9 +16,11 @@ class AccountGroupSelect extends BaseInput
       error: null,
       select: false,
       hasError: false,
-      module: null,
+      moduleAccountCreate: null,
+      moduleAccountEdit: null,
 
-      showAccountAdd: false
+      showAccountCreate: false,
+      showAccountEdit: false
     }
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -38,8 +40,16 @@ class AccountGroupSelect extends BaseInput
 
   componentDidMount()
   {
-    this.props.loadModule((module) => {
-      this.setState({ module: module.default })
+    console.log(this.props)
+
+    this.props.loadModuleAccountCreate((module) => {
+      this.setState({ 
+        moduleAccountCreate: module.default
+      }, () => {
+        this.props.loadModuleAccountEdit((module) => {
+          this.setState({ moduleAccountEdit: module.default })
+        })
+      })
     })
 
     document.addEventListener('mousedown', this.handleClickOutside);
@@ -108,7 +118,7 @@ class AccountGroupSelect extends BaseInput
   handleAddAccount()
   {
     this.setState({
-      showAccountAdd: true
+      showAccountCreate: true
     }, () => {
       this.props.handleAddAccount()
     });
@@ -120,8 +130,10 @@ class AccountGroupSelect extends BaseInput
 
     let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
-    const { module: Component } = this.state;
+    const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;
 
+
+    //TODO сделать добавление субсчета
     return <Container size={this.props.size} className={this.props.className} style={this.props.style}>
       <InputWrapper className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} ref={this.setWrapperRef}>
         <Selected id={this.props.id} className='selected' onClick={() => {
@@ -171,7 +183,7 @@ class AccountGroupSelect extends BaseInput
           <label htmlFor={this.props.id} className="error">{error}</label>
         </InputPopup> : ''}
       </InputWrapper>
-      {Component && this.state.showAccountAdd && <Component
+      {ComponentCreate && this.state.showAccountCreate && <ComponentCreate
         types={this.props.types}
         show={true}
         callback={() => {
@@ -179,7 +191,7 @@ class AccountGroupSelect extends BaseInput
         }}
         onClose={() => {
           this.setState({
-            showAccountAdd: false
+            showAccountCreate: false
           }, () => {
             if(typeof this.props.onCloseCreateCallback === 'function')
             {
