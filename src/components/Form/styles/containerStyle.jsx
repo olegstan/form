@@ -313,7 +313,7 @@ const planNumberTag = styled.div`
     font-size: 14px;
     line-height: 15px;
     padding: 0 9px  0 0;
-    height: 17px;
+    height: 15px;
     text-align: right;
     margin: 0;
     font-weight: 400;
