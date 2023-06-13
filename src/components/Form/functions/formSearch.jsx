@@ -248,7 +248,7 @@ export default function formSearch(Base)
 
       let searchItem = null;
 
-      prv.banks.map((item) => {
+      items.map((item) => {
         if(item.name === search)
         {
           searchItem = item;
