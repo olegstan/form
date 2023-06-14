@@ -40,8 +40,6 @@ class AccountGroupSelect extends BaseInput
 
   componentDidMount()
   {
-    console.log(this.props)
-
     this.props.loadModuleAccountCreate((module) => {
       this.setState({ 
         moduleAccountCreate: module.default
