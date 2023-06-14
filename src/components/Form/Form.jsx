@@ -17,9 +17,10 @@ import getLink from "./functions/getLink";
 import formSelect from "./functions/formSelect";
 import formSearch from "./functions/formSearch";
 import formCheckbox from "./functions/formCheckbox";
+import formFile from "./functions/formFile";
 import setField from "./functions/setField";
 
-export default class Form extends Multi.extend(Component, formInput, formSelect, formSearch, formDate, getLink, formAccountGroupSelect, formCheckbox, setField)
+export default class Form extends Multi.extend(Component, formInput, formSelect, formSearch, formDate, getLink, formAccountGroupSelect, formCheckbox, formFile, setField)
 {
   renderSelectWithDays(field, daysField, items, text, defaultText, disabled = false, callback) {
     return <SelectWithDays
