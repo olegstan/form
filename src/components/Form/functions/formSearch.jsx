@@ -242,6 +242,37 @@ export default function formSearch(Base)
       }
     }
 
+    setValuesBySearch(prv, search, field, customId, items)
+    {
+      prv.form[field + '_search'] = search;
+
+      let searchItem = null;
+
+      items.map((item) => {
+        if(item.name === search)
+        {
+          searchItem = item;
+        }
+      });
+
+      if(searchItem)
+      {
+        prv.form[field] = searchItem;
+        prv.form[field + '_id'] = searchItem.id;
+
+        if(searchItem.id === customId)
+        {
+          prv.form['custom_' + field + '_id'] = searchItem.type_id;
+        }
+      }else{
+        prv.form[field] = null;
+        prv.form[field + '_id'] = '';
+        prv.form['custom_' + field + '_id'] = null;
+      }
+
+      return searchItem;
+    }
+
     clearFormError(prv, field)
     {
       if(prv.formErrors && typeof prv.formErrors[field] !== 'undefined')

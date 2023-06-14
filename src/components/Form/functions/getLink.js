@@ -61,28 +61,42 @@ export default function getLink(Base)
 
     setValueInput(prv, field, value)
     {
-      let parts = field.split('.');
+        let parts = field.split('.');
 
-      if(parts.length === 1)
-      {
-        prv.form[field] = value;
-      }else{
-        let linkField = prv.form;
-        for(let i = 0; i < parts.length; i++)
+        if(parts.length === 1)
         {
-          if((i + 1) === parts.length)
-          {
-            linkField[parts[i]] = value;
-          }else{
-            if(parts[i].isNumber())
-            {
-              parts[i] = parseInt(parts[i]);
-            }
+          try{
+            prv.form[field] = value;
+          }catch (e){
+            console.error(parts)
+            console.error(field)
+            console.error(e)
+          }
+        }else{
+          let linkField = prv.form;
 
-            linkField = linkField[parts[i]];
+          try{
+            for(let i = 0; i < parts.length; i++)
+            {
+              if((i + 1) === parts.length)
+              {
+                linkField[parts[i]] = value;
+              }else{
+                if(parts[i].isNumber())
+                {
+                  parts[i] = parseInt(parts[i]);
+                }
+
+                linkField = linkField[parts[i]];
+              }
+            }
+          }catch (e){
+            console.error(parts)
+            console.error(linkField)
+            console.error(e)
           }
         }
-      }
+
     }
   }
 
