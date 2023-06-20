@@ -3,6 +3,7 @@ import BaseInput from '../BaseInput';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import {Loader} from '../newstyles'
 import InputPopup from "../InputPopup/InputPopup";
+import Search from "./Search";
 
 class RemoteSearch extends BaseInput
 {
@@ -53,6 +54,122 @@ class RemoteSearch extends BaseInput
     }
   }
 
+  handleArrows()
+  {
+    if(this.state.handleArrow === false)
+    {
+      Search.func = (event) =>
+      {
+        const { items, selected, search, handle } = this.props;
+
+        let resItems = items ? items
+          .filter((item) => {
+
+            if(search && search.length)
+            {
+              let parts = search.split(' ');
+              let partsLength = parts.length;
+              let partsFound = 0;
+
+              for(let i = 0; i < partsLength; i++)
+              {
+                if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+                {
+                  partsFound++;
+                }
+              }
+
+              if(partsFound > 0)
+              {
+                return true;
+              }else{
+                return false;
+              }
+
+            }else{
+              return true;
+            }
+          })
+          .filter((item) => {
+            if(selected)
+            {
+              if(selected.id === item.id)
+              {
+                return  false;
+              }
+            }
+            return  true;
+          }) : [];
+
+        // if (eventPrevented)
+        // {
+        //   return; // Do nothing if the event was already processed
+        // }
+
+        switch (event.key)
+        {
+          case "Down": // IE/Edge specific value
+          case "ArrowDown":
+            if(this.state.hovered === false)
+            {
+              this.setState({
+                hovered: 0
+              });
+            }else{
+              let length = resItems.length;
+              let next = this.state.hovered + 1;
+
+              if(next <= (length - 1))
+              {
+                this.setState({
+                  hovered: next
+                });
+              }
+            }
+
+            // Do something for "down arrow" key press.
+            break;
+          case "Up": // IE/Edge specific value
+          case "ArrowUp":
+            let prev = this.state.hovered + -1;
+
+            if(prev >= 0)
+            {
+              this.setState({
+                hovered: prev
+              });
+            }
+            break;
+          case "Enter":
+            if(this.state.hovered !== false)
+            {
+              let item = resItems[this.state.hovered];
+
+              handle(item);
+              this.handleShowSelect(false);
+              this.stopHandleArrows();
+              this.setState({
+                search: item.name,
+                selected: item
+              });
+            }
+
+
+            event.preventDefault();
+            break;
+          default:
+            return; // Quit when this doesn't handle the key event.
+        }
+      }
+
+      window.addEventListener("keydown", Search.func, true);
+
+      this.setState({
+        handleArrow: true
+      });
+    }
+  }
+
   handleClickOutside(e)
   {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
@@ -67,12 +184,19 @@ class RemoteSearch extends BaseInput
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
-  
+
   handleShowSelect(bool)
   {
     this.setState({
       select: bool,
       focused: bool
+    }, () => {
+      if(this.state.select)
+      {
+        this.handleArrows();
+      }else{
+        this.stopHandleArrows();
+      }
     });
   }
 
@@ -93,24 +217,48 @@ class RemoteSearch extends BaseInput
     }
   }
 
+  stopHandleArrows()
+  {
+    window.removeEventListener('keydown', Search.func, true);
+
+    this.setState({
+      handleArrow: false
+    });
+  }
+
   render()
   {
     const { items, handle, name, loading, selected} = this.props;
 
-    let resItems = items
-      // .filter((item) => {
-      //   if(showAll === true)
-      //   {
-      //     return true;
-      //   }
-      //
-      //   if(item.name.toLowerCase().indexOf(search) === -1)
-      //   {
-      //     return false;
-      //   }else{
-      //     return true;
-      //   }
-      // })
+    let search = this.state.search ? this.state.search.toLowerCase() : '';
+
+    let resItems = items ? items
+      .filter((item) => {
+        if(search && search.length)
+        {
+          let parts = search.split(' ');
+          let partsLength = parts.length;
+          let partsFound = 0;
+
+          for(let i = 0; i < partsLength; i++)
+          {
+            if(parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1)
+            {
+              partsFound++;
+            }
+          }
+
+          if(partsFound > 0)
+          {
+            return true;
+          }else{
+            return false;
+          }
+
+        }else{
+          return true;
+        }
+      })
       // .filter((item) => {
       //   if(selected)
       //   {
@@ -121,17 +269,21 @@ class RemoteSearch extends BaseInput
       //   }
       //   return  true;
       // })
-      .map((item, key) => (
-        <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + ' item'} id={this.props.id + '-' + item.id} onClick={() => {
+      .map((item, key) => {
+        return <Item key={item.id + (item.type_id ? item.type_id : '')} className={this.props.className + ' item ' + (this.state.hovered === key ? 'hovered' : '')} id={this.props.id + '-' + item.id} onClick={(e) => {
+          e.stopPropagation();
+
           handle(item);
           this.handleShowSelect(false);
+          this.stopHandleArrows();
           this.setState({
-            search: item.name
+            search: item.name,
+            selected: item
           });
         }}>
-          {resItems.length ? resItems : <Item className={this.props.className}><span>Не найдено</span></Item>}
+          <span>{item.name}</span>
         </Item>
-      ))
+      }) : [];
 
 
     let style = {}

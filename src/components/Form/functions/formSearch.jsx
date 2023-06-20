@@ -92,7 +92,7 @@ export default function formSearch(Base)
       />
     }
 
-    renderRemoteSearch(field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, containerStyle = {}, className) {
+    renderRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, containerStyle = {}, className} = {}) {
       return <RemoteSearch
         default={defaultText}
         placeholder={text}
