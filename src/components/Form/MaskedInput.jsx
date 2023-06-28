@@ -42,26 +42,9 @@ export default class MaskedInput extends BaseInput
 
   render()
   {
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
-
     const {name} = this.props;
 
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '');
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #EF5E70';
-    }
-
-    style.border = focus;
 
     const browser = detect();
 
@@ -73,7 +56,8 @@ export default class MaskedInput extends BaseInput
     }
 
     return <Container
-      style={style} disabled={this.props.disabled}
+      style={this.getContainerStyle()}
+      disabled={this.props.disabled}
       className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       onClick={(e) => {
         e.stopPropagation();
@@ -86,7 +70,7 @@ export default class MaskedInput extends BaseInput
           mask={this.props.mask}
           autoComplete={'off'}
           disabled={this.props.disabled}
-          style={this.props.style}
+          style={this.getInputStyle()}
           className={this.props.className}
           type={this.props.type}
           name={this.getName(name)}

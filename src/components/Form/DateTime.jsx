@@ -90,14 +90,7 @@ export default class DateTime extends BaseInput
 
   render()
   {
-    const {name} = this.props;
-
     let error = this.getError();
-    let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
-    if(this.state.hasError === true)
-    {
-      focus = {border: '1px solid #EF5E70'};
-    }
 
     let value = null;
 
@@ -109,7 +102,7 @@ export default class DateTime extends BaseInput
     return (
       <Container
         size={this.props.size}
-        style={focus}
+        style={this.getContainerStyle()}
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
         disabled={this.props.disabled}
         onClick={(e) => {
@@ -119,6 +112,7 @@ export default class DateTime extends BaseInput
           needMargin={true}
         >
           <DateStyledInput
+            style={this.props.style}
             id={this.props.id}
             disabled={this.props.disabled}
             value={value}
@@ -172,7 +166,7 @@ export default class DateTime extends BaseInput
               });
             }}
           />
-          <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label>
+          {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
           {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {

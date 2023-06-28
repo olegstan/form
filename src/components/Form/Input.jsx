@@ -41,26 +41,9 @@ export default class Input extends BaseInput {
 
   render()
   {
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
-
     const {name} = this.props;
 
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '');
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #EF5E70';
-    }
-
-    style.border = focus;
 
     const browser = detect();
 
@@ -72,7 +55,7 @@ export default class Input extends BaseInput {
     }
 
     return <Container
-      style={style}
+      style={this.getContainerStyle()}
       size={this.props.size}
       disabled={this.props.disabled}
       className={this.props.className + (this.props.disabled ? ' disabled' : '')}
@@ -84,6 +67,7 @@ export default class Input extends BaseInput {
         <StyledInput
           browser={browser && browser.name}
           id={this.props.id}
+          style={this.getInputStyle()}
           size={this.props.size}
           autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
           disabled={this.props.disabled}

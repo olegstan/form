@@ -7,6 +7,45 @@ export default class BaseInput extends Component
     this.wrapperRef = node;
   }
 
+  getContainerStyle()
+  {
+    let containerStyle = {...this.props.containerStyle};
+
+    if(this.state.focused)
+    {
+      containerStyle.border = '1px solid #1874DE';
+    }
+
+    if(this.state.hasError === true)
+    {
+      containerStyle.border = '1px solid #EF5E70';
+    }
+
+    return containerStyle;
+  }
+
+  getWrapperStyle()
+  {
+    let containerStyle = {...this.props.containerStyle};
+
+    if(this.state.focused)
+    {
+      containerStyle.border = '1px solid #1874DE';
+    }
+
+    if(this.state.hasError === true)
+    {
+      containerStyle.border = '1px solid #EF5E70';
+    }
+
+    return containerStyle;
+  }
+
+  getInputStyle()
+  {
+    return this.props.style;
+  }
+
   hasError()
   {
     const { name } = this.props;

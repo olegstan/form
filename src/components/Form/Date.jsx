@@ -174,7 +174,7 @@ export default class DateTime extends BaseInput
                 });
               }}
             />
-          <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label>
+          {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
           <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {

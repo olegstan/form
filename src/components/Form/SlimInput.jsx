@@ -9,31 +9,13 @@ export default class SlimInput extends Input {
 
   render()
   {
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
-
     const {name} = this.props;
 
-    let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '');
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #EF5E70';
-    }
-
-    style.border = focus;
 
     const browser = detect();
 
     return <Container
-      style={style}
+      style={this.getContainerStyle()}
       size={this.props.size}
       slim
       className={this.props.className + (this.props.disabled ? ' disabled' : '')}
@@ -48,6 +30,7 @@ export default class SlimInput extends Input {
           browser={browser && browser.name}
           id={this.props.id}
           size={this.props.size}
+          style={this.getInputStyle()}
           autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
           disabled={this.props.disabled}
           className={this.props.className}

@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -39,6 +39,7 @@ export default function formInput(Base)
       return <Input
         id={this.getPrefix() + field}
         style={style}
+        containerStyle={containerStyle}
         type="text"
         name={field}
         size={size}
@@ -80,7 +81,7 @@ export default function formInput(Base)
       />
     }
 
-    renderSlimInput({field, text, disabled = false, callback, size, style, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderSlimInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -88,6 +89,7 @@ export default function formInput(Base)
       return <SlimInput
         id={this.getPrefix() + field}
         style={style}
+        containerStyle={containerStyle}
         type="text"
         name={field}
         className={className}
@@ -129,7 +131,7 @@ export default function formInput(Base)
       />
     }
 
-    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -139,6 +141,8 @@ export default function formInput(Base)
         type="text"
         name={field}
         mask={mask}
+        style={style}
+        containerStyle={containerStyle}
         className={className}
         autoComplete={autoComplete}
         disabled={this.getDisabled(disabled)}
@@ -178,7 +182,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style = {}, containerStyle = {}, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}, icon = false} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -190,7 +194,9 @@ export default function formInput(Base)
         inputmode="numeric"
         decimals={decimals}
         name={field}
+        icon={icon}
         style={style}
+        containerStyle={containerStyle}
         size={size}
         max={max}
         min={min}
@@ -231,7 +237,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea({field, text, rows = 3, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderTextArea({field, text, rows = 3, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -243,6 +249,8 @@ export default function formInput(Base)
         rows={rows}
         disabled={this.getDisabled(disabled)}
         value={value}
+        style={style}
+        containerStyle={containerStyle}
         onChange={(e, {name, value}) => {
           this.setState((prv) => {
             this.setValueInput(prv, field, value);

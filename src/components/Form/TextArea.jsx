@@ -38,40 +38,18 @@ export default class TextArea extends BaseInput
 
   render()
   {
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-    let wrapperStyle = {}
-
-    if(this.props.wrapperStyle)
-    {
-      wrapperStyle = {
-        ...this.props.wrapperStyle
-      };
-    }
-
     let error = this.getError();
-    // let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
-    // if(this.state.hasError === true)
-    // {
-    //   focus = {border: '1px solid #FF0000'};
-    // }
 
     const browser = detect();
 
     return (
       <ContainerTextArea
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
-        style={style}
+        style={this.getContainerStyle()}
       >
         <WrapperTextArea
           ref={this.setWrapperRef}
-          style={wrapperStyle}
+          style={this.getWrapperStyle()}
           className={this.props.className + ' ' + this.getWrapperClasses()}
         >
           <StyledTextArea
@@ -80,7 +58,7 @@ export default class TextArea extends BaseInput
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
-            style={this.props.style}
+            style={this.getInputStyle()}
             name={this.props.name}
             value={this.props.value ? this.props.value : ''}
             rows={this.props.rows}

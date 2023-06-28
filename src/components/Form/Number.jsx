@@ -164,26 +164,9 @@ export default class Number extends BaseInput {
 
   render()
   {
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
-
     const {name} = this.props;
 
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '')
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #EF5E70';
-    }
-
-    style.border = focus;
 
     const browser = detect();
 
@@ -195,7 +178,7 @@ export default class Number extends BaseInput {
     }
 
     return <Container
-      style={style}
+      style={this.getContainerStyle()}
       size={this.props.size}
       disabled={this.props.disabled}
       onClick={(e) => {
@@ -210,7 +193,7 @@ export default class Number extends BaseInput {
           size={this.props.size}
           autoComplete={'off'}
           disabled={this.props.disabled}
-          style={this.props.style}
+          style={this.getInputStyle()}
           className={this.props.className}
           type={this.props.type}
           name={this.getName(name)}
@@ -232,7 +215,7 @@ export default class Number extends BaseInput {
           }}
         />
         {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',
