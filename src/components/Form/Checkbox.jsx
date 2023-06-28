@@ -59,7 +59,9 @@ export default class Checkbox extends Component
             value={this.state.value}
             {...props}
           />
-          <span className="rotate-container">
+          <span className="rotate-container" style={{
+            borderRadius: this.props.form === 'round' ? '10px' : '6px'
+          }}>
             <span className="rotate"/>
           </span>
         </label>
