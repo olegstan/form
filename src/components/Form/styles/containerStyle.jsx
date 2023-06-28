@@ -432,49 +432,6 @@ const paymentNumberTag = styled.div`
 `;
 
 
-const obligationPaymentDateTag = styled.div`
-  ${sharedContainer}
-  
-  max-width: 170px;
-  min-width: 170px;
-  margin: 0;
-  height: 28px;
-  
-  & > div{
-    height: 28px;
-  }
-  
-  input{
-    padding: 3px 10px !important;
-  }
-  
-  .placeholder{
-    display: none !important;
-  }
-  .calendar{
-    display: none !important;
-  }
-`;
-const obligationPaymentNumberTag = styled.div`
-  ${sharedContainer}
-  
-  max-width: 150px;
-  min-width: 150px;
-  margin: 10px 3px;
-  height: 28px;
-  
-  & > div{
-    height: 28px;
-  }
-  
-  input{
-    padding: 3px 10px !important;
-  }
-  
-  .placeholder{
-    display: none !important;
-  }
-`;
 const incomesAndExpensesTag = styled.div`
   ${sharedContainer}
   
@@ -535,12 +492,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'incomes-and-expenses':
       ContainerTagVariable = incomesAndExpensesTag;
-      break;
-    case 'obligation-payment-number':
-      ContainerTagVariable = obligationPaymentNumberTag;
-      break;
-    case 'obligation-payment-date':
-      ContainerTagVariable = obligationPaymentDateTag;
       break;
     case 'payment-date':
     case 'valuation-date':

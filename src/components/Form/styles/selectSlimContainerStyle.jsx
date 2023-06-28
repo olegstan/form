@@ -87,12 +87,6 @@ const accountCurrencyTag = styled.div`
   max-width: 115px;
   min-width: 115px;
 `;
-const obligationInvestCurrency = styled.div`
-  ${sharedSelectContainerStyle}
-  
-  max-width: 138px !important;
-  min-width: 138px !important;
-`;
 
 export const Container = ({children, tag = 'div', size = "container", ...props}) => {
 
@@ -108,9 +102,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'tactics-month-select':
       ContainerTagVariable = tacticsMonthSelect;
-      break;
-    case 'obligation-invest-currency':
-      ContainerTagVariable = obligationInvestCurrency;
       break;
     default:
       ContainerTagVariable = containerTag;

@@ -107,13 +107,6 @@ const smallProperty = styled.div`
   margin: 5px 8px;
 `;
 
-const obligationInvestCurrency = styled.div`
-  ${sharedSelectContainerStyle}
-  
-  max-width: 138px !important;
-  min-width: 138px !important;
-`;
-
 const planPercentTag = styled.div`
   ${sharedSelectContainerStyle}
   
@@ -150,7 +143,7 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
     case 'small-property':
       ContainerTagVariable = smallProperty;
       break;
-      case 'plan-percent':
+    case 'plan-percent':
       ContainerTagVariable = planPercentTag;
       break;
     case 'full':
@@ -161,9 +154,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'balance-month-select':
       ContainerTagVariable = balanceMonthSelect;
-      break;
-    case 'obligation-invest-currency':
-      ContainerTagVariable = obligationInvestCurrency;
       break;
     case 'incomes-and-expenses':
       ContainerTagVariable = incomesAndExpensesTag;
