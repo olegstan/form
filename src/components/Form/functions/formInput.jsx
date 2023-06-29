@@ -16,7 +16,7 @@ export default function formInput(Base)
 
       return <Input
         id={id ? id : this.getPrefix() + field}
-        style={{
+        containerStyle={{
           display: 'none'
         }}
         type="text"

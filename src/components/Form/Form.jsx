@@ -475,7 +475,7 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
       return <Input
         key={log.id}
         id={'response-log-' + log.id}
-        style={{
+        containerStyle={{
           display: 'none'
         }}
         type="text"
