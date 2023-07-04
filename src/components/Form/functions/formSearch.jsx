@@ -52,44 +52,7 @@ export default function formSearch(Base)
 
     renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, showClearIcon = false, className} = {})
     {
-      return <Search
-        className={'style1'}
-        default={defaultText}
-        placeholder={text}
-        id={id ? id : this.getPrefix() + field}
-        name={field + '_id'}
-        disabled={this.getDisabled(disabled)}
-        selected={this.getLink(field)}
-        search={this.state.form[field + '_search']}
-        onSearch={onSearch}
-        styleInput={styleInput}
-        styleSelect={styleSelect}
-        styleContainer={styleContainer}
-        styleWrapper={styleWrapper}
-        showClearIcon={showClearIcon}
-        handle={(item) => {
-          this.setState((prv) => {
-            this.setValueSearch(prv, field, item);
-            this.clearFormError(prv, field + '_id');
-
-            return prv;
-          }, () => {
-            if(typeof callback === 'function')
-            {
-              callback(item);
-            }
-          });
-        }}
-        onBlur={() => {
-          this.setState((prv) => {
-            this.clearFormError(prv, field + '_id');
-
-            return prv;
-          });
-        }}
-        items={items}
-        errors={this.state.formErrors}
-      />
+      return this.renderSearch({...arguments[0], ...{className: 'style1'}})
     }
 
     renderRemoteSearch({field, items, text, defaultText, onSearch = () => {}, callback, disabled = false, loading, style = {}, containerStyle = {}, className} = {}) {
@@ -173,41 +136,7 @@ export default function formSearch(Base)
     }
 
     renderGroupRemoteSearchStyle1({field, items, text, defaultText, onSearch = () => {}, callback = () => {}, loading, disabled = false, style, size = ''} = {}) {
-      return <GroupRemoteSearch
-        default={defaultText}
-        size={size}
-        placeholder={text}
-        loading={loading}
-        id={this.getPrefix() + field}
-        name={field + '_id'}
-        disabled={this.getDisabled(disabled)}
-        style={style}
-        selected={this.getLink(field)}
-        search={this.getLink(field + '_search')}
-        onSearch={onSearch}
-        handle={(item, search) => {
-          this.setState((prv) => {
-            prv.form[field] = item;
-            prv.form[field + '_id'] = item ? item.id : '';
-
-            return prv;
-          }, () => {
-            if(typeof callback === 'function')
-            {
-              callback(item);
-            }
-          });
-        }}
-        onBlur={() => {
-          this.setState((prv) => {
-            this.clearFormError(prv, field + '_id');
-
-            return prv;
-          });
-        }}
-        items={items}
-        errors={this.state.formErrors}
-      />
+      return this.renderGroupRemoteSearch({...arguments[0], ...{className: 'style1'}})
     }
 
     setValueSearch(prv, field, item)

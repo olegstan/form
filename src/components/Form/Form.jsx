@@ -129,7 +129,7 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
     />
   }
 
-  renderMultipleSelect(field, items, text, defaultText, disabled = false, callback) {
+  renderMultipleSelect({field, items, text, defaultText, disabled = false, callback} = {}) {
     return <MultipleSelect
       default={defaultText}
       placeholder={text}
@@ -195,74 +195,11 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
     />
   }
 
-  renderMultipleSelectStyle1(field, items, text, defaultText, disabled = false, callback) {
-    return <MultipleSelect
-      default={defaultText}
-      className='style1'
-      placeholder={text}
-      id={this.getPrefix() + field}
-      name={field + '_ids'}
-      disabled={this.getDisabled(disabled)}
-      selected={this.state.form[field + '_ids']}
-      handleAll={(bool) => {
-        if(bool)
-        {
-          this.setState((prv) => {
-            prv.form[field + 's'] = [];
-            prv.form[field + '_ids'] = [];
-            items.map((item) => {
-              prv.form[field + 's'].push(item);
-              prv.form[field + '_ids'].push(item.id);
-
-              return;
-            });
-
-            return prv;
-          }, () => {
-            // if(typeof callback === 'function')
-            // {
-            //   callback();
-            // }
-          });
-        }else{
-          this.setState((prv) => {
-            prv.form[field + 's'] = [];
-            prv.form[field + '_ids'] = [];
-
-            return prv;
-          }, () => {
-            // if(typeof callback === 'function')
-            // {
-            //   callback();
-            // }
-          });
-        }
-      }}
-      handle={(item) => {
-        this.setState((prv) => {
-          let i = prv.form[field + '_ids'].indexOf(item.id);
-          if (i !== -1) {
-            prv.form[field + 's'].splice(i, 1);
-            prv.form[field + '_ids'].splice(i, 1);
-          } else {
-            prv.form[field + 's'].push(item);
-            prv.form[field + '_ids'].push(item.id);
-          }
-
-          return prv;
-        }, () => {
-          if(typeof callback === 'function')
-          {
-            callback(item);
-          }
-        });
-      }}
-      items={items}
-      errors={this.state.formErrors}
-    />
+  renderMultipleSelectStyle1({field, items, text, defaultText, disabled = false, callback} = {}) {
+    return this.renderMultipleSelect({...arguments[0], ...{className: 'style1'}})
   }
 
-  renderGroupSelect(field, items, text, defaultText, disabled = false, callback, size, style) {
+  renderGroupSelect({field, items, text, defaultText, disabled = false, callback, size, style} = {}) {
     return <GroupSelect
       default={defaultText}
       placeholder={text}
@@ -292,35 +229,8 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
     />
   }
 
-  renderGroupSelectStyle1(field, items, text, defaultText, disabled = false, callback, size, style) {
-    return <GroupSelect
-      default={defaultText}
-      placeholder={text}
-      size={size}
-      style={style}
-      className='style1'
-      id={this.getPrefix() + field}
-      name={field + '_id'}
-      disabled={this.getDisabled(disabled)}
-      selected={this.getLink(field)}
-      handle={(item) => {
-        this.setState((prv) => {
-          prv.form[field] = item;
-          prv.form[field + '_id'] = item ? item.id : '';
-
-          this.clearFormError(prv, field + '_id');
-
-          return prv;
-        }, () => {
-          if(typeof callback === 'function')
-          {
-            callback(item);
-          }
-        });
-      }}
-      items={items}
-      errors={this.state.formErrors}
-    />
+  renderGroupSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, style} = {}) {
+    return this.renderSelect({...arguments[0], ...{className: 'style1'}})
   }
 
   renderRelationGroupSelect(field, items, text, defaultText, disabled = false, callback) {

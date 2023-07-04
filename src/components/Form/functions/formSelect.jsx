@@ -171,34 +171,7 @@ export default function formSelect(Base)
 
     renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, style, textLength = 50} = {})
     {
-      return <Select
-        className={'style1'}
-        textLength={textLength}
-        default={defaultText}
-        placeholder={text}
-        size={size}
-        id={this.getPrefix() + field}
-        name={field + '_id'}
-        disabled={this.getDisabled(disabled)}
-        selected={this.getLink(field)}
-        style={style}
-        handle={(item) => {
-          let prevValue = this.getValueSelect(this.state, field);
-          this.setState((prv) => {
-            this.setValueSelect(prv, field, item);
-            this.clearFormError(prv, field + '_id');
-
-            return prv;
-          }, () => {
-            if(typeof callback === 'function')
-            {
-              callback(item, prevValue);
-            }
-          });
-        }}
-        items={items}
-        errors={this.state.formErrors}
-      />
+      return this.renderSelect({...arguments[0], ...{className: 'style1'}})
     }
   }
   return FormSelect;
