@@ -18,6 +18,11 @@ export default class TextArea extends BaseInput
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  getContainerStyle()
+  {
+    return {...this.props.containerStyle};
+  }
+
   /**
    * @type {{multi: boolean}}
    */
