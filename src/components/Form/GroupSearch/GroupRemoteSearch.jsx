@@ -226,7 +226,7 @@ class GroupRemoteSearch extends BaseInput
                       search: subItem.name
                     });
                   }}>
-                    {subItem.name}
+                    {subItem.name ? subItem.name.capitalize() : ''}
                   </SubItem>
                 })}
               </Item>

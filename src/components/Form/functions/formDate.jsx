@@ -67,6 +67,7 @@ export default function formDate(Base)
         onChange={(e, { name, value, date}) => {
           this.setState((prv) => {
             this.setValueInput(prv, field, value);
+            this.setValueInput(prv, field + '_date', date);
             this.setValueInput(prv, field + '_datetime', date);
 
             return prv;
