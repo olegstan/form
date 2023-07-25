@@ -141,6 +141,7 @@ export const sharedCheckboxStyle = css`
     margin: 7px 5px 0 0;
     cursor: pointer;
     user-select: none;
+    display: flex;
   }
 
   .text {
@@ -167,11 +168,11 @@ export const sharedCheckboxStyle = css`
     display: block;
     position: relative;
     transform: rotate(45deg);
-    width: 4px;
-    height: 8px;
-    top: 3px;
+    width: 7px;
+    height: 10px;
+    top: 1px;
     z-index: 100000;
-    left: 6px;
+    left: 3px;
     box-sizing: border-box;
   }
 `
