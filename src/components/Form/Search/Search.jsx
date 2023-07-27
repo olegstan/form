@@ -234,7 +234,7 @@ class Search extends BaseInput
 
   render()
   {
-    const { items, handle, selected, name, styleSelect } = this.props;
+    const { items, handle, selected, name, styleSelect, styleClearImage } = this.props;
     const { focused } = this.state;
 
     let search = this.state.search ? this.state.search.toLowerCase() : '';
@@ -394,7 +394,7 @@ class Search extends BaseInput
           }}>
             {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {!empty && this.props.showClearIcon && !this.props.disabled && <img className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
+          {!empty && this.props.showClearIcon && !this.props.disabled && <img style={styleClearImage} className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false

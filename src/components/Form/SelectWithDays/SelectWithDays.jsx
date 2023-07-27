@@ -1,15 +1,15 @@
 import React, {Fragment} from 'react';
 import BaseInput from '../BaseInput';
 import {
-  CalendarContainer,
-  Container,
-  Day,
-  DaysContainer,
-  DaysTitle,
-  InputWrapper,
-  Item,
-  Select as StyledSelect,
-  Selected
+    CalendarContainer,
+    Container,
+    Day,
+    DaysContainer,
+    DaysTitle,
+    InputWrapper,
+    Item,
+    Select as StyledSelect,
+    Selected
 } from './styles'
 
 class SelectWithDays extends BaseInput

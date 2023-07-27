@@ -7,7 +7,7 @@ export default function formSearch(Base)
 {
   class FormSearch extends Base
   {
-    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, showClearIcon = false, className} = {})
+    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, styleClearImage = {}, showClearIcon = false, className} = {})
     {
       return <Search
         default={defaultText}
@@ -22,6 +22,7 @@ export default function formSearch(Base)
         styleInput={styleInput}
         styleSelect={styleSelect}
         styleContainer={styleContainer}
+        styleClearImage={styleClearImage}
         styleWrapper={styleWrapper}
         showClearIcon={showClearIcon}
         onClick={onClick}
@@ -50,7 +51,7 @@ export default function formSearch(Base)
       />
     }
 
-    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, showClearIcon = false, className} = {})
+    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, styleClearImage = {}, showClearIcon = false, className} = {})
     {
       return this.renderSearch({...arguments[0], ...{className: 'style1'}})
     }

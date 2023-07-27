@@ -1,13 +1,13 @@
 import React from 'react';
 import BaseInput from '../BaseInput';
 import {
-  Container,
-  Input as StyledInput,
-  InputContainer,
-  InputWrapper,
-  Item,
-  Select as StyledSelect,
-  SubItem
+    Container,
+    Input as StyledInput,
+    InputContainer,
+    InputWrapper,
+    Item,
+    Select as StyledSelect,
+    SubItem
 } from './newstyles'
 import {Loader} from '../newstyles'
 import InputPopup from "../InputPopup/InputPopup";

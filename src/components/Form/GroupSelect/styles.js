@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import {
-  sharedItemStyle,
-  sharedSelectedStyle,
-  sharedSelectStyle,
-  sharedSelectWrapperStyle,
-  sharedSubItemStyle
+    sharedItemStyle,
+    sharedSelectedStyle,
+    sharedSelectStyle,
+    sharedSelectWrapperStyle,
+    sharedSubItemStyle
 } from '../newstyles'
 
 export const InputWrapper = styled.div`
