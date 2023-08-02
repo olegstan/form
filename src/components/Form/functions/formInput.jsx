@@ -31,10 +31,10 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
     {
       let link = this.getLink(field);
-      let value = link === null ? '' : link;
+      value = value ? value : (link === null ? '' : link);
 
       return <Input
         id={this.getPrefix() + field}
