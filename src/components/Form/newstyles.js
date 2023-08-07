@@ -103,6 +103,7 @@ export const sharedCheckboxStyle = css`
   display: flex;
   padding: 0;
   box-sizing: border-box;
+  z-index: 100;
 
 
   &:last-child {

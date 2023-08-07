@@ -26,9 +26,10 @@ class SlimAccountGroupSelect extends AccountGroupSelect
             <span>{this.props.default}</span>
           </Item>}
           {items.map((item, key) => {
-            let name = (item.name ? item.name : 'Счёт без названия');
+            let name = (item.name ? item.name : (item.bank_text ? item.bank_text : 'Счёт без названия'));
             let shortName = name;
-            if (name.length > 38) {
+            if (name.length > 38)
+            {
               shortName = name.slice(0, 39) + '...';
             }
 
