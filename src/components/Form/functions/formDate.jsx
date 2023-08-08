@@ -6,7 +6,7 @@ export default function formDate(Base)
 {
   class FormDate extends Base
   {
-    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, icon = false} = {}) {
+    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, icon = false,value} = {}) {
       return <Date
         id={this.getPrefix() + field}
         icon={icon}
@@ -17,7 +17,7 @@ export default function formDate(Base)
         className={className}
         disabled={this.getDisabled(disabled)}
         format={format}
-        value={this.getLink(field + '_date')}
+        value={(value ? value : this.getLink(field + '_date'))}
         onChange={(e, { name, value, date}) => {
           this.setState((prv) => {
             this.setValueInput(prv, field, value);
