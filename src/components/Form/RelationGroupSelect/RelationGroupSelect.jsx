@@ -81,12 +81,15 @@ class RelationGroupSelect extends BaseInput
   {
     let name = trade.active.name;
 
-    if(name.length > 30){
-      name = ' (' + name.slice(0, 29) + '...)';
-    }else if(name.length === 0){
-      name = ' ';
-    }else{
-      name = ' (' + name + ')';
+    if(name)
+    {
+      if(name?.length > 30){
+        name = ' (' + name.slice(0, 29) + '...)';
+      }else if(name?.length === 0){
+        name = ' ';
+      }else{
+        name = ' (' + name + ')';
+      }
     }
 
     return name;
