@@ -1,9 +1,11 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {DateStyledInput, InputContainer} from './newstyles'
+import {InputContainer, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
 import moment from 'moment/moment';
+import Url from "./../../../../helpers/Url";
+import styled from "styled-components";
 
 export default class DateTime extends BaseInput
 {
@@ -13,7 +15,9 @@ export default class DateTime extends BaseInput
     this.state = {
       error: null,
       focused: false,
-      hasError: false
+      hasError: false,
+      Input: null,
+      componentsLoaded: false
     }
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -37,6 +41,38 @@ export default class DateTime extends BaseInput
     wrapperClassName: '',
     error: ''
   };
+
+  componentDidMount() {
+    // Динамический импорт библиотеки Flatpickr
+    Promise.all([
+      import('flatpickr'),
+      import('react-flatpickr'),
+      import('flatpickr/dist/l10n/ru.js'),
+      import('flatpickr/dist/flatpickr.css'),
+    ]).then(([ flatpickr, Flatpickr, {Russian}]) => {
+
+      let url = Url.getCurrentUrl();
+      let lang = localStorage.getItem('language_id');
+
+      if(url.includes('/ru/') || parseInt(lang) === 1 || lang === null)
+      {
+        try{
+          flatpickr.default.localize(Russian);
+        }catch (e){
+          console.error(e)
+        }
+      }
+
+      // Определение компонента с применением стилей
+      const DateStyledInput = styled(Flatpickr.default)`
+          ${sharedInputStyle}
+      `
+      this.setState({
+        componentsLoaded: true,
+        Input: DateStyledInput
+      });
+    });
+  }
 
   formatDate(date)
   {
@@ -82,7 +118,7 @@ export default class DateTime extends BaseInput
 
   render()
   {
-    const {name} = this.props;
+    const {Input, componentsLoaded} = this.state;
 
     let error = this.getError();
     let focus = (this.state.focused ? {border: '1px solid #1874DE'} : {})
@@ -98,8 +134,7 @@ export default class DateTime extends BaseInput
       value = this.props.value;
     }
 
-    return (
-      <Container
+    return componentsLoaded ? <Container
         size={this.props.size}
         style={focus}
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
@@ -110,7 +145,7 @@ export default class DateTime extends BaseInput
           size={this.props.size}
           needMargin={true}
         >
-            <DateStyledInput
+            <Input
               id={this.props.id}
               disabled={this.props.disabled}
               value={value}
@@ -182,7 +217,6 @@ export default class DateTime extends BaseInput
             <label htmlFor={this.props.id} className="error">{error}</label>
           </InputPopup> : ''}
         </InputContainer>
-      </Container>
-    );
+      </Container> : '';
   }
 }

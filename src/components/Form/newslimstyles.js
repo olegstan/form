@@ -2,9 +2,9 @@ import React from 'react';
 import styled, {css, keyframes} from 'styled-components'
 import InputMask from "react-input-mask";
 import {NavLink} from 'react-router-dom'
-import Flatpickr from "react-flatpickr";
 import zindex from '../interface/zindex'
 import {placeholderActiveStyle, placeholderStyle, sharedCheckboxStyle} from './newstyles'
+
 
 const rotate = keyframes`
   from {
@@ -580,10 +580,6 @@ export const StyledInput = styled.input`
 `
 
 export const MaskedStyledInput = styled(InputMask)`
-    ${sharedInputStyle}
-`
-
-export const DateStyledInput = styled(Flatpickr)`
     ${sharedInputStyle}
 `
 
