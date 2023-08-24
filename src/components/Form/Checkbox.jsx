@@ -48,7 +48,7 @@ export default class Checkbox extends Component
 
     return <StyleCheckbox id={props.id}  style={this.props.style}>
       <div>
-        <label>
+        <label className='checkbox'>
           <input
             className={this.props.checked ? 'active' : ''}
             onChange={(e) => {

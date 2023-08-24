@@ -65,6 +65,7 @@ export default class BaseInput extends Component
     }
   }
 
+  //TODO не забыть перенести в новый компонент, это чтобы исключить подсказки в safari внутри инпута, очень криво вылезает
   getName(name)
   {
     return name.replace('country', 'couuntry').replace('state', 'staate');
