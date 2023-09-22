@@ -26,7 +26,7 @@ class Search extends BaseInput
 
   static defaultProps = {
     showClearIcon: true,
-    styleSelect: {}
+    selectStyle: {}
   };
 
   UNSAFE_componentWillReceiveProps(nextProps)
@@ -234,7 +234,7 @@ class Search extends BaseInput
 
   render()
   {
-    const { items, handle, selected, name, styleSelect, styleClearImage } = this.props;
+    const { items, handle, selected, name, selectStyle, clearImageStyle } = this.props;
     const { focused } = this.state;
 
     let search = this.state.search ? this.state.search.toLowerCase() : '';
@@ -292,7 +292,7 @@ class Search extends BaseInput
         </Item>
       }) : [];
 
-    let styleWrapper = {...this.props.styleWrapper};
+    let wrapperStyle = {...this.props.wrapperStyle};
 
 
     let error = this.getError();
@@ -302,7 +302,7 @@ class Search extends BaseInput
       focus = '1px solid #FF0000';
     }
 
-    styleWrapper.border = focus;
+    wrapperStyle.border = focus;
 
     let empty = true;
 
@@ -312,22 +312,22 @@ class Search extends BaseInput
     }
 
 
-    let styleInput = {...this.props.styleInput};
-    let styleContainer = {...this.props.styleContainer};
+    let inputStyle = {...this.props.inputStyle};
+    let containerStyle = {...this.props.containerStyle};
 
     if(this.props.className === 'style2')
     {
-        styleInput.color = '#fff';
+        inputStyle.color = '#fff';
     }
 
     //исправления бага автозаполнения
     //если name содержит слова такие как country, street
     //то будет предлагаться подсказка, которая не нужна
     //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
-    return <Container style={styleContainer} className={this.props.className}>
+    return <Container style={containerStyle} className={this.props.className}>
       <InputWrapper
         className={this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
-        style={styleWrapper}
+        style={wrapperStyle}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -338,7 +338,7 @@ class Search extends BaseInput
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
-            style={styleInput}
+            style={inputStyle}
             className={this.props.className}
             type={this.props.type}
             name={this.getName(name)}
@@ -389,12 +389,12 @@ class Search extends BaseInput
             }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} style={styleSelect} onClick={(e) => {
+          <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} style={selectStyle} onClick={(e) => {
             e.stopPropagation();
           }}>
             {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {!empty && this.props.showClearIcon && !this.props.disabled && <img style={styleClearImage} className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
+          {!empty && this.props.showClearIcon && !this.props.disabled && <img style={clearImageStyle} className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false

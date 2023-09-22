@@ -7,7 +7,7 @@ export default function formSearch(Base)
 {
   class FormSearch extends Base
   {
-    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, styleClearImage = {}, showClearIcon = false, className} = {})
+    renderSearch({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, selectStyle = {}, inputStyle = {}, wrapperStyle = {}, containerStyle = {}, clearImageStyle = {}, showClearIcon = false, className} = {})
     {
       return <Search
         default={defaultText}
@@ -19,11 +19,11 @@ export default function formSearch(Base)
         selected={this.getLink(field)}
         search={this.state.form[field + '_search']}
         onSearch={onSearch}
-        styleInput={styleInput}
-        styleSelect={styleSelect}
-        styleContainer={styleContainer}
-        styleClearImage={styleClearImage}
-        styleWrapper={styleWrapper}
+        inputStyle={inputStyle}
+        selectStyle={selectStyle}
+        containerStyle={containerStyle}
+        clearImageStyle={clearImageStyle}
+        wrapperStyle={wrapperStyle}
         showClearIcon={showClearIcon}
         onClick={onClick}
         handle={(item) => {
@@ -51,7 +51,7 @@ export default function formSearch(Base)
       />
     }
 
-    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, styleSelect = {}, styleInput = {}, styleWrapper = {}, styleContainer = {}, styleClearImage = {}, showClearIcon = false, className} = {})
+    renderSearchStyle1({field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, id, onClick, selectStyle = {}, inputStyle = {}, wrapperStyle = {}, containerStyle = {}, clearImageStyle = {}, showClearIcon = false, className} = {})
     {
       return this.renderSearch({...arguments[0], ...{className: 'style1'}})
     }
