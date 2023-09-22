@@ -105,7 +105,40 @@ export default function formSelect(Base)
       }
     }
 
-    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}} = {})
+    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
+    {
+      return <Select
+        textLength={textLength}
+        default={defaultText}
+        placeholder={text}
+        style={style}
+        getContainerStyle={getContainerStyle}
+        size={size}
+        className={className}
+        id={this.getPrefix() + field}
+        name={field + '_id'}
+        disabled={this.getDisabled(disabled)}
+        selected={this.getLink(field)}
+        handle={(item) => {
+          let prevValue = this.getValueSelect(this.state, field);
+          this.setState((prv) => {
+            this.setValueSelect(prv, field, item);
+            this.clearFormError(prv, field + '_id');
+
+            return prv;
+          }, () => {
+            if(typeof callback === 'function')
+            {
+              callback(item, prevValue);
+            }
+          });
+        }}
+        items={items}
+        errors={this.state.formErrors}
+      />
+    }
+
+    renderSlimSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
     {
       return <Select
         textLength={textLength}
@@ -137,39 +170,7 @@ export default function formSelect(Base)
       />
     }
 
-    renderSlimSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}} = {})
-    {
-      return <Select
-        textLength={textLength}
-        default={defaultText}
-        placeholder={text}
-        style={style}
-        size={size}
-        className={className}
-        id={this.getPrefix() + field}
-        name={field + '_id'}
-        disabled={this.getDisabled(disabled)}
-        selected={this.getLink(field)}
-        handle={(item) => {
-          let prevValue = this.getValueSelect(this.state, field);
-          this.setState((prv) => {
-            this.setValueSelect(prv, field, item);
-            this.clearFormError(prv, field + '_id');
-
-            return prv;
-          }, () => {
-            if(typeof callback === 'function')
-            {
-              callback(item, prevValue);
-            }
-          });
-        }}
-        items={items}
-        errors={this.state.formErrors}
-      />
-    }
-
-    renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, style, textLength = 50} = {})
+    renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
     {
       return this.renderSelect({...arguments[0], ...{className: 'style1'}})
     }

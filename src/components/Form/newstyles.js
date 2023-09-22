@@ -103,6 +103,11 @@ export const sharedCheckboxStyle = css`
   padding: 0;
   box-sizing: border-box;
   z-index: 100;
+  
+  & > div{
+    display: flex;
+    align-items: center;
+  }
 
 
   &:last-child {
@@ -120,7 +125,6 @@ export const sharedCheckboxStyle = css`
     align-items: center;
     color: #E9E9EA;
     cursor: pointer;
-    transition: opacity 0.3s;
   }
 
   .checkbox > div {

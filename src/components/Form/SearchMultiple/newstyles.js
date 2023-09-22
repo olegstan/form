@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import {
-    errorStyle,
-    placeholderStyle,
-    sharedInputStyle,
-    sharedItemStyle,
-    sharedSearchContainer,
-    sharedSelectedStyle,
-    sharedSelectStyle
+  errorStyle,
+  placeholderStyle,
+  sharedInputStyle,
+  sharedItemStyle,
+  sharedSearchContainer,
+  sharedSelectedStyle,
+  sharedSelectStyle
 } from '../newstyles'
 
 let close = require('./images/close.svg').default;

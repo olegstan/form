@@ -5,7 +5,6 @@ import {InputContainer, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
 import Url from "./../../../../helpers/Url";
-import Flatpickr from "react-flatpickr";
 
 export default class DateTime extends BaseInput
 {

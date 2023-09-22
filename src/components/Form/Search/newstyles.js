@@ -1,13 +1,13 @@
 import React from 'react';
 import styled, {css} from 'styled-components'
 import {
-    sharedInputStyle,
-    sharedItemStyle,
-    sharedSearchContainer,
-    sharedSearchContainerStyle,
-    sharedSearchInputWrapperStyle,
-    sharedSelectedStyle,
-    sharedSelectStyle
+  sharedInputStyle,
+  sharedItemStyle,
+  sharedSearchContainer,
+  sharedSearchContainerStyle,
+  sharedSearchInputWrapperStyle,
+  sharedSelectedStyle,
+  sharedSelectStyle
 } from '../newstyles'
 
 export const sharedContainer = css`
