@@ -105,14 +105,14 @@ export default function formSelect(Base)
       }
     }
 
-    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
+    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
       return <Select
         textLength={textLength}
         default={defaultText}
         placeholder={text}
         style={style}
-        getContainerStyle={getContainerStyle}
+        containerStyle={containerStyle}
         size={size}
         className={className}
         id={this.getPrefix() + field}
@@ -138,7 +138,7 @@ export default function formSelect(Base)
       />
     }
 
-    renderSlimSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
+    renderSlimSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
       return <Select
         textLength={textLength}
@@ -170,8 +170,12 @@ export default function formSelect(Base)
       />
     }
 
-    renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, getContainerStyle = {}} = {})
+    renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
+      console.log('-------')
+      console.log(style)
+      console.log(containerStyle)
+
       return this.renderSelect({...arguments[0], ...{className: 'style1'}})
     }
   }
