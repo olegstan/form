@@ -24,6 +24,7 @@ class MultipleSelect extends BaseInput
   {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target))
     {
+      console.log(111)
       this.handleShowSelect(false);
 
       if(typeof this.props.onOutsideClick === 'function' && this.state.focused === true)
@@ -78,7 +79,7 @@ class MultipleSelect extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg').default.default;
+    return require('../../assets/arrow.svg').default;
   }
   
   handleShowSelect(select)
@@ -114,17 +115,20 @@ class MultipleSelect extends BaseInput
     const { items, handle, selected } = this.props;
 
     let error = this.getError();
-    let focus = (this.state.hasError ? {'border': '1px solid #FF0000'} : {})
 
-    return <Container style={focus} className={this.props.className}>
+    return <Container
+      style={this.getContainerStyle()}
+      className={this.props.className + ' ' + (this.state.select ? 'select' : '')}
+    >
       <InputWrapper ref={this.setWrapperRef} className={'wrapper '  + (this.state.select ? 'select' : '')}>
-        <Selected id={this.props.id} className='selected' onClick={() => {
+        <Selected id={this.props.id} className={this.props.className + ' selected'} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>
         <StyledSelect id={this.props.id + '-multi-select'} className={this.props.className + ' select'} select={this.state.select}>
           {this.renderSelectAll()}
           {items.map((item, key) => (
             <Checkbox
+              key={key}
               id={'item-' + item.id}
               text={item.name}
               checked={this.props.selected.indexOf(item.id) !== -1}

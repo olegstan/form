@@ -665,6 +665,12 @@ export const sharedSelectedStyle = css`
     color: #4C89FE;
   }
   
+  &.style6
+  {
+    background-color: #333443;
+    color: #4C89FE;
+  }
+  
   span {
     display: block;
     text-align: left;
