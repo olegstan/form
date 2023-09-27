@@ -116,7 +116,6 @@ class Select extends BaseInput
     return <Container
       size={this.props.size}
       className={this.props.className + ' ' + (this.state.select ? 'select' : '')}
-      // style={this.props.style}
       style={this.getContainerStyle()}
     >
       <InputWrapper ref={this.setWrapperRef} className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} id={this.props.id + '-wrapper'}>
