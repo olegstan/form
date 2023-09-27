@@ -172,10 +172,6 @@ export default function formSelect(Base)
 
     renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
-      console.log('-------')
-      console.log(style)
-      console.log(containerStyle)
-
       return this.renderSelect({...arguments[0], ...{className: 'style1'}})
     }
   }
