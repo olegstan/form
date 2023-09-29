@@ -182,7 +182,7 @@ class AccountGroupSelect extends BaseInput
         </InputPopup> : ''}
       </InputWrapper>
       {ComponentCreate && this.state.showAccountCreate && <ComponentCreate
-        types={this.props.types}
+        availableTypes={this.props.types}
         show={true}
         callback={() => {
           this.props.getUserAccounts();

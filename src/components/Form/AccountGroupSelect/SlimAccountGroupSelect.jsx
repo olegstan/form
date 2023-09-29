@@ -63,7 +63,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect
         </InputPopup> : ''}
       </InputWrapper>
       {Component && this.state.showAccountAdd && <Component
-        types={this.props.types}
+        availableTypes={this.props.types}
         show={true}
         callback={() => {
           this.props.getUserAccounts();
