@@ -56,12 +56,6 @@ const containerTag = styled.div`
   ${sharedSelectContainerStyle}
 `;
 
-const fullTag = styled.div`
-  ${sharedSelectContainerStyle}
-  
-  max-width: 100%;
-`;
-
 const incomeCurrencyeTag = styled.div`
   ${sharedSelectContainerStyle}
   
@@ -145,9 +139,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'plan-percent':
       ContainerTagVariable = planPercentTag;
-      break;
-    case 'full':
-      ContainerTagVariable = fullTag;
       break;
     case 'tactics-month-select':
       ContainerTagVariable = tacticsMonthSelect;

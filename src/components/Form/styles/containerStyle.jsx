@@ -463,11 +463,6 @@ const mediumTag = styled.div`
   
   max-width: 418px;
 `;
-const fullTag = styled.div`
-  ${sharedContainer}
-  
-  max-width: 100%;
-`;
 const tacticsMonthDate = styled.div`
   ${sharedContainer}
   
@@ -486,9 +481,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'medium':
       ContainerTagVariable = mediumTag;
-      break;
-    case 'full':
-      ContainerTagVariable = fullTag;
       break;
     case 'incomes-and-expenses':
       ContainerTagVariable = incomesAndExpensesTag;

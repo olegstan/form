@@ -996,8 +996,8 @@ export const Link = styled.a`
     `}
 
   ${props => props.size === 'full' && `
-      width: 100%;
-    `}
+    width: 100%;
+  `}
 `
 export const InlineLink = styled.a`
   display: inline-block;
@@ -1020,8 +1020,8 @@ export const ButtonLink = styled(NavLink)`
     `}
 
   ${props => props.size === 'full' && `
-      width: 100%;
-    `}
+    width: 100%;
+  `}
 `
 
 export const TextArea = styled.textarea`

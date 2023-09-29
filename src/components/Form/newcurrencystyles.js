@@ -80,10 +80,6 @@ export const Button = styled.button`
     ${props => props.position === 'right' && `
       margin: 0 0 0 auto;
     `}
-    
-    ${props => props.size === 'full' && `
-      width: 100%;
-    `}
 `
 
 

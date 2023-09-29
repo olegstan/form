@@ -596,9 +596,6 @@ export const Button = styled.button`
       margin: 0 0 0 auto;
     `}
     
-    ${props => props.size === 'full' && `
-      width: 100%;
-    `}
     ${props => props.size === 'small' && `
       border-radius: 8px;
       font-size: 14px;
@@ -624,10 +621,6 @@ export const Link = styled.a`
     ${props => props.position === 'right' && `
       margin: 0 0 0 auto;
     `}
-    
-    ${props => props.size === 'full' && `
-      width: 100%;
-    `}
 `
 
 export const ButtonLink = styled(NavLink)`
@@ -643,10 +636,6 @@ export const ButtonLink = styled(NavLink)`
     
     ${props => props.position === 'right' && `
       margin: 0 0 0 auto;
-    `}
-    
-    ${props => props.size === 'full' && `
-      width: 100%;
     `}
 `
 
