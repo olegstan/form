@@ -137,6 +137,15 @@ export default class DateTime extends BaseInput
       value = this.props.value;
     }
 
+    let options = {
+      dateFormat: 'd.m.Y H:i:S',
+      allowInput: true,
+      enableTime: true,
+      enableSeconds: true,
+      disableMobile: "true",
+      static: true
+    };
+
     return componentsLoaded ? <Container
         size={this.props.size}
         style={this.getContainerStyle()}
@@ -155,13 +164,7 @@ export default class DateTime extends BaseInput
             value={value}
             placeholder={this.props.placeholder}
             autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
-            options={{
-              dateFormat: 'd.m.Y H:i:S',
-              allowInput: true,
-              enableTime: true,
-              enableSeconds: true,
-              disableMobile: "true"
-            }}
+            options={options}
             className={this.props.className}
             onReady={(_, __, fp) => {
               fp.calendarContainer.id = this.props.id + '-container';

@@ -139,6 +139,7 @@ export default class DateTime extends BaseInput
       allowInput: true,
       position: "above",
       disableMobile: "true",
+      static: true
     };
 
     if(this.props.defaultDate)

@@ -463,12 +463,6 @@ const mediumTag = styled.div`
   
   max-width: 418px;
 `;
-const tacticsMonthDate = styled.div`
-  ${sharedContainer}
-  
-  max-width: 200px !important;
-  min-width: 200px !important;
-`;
 
 export const Container = ({children, tag = 'div', size = "container", ...props}) => {
 
@@ -549,9 +543,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'spending-filter':
       ContainerTagVariable = spendingFilterTag;
-      break;
-    case 'tactics-month-date':
-      ContainerTagVariable = tacticsMonthDate;
       break;
     default:
       ContainerTagVariable = containerTag;
