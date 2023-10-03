@@ -124,9 +124,9 @@ export default class DateTime extends BaseInput {
             ...{
                 dateFormat: 'd.m.Y',
                 allowInput: true,
-                position: "above",
+                position: "auto",
                 disableMobile: "true",
-                static: true
+                // static: true
             }, ...this.props
         };
 
@@ -143,6 +143,7 @@ export default class DateTime extends BaseInput {
             }}>
             <InputContainer
                 needMargin={true}
+                focus={this.state.focused}
             >
                 <Input
                     id={this.props.id}
