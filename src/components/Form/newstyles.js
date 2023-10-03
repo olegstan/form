@@ -220,6 +220,10 @@ export const placeholderActiveStyle = css`
   &:focus + .placeholder, &:not(:placeholder-shown) + .placeholder, & .placeholder.active {
     transform: translate(.25em, -15%) scale(.8);
   }
+  
+  &:focus:has(> div .placeholder), &:not(:placeholder-shown) + .placeholder, & .placeholder.active {
+    transform: translate(.25em, -15%) scale(.8);
+  }
 
   &:not(textarea) {
     max-height: 4em;
@@ -236,37 +240,6 @@ export const placeholderActiveStyle = css`
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
-  }
-
-  &.style1::placeholder{
-    color: transparent !important;
-  }
-
-  &.style1 + .placeholder {
-    transition: transform .25s, opacity .25s ease-in-out;
-    transform-origin: 0 0;
-  }
-
-  &.style1:focus + .placeholder, &.style1:not(:placeholder-shown) + .placeholder, &.style1 .placeholder.active {
-    transform: translate(.25em, -15%) scale(.8);
-  }
-
-  &.style1:not(textarea) {
-    max-height: 4em;
-  }
-
-  &.style1 + .placeholder {
-    padding: 25px 12px;
-    font-size: 16px;
-    text-align: left;
-    z-index: 1500;
-  }
-
-  &.style1:-webkit-autofill,
-  &.style1:-webkit-autofill:hover,
-  &.style1:-webkit-autofill:focus,
-  &.style1:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px transparent inset !important;
   }
 `

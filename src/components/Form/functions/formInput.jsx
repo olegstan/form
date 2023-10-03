@@ -2,7 +2,7 @@ import React from 'react';
 import SlimInput from "../SlimInput";
 import Input from "../Input";
 import MaskedInput from "../MaskedInput";
-import Number from "../Number";
+import NumberInput from "../NumberInput";
 import TextArea from "../TextArea";
 
 export default function formInput(Base)
@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
+    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
     {
       let link = this.getLink(field);
       value = value ? value : (link === null ? '' : link);
@@ -40,6 +40,7 @@ export default function formInput(Base)
         id={this.getPrefix() + field}
         style={style}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         type="text"
         name={field}
         size={size}
@@ -81,7 +82,7 @@ export default function formInput(Base)
       />
     }
 
-    renderSlimInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderSlimInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -90,6 +91,7 @@ export default function formInput(Base)
         id={this.getPrefix() + field}
         style={style}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         type="text"
         name={field}
         className={className}
@@ -182,12 +184,12 @@ export default function formInput(Base)
       />
     }
 
-    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style = {}, containerStyle = {}, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}, icon = false} = {})
+    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}, icon = false} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
 
-      return <Number
+      return <NumberInput
         id={this.getPrefix() + field}
         type="text"
         autoComplete={'off'}
@@ -197,6 +199,7 @@ export default function formInput(Base)
         icon={icon}
         style={style}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         size={size}
         max={max}
         min={min}

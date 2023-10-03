@@ -6,7 +6,7 @@ import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'
 
-export default class Number extends BaseInput {
+export default class NumberInput extends BaseInput {
 
   constructor(props)
   {
@@ -214,7 +214,7 @@ export default class Number extends BaseInput {
           onBlur={() => {
           }}
         />
-        {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className="placeholder">{this.props.placeholder}</label> : ''}
         {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,

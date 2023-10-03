@@ -6,7 +6,7 @@ export default function formDate(Base)
 {
   class FormDate extends Base
   {
-    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, icon = false, value, defaultDate} = {}) {
+    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false, value, defaultDate} = {}) {
       return <Date
         id={this.getPrefix() + field}
         icon={icon}
@@ -15,6 +15,7 @@ export default function formDate(Base)
         style={style}
         defaultDate={defaultDate}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         className={className}
         disabled={this.getDisabled(disabled)}
         format={format}
@@ -52,7 +53,7 @@ export default function formDate(Base)
       />
     }
 
-    renderDateTimeInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, outsideCallback, className, style = {}, containerStyle = {}, icon = false} = {}) {
+    renderDateTimeInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, outsideCallback, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false} = {}) {
       return <DateTime
         id={this.getPrefix() + field}
         type="text"
@@ -61,6 +62,7 @@ export default function formDate(Base)
         size={size}
         style={style}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         className={className}
         disabled={this.getDisabled(disabled)}
         format={format}

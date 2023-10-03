@@ -137,24 +137,23 @@ export default class DateTime extends BaseInput
       value = this.props.value;
     }
 
-    let options = {
-      dateFormat: 'd.m.Y H:i:S',
-      allowInput: true,
-      enableTime: true,
-      enableSeconds: true,
-      disableMobile: "true",
-      static: true
+    let options = {...{
+        dateFormat: 'd.m.Y H:i:S',
+        allowInput: true,
+        enableTime: true,
+        enableSeconds: true,
+        disableMobile: "true",
+        static: true
+      }, ...this.props
     };
 
     return componentsLoaded ? <Container
-        size={this.props.size}
         style={this.getContainerStyle()}
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
         disabled={this.props.disabled}
         onClick={(e) => {
         }}>
         <InputContainer
-          size={this.props.size}
           needMargin={true}
         >
           <Input
@@ -206,7 +205,7 @@ export default class DateTime extends BaseInput
               });
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
           {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
