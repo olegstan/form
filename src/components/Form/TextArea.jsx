@@ -97,7 +97,7 @@ export default class TextArea extends BaseInput
               // })
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className="placeholder">{this.props.placeholder}</label> : ''}
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
             }}/>}>

@@ -240,7 +240,7 @@ export default function formInput(Base)
       />
     }
 
-    renderTextArea({field, text, rows = 3, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}} = {})
+    renderTextArea({field, text, rows = 3, disabled = false, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}, placeholderStyle = {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -254,6 +254,7 @@ export default function formInput(Base)
         value={value}
         style={style}
         containerStyle={containerStyle}
+        placeholderStyle={placeholderStyle}
         onChange={(e, {name, value}) => {
           this.setState((prv) => {
             this.setValueInput(prv, field, value);
