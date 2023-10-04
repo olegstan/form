@@ -3,6 +3,26 @@ import AccountGroupSelect from "../AccountGroupSelect/AccountGroupSelect";
 import SlimAccountGroupSelect from "../AccountGroupSelect/SlimAccountGroupSelect";
 import AccountConstants from "./.././../../../../constants/AccountConstants";
 
+class ImportError extends Error {}
+
+const importCreate = async (callback) => {
+  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountCreate"
+  try {
+    await import(path).then(module => callback(module).catch((e) => {console.error(e)}))
+  } catch (e) {
+    throw new ImportError(`Unable to import module ${path}`)
+  }
+}
+const importEdit = async (callback) => {
+  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountEdit"
+  try {
+    await import(path).then(module => callback(module).catch((e) => {console.error(e)}))
+  } catch (e) {
+    throw new ImportError(`Unable to import module ${path}`)
+  }
+}
+
+
 export default function formAccountGroupSelect(Base)
 {
   class FormAccountGroupSelect extends Base
@@ -23,8 +43,8 @@ export default function formAccountGroupSelect(Base)
                                getUserAccounts = () => {},
                                handleAddAccount = () => {},
                                getText = (account) => {return AccountConstants.getText(account)},
-                               loadModuleAccountCreate = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module))},
-                               loadModuleAccountEdit = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module))},
+                               loadModuleAccountCreate = importCreate,
+                               loadModuleAccountEdit = importEdit,
                                accountAddAvailable = false,
     } = {}) {
       return <AccountGroupSelect
@@ -80,8 +100,8 @@ export default function formAccountGroupSelect(Base)
                                      handleAddAccount = () => {},
                                      accountAddAvailable = false,
                                      getText = (account) => {return AccountConstants.getText(account)},
-                                     loadModuleAccountCreate = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module))},
-                                     loadModuleAccountEdit = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module))},
+                                     loadModuleAccountCreate = importCreate,
+                                     loadModuleAccountEdit = importEdit,
                                    } = {}) {
       return this.renderAccountGroupSelect({...arguments[0], ...{className: 'style1'}})
     }
@@ -102,8 +122,8 @@ export default function formAccountGroupSelect(Base)
                                          getUserAccounts = () => {},
                                          handleAddAccount = () => {},
                                          getText = (account) => {return AccountConstants.getText(account)},
-                                         loadModuleAccountCreate = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module))},
-                                         loadModuleAccountEdit = (callback) => {import("./../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module))},
+                                         loadModuleAccountCreate = importCreate,
+                                         loadModuleAccountEdit = importEdit,
                                          accountAddAvailable = false,
                                        } = {}) {
       return <SlimAccountGroupSelect
