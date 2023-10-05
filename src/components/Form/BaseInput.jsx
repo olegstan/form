@@ -7,6 +7,11 @@ export default class BaseInput extends Component
     this.wrapperRef = node;
   }
 
+  getPlaceholderClassName()
+  {
+    return "placeholder " + (this.state.focused || (this.props.value && this.props.value !== '') ? 'active' : '')
+  }
+
   getContainerStyle()
   {
     let containerStyle = {...this.props.containerStyle};
