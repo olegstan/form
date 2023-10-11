@@ -5,22 +5,7 @@ import AccountConstants from "./.././../../../../constants/AccountConstants";
 
 class ImportError extends Error {}
 
-const importCreate = async (callback) => {
-  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountCreate"
-  try {
-    await import(path).then(module => callback(module).catch((e) => {console.warn(e)}))
-  } catch (e) {
-    console.log(e)
-  }
-}
-const importEdit = async (callback) => {
-  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountEdit"
-  try {
-    await import(path).then(module => callback(module).catch((e) => {console.warn(e)}))
-  } catch (e) {
-    console.log(e)
-  }
-}
+
 
 export default function formAccountGroupSelect(Base)
 {
@@ -44,44 +29,55 @@ export default function formAccountGroupSelect(Base)
                                getText = (account) => {return AccountConstants.getText(account)},
                                accountAddAvailable = false,
     } = {}) {
-      try{
-        return <AccountGroupSelect
-          textLength={textLength}
-          types={types}
-          size={size}
-          accountAddAvailable={accountAddAvailable}
-          getUserAccounts={getUserAccounts}
-          handleAddAccount={handleAddAccount}
-          loadModuleAccountCreate={importCreate}
-          loadModuleAccountEdit={importEdit}
-          getText={getText}
-          onCloseCreateCallback={onCloseCreateCallback}
-          default={defaultText}
-          placeholder={text}
-          id={this.getPrefix() + field}
-          name={field + '_id'}
-          disabled={this.getDisabled(disabled)}
-          selected={this.getLink(field)}
-          style={style}
-          handle={(item) => {
-            this.setState((prv) => {
-              this.setValueInput(prv, field, item);
-              this.setValueInput(prv, field + '_id', item ? item.id : '');
-
-              return prv;
-            }, () => {
-              if(typeof callback === 'function')
-              {
-                callback(item);
-              }
-            });
-          }}
-          items={items}
-          errors={this.state.formErrors}
-        />
-      }catch (e){
-        console.log(e)
+      const importCreate = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
       }
+      const importEdit = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      return <AccountGroupSelect
+        textLength={textLength}
+        types={types}
+        size={size}
+        accountAddAvailable={accountAddAvailable}
+        getUserAccounts={getUserAccounts}
+        handleAddAccount={handleAddAccount}
+        loadModuleAccountCreate={importCreate}
+        loadModuleAccountEdit={importEdit}
+        getText={getText}
+        onCloseCreateCallback={onCloseCreateCallback}
+        default={defaultText}
+        placeholder={text}
+        id={this.getPrefix() + field}
+        name={field + '_id'}
+        disabled={this.getDisabled(disabled)}
+        selected={this.getLink(field)}
+        style={style}
+        handle={(item) => {
+          this.setState((prv) => {
+            this.setValueInput(prv, field, item);
+            this.setValueInput(prv, field + '_id', item ? item.id : '');
+
+            return prv;
+          }, () => {
+            if(typeof callback === 'function')
+            {
+              callback(item);
+            }
+          });
+        }}
+        items={items}
+        errors={this.state.formErrors}
+      />
     }
 
     renderAccountGroupSelectStyle1({
@@ -123,46 +119,57 @@ export default function formAccountGroupSelect(Base)
                                          getText = (account) => {return AccountConstants.getText(account)},
                                          accountAddAvailable = false,
                                        } = {}) {
-      try {
-        return <SlimAccountGroupSelect
-          textLength={textLength}
-          types={types}
-          size={size}
-          accountAddAvailable={accountAddAvailable}
-          getUserAccounts={getUserAccounts}
-          handleAddAccount={handleAddAccount}
-          loadModuleAccountCreate={importCreate}
-          loadModuleAccountEdit={importEdit}
-          getText={getText}
-          onCloseCreateCallback={onCloseCreateCallback}
-          style={style}
-          className={'style1'}
-          default={defaultText}
-          showDefault={showDefault}
-          placeholder={text}
-          id={this.getPrefix() + field}
-          name={field + '_id'}
-          disabled={this.getDisabled(disabled)}
-          selected={this.getLink(field)}
-          handle={(item) => {
-            this.setState((prv) => {
-              this.setValueInput(prv, field, item);
-              this.setValueInput(prv, field + '_id', item ? item.id : '');
-
-              return prv;
-            }, () => {
-              if(typeof callback === 'function')
-              {
-                callback(item);
-              }
-            });
-          }}
-          items={items}
-          errors={this.state.formErrors}
-        />
-      }catch (e){
-        console.log(e)
+      const importCreate = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
       }
+      const importEdit = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      return <SlimAccountGroupSelect
+        textLength={textLength}
+        types={types}
+        size={size}
+        accountAddAvailable={accountAddAvailable}
+        getUserAccounts={getUserAccounts}
+        handleAddAccount={handleAddAccount}
+        loadModuleAccountCreate={importCreate}
+        loadModuleAccountEdit={importEdit}
+        getText={getText}
+        onCloseCreateCallback={onCloseCreateCallback}
+        style={style}
+        className={'style1'}
+        default={defaultText}
+        showDefault={showDefault}
+        placeholder={text}
+        id={this.getPrefix() + field}
+        name={field + '_id'}
+        disabled={this.getDisabled(disabled)}
+        selected={this.getLink(field)}
+        handle={(item) => {
+          this.setState((prv) => {
+            this.setValueInput(prv, field, item);
+            this.setValueInput(prv, field + '_id', item ? item.id : '');
+
+            return prv;
+          }, () => {
+            if(typeof callback === 'function')
+            {
+              callback(item);
+            }
+          });
+        }}
+        items={items}
+        errors={this.state.formErrors}
+      />
     }
   }
   return FormAccountGroupSelect;

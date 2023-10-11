@@ -825,6 +825,17 @@ export const sharedInputContainerStyle = css`
     width: calc(100% - 58px);
   `}
 
+  & .placeholder {
+    transition: transform .25s, opacity .25s ease-in-out;
+    transform-origin: 0 0;
+  }
+  
+  ${props => props.focus && `
+    & .placeholder, & .placeholder.active {
+      transform: translate(.25em, -15%) scale(.8);
+    }
+  `}
+
 `
 
 export const sharedInputStyle = css`
