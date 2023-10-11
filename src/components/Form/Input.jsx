@@ -115,7 +115,7 @@ export default class Input extends BaseInput {
             // });
           }}
         />
-        {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className="placeholder">{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={this.getPlaceholderClassName()}>{this.props.placeholder}</label> : ''}
         {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,

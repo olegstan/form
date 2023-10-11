@@ -24,6 +24,7 @@ export const sharedContainer = css`
   &.style1{
     label.placeholder {
       color: #6F7080;
+      z-index: 1000;
     }
   }
   

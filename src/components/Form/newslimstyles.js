@@ -192,6 +192,7 @@ export const sharedSelectWrapperStyle = css`
   label.placeholder{
     top: 10px;
     left: 17px;
+    z-index: 1000;
   }
   
   label.error{
