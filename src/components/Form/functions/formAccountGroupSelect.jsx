@@ -19,7 +19,7 @@ export default function formAccountGroupSelect(Base)
                                disabled = false,
                                showDefault = false,
                                callback,
-                               types = [1, 2, 3, 4],
+                               types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
                                style = {},
                                onCloseCreateCallback = () => {},
                                textLength = 25,
@@ -29,6 +29,8 @@ export default function formAccountGroupSelect(Base)
                                getText = (account) => {return AccountConstants.getText(account)},
                                accountAddAvailable = false,
     } = {}) {
+      console.log(types)
+
       const importCreate = async (callback) => {
         try {
           await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
@@ -88,7 +90,7 @@ export default function formAccountGroupSelect(Base)
                                      disabled = false,
                                      showDefault = false,
                                      callback,
-                                     types = [1, 2, 3, 4],
+                                     types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
                                      style = {},
                                      onCloseCreateCallback = () => {},
                                      textLength = 25,
@@ -98,6 +100,7 @@ export default function formAccountGroupSelect(Base)
                                      accountAddAvailable = false,
                                      getText = (account) => {return AccountConstants.getText(account)},
                                    } = {}) {
+
       return this.renderAccountGroupSelect({...arguments[0], ...{className: 'style1'}})
     }
 
@@ -109,7 +112,7 @@ export default function formAccountGroupSelect(Base)
                                          disabled = false,
                                          showDefault = false,
                                          callback,
-                                         types = [1, 2, 3, 4],
+                                         types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
                                          style = {},
                                          onCloseCreateCallback = () => {},
                                          textLength = 25,
