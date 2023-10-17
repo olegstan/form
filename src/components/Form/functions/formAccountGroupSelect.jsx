@@ -3,23 +3,6 @@ import AccountGroupSelect from "../AccountGroupSelect/AccountGroupSelect";
 import SlimAccountGroupSelect from "../AccountGroupSelect/SlimAccountGroupSelect";
 import AccountConstants from "./.././../../../../constants/AccountConstants";
 
-const importCreate = async (callback) => {
-  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountCreate"
-  try {
-    await import(path).then(module => callback(module).catch((e) => {console.warn(e)}))
-  } catch (e) {
-    console.log(e)
-  }
-}
-const importEdit = async (callback) => {
-  let path = "./../../../../../pages/Accounting/Accounts/HiddenAccountEdit"
-  try {
-    await import(path).then(module => callback(module).catch((e) => {console.warn(e)}))
-  } catch (e) {
-    console.log(e)
-  }
-}
-
 export default function formAccountGroupSelect(Base)
 {
   class FormAccountGroupSelect extends Base
@@ -32,7 +15,7 @@ export default function formAccountGroupSelect(Base)
                                disabled = false,
                                showDefault = false,
                                callback,
-                               types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
+                               types = [1, 2, 3, 4],
                                style = {},
                                onCloseCreateCallback = () => {},
                                textLength = 25,
@@ -42,6 +25,20 @@ export default function formAccountGroupSelect(Base)
                                getText = (account) => {return AccountConstants.getText(account)},
                                accountAddAvailable = false,
     } = {}) {
+      const importCreate = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      const importEdit = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
 
       return <AccountGroupSelect
         textLength={textLength}
@@ -87,7 +84,7 @@ export default function formAccountGroupSelect(Base)
                                      disabled = false,
                                      showDefault = false,
                                      callback,
-                                     types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
+                                     types = [1, 2, 3, 4],
                                      style = {},
                                      onCloseCreateCallback = () => {},
                                      textLength = 25,
@@ -108,7 +105,7 @@ export default function formAccountGroupSelect(Base)
                                          disabled = false,
                                          showDefault = false,
                                          callback,
-                                         types = [AccountConstants.CASH, AccountConstants.BANK_ACCOUNT, AccountConstants.BROKER_ACCOUNT, AccountConstants.DIGIT_MONEY],
+                                         types = [1, 2, 3, 4],
                                          style = {},
                                          onCloseCreateCallback = () => {},
                                          textLength = 25,
@@ -118,6 +115,20 @@ export default function formAccountGroupSelect(Base)
                                          getText = (account) => {return AccountConstants.getText(account)},
                                          accountAddAvailable = false,
                                        } = {}) {
+      const importCreate = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      const importEdit = async (callback) => {
+        try {
+          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
+        } catch (e) {
+          console.log(e)
+        }
+      }
 
       return <SlimAccountGroupSelect
         textLength={textLength}
