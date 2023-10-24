@@ -24,7 +24,6 @@ class MultipleSelect extends BaseInput
   {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target))
     {
-      console.log(111)
       this.handleShowSelect(false);
 
       if(typeof this.props.onOutsideClick === 'function' && this.state.focused === true)
@@ -81,7 +80,7 @@ class MultipleSelect extends BaseInput
     }
     return require('../../assets/arrow.svg').default;
   }
-  
+
   handleShowSelect(select)
   {
     this.setState({
