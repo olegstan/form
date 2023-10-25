@@ -27,16 +27,6 @@ export const sharedSelectContainerStyle = css`
     max-width: 256px;
   `}
   
-  ${props => props.size === 'goal-item-number' && `
-      // display: inline-block;
-      // height: 31px;
-      // font-size: 16px;
-      // line-height: 25px;
-      // padding: 2px 5px;
-      // min-width: 47px;
-      // margin: 0;
-  `}
-  
   ${props => props.size === 'medium' && `
       max-width: 418px;
   `}
