@@ -105,7 +105,7 @@ export default function formSelect(Base)
       }
     }
 
-    renderSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
+    renderSelect({selected, field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
       return <Select
         textLength={textLength}
@@ -118,7 +118,7 @@ export default function formSelect(Base)
         id={this.getPrefix() + field}
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}
-        selected={this.getLink(field)}
+        selected={selected ? selected : this.getLink(field)}
         handle={(item) => {
           let prevValue = this.getValueSelect(this.state, field);
           this.setState((prv) => {
@@ -138,7 +138,7 @@ export default function formSelect(Base)
       />
     }
 
-    renderSlimSelect({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
+    renderSlimSelect({selected, field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
       return <Select
         textLength={textLength}
@@ -150,7 +150,7 @@ export default function formSelect(Base)
         id={this.getPrefix() + field}
         name={field + '_id'}
         disabled={this.getDisabled(disabled)}
-        selected={this.getLink(field)}
+        selected={selected ? selected : this.getLink(field)}
         handle={(item) => {
           let prevValue = this.getValueSelect(this.state, field);
           this.setState((prv) => {
@@ -170,7 +170,7 @@ export default function formSelect(Base)
       />
     }
 
-    renderSelectStyle1({field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
+    renderSelectStyle1({selected, field, items, text, defaultText, disabled = false, callback, size, textLength = 25, className, style = {}, containerStyle = {}} = {})
     {
       return this.renderSelect({...arguments[0], ...{className: 'style1'}})
     }

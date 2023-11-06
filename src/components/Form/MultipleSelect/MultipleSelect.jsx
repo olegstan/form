@@ -80,7 +80,7 @@ class MultipleSelect extends BaseInput
     }
     return require('../../assets/arrow.svg').default;
   }
-  
+
   handleShowSelect(select)
   {
     this.setState({
