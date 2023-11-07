@@ -22,6 +22,11 @@
     "extends": "react-app"
   },
   "homepage": "https://github.com/olegstan/form#readme",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "react-flatpickr": "^3.10.7",
+    "react-input-mask": "^2.0.4"
+  },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
