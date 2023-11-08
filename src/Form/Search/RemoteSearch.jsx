@@ -1,11 +1,13 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import {Loader} from '../newstyles'
 import InputPopup from "../InputPopup/InputPopup";
 import Search from "./Search";
+import {ReactComponent as LoadImage} from '../../assets/loader.svg';
 
-class RemoteSearch extends BaseInput
+
+class RemoteSearch extends BaseSearch
 {
   constructor(props)
   {
@@ -21,37 +23,6 @@ class RemoteSearch extends BaseInput
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps)
-  {
-    const {name} = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
-    {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      })
-    } else
-    {
-      this.setState({
-        error: null,
-        hasError: false
-      })
-    }
-
-    for (const index in nextProps)
-    {
-      if (nextProps[index] !== this.props[index])
-      {
-        if (index === 'search')
-        {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
   }
 
   handleArrows()
@@ -170,21 +141,6 @@ class RemoteSearch extends BaseInput
     }
   }
 
-  handleClickOutside(e)
-  {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.handleShowSelect(false);
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
   handleShowSelect(bool)
   {
     this.setState({
@@ -285,29 +241,10 @@ class RemoteSearch extends BaseInput
         </Item>
       }) : [];
 
-
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '')
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #FF0000';
-    }
 
-    style.border = focus;
-
-    let loadImage = require('../../assets/loader.svg').default;
-
-    return <Container style={this.props.containerStyle} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
-      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
+    return <Container style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
+      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
             selected={selected ? JSON.stringify(selected) : ''}
@@ -342,16 +279,6 @@ class RemoteSearch extends BaseInput
                 hasError: false
               })
             }}
-            // onBlur={() => {
-            //   //TODO проверить введенный текст соответствует ли одной из опций,
-            //   //если нет, то очищать выбранный элемент
-            //   this.setState({
-            //     focused: false,
-            //     hasError: false
-            //   }, () => {
-            //     this.onBlur();
-            //   })
-            // }}
           />
           {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
@@ -364,7 +291,7 @@ class RemoteSearch extends BaseInput
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>
-              <img src={loadImage} alt='' />
+              <img src={LoadImage} alt='' />
             </div>
           </Loader>}
         </InputContainer>

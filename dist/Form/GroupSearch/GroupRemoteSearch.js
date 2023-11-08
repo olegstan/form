@@ -1,9 +1,10 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect, SubItem } from './newstyles';
 import { Loader } from '../newstyles';
 import InputPopup from "../InputPopup/InputPopup";
-class GroupRemoteSearch extends BaseInput {
+import { ReactComponent as LoadImage } from '../../assets/loader.svg';
+class GroupRemoteSearch extends BaseSearch {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,48 +16,6 @@ class GroupRemoteSearch extends BaseInput {
     };
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {
-      name
-    } = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      }, () => {
-        this.setSearch(nextProps);
-      });
-    } else {
-      this.setState({
-        error: null,
-        hasError: false
-      }, () => {
-        this.setSearch(nextProps);
-      });
-    }
-  }
-  handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      if (this.state.focused === true) {
-        this.setState({
-          select: false,
-          hasError: false,
-          focused: false
-        });
-      }
-    }
-  }
-  setSearch(nextProps) {
-    for (const index in nextProps) {
-      if (nextProps[index] !== this.props[index]) {
-        if (index === 'search') {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
   }
   handleShowSelect(bool) {
     this.setState({
@@ -144,16 +103,12 @@ class GroupRemoteSearch extends BaseInput {
       }, /*#__PURE__*/React.createElement("span", null, item.name));
     });
     let error = this.getError();
-    console.log('---------------');
-    console.log(this.state);
-    console.log(this.state);
-    console.log(this.props);
     return /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
       size: size
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
+      className: this.getWrapperClasses(resItems),
       ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
@@ -234,7 +189,7 @@ class GroupRemoteSearch extends BaseInput {
     }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
     }, /*#__PURE__*/React.createElement("img", {
-      src: require('../../assets/loader.svg').default,
+      src: LoadImage,
       alt: ""
     }))))));
   }

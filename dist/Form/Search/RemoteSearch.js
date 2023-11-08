@@ -1,10 +1,11 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
 import { Loader } from '../newstyles';
 import InputPopup from "../InputPopup/InputPopup";
 import Search from "./Search";
-class RemoteSearch extends BaseInput {
+import { ReactComponent as LoadImage } from '../../assets/loader.svg';
+class RemoteSearch extends BaseSearch {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,31 +17,6 @@ class RemoteSearch extends BaseInput {
     };
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {
-      name
-    } = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      });
-    } else {
-      this.setState({
-        error: null,
-        hasError: false
-      });
-    }
-    for (const index in nextProps) {
-      if (nextProps[index] !== this.props[index]) {
-        if (index === 'search') {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
   }
   handleArrows() {
     if (this.state.handleArrow === false) {
@@ -136,17 +112,6 @@ class RemoteSearch extends BaseInput {
       });
     }
   }
-  handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.handleShowSelect(false);
-    }
-  }
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
   handleShowSelect(bool) {
     this.setState({
       select: bool,
@@ -230,25 +195,12 @@ class RemoteSearch extends BaseInput {
         }
       }, /*#__PURE__*/React.createElement("span", null, item.name));
     }) : [];
-    let style = {};
-    if (this.props.style) {
-      style = {
-        ...this.props.style
-      };
-    }
     let error = this.getError();
-    let focus = this.state.focused ? '1px solid #1874DE' : '';
-    if (this.state.hasError === true) {
-      focus = '1px solid #FF0000';
-    }
-    style.border = focus;
-    let loadImage = require('../../assets/loader.svg').default;
     return /*#__PURE__*/React.createElement(Container, {
-      style: this.props.containerStyle,
+      style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : '')
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
-      style: style,
+      className: this.getWrapperClasses(resItems),
       ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
@@ -281,16 +233,6 @@ class RemoteSearch extends BaseInput {
           hasError: false
         });
       }
-      // onBlur={() => {
-      //   //TODO проверить введенный текст соответствует ли одной из опций,
-      //   //если нет, то очищать выбранный элемент
-      //   this.setState({
-      //     focused: false,
-      //     hasError: false
-      //   }, () => {
-      //     this.onBlur();
-      //   })
-      // }}
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
@@ -317,7 +259,7 @@ class RemoteSearch extends BaseInput {
     }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
     }, /*#__PURE__*/React.createElement("img", {
-      src: loadImage,
+      src: LoadImage,
       alt: ""
     }))))));
   }

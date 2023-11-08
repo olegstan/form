@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import {
   Container,
   Input as StyledInput,
@@ -11,8 +11,9 @@ import {
 } from './newstyles'
 import {Loader} from '../newstyles'
 import InputPopup from "../InputPopup/InputPopup";
+import {ReactComponent as LoadImage} from '../../assets/loader.svg';
 
-class GroupRemoteSearch extends BaseInput
+class GroupRemoteSearch extends BaseSearch
 {
   constructor(props)
   {
@@ -28,60 +29,6 @@ class GroupRemoteSearch extends BaseInput
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps)
-  {
-    const {name} = this.props;
-
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
-    {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      }, () => {
-        this.setSearch(nextProps)
-      })
-    } else
-    {
-      this.setState({
-        error: null,
-        hasError: false
-      }, () => {
-        this.setSearch(nextProps)
-      })
-    }
-  }
-
-  handleClickOutside(e)
-  {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target))
-    {
-      if(this.state.focused === true)
-      {
-        this.setState({
-          select: false,
-          hasError: false,
-          focused: false
-        })
-      }
-    }
-  }
-
-  setSearch(nextProps)
-  {
-    for (const index in nextProps)
-    {
-      if (nextProps[index] !== this.props[index])
-      {
-        if (index === 'search')
-        {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
   }
   
   handleShowSelect(bool)
@@ -179,13 +126,8 @@ class GroupRemoteSearch extends BaseInput
 
     let error = this.getError();
 
-    console.log('---------------')
-    console.log(this.state)
-    console.log(this.state)
-    console.log(this.props)
-
     return <Container style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
-      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} ref={this.setWrapperRef}>
+      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
             selected={selected ? JSON.stringify(selected) : ''}
@@ -253,7 +195,7 @@ class GroupRemoteSearch extends BaseInput
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>
-              <img src={require('../../assets/loader.svg').default} alt='' />
+              <img src={LoadImage} alt='' />
             </div>
           </Loader>}
         </InputContainer>
