@@ -33,20 +33,43 @@ class GroupRemoteSearch extends BaseInput
   UNSAFE_componentWillReceiveProps(nextProps)
   {
     const {name} = this.props;
+
     if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
     {
       this.setState({
         error: nextProps.errors[name][0],
         hasError: true
+      }, () => {
+        this.setSearch(nextProps)
       })
     } else
     {
       this.setState({
         error: null,
         hasError: false
+      }, () => {
+        this.setSearch(nextProps)
       })
     }
+  }
 
+  handleClickOutside(e)
+  {
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target))
+    {
+      if(this.state.focused === true)
+      {
+        this.setState({
+          select: false,
+          hasError: false,
+          focused: false
+        })
+      }
+    }
+  }
+
+  setSearch(nextProps)
+  {
     for (const index in nextProps)
     {
       if (nextProps[index] !== this.props[index])
@@ -59,21 +82,6 @@ class GroupRemoteSearch extends BaseInput
         }
       }
     }
-  }
-
-  handleClickOutside(e)
-  {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.handleShowSelect(false);
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
   }
   
   handleShowSelect(bool)
@@ -93,13 +101,31 @@ class GroupRemoteSearch extends BaseInput
     }
   }
 
-
   onKeyPress(e)
   {
     if (typeof this.props.onKeyPress === 'function')
     {
       this.props.onKeyPress(e);
     }
+  }
+
+  getContainerStyle()
+  {
+    let containerStyle = {...this.props.containerStyle};
+
+    containerStyle.border = '1px solid #D2D1D1';
+
+    if(this.state.focused)
+    {
+      containerStyle.border = '1px solid #1874DE';
+    }
+
+    if(this.state.hasError === true)
+    {
+      containerStyle.border = '1px solid #EF5E70';
+    }
+
+    return containerStyle;
   }
 
   render()
@@ -151,33 +177,21 @@ class GroupRemoteSearch extends BaseInput
         </Item>
       })
 
-    let style = {}
-
-    if(this.props.style)
-    {
-      style = {
-        ...this.props.style
-      };
-    }
-
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '')
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #FF0000';
-    }
 
-    style.border = focus;
+    console.log('---------------')
+    console.log(this.state)
+    console.log(this.state)
+    console.log(this.props)
 
-    return <Container style={this.props.containerStyle} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
-      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} style={style} ref={this.setWrapperRef}>
+    return <Container style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
+      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
             selected={selected ? JSON.stringify(selected) : ''}
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
-            // style={this.props.style}
             className={this.props.className}
             type={this.props.type}
             name={this.getName(name)}

@@ -24,13 +24,30 @@ class GroupRemoteSearch extends BaseInput {
       this.setState({
         error: nextProps.errors[name][0],
         hasError: true
+      }, () => {
+        this.setSearch(nextProps);
       });
     } else {
       this.setState({
         error: null,
         hasError: false
+      }, () => {
+        this.setSearch(nextProps);
       });
     }
+  }
+  handleClickOutside(e) {
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+      if (this.state.focused === true) {
+        this.setState({
+          select: false,
+          hasError: false,
+          focused: false
+        });
+      }
+    }
+  }
+  setSearch(nextProps) {
     for (const index in nextProps) {
       if (nextProps[index] !== this.props[index]) {
         if (index === 'search') {
@@ -40,17 +57,6 @@ class GroupRemoteSearch extends BaseInput {
         }
       }
     }
-  }
-  handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.handleShowSelect(false);
-    }
-  }
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
   }
   handleShowSelect(bool) {
     this.setState({
@@ -68,6 +74,19 @@ class GroupRemoteSearch extends BaseInput {
     if (typeof this.props.onKeyPress === 'function') {
       this.props.onKeyPress(e);
     }
+  }
+  getContainerStyle() {
+    let containerStyle = {
+      ...this.props.containerStyle
+    };
+    containerStyle.border = '1px solid #D2D1D1';
+    if (this.state.focused) {
+      containerStyle.border = '1px solid #1874DE';
+    }
+    if (this.state.hasError === true) {
+      containerStyle.border = '1px solid #EF5E70';
+    }
+    return containerStyle;
   }
   render() {
     const {
@@ -124,33 +143,23 @@ class GroupRemoteSearch extends BaseInput {
         }
       }, /*#__PURE__*/React.createElement("span", null, item.name));
     });
-    let style = {};
-    if (this.props.style) {
-      style = {
-        ...this.props.style
-      };
-    }
     let error = this.getError();
-    let focus = this.state.focused ? '1px solid #1874DE' : '';
-    if (this.state.hasError === true) {
-      focus = '1px solid #FF0000';
-    }
-    style.border = focus;
+    console.log('---------------');
+    console.log(this.state);
+    console.log(this.state);
+    console.log(this.props);
     return /*#__PURE__*/React.createElement(Container, {
-      style: this.props.containerStyle,
+      style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
       size: size
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
-      style: style,
       ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
       id: this.props.id,
       autoComplete: 'off',
-      disabled: this.props.disabled
-      // style={this.props.style}
-      ,
+      disabled: this.props.disabled,
       className: this.props.className,
       type: this.props.type,
       name: this.getName(name),
