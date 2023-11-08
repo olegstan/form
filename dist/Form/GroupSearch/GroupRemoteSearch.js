@@ -104,6 +104,7 @@ class GroupRemoteSearch extends BaseSearch {
     });
     let error = this.getError();
     return /*#__PURE__*/React.createElement(Container, {
+      dataid: "group-remote-search",
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
       size: size
@@ -188,10 +189,7 @@ class GroupRemoteSearch extends BaseSearch {
       className: "error"
     }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
-    }, /*#__PURE__*/React.createElement("img", {
-      src: LoadImage,
-      alt: ""
-    }))))));
+    }, /*#__PURE__*/React.createElement(LoadImage, null))))));
   }
 }
 export default GroupRemoteSearch;

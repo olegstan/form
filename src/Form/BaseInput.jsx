@@ -48,7 +48,14 @@ export default class BaseInput extends Component
 
   getInputStyle()
   {
-    return this.props.style;
+    let inputStyle = {...this.props.style}
+
+    if(this.props.className === 'style2')
+    {
+      inputStyle.color = '#fff';
+    }
+
+    return inputStyle;
   }
 
   hasError()

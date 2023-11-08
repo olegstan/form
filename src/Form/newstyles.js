@@ -336,7 +336,6 @@ export const sharedSearchInputWrapperStyle = css`
   align-items: center;
   height: 48px;
   background-color: #fff;
-  border: 1px solid #D2D1D1;
   flex: 1;
   border-radius: 8px;
   cursor: pointer;
@@ -453,6 +452,7 @@ export const sharedSelectWrapperStyle = css`
   }
 
   ${placeholderStyle}
+  
   label.placeholder {
     top: 10px;
     left: -13px;
@@ -1055,7 +1055,7 @@ export const Loader = styled.div`
   position: absolute;
   right: 36px;
 
-  img {
+  img, svg {
     position: absolute;
     top: 8px;
     height: 30px;

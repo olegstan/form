@@ -243,7 +243,7 @@ class RemoteSearch extends BaseSearch
 
     let error = this.getError();
 
-    return <Container style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
+    return <Container dataid='remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
       <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
@@ -291,7 +291,7 @@ class RemoteSearch extends BaseSearch
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>
-              <img src={LoadImage} alt='' />
+              <LoadImage/>
             </div>
           </Loader>}
         </InputContainer>

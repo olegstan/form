@@ -197,6 +197,7 @@ class RemoteSearch extends BaseSearch {
     }) : [];
     let error = this.getError();
     return /*#__PURE__*/React.createElement(Container, {
+      dataid: "remote-search",
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : '')
     }, /*#__PURE__*/React.createElement(InputWrapper, {
@@ -258,10 +259,7 @@ class RemoteSearch extends BaseSearch {
       className: "error"
     }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
-    }, /*#__PURE__*/React.createElement("img", {
-      src: LoadImage,
-      alt: ""
-    }))))));
+    }, /*#__PURE__*/React.createElement(LoadImage, null))))));
   }
 }
 export default RemoteSearch;

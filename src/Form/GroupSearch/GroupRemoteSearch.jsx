@@ -126,7 +126,7 @@ class GroupRemoteSearch extends BaseSearch
 
     let error = this.getError();
 
-    return <Container style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
+    return <Container dataid='group-remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
       <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
           <StyledInput
@@ -195,7 +195,7 @@ class GroupRemoteSearch extends BaseSearch
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>
-              <img src={LoadImage} alt='' />
+              <LoadImage/>
             </div>
           </Loader>}
         </InputContainer>

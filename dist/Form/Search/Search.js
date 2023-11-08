@@ -1,8 +1,8 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
 import InputPopup from "../InputPopup/InputPopup";
-class Search extends BaseInput {
+class Search extends BaseSearch {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,31 +22,6 @@ class Search extends BaseInput {
     showClearIcon: true,
     selectStyle: {}
   };
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const {
-      name
-    } = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      });
-    } else {
-      this.setState({
-        error: null,
-        hasError: false
-      });
-    }
-    for (const index in nextProps) {
-      if (nextProps[index] !== this.props[index]) {
-        if (index === 'search') {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
-  }
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
       if (typeof this.props.onOutsideClick === 'function' && this.state.focused === true) {
@@ -239,27 +214,10 @@ class Search extends BaseInput {
         }
       }, /*#__PURE__*/React.createElement("span", null, item.name));
     }) : [];
-    let wrapperStyle = {
-      ...this.props.wrapperStyle
-    };
     let error = this.getError();
-    let focus = this.state.focused ? '1px solid #1874DE' : '';
-    if (this.state.hasError === true) {
-      focus = '1px solid #FF0000';
-    }
-    wrapperStyle.border = focus;
     let empty = true;
     if (typeof this.state.search === 'number' && this.state.search.toString().length > 0 || typeof this.state.search === 'string' && this.state.search.length > 0) {
       empty = false;
-    }
-    let inputStyle = {
-      ...this.props.inputStyle
-    };
-    let containerStyle = {
-      ...this.props.containerStyle
-    };
-    if (this.props.className === 'style2') {
-      inputStyle.color = '#fff';
     }
 
     //исправления бага автозаполнения
@@ -267,11 +225,11 @@ class Search extends BaseInput {
     //то будет предлагаться подсказка, которая не нужна
     //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
     return /*#__PURE__*/React.createElement(Container, {
-      style: containerStyle,
+      dataid: "search",
+      style: this.getContainerStyle(),
       className: this.props.className
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      className: this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
-      style: wrapperStyle,
+      className: this.getWrapperClasses(resItems),
       onClick: e => {
         e.stopPropagation();
       }
@@ -282,7 +240,7 @@ class Search extends BaseInput {
       id: this.props.id,
       autoComplete: 'off',
       disabled: this.props.disabled,
-      style: inputStyle,
+      style: this.getInputStyle(),
       className: this.props.className,
       type: this.props.type,
       name: this.getName(name),

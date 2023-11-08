@@ -1,9 +1,9 @@
 import React from 'react';
-import BaseInput from '../BaseInput';
+import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import InputPopup from "../InputPopup/InputPopup";
 
-class Search extends BaseInput
+class Search extends BaseSearch
 {
   constructor(props)
   {
@@ -29,36 +29,6 @@ class Search extends BaseInput
     selectStyle: {}
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps)
-  {
-    const {name} = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
-    {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      })
-    } else
-    {
-      this.setState({
-        error: null,
-        hasError: false
-      })
-    }
-
-    for (const index in nextProps)
-    {
-      if (nextProps[index] !== this.props[index])
-      {
-        if (index === 'search')
-        {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
-  }
 
   handleClickOutside(e)
   {
@@ -292,17 +262,8 @@ class Search extends BaseInput
         </Item>
       }) : [];
 
-    let wrapperStyle = {...this.props.wrapperStyle};
-
 
     let error = this.getError();
-    let focus = (this.state.focused ? '1px solid #1874DE' : '')
-    if(this.state.hasError === true)
-    {
-      focus = '1px solid #FF0000';
-    }
-
-    wrapperStyle.border = focus;
 
     let empty = true;
 
@@ -311,23 +272,13 @@ class Search extends BaseInput
       empty = false;
     }
 
-
-    let inputStyle = {...this.props.inputStyle};
-    let containerStyle = {...this.props.containerStyle};
-
-    if(this.props.className === 'style2')
-    {
-        inputStyle.color = '#fff';
-    }
-
     //исправления бага автозаполнения
     //если name содержит слова такие как country, street
     //то будет предлагаться подсказка, которая не нужна
     //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
-    return <Container style={containerStyle} className={this.props.className}>
+    return <Container dataid='search' style={this.getContainerStyle()} className={this.props.className}>
       <InputWrapper
-        className={this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
-        style={wrapperStyle}
+        className={this.getWrapperClasses(resItems)}
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -338,7 +289,7 @@ class Search extends BaseInput
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}
-            style={inputStyle}
+            style={this.getInputStyle()}
             className={this.props.className}
             type={this.props.type}
             name={this.getName(name)}
