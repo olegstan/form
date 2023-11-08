@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getLink;
-require("core-js/modules/es.parse-int.js");
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function getLink(Base) {
+import React from 'react';
+export default function getLink(Base) {
   class GetLink extends Base {
     clearFormError(prv, field) {
       if (prv.formErrors && typeof prv.formErrors[field] !== 'undefined') {

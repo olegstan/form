@@ -1,25 +1,9 @@
-"use strict";
-
-require("core-js/modules/es.symbol.description.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.search.js");
-require("core-js/modules/es.json.stringify.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _newstyles = require("./newstyles");
-var _newstyles2 = require("../newstyles");
-var _InputPopup = _interopRequireDefault(require("../InputPopup/InputPopup"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class GroupRemoteSearch extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect, SubItem } from './newstyles';
+import { Loader } from '../newstyles';
+import InputPopup from "../InputPopup/InputPopup";
+class GroupRemoteSearch extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -127,7 +111,7 @@ class GroupRemoteSearch extends _BaseInput.default {
       if (item.items && item.items.length > 0) {
         notEmptyItems = true;
       }
-      return /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+      return /*#__PURE__*/React.createElement(Item, {
         key: item.name,
         className: "item",
         id: this.props.id + '-' + item.id,
@@ -138,11 +122,13 @@ class GroupRemoteSearch extends _BaseInput.default {
             search: item.name
           });
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, item.name));
+      }, /*#__PURE__*/React.createElement("span", null, item.name));
     });
     let style = {};
     if (this.props.style) {
-      style = _objectSpread({}, this.props.style);
+      style = {
+        ...this.props.style
+      };
     }
     let error = this.getError();
     let focus = this.state.focused ? '1px solid #1874DE' : '';
@@ -150,15 +136,15 @@ class GroupRemoteSearch extends _BaseInput.default {
       focus = '1px solid #FF0000';
     }
     style.border = focus;
-    return /*#__PURE__*/_react.default.createElement(_newstyles.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: this.props.containerStyle,
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
       size: size
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
       style: style,
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputContainer, null, /*#__PURE__*/_react.default.createElement(_newstyles.Input, {
+    }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
       id: this.props.id,
       autoComplete: 'off',
@@ -190,13 +176,13 @@ class GroupRemoteSearch extends _BaseInput.default {
           hasError: false
         });
       }
-    }), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder) : '', /*#__PURE__*/_react.default.createElement(_newstyles.Select, {
+    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused
@@ -206,11 +192,11 @@ class GroupRemoteSearch extends _BaseInput.default {
       if (name.length > 38) {
         shortName = name.slice(0, 39) + '...';
       }
-      return item.items.length > 0 && /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+      return item.items.length > 0 && /*#__PURE__*/React.createElement(Item, {
         key: item.name,
         className: "item"
-      }, /*#__PURE__*/_react.default.createElement("span", null, shortName), item.items.map(subItem => {
-        return /*#__PURE__*/_react.default.createElement(_newstyles.SubItem, {
+      }, /*#__PURE__*/React.createElement("span", null, shortName), item.items.map(subItem => {
+        return /*#__PURE__*/React.createElement(SubItem, {
           key: subItem.name,
           className: "subitem",
           id: this.props.id + '-' + subItem.id,
@@ -223,25 +209,25 @@ class GroupRemoteSearch extends _BaseInput.default {
           }
         }, subItem.name ? subItem.name.capitalize() : '');
       }));
-    }) : loading || selected ? '' : /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+    }) : loading || selected ? '' : /*#__PURE__*/React.createElement(Item, {
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.state.hasError ? /*#__PURE__*/_react.default.createElement(_InputPopup.default, {
-      trigger: /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
         src: require('../../assets/error.svg').default,
         alt: "",
         onClick: () => {}
       })
-    }, /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
-    }, error)) : '', loading && /*#__PURE__*/_react.default.createElement(_newstyles2.Loader, null, /*#__PURE__*/_react.default.createElement("div", {
+    }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
-    }, /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("img", {
       src: require('../../assets/loader.svg').default,
       alt: ""
     }))))));
   }
 }
-var _default = exports.default = GroupRemoteSearch;
+export default GroupRemoteSearch;

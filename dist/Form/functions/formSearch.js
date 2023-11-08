@@ -1,43 +1,28 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = formSearch;
-require("core-js/modules/es.parse-int.js");
-require("core-js/modules/es.symbol.description.js");
-var _react = _interopRequireDefault(require("react"));
-var _Search = _interopRequireDefault(require("../Search/Search"));
-var _GroupRemoteSearch = _interopRequireDefault(require("../GroupSearch/GroupRemoteSearch"));
-var _RemoteSearch = _interopRequireDefault(require("../Search/RemoteSearch"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function formSearch(Base) {
+import React from 'react';
+import Search from "../Search/Search";
+import GroupRemoteSearch from "../GroupSearch/GroupRemoteSearch";
+import RemoteSearch from "../Search/RemoteSearch";
+export default function formSearch(Base) {
   class FormSearch extends Base {
-    renderSearch() {
-      let {
-        field,
-        items,
-        text,
-        defaultText,
-        disabled = false,
-        onSearch = () => {},
-        callback,
-        id,
-        onClick,
-        selectStyle = {},
-        inputStyle = {},
-        wrapperStyle = {},
-        containerStyle = {},
-        clearImageStyle = {},
-        showClearIcon = false,
-        className
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_Search.default, {
+    renderSearch({
+      field,
+      items,
+      text,
+      defaultText,
+      disabled = false,
+      onSearch = () => {},
+      callback,
+      id,
+      onClick,
+      selectStyle = {},
+      inputStyle = {},
+      wrapperStyle = {},
+      containerStyle = {},
+      clearImageStyle = {},
+      showClearIcon = false,
+      className
+    } = {}) {
+      return /*#__PURE__*/React.createElement(Search, {
         default: defaultText,
         placeholder: text,
         className: className,
@@ -75,44 +60,45 @@ function formSearch(Base) {
         errors: this.state.formErrors
       });
     }
-    renderSearchStyle1() {
-      let {
-        field,
-        items,
-        text,
-        defaultText,
-        disabled = false,
-        onSearch = () => {},
-        callback,
-        id,
-        onClick,
-        selectStyle = {},
-        inputStyle = {},
-        wrapperStyle = {},
-        containerStyle = {},
-        clearImageStyle = {},
-        showClearIcon = false,
-        className
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return this.renderSearch(_objectSpread(_objectSpread({}, arguments[0]), {
-        className: 'style1'
-      }));
+    renderSearchStyle1({
+      field,
+      items,
+      text,
+      defaultText,
+      disabled = false,
+      onSearch = () => {},
+      callback,
+      id,
+      onClick,
+      selectStyle = {},
+      inputStyle = {},
+      wrapperStyle = {},
+      containerStyle = {},
+      clearImageStyle = {},
+      showClearIcon = false,
+      className
+    } = {}) {
+      return this.renderSearch({
+        ...arguments[0],
+        ...{
+          className: 'style1'
+        }
+      });
     }
-    renderRemoteSearch() {
-      let {
-        field,
-        items,
-        text,
-        defaultText,
-        onSearch = () => {},
-        callback,
-        disabled = false,
-        loading,
-        style = {},
-        containerStyle = {},
-        className
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_RemoteSearch.default, {
+    renderRemoteSearch({
+      field,
+      items,
+      text,
+      defaultText,
+      onSearch = () => {},
+      callback,
+      disabled = false,
+      loading,
+      style = {},
+      containerStyle = {},
+      className
+    } = {}) {
+      return /*#__PURE__*/React.createElement(RemoteSearch, {
         default: defaultText,
         placeholder: text,
         className: className,
@@ -146,22 +132,21 @@ function formSearch(Base) {
         errors: this.state.formErrors
       });
     }
-    renderGroupRemoteSearch() {
-      let {
-        field,
-        items,
-        text,
-        defaultText,
-        onSearch = () => {},
-        callback = () => {},
-        loading,
-        disabled = false,
-        style = {},
-        containerStyle = {},
-        size = '',
-        className
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_GroupRemoteSearch.default, {
+    renderGroupRemoteSearch({
+      field,
+      items,
+      text,
+      defaultText,
+      onSearch = () => {},
+      callback = () => {},
+      loading,
+      disabled = false,
+      style = {},
+      containerStyle = {},
+      size = '',
+      className
+    } = {}) {
+      return /*#__PURE__*/React.createElement(GroupRemoteSearch, {
         default: defaultText,
         size: size,
         className: className,
@@ -196,22 +181,24 @@ function formSearch(Base) {
         errors: this.state.formErrors
       });
     }
-    renderGroupRemoteSearchStyle1() {
-      let {
-        field,
-        items,
-        text,
-        defaultText,
-        onSearch = () => {},
-        callback = () => {},
-        loading,
-        disabled = false,
-        style,
-        size = ''
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return this.renderGroupRemoteSearch(_objectSpread(_objectSpread({}, arguments[0]), {
-        className: 'style1'
-      }));
+    renderGroupRemoteSearchStyle1({
+      field,
+      items,
+      text,
+      defaultText,
+      onSearch = () => {},
+      callback = () => {},
+      loading,
+      disabled = false,
+      style,
+      size = ''
+    } = {}) {
+      return this.renderGroupRemoteSearch({
+        ...arguments[0],
+        ...{
+          className: 'style1'
+        }
+      });
     }
     setValueSearch(prv, field, item) {
       let parts = field.split('.');

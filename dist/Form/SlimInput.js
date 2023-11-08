@@ -1,22 +1,15 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-var _Input = _interopRequireDefault(require("./Input"));
-var _newstyles = require("./newstyles");
-var _containerStyle = require("./styles/containerStyle");
-var _detectBrowser = require("detect-browser");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class SlimInput extends _Input.default {
+import React from 'react';
+import Input from './Input';
+import { InputContainer, StyledInput } from './newstyles';
+import { Container } from './styles/containerStyle';
+import { detect } from 'detect-browser';
+export default class SlimInput extends Input {
   render() {
     const {
       name
     } = this.props;
-    const browser = (0, _detectBrowser.detect)();
-    return /*#__PURE__*/_react.default.createElement(_containerStyle.Container, {
+    const browser = detect();
+    return /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       size: this.props.size,
       slim: true,
@@ -25,10 +18,10 @@ class SlimInput extends _Input.default {
       onClick: e => {
         e.stopPropagation();
       }
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputContainer, {
+    }, /*#__PURE__*/React.createElement(InputContainer, {
       ref: this.setWrapperRef,
       slim: true
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.StyledInput, {
+    }, /*#__PURE__*/React.createElement(StyledInput, {
       slim: true,
       browser: browser && browser.name,
       id: this.props.id,
@@ -71,4 +64,3 @@ class SlimInput extends _Input.default {
     })));
   }
 }
-exports.default = SlimInput;

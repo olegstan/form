@@ -1,26 +1,11 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.regexp.test.js");
-require("core-js/modules/es.string.replace.js");
-require("core-js/modules/es.regexp.to-string.js");
-require("core-js/modules/es.symbol.description.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("./BaseInput"));
-var _newstyles = require("./newstyles");
-var _Money = _interopRequireDefault(require("../Helpers/Money"));
-var _detectBrowser = require("detect-browser");
-var _InputPopup = _interopRequireDefault(require("./InputPopup/InputPopup"));
-var _containerStyle = require("./styles/containerStyle");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class NumberInput extends _BaseInput.default {
+import React from 'react';
+import BaseInput from './BaseInput';
+import { InputContainer, StyledInput } from './newstyles';
+import Money from "../Helpers/Money";
+import { detect } from 'detect-browser';
+import InputPopup from "./InputPopup/InputPopup";
+import { Container } from './styles/containerStyle';
+export default class NumberInput extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +29,18 @@ class NumberInput extends _BaseInput.default {
   /**
    *
    */
-
+  static defaultProps = {
+    onKeyPress: () => {},
+    onChange: () => {},
+    disabled: false,
+    value: '',
+    placeholder: '',
+    icon: '',
+    className: '',
+    wrapperClassName: '',
+    error: '',
+    style: {}
+  };
   componentDidUpdate(prevProps, prevState) {
     const {
       value
@@ -86,12 +82,12 @@ class NumberInput extends _BaseInput.default {
                 return;
               }
             }
-            value = _Money.default.formatForInput(value, parts[1].length);
+            value = Money.formatForInput(value, parts[1].length);
           } else {
-            value = _Money.default.formatForInput(value, 0) + '.';
+            value = Money.formatForInput(value, 0) + '.';
           }
         } else {
-          value = _Money.default.formatForInput(value, 0);
+          value = Money.formatForInput(value, 0);
         }
         let prevParts = this.props.value.toString().split('.');
         let newParts = value.split('.');
@@ -129,21 +125,21 @@ class NumberInput extends _BaseInput.default {
       name
     } = this.props;
     let error = this.getError();
-    const browser = (0, _detectBrowser.detect)();
+    const browser = detect();
     let empty = true;
     if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
       empty = false;
     }
-    return /*#__PURE__*/_react.default.createElement(_containerStyle.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       size: this.props.size,
       disabled: this.props.disabled,
       onClick: e => {
         e.stopPropagation();
       }
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputContainer, {
+    }, /*#__PURE__*/React.createElement(InputContainer, {
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.StyledInput, {
+    }, /*#__PURE__*/React.createElement(StyledInput, {
       browser: browser && browser.name,
       ref: this.setInputRef,
       id: this.props.id,
@@ -171,11 +167,11 @@ class NumberInput extends _BaseInput.default {
         });
       },
       onBlur: () => {}
-    }), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       style: this.props.placeholderStyle,
       className: this.getPlaceholderClassName()
-    }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
       className: "close",
       src: require('./../assets/ic_close_only.svg').default,
       onClick: e => {
@@ -188,30 +184,17 @@ class NumberInput extends _BaseInput.default {
         });
       },
       alt: ""
-    }), this.state.hasError ? /*#__PURE__*/_react.default.createElement(_InputPopup.default, {
-      trigger: /*#__PURE__*/_react.default.createElement("img", {
+    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
         src: require('./../assets/error.svg').default,
         alt: "",
         onClick: () => {}
       })
-    }, /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
     }, error)) : ''));
   }
 }
-exports.default = NumberInput;
-_defineProperty(NumberInput, "defaultProps", {
-  onKeyPress: () => {},
-  onChange: () => {},
-  disabled: false,
-  value: '',
-  placeholder: '',
-  icon: '',
-  className: '',
-  wrapperClassName: '',
-  error: '',
-  style: {}
-});

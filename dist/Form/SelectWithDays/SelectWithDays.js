@@ -1,19 +1,7 @@
-"use strict";
-
-require("core-js/modules/es.weak-map.js");
-require("core-js/modules/web.dom-collections.iterator.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.to-string.js");
-var _react = _interopRequireWildcard(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _styles = require("./styles");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
-class SelectWithDays extends _BaseInput.default {
+import React, { Fragment } from 'react';
+import BaseInput from '../BaseInput';
+import { CalendarContainer, Container, Day, DaysContainer, DaysTitle, InputWrapper, Item, Select as StyledSelect, Selected } from './styles';
+class SelectWithDays extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -108,43 +96,43 @@ class SelectWithDays extends _BaseInput.default {
     }
   }
   renderDaysWeek() {
-    return /*#__PURE__*/_react.default.createElement(_styles.CalendarContainer, null, /*#__PURE__*/_react.default.createElement(_styles.DaysTitle, null, "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0434\u043D\u0438 \u043D\u0435\u0434\u0435\u043B\u0438"), /*#__PURE__*/_react.default.createElement(_styles.DaysContainer, null, /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    return /*#__PURE__*/React.createElement(CalendarContainer, null, /*#__PURE__*/React.createElement(DaysTitle, null, "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0434\u043D\u0438 \u043D\u0435\u0434\u0435\u043B\u0438"), /*#__PURE__*/React.createElement(DaysContainer, null, /*#__PURE__*/React.createElement(Day, {
       key: 0,
       onClick: () => {
         this.props.handleDaysField('1');
       },
       className: this.isActiveDay('1') ? 'active' : ''
-    }, "\u041F\u043D"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u041F\u043D"), /*#__PURE__*/React.createElement(Day, {
       key: 1,
       onClick: () => {
         this.props.handleDaysField('2');
       },
       className: this.isActiveDay('2') ? 'active' : ''
-    }, "\u0412\u0442"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u0412\u0442"), /*#__PURE__*/React.createElement(Day, {
       key: 2,
       onClick: () => {
         this.props.handleDaysField('3');
       },
       className: this.isActiveDay('3') ? 'active' : ''
-    }, "\u0421\u0440"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u0421\u0440"), /*#__PURE__*/React.createElement(Day, {
       key: 3,
       onClick: () => {
         this.props.handleDaysField('4');
       },
       className: this.isActiveDay('4') ? 'active' : ''
-    }, "\u0427\u0442"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u0427\u0442"), /*#__PURE__*/React.createElement(Day, {
       key: 4,
       onClick: () => {
         this.props.handleDaysField('5');
       },
       className: this.isActiveDay('5') ? 'active' : ''
-    }, "\u041F\u0442"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u041F\u0442"), /*#__PURE__*/React.createElement(Day, {
       key: 5,
       onClick: () => {
         this.props.handleDaysField('6');
       },
       className: this.isActiveDay('6') ? 'active' : ''
-    }, "\u0421\u0431"), /*#__PURE__*/_react.default.createElement(_styles.Day, {
+    }, "\u0421\u0431"), /*#__PURE__*/React.createElement(Day, {
       key: 6,
       onClick: () => {
         this.props.handleDaysField('7');
@@ -165,11 +153,11 @@ class SelectWithDays extends _BaseInput.default {
         key++;
       }
     }
-    return /*#__PURE__*/_react.default.createElement(_styles.CalendarContainer, null, /*#__PURE__*/_react.default.createElement(_styles.DaysTitle, null, "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0434\u043D\u0438 \u043C\u0435\u0441\u044F\u0446\u0430"), arrays.map((items, arrayKey) => {
-      return /*#__PURE__*/_react.default.createElement(_styles.DaysContainer, {
+    return /*#__PURE__*/React.createElement(CalendarContainer, null, /*#__PURE__*/React.createElement(DaysTitle, null, "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0434\u043D\u0438 \u043C\u0435\u0441\u044F\u0446\u0430"), arrays.map((items, arrayKey) => {
+      return /*#__PURE__*/React.createElement(DaysContainer, {
         key: arrayKey
       }, items.map((item, key) => {
-        return /*#__PURE__*/_react.default.createElement(_styles.Day, {
+        return /*#__PURE__*/React.createElement(Day, {
           key: item.id,
           onClick: () => {
             this.props.handleDaysField(item);
@@ -189,26 +177,26 @@ class SelectWithDays extends _BaseInput.default {
     let focus = this.state.hasError ? {
       'border': '1px solid #FF0000'
     } : {};
-    return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.Container, {
+    return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement(Container, {
       style: focus
-    }, /*#__PURE__*/_react.default.createElement(_styles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_styles.Selected, {
+    }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.renderSelected())), /*#__PURE__*/_react.default.createElement(_styles.Select, {
+    }, /*#__PURE__*/React.createElement("span", null, this.renderSelected())), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select
-    }, /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }, /*#__PURE__*/React.createElement(Item, {
       key: 'default',
       onClick: () => {
         handle(null);
         this.handleShowSelect(false);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.props.default)), items.map((item, key) => /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }, /*#__PURE__*/React.createElement("span", null, this.props.default)), items.map((item, key) => /*#__PURE__*/React.createElement(Item, {
       key: item.id,
       id: this.props.id + '-' + item.id,
       className: this.props.className,
@@ -216,14 +204,14 @@ class SelectWithDays extends _BaseInput.default {
         handle(item);
         this.handleShowSelect(false);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, item.name)))), selected && this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("span", null, item.name)))), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder"
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: ""
-    }), error && /*#__PURE__*/_react.default.createElement("label", {
+    }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error",
       onClick: () => {
@@ -232,4 +220,4 @@ class SelectWithDays extends _BaseInput.default {
     }, error))), this.renderDaysSelect());
   }
 }
-var _default = exports.default = SelectWithDays;
+export default SelectWithDays;

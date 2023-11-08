@@ -1,13 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.replace.js");
-require("core-js/modules/es.string.search.js");
-class Url {
+export default class Url {
   static getCurrentUrl() {
     var sourceURL = window.location.href.replace(window.location.protocol + "//" + window.location.hostname, '');
     sourceURL = sourceURL.replace(':3000', '');
@@ -58,4 +49,3 @@ class Url {
     }
   }
 }
-exports.default = Url;

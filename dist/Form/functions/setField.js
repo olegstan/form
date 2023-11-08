@@ -1,15 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = setField;
-require("core-js/modules/es.regexp.to-string.js");
-var _react = _interopRequireDefault(require("react"));
-var _moment = _interopRequireDefault(require("moment/moment"));
-var _Money = _interopRequireDefault(require("../../Helpers/Money"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function setField(Base) {
+import React from 'react';
+import moment from "moment/moment";
+import Money from "../../Helpers/Money";
+export default function setField(Base) {
   class SetField extends Base {
     setNumber(field, response, prv) {
       let value = response.data[field];
@@ -27,9 +19,9 @@ function setField(Base) {
       }
       let parts = value.split('.');
       if (parts[1] && parts[1].length > 0) {
-        return _Money.default.format(value, parts[1].length);
+        return Money.format(value, parts[1].length);
       } else {
-        return _Money.default.format(value, 0);
+        return Money.format(value, 0);
       }
     }
 
@@ -180,8 +172,8 @@ function setField(Base) {
      */
     setDate(field, response, prv) {
       if (response.data[field + '_date'] && typeof response.data[field + '_date'] === 'string' && response.data[field + '_date'].length > 0) {
-        prv.form[field] = (0, _moment.default)(response.data[field + '_date'], 'DD.MM.YYYY').format('YYYY-MM-DD');
-        prv.form[field + '_date'] = (0, _moment.default)(response.data[field + '_date'], 'DD.MM.YYYY').toDate();
+        prv.form[field] = moment(response.data[field + '_date'], 'DD.MM.YYYY').format('YYYY-MM-DD');
+        prv.form[field + '_date'] = moment(response.data[field + '_date'], 'DD.MM.YYYY').toDate();
       } else {
         prv.form[field] = '';
         prv.form[field + '_date'] = null;
@@ -196,8 +188,8 @@ function setField(Base) {
      */
     setDateTime(field, response, prv) {
       if (response.data[field + '_datetime'] && typeof response.data[field + '_datetime'] === 'string' && response.data[field + '_datetime'].length > 0) {
-        prv.form[field] = (0, _moment.default)(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-        prv.form[field + '_datetime'] = (0, _moment.default)(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').toDate();
+        prv.form[field] = moment(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+        prv.form[field + '_datetime'] = moment(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').toDate();
       } else {
         prv.form[field] = '';
         prv.form[field + '_datetime'] = null;

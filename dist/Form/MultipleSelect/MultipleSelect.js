@@ -1,18 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.search.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _Checkbox = _interopRequireDefault(require("../Checkbox"));
-var _styles = require("./styles");
-var _selectContainerStyle = require("../styles/selectContainerStyle");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class MultipleSelect extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import Checkbox from '../Checkbox';
+import { InputWrapper, Select as StyledSelect, Selected } from './styles';
+import { Container } from '../styles/selectContainerStyle';
+class MultipleSelect extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,7 +64,7 @@ class MultipleSelect extends _BaseInput.default {
       handleAll
     } = this.props;
     if (this.props.selected.length) {
-      return /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+      return /*#__PURE__*/React.createElement(Checkbox, {
         id: '',
         text: 'Снять все',
         checked: true,
@@ -82,7 +73,7 @@ class MultipleSelect extends _BaseInput.default {
         }
       });
     } else {
-      return /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+      return /*#__PURE__*/React.createElement(Checkbox, {
         id: '',
         text: 'Выбрать все',
         checked: false,
@@ -99,23 +90,23 @@ class MultipleSelect extends _BaseInput.default {
       selected
     } = this.props;
     let error = this.getError();
-    return /*#__PURE__*/_react.default.createElement(_selectContainerStyle.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + ' ' + (this.state.select ? 'select' : '')
-    }, /*#__PURE__*/_react.default.createElement(_styles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef,
       className: 'wrapper ' + (this.state.select ? 'select' : '')
-    }, /*#__PURE__*/_react.default.createElement(_styles.Selected, {
+    }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       className: this.props.className + ' selected',
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.renderSelected())), /*#__PURE__*/_react.default.createElement(_styles.Select, {
+    }, /*#__PURE__*/React.createElement("span", null, this.renderSelected())), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-multi-select',
       className: this.props.className + ' select',
       select: this.state.select
-    }, this.renderSelectAll(), items.map((item, key) => /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+    }, this.renderSelectAll(), items.map((item, key) => /*#__PURE__*/React.createElement(Checkbox, {
       key: key,
       id: 'item-' + item.id,
       text: item.name,
@@ -123,17 +114,17 @@ class MultipleSelect extends _BaseInput.default {
       toggleCallback: e => {
         handle(item);
       }
-    }))), selected && this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }))), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       alt: ""
-    }), error && /*#__PURE__*/_react.default.createElement("label", {
+    }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error",
       onClick: () => {
@@ -142,4 +133,4 @@ class MultipleSelect extends _BaseInput.default {
     }, error)));
   }
 }
-var _default = exports.default = MultipleSelect;
+export default MultipleSelect;

@@ -87,8 +87,6 @@ export {
 
   SearchMultiple,
 
-  // SearchWithButton,
-
   Select,
 
   SelectWithDays,

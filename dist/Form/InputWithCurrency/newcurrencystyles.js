@@ -1,25 +1,160 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Selected = exports.Select = exports.Row = exports.Item = exports.InputWrapper = exports.InputContainer = exports.Input = exports.Container = exports.Button = void 0;
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-var _newstyles = require("../newstyles");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-const Input = exports.Input = _styledComponents.default.input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedInputStyle);
-const InputContainer = exports.InputContainer = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    box-sizing: border-box;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    height: 43px;\n    background-color: #fff;\n    flex: 1;\n    position: relative;\n    \n    &.disabled{\n      background-color: #F7F9FB !important;\n    }\n      \n    input::placeholder\n    {\n      color: transparent;\n    }\n    \n    ", "\n    \n    label.error{\n      ", "\n    }\n    \n    ", "\n"])), _newstyles.placeholderStyle, _newstyles.errorStyle, props => props.size === 'small' && "\n        width: 100%;\n        max-width: 130px;\n        height: 30px;\n        line-height: 24px;\n        margin: 3px 2px;\n    ");
-const Container = exports.Container = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    display: flex;\n    box-sizing: border-box;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    height: 51px;\n    background-color: #fff;\n    margin: 20px;\n    border: 1px solid #D2D1D1;\n    flex: 1;\n    border-radius: 8px;\n"])));
-const Button = exports.Button = _styledComponents.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    color: #fff;\n    background: #4378FF;\n    display: inline-block;\n    cursor: pointer;\n    font-size: 18px;\n    line-height: 20px;\n    padding: 8px 58px;\n    white-space: nowrap;\n    height: 40px;\n    border-radius: 10px;\n    border: none;\n    transition: .3s all;\n    outline: none;\n    font-style: normal;\n    font-weight: 600;\n    \n    &.style1{\n      background: #F5F5F5;\n      color: #4378FF;\n    }\n    \n    :hover{\n      background: #EAF9FF;\n      color: #fff;\n    }\n        \n    ", "\n"])), props => props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ");
+import styled from 'styled-components';
+import { errorStyle, placeholderStyle, sharedInputStyle, sharedItemStyle, sharedSelectedStyle, sharedSelectStyle } from '../newstyles';
+export const Input = styled.input`
+    ${sharedInputStyle}
+`;
+export const InputContainer = styled.div`
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 43px;
+    background-color: #fff;
+    flex: 1;
+    position: relative;
+    
+    &.disabled{
+      background-color: #F7F9FB !important;
+    }
+      
+    input::placeholder
+    {
+      color: transparent;
+    }
+    
+    ${placeholderStyle}
+    
+    label.error{
+      ${errorStyle}
+    }
+    
+    ${props => props.size === 'small' && `
+        width: 100%;
+        max-width: 130px;
+        height: 30px;
+        line-height: 24px;
+        margin: 3px 2px;
+    `}
+`;
+export const Container = styled.div`
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 51px;
+    background-color: #fff;
+    margin: 20px;
+    border: 1px solid #D2D1D1;
+    flex: 1;
+    border-radius: 8px;
+`;
+export const Button = styled.button`
+    color: #fff;
+    background: #4378FF;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 8px 58px;
+    white-space: nowrap;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    transition: .3s all;
+    outline: none;
+    font-style: normal;
+    font-weight: 600;
+    
+    &.style1{
+      background: #F5F5F5;
+      color: #4378FF;
+    }
+    
+    :hover{
+      background: #EAF9FF;
+      color: #fff;
+    }
+        
+    ${props => props.position === 'right' && `
+      margin: 0 0 0 auto;
+    `}
+`;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////   input select currency   ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const InputWrapper = exports.InputWrapper = _styledComponents.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  position: relative;\n  cursor: pointer;\n  box-sizing: border-box;\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  align-items: center;\n  //width: 58px;\n  color: #fff;\n  border-left: 1px solid hsla(0,0%,100%,.2);\n  text-transform: uppercase;\n  text-align: center;\n  font-size: 14px;\n  height: 49px;\n  line-height: 49px;\n   \n  \n  &.disabled{\n    background-color: #F7F9FB !important;\n  }\n  \n  .arrow {\n    position: absolute;\n    right: 20px;\n    top: 12px;\n    width: 12px;\n    height: 28px;\n  }\n  \n  .error{\n      font-size: 8px;\n      line-height: 58px;\n      display: block;\n      width: 100%;\n      position: absolute;\n      top: 15px;\n      left: 0;\n      user-select: none;\n      z-index: 2500;\n      color: red;\n      text-align: center;\n    }\n    \n    .placeholder{\n      font-size: 10px;\n      line-height: 0.1;\n      display: block;\n      width: 100%;\n      position: absolute;\n      top: 5px;\n      left: 25px;\n      user-select: none;\n      z-index: 2500;\n      color: #7b7b7b;\n      text-align: left;\n    }\n"])));
-const Selected = exports.Selected = _styledComponents.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedSelectedStyle);
-const Select = exports.Select = _styledComponents.default.div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedSelectStyle);
-const Item = exports.Item = _styledComponents.default.div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedItemStyle);
-const Row = exports.Row = _styledComponents.default.div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n"])));
+export const InputWrapper = styled.div`
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: transparent;
+  outline: none;
+  display: flex;
+  align-items: center;
+  //width: 58px;
+  color: #fff;
+  border-left: 1px solid hsla(0,0%,100%,.2);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px;
+  height: 49px;
+  line-height: 49px;
+   
+  
+  &.disabled{
+    background-color: #F7F9FB !important;
+  }
+  
+  .arrow {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    width: 12px;
+    height: 28px;
+  }
+  
+  .error{
+      font-size: 8px;
+      line-height: 58px;
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 15px;
+      left: 0;
+      user-select: none;
+      z-index: 2500;
+      color: red;
+      text-align: center;
+    }
+    
+    .placeholder{
+      font-size: 10px;
+      line-height: 0.1;
+      display: block;
+      width: 100%;
+      position: absolute;
+      top: 5px;
+      left: 25px;
+      user-select: none;
+      z-index: 2500;
+      color: #7b7b7b;
+      text-align: left;
+    }
+`;
+export const Selected = styled.div`
+    ${sharedSelectedStyle}
+`;
+export const Select = styled.div`
+  ${sharedSelectStyle}
+`;
+export const Item = styled.div`
+  ${sharedItemStyle}
+`;
+export const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+`;

@@ -1,17 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.parse-int.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _newstyles = require("./newstyles");
-var _selectContainerStyle = require("../styles/selectContainerStyle");
-var _InputPopup = _interopRequireDefault(require("../InputPopup/InputPopup"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class Select extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { InputWrapper, Item, Select as StyledSelect, Selected } from './newstyles';
+import { Container } from '../styles/selectContainerStyle';
+import InputPopup from "../InputPopup/InputPopup";
+class Select extends BaseInput {
   /**
    *
    * @param props
@@ -90,22 +82,22 @@ class Select extends _BaseInput.default {
       }
       return true;
     }) : [];
-    return /*#__PURE__*/_react.default.createElement(_selectContainerStyle.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       size: this.props.size,
       className: this.props.className + ' ' + (this.state.select ? 'select' : ''),
       style: this.getContainerStyle()
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef,
       className: 'wrapper ' + (this.state.select ? 'select' : ''),
       style: focus,
       id: this.props.id + '-wrapper'
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.Selected, {
+    }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       className: this.props.className + ' selected',
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.renderSelected())), resItems.length > 0 ? this.state.select && /*#__PURE__*/_react.default.createElement(_newstyles.Select, {
+    }, /*#__PURE__*/React.createElement("span", null, this.renderSelected())), resItems.length > 0 ? this.state.select && /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: true
@@ -116,7 +108,7 @@ class Select extends _BaseInput.default {
       } else {
         shortName = item.name;
       }
-      return /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+      return /*#__PURE__*/React.createElement(Item, {
         key: item.id,
         id: this.props.id + '-' + item.id,
         className: this.props.className + ' item',
@@ -124,41 +116,41 @@ class Select extends _BaseInput.default {
           handle(item);
           this.handleShowSelect(false);
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, shortName));
-    })) : this.state.select && /*#__PURE__*/_react.default.createElement(_newstyles.Select, {
+      }, /*#__PURE__*/React.createElement("span", null, shortName));
+    })) : this.state.select && /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: true
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+    }, /*#__PURE__*/React.createElement(Item, {
       className: this.props.className + ' item',
       onClick: () => {
         this.handleShowSelect(false);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"))), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("span", null, "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"))), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder) : '', /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       alt: "",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), this.state.hasError ? /*#__PURE__*/_react.default.createElement(_InputPopup.default, {
-      trigger: /*#__PURE__*/_react.default.createElement("img", {
+    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
         src: require('../../assets/error.svg').default,
         alt: "",
         onClick: () => {}
       })
-    }, /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
     }, error)) : ''));
   }
 }
-var _default = exports.default = Select;
+export default Select;

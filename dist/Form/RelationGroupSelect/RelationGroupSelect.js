@@ -1,16 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _styles = require("./styles");
-var _Money = _interopRequireDefault(require("../../Helpers/Money"));
-var _selectContainerStyle = require("../styles/selectContainerStyle");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class RelationGroupSelect extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
+import Money from "../../Helpers/Money";
+import { Container } from '../styles/selectContainerStyle';
+class RelationGroupSelect extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +37,7 @@ class RelationGroupSelect extends _BaseInput.default {
     items.map(item => {
       item.to_trades.map(trade => {
         if (selected.id === trade.id) {
-          name = trade.active.type_text + this.getName(trade) + ' - ' + _Money.default.format(trade.count) + ' ' + trade.active.item.symbol + ' дата ' + trade.trade_at_date;
+          name = trade.active.type_text + this.getName(trade) + ' - ' + Money.format(trade.count) + ' ' + trade.active.item.symbol + ' дата ' + trade.trade_at_date;
         }
         return;
       });
@@ -64,10 +57,9 @@ class RelationGroupSelect extends _BaseInput.default {
   getName(trade) {
     let name = trade.active.name;
     if (name) {
-      var _name, _name2;
-      if (((_name = name) === null || _name === void 0 ? void 0 : _name.length) > 30) {
+      if (name?.length > 30) {
         name = ' (' + name.slice(0, 29) + '...)';
-      } else if (((_name2 = name) === null || _name2 === void 0 ? void 0 : _name2.length) === 0) {
+      } else if (name?.length === 0) {
         name = ' ';
       } else {
         name = ' (' + name + ')';
@@ -85,49 +77,49 @@ class RelationGroupSelect extends _BaseInput.default {
     let focus = this.state.hasError ? {
       'border': '1px solid #FF0000'
     } : {};
-    return /*#__PURE__*/_react.default.createElement(_selectContainerStyle.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: focus
-    }, /*#__PURE__*/_react.default.createElement(_styles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_styles.Selected, {
+    }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.renderSelected())), /*#__PURE__*/_react.default.createElement(_styles.Select, {
+    }, /*#__PURE__*/React.createElement("span", null, this.renderSelected())), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select
-    }, /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }, /*#__PURE__*/React.createElement(Item, {
       key: 'default',
       onClick: () => {
         handle(null);
         this.handleShowSelect(false);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.props.default)), items.map((item, key) => {
-      return /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }, /*#__PURE__*/React.createElement("span", null, this.props.default)), items.map((item, key) => {
+      return /*#__PURE__*/React.createElement(Item, {
         key: key
-      }, /*#__PURE__*/_react.default.createElement("span", null, item.user_account ? item.user_account.name + ' ' + item.currency.code : ''), item.to_trades.length ? item.to_trades.map(trade => {
-        return /*#__PURE__*/_react.default.createElement(_styles.SubItem, {
+      }, /*#__PURE__*/React.createElement("span", null, item.user_account ? item.user_account.name + ' ' + item.currency.code : ''), item.to_trades.length ? item.to_trades.map(trade => {
+        return /*#__PURE__*/React.createElement(SubItem, {
           id: this.props.id + '-' + trade.id,
           key: trade.id,
           onClick: () => {
             handle(trade);
             this.handleShowSelect(false);
           }
-        }, trade.active.type_text + this.getName(trade) + ' - ' + _Money.default.format(trade.count) + ' ' + trade.active.item.symbol + ' дата ' + trade.trade_at_date);
-      }) : /*#__PURE__*/_react.default.createElement(_styles.SubItem, null, "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A"));
-    })), selected && this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+        }, trade.active.type_text + this.getName(trade) + ' - ' + Money.format(trade.count) + ' ' + trade.active.item.symbol + ' дата ' + trade.trade_at_date);
+      }) : /*#__PURE__*/React.createElement(SubItem, null, "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A"));
+    })), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: ""
-    }), error && /*#__PURE__*/_react.default.createElement("label", {
+    }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error",
       onClick: () => {
@@ -136,4 +128,4 @@ class RelationGroupSelect extends _BaseInput.default {
     }, error)));
   }
 }
-var _default = exports.default = RelationGroupSelect;
+export default RelationGroupSelect;

@@ -1,16 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _Checkbox = _interopRequireDefault(require("../Checkbox"));
-var _styles = require("./styles");
-var _selectContainerStyle = require("../styles/selectContainerStyle");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-class GroupMultipleSelect extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import Checkbox from '../Checkbox';
+import { InputWrapper, Item, Select as StyledSelect, Selected } from './styles';
+import { Container } from '../styles/selectContainerStyle';
+class GroupMultipleSelect extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,7 +59,7 @@ class GroupMultipleSelect extends _BaseInput.default {
       handleAll
     } = this.props;
     if (this.props.selected.length) {
-      return /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+      return /*#__PURE__*/React.createElement(Checkbox, {
         id: '',
         text: 'Снять все',
         checked: true,
@@ -75,7 +68,7 @@ class GroupMultipleSelect extends _BaseInput.default {
         }
       });
     } else {
-      return /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+      return /*#__PURE__*/React.createElement(Checkbox, {
         id: '',
         text: 'Выбрать все',
         checked: false,
@@ -96,26 +89,26 @@ class GroupMultipleSelect extends _BaseInput.default {
     let focus = this.state.hasError ? {
       'border': '1px solid #FF0000'
     } : {};
-    return /*#__PURE__*/_react.default.createElement(_selectContainerStyle.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       className: this.props.className,
       style: this.props.style
-    }, /*#__PURE__*/_react.default.createElement(_styles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef,
       style: focus
-    }, /*#__PURE__*/_react.default.createElement(_styles.Selected, {
+    }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, this.renderSelected())), /*#__PURE__*/_react.default.createElement(_styles.Select, {
+    }, /*#__PURE__*/React.createElement("span", null, this.renderSelected())), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-multi-select',
       className: this.props.className + ' select',
       select: this.state.select
-    }, showAll ? this.renderSelectAll() : '', items.map((item, key) => /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }, showAll ? this.renderSelectAll() : '', items.map((item, key) => /*#__PURE__*/React.createElement(Item, {
       key: item.id,
       id: this.props.id + '-' + item.id,
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement("span", null, item.name), item.items.map((subItem, subKey) => /*#__PURE__*/_react.default.createElement(_Checkbox.default, {
+    }, /*#__PURE__*/React.createElement("span", null, item.name), item.items.map((subItem, subKey) => /*#__PURE__*/React.createElement(Checkbox, {
       key: subKey,
       id: this.props.id + '-subitem-' + subItem.id,
       text: subItem.name,
@@ -123,20 +116,20 @@ class GroupMultipleSelect extends _BaseInput.default {
       toggleCallback: e => {
         handle(subItem);
       }
-    }))))), selected && this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }))))), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/_react.default.createElement("img", {
+    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: "",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), error && /*#__PURE__*/_react.default.createElement("label", {
+    }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error",
       onClick: () => {
@@ -145,4 +138,4 @@ class GroupMultipleSelect extends _BaseInput.default {
     }, error)));
   }
 }
-var _default = exports.default = GroupMultipleSelect;
+export default GroupMultipleSelect;

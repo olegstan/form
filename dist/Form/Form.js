@@ -1,46 +1,27 @@
-"use strict";
-
-require("core-js/modules/es.weak-map.js");
-require("core-js/modules/web.dom-collections.iterator.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.symbol.description.js");
-var _react = _interopRequireWildcard(require("react"));
-var _Input = _interopRequireDefault(require("./Input"));
-var _InputWithCurrency = _interopRequireDefault(require("./InputWithCurrency/InputWithCurrency"));
-var _SearchMultiple = _interopRequireDefault(require("./SearchMultiple/SearchMultiple"));
-var _SearchWithButton = _interopRequireDefault(require("./SearchWithButton/SearchWithButton"));
-var _SelectWithDays = _interopRequireDefault(require("./SelectWithDays/SelectWithDays"));
-var _GroupMultipleSelect = _interopRequireDefault(require("./GroupMultipleSelect/GroupMultipleSelect"));
-var _MultipleSelect = _interopRequireDefault(require("./MultipleSelect/MultipleSelect"));
-var _GroupSelect = _interopRequireDefault(require("./GroupSelect/GroupSelect"));
-var _RelationGroupSelect = _interopRequireDefault(require("./RelationGroupSelect/RelationGroupSelect"));
-var _newstyles = require("./newstyles");
-var _Multi = _interopRequireDefault(require("../Helpers/Multi"));
-var _formAccountGroupSelect = _interopRequireDefault(require("./functions/formAccountGroupSelect"));
-var _formInput = _interopRequireDefault(require("./functions/formInput"));
-var _formDate = _interopRequireDefault(require("./functions/formDate"));
-var _getLink = _interopRequireDefault(require("./functions/getLink"));
-var _formSelect = _interopRequireDefault(require("./functions/formSelect"));
-var _formSearch = _interopRequireDefault(require("./functions/formSearch"));
-var _formCheckbox = _interopRequireDefault(require("./functions/formCheckbox"));
-var _formFile = _interopRequireDefault(require("./functions/formFile"));
-var _setField = _interopRequireDefault(require("./functions/setField"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class Form extends _Multi.default.extend(_react.Component, _formInput.default, _formSelect.default, _formSearch.default, _formDate.default, _getLink.default, _formAccountGroupSelect.default, _formCheckbox.default, _formFile.default, _setField.default) {
-  renderSelectWithDays(field, daysField, items, text, defaultText) {
-    let disabled = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
-    let callback = arguments.length > 6 ? arguments[6] : undefined;
-    return /*#__PURE__*/_react.default.createElement(_SelectWithDays.default, {
+import React, { Component } from 'react';
+import Input from "./Input";
+import InputWithCurrency from "./InputWithCurrency/InputWithCurrency";
+import SearchMultiple from "./SearchMultiple/SearchMultiple";
+import SearchWithButton from "./SearchWithButton/SearchWithButton";
+import SelectWithDays from "./SelectWithDays/SelectWithDays";
+import GroupMultipleSelect from "./GroupMultipleSelect/GroupMultipleSelect";
+import MultipleSelect from "./MultipleSelect/MultipleSelect";
+import GroupSelect from "./GroupSelect/GroupSelect";
+import RelationGroupSelect from "./RelationGroupSelect/RelationGroupSelect";
+import { EmptyContainer } from "./newstyles";
+import Multi from "../Helpers/Multi";
+import formAccountGroupSelect from "./functions/formAccountGroupSelect";
+import formInput from "./functions/formInput";
+import formDate from "./functions/formDate";
+import getLink from "./functions/getLink";
+import formSelect from "./functions/formSelect";
+import formSearch from "./functions/formSearch";
+import formCheckbox from "./functions/formCheckbox";
+import formFile from "./functions/formFile";
+import setField from "./functions/setField";
+export default class Form extends Multi.extend(Component, formInput, formSelect, formSearch, formDate, getLink, formAccountGroupSelect, formCheckbox, formFile, setField) {
+  renderSelectWithDays(field, daysField, items, text, defaultText, disabled = false, callback) {
+    return /*#__PURE__*/React.createElement(SelectWithDays, {
       default: defaultText,
       placeholder: text,
       id: this.getPrefix() + field,
@@ -76,10 +57,8 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderGroupMultipleSelect(field, items, text, defaultText) {
-    let disabled = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    let callback = arguments.length > 5 ? arguments[5] : undefined;
-    return /*#__PURE__*/_react.default.createElement(_GroupMultipleSelect.default, {
+  renderGroupMultipleSelect(field, items, text, defaultText, disabled = false, callback) {
+    return /*#__PURE__*/React.createElement(GroupMultipleSelect, {
       default: defaultText,
       placeholder: text,
       id: this.getPrefix() + field,
@@ -133,16 +112,15 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderMultipleSelect() {
-    let {
-      field,
-      items,
-      text,
-      defaultText,
-      disabled = false,
-      callback
-    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return /*#__PURE__*/_react.default.createElement(_MultipleSelect.default, {
+  renderMultipleSelect({
+    field,
+    items,
+    text,
+    defaultText,
+    disabled = false,
+    callback
+  } = {}) {
+    return /*#__PURE__*/React.createElement(MultipleSelect, {
       default: defaultText,
       placeholder: text,
       id: this.getPrefix() + field,
@@ -200,31 +178,32 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderMultipleSelectStyle1() {
-    let {
-      field,
-      items,
-      text,
-      defaultText,
-      disabled = false,
-      callback
-    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return this.renderMultipleSelect(_objectSpread(_objectSpread({}, arguments[0]), {
-      className: 'style1'
-    }));
+  renderMultipleSelectStyle1({
+    field,
+    items,
+    text,
+    defaultText,
+    disabled = false,
+    callback
+  } = {}) {
+    return this.renderMultipleSelect({
+      ...arguments[0],
+      ...{
+        className: 'style1'
+      }
+    });
   }
-  renderGroupSelect() {
-    let {
-      field,
-      items,
-      text,
-      defaultText,
-      disabled = false,
-      callback,
-      size,
-      style
-    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return /*#__PURE__*/_react.default.createElement(_GroupSelect.default, {
+  renderGroupSelect({
+    field,
+    items,
+    text,
+    defaultText,
+    disabled = false,
+    callback,
+    size,
+    style
+  } = {}) {
+    return /*#__PURE__*/React.createElement(GroupSelect, {
       default: defaultText,
       placeholder: text,
       size: size,
@@ -249,25 +228,25 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderGroupSelectStyle1() {
-    let {
-      field,
-      items,
-      text,
-      defaultText,
-      disabled = false,
-      callback,
-      size,
-      style
-    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return this.renderSelect(_objectSpread(_objectSpread({}, arguments[0]), {
-      className: 'style1'
-    }));
+  renderGroupSelectStyle1({
+    field,
+    items,
+    text,
+    defaultText,
+    disabled = false,
+    callback,
+    size,
+    style
+  } = {}) {
+    return this.renderSelect({
+      ...arguments[0],
+      ...{
+        className: 'style1'
+      }
+    });
   }
-  renderRelationGroupSelect(field, items, text, defaultText) {
-    let disabled = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    let callback = arguments.length > 5 ? arguments[5] : undefined;
-    return /*#__PURE__*/_react.default.createElement(_RelationGroupSelect.default, {
+  renderRelationGroupSelect(field, items, text, defaultText, disabled = false, callback) {
+    return /*#__PURE__*/React.createElement(RelationGroupSelect, {
       default: defaultText,
       placeholder: text,
       id: this.getPrefix() + field,
@@ -296,27 +275,26 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderSearchMultiple() {
-    let {
-      field,
-      items,
-      text,
-      defaultText,
-      disabled = false,
-      size = '',
-      allowAdd = false,
-      onCreate: _onCreate = value => {},
-      onAddElement: _onAddElement,
-      onRemoveElement: _onRemoveElement,
-      onOutsideClick: _onOutsideClick = () => {},
-      id,
-      style = {},
-      containerStyle = {},
-      controlStyle = {},
-      valueContainerStyle = {},
-      nativeContainerStyle = {}
-    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return /*#__PURE__*/_react.default.createElement(_SearchMultiple.default, {
+  renderSearchMultiple({
+    field,
+    items,
+    text,
+    defaultText,
+    disabled = false,
+    size = '',
+    allowAdd = false,
+    onCreate = value => {},
+    onAddElement,
+    onRemoveElement,
+    onOutsideClick = () => {},
+    id,
+    style = {},
+    containerStyle = {},
+    controlStyle = {},
+    valueContainerStyle = {},
+    nativeContainerStyle = {}
+  } = {}) {
+    return /*#__PURE__*/React.createElement(SearchMultiple, {
       size: size,
       allowAdd: allowAdd,
       default: defaultText,
@@ -327,16 +305,16 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       selected: this.getLink(field),
       search: '',
       onCreate: value => {
-        _onCreate(value);
+        onCreate(value);
       },
       onAddElement: newValue => {
-        _onAddElement(newValue);
+        onAddElement(newValue);
       },
       onRemoveElement: newValue => {
-        _onRemoveElement(newValue);
+        onRemoveElement(newValue);
       },
       onOutsideClick: () => {
-        _onOutsideClick();
+        onOutsideClick();
       },
       style: style,
       containerStyle: containerStyle,
@@ -346,14 +324,8 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       errors: this.state.formErrors
     });
   }
-  renderSearchWithButton(field, items, text, defaultText) {
-    let disabled = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    let onSearch = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : () => {};
-    let callback = arguments.length > 6 ? arguments[6] : undefined;
-    let buttonClick = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : () => {};
-    let id = arguments.length > 8 ? arguments[8] : undefined;
-    let style = arguments.length > 9 ? arguments[9] : undefined;
-    return /*#__PURE__*/_react.default.createElement(_SearchWithButton.default, {
+  renderSearchWithButton(field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, buttonClick = () => {}, id, style) {
+    return /*#__PURE__*/React.createElement(SearchWithButton, {
       default: defaultText,
       placeholder: text,
       id: id ? id : this.getPrefix() + field,
@@ -386,14 +358,8 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       buttonClick: buttonClick
     });
   }
-  renderSearchWithButtonStyle1(field, items, text, defaultText) {
-    let disabled = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-    let onSearch = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : () => {};
-    let callback = arguments.length > 6 ? arguments[6] : undefined;
-    let buttonClick = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : () => {};
-    let id = arguments.length > 8 ? arguments[8] : undefined;
-    let style = arguments.length > 9 ? arguments[9] : undefined;
-    return /*#__PURE__*/_react.default.createElement(_SearchWithButton.default, {
+  renderSearchWithButtonStyle1(field, items, text, defaultText, disabled = false, onSearch = () => {}, callback, buttonClick = () => {}, id, style) {
+    return /*#__PURE__*/React.createElement(SearchWithButton, {
       className: 'style1',
       default: defaultText,
       placeholder: text,
@@ -429,7 +395,7 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
   }
   renderLogs() {
     return this.state.logs && this.state.logs.map((log, key) => {
-      return /*#__PURE__*/_react.default.createElement(_Input.default, {
+      return /*#__PURE__*/React.createElement(Input, {
         key: log.id,
         id: 'response-log-' + log.id,
         containerStyle: {
@@ -439,28 +405,24 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
         name: 'response-log',
         disabled: true,
         value: log.id,
-        onChange: (e, _ref) => {
-          let {
-            name,
-            value
-          } = _ref;
-        },
+        onChange: (e, {
+          name,
+          value
+        }) => {},
         placeholder: '',
         errors: this.state.formErrors
       });
     });
   }
   renderEmpty(size) {
-    return /*#__PURE__*/_react.default.createElement(_newstyles.EmptyContainer, {
+    return /*#__PURE__*/React.createElement(EmptyContainer, {
       size: size
     });
   }
-  renderInputWithCurrency(field, text, currencyField) {
-    let disabled = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-    let callback = arguments.length > 4 ? arguments[4] : undefined;
+  renderInputWithCurrency(field, text, currencyField, disabled = false, callback) {
     let link = this.getLink(field);
     let value = link === null ? '' : link;
-    return /*#__PURE__*/_react.default.createElement(_InputWithCurrency.default, {
+    return /*#__PURE__*/React.createElement(InputWithCurrency, {
       id: this.getPrefix() + field,
       type: "text",
       name: field,
@@ -469,11 +431,10 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
       value: value,
       currencyField: currencyField + '_id',
       selected: this.state.form[currencyField],
-      onChange: (e, _ref2) => {
-        let {
-          name,
-          value
-        } = _ref2;
+      onChange: (e, {
+        name,
+        value
+      }) => {
         this.setState(prv => {
           this.setValueInput(prv, field, value);
           return prv;
@@ -507,4 +468,3 @@ class Form extends _Multi.default.extend(_react.Component, _formInput.default, _
     });
   }
 }
-exports.default = Form;

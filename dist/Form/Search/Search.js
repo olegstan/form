@@ -1,25 +1,8 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.search.js");
-require("core-js/modules/es.string.replace.js");
-require("core-js/modules/es.regexp.to-string.js");
-require("core-js/modules/es.symbol.description.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _newstyles = require("./newstyles");
-var _InputPopup = _interopRequireDefault(require("../InputPopup/InputPopup"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class Search extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
+import InputPopup from "../InputPopup/InputPopup";
+class Search extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +18,10 @@ class Search extends _BaseInput.default {
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+  static defaultProps = {
+    showClearIcon: true,
+    selectStyle: {}
+  };
   UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       name
@@ -89,8 +76,7 @@ class Search extends _BaseInput.default {
             let partsLength = parts.length;
             let partsFound = 0;
             for (let i = 0; i < partsLength; i++) {
-              var _item$name;
-              if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && (item === null || item === void 0 || (_item$name = item.name) === null || _item$name === void 0 ? void 0 : _item$name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и'))) !== -1) {
+              if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1) {
                 partsFound++;
               }
             }
@@ -213,8 +199,7 @@ class Search extends _BaseInput.default {
         let partsLength = parts.length;
         let partsFound = 0;
         for (let i = 0; i < partsLength; i++) {
-          var _item$name2;
-          if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && (item === null || item === void 0 || (_item$name2 = item.name) === null || _item$name2 === void 0 ? void 0 : _item$name2.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и'))) !== -1) {
+          if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1) {
             partsFound++;
           }
         }
@@ -238,7 +223,7 @@ class Search extends _BaseInput.default {
     //   return  true;
     // })
     .map((item, key) => {
-      return /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+      return /*#__PURE__*/React.createElement(Item, {
         key: item.id + (item.type_id ? item.type_id : ''),
         className: this.props.className + ' item ' + (this.state.hovered === key ? 'hovered' : ''),
         id: this.props.id + '-' + item.id,
@@ -252,9 +237,11 @@ class Search extends _BaseInput.default {
             selected: item
           });
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, item.name));
+      }, /*#__PURE__*/React.createElement("span", null, item.name));
     }) : [];
-    let wrapperStyle = _objectSpread({}, this.props.wrapperStyle);
+    let wrapperStyle = {
+      ...this.props.wrapperStyle
+    };
     let error = this.getError();
     let focus = this.state.focused ? '1px solid #1874DE' : '';
     if (this.state.hasError === true) {
@@ -265,8 +252,12 @@ class Search extends _BaseInput.default {
     if (typeof this.state.search === 'number' && this.state.search.toString().length > 0 || typeof this.state.search === 'string' && this.state.search.length > 0) {
       empty = false;
     }
-    let inputStyle = _objectSpread({}, this.props.inputStyle);
-    let containerStyle = _objectSpread({}, this.props.containerStyle);
+    let inputStyle = {
+      ...this.props.inputStyle
+    };
+    let containerStyle = {
+      ...this.props.containerStyle
+    };
     if (this.props.className === 'style2') {
       inputStyle.color = '#fff';
     }
@@ -275,18 +266,18 @@ class Search extends _BaseInput.default {
     //если name содержит слова такие как country, street
     //то будет предлагаться подсказка, которая не нужна
     //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
-    return /*#__PURE__*/_react.default.createElement(_newstyles.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: containerStyle,
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: this.props.className + ' wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
       style: wrapperStyle,
       onClick: e => {
         e.stopPropagation();
       }
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputContainer, {
+    }, /*#__PURE__*/React.createElement(InputContainer, {
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.Input, {
+    }, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? 1 : 2,
       id: this.props.id,
       autoComplete: 'off',
@@ -334,13 +325,13 @@ class Search extends _BaseInput.default {
         });
       },
       onBlur: e => {}
-    }), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder) : '', /*#__PURE__*/_react.default.createElement(_newstyles.Select, {
+    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused,
@@ -348,9 +339,9 @@ class Search extends _BaseInput.default {
       onClick: e => {
         e.stopPropagation();
       }
-    }, resItems.length ? resItems : selected ? '' : /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+    }, resItems.length ? resItems : selected ? '' : /*#__PURE__*/React.createElement(Item, {
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       style: clearImageStyle,
       className: "close",
       src: require('./../../assets/ic_close_only.svg').default,
@@ -364,22 +355,18 @@ class Search extends _BaseInput.default {
         handle(null);
       },
       alt: ""
-    }), this.state.hasError ? /*#__PURE__*/_react.default.createElement(_InputPopup.default, {
-      trigger: /*#__PURE__*/_react.default.createElement("img", {
+    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
         src: require('../../assets/error.svg').default,
         alt: "",
         onClick: () => {}
       })
-    }, /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
     }, error)) : '')));
   }
 }
-_defineProperty(Search, "defaultProps", {
-  showClearIcon: true,
-  selectStyle: {}
-});
-var _default = exports.default = Search;
+export default Search;

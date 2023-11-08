@@ -1,15 +1,28 @@
-"use strict";
+import styled from 'styled-components';
+import { sharedItemStyle, sharedSelectedStyle, sharedSelectStyle, sharedSelectWrapperStyle } from '../newstyles';
+export const InputWrapper = styled.div`
+    ${sharedSelectWrapperStyle}
+  
+    & > div > span{
+      border: none;
+    }
+`;
+export const Selected = styled.div`
+    ${sharedSelectedStyle}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Selected = exports.Select = exports.Item = exports.InputWrapper = void 0;
-var _styledComponents = _interopRequireDefault(require("styled-components"));
-var _newstyles = require("../newstyles");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-const InputWrapper = exports.InputWrapper = _styledComponents.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    ", "\n  \n    & > div > span{\n      border: none;\n    }\n"])), _newstyles.sharedSelectWrapperStyle);
-const Selected = exports.Selected = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    ", "\n\n"])), _newstyles.sharedSelectedStyle);
-const Select = exports.Select = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  ", "\n  \n  top: 0;\n  background-color: #353644;\n  color: #fff;\n  \n  div{\n    color: #fff;\n  }\n  \n"])), _newstyles.sharedSelectStyle);
-const Item = exports.Item = _styledComponents.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedItemStyle);
+`;
+export const Select = styled.div`
+  ${sharedSelectStyle}
+  
+  top: 0;
+  background-color: #353644;
+  color: #fff;
+  
+  div{
+    color: #fff;
+  }
+  
+`;
+export const Item = styled.div`
+  ${sharedItemStyle}
+`;

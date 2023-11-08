@@ -1,32 +1,24 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = formDate;
-var _react = _interopRequireDefault(require("react"));
-var _Date = _interopRequireDefault(require("../Date"));
-var _DateTime = _interopRequireDefault(require("../DateTime"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function formDate(Base) {
+import React from 'react';
+import Date from "../Date";
+import DateTime from "../DateTime";
+export default function formDate(Base) {
   class FormDate extends Base {
-    renderDateInput() {
-      let {
-        field,
-        text,
-        format = 'DD.MM.YYYY',
-        disabled = false,
-        callback,
-        size,
-        className,
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {},
-        icon = false,
-        value,
-        defaultDate
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_Date.default, {
+    renderDateInput({
+      field,
+      text,
+      format = 'DD.MM.YYYY',
+      disabled = false,
+      callback,
+      size,
+      className,
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {},
+      icon = false,
+      value,
+      defaultDate
+    } = {}) {
+      return /*#__PURE__*/React.createElement(Date, {
         id: this.getPrefix() + field,
         icon: icon,
         name: field,
@@ -39,12 +31,11 @@ function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: value ? value : this.getLink(field + '_date'),
-        onChange: (e, _ref) => {
-          let {
-            name,
-            value,
-            date
-          } = _ref;
+        onChange: (e, {
+          name,
+          value,
+          date
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             this.setValueInput(prv, field + '_date', date);
@@ -72,22 +63,21 @@ function formDate(Base) {
         errors: this.state.formErrors
       });
     }
-    renderDateTimeInput() {
-      let {
-        field,
-        text,
-        format = 'DD.MM.YYYY',
-        disabled = false,
-        callback,
-        size,
-        outsideCallback,
-        className,
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {},
-        icon = false
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_DateTime.default, {
+    renderDateTimeInput({
+      field,
+      text,
+      format = 'DD.MM.YYYY',
+      disabled = false,
+      callback,
+      size,
+      outsideCallback,
+      className,
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {},
+      icon = false
+    } = {}) {
+      return /*#__PURE__*/React.createElement(DateTime, {
         id: this.getPrefix() + field,
         type: "text",
         icon: icon,
@@ -100,12 +90,11 @@ function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: this.getLink(field + '_datetime'),
-        onChange: (e, _ref2) => {
-          let {
-            name,
-            value,
-            date
-          } = _ref2;
+        onChange: (e, {
+          name,
+          value,
+          date
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             this.setValueInput(prv, field + '_date', date);
@@ -132,17 +121,16 @@ function formDate(Base) {
         errors: this.state.formErrors
       });
     }
-    renderDateTimeInputWithoutIcon() {
-      let {
-        field,
-        text,
-        format = 'DD.MM.YYYY',
-        disabled = false,
-        callback,
-        size,
-        outsideCallback
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      return /*#__PURE__*/_react.default.createElement(_DateTime.default, {
+    renderDateTimeInputWithoutIcon({
+      field,
+      text,
+      format = 'DD.MM.YYYY',
+      disabled = false,
+      callback,
+      size,
+      outsideCallback
+    } = {}) {
+      return /*#__PURE__*/React.createElement(DateTime, {
         id: this.getPrefix() + field,
         type: "text",
         icon: false,
@@ -151,12 +139,11 @@ function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: this.getLink(field + '_datetime'),
-        onChange: (e, _ref3) => {
-          let {
-            name,
-            value,
-            date
-          } = _ref3;
+        onChange: (e, {
+          name,
+          value,
+          date
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             this.setValueInput(prv, field + '_datetime', date);

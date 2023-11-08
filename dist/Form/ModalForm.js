@@ -1,29 +1,19 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.ModalForm = void 0;
-require("core-js/modules/es.symbol.description.js");
-var _react = _interopRequireDefault(require("react"));
-var _Form = _interopRequireDefault(require("./Form"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); } // import {Modal} from "../../interface/modal/Modal";
-class ModalForm extends _Form.default {
+import React from 'react';
+// import {Modal} from "../../interface/modal/Modal";
+import Form from "./Form";
+class ModalForm extends Form {
+  /**
+   *
+   * @type {boolean}
+   */
+  closeModal = true;
+  /**
+   *
+   * @type {boolean}
+   */
+  hiddenModal = false;
   constructor(props) {
     super(props);
-    /**
-     *
-     * @type {boolean}
-     */
-    _defineProperty(this, "closeModal", true);
-    /**
-     *
-     * @type {boolean}
-     */
-    _defineProperty(this, "hiddenModal", false);
     this.state = {
       show: props.show ? props.show : false
     };
@@ -90,5 +80,5 @@ class ModalForm extends _Form.default {
     });
   }
 }
-exports.ModalForm = ModalForm;
-var _default = exports.default = ModalForm;
+export { ModalForm };
+export default ModalForm;

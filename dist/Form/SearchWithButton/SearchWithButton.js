@@ -1,22 +1,7 @@
-"use strict";
-
-require("core-js/modules/es.symbol.description.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.search.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _styles = require("./styles");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class SearchWithButton extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { Container, Input as StyledInput, InputWrapper, Item, Select as StyledSelect } from './styles';
+class SearchWithButton extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,13 +69,12 @@ class SearchWithButton extends _BaseInput.default {
     } = this.props;
     let search = this.state.search ? this.state.search.toLowerCase() : '';
     let resItems = items ? items.filter(item => {
-      var _item$name;
-      if ((item === null || item === void 0 || (_item$name = item.name) === null || _item$name === void 0 ? void 0 : _item$name.toLowerCase().indexOf(search)) === -1) {
+      if (item?.name?.toLowerCase().indexOf(search) === -1) {
         return false;
       } else {
         return true;
       }
-    }).map((item, key) => /*#__PURE__*/_react.default.createElement(_styles.Item, {
+    }).map((item, key) => /*#__PURE__*/React.createElement(Item, {
       key: item.id,
       className: this.props.className + ' item',
       id: this.props.id + '-' + item.id,
@@ -101,10 +85,12 @@ class SearchWithButton extends _BaseInput.default {
           search: item.name
         });
       }
-    }, /*#__PURE__*/_react.default.createElement("span", null, item.name))) : [];
+    }, /*#__PURE__*/React.createElement("span", null, item.name))) : [];
     let style = {};
     if (this.props.style) {
-      style = _objectSpread({}, this.props.style);
+      style = {
+        ...this.props.style
+      };
     }
     let error = this.getError();
     let focus = this.state.focused ? '1px solid #1874DE' : '';
@@ -112,13 +98,13 @@ class SearchWithButton extends _BaseInput.default {
       focus = '1px solid #FF0000';
     }
     style.border = focus;
-    return /*#__PURE__*/_react.default.createElement(_styles.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement(_styles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : ''),
       style: style,
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_styles.Input, {
+    }, /*#__PURE__*/React.createElement(StyledInput, {
       id: this.props.id,
       autoComplete: 'off',
       disabled: this.props.disabled,
@@ -161,29 +147,29 @@ class SearchWithButton extends _BaseInput.default {
           hasError: false
         });
       }
-    }), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder) : '', /*#__PURE__*/_react.default.createElement(_styles.Select, {
+    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused
-    }, resItems), error ? /*#__PURE__*/_react.default.createElement("label", {
+    }, resItems), error ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
-    }, error) : ''), /*#__PURE__*/_react.default.createElement("div", {
+    }, error) : ''), /*#__PURE__*/React.createElement("div", {
       className: 'plus'
-    }, /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       onClick: () => {
         this.props.buttonClick();
       }
-    }, /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("img", {
       src: require('./../../assets/plus.svg'),
       alt: ""
     }))));
   }
 }
-var _default = exports.default = SearchWithButton;
+export default SearchWithButton;

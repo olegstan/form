@@ -1,27 +1,10 @@
-"use strict";
-
-require("core-js/modules/es.symbol.description.js");
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-require("core-js/modules/es.regexp.exec.js");
-require("core-js/modules/es.string.search.js");
-require("core-js/modules/es.string.replace.js");
-require("core-js/modules/es.json.stringify.js");
-var _react = _interopRequireDefault(require("react"));
-var _BaseInput = _interopRequireDefault(require("../BaseInput"));
-var _newstyles = require("./newstyles");
-var _newstyles2 = require("../newstyles");
-var _InputPopup = _interopRequireDefault(require("../InputPopup/InputPopup"));
-var _Search = _interopRequireDefault(require("./Search"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-class RemoteSearch extends _BaseInput.default {
+import React from 'react';
+import BaseInput from '../BaseInput';
+import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
+import { Loader } from '../newstyles';
+import InputPopup from "../InputPopup/InputPopup";
+import Search from "./Search";
+class RemoteSearch extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +44,7 @@ class RemoteSearch extends _BaseInput.default {
   }
   handleArrows() {
     if (this.state.handleArrow === false) {
-      _Search.default.func = event => {
+      Search.func = event => {
         const {
           items,
           selected,
@@ -74,8 +57,7 @@ class RemoteSearch extends _BaseInput.default {
             let partsLength = parts.length;
             let partsFound = 0;
             for (let i = 0; i < partsLength; i++) {
-              var _item$name;
-              if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && (item === null || item === void 0 || (_item$name = item.name) === null || _item$name === void 0 ? void 0 : _item$name.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и'))) !== -1) {
+              if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1) {
                 partsFound++;
               }
             }
@@ -148,7 +130,7 @@ class RemoteSearch extends _BaseInput.default {
         }
       };
 
-      window.addEventListener("keydown", _Search.default.func, true);
+      window.addEventListener("keydown", Search.func, true);
       this.setState({
         handleArrow: true
       });
@@ -188,7 +170,7 @@ class RemoteSearch extends _BaseInput.default {
     }
   }
   stopHandleArrows() {
-    window.removeEventListener('keydown', _Search.default.func, true);
+    window.removeEventListener('keydown', Search.func, true);
     this.setState({
       handleArrow: false
     });
@@ -208,8 +190,7 @@ class RemoteSearch extends _BaseInput.default {
         let partsLength = parts.length;
         let partsFound = 0;
         for (let i = 0; i < partsLength; i++) {
-          var _item$name2;
-          if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && (item === null || item === void 0 || (_item$name2 = item.name) === null || _item$name2 === void 0 ? void 0 : _item$name2.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и'))) !== -1) {
+          if (parts[i].replace('ё', 'е').replace('й', 'и').length > 0 && item?.name?.toLowerCase().replace('ё', 'е').replace('й', 'и').indexOf(parts[i].replace('ё', 'е').replace('й', 'и')) !== -1) {
             partsFound++;
           }
         }
@@ -233,7 +214,7 @@ class RemoteSearch extends _BaseInput.default {
     //   return  true;
     // })
     .map((item, key) => {
-      return /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+      return /*#__PURE__*/React.createElement(Item, {
         key: item.id + (item.type_id ? item.type_id : ''),
         className: this.props.className + ' item ' + (this.state.hovered === key ? 'hovered' : ''),
         id: this.props.id + '-' + item.id,
@@ -247,11 +228,13 @@ class RemoteSearch extends _BaseInput.default {
             selected: item
           });
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, item.name));
+      }, /*#__PURE__*/React.createElement("span", null, item.name));
     }) : [];
     let style = {};
     if (this.props.style) {
-      style = _objectSpread({}, this.props.style);
+      style = {
+        ...this.props.style
+      };
     }
     let error = this.getError();
     let focus = this.state.focused ? '1px solid #1874DE' : '';
@@ -260,14 +243,14 @@ class RemoteSearch extends _BaseInput.default {
     }
     style.border = focus;
     let loadImage = require('../../assets/loader.svg').default;
-    return /*#__PURE__*/_react.default.createElement(_newstyles.Container, {
+    return /*#__PURE__*/React.createElement(Container, {
       style: this.props.containerStyle,
       className: this.props.className + (this.props.disabled ? ' disabled' : '')
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputWrapper, {
+    }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : ''),
       style: style,
       ref: this.setWrapperRef
-    }, /*#__PURE__*/_react.default.createElement(_newstyles.InputContainer, null, /*#__PURE__*/_react.default.createElement(_newstyles.Input, {
+    }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
       id: this.props.id,
       autoComplete: 'off',
@@ -308,35 +291,35 @@ class RemoteSearch extends _BaseInput.default {
       //     this.onBlur();
       //   })
       // }}
-    }), this.props.placeholder ? /*#__PURE__*/_react.default.createElement("label", {
+    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }, this.props.placeholder) : '', /*#__PURE__*/_react.default.createElement(_newstyles.Select, {
+    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused
-    }, resItems.length ? resItems : loading || selected ? '' : /*#__PURE__*/_react.default.createElement(_newstyles.Item, {
+    }, resItems.length ? resItems : loading || selected ? '' : /*#__PURE__*/React.createElement(Item, {
       className: this.props.className
-    }, /*#__PURE__*/_react.default.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.state.hasError ? /*#__PURE__*/_react.default.createElement(_InputPopup.default, {
-      trigger: /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
         src: require('../../assets/error.svg').default,
         alt: "",
         onClick: () => {}
       })
-    }, /*#__PURE__*/_react.default.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: "error"
-    }, error)) : '', loading && /*#__PURE__*/_react.default.createElement(_newstyles2.Loader, null, /*#__PURE__*/_react.default.createElement("div", {
+    }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
-    }, /*#__PURE__*/_react.default.createElement("img", {
+    }, /*#__PURE__*/React.createElement("img", {
       src: loadImage,
       alt: ""
     }))))));
   }
 }
-var _default = exports.default = RemoteSearch;
+export default RemoteSearch;

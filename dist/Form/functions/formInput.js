@@ -1,27 +1,19 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = formInput;
-var _react = _interopRequireDefault(require("react"));
-var _SlimInput = _interopRequireDefault(require("../SlimInput"));
-var _Input = _interopRequireDefault(require("../Input"));
-var _MaskedInput = _interopRequireDefault(require("../MaskedInput"));
-var _NumberInput = _interopRequireDefault(require("../NumberInput"));
-var _TextArea = _interopRequireDefault(require("../TextArea"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-function formInput(Base) {
+import React from 'react';
+import SlimInput from "../SlimInput";
+import Input from "../Input";
+import MaskedInput from "../MaskedInput";
+import NumberInput from "../NumberInput";
+import TextArea from "../TextArea";
+export default function formInput(Base) {
   class FormInput extends Base {
-    renderHiddenInput() {
-      let {
-        field,
-        disabled = true,
-        id
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderHiddenInput({
+      field,
+      disabled = true,
+      id
+    } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_Input.default, {
+      return /*#__PURE__*/React.createElement(Input, {
         id: id ? id : this.getPrefix() + field,
         containerStyle: {
           display: 'none'
@@ -30,34 +22,31 @@ function formInput(Base) {
         name: field,
         disabled: this.getDisabled(disabled),
         value: value,
-        onChange: (e, _ref) => {
-          let {
-            name,
-            value
-          } = _ref;
-        },
+        onChange: (e, {
+          name,
+          value
+        }) => {},
         placeholder: '',
         errors: this.state.formErrors
       });
     }
-    renderInput() {
-      let {
-        field,
-        text,
-        disabled = false,
-        callback,
-        size,
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {},
-        className,
-        onKeyPress: _onKeyPress = () => {},
-        onKeyDown: _onKeyDown = () => {},
-        value
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderInput({
+      field,
+      text,
+      disabled = false,
+      callback,
+      size,
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {},
+      className,
+      onKeyPress = () => {},
+      onKeyDown = () => {},
+      value
+    } = {}) {
       let link = this.getLink(field);
       value = value ? value : link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_Input.default, {
+      return /*#__PURE__*/React.createElement(Input, {
         id: this.getPrefix() + field,
         style: style,
         containerStyle: containerStyle,
@@ -68,11 +57,10 @@ function formInput(Base) {
         className: className,
         disabled: this.getDisabled(disabled),
         value: value,
-        onChange: (e, _ref2) => {
-          let {
-            name,
-            value
-          } = _ref2;
+        onChange: (e, {
+          name,
+          value
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             return prv;
@@ -83,13 +71,13 @@ function formInput(Base) {
           });
         },
         onKeyPress: e => {
-          if (typeof _onKeyPress === 'function') {
-            _onKeyPress(e);
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
           }
         },
         onKeyDown: e => {
-          if (typeof _onKeyDown === 'function') {
-            _onKeyDown(e);
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         },
         onBlur: () => {
@@ -103,23 +91,22 @@ function formInput(Base) {
         errors: this.state.formErrors
       });
     }
-    renderSlimInput() {
-      let {
-        field,
-        text,
-        disabled = false,
-        callback,
-        size,
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {},
-        className,
-        onKeyPress: _onKeyPress2 = () => {},
-        onKeyDown: _onKeyDown2 = () => {}
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderSlimInput({
+      field,
+      text,
+      disabled = false,
+      callback,
+      size,
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {},
+      className,
+      onKeyPress = () => {},
+      onKeyDown = () => {}
+    } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_SlimInput.default, {
+      return /*#__PURE__*/React.createElement(SlimInput, {
         id: this.getPrefix() + field,
         style: style,
         containerStyle: containerStyle,
@@ -130,11 +117,10 @@ function formInput(Base) {
         size: size,
         disabled: this.getDisabled(disabled),
         value: value,
-        onChange: (e, _ref3) => {
-          let {
-            name,
-            value
-          } = _ref3;
+        onChange: (e, {
+          name,
+          value
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             return prv;
@@ -145,13 +131,13 @@ function formInput(Base) {
           });
         },
         onKeyPress: e => {
-          if (typeof _onKeyPress2 === 'function') {
-            _onKeyPress2(e);
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
           }
         },
         onKeyDown: e => {
-          if (typeof _onKeyDown2 === 'function') {
-            _onKeyDown2(e);
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         },
         onBlur: () => {
@@ -165,23 +151,22 @@ function formInput(Base) {
         errors: this.state.formErrors
       });
     }
-    renderMaskedInput() {
-      let {
-        field,
-        text,
-        mask,
-        disabled = false,
-        autoComplete = 'off',
-        callback,
-        className,
-        onKeyPress: _onKeyPress3 = () => {},
-        onKeyDown: _onKeyDown3 = () => {},
-        style = {},
-        containerStyle = {}
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderMaskedInput({
+      field,
+      text,
+      mask,
+      disabled = false,
+      autoComplete = 'off',
+      callback,
+      className,
+      onKeyPress = () => {},
+      onKeyDown = () => {},
+      style = {},
+      containerStyle = {}
+    } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_MaskedInput.default, {
+      return /*#__PURE__*/React.createElement(MaskedInput, {
         id: this.getPrefix() + field,
         type: "text",
         name: field,
@@ -192,11 +177,10 @@ function formInput(Base) {
         autoComplete: autoComplete,
         disabled: this.getDisabled(disabled),
         value: value,
-        onChange: (e, _ref4) => {
-          let {
-            name,
-            value
-          } = _ref4;
+        onChange: (e, {
+          name,
+          value
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             return prv;
@@ -207,13 +191,13 @@ function formInput(Base) {
           });
         },
         onKeyPress: e => {
-          if (typeof _onKeyPress3 === 'function') {
-            _onKeyPress3(e);
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
           }
         },
         onKeyDown: e => {
-          if (typeof _onKeyDown3 === 'function') {
-            _onKeyDown3(e);
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         },
         onBlur: () => {
@@ -227,26 +211,25 @@ function formInput(Base) {
         errors: this.state.formErrors
       });
     }
-    renderInputNumber() {
-      let {
-        field,
-        text,
-        decimals = false,
-        disabled = false,
-        callback,
-        size,
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {},
-        max = false,
-        min = false,
-        onKeyPress: _onKeyPress4 = () => {},
-        onKeyDown: _onKeyDown4 = () => {},
-        icon = false
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderInputNumber({
+      field,
+      text,
+      decimals = false,
+      disabled = false,
+      callback,
+      size,
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {},
+      max = false,
+      min = false,
+      onKeyPress = () => {},
+      onKeyDown = () => {},
+      icon = false
+    } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_NumberInput.default, {
+      return /*#__PURE__*/React.createElement(NumberInput, {
         id: this.getPrefix() + field,
         type: "text",
         autoComplete: 'off',
@@ -263,20 +246,19 @@ function formInput(Base) {
         disabled: this.getDisabled(disabled),
         value: value,
         onKeyPress: e => {
-          if (typeof _onKeyPress4 === 'function') {
-            _onKeyPress4(e);
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
           }
         },
         onKeyDown: e => {
-          if (typeof _onKeyDown4 === 'function') {
-            _onKeyDown4(e);
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         },
-        onChange: (e, _ref5) => {
-          let {
-            name,
-            value
-          } = _ref5;
+        onChange: (e, {
+          name,
+          value
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             return prv;
@@ -297,22 +279,21 @@ function formInput(Base) {
         errors: this.state.formErrors
       });
     }
-    renderTextArea() {
-      let {
-        field,
-        text,
-        rows = 3,
-        disabled = false,
-        className,
-        onKeyPress: _onKeyPress5 = () => {},
-        onKeyDown: _onKeyDown5 = () => {},
-        style = {},
-        containerStyle = {},
-        placeholderStyle = {}
-      } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    renderTextArea({
+      field,
+      text,
+      rows = 3,
+      disabled = false,
+      className,
+      onKeyPress = () => {},
+      onKeyDown = () => {},
+      style = {},
+      containerStyle = {},
+      placeholderStyle = {}
+    } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/_react.default.createElement(_TextArea.default, {
+      return /*#__PURE__*/React.createElement(TextArea, {
         id: this.getPrefix() + field,
         name: field,
         className: className,
@@ -322,24 +303,23 @@ function formInput(Base) {
         style: style,
         containerStyle: containerStyle,
         placeholderStyle: placeholderStyle,
-        onChange: (e, _ref6) => {
-          let {
-            name,
-            value
-          } = _ref6;
+        onChange: (e, {
+          name,
+          value
+        }) => {
           this.setState(prv => {
             this.setValueInput(prv, field, value);
             return prv;
           });
         },
         onKeyPress: e => {
-          if (typeof _onKeyPress5 === 'function') {
-            _onKeyPress5(e);
+          if (typeof onKeyPress === 'function') {
+            onKeyPress(e);
           }
         },
         onKeyDown: e => {
-          if (typeof _onKeyDown5 === 'function') {
-            _onKeyDown5(e);
+          if (typeof onKeyDown === 'function') {
+            onKeyDown(e);
           }
         },
         onBlur: () => {
