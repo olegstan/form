@@ -1044,19 +1044,6 @@ export const WrapperTextArea = styled.div`
   ${sharedContainer}
 `
 
-export const Row = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  position: relative;
-  align-items: center;
-  box-sizing: border-box;
-
-  ${props => props.flex && `
-    flex: 1;
-  `}
-`
-
 export const Checkbox = styled.div`
   ${sharedCheckboxStyle}
 `

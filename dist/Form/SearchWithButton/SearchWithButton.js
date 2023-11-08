@@ -181,7 +181,7 @@ class SearchWithButton extends _BaseInput.default {
         this.props.buttonClick();
       }
     }, /*#__PURE__*/_react.default.createElement("img", {
-      src: require('./images/plus.png'),
+      src: require('./../../assets/plus.svg'),
       alt: ""
     }))));
   }

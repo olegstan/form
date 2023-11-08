@@ -33,7 +33,7 @@ import RemoteSearch from "./Form/Search/RemoteSearch";
 
 import SearchMultiple from "./Form/SearchMultiple/SearchMultiple";
 
-import SearchWithButton from "./Form/SearchWithButton/SearchWithButton";
+// import SearchWithButton from "./Form/SearchWithButton/SearchWithButton";
 
 import Select from "./Form/Select/Select";
 
@@ -87,7 +87,7 @@ export {
 
   SearchMultiple,
 
-  SearchWithButton,
+  // SearchWithButton,
 
   Select,
 

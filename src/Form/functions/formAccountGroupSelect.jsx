@@ -1,7 +1,6 @@
 import React from 'react';
 import AccountGroupSelect from "../AccountGroupSelect/AccountGroupSelect";
 import SlimAccountGroupSelect from "../AccountGroupSelect/SlimAccountGroupSelect";
-import AccountConstants from "./.././../../../../constants/AccountConstants";
 
 export default function formAccountGroupSelect(Base)
 {
@@ -22,23 +21,11 @@ export default function formAccountGroupSelect(Base)
                                size,
                                getUserAccounts = () => {},
                                handleAddAccount = () => {},
-                               getText = (account) => {return AccountConstants.getText(account)},
+                               getText = (account) => {},
+                               importCreate = () => {},
+                               importEdit = () => {},
                                accountAddAvailable = false,
     } = {}) {
-      const importCreate = async (callback) => {
-        try {
-          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
-        } catch (e) {
-          console.log(e)
-        }
-      }
-      const importEdit = async (callback) => {
-        try {
-          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
-        } catch (e) {
-          console.log(e)
-        }
-      }
 
       return <AccountGroupSelect
         textLength={textLength}
@@ -92,7 +79,9 @@ export default function formAccountGroupSelect(Base)
                                      getUserAccounts = () => {},
                                      handleAddAccount = () => {},
                                      accountAddAvailable = false,
-                                     getText = (account) => {return AccountConstants.getText(account)},
+                                     getText = (account) => {},
+                                     importCreate = () => {},
+                                     importEdit = () => {},
                                    } = {}) {
       return this.renderAccountGroupSelect({...arguments[0], ...{className: 'style1'}})
     }
@@ -112,23 +101,11 @@ export default function formAccountGroupSelect(Base)
                                          size,
                                          getUserAccounts = () => {},
                                          handleAddAccount = () => {},
-                                         getText = (account) => {return AccountConstants.getText(account)},
+                                         getText = (account) => {},
+                                         importCreate = () => {},
+                                         importEdit = () => {},
                                          accountAddAvailable = false,
                                        } = {}) {
-      const importCreate = async (callback) => {
-        try {
-          await import("../../../../../pages/Accounting/Accounts/HiddenAccountCreate").then(module => callback(module).catch((e) => {console.warn(e)}))
-        } catch (e) {
-          console.log(e)
-        }
-      }
-      const importEdit = async (callback) => {
-        try {
-          await import("../../../../../pages/Accounting/Accounts/HiddenAccountEdit").then(module => callback(module).catch((e) => {console.warn(e)}))
-        } catch (e) {
-          console.log(e)
-        }
-      }
 
       return <SlimAccountGroupSelect
         textLength={textLength}

@@ -129,12 +129,6 @@ Object.defineProperty(exports, "SearchMultiple", {
     return _SearchMultiple.default;
   }
 });
-Object.defineProperty(exports, "SearchWithButton", {
-  enumerable: true,
-  get: function get() {
-    return _SearchWithButton.default;
-  }
-});
 Object.defineProperty(exports, "Select", {
   enumerable: true,
   get: function get() {
@@ -249,7 +243,6 @@ var _RelationGroupSelect = _interopRequireDefault(require("./Form/RelationGroupS
 var _Search = _interopRequireDefault(require("./Form/Search/Search"));
 var _RemoteSearch = _interopRequireDefault(require("./Form/Search/RemoteSearch"));
 var _SearchMultiple = _interopRequireDefault(require("./Form/SearchMultiple/SearchMultiple"));
-var _SearchWithButton = _interopRequireDefault(require("./Form/SearchWithButton/SearchWithButton"));
 var _Select = _interopRequireDefault(require("./Form/Select/Select"));
 var _SelectWithDays = _interopRequireDefault(require("./Form/SelectWithDays/SelectWithDays"));
 var _formAccountGroupSelect = _interopRequireDefault(require("./Form/functions/formAccountGroupSelect"));
