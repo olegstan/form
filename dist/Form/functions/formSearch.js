@@ -18,6 +18,7 @@ export default function formSearch(Base) {
       inputStyle = {},
       wrapperStyle = {},
       containerStyle = {},
+      inputContainerStyle = {},
       clearImageStyle = {},
       showClearIcon = false,
       className
@@ -35,6 +36,7 @@ export default function formSearch(Base) {
         inputStyle: inputStyle,
         selectStyle: selectStyle,
         containerStyle: containerStyle,
+        inputContainerStyle: inputContainerStyle,
         clearImageStyle: clearImageStyle,
         wrapperStyle: wrapperStyle,
         showClearIcon: showClearIcon,
@@ -74,6 +76,7 @@ export default function formSearch(Base) {
       inputStyle = {},
       wrapperStyle = {},
       containerStyle = {},
+      inputContainerStyle = {},
       clearImageStyle = {},
       showClearIcon = false,
       className
@@ -94,7 +97,9 @@ export default function formSearch(Base) {
       callback,
       disabled = false,
       loading,
-      style = {},
+      inputStyle = {},
+      inputContainerStyle = {},
+      wrapperStyle = {},
       containerStyle = {},
       className
     } = {}) {
@@ -106,8 +111,10 @@ export default function formSearch(Base) {
         id: this.getPrefix() + field,
         name: field + '_id',
         disabled: this.getDisabled(disabled),
-        style: style,
+        inputStyle: inputStyle,
         containerStyle: containerStyle,
+        inputContainerStyle: inputContainerStyle,
+        wrapperStyle: wrapperStyle,
         selected: this.getLink(field),
         search: this.getLink(field + '_search'),
         onSearch: onSearch,
@@ -141,8 +148,10 @@ export default function formSearch(Base) {
       callback = () => {},
       loading,
       disabled = false,
-      style = {},
+      inputStyle = {},
       containerStyle = {},
+      inputContainerStyle = {},
+      wrapperStyle = {},
       size = '',
       className
     } = {}) {
@@ -155,8 +164,10 @@ export default function formSearch(Base) {
         id: this.getPrefix() + field,
         name: field + '_id',
         disabled: this.getDisabled(disabled),
-        style: style,
+        inputStyle: inputStyle,
         containerStyle: containerStyle,
+        inputContainerStyle: inputContainerStyle,
+        inputContainerStylewrapperStyle: wrapperStyle,
         selected: this.getLink(field),
         search: this.getLink(field + '_search'),
         onSearch: onSearch,
@@ -190,8 +201,12 @@ export default function formSearch(Base) {
       callback = () => {},
       loading,
       disabled = false,
-      style,
-      size = ''
+      inputStyle = {},
+      containerStyle = {},
+      inputContainerStyle = {},
+      wrapperStyle = {},
+      size = '',
+      className
     } = {}) {
       return this.renderGroupRemoteSearch({
         ...arguments[0],

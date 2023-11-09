@@ -279,11 +279,12 @@ class Search extends BaseSearch
     return <Container dataid='search' style={this.getContainerStyle()} className={this.props.className}>
       <InputWrapper
         className={this.getWrapperClasses(resItems)}
+        style={this.getWrapperStyle()}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        <InputContainer ref={this.setWrapperRef}>
+        <InputContainer style={this.getInputContainerStyle()} ref={this.setWrapperRef}>
           <StyledInput
             selected={selected ? 1 : 2}
             id={this.props.id}

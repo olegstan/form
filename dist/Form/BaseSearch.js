@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import BaseInput from "./BaseInput";
 export default class BaseSearch extends BaseInput {
+  getInputStyle() {
+    let inputStyle = {
+      ...this.props.inputStyle
+    };
+    if (this.props.className === 'style2') {
+      inputStyle.color = '#fff';
+    }
+    return inputStyle;
+  }
   getContainerStyle() {
     let containerStyle = {
       ...this.props.containerStyle
@@ -15,16 +24,16 @@ export default class BaseSearch extends BaseInput {
     return containerStyle;
   }
   getWrapperStyle() {
-    let containerStyle = {
-      ...this.props.containerStyle
+    let wrapperStyle = {
+      ...this.props.wrapperStyle
     };
-    if (this.state.focused) {
-      containerStyle.border = '1px solid #1874DE';
-    }
-    if (this.state.hasError === true) {
-      containerStyle.border = '1px solid #EF5E70';
-    }
-    return containerStyle;
+    return wrapperStyle;
+  }
+  getInputContainerStyle() {
+    let inputContainerStyle = {
+      ...this.props.inputContainerStyle
+    };
+    return inputContainerStyle;
   }
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {

@@ -327,7 +327,7 @@ export const sharedSearchInputWrapperStyle = css`
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  background-color: #fff;
+  background-color: transparent;
   flex: 1;
   border-radius: 8px;
   cursor: pointer;

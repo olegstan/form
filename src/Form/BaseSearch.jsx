@@ -3,6 +3,18 @@ import BaseInput from "./BaseInput";
 
 export default class BaseSearch extends BaseInput
 {
+  getInputStyle()
+  {
+    let inputStyle = {...this.props.inputStyle}
+
+    if(this.props.className === 'style2')
+    {
+      inputStyle.color = '#fff';
+    }
+
+    return inputStyle;
+  }
+
   getContainerStyle()
   {
     let containerStyle = {...this.props.containerStyle};
@@ -24,19 +36,16 @@ export default class BaseSearch extends BaseInput
 
   getWrapperStyle()
   {
-    let containerStyle = {...this.props.containerStyle};
+    let wrapperStyle = {...this.props.wrapperStyle};
 
-    if(this.state.focused)
-    {
-      containerStyle.border = '1px solid #1874DE';
-    }
+    return wrapperStyle;
+  }
 
-    if(this.state.hasError === true)
-    {
-      containerStyle.border = '1px solid #EF5E70';
-    }
+  getInputContainerStyle()
+  {
+    let inputContainerStyle = {...this.props.inputContainerStyle};
 
-    return containerStyle;
+    return inputContainerStyle;
   }
 
   handleClickOutside(e)

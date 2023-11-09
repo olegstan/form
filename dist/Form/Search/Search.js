@@ -230,10 +230,12 @@ class Search extends BaseSearch {
       className: this.props.className
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: this.getWrapperClasses(resItems),
+      style: this.getWrapperStyle(),
       onClick: e => {
         e.stopPropagation();
       }
     }, /*#__PURE__*/React.createElement(InputContainer, {
+      style: this.getInputContainerStyle(),
       ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? 1 : 2,
