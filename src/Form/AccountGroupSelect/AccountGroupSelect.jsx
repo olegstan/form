@@ -155,7 +155,7 @@ class AccountGroupSelect extends BaseInput
               <span>{shortName}</span>
 
               {item.accounts.map((subItem) => {
-                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency.sign;
+                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency?.sign;
 
                 return <SubItem key={subItem.id} className='subitem' id={this.props.id + '-' + subItem.id} onClick={() => {
                   handle(subItem);
