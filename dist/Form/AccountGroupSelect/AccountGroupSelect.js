@@ -145,7 +145,7 @@ class AccountGroupSelect extends BaseInput {
         key: item.id,
         className: "item"
       }, /*#__PURE__*/React.createElement("span", null, shortName), item.accounts.map(subItem => {
-        let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency.sign;
+        let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency?.sign;
         return /*#__PURE__*/React.createElement(SubItem, {
           key: subItem.id,
           className: "subitem",
