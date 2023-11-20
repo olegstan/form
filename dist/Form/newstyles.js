@@ -132,11 +132,7 @@ export const sharedCheckboxStyle = css`
   }
 
   .checkbox {
-    margin: 7px 5px 0 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     display: flex;
   }
