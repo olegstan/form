@@ -1008,10 +1008,6 @@ export const TextArea = styled.textarea`
   width: 100%;
   resize: vertical;
   overflow-y: hidden;
-  
-  &.style1{
-    border: 1px solid #454650 !important;
-  }
 
   ${sharedInputStyle}
 `
