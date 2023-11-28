@@ -836,7 +836,7 @@ export const sharedInputContainerStyle = css`
 
 export const sharedInputStyle = css`
   width: 100%;
-  line-height: 15px;
+  line-height: 13px;
   user-select: none;
   z-index: ${zindex.input};
   color: #000;

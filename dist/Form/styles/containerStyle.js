@@ -224,7 +224,7 @@ const budgetSum = styled.div`
   
   input{
     font-size: 16px;
-    line-height: 15px;
+    line-height: 13px;
     padding: 0 9px  0 0;
     height: 25px;
     text-align: right;
@@ -262,7 +262,7 @@ const budgetName = styled.div`
   
   input{
     font-size: 16px;
-    line-height: 15px;
+    line-height: 13px;
     padding: 0 9px  0 0;
     height: 25px;
     text-align: right;
@@ -296,7 +296,7 @@ const planNumberTag = styled.div`
   
   input{
     font-size: 14px;
-    line-height: 15px;
+    line-height: 13px;
     padding: 0 9px  0 0;
     height: 15px;
     text-align: right;
@@ -330,7 +330,7 @@ const planPercentTag = styled.div`
   input{
     margin: 0;
     width: 100%;
-    line-height: 15px;
+    line-height: 13px;
     padding: 0 12px 0 0;
     font-size: 16px;
     text-align: right;
