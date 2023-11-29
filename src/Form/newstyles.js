@@ -385,7 +385,6 @@ export const sharedSearchContainerStyle = css`
   display: flex;
   flex: 1;
   height: 48px;
-  padding: 0 4px;
   position: relative;
 
   &.disabled {
