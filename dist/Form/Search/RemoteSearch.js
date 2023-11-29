@@ -236,7 +236,7 @@ class RemoteSearch extends BaseSearch {
       }
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder",
+      className: this.props.className + " placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
@@ -256,7 +256,7 @@ class RemoteSearch extends BaseSearch {
       })
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error"
+      className: this.props.className + " error"
     }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
     }, /*#__PURE__*/React.createElement(LoadImage, null))))));

@@ -146,14 +146,14 @@ class Select extends BaseInput
             <span>Нет элементов</span>
           </Item>
         </StyledSelect>}
-        {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
         <img className='arrow' src={this.getArrow()} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>
         {this.state.hasError ? <InputPopup
           trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
           }}/>}>
-          <label htmlFor={this.props.id} className="error">{error}</label>
+          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
         </InputPopup> : ''}
       </InputWrapper>
     </Container>

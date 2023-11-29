@@ -228,10 +228,10 @@ class InputWithCurrency extends BaseInput {
       }
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder"
+      className: this.props.className + " placeholder"
     }, this.props.placeholder) : '', error ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error"
+      className: this.props.className + " error"
     }, error) : ''), /*#__PURE__*/React.createElement(InputWrapper, {
       className: this.getWrapperClasses(),
       ref: this.setWrapperRef,

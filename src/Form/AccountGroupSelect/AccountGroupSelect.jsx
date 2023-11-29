@@ -170,7 +170,7 @@ class AccountGroupSelect extends BaseInput
             <span>Добавить счёт</span>
           </Add>}
         </StyledSelect>
-        {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
         <img className='arrow' src={this.getArrow()} onClick={() => {
           this.handleShowSelect(true);
         }}/>
@@ -178,7 +178,7 @@ class AccountGroupSelect extends BaseInput
           trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
             this.handleShowSelect(true);
           }}/>}>
-          <label htmlFor={this.props.id} className="error">{error}</label>
+          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
         </InputPopup> : ''}
       </InputWrapper>
       {ComponentCreate && this.state.showAccountCreate && <ComponentCreate

@@ -98,7 +98,7 @@ export default class TextArea extends BaseInput {
       })
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error"
+      className: this.props.className + " error"
     }, error)) : ''));
   }
 }

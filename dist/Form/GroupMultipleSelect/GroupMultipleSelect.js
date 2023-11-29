@@ -118,7 +118,7 @@ class GroupMultipleSelect extends BaseInput {
       }
     }))))), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder",
+      className: this.props.className + " placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
@@ -131,7 +131,7 @@ class GroupMultipleSelect extends BaseInput {
       }
     }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error",
+      className: this.props.className + " error",
       onClick: () => {
         this.handleShowSelect(true);
       }

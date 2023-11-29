@@ -6,5 +6,5 @@ export default {
   body: 400,
   modal: 900,
   input: 50,
-  placeholder: 40
+  placeholder: 70
 };

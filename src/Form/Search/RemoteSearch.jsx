@@ -280,14 +280,14 @@ class RemoteSearch extends BaseSearch
               })
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
             {resItems.length ? resItems : (loading || selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
             }}/>}>
-            <label htmlFor={this.props.id} className="error">{error}</label>
+            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>

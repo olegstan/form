@@ -287,7 +287,7 @@ class Search extends BaseSearch {
       onBlur: e => {}
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder",
+      className: this.props.className + " placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
@@ -325,7 +325,7 @@ class Search extends BaseSearch {
       })
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error"
+      className: this.props.className + " error"
     }, error)) : '')));
   }
 }

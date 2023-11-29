@@ -52,7 +52,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect
             <span>Добавить счёт</span>
           </Add>}
         </StyledSelect>
-        {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
         <img className='arrow' src={this.getArrow()} onClick={() => {
           this.handleShowSelect(true);
         }}/>

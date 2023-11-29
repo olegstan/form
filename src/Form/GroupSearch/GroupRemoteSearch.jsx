@@ -162,7 +162,7 @@ class GroupRemoteSearch extends BaseSearch
               })
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
             {items.length && notEmptyItems ? items.map((item) => {
               let name = item.name;
@@ -191,7 +191,7 @@ class GroupRemoteSearch extends BaseSearch
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
             }}/>}>
-            <label htmlFor={this.props.id} className="error">{error}</label>
+            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
           </InputPopup> : ''}
           {loading && <Loader>
             <div onClick={() => {}}>

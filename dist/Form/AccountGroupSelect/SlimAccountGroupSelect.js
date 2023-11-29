@@ -74,7 +74,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect {
       }
     }, /*#__PURE__*/React.createElement("span", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0447\u0451\u0442"))), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder",
+      className: this.props.className + " placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }

@@ -101,7 +101,7 @@ export default class TextArea extends BaseInput
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
             }}/>}>
-            <label htmlFor={this.props.id} className="error">{error}</label>
+            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
           </InputPopup> : ''}
         </WrapperTextArea>
       </ContainerTextArea>

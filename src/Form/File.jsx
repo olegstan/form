@@ -112,7 +112,7 @@ export default class File extends BaseInput {
             });
           }}
         />
-        {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
+        {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"}>{this.props.placeholder}</label> : ''}
         {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
@@ -125,7 +125,7 @@ export default class File extends BaseInput {
         {this.state.hasError ? <InputPopup
           trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
         }}/>}>
-          <label htmlFor={this.props.id} className="error">{error}</label>
+          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
         </InputPopup> : ''}
       </InputContainer>
       {/*{this.props.icon ? <InputLabel>*/}

@@ -127,11 +127,11 @@ class GroupMultipleSelect extends BaseInput
             </Item>
           ))}
         </StyledSelect>
-        {selected && this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder" onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
+        {selected && this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
         <img className='arrow' src={require('../../assets/arrow.svg').default} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>
-        {error && <label htmlFor={this.props.id} className="error" onClick={() => {
+        {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() => {
           this.handleShowSelect(true);
         }}>{error}</label>}
       </InputWrapper>

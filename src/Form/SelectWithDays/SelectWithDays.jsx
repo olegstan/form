@@ -207,9 +207,9 @@ class SelectWithDays extends BaseInput
               </Item>
             ))}
           </StyledSelect>
-          {selected && this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
+          {selected && this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
           <img className='arrow' src={require('../../assets/arrow.svg').default} alt='' />
-          {error && <label htmlFor={this.props.id} className="error" onClick={() => {
+          {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() => {
             this.handleShowSelect(true);
           }}>{error}</label>}
         </InputWrapper>

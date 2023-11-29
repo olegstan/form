@@ -247,7 +247,7 @@ class SearchMultiple extends BaseInput
         }}>
         {this.getComponent(resItems, customStyles)}
         {this.props.placeholder ? <label htmlFor={this.props.id} className={"placeholder " + (this.state.focused || (selected && selected.length) ? 'active' : '')} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
-        {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
+        {error ? <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label> : ''}
       </InputWrapper>
     </Container>
   }

@@ -90,7 +90,7 @@ export default class File extends BaseInput {
       }
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder"
+      className: this.props.className + " placeholder"
     }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       className: "close",
       src: require('./../assets/ic_close_only.svg').default,
@@ -114,7 +114,7 @@ export default class File extends BaseInput {
       })
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error"
+      className: this.props.className + " error"
     }, error)) : ''));
   }
 }

@@ -206,14 +206,14 @@ class SelectWithDays extends BaseInput {
       }
     }, /*#__PURE__*/React.createElement("span", null, item.name)))), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder"
+      className: this.props.className + " placeholder"
     }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: ""
     }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error",
+      className: this.props.className + " error",
       onClick: () => {
         this.handleShowSelect(true);
       }

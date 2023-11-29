@@ -282,8 +282,8 @@ class InputWithCurrency extends BaseInput {
               })
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className="placeholder">{this.props.placeholder}</label> : ''}
-          {error ? <label htmlFor={this.props.id} className="error">{error}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"}>{this.props.placeholder}</label> : ''}
+          {error ? <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label> : ''}
         </InputContainer>
         <InputWrapper className={this.getWrapperClasses()} ref={this.setWrapperRef} onClick={() => {
           this.handleShowSelect(!this.state.select);

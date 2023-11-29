@@ -111,7 +111,7 @@ class RelationGroupSelect extends BaseInput {
       }) : /*#__PURE__*/React.createElement(SubItem, null, "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A"));
     })), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "placeholder",
+      className: this.props.className + " placeholder",
       onClick: () => {
         this.handleShowSelect(true);
       }
@@ -121,7 +121,7 @@ class RelationGroupSelect extends BaseInput {
       alt: ""
     }), error && /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
-      className: "error",
+      className: this.props.className + " error",
       onClick: () => {
         this.handleShowSelect(true);
       }
