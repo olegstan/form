@@ -89,7 +89,7 @@ export const placeholderStyle = css`
     `}
   }
 
-  label.placeholder.style1 {
+  label.placeholder.style2 {
     color: #fff;
   }
 `;
