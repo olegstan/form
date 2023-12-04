@@ -641,7 +641,7 @@ export const sharedSelectedStyle = css`
 export const sharedSelectStyle = css`
   border-radius: 0 0 4px 4px;
   position: absolute;
-  z-index: 30000;
+  z-index: 300000;
   top: 50px;
   left: 0;
   width: 100%;
