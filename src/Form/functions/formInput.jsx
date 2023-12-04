@@ -184,7 +184,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInputNumber({field, text, decimals = false, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}, icon = false} = {})
+    renderInputNumber({field, text, decimals = false, disabled = false, callback, className, size, style = {}, containerStyle = {}, placeholderStyle = {}, max = false, min = false, onKeyPress = () => {}, onKeyDown = () => {}, icon = false} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -198,6 +198,7 @@ export default function formInput(Base)
         name={field}
         icon={icon}
         style={style}
+        className={className}
         containerStyle={containerStyle}
         placeholderStyle={placeholderStyle}
         size={size}

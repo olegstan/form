@@ -181,6 +181,7 @@ export default class NumberInput extends BaseInput {
       style={this.getContainerStyle()}
       size={this.props.size}
       disabled={this.props.disabled}
+      className={this.props.className + (this.props.disabled ? ' disabled' : '')}
       onClick={(e) => {
         e.stopPropagation();
       }}
