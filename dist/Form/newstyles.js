@@ -151,26 +151,24 @@ export const sharedCheckboxStyle = css`
 
   .checkbox > span {
     border: 2px solid #D7DBE0;
-    height: 18px;
-    width: 18px;
+    height: 20px;
+    width: 21px;
     display: inline-block;
     box-sizing: border-box;
     border-radius: 6px;
     margin-right: 10px;
-    background-color: #fff;
+    background-color: transparent;
   }
 
   .checkbox > span > span {
     display: block;
     position: relative;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    width: 7px;
-    top: 1px;
+    width: 6px;
     height: 11px;
+    top: 3px;
     z-index: 100000;
-    left: 4px;
+    left: 7px;
     box-sizing: border-box;
   }
 
