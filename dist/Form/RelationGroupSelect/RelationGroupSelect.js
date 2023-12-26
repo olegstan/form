@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseInput from '../BaseInput';
 import { InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
-import Money from "../../Helpers/Money";
+import { Money } from "finhelper";
 import { Container } from '../styles/selectContainerStyle';
 class RelationGroupSelect extends BaseInput {
   constructor(props) {

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {InputContainer, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
-import Url from "./../Helpers/Url";
+import {Url} from "finhelper";
 
 export default class DateTime extends BaseInput
 {

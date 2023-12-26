@@ -1,6 +1,6 @@
 import React from 'react';
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './slimstyles';
-import Money from "../../Helpers/Money";
+import { Money } from "finhelper";
 import { connect } from "react-redux";
 import InputPopup from "../InputPopup/InputPopup";
 import { Container } from '../styles/selectSlimContainerStyle';

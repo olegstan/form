@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
-import Money from "../Helpers/Money";
+import {Money} from "finhelper";
 import {detect} from 'detect-browser'
 import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'

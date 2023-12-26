@@ -9,7 +9,7 @@ import MultipleSelect from "./MultipleSelect/MultipleSelect";
 import GroupSelect from "./GroupSelect/GroupSelect";
 import RelationGroupSelect from "./RelationGroupSelect/RelationGroupSelect";
 import {EmptyContainer} from "./newstyles";
-import Multi from "../Helpers/Multi";
+import {Multi} from "finhelper";
 import formAccountGroupSelect from "./functions/formAccountGroupSelect";
 import formInput from "./functions/formInput";
 import formDate from "./functions/formDate";

@@ -10,7 +10,7 @@ import {
   Select as StyledSelect,
   Selected,
 } from './newcurrencystyles'
-import Money from "../../Helpers/Money";
+import {Money} from "finhelper";
 
 
 class InputWithCurrency extends BaseInput {

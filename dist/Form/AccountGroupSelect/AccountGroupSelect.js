@@ -2,7 +2,7 @@ import React from 'react';
 import BaseInput from '../BaseInput';
 import { connect } from "react-redux";
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
-import Money from "../../Helpers/Money";
+import { Money } from "finhelper";
 import InputPopup from "../InputPopup/InputPopup";
 import { Container } from '../styles/selectContainerStyle';
 class AccountGroupSelect extends BaseInput {

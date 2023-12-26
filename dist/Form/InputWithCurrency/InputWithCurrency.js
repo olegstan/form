@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import BaseInput from '../BaseInput';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect, Selected } from './newcurrencystyles';
-import Money from "../../Helpers/Money";
+import { Money } from "finhelper";
 class InputWithCurrency extends BaseInput {
   constructor(props) {
     super(props);
