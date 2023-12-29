@@ -170,9 +170,9 @@ export const sharedCheckboxStyle = css`
     transform: rotate(45deg);
     width: 6px;
     height: 11px;
-    top: 3px;
+    top: 2px;
     z-index: 100000;
-    left: 7px;
+    left: 6px;
     box-sizing: border-box;
   }
 
