@@ -20,6 +20,9 @@ export default function getLink(Base) {
     getLink(field) {
       let parts = field.split('.');
       let link = this.state.form;
+
+      // console.log(field)
+
       if (parts.length === 1) {
         link = link[field];
       } else {
@@ -34,6 +37,9 @@ export default function getLink(Base) {
           }
         }
       }
+
+      // console.log(link)
+
       return link;
     }
     setValueInput(prv, field, value) {

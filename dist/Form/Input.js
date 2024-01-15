@@ -70,7 +70,6 @@ export default class Input extends BaseInput {
         }
         // this.handleShowSelect(true);
       },
-
       onKeyPress: e => {
         if (typeof this.props.onKeyPress === 'function') {
           this.props.onKeyPress(e);

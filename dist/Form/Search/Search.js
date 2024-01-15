@@ -123,7 +123,6 @@ class Search extends BaseSearch {
           // Quit when this doesn't handle the key event.
         }
       };
-
       window.addEventListener("keydown", Search.func, true);
       this.setState({
         handleArrow: true

@@ -35,6 +35,8 @@ export default function getLink(Base)
       let parts = field.split('.');
       let link = this.state.form;
 
+      // console.log(field)
+
       if(parts.length === 1)
       {
         link = link[field];
@@ -51,10 +53,11 @@ export default function getLink(Base)
             }
 
             link = link[parts[i]];
-
           }
         }
       }
+
+      // console.log(link)
 
       return link;
     }
