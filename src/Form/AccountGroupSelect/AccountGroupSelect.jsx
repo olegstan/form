@@ -2,7 +2,7 @@ import React from 'react';
 import BaseInput from '../BaseInput';
 import {connect} from "react-redux";
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
-import {Money} from "finhelper";
+import {CurrencyConstants, Money} from "finhelper";
 import InputPopup from "../InputPopup/InputPopup";
 import {Container} from '../styles/selectContainerStyle'
 
@@ -155,13 +155,17 @@ class AccountGroupSelect extends BaseInput
               <span>{shortName}</span>
 
               {item.accounts.map((subItem) => {
-                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency?.sign;
+                let sign = CurrencyConstants.getCurrencySignById(subItem.currency_id)
+                let sum = <span>{Money.format(subItem.sum)} {sign}</span>
+                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия');
 
                 return <SubItem key={subItem.id} className='subitem' id={this.props.id + '-' + subItem.id} onClick={() => {
                   handle(subItem);
                   this.handleShowSelect(false)
                 }}>
-                  <span>{subAccountName}</span>
+                  <span>
+                    {subAccountName} - {sum}
+                  </span>
                 </SubItem>
               })}
             </HeaderItem>

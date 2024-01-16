@@ -78,6 +78,14 @@ export const SubItem = styled.div`
   flex-wrap: wrap;
   border-bottom: 1px solid #E1E6EC;
   
+  span span{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: #2E54B2;
+  }
+  
   span{
     text-align: left;
     font-size: 14px;

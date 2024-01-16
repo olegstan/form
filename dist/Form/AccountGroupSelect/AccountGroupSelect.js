@@ -2,7 +2,7 @@ import React from 'react';
 import BaseInput from '../BaseInput';
 import { connect } from "react-redux";
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
-import { Money } from "finhelper";
+import { CurrencyConstants, Money } from "finhelper";
 import InputPopup from "../InputPopup/InputPopup";
 import { Container } from '../styles/selectContainerStyle';
 class AccountGroupSelect extends BaseInput {
@@ -145,7 +145,9 @@ class AccountGroupSelect extends BaseInput {
         key: item.id,
         className: "item"
       }, /*#__PURE__*/React.createElement("span", null, shortName), item.accounts.map(subItem => {
-        let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency?.sign;
+        let sign = CurrencyConstants.getCurrencySignById(subItem.currency_id);
+        let sum = /*#__PURE__*/React.createElement("span", null, Money.format(subItem.sum), " ", sign);
+        let subAccountName = subItem.name ? subItem.name : 'Счёт без названия';
         return /*#__PURE__*/React.createElement(SubItem, {
           key: subItem.id,
           className: "subitem",
@@ -154,7 +156,7 @@ class AccountGroupSelect extends BaseInput {
             handle(subItem);
             this.handleShowSelect(false);
           }
-        }, /*#__PURE__*/React.createElement("span", null, subAccountName));
+        }, /*#__PURE__*/React.createElement("span", null, subAccountName, " - ", sum));
       }));
     }), this.props.accountAddAvailable && /*#__PURE__*/React.createElement(Add, {
       key: 'add',

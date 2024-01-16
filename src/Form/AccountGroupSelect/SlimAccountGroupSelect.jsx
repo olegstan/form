@@ -1,6 +1,6 @@
 import React from 'react';
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './slimstyles'
-import {Money} from "finhelper";
+import {CurrencyConstants, Money} from "finhelper";
 import {connect} from "react-redux";
 import InputPopup from "../InputPopup/InputPopup";
 import {Container} from '../styles/selectSlimContainerStyle'
@@ -37,13 +37,17 @@ class SlimAccountGroupSelect extends AccountGroupSelect
               <span>{shortName}</span>
 
               {item.accounts.map((subItem, subKey) => {
-                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия') + ' ' + Money.format(subItem.sum) + ' ' + subItem.currency?.sign;
+                let sign = CurrencyConstants.getCurrencySignById(subItem.currency_id)
+                let sum = <span>{Money.format(subItem.sum)} {sign}</span>
+                let subAccountName = (subItem.name ? subItem.name : 'Счёт без названия');
 
                 return <SubItem key={subItem.id} className='subitem' id={this.props.id + '-' + subItem.id} onClick={() => {
                   handle(subItem);
                   this.handleShowSelect(false)
                 }}>
-                  <span>{subAccountName}</span>
+                  <span>
+                    {subAccountName} - {sum}
+                  </span>
                 </SubItem>
               })}
             </HeaderItem>
