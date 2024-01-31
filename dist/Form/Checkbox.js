@@ -60,6 +60,9 @@ export default class Checkbox extends Component {
       className: "rotate-container",
       style: {
         borderRadius: this.props.form === 'round' ? '10px' : '6px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         ...checkboxStyle
       }
     }, /*#__PURE__*/React.createElement("span", {

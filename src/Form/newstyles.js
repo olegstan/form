@@ -154,7 +154,6 @@ export const sharedCheckboxStyle = css`
   }
 
   .checkbox > span {
-    border: 2px solid #D7DBE0;
     height: 20px;
     width: 21px;
     display: inline-block;
@@ -170,10 +169,14 @@ export const sharedCheckboxStyle = css`
     transform: rotate(45deg);
     width: 6px;
     height: 11px;
-    top: 2px;
+    //top: 2px;
     z-index: 100000;
-    left: 6px;
+    //left: 6px;
     box-sizing: border-box;
+  }
+  
+  .checkbox > input:checked{
+    border: 2px solid #D7DBE0;
   }
 
   .checkbox > input:checked + span > span {
