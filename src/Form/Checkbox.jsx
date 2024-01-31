@@ -45,6 +45,19 @@ export default class Checkbox extends Component
       props.checked = false;
     }
 
+    let checkboxStyle = {}
+    if(this.props.checkboxStyle)
+    {
+      checkboxStyle = {...this.props.checkboxStyle}
+    }else{
+      checkboxStyle = {
+        backgroundColor: '#4378FF',
+        border: '2px solid #4378FF'
+      }
+    }
+
+    // let checkboxColor = '';
+
 
     return <StyleCheckbox id={props.id}  style={this.props.style}>
       <div>
@@ -60,7 +73,8 @@ export default class Checkbox extends Component
             {...props}
           />
           <span className="rotate-container" style={{
-            borderRadius: this.props.form === 'round' ? '10px' : '6px'
+            borderRadius: this.props.form === 'round' ? '10px' : '6px',
+            ...checkboxStyle
           }}>
             <span className="rotate"/>
           </span>

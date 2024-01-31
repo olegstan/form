@@ -172,11 +172,6 @@ export const sharedCheckboxStyle = css`
     box-sizing: border-box;
   }
 
-  .checkbox > input:checked + span {
-    background-color: #4378FF;
-    border: 2px solid #4378FF;
-  }
-
   .checkbox > input:checked + span > span {
     border-bottom: 3px solid white;
     border-right: 3px solid white;
