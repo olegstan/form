@@ -5,7 +5,7 @@ export default function formCheckbox(Base)
 {
   class FormCheckbox extends Base
   {
-    renderCheckbox({text, checked, toggleCallback, id = null, style = {}, textStyle = {}, form} = {}) {
+    renderCheckbox({text, checked, toggleCallback, id = null, style = {}, textStyle = {}, form, checkboxStyle} = {}) {
       return <Checkbox
         id={id}
         text={text}

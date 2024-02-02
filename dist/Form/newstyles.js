@@ -318,12 +318,6 @@ export const sharedSearchContainer = css`
   ${props => props.size === 'medium' && `
       max-width: 418px;
   `}
-
-  ${props => props.size === 'incomes-and-expenses' && `
-      max-width: 110px !important;
-      min-width: 110px !important;
-      margin: 3px 10px;
-  `}
 `;
 export const sharedSearchInputWrapperStyle = css`
   display: flex;
@@ -372,11 +366,6 @@ export const sharedSearchInputWrapperStyle = css`
   &.disabled.style2 {
     background-color: #2B2D39 !important;
   }
-
-  ${props => props.size === 'incomes-and-expenses' && `
-
-      height: 28px !important;
-  `}
 `;
 export const sharedSearchContainerStyle = css`
   background-color: transparent;
@@ -404,13 +393,6 @@ export const sharedSearchContainerStyle = css`
     cursor: pointer;
     z-index: 1000;
   }
-
-  ${props => props.size === 'incomes-and-expenses' && `
-      height: 28px !important;
-      margin: 0 !important;
-      max-width: 120px !important;
-      min-width: 120px !important;
-  `}
 `;
 export const sharedSelectWrapperStyle = css`
   display: flex;
@@ -450,7 +432,7 @@ export const sharedSelectWrapperStyle = css`
   
   label.placeholder {
     top: 10px;
-    left: -13px;
+    left: 13px;
     transform: scale(0.8);
   }
 
@@ -691,10 +673,6 @@ export const sharedSelectStyle = css`
     //background-color: #454650;
     border-radius: 4px;
   }
-
-  ${props => props.size === 'incomes-and-expenses' && `
-      top: 30px;
-  `}
 `;
 export const sharedItemStyle = css`
   align-items: center;
@@ -860,12 +838,6 @@ export const sharedInputStyle = css`
       height: 30px;
       border-radius: 4px;
     }
-  `}
-
-  ${props => props.size === 'incomes-and-expenses' && `
-    max-width: 90px !important;
-    min-width: 90px !important;
-    padding: 9px 16px 8px 14px;
   `}
 
   ${props => props.slim && `

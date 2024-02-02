@@ -36,25 +36,10 @@ export const sharedSelectContainerStyle = css`
     min-width: 181px;
     margin: 15px 0 15px 15px;
   `}
-  
- 
-  ${props => props.size === 'incomes-and-expenses' && `
-      margin: 10px 0 !important;
-      max-width: 120px !important;
-      min-width: 120px !important;
-  `}
 `
 
 const containerTag = styled.div`
   ${sharedSelectContainerStyle}
-`;
-
-const incomeCurrencyeTag = styled.div`
-  ${sharedSelectContainerStyle}
-  
-  max-width: 160px;
-  min-width: 160px;
-  margin: 15px 0 15px 0;
 `;
 
 const tacticsMonthSelect = styled.div`

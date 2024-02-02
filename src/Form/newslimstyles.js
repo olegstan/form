@@ -339,10 +339,6 @@ export const sharedSelectStyle = css`
     background-color: rgba(10,10,10,0.2);
     border-radius: 4px;
   }
-  
-  ${props => props.size === 'incomes-and-expenses' && `
-      top: 30px;
-  `}
 `
 
 export const sharedItemStyle = css`
@@ -516,11 +512,6 @@ export const sharedInputStyle = css`
       border-radius: 4px;
     }
   `}
-    
-    ${props => props.size === 'incomes-and-expenses' && `
-      max-width: 120px !important;
-      min-width: 120px !important;
-    `}
     
      ${props => props.size === 'small' && `
 

@@ -44,24 +44,8 @@ export const sharedSelectContainerStyle = css`
   `}
 `
 
-const incomesAndExpensesTag = styled.div`
-  ${sharedSelectContainerStyle}
- 
-  margin: 10px 0 !important;
-  max-width: 150px !important;
-  min-width: 150px !important;
-`
-
 const containerTag = styled.div`
   ${sharedSelectContainerStyle}
-`;
-
-const incomeCurrencyeTag = styled.div`
-  ${sharedSelectContainerStyle}
-  
-  max-width: 160px;
-  min-width: 160px;
-  margin: 15px 0 15px 0;
 `;
 
 const tacticsMonthSelect = styled.div`
@@ -145,9 +129,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
       break;
     case 'balance-month-select':
       ContainerTagVariable = balanceMonthSelect;
-      break;
-    case 'incomes-and-expenses':
-      ContainerTagVariable = incomesAndExpensesTag;
       break;
     default:
       ContainerTagVariable = containerTag;

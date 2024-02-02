@@ -374,26 +374,6 @@ const paymentNumberTag = styled.div`
    min-width: 80px;
    margin: 0;
 `;
-const incomesAndExpensesTag = styled.div`
-  ${sharedContainer}
-  
-  margin: 10px 3px !important;
-  height: 28px !important;
-  max-width: 110px !important;
-  min-width: 110px !important;
-  
-  & > div{
-    height: 28px;
-  }
-  
-  input{
-    padding: 3px 10px !important;
-  }
-  
-  .placeholder{
-    display: none !important;
-  }
-`;
 const smallTag = styled.div`
   ${sharedContainer}
   
@@ -417,9 +397,6 @@ export const Container = ({
       break;
     case 'medium':
       ContainerTagVariable = mediumTag;
-      break;
-    case 'incomes-and-expenses':
-      ContainerTagVariable = incomesAndExpensesTag;
       break;
     case 'payment-date':
     case 'valuation-date':

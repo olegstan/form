@@ -82,9 +82,6 @@ export const Container = ({children, tag = 'div', size = "container", ...props})
     case 'small-property':
       ContainerTagVariable = smallProperty;
       break;
-    case 'incomes-and-expenses':
-      ContainerTagVariable = incomesAndExpensesTag;
-      break;
     case 'tactics-month-select':
       ContainerTagVariable = tacticsMonthSelect;
       break;

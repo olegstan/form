@@ -9,7 +9,8 @@ export default function formCheckbox(Base) {
       id = null,
       style = {},
       textStyle = {},
-      form
+      form,
+      checkboxStyle
     } = {}) {
       return /*#__PURE__*/React.createElement(Checkbox, {
         id: id,

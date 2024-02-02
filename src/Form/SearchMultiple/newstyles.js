@@ -45,11 +45,6 @@ export const TagText = styled.div`
           background-image: url(${closeHovered});
         }
     }
-    
-    ${props => props.size === 'incomes-and-expenses' && `
-
-      margin: 3px 0 !important;
-  `}
 `
 
 export const InputWrapper = styled.div`
