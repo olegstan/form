@@ -40,12 +40,14 @@ export default function formDate(Base) {
           // if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
           // {
           this.setState(prv => {
+            let momentDate = moment(date);
             if (momentDate && momentDate.isValid()) {
               this.setValueInput(prv, field, momentDate.format('YYYY-MM-DD'));
               this.setValueInput(prv, field + '_user', momentDate.format('DD.MM.YYYY'));
               this.setValueInput(prv, field + '_date', date);
             } else {
-              this.setValueInput(prv, field + '_user', '');
+              this.setValueInput(prv, field, '');
+              this.setValueInput(prv, field + '_user', value);
               this.setValueInput(prv, field + '_date', null);
             }
             return prv;
@@ -118,9 +120,10 @@ export default function formDate(Base) {
               this.setValueInput(prv, field + '_date', date);
               this.setValueInput(prv, field + '_datetime', date);
             } else {
-              this.setValueInput(prv, field + '_user', '');
+              this.setValueInput(prv, field, '');
+              this.setValueInput(prv, field + '_user', value);
               this.setValueInput(prv, field + '_date', null);
-              this.setValueInput(prv, field + '_datetime', date);
+              this.setValueInput(prv, field + '_datetime', null);
             }
             return prv;
           }, () => {

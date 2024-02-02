@@ -340,7 +340,7 @@ class Search extends BaseSearch
 
             }}
           />
-          {/*{this.renderPlaceholder()}*/}
+          {this.renderPlaceholder()}
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused} style={selectStyle} onClick={(e) => {
             e.stopPropagation();
           }}>

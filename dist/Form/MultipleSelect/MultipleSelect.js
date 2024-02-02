@@ -114,7 +114,7 @@ class MultipleSelect extends BaseInput {
       toggleCallback: e => {
         handle(item);
       }
-    }))), !!selected && this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
+    }))), this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       alt: ""

@@ -133,7 +133,7 @@ export default function formInput(Base)
       />
     }
 
-    renderMaskedInput({field, text, mask, disabled = false, autoComplete = 'off', callback, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}} = {})
+    renderMaskedInput({field, text, mask, inputMask, disabled = false, autoComplete = 'off', callback, className, onKeyPress = () => {}, onKeyDown = () => {}, style = {}, containerStyle = {}} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -143,6 +143,7 @@ export default function formInput(Base)
         type="text"
         name={field}
         mask={mask}
+        inputMask={inputMask}
         style={style}
         containerStyle={containerStyle}
         className={className}

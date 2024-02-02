@@ -61,7 +61,6 @@ export default class MaskedInput extends BaseInput {
       type: this.props.type,
       name: this.getName(name),
       value: this.props.value,
-      alwaysShowMask: true,
       onKeyPress: e => {
         if (typeof this.props.onKeyPress === 'function') {
           this.props.onKeyPress(e);

@@ -135,7 +135,7 @@ class MultipleSelect extends BaseInput
             />
           ))}
         </StyledSelect>
-        {!!selected && this.renderPlaceholder()}
+        {this.renderPlaceholder()}
         <img className='arrow' src={this.getArrow()} alt='' />
         {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() => {
           this.handleShowSelect(true);

@@ -284,7 +284,7 @@ class Search extends BaseSearch {
         });
       },
       onBlur: e => {}
-    }), /*#__PURE__*/React.createElement(StyledSelect, {
+    }), this.renderPlaceholder(), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused,

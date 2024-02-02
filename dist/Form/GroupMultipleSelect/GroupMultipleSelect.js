@@ -116,7 +116,7 @@ class GroupMultipleSelect extends BaseInput {
       toggleCallback: e => {
         handle(subItem);
       }
-    }))))), !!selected && this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
+    }))))), this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: "",

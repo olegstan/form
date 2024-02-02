@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 
 export default class BaseInput extends Component
 {
-  static defaultProps = {
-    inputMask: ''//маска для формата данных чтобы проверять пустое поле или нет
-  };
-
   /**
    * polymorph method
    * @param select
@@ -39,8 +35,6 @@ export default class BaseInput extends Component
     }else if(this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== ''){
       bool = true;
     }
-
-    console.log(bool)
 
     return "placeholder " + (bool ? 'active' : '')
   }
