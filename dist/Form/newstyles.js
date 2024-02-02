@@ -92,6 +92,15 @@ export const placeholderStyle = css`
   label.placeholder.style2 {
     color: #fff;
   }
+
+  & .placeholder {
+    transition: transform .25s, opacity .25s ease-in-out;
+    transform-origin: 0 0;
+  }
+
+  & .placeholder.active {
+    transform: translate(.25em, -15%) scale(.8);
+  }
 `;
 export const sharedCheckboxStyle = css`
   flex-basis: 50%;
@@ -383,6 +392,7 @@ export const sharedSearchContainerStyle = css`
   }
 
   ${placeholderStyle}
+  
   label.error {
     ${errorStyle}
   }
@@ -770,8 +780,6 @@ export const sharedInputContainerStyle = css`
   &.disabled {
     background-color: #F7F9FB;
   }
-
-  ${placeholderStyle}
   
   img {
     z-index: 1000;
@@ -805,21 +813,7 @@ export const sharedInputContainerStyle = css`
     width: calc(100% - 58px);
   `}
 
-  & .placeholder {
-    transition: transform .25s, opacity .25s ease-in-out;
-    transform-origin: 0 0;
-  }
-
-  & .placeholder.active {
-    transform: translate(.25em, -15%) scale(.8);
-  }
-  
-  ${props => props.focus && `
-    & .placeholder, & .placeholder.active {
-      transform: translate(.25em, -15%) scale(.8);
-    }
-  `}
-
+  ${placeholderStyle}
 `;
 export const sharedInputStyle = css`
   width: 100%;

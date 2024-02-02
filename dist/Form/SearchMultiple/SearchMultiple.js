@@ -223,13 +223,7 @@ class SearchMultiple extends BaseInput {
       onClick: e => {
         e.stopPropagation();
       }
-    }, this.getComponent(resItems, customStyles), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: "placeholder " + (this.state.focused || selected && selected.length ? 'active' : ''),
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder) : '', error ? /*#__PURE__*/React.createElement("label", {
+    }, this.getComponent(resItems, customStyles), this.renderPlaceholder(), error ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       className: this.props.className + " error"
     }, error) : ''));

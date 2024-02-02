@@ -9,11 +9,28 @@ export default class BaseInput extends Component {
    * @param select
    */
   handleShowSelect(select) {}
+
+  // getSelected()
+  // {
+  //   return this.props.selected;
+  // }
+
   setWrapperRef(node) {
     this.wrapperRef = node;
   }
   getPlaceholderClassName() {
-    return "placeholder " + (this.state.focused || this.props.value && this.props.value !== '' || this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== '' ? 'active' : '');
+    let bool = false;
+    if (this.state.focused) {
+      bool = true;
+    } else if (!!this.props.selected) {
+      bool = true;
+    } else if (this.props.value === 0 || this.props.value && this.props.value !== '') {
+      bool = true;
+    } else if (this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== '') {
+      bool = true;
+    }
+    console.log(bool);
+    return "placeholder " + (bool ? 'active' : '');
   }
   getContainerStyle() {
     let containerStyle = {

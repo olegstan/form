@@ -22,8 +22,6 @@ import GroupSelect from "./Form/GroupSelect/GroupSelect";
 
 import InputPopup from "./Form/InputPopup/InputPopup";
 
-import InputWithCurrency from "./Form/InputWithCurrency/InputWithCurrency";
-
 import MultipleSelect from "./Form/MultipleSelect/MultipleSelect";
 
 import RelationGroupSelect from "./Form/RelationGroupSelect/RelationGroupSelect";
@@ -33,11 +31,7 @@ import RemoteSearch from "./Form/Search/RemoteSearch";
 
 import SearchMultiple from "./Form/SearchMultiple/SearchMultiple";
 
-// import SearchWithButton from "./Form/SearchWithButton/SearchWithButton";
-
 import Select from "./Form/Select/Select";
-
-import SelectWithDays from "./Form/SelectWithDays/SelectWithDays";
 
 import formAccountGroupSelect from "./Form/functions/formAccountGroupSelect"
 import formCheckbox from "./Form/functions/formCheckbox"
@@ -76,8 +70,6 @@ export {
 
   InputPopup,
 
-  InputWithCurrency,
-
   MultipleSelect,
 
   RelationGroupSelect,
@@ -88,8 +80,6 @@ export {
   SearchMultiple,
 
   Select,
-
-  SelectWithDays,
 
   formAccountGroupSelect,
   formCheckbox,
