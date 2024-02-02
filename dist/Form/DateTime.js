@@ -6,6 +6,9 @@ import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles
 import { Container } from './styles/containerStyle';
 import InputPopup from "./InputPopup/InputPopup";
 import { Url } from "finhelper";
+import calendarSvg from "./../assets/calendar.svg";
+import errorSvg from "./../assets/error.svg";
+import moment from "moment/moment";
 export default class DateTime extends BaseInput {
   constructor(props) {
     super(props);
@@ -61,7 +64,8 @@ export default class DateTime extends BaseInput {
     icon: '',
     className: '',
     wrapperClassName: '',
-    error: ''
+    error: '',
+    inputMask: '__.__.____ __:__:__' //маска для формата данных чтобы проверять пустое поле или нет
   };
   formatDate(date) {
     var month = date.getMonth() + 1 + "",
@@ -84,6 +88,8 @@ export default class DateTime extends BaseInput {
     }
     if (dateStr !== '' && date !== '' && date != null) {
       callback(date, instance);
+      console.log(date);
+      console.log(instance);
       this.props.onChange({}, {
         name: this.props.name,
         value: this.formatDate(date),
@@ -124,6 +130,22 @@ export default class DateTime extends BaseInput {
       return null;
     }
     return date;
+  }
+  setValidDate(value) {
+    let date = this.createDateFromString(value);
+    if (value && value.length === 19 && !value.includes('_')) {
+      this.props.onChange({}, {
+        name: this.props.name,
+        value: value,
+        date: date
+      });
+    } else {
+      this.props.onChange({}, {
+        name: this.props.name,
+        value: value,
+        date: null
+      });
+    }
   }
   render() {
     const {
@@ -181,8 +203,17 @@ export default class DateTime extends BaseInput {
           date.setYear(instance.currentYear);
         });
       },
+      onKeyUp: e => {
+        let value = e.target.value;
+        if (value.length === 19) {
+          let date = moment(value, 'DD.MM.YYYY HH:mm:ss');
+          if (date && date.isValid() && date.format('DD.MM.YYYY HH:mm:ss') === value) {
+            this.setDate([date.toDate()], value, null, date => {});
+          }
+        }
+      },
       onChange: (selectedValue, dateStr, instance) => {
-        this.setDate(selectedValue, dateStr, instance, () => {});
+        this.setValidDate(dateStr);
       },
       onOpen: () => {
         this.setState({
@@ -191,9 +222,7 @@ export default class DateTime extends BaseInput {
         });
       },
       onClose: (selectedValue, dateStr, instance) => {
-        console.log(selectedValue, dateStr, instance);
-        console.log(valueStr);
-        this.setDate(selectedValue, dateStr, instance, () => {});
+        this.setValidDate(valueStr);
         this.setState({
           focused: false,
           hasError: false
@@ -204,29 +233,16 @@ export default class DateTime extends BaseInput {
         });
       },
       render: ({
-        valueStr,
         id
       }, ref) => {
         return /*#__PURE__*/React.createElement(MaskedStyledInput, {
+          autoComplete: 'off',
           mask: "99.99.9999 99:99:99",
           id: id,
           value: valueStr,
           onChange: e => {
             let value = e.target.value;
-            let date = this.createDateFromString(value);
-            if (value && value.length === 19 && !value.includes('_')) {
-              this.props.onChange({}, {
-                name: this.props.name,
-                value: value,
-                date: date
-              });
-            } else {
-              this.props.onChange({}, {
-                name: this.props.name,
-                value: value,
-                date: null
-              });
-            }
+            this.setValidDate(value);
           },
           style: this.props.style,
           className: this.props.className,
@@ -242,13 +258,13 @@ export default class DateTime extends BaseInput {
       }
     }), this.renderPlaceholder(), this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
       className: "calendar",
-      src: require('./../assets/calendar.svg').default,
+      src: calendarSvg,
       alt: ""
     }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
       trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",
-        src: require('./../assets/error.svg').default,
+        src: errorSvg,
         alt: "",
         onClick: () => {}
       })

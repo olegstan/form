@@ -6,6 +6,8 @@ import InputPopup from "./InputPopup/InputPopup";
 import moment from 'moment/moment';
 import {Url} from "finhelper";
 import styled from "styled-components";
+import calendarSvg from "./../assets/calendar.svg";
+import errorSvg from "./../assets/error.svg";
 
 export default class DateTime extends BaseInput {
     constructor(props) {
@@ -37,7 +39,8 @@ export default class DateTime extends BaseInput {
         icon: '',
         className: '',
         wrapperClassName: '',
-        error: ''
+        error: '',
+        inputMask: '__.__.____'//маска для формата данных чтобы проверять пустое поле или нет
     };
 
     componentDidMount() {
@@ -136,6 +139,26 @@ export default class DateTime extends BaseInput {
         });
     }
 
+    setValidDate(value)
+    {
+        let date = this.createDateFromString(value);
+
+        if(value && value.length === 10 && !value.includes('_'))
+        {
+            this.props.onChange({}, {
+                name: this.props.name,
+                value: value,
+                date: date
+            })
+        }else{
+            this.props.onChange({}, {
+                name: this.props.name,
+                value: value,
+                date: null
+            })
+        }
+    }
+
     render() {
         const {Input, componentsLoaded} = this.state;
         const {valueStr} = this.props;
@@ -223,14 +246,22 @@ export default class DateTime extends BaseInput {
                         });
                     }}
                     onClose={() => {
+                        this.setValidDate(valueStr);
+
                         this.setState({
                             focused: false,
                             hasError: false
+                        }, () => {
+                            if(typeof this.props.onOutsideClick === 'function')
+                            {
+                                this.props.onOutsideClick();
+                            }
                         });
                     }}
-                    render={({ valueStr, id }, ref) => {
+                    render={({ id }, ref) => {
                         return (
                           <MaskedStyledInput
+                            autoComplete={'off'}
                             mask="99.99.9999"
                             id={id}
                             value={valueStr}
@@ -238,11 +269,7 @@ export default class DateTime extends BaseInput {
                             {
                                 let value = e.target.value;
 
-                                this.props.onChange({}, {
-                                    name: this.props.name,
-                                    value: value,
-                                    date: this.createDateFromString(value),
-                                })
+                                this.setValidDate(value);
                             }}
                             style={this.props.style}
                             className={this.props.className}
@@ -259,11 +286,9 @@ export default class DateTime extends BaseInput {
                     }}
                 />
                 {this.renderPlaceholder()}
-                {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
+                {this.props.icon !== false && <img className='calendar' src={calendarSvg} alt=''/>}
                 {this.state.hasError ? <InputPopup
-                    trigger={<img id={'tooltip-' + this.props.id} className=''
-                                  src={require('./../assets/error.svg').default} alt='' onClick={() => {
-                    }}/>}>
+                    trigger={<img id={'tooltip-' + this.props.id} className='' src={errorSvg} alt='' onClick={() => {}}/>}>
                     <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
                 </InputPopup> : ''}
             </InputContainer>

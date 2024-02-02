@@ -5,6 +5,9 @@ import {InputContainer, MaskedStyledInput, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
 import {Url} from "finhelper";
+import calendarSvg from "./../assets/calendar.svg";
+import errorSvg from "./../assets/error.svg";
+import moment from "moment/moment";
 
 export default class DateTime extends BaseInput
 {
@@ -73,7 +76,8 @@ export default class DateTime extends BaseInput
     icon: '',
     className: '',
     wrapperClassName: '',
-    error: ''
+    error: '',
+    inputMask: '__.__.____ __:__:__'//маска для формата данных чтобы проверять пустое поле или нет
   };
 
   formatDate(date)
@@ -109,6 +113,10 @@ export default class DateTime extends BaseInput
 
     if(dateStr !== '' && date !== '' && date != null){
       callback(date, instance);
+
+      console.log(date)
+      console.log(instance)
+
       this.props.onChange({}, {
         name: this.props.name,
         value: this.formatDate(date),
@@ -155,6 +163,26 @@ export default class DateTime extends BaseInput
     }
 
     return date;
+  }
+
+  setValidDate(value)
+  {
+    let date = this.createDateFromString(value);
+
+    if(value && value.length === 19 && !value.includes('_'))
+    {
+      this.props.onChange({}, {
+        name: this.props.name,
+        value: value,
+        date: date
+      })
+    }else{
+      this.props.onChange({}, {
+        name: this.props.name,
+        value: value,
+        date: null
+      })
+    }
   }
 
   render()
@@ -215,10 +243,20 @@ export default class DateTime extends BaseInput
                 date.setYear(instance.currentYear);
               })
             }}
-            onChange={(selectedValue, dateStr, instance) => {
-              this.setDate(selectedValue, dateStr, instance, () => {
+            onKeyUp={(e) => {
+              let value = e.target.value;
 
-              })
+              if (value.length === 19) {
+                let date = moment(value, 'DD.MM.YYYY HH:mm:ss')
+                if (date && date.isValid() && date.format('DD.MM.YYYY HH:mm:ss') === value) {
+                  this.setDate([date.toDate()], value, null, (date) => {
+
+                  })
+                }
+              }
+            }}
+            onChange={(selectedValue, dateStr, instance) => {
+              this.setValidDate(dateStr)
             }}
             onOpen={() => {
               this.setState({
@@ -228,13 +266,7 @@ export default class DateTime extends BaseInput
             }}
             onClose={(selectedValue, dateStr, instance) => {
 
-              console.log(selectedValue, dateStr, instance)
-              console.log(valueStr)
-
-
-              this.setDate(selectedValue, dateStr, instance, () => {
-
-              })
+              this.setValidDate(valueStr);
 
               this.setState({
                 focused: false,
@@ -246,31 +278,18 @@ export default class DateTime extends BaseInput
                 }
               });
             }}
-            render={({ valueStr, id }, ref) => {
+            render={({ id }, ref) => {
               return (
                 <MaskedStyledInput
+                  autoComplete={'off'}
                   mask="99.99.9999 99:99:99"
                   id={id}
                   value={valueStr}
-                  onChange={e =>
-                  {
+                  onChange={(e) => {
                     let value = e.target.value;
-                    let date = this.createDateFromString(value);
 
-                    if(value && value.length === 19 && !value.includes('_'))
-                    {
-                      this.props.onChange({}, {
-                        name: this.props.name,
-                        value: value,
-                        date: date
-                      })
-                    }else{
-                      this.props.onChange({}, {
-                        name: this.props.name,
-                        value: value,
-                        date: null
-                      })
-                    }
+                    this.setValidDate(value);
+
                   }}
                   style={this.props.style}
                   className={this.props.className}
@@ -287,9 +306,9 @@ export default class DateTime extends BaseInput
             }}
           />
           {this.renderPlaceholder()}
-          {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
+          {this.props.icon !== false && <img className='calendar' src={calendarSvg} alt=''/>}
           {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
+            trigger={<img id={'tooltip-' + this.props.id} className='' src={errorSvg} alt='' onClick={() => {
             }}/>}>
             <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
           </InputPopup> : ''}

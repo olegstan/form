@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 export default class BaseInput extends Component
 {
+  static defaultProps = {
+    inputMask: ''//маска для формата данных чтобы проверять пустое поле или нет
+  };
+
   /**
    * polymorph method
    * @param select
@@ -12,6 +16,7 @@ export default class BaseInput extends Component
   }
 
 
+
   setWrapperRef(node)
   {
     this.wrapperRef = node;
@@ -19,7 +24,7 @@ export default class BaseInput extends Component
 
   getPlaceholderClassName()
   {
-    return "placeholder " + (this.state.focused || (this.props.value && this.props.value !== '') || (this.props.valueStr && this.props.valueStr !== '') ? 'active' : '')
+    return "placeholder " + (this.state.focused || (this.props.value && this.props.value !== '') || (this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== '') ? 'active' : '')
   }
 
   getContainerStyle()
