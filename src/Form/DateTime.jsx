@@ -80,31 +80,13 @@ export default class DateTime extends BaseInput
     inputMask: '__.__.____ __:__:__'//маска для формата данных чтобы проверять пустое поле или нет
   };
 
-  formatDate(date)
-  {
-    var month = (date.getMonth() + 1) + "",
-      day = date.getDate() + "",
-      year = date.getFullYear() + "",
-      hour = date.getHours() + "",
-      minute = date.getMinutes() + "",
-      second = date.getSeconds() + ""
-
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
-    if (hour.length < 2)
-      hour = '0' + hour;
-    if (minute.length < 2)
-      minute = '0' + minute;
-    if (second.length < 2)
-      second = '0' + second;
-
-    return [year, month, day].join('-') + ' ' + hour + ':' + minute + ':' + second;
-  }
-
   createDateFromString(dateStr)
   {
+    if(!dateStr)
+    {
+      return null;
+    }
+
     // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
     const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})(?: (\d{2}):(\d{2}):(\d{2}))?$/;
     const match = dateStr.match(formatCheck);

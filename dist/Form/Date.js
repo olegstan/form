@@ -66,6 +66,10 @@ export default class DateTime extends BaseInput {
     });
   }
   createDateFromString(dateStr) {
+    if (!dateStr) {
+      return null;
+    }
+
     // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
     const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
     const match = dateStr.match(formatCheck);

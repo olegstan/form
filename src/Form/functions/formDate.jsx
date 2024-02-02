@@ -84,9 +84,6 @@ export default function formDate(Base)
           // if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
           // {
             this.setState((prv) => {
-              console.log(value)
-              console.log(date)
-
               let momentDate = moment(date)
 
               if(momentDate && momentDate.isValid())
