@@ -147,13 +147,7 @@ class SearchWithButton extends BaseInput {
           hasError: false
         });
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder",
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement(StyledSelect, {
+    }), this.renderPlaceholder(), /*#__PURE__*/React.createElement(StyledSelect, {
       id: this.props.id + '-select',
       className: this.props.className + ' select',
       select: this.state.select || this.state.focused

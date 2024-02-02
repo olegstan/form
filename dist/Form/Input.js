@@ -98,11 +98,7 @@ export default class Input extends BaseInput {
         //   this.onBlur(this.props.value);
         // });
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      style: this.props.placeholderStyle,
-      className: this.getPlaceholderClassName()
-    }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
+    }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       className: "close",
       src: require('./../assets/ic_close_only.svg').default,
       onClick: e => {

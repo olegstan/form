@@ -109,13 +109,7 @@ class RelationGroupSelect extends BaseInput {
           }
         }, trade.active.type_text + this.getName(trade) + ' - ' + Money.format(trade.count) + ' ' + trade.active.item.symbol + ' дата ' + trade.trade_at_date);
       }) : /*#__PURE__*/React.createElement(SubItem, null, "\u041D\u0435\u0442 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A"));
-    })), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder",
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
+    })), !!selected && this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: require('../../assets/arrow.svg').default,
       alt: ""

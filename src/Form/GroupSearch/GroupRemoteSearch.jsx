@@ -162,7 +162,7 @@ class GroupRemoteSearch extends BaseSearch
               })
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+          {this.renderPlaceholder()}
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
             {items.length && notEmptyItems ? items.map((item) => {
               let name = item.name;

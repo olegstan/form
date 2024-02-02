@@ -126,13 +126,7 @@ class Select extends BaseInput {
       onClick: () => {
         this.handleShowSelect(false);
       }
-    }, /*#__PURE__*/React.createElement("span", null, "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"))), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder",
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/React.createElement("span", null, "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"))), this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       alt: "",

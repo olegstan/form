@@ -215,7 +215,7 @@ export default class NumberInput extends BaseInput {
           onBlur={() => {
           }}
         />
-        {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={this.getPlaceholderClassName()}>{this.props.placeholder}</label> : ''}
+        {this.renderPlaceholder()}
         {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,

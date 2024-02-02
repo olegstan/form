@@ -84,11 +84,7 @@ export default class TextArea extends BaseInput {
         //   this.onBlur();
         // })
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      style: this.props.placeholderStyle,
-      className: this.getPlaceholderClassName()
-    }, this.props.placeholder) : '', this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+    }), this.renderPlaceholder(), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
       trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + this.props.id,
         className: "",

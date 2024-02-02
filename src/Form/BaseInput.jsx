@@ -2,6 +2,16 @@ import React, {Component} from 'react';
 
 export default class BaseInput extends Component
 {
+  /**
+   * polymorph method
+   * @param select
+   */
+  handleShowSelect(select)
+  {
+
+  }
+
+
   setWrapperRef(node)
   {
     this.wrapperRef = node;
@@ -9,7 +19,7 @@ export default class BaseInput extends Component
 
   getPlaceholderClassName()
   {
-    return "placeholder " + (this.state.focused || (this.props.value && this.props.value !== '') ? 'active' : '')
+    return "placeholder " + (this.state.focused || (this.props.value && this.props.value !== '') || (this.props.valueStr && this.props.valueStr !== '') ? 'active' : '')
   }
 
   getContainerStyle()
@@ -81,6 +91,13 @@ export default class BaseInput extends Component
   getName(name)
   {
     return name.replace('country', 'couuntry').replace('state', 'staate');
+  }
+
+  renderPlaceholder()
+  {
+    const {placeholder, id, placeholderStyle} = this.props;
+
+    return placeholder ? <label htmlFor={id} style={placeholderStyle} className={this.getPlaceholderClassName()} onClick={() => {this.handleShowSelect(true)}}>{placeholder}</label> : ''
   }
 
   handleClickOutside(e)

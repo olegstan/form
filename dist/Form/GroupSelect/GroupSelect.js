@@ -119,13 +119,7 @@ class GroupSelect extends BaseInput {
           }
         }, subItem.name);
       }));
-    })), selected && this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder",
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', /*#__PURE__*/React.createElement("img", {
+    })), !!selected && this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       alt: ""

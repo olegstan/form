@@ -25,6 +25,7 @@ export default class DateTime extends BaseInput
   }
 
   componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
     // Динамический импорт библиотеки Flatpickr
     Promise.all([
       import('flatpickr'),
@@ -227,6 +228,10 @@ export default class DateTime extends BaseInput
             }}
             onClose={(selectedValue, dateStr, instance) => {
 
+              console.log(selectedValue, dateStr, instance)
+              console.log(valueStr)
+
+
               this.setDate(selectedValue, dateStr, instance, () => {
 
               })
@@ -241,10 +246,11 @@ export default class DateTime extends BaseInput
                 }
               });
             }}
-            render={({ valueStr, ...props }, ref) => {
+            render={({ valueStr, id }, ref) => {
               return (
                 <MaskedStyledInput
                   mask="99.99.9999 99:99:99"
+                  id={id}
                   value={valueStr}
                   onChange={e =>
                   {
@@ -280,7 +286,7 @@ export default class DateTime extends BaseInput
               );
             }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || valueStr || value ? 'active' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
+          {this.renderPlaceholder()}
           {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {

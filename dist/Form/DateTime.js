@@ -21,6 +21,7 @@ export default class DateTime extends BaseInput {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
     // Динамический импорт библиотеки Flatpickr
     Promise.all([import('flatpickr'), import('react-flatpickr'), import('flatpickr/dist/l10n/ru.js'), import('flatpickr/dist/flatpickr.css')]).then(([flatpickr, Flatpickr, {
       Russian
@@ -190,6 +191,8 @@ export default class DateTime extends BaseInput {
         });
       },
       onClose: (selectedValue, dateStr, instance) => {
+        console.log(selectedValue, dateStr, instance);
+        console.log(valueStr);
         this.setDate(selectedValue, dateStr, instance, () => {});
         this.setState({
           focused: false,
@@ -202,10 +205,11 @@ export default class DateTime extends BaseInput {
       },
       render: ({
         valueStr,
-        ...props
+        id
       }, ref) => {
         return /*#__PURE__*/React.createElement(MaskedStyledInput, {
           mask: "99.99.9999 99:99:99",
+          id: id,
           value: valueStr,
           onChange: e => {
             let value = e.target.value;
@@ -236,11 +240,7 @@ export default class DateTime extends BaseInput {
           ref: ref
         }, inputProps)));
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      style: this.props.placeholderStyle,
-      className: "placeholder " + (this.state.focused || valueStr || value ? 'active' : '')
-    }, this.props.placeholder ? this.props.placeholder : '') : '', this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
+    }), this.renderPlaceholder(), this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
       className: "calendar",
       src: require('./../assets/calendar.svg').default,
       alt: ""

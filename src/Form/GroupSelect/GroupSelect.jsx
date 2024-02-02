@@ -144,7 +144,7 @@ class GroupSelect extends BaseInput
             </Item>
           })}
         </StyledSelect>
-        {selected && this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
+        {!!selected && this.renderPlaceholder()}
         <img className='arrow' src={this.getArrow()} alt=''/>
         {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() =>
         {

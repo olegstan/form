@@ -824,6 +824,10 @@ export const sharedInputContainerStyle = css`
     transition: transform .25s, opacity .25s ease-in-out;
     transform-origin: 0 0;
   }
+
+  & .placeholder.active {
+    transform: translate(.25em, -15%) scale(.8);
+  }
   
   ${props => props.focus && `
     & .placeholder, & .placeholder.active {

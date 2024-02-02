@@ -88,10 +88,7 @@ export default class File extends BaseInput {
           hasError: false
         });
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder"
-    }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
+    }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       className: "close",
       src: require('./../assets/ic_close_only.svg').default,
       onClick: e => {

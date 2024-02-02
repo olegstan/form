@@ -146,7 +146,7 @@ class Select extends BaseInput
             <span>Нет элементов</span>
           </Item>
         </StyledSelect>}
-        {this.props.placeholder ? <label htmlFor={this.props.id} className={this.props.className + " placeholder"} onClick={() => {this.handleShowSelect(true);}}>{this.props.placeholder}</label> : ''}
+        {this.renderPlaceholder()}
         <img className='arrow' src={this.getArrow()} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>

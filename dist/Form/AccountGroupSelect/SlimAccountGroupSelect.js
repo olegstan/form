@@ -74,13 +74,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect {
       onClick: () => {
         this.handleAddAccount();
       }
-    }, /*#__PURE__*/React.createElement("span", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0447\u0451\u0442"))), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " placeholder",
-      onClick: () => {
-        this.handleShowSelect(true);
-      }
-    }, this.props.placeholder) : '', /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/React.createElement("span", null, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0447\u0451\u0442"))), this.renderPlaceholder(), /*#__PURE__*/React.createElement("img", {
       className: "arrow",
       src: this.getArrow(),
       onClick: () => {

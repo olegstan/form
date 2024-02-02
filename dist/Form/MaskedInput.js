@@ -90,10 +90,7 @@ export default class MaskedInput extends BaseInput {
         //   this.onBlur();
         // });
       }
-    }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.getPlaceholderClassName()
-    }, this.props.placeholder) : '', !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
+    }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       className: "close",
       src: require('./../assets/ic_close_only.svg').default,
       onClick: e => {
