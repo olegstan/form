@@ -90,6 +90,7 @@ export default function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: this.getLink(field + '_datetime'),
+        valueStr: this.getLink(field),
         onChange: (e, {
           name,
           value,

@@ -1,7 +1,8 @@
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 import React from 'react';
 import BaseInput from './BaseInput';
 import styled from 'styled-components';
-import { InputContainer, sharedInputStyle } from './newstyles';
+import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
 import InputPopup from "./InputPopup/InputPopup";
 import { Url } from "finhelper";
@@ -9,6 +10,7 @@ export default class DateTime extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
+      value: '',
       error: null,
       focused: false,
       hasError: false,
@@ -51,6 +53,7 @@ export default class DateTime extends BaseInput {
     onKeyPress: () => {},
     onChange: () => {},
     disabled: false,
+    valueStr: '',
     value: '',
     placeholder: '',
     mask: '',
@@ -96,11 +99,39 @@ export default class DateTime extends BaseInput {
       hasError: false
     });
   }
+  createDateFromString(dateStr) {
+    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
+    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})(?: (\d{2}):(\d{2}):(\d{2}))?$/;
+    const match = dateStr.match(formatCheck);
+    if (!match) {
+      return null;
+    }
+
+    // Extract parts of the date
+    const day = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
+    const year = parseInt(match[3], 10);
+    const hours = match[4] ? parseInt(match[4], 10) : 0;
+    const minutes = match[5] ? parseInt(match[5], 10) : 0;
+    const seconds = match[6] ? parseInt(match[6], 10) : 0;
+
+    // Create date object
+    const date = new Date(year, month, day, hours, minutes, seconds);
+
+    // Validate the date (checks for overflow)
+    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day || date.getHours() !== hours || date.getMinutes() !== minutes || date.getSeconds() !== seconds) {
+      return null;
+    }
+    return date;
+  }
   render() {
     const {
       Input,
       componentsLoaded
     } = this.state;
+    const {
+      valueStr
+    } = this.props;
     let error = this.getError();
     let value = null;
     if (this.props.value && typeof this.props.value.getMonth === 'function') {
@@ -130,10 +161,11 @@ export default class DateTime extends BaseInput {
       style: this.props.style,
       id: this.props.id,
       disabled: this.props.disabled,
-      value: value,
       placeholder: this.props.placeholder,
       autoComplete: this.props.autoComplete ? this.props.autoComplete : 'off',
       options: options,
+      value: value,
+      valueStr: valueStr,
       className: this.props.className,
       onReady: (_, __, fp) => {
         fp.calendarContainer.id = this.props.id + '-container';
@@ -167,11 +199,47 @@ export default class DateTime extends BaseInput {
             this.props.onOutsideClick();
           }
         });
+      },
+      render: ({
+        valueStr,
+        ...props
+      }, ref) => {
+        return /*#__PURE__*/React.createElement(MaskedStyledInput, {
+          mask: "99.99.9999 99:99:99",
+          value: valueStr,
+          onChange: e => {
+            let value = e.target.value;
+            let date = this.createDateFromString(value);
+            if (value && value.length === 19 && !value.includes('_')) {
+              this.props.onChange({}, {
+                name: this.props.name,
+                value: value,
+                date: date
+              });
+            } else {
+              this.props.onChange({}, {
+                name: this.props.name,
+                value: value,
+                date: null
+              });
+            }
+          },
+          style: this.props.style,
+          className: this.props.className,
+          onFocus: () => {
+            this.setState({
+              focused: true,
+              hasError: false
+            });
+          }
+        }, inputProps => /*#__PURE__*/React.createElement("input", _extends({
+          ref: ref
+        }, inputProps)));
       }
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       style: this.props.placeholderStyle,
-      className: "placeholder " + (this.state.focused || this.props.value ? 'focused' : '')
+      className: "placeholder " + (this.state.focused || valueStr || value ? 'active' : '')
     }, this.props.placeholder ? this.props.placeholder : '') : '', this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
       className: "calendar",
       src: require('./../assets/calendar.svg').default,

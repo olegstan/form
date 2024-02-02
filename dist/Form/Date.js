@@ -1,6 +1,7 @@
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 import React from 'react';
 import BaseInput from './BaseInput';
-import { InputContainer, sharedInputStyle } from './newstyles';
+import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
 import InputPopup from "./InputPopup/InputPopup";
 import moment from 'moment/moment';
@@ -60,6 +61,28 @@ export default class DateTime extends BaseInput {
       });
     });
   }
+  createDateFromString(dateStr) {
+    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
+    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+    const match = dateStr.match(formatCheck);
+    if (!match) {
+      return null;
+    }
+
+    // Extract parts of the date
+    const day = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
+    const year = parseInt(match[3], 10);
+
+    // Create date object
+    const date = new Date(year, month, day);
+
+    // Validate the date (checks for overflow)
+    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) {
+      return null;
+    }
+    return date;
+  }
   formatDate(date) {
     var month = '' + (date.getMonth() + 1),
       day = '' + date.getDate(),
@@ -96,6 +119,9 @@ export default class DateTime extends BaseInput {
       Input,
       componentsLoaded
     } = this.state;
+    const {
+      valueStr
+    } = this.props;
     let error = this.getError();
     let value = null;
     if (this.props.value && typeof this.props.value.getMonth === 'function') {
@@ -171,11 +197,38 @@ export default class DateTime extends BaseInput {
           focused: false,
           hasError: false
         });
+      },
+      render: ({
+        valueStr,
+        ...props
+      }, ref) => {
+        return /*#__PURE__*/React.createElement(MaskedStyledInput, {
+          mask: "99.99.9999",
+          value: valueStr,
+          onChange: e => {
+            let value = e.target.value;
+            this.props.onChange({}, {
+              name: this.props.name,
+              value: value,
+              date: this.createDateFromString(value)
+            });
+          },
+          style: this.props.style,
+          className: this.props.className,
+          onFocus: () => {
+            this.setState({
+              focused: true,
+              hasError: false
+            });
+          }
+        }, inputProps => /*#__PURE__*/React.createElement("input", _extends({
+          ref: ref
+        }, inputProps)));
       }
     }), this.props.placeholder ? /*#__PURE__*/React.createElement("label", {
       htmlFor: this.props.id,
       style: this.props.placeholderStyle,
-      className: "placeholder " + (this.state.focused || this.props.value ? 'focused' : '')
+      className: "placeholder " + (this.state.focused || valueStr || value ? 'active' : '')
     }, this.props.placeholder ? this.props.placeholder + ':' : '') : '', this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
       className: "calendar",
       src: require('./../assets/calendar.svg').default,

@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseInput from './BaseInput';
-import {InputContainer, sharedInputStyle} from './newstyles'
+import {InputContainer, MaskedStyledInput, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
 import moment from 'moment/moment';
@@ -71,6 +71,32 @@ export default class DateTime extends BaseInput {
         });
     }
 
+    createDateFromString(dateStr)
+    {
+        // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
+        const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+        const match = dateStr.match(formatCheck);
+
+        if (!match) {
+            return null;
+        }
+
+        // Extract parts of the date
+        const day = parseInt(match[1], 10);
+        const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
+        const year = parseInt(match[3], 10);
+
+        // Create date object
+        const date = new Date(year, month, day);
+
+        // Validate the date (checks for overflow)
+        if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) {
+            return null
+        }
+
+        return date;
+    }
+
     formatDate(date) {
         var month = '' + (date.getMonth() + 1),
             day = '' + date.getDate(),
@@ -111,6 +137,7 @@ export default class DateTime extends BaseInput {
 
     render() {
         const {Input, componentsLoaded} = this.state;
+        const {valueStr} = this.props;
 
         let error = this.getError();
 
@@ -200,8 +227,36 @@ export default class DateTime extends BaseInput {
                             hasError: false
                         });
                     }}
+                    render={({ valueStr, ...props }, ref) => {
+                        return (
+                          <MaskedStyledInput
+                            mask="99.99.9999"
+                            value={valueStr}
+                            onChange={e =>
+                            {
+                                let value = e.target.value;
+
+                                this.props.onChange({}, {
+                                    name: this.props.name,
+                                    value: value,
+                                    date: this.createDateFromString(value),
+                                })
+                            }}
+                            style={this.props.style}
+                            className={this.props.className}
+                            onFocus={() => {
+                                this.setState({
+                                    focused: true,
+                                    hasError: false
+                                });
+                            }}
+                          >
+                              {(inputProps) => <input ref={ref} {...inputProps} />}
+                          </MaskedStyledInput>
+                        );
+                    }}
                 />
-                {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
+                {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || valueStr || value ? 'active' : '')}>{this.props.placeholder ? this.props.placeholder + ':' : ''}</label> : ''}
                 {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
                 {this.state.hasError ? <InputPopup
                     trigger={<img id={'tooltip-' + this.props.id} className=''

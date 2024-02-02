@@ -208,11 +208,11 @@ export const placeholderActiveStyle = css`
     transform-origin: 0 0;
   }
 
-  &:focus + .placeholder, &:not(:placeholder-shown) + .placeholder, & .placeholder.active {
+  &:focus + .placeholder, & .placeholder.active {
     transform: translate(.25em, -15%) scale(.8);
   }
   
-  &:focus:has(> div .placeholder), &:not(:placeholder-shown) + .placeholder, & .placeholder.active {
+  &:focus:has(> div .placeholder), & .placeholder.active {
     transform: translate(.25em, -15%) scale(.8);
   }
 

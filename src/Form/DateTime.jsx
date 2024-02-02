@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseInput from './BaseInput';
 import styled from 'styled-components'
-import {InputContainer, sharedInputStyle} from './newstyles'
+import {InputContainer, MaskedStyledInput, sharedInputStyle} from './newstyles'
 import {Container} from './styles/containerStyle'
 import InputPopup from "./InputPopup/InputPopup";
 import {Url} from "finhelper";
@@ -12,6 +12,7 @@ export default class DateTime extends BaseInput
   {
     super(props);
     this.state = {
+      value: '',
       error: null,
       focused: false,
       hasError: false,
@@ -64,6 +65,7 @@ export default class DateTime extends BaseInput
     onChange: () => {
     },
     disabled: false,
+    valueStr: '',
     value: '',
     placeholder: '',
     mask: '',
@@ -124,9 +126,40 @@ export default class DateTime extends BaseInput
     });
   }
 
+  createDateFromString(dateStr)
+  {
+    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
+    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})(?: (\d{2}):(\d{2}):(\d{2}))?$/;
+    const match = dateStr.match(formatCheck);
+
+    if (!match) {
+      return null;
+    }
+
+    // Extract parts of the date
+    const day = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
+    const year = parseInt(match[3], 10);
+    const hours = match[4] ? parseInt(match[4], 10) : 0;
+    const minutes = match[5] ? parseInt(match[5], 10) : 0;
+    const seconds = match[6] ? parseInt(match[6], 10) : 0;
+
+    // Create date object
+    const date = new Date(year, month, day, hours, minutes, seconds);
+
+    // Validate the date (checks for overflow)
+    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day ||
+      date.getHours() !== hours || date.getMinutes() !== minutes || date.getSeconds() !== seconds) {
+      return null
+    }
+
+    return date;
+  }
+
   render()
   {
     const {Input, componentsLoaded} = this.state;
+    const {valueStr} = this.props;
 
     let error = this.getError();
 
@@ -162,10 +195,11 @@ export default class DateTime extends BaseInput
             style={this.props.style}
             id={this.props.id}
             disabled={this.props.disabled}
-            value={value}
             placeholder={this.props.placeholder}
             autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
             options={options}
+            value={value}
+            valueStr={valueStr}
             className={this.props.className}
             onReady={(_, __, fp) => {
               fp.calendarContainer.id = this.props.id + '-container';
@@ -192,6 +226,7 @@ export default class DateTime extends BaseInput
               });
             }}
             onClose={(selectedValue, dateStr, instance) => {
+
               this.setDate(selectedValue, dateStr, instance, () => {
 
               })
@@ -206,8 +241,46 @@ export default class DateTime extends BaseInput
                 }
               });
             }}
+            render={({ valueStr, ...props }, ref) => {
+              return (
+                <MaskedStyledInput
+                  mask="99.99.9999 99:99:99"
+                  value={valueStr}
+                  onChange={e =>
+                  {
+                    let value = e.target.value;
+                    let date = this.createDateFromString(value);
+
+                    if(value && value.length === 19 && !value.includes('_'))
+                    {
+                      this.props.onChange({}, {
+                        name: this.props.name,
+                        value: value,
+                        date: date
+                      })
+                    }else{
+                      this.props.onChange({}, {
+                        name: this.props.name,
+                        value: value,
+                        date: null
+                      })
+                    }
+                  }}
+                  style={this.props.style}
+                  className={this.props.className}
+                  onFocus={() => {
+                    this.setState({
+                      focused: true,
+                      hasError: false
+                    });
+                  }}
+                >
+                  {(inputProps) => <input ref={ref} {...inputProps} />}
+                </MaskedStyledInput>
+              );
+            }}
           />
-          {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || this.props.value ? 'focused' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
+          {this.props.placeholder ? <label htmlFor={this.props.id} style={this.props.placeholderStyle} className={"placeholder " + (this.state.focused || valueStr || value ? 'active' : '')}>{this.props.placeholder ? this.props.placeholder : ''}</label> : ''}
           {this.props.icon !== false && <img className='calendar' src={require('./../assets/calendar.svg').default} alt=''/>}
           {this.state.hasError ? <InputPopup
             trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
