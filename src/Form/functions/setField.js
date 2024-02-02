@@ -212,10 +212,13 @@ export default function setField(Base)
     {
       if(response.data[field + '_date'] && typeof response.data[field + '_date'] === 'string' && response.data[field + '_date'].length > 0)
       {
-        prv.form[field] = moment(response.data[field + '_date'], 'DD.MM.YYYY').format('YYYY-MM-DD');
-        prv.form[field + '_date'] = moment(response.data[field + '_date'], 'DD.MM.YYYY').toDate();
+        let date = moment(response.data[field + '_date'], 'DD.MM.YYYY')
+        prv.form[field] = date.format('YYYY-MM-DD');
+        prv.form[field + '_user'] = date.format('DD.MM.YYYY');
+        prv.form[field + '_date'] = date.toDate();
       }else{
         prv.form[field] = '';
+        prv.form[field + '_user'] = '';
         prv.form[field + '_date'] = null;
       }
     }
@@ -230,10 +233,13 @@ export default function setField(Base)
     {
       if(response.data[field + '_datetime'] && typeof response.data[field + '_datetime'] === 'string' && response.data[field + '_datetime'].length > 0)
       {
-        prv.form[field] = moment(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
-        prv.form[field + '_datetime'] = moment(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss').toDate();
+        let date = moment(response.data[field + '_datetime'], 'DD.MM.YYYY HH:mm:ss')
+        prv.form[field] = date.format('YYYY-MM-DD HH:mm:ss');
+        prv.form[field + '_user'] = date.format('DD.MM.YYYY HH:mm:ss');
+        prv.form[field + '_datetime'] = date.toDate();
       }else{
         prv.form[field] = '';
+        prv.form[field + '_user'] = '';
         prv.form[field + '_datetime'] = null;
       }
     }

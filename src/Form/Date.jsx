@@ -121,18 +121,18 @@ export default class DateTime extends BaseInput {
         }
 
         if (date !== '' && date != null) {
-            callback(date)
-            this.props.onChange({}, {
-                name: this.props.name,
-                value: this.formatDate(date),
-                date: date
-            })
+            // callback(date)
+            // this.props.onChange({}, {
+            //     name: this.props.name,
+            //     value: this.formatDate(date),
+            //     date: date
+            // })
         } else {
-            this.props.onChange({}, {
-                name: this.props.name,
-                value: null,
-                date: null,
-            })
+            // this.props.onChange({}, {
+            //     name: this.props.name,
+            //     value: null,
+            //     date: null,
+            // })
         }
         this.setState({
             hasError: false
@@ -207,32 +207,6 @@ export default class DateTime extends BaseInput {
                     className={this.props.className}
                     onReady={(_, __, fp) => {
                         fp.calendarContainer.id = this.props.id + '-container';
-                    }}
-                    onMonthChange={(value, dateStr, instance) => {
-                        if (dateStr) {
-                            this.setDate(value, dateStr, instance, (date) => {
-                                date.setMonth(instance.currentMonth);
-                            })
-                        }
-                    }}
-                    onYearChange={(value, dateStr, instance) => {
-                        if (dateStr) {
-                            this.setDate(value, dateStr, instance, (date) => {
-                                date.setYear(instance.currentYear);
-                            })
-                        }
-                    }}
-                    onKeyUp={(e) => {
-                        let value = e.target.value;
-
-                        if (value.length === 10) {
-                            let date = moment(value, 'DD.MM.YYYY')
-                            if (date && date.isValid() && date.format('DD.MM.YYYY') === value) {
-                                this.setDate([date.toDate()], value, null, (date) => {
-
-                                })
-                            }
-                        }
                     }}
                     onChange={(value, dateStr, instance) => {
                         this.setDate(value, dateStr, instance, (date) => {

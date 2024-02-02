@@ -103,38 +103,6 @@ export default class DateTime extends BaseInput
     return [year, month, day].join('-') + ' ' + hour + ':' + minute + ':' + second;
   }
 
-  setDate(selectedValue, dateStr, instance, callback)
-  {
-    let date = null;
-    if(selectedValue && selectedValue.length)
-    {
-      date = selectedValue[0];
-    }
-
-    if(dateStr !== '' && date !== '' && date != null){
-      callback(date, instance);
-
-      console.log(date)
-      console.log(instance)
-
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: this.formatDate(date),
-        date: date
-      })
-    }else{
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: null,
-        date: null,
-      })
-    }
-
-    this.setState({
-      hasError: false
-    });
-  }
-
   createDateFromString(dateStr)
   {
     // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
@@ -232,28 +200,6 @@ export default class DateTime extends BaseInput
             className={this.props.className}
             onReady={(_, __, fp) => {
               fp.calendarContainer.id = this.props.id + '-container';
-            }}
-            onMonthChange={(selectedValue, dateStr, instance) => {
-              this.setDate(selectedValue, dateStr, instance, (date, instance) => {
-                date.setMonth(instance.currentMonth);
-              })
-            }}
-            onYearChange={(selectedValue, dateStr, instance) => {
-              this.setDate(selectedValue, dateStr, instance, (date, instance) => {
-                date.setYear(instance.currentYear);
-              })
-            }}
-            onKeyUp={(e) => {
-              let value = e.target.value;
-
-              if (value.length === 19) {
-                let date = moment(value, 'DD.MM.YYYY HH:mm:ss')
-                if (date && date.isValid() && date.format('DD.MM.YYYY HH:mm:ss') === value) {
-                  this.setDate([date.toDate()], value, null, (date) => {
-
-                  })
-                }
-              }
             }}
             onChange={(selectedValue, dateStr, instance) => {
               this.setValidDate(dateStr)

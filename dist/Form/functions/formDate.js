@@ -1,6 +1,7 @@
 import React from 'react';
 import Date from "../Date";
 import DateTime from "../DateTime";
+import moment from "moment";
 export default function formDate(Base) {
   class FormDate extends Base {
     renderDateInput({
@@ -30,35 +31,46 @@ export default function formDate(Base) {
         className: className,
         disabled: this.getDisabled(disabled),
         format: format,
-        value: value ? value : this.getLink(field + '_date'),
+        value: value ? value : this.getLink(field + '_user'),
         onChange: (e, {
           name,
           value,
           date
         }) => {
+          // if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
+          // {
           this.setState(prv => {
-            this.setValueInput(prv, field, value);
-            this.setValueInput(prv, field + '_date', date);
+            if (momentDate && momentDate.isValid()) {
+              this.setValueInput(prv, field, momentDate.format('YYYY-MM-DD'));
+              this.setValueInput(prv, field + '_user', momentDate.format('DD.MM.YYYY'));
+              this.setValueInput(prv, field + '_date', date);
+            } else {
+              this.setValueInput(prv, field + '_user', '');
+              this.setValueInput(prv, field + '_date', null);
+            }
             return prv;
           }, () => {
             if (typeof callback === 'function') {
               callback(value, date);
             }
           });
+          // }
         },
         onBlur: () => {
           this.setState(prv => {
             this.clearFormError(prv, field);
             return prv;
           });
-        },
-        onOutsideClick: () => {
-          this.setState(prv => {
-            this.setValueInput(prv, field, '');
-            this.setValueInput(prv, field + '_date', null);
-            return prv;
-          });
-        },
+        }
+        // onOutsideClick={() => {
+        //   this.setState((prv) => {
+        //     this.setValueInput(prv, field, '');
+        //     this.setValueInput(prv, field + '_date', null);
+        //
+        //     return prv;
+        //   });
+        // }}
+        ,
         placeholder: text,
         errors: this.state.formErrors
       });
@@ -89,35 +101,50 @@ export default function formDate(Base) {
         className: className,
         disabled: this.getDisabled(disabled),
         format: format,
-        value: this.getLink(field + '_datetime'),
+        value: this.getLink(field + '_user'),
         valueStr: this.getLink(field),
         onChange: (e, {
           name,
           value,
           date
         }) => {
+          // if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
+          // {
           this.setState(prv => {
-            this.setValueInput(prv, field, value);
-            this.setValueInput(prv, field + '_date', date);
-            this.setValueInput(prv, field + '_datetime', date);
+            console.log(value);
+            console.log(date);
+            let momentDate = moment(date);
+            if (momentDate && momentDate.isValid()) {
+              this.setValueInput(prv, field, momentDate.format('YYYY-MM-DD HH:mm:ss'));
+              this.setValueInput(prv, field + '_user', momentDate.format('DD.MM.YYYY HH:mm:ss'));
+              this.setValueInput(prv, field + '_date', date);
+              this.setValueInput(prv, field + '_datetime', date);
+            } else {
+              this.setValueInput(prv, field + '_user', '');
+              this.setValueInput(prv, field + '_date', null);
+              this.setValueInput(prv, field + '_datetime', date);
+            }
             return prv;
           }, () => {
             if (typeof callback === 'function') {
               callback(value, date);
             }
           });
+          // }
         },
         onBlur: () => {
           this.setState(prv => {
             this.clearFormError(prv, field);
             return prv;
           });
-        },
-        onOutsideClick: () => {
-          if (typeof outsideCallback === 'function') {
-            outsideCallback();
-          }
-        },
+        }
+        // onOutsideClick={() => {
+        //   if(typeof outsideCallback === 'function')
+        //   {
+        //     outsideCallback();
+        //   }
+        // }}
+        ,
         placeholder: text,
         errors: this.state.formErrors
       });
