@@ -17,7 +17,8 @@ export default class DateTime extends BaseInput {
             focused: false,
             hasError: false,
             Input: null,
-            componentsLoaded: false
+            componentsLoaded: false,
+            date: props.value ? props.value : null
         }
 
         this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -164,17 +165,32 @@ export default class DateTime extends BaseInput {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.value !== prevProps.value) {
+            this.setState({ date: this.props.value });
+        }
+    }
+
+    handleDateChange = (date) => {
+        this.setState({ date: date[0] });
+        if (this.props.onChange) {
+            console.log(11111111111)
+
+            this.props.onChange({}, {date: date[0]});
+        }
+    };
+
     render() {
         const {Input, componentsLoaded} = this.state;
         const {valueStr} = this.props;
 
         let error = this.getError();
 
-        let value = null;
-
-        if (this.props.value && typeof this.props.value.getMonth === 'function') {
-            value = this.props.value;
-        }
+        // let value = null;
+        //
+        // if (this.props.value && typeof this.props.value.getMonth === 'function') {
+        //     value = this.props.value;
+        // }
 
         let options = {
             ...{
@@ -205,7 +221,7 @@ export default class DateTime extends BaseInput {
                     id={this.props.id}
                     style={this.props.style}
                     disabled={this.props.disabled}
-                    value={value}
+                    value={this.state.date}
                     placeholder={this.props.placeholder}
                     autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
                     options={options}
@@ -214,9 +230,11 @@ export default class DateTime extends BaseInput {
                         fp.calendarContainer.id = this.props.id + '-container';
                     }}
                     onChange={(value, dateStr, instance) => {
-                        this.setDate(value, dateStr, instance, (date) => {
+                        this.handleDateChange(value);
 
-                        })
+                        // this.setDate(value, dateStr, instance, (date) => {
+                        //
+                        // })
                     }}
                     onOpen={() => {
                         this.setState({
@@ -225,7 +243,7 @@ export default class DateTime extends BaseInput {
                         });
                     }}
                     onClose={() => {
-                        this.setValidDate(valueStr);
+                        // this.setValidDate(valueStr);
 
                         this.setState({
                             focused: false,
@@ -237,21 +255,16 @@ export default class DateTime extends BaseInput {
                             }
                         });
                     }}
-                    render={({ id }, ref) => {
+                    render={({ id, ...props }, ref) => {
                         return (
                           <MaskedStyledInput
                             autoComplete={'off'}
                             mask="99.99.9999"
                             id={id}
-                            value={valueStr}
-                            onChange={e =>
-                            {
-                                let value = e.target.value;
-
-                                this.setValidDate(value);
-                            }}
-                            style={this.props.style}
-                            className={this.props.className}
+                            value={props.value}
+                            onChange={props.onChange}
+                            style={props.style}
+                            className={props.className}
                             onFocus={() => {
                                 this.setState({
                                     focused: true,

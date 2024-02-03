@@ -21,9 +21,16 @@ export default function formDate(Base)
         disabled={this.getDisabled(disabled)}
         format={format}
         value={(value ? value : this.getLink(field + '_user'))}
-        onChange={(e, { name, value, date}) => {
+        onChange={(e, { name, value, date}, a) => {
           // if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
           // {
+            console.log(e)
+            console.log(a)
+            console.log(name)
+            console.log(value)
+            console.log(date)
+            console.log(moment(date))
+
             this.setState((prv) => {
               let momentDate = moment(date)
 
