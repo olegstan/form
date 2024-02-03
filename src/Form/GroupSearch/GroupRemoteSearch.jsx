@@ -10,7 +10,6 @@ import {
   SubItem
 } from './newstyles'
 import {Loader} from '../newstyles'
-import InputPopup from "../InputPopup/InputPopup";
 import {ReactComponent as LoadImage} from '../../assets/loader.svg';
 
 class GroupRemoteSearch extends BaseSearch
@@ -124,8 +123,6 @@ class GroupRemoteSearch extends BaseSearch
         </Item>
       })
 
-    let error = this.getError();
-
     return <Container dataid='group-remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
       <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
@@ -188,11 +185,7 @@ class GroupRemoteSearch extends BaseSearch
               </Item>
             }) : (loading || selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-            }}/>}>
-            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-          </InputPopup> : ''}
+          {this.renderTooltipError()}
           {loading && <Loader>
             <div onClick={() => {}}>
               <LoadImage/>

@@ -1,65 +1,11 @@
 import React from 'react';
-import BaseInput from './BaseInput';
-import styled from 'styled-components'
-import {InputContainer, MaskedStyledInput, sharedInputStyle} from './newstyles'
+import {InputContainer, MaskedStyledInput} from './newstyles'
 import {Container} from './styles/containerStyle'
-import InputPopup from "./InputPopup/InputPopup";
-import {Url} from "finhelper";
 import calendarSvg from "./../assets/calendar.svg";
-import errorSvg from "./../assets/error.svg";
-import moment from "moment/moment";
+import Date from "./Date";
 
-export default class DateTime extends BaseInput
+export default class DateTime extends Date
 {
-  constructor(props)
-  {
-    super(props);
-    this.state = {
-      value: '',
-      error: null,
-      focused: false,
-      hasError: false,
-      Input: null,
-      componentsLoaded: false
-    }
-
-    this.setWrapperRef = this.setWrapperRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-    // Динамический импорт библиотеки Flatpickr
-    Promise.all([
-      import('flatpickr'),
-      import('react-flatpickr'),
-      import('flatpickr/dist/l10n/ru.js'),
-      import('flatpickr/dist/flatpickr.css'),
-    ]).then(([ flatpickr, Flatpickr, {Russian}]) => {
-
-      let url = Url.getCurrentUrl();
-      let lang = localStorage.getItem('language_id');
-
-      if(url.includes('/ru/') || parseInt(lang) === 1 || lang === null)
-      {
-        try{
-          flatpickr.default.localize(Russian);
-        }catch (e){
-          console.error(e)
-        }
-      }
-
-      // Определение компонента с применением стилей
-      const DateStyledInput = styled(Flatpickr.default)`
-          ${sharedInputStyle}
-      `
-      this.setState({
-        componentsLoaded: true,
-        Input: DateStyledInput
-      });
-    });
-  }
-
   /**
    *
    */
@@ -69,7 +15,6 @@ export default class DateTime extends BaseInput
     onChange: () => {
     },
     disabled: false,
-    valueStr: '',
     value: '',
     placeholder: '',
     mask: '',
@@ -80,76 +25,9 @@ export default class DateTime extends BaseInput
     inputMask: '__.__.____ __:__:__'//маска для формата данных чтобы проверять пустое поле или нет
   };
 
-  createDateFromString(dateStr)
+  getOptions()
   {
-    if(!dateStr)
-    {
-      return null;
-    }
-
-    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
-    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})(?: (\d{2}):(\d{2}):(\d{2}))?$/;
-    const match = dateStr.match(formatCheck);
-
-    if (!match) {
-      return null;
-    }
-
-    // Extract parts of the date
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
-    const year = parseInt(match[3], 10);
-    const hours = match[4] ? parseInt(match[4], 10) : 0;
-    const minutes = match[5] ? parseInt(match[5], 10) : 0;
-    const seconds = match[6] ? parseInt(match[6], 10) : 0;
-
-    // Create date object
-    const date = new Date(year, month, day, hours, minutes, seconds);
-
-    // Validate the date (checks for overflow)
-    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day ||
-      date.getHours() !== hours || date.getMinutes() !== minutes || date.getSeconds() !== seconds) {
-      return null
-    }
-
-    return date;
-  }
-
-  setValidDate(value)
-  {
-    let date = this.createDateFromString(value);
-
-    if(value && value.length === 19 && !value.includes('_'))
-    {
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: value,
-        date: date
-      })
-    }else{
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: value,
-        date: null
-      })
-    }
-  }
-
-  render()
-  {
-    const {Input, componentsLoaded} = this.state;
-    const {valueStr} = this.props;
-
-    let error = this.getError();
-
-    let value = null;
-
-    if(this.props.value && typeof this.props.value.getMonth === 'function')
-    {
-      value = this.props.value;
-    }
-
-    let options = {...{
+    return {...{
         dateFormat: 'd.m.Y H:i:S',
         allowInput: true,
         enableTime: true,
@@ -158,7 +36,12 @@ export default class DateTime extends BaseInput
         position: "auto",
         // static: true
       }, ...this.props
-    };
+    }
+  }
+
+  render()
+  {
+    const {Input, componentsLoaded} = this.state;
 
     return componentsLoaded ? <Container
         style={this.getContainerStyle()}
@@ -176,15 +59,14 @@ export default class DateTime extends BaseInput
             disabled={this.props.disabled}
             placeholder={this.props.placeholder}
             autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
-            options={options}
-            value={value}
-            valueStr={valueStr}
+            options={this.getOptions()}
+            value={this.state.date}
             className={this.props.className}
             onReady={(_, __, fp) => {
               fp.calendarContainer.id = this.props.id + '-container';
             }}
-            onChange={(selectedValue, dateStr, instance) => {
-              this.setValidDate(dateStr)
+            onChange={(value) => {
+              this.handleDateChange(value);
             }}
             onOpen={() => {
               this.setState({
@@ -193,9 +75,6 @@ export default class DateTime extends BaseInput
               });
             }}
             onClose={(selectedValue, dateStr, instance) => {
-
-              this.setValidDate(valueStr);
-
               this.setState({
                 focused: false,
                 hasError: false
@@ -206,21 +85,16 @@ export default class DateTime extends BaseInput
                 }
               });
             }}
-            render={({ id }, ref) => {
+            render={({ id, ...props }, ref) => {
               return (
                 <MaskedStyledInput
                   autoComplete={'off'}
                   mask="99.99.9999 99:99:99"
                   id={id}
-                  value={valueStr}
-                  onChange={(e) => {
-                    let value = e.target.value;
-
-                    this.setValidDate(value);
-
-                  }}
-                  style={this.props.style}
-                  className={this.props.className}
+                  value={props.value}
+                  onChange={props.onChange}
+                  style={props.style}
+                  className={props.className}
                   onFocus={() => {
                     this.setState({
                       focused: true,
@@ -235,11 +109,7 @@ export default class DateTime extends BaseInput
           />
           {this.renderPlaceholder()}
           {this.props.icon !== false && <img className='calendar' src={calendarSvg} alt=''/>}
-          {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={errorSvg} alt='' onClick={() => {
-            }}/>}>
-            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-          </InputPopup> : ''}
+          {this.renderTooltipError()}
         </InputContainer>
       </Container> : '';
   }

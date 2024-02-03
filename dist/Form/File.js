@@ -3,7 +3,6 @@ import BaseInput from './BaseInput';
 import { InputContainer, StyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
 import { detect } from 'detect-browser';
-import InputPopup from "./InputPopup/InputPopup";
 export default class File extends BaseInput {
   constructor(props) {
     super(props);
@@ -41,7 +40,6 @@ export default class File extends BaseInput {
     const {
       name
     } = this.props;
-    let error = this.getError();
     let focus = this.state.focused ? '1px solid #1874DE' : '';
     if (this.state.hasError === true) {
       focus = '1px solid #EF5E70';
@@ -101,17 +99,6 @@ export default class File extends BaseInput {
         });
       },
       alt: ""
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('./../assets/error.svg').default,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : ''));
+    }), this.renderTooltipError()));
   }
 }

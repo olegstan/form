@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import { ContainerTextArea, TextArea as StyledTextArea, WrapperTextArea } from './newstyles';
 import { detect } from 'detect-browser';
-import InputPopup from "./InputPopup/InputPopup";
 export default class TextArea extends BaseInput {
   constructor(props) {
     super(props);
@@ -36,7 +35,6 @@ export default class TextArea extends BaseInput {
     rows: 3
   };
   render() {
-    let error = this.getError();
     const browser = detect();
     return /*#__PURE__*/React.createElement(ContainerTextArea, {
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
@@ -84,17 +82,6 @@ export default class TextArea extends BaseInput {
         //   this.onBlur();
         // })
       }
-    }), this.renderPlaceholder(), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('./../assets/error.svg').default,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : ''));
+    }), this.renderPlaceholder(), this.renderTooltipError()));
   }
 }

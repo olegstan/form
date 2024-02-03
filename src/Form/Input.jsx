@@ -3,7 +3,6 @@ import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
 import {Container} from './styles/containerStyle'
 import {detect} from 'detect-browser'
-import InputPopup from "./InputPopup/InputPopup";
 
 
 export default class Input extends BaseInput {
@@ -42,8 +41,6 @@ export default class Input extends BaseInput {
   render()
   {
     const {name} = this.props;
-
-    let error = this.getError();
 
     const browser = detect();
 
@@ -125,11 +122,7 @@ export default class Input extends BaseInput {
             hasError: false
           });
         }} alt=''/>}
-        {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
-        }}/>}>
-          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-        </InputPopup> : ''}
+        {this.renderTooltipError()}
       </InputContainer>
       {/*{this.props.icon ? <InputLabel>*/}
         {/*{this.props.icon}*/}

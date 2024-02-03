@@ -2,7 +2,6 @@ import React from 'react';
 import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import {Loader} from '../newstyles'
-import InputPopup from "../InputPopup/InputPopup";
 import Search from "./Search";
 import {ReactComponent as LoadImage} from '../../assets/loader.svg';
 
@@ -241,8 +240,6 @@ class RemoteSearch extends BaseSearch
         </Item>
       }) : [];
 
-    let error = this.getError();
-
     return <Container dataid='remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
       <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
         <InputContainer>
@@ -284,11 +281,7 @@ class RemoteSearch extends BaseSearch
           <StyledSelect id={this.props.id + '-select'} className={this.props.className + ' select'} select={this.state.select || this.state.focused}>
             {resItems.length ? resItems : (loading || selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
-          {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-            }}/>}>
-            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-          </InputPopup> : ''}
+          {this.renderTooltipError()}
           {loading && <Loader>
             <div onClick={() => {}}>
               <LoadImage/>

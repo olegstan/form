@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import InputPopup from "./../Form/InputPopup/InputPopup";
+import errorSvg from "./../assets/error.svg";
 export default class BaseInput extends Component {
   /**
    * polymorph method
@@ -23,6 +25,8 @@ export default class BaseInput extends Component {
     } else if (this.props.value === 0 || this.props.value && this.props.value !== '') {
       bool = true;
     } else if (this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== '') {
+      bool = true;
+    } else if (typeof this.state.search === 'string' && this.state.search.length > 0) {
       bool = true;
     }
     return "placeholder " + (bool ? 'active' : '');
@@ -95,6 +99,27 @@ export default class BaseInput extends Component {
         this.handleShowSelect(true);
       }
     }, placeholder) : '';
+  }
+  renderTooltipError() {
+    const {
+      id,
+      className
+    } = this.props;
+    const {
+      hasError
+    } = this.props;
+    return hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
+        id: 'tooltip-' + id,
+        className: "",
+        src: errorSvg,
+        alt: "",
+        onClick: () => {}
+      })
+    }, /*#__PURE__*/React.createElement("label", {
+      htmlFor: id,
+      className: className + " error"
+    }, this.getError())) : '';
   }
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {

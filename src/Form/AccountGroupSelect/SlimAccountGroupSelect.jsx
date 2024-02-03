@@ -2,7 +2,6 @@ import React from 'react';
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './slimstyles'
 import {CurrencyConstants, Money} from "finhelper";
 import {connect} from "react-redux";
-import InputPopup from "../InputPopup/InputPopup";
 import {Container} from '../styles/selectSlimContainerStyle'
 import {AccountGroupSelect} from './AccountGroupSelect'
 
@@ -12,7 +11,6 @@ class SlimAccountGroupSelect extends AccountGroupSelect
   {
     const { items, handle, selected, showDefault } = this.props;
 
-    let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
     const { module: Component } = this.state;
 
@@ -60,11 +58,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect
         <img className='arrow' src={this.getArrow()} onClick={() => {
           this.handleShowSelect(true);
         }}/>
-        {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-            this.handleShowSelect(true);
-          }}/>}>
-        </InputPopup> : ''}
+        {this.renderTooltipError()}
       </InputWrapper>
       {Component && this.state.showAccountAdd && <Component
         availableTypes={this.props.types}

@@ -3,7 +3,6 @@ import BaseInput from './BaseInput';
 import { InputContainer, StyledInput } from './newstyles';
 import { Money } from "finhelper";
 import { detect } from 'detect-browser';
-import InputPopup from "./InputPopup/InputPopup";
 import { Container } from './styles/containerStyle';
 export default class NumberInput extends BaseInput {
   constructor(props) {
@@ -124,7 +123,6 @@ export default class NumberInput extends BaseInput {
     const {
       name
     } = this.props;
-    let error = this.getError();
     const browser = detect();
     let empty = true;
     if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
@@ -181,17 +179,6 @@ export default class NumberInput extends BaseInput {
         });
       },
       alt: ""
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('./../assets/error.svg').default,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : ''));
+    }), this.renderTooltipError()));
   }
 }

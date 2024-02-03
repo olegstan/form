@@ -2,7 +2,6 @@ import React from 'react';
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './slimstyles';
 import { CurrencyConstants, Money } from "finhelper";
 import { connect } from "react-redux";
-import InputPopup from "../InputPopup/InputPopup";
 import { Container } from '../styles/selectSlimContainerStyle';
 import { AccountGroupSelect } from './AccountGroupSelect';
 class SlimAccountGroupSelect extends AccountGroupSelect {
@@ -13,7 +12,6 @@ class SlimAccountGroupSelect extends AccountGroupSelect {
       selected,
       showDefault
     } = this.props;
-    let error = this.getError();
     let focus = this.state.hasError ? {
       'border': '1px solid #EF5E70'
     } : {};
@@ -80,17 +78,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect {
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('../../assets/error.svg').default,
-        alt: "",
-        onClick: () => {
-          this.handleShowSelect(true);
-        }
-      })
-    }) : ''), Component && this.state.showAccountAdd && /*#__PURE__*/React.createElement(Component, {
+    }), this.renderTooltipError()), Component && this.state.showAccountAdd && /*#__PURE__*/React.createElement(Component, {
       availableTypes: this.props.types,
       show: true,
       callback: () => {

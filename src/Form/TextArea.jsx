@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import {ContainerTextArea, TextArea as StyledTextArea, WrapperTextArea} from './newstyles'
 import {detect} from 'detect-browser'
-import InputPopup from "./InputPopup/InputPopup";
 
 export default class TextArea extends BaseInput
 {
@@ -43,8 +42,6 @@ export default class TextArea extends BaseInput
 
   render()
   {
-    let error = this.getError();
-
     const browser = detect();
 
     return (
@@ -98,11 +95,7 @@ export default class TextArea extends BaseInput
             }}
           />
           {this.renderPlaceholder()}
-          {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
-            }}/>}>
-            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-          </InputPopup> : ''}
+          {this.renderTooltipError()}
         </WrapperTextArea>
       </ContainerTextArea>
     );

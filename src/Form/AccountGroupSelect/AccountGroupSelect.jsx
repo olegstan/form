@@ -3,7 +3,6 @@ import BaseInput from '../BaseInput';
 import {connect} from "react-redux";
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
 import {CurrencyConstants, Money} from "finhelper";
-import InputPopup from "../InputPopup/InputPopup";
 import {Container} from '../styles/selectContainerStyle'
 
 class AccountGroupSelect extends BaseInput
@@ -126,7 +125,6 @@ class AccountGroupSelect extends BaseInput
   {
     const { items, handle, selected, showDefault } = this.props;
 
-    let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
     const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;
 
@@ -178,12 +176,7 @@ class AccountGroupSelect extends BaseInput
         <img className='arrow' src={this.getArrow()} onClick={() => {
           this.handleShowSelect(true);
         }}/>
-        {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-            this.handleShowSelect(true);
-          }}/>}>
-          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-        </InputPopup> : ''}
+        {this.renderTooltipError()}
       </InputWrapper>
       {ComponentCreate && this.state.showAccountCreate && <ComponentCreate
         availableTypes={this.props.types}

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import InputPopup from "./../Form/InputPopup/InputPopup";
+import errorSvg from "./../assets/error.svg";
 
 export default class BaseInput extends Component
 {
@@ -33,6 +35,8 @@ export default class BaseInput extends Component
     }else if(this.props.value === 0 || this.props.value && this.props.value !== ''){
       bool = true;
     }else if(this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== ''){
+      bool = true;
+    }else if(typeof this.state.search === 'string' && this.state.search.length > 0){
       bool = true;
     }
 
@@ -115,6 +119,18 @@ export default class BaseInput extends Component
     const {placeholder, id, placeholderStyle} = this.props;
 
     return placeholder ? <label htmlFor={id} style={placeholderStyle} className={this.getPlaceholderClassName()} onClick={() => {this.handleShowSelect(true)}}>{placeholder}</label> : ''
+  }
+
+  renderTooltipError()
+  {
+    const {id, className} = this.props
+
+    const {hasError} = this.props
+
+    return hasError ? <InputPopup
+      trigger={<img id={'tooltip-' + id} className='' src={errorSvg} alt='' onClick={() => {}}/>}>
+      <label htmlFor={id} className={className + " error"}>{this.getError()}</label>
+    </InputPopup> : ''
   }
 
   handleClickOutside(e)

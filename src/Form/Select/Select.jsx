@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from '../BaseInput';
 import {InputWrapper, Item, Select as StyledSelect, Selected} from './newstyles'
 import {Container} from '../styles/selectContainerStyle'
-import InputPopup from "../InputPopup/InputPopup";
 
 class Select extends BaseInput
 {
@@ -97,7 +96,6 @@ class Select extends BaseInput
   {
     const { items, handle, selected } = this.props;
 
-    let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
     let resItems = items ? items
       .filter((item) => {
@@ -150,11 +148,7 @@ class Select extends BaseInput
         <img className='arrow' src={this.getArrow()} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>
-        {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-          }}/>}>
-          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-        </InputPopup> : ''}
+        {this.renderTooltipError()}
       </InputWrapper>
     </Container>
   }

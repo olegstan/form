@@ -24,12 +24,6 @@ export default function formDate(Base)
         onChange={(e, { name, value, date}, a) => {
           // if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
           // {
-            console.log(e)
-            console.log(a)
-            console.log(name)
-            console.log(value)
-            console.log(date)
-            console.log(moment(date))
 
             this.setState((prv) => {
               let momentDate = moment(date)
@@ -88,7 +82,6 @@ export default function formDate(Base)
         disabled={this.getDisabled(disabled)}
         format={format}
         value={this.getLink(field + '_user')}
-        valueStr={this.getLink(field)}
         onChange={(e, { name, value, date}) => {
           // if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
           // {

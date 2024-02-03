@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from '../BaseInput';
 import { InputWrapper, Item, Select as StyledSelect, Selected } from './newstyles';
 import { Container } from '../styles/selectContainerStyle';
-import InputPopup from "../InputPopup/InputPopup";
 class Select extends BaseInput {
   /**
    *
@@ -70,7 +69,6 @@ class Select extends BaseInput {
       handle,
       selected
     } = this.props;
-    let error = this.getError();
     let focus = this.state.hasError ? {
       'border': '1px solid #EF5E70'
     } : {};
@@ -133,18 +131,7 @@ class Select extends BaseInput {
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('../../assets/error.svg').default,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : ''));
+    }), this.renderTooltipError()));
   }
 }
 export default Select;

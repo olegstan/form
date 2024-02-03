@@ -2,7 +2,6 @@ import React from 'react';
 import BaseSearch from '../BaseSearch';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
 import { Loader } from '../newstyles';
-import InputPopup from "../InputPopup/InputPopup";
 import Search from "./Search";
 import { ReactComponent as LoadImage } from '../../assets/loader.svg';
 class RemoteSearch extends BaseSearch {
@@ -194,7 +193,6 @@ class RemoteSearch extends BaseSearch {
         }
       }, /*#__PURE__*/React.createElement("span", null, item.name));
     }) : [];
-    let error = this.getError();
     return /*#__PURE__*/React.createElement(Container, {
       dataid: "remote-search",
       style: this.getContainerStyle(),
@@ -239,18 +237,7 @@ class RemoteSearch extends BaseSearch {
       select: this.state.select || this.state.focused
     }, resItems.length ? resItems : loading || selected ? '' : /*#__PURE__*/React.createElement(Item, {
       className: this.props.className
-    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('../../assets/error.svg').default,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : '', loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.renderTooltipError(), loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
     }, /*#__PURE__*/React.createElement(LoadImage, null))))));
   }

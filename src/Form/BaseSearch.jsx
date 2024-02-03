@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import BaseInput from "./BaseInput";
 
 export default class BaseSearch extends BaseInput

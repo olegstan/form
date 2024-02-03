@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, MaskedStyledInput} from './newstyles'
 import {detect} from 'detect-browser'
-import InputPopup from "./InputPopup/InputPopup";
 import {Container} from './styles/containerStyle'
 
 export default class MaskedInput extends BaseInput
@@ -43,8 +42,6 @@ export default class MaskedInput extends BaseInput
   render()
   {
     const {name} = this.props;
-
-    let error = this.getError();
 
     const browser = detect();
 
@@ -115,11 +112,7 @@ export default class MaskedInput extends BaseInput
             hasError: false
           });
         }} alt=''/>}
-        {this.state.hasError ? <InputPopup
-          trigger={<img id={'tooltip-' + this.props.id} className='' src={require('./../assets/error.svg').default} alt='' onClick={() => {
-          }}/>}>
-          <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-        </InputPopup> : ''}
+        {this.renderTooltipError()}
       </InputContainer>
     </Container>
   }

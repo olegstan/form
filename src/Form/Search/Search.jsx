@@ -1,7 +1,6 @@
 import React from 'react';
 import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
-import InputPopup from "../InputPopup/InputPopup";
 
 class Search extends BaseSearch
 {
@@ -263,8 +262,6 @@ class Search extends BaseSearch
       }) : [];
 
 
-    let error = this.getError();
-
     let empty = true;
 
     if((typeof this.state.search === 'number' && this.state.search.toString().length > 0) || (typeof this.state.search === 'string' && this.state.search.length > 0))
@@ -355,11 +352,7 @@ class Search extends BaseSearch
             });
             handle(null);
           }} alt=''/>}
-          {this.state.hasError ? <InputPopup
-            trigger={<img id={'tooltip-' + this.props.id} className='' src={require('../../assets/error.svg').default} alt='' onClick={() => {
-            }}/>}>
-            <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label>
-          </InputPopup> : ''}
+          {this.renderTooltipError()}
         </InputContainer>
       </InputWrapper>
     </Container>

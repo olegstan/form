@@ -3,7 +3,6 @@ import BaseInput from '../BaseInput';
 import { connect } from "react-redux";
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
 import { CurrencyConstants, Money } from "finhelper";
-import InputPopup from "../InputPopup/InputPopup";
 import { Container } from '../styles/selectContainerStyle';
 class AccountGroupSelect extends BaseInput {
   constructor(props) {
@@ -97,7 +96,6 @@ class AccountGroupSelect extends BaseInput {
       selected,
       showDefault
     } = this.props;
-    let error = this.getError();
     let focus = this.state.hasError ? {
       'border': '1px solid #EF5E70'
     } : {};
@@ -170,20 +168,7 @@ class AccountGroupSelect extends BaseInput {
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: require('../../assets/error.svg').default,
-        alt: "",
-        onClick: () => {
-          this.handleShowSelect(true);
-        }
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : ''), ComponentCreate && this.state.showAccountCreate && /*#__PURE__*/React.createElement(ComponentCreate, {
+    }), this.renderTooltipError()), ComponentCreate && this.state.showAccountCreate && /*#__PURE__*/React.createElement(ComponentCreate, {
       availableTypes: this.props.types,
       show: true,
       callback: () => {

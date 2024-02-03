@@ -3,12 +3,9 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
-import InputPopup from "./InputPopup/InputPopup";
-import moment from 'moment/moment';
 import { Url } from "finhelper";
 import styled from "styled-components";
 import calendarSvg from "./../assets/calendar.svg";
-import errorSvg from "./../assets/error.svg";
 export default class DateTime extends BaseInput {
   constructor(props) {
     super(props);
@@ -66,79 +63,6 @@ export default class DateTime extends BaseInput {
       });
     });
   }
-  createDateFromString(dateStr) {
-    if (!dateStr) {
-      return null;
-    }
-
-    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
-    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
-    const match = dateStr.match(formatCheck);
-    if (!match) {
-      return null;
-    }
-
-    // Extract parts of the date
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
-    const year = parseInt(match[3], 10);
-
-    // Create date object
-    const date = new Date(year, month, day);
-
-    // Validate the date (checks for overflow)
-    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) {
-      return null;
-    }
-    return date;
-  }
-  formatDate(date) {
-    var month = '' + (date.getMonth() + 1),
-      day = '' + date.getDate(),
-      year = date.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
-  }
-  setDate(value, dateStr, instance, callback) {
-    let date = null;
-    if (value && value.length) {
-      date = value[0];
-    }
-    if (date !== '' && date != null) {
-      // callback(date)
-      // this.props.onChange({}, {
-      //     name: this.props.name,
-      //     value: this.formatDate(date),
-      //     date: date
-      // })
-    } else {
-      // this.props.onChange({}, {
-      //     name: this.props.name,
-      //     value: null,
-      //     date: null,
-      // })
-    }
-    this.setState({
-      hasError: false
-    });
-  }
-  setValidDate(value) {
-    let date = this.createDateFromString(value);
-    if (value && value.length === 10 && !value.includes('_')) {
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: value,
-        date: date
-      });
-    } else {
-      this.props.onChange({}, {
-        name: this.props.name,
-        value: value,
-        date: null
-      });
-    }
-  }
   componentDidUpdate(prevProps) {
     if (this.props.value !== prevProps.value) {
       this.setState({
@@ -151,29 +75,13 @@ export default class DateTime extends BaseInput {
       date: date[0]
     });
     if (this.props.onChange) {
-      console.log(11111111111);
       this.props.onChange({}, {
         date: date[0]
       });
     }
   };
-  render() {
-    const {
-      Input,
-      componentsLoaded
-    } = this.state;
-    const {
-      valueStr
-    } = this.props;
-    let error = this.getError();
-
-    // let value = null;
-    //
-    // if (this.props.value && typeof this.props.value.getMonth === 'function') {
-    //     value = this.props.value;
-    // }
-
-    let options = {
+  getOptions() {
+    return {
       ...{
         dateFormat: 'd.m.Y',
         allowInput: true,
@@ -183,9 +91,17 @@ export default class DateTime extends BaseInput {
       },
       ...this.props
     };
-    if (this.props.defaultDate) {
-      options.defaultDate = this.props.defaultDate;
-    }
+
+    // if(this.props.defaultDate)
+    // {
+    //     options.defaultDate = this.props.defaultDate;
+    // }
+  }
+  render() {
+    const {
+      Input,
+      componentsLoaded
+    } = this.state;
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
@@ -201,17 +117,13 @@ export default class DateTime extends BaseInput {
       value: this.state.date,
       placeholder: this.props.placeholder,
       autoComplete: this.props.autoComplete ? this.props.autoComplete : 'off',
-      options: options,
+      options: this.getOptions(),
       className: this.props.className,
       onReady: (_, __, fp) => {
         fp.calendarContainer.id = this.props.id + '-container';
       },
-      onChange: (value, dateStr, instance) => {
+      onChange: value => {
         this.handleDateChange(value);
-
-        // this.setDate(value, dateStr, instance, (date) => {
-        //
-        // })
       },
       onOpen: () => {
         this.setState({
@@ -220,8 +132,6 @@ export default class DateTime extends BaseInput {
         });
       },
       onClose: () => {
-        // this.setValidDate(valueStr);
-
         this.setState({
           focused: false,
           hasError: false
@@ -257,17 +167,6 @@ export default class DateTime extends BaseInput {
       className: "calendar",
       src: calendarSvg,
       alt: ""
-    }), this.state.hasError ? /*#__PURE__*/React.createElement(InputPopup, {
-      trigger: /*#__PURE__*/React.createElement("img", {
-        id: 'tooltip-' + this.props.id,
-        className: "",
-        src: errorSvg,
-        alt: "",
-        onClick: () => {}
-      })
-    }, /*#__PURE__*/React.createElement("label", {
-      htmlFor: this.props.id,
-      className: this.props.className + " error"
-    }, error)) : '')) : '';
+    }), this.renderTooltipError())) : '';
   }
 }
