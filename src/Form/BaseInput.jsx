@@ -32,9 +32,9 @@ export default class BaseInput extends Component
       bool = true;
     }else if(!!this.props.selected){
       bool = true;
-    }else if(this.props.value === 0 || this.props.value && this.props.value !== ''){
+    }else if(this.props.value === 0 || this.props.value && this.props.value !== '' && !this.props.inputMask){//если пусто или 0 и нет маски
       bool = true;
-    }else if(this.props.valueStr && this.props.valueStr.replace(this.props.inputMask, '') !== ''){
+    }else if(this.props.value && typeof this.props.value === 'string' && this.props.value.replace(this.props.inputMask, '') !== ''){
       bool = true;
     }else if(typeof this.state.search === 'string' && this.state.search.length > 0){
       bool = true;
