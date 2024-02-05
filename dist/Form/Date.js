@@ -97,11 +97,38 @@ export default class DateTime extends BaseInput {
     //     options.defaultDate = this.props.defaultDate;
     // }
   }
+  createDateFromString(dateStr) {
+    if (!dateStr) {
+      return null;
+    }
+
+    // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
+    const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+    const match = dateStr.match(formatCheck);
+    if (!match) {
+      return null;
+    }
+
+    // Extract parts of the date
+    const day = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
+    const year = parseInt(match[3], 10);
+
+    // Create date object
+    const date = new Date(year, month, day);
+
+    // Validate the date (checks for overflow)
+    if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) {
+      return null;
+    }
+    return date;
+  }
   render() {
     const {
       Input,
       componentsLoaded
     } = this.state;
+    console.log(this.state.date);
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
@@ -150,7 +177,20 @@ export default class DateTime extends BaseInput {
           mask: "99.99.9999",
           id: id,
           value: props.value,
-          onChange: props.onChange,
+          onChange: e => {
+            let value = e.target.value;
+            if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {
+              this.props.onChange({}, {
+                date: value,
+                value: value
+              });
+            } else {
+              this.props.onChange({}, {
+                date: null,
+                value: value
+              });
+            }
+          },
           style: props.style,
           className: props.className,
           onFocus: () => {

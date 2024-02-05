@@ -92,7 +92,22 @@ export default class DateTime extends Date
                   mask="99.99.9999 99:99:99"
                   id={id}
                   value={props.value}
-                  onChange={props.onChange}
+                  onChange={(e) => {
+                    let value = e.target.value;
+
+                    if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
+                    {
+                      this.props.onChange({}, {
+                        date: value,
+                        value: value
+                      });
+                    }else{
+                      this.props.onChange({}, {
+                        date: null,
+                        value: value
+                      });
+                    }
+                  }}
                   style={props.style}
                   className={props.className}
                   onFocus={() => {
