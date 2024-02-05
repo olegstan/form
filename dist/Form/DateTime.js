@@ -28,8 +28,8 @@ export default class DateTime extends Date {
         allowInput: true,
         enableTime: true,
         enableSeconds: true,
-        disableMobile: "true",
-        position: "auto"
+        disableMobile: "true"
+        // position: "auto",
         // static: true
       },
       ...this.props

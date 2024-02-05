@@ -90,51 +90,22 @@ export default class DateTime extends BaseInput {
 
     getOptions()
     {
-        return {
+        let options = {
             ...{
                 dateFormat: 'd.m.Y',
                 allowInput: true,
-                position: "auto",
+                // position: "auto",
                 disableMobile: "true",
                 // static: true
             }, ...this.props
         }
 
-        // if(this.props.defaultDate)
-        // {
-        //     options.defaultDate = this.props.defaultDate;
-        // }
-    }
-
-    createDateFromString(dateStr)
-    {
-        if(!dateStr)
+        if(this.props.defaultDate)
         {
-            return null;
+            options.defaultDate = this.props.defaultDate;
         }
 
-        // Check format: DD.MM.YYYY or DD.MM.YYYY HH:mm:ss
-        const formatCheck = /^(\d{2})\.(\d{2})\.(\d{4})$/;
-        const match = dateStr.match(formatCheck);
-
-        if (!match) {
-            return null;
-        }
-
-        // Extract parts of the date
-        const day = parseInt(match[1], 10);
-        const month = parseInt(match[2], 10) - 1; // Month is 0-indexed in JavaScript Date
-        const year = parseInt(match[3], 10);
-
-        // Create date object
-        const date = new Date(year, month, day);
-
-        // Validate the date (checks for overflow)
-        if (date.getFullYear() !== year || date.getMonth() !== month || date.getDate() !== day) {
-            return null
-        }
-
-        return date;
+        return options;
     }
 
     render() {

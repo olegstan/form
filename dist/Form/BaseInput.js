@@ -23,15 +23,13 @@ export default class BaseInput extends Component {
     } else if (!!this.props.selected) {
       bool = true;
     } else if (this.props.value === 0 || this.props.value && this.props.value !== '' && !this.props.inputMask) {
+      //если пусто или 0 и нет маски
       bool = true;
     } else if (this.props.value && typeof this.props.value === 'string' && this.props.value.replace(this.props.inputMask, '') !== '') {
       bool = true;
     } else if (typeof this.state.search === 'string' && this.state.search.length > 0) {
       bool = true;
     }
-    console.log('----------');
-    console.log(this.props.name);
-    console.log(this.props);
     return "placeholder " + (bool ? 'active' : '');
   }
   getContainerStyle() {

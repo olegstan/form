@@ -33,7 +33,7 @@ export default class DateTime extends Date
         enableTime: true,
         enableSeconds: true,
         disableMobile: "true",
-        position: "auto",
+        // position: "auto",
         // static: true
       }, ...this.props
     }
