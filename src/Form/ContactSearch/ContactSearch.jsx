@@ -215,7 +215,7 @@ class ContactSearch extends Search
             e.stopPropagation();
           }}>
             {resItems.length ? resItems : (selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
-            {this.props.contactAddAvailable && <Add key={'add'} className='add' onClick={() => {this.handleAddContact()}}>
+            {this.props.contactAddAvailable && <Add key={'add'} className={this.props.className + ' add'} onClick={() => {this.handleAddContact()}}>
               <span>Добавить контакт</span>
             </Add>}
           </StyledSelect>

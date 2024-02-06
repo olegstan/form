@@ -177,7 +177,7 @@ class AccountGroupSelect extends BaseInput {
       }));
     }), this.props.accountAddAvailable && /*#__PURE__*/React.createElement(Add, {
       key: 'add',
-      className: "add",
+      className: this.props.className + ' add',
       onClick: () => {
         this.handleAddAccount();
       }

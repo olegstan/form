@@ -200,7 +200,7 @@ class ContactSearch extends Search {
       className: this.props.className
     }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос')), this.props.contactAddAvailable && /*#__PURE__*/React.createElement(Add, {
       key: 'add',
-      className: "add",
+      className: this.props.className + ' add',
       onClick: () => {
         this.handleAddContact();
       }

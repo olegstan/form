@@ -20,7 +20,6 @@ export const Add = styled.div`
   line-height: 40px;
   display: flex;
   padding: 0 15px;
-  border-bottom: 1px #fff solid !important;
   user-select: none;
 
   span{

@@ -193,7 +193,7 @@ class AccountGroupSelect extends BaseInput
               })}
             </HeaderItem>
           })}
-          {this.props.accountAddAvailable && <Add key={'add'} className='add' onClick={() => {this.handleAddAccount()}}>
+          {this.props.accountAddAvailable && <Add key={'add'} className={this.props.className + ' add'} onClick={() => {this.handleAddAccount()}}>
             <span>Добавить счёт</span>
           </Add>}
         </StyledSelect>

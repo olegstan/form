@@ -303,6 +303,48 @@ export const sharedSearchContainer = css`
     background-color: #FAFAFA;
   }
 
+  &.style1 .add {
+    background-color: #EFF2F5;
+    border-bottom: 1px solid #E1E6EC;
+  }
+  
+  &.style2 .select, &.style2 .item, &.style2 .selected, &.style2 .wrapper {
+    background: #2B2D39;
+    color: #4378FF;
+    border: none;
+  }
+
+  &.style2 .item:hover, &.style2 .item.hovered {
+    background: #2B2D39 !important;
+  }
+
+  &.style2 .select {
+
+  }
+
+  &.style2 .item:hover, &.style2 .item.hovered {
+    background: #2B2D39 !important;
+  }
+
+  &.style2 .item:hover span, &.style2 .item.hovered span {
+    background: #2B2D39 !important;
+  }
+
+  &.style2 .item {
+    background-color: #2B2D39;
+  }
+
+  &.style2 .item .subitem {
+    background-color: #2B2D39;
+  }
+  
+  &.style2 .add {
+
+    background-color: #2B2D39;
+    border-bottom: 1px solid #2B2D39;
+    color: #fff;
+  }
+
   //&.style2
   //{
   //  background-color: #2B2D39!important;
@@ -699,9 +741,7 @@ export const sharedItemStyle = css`
   font-weight: 500;
   user-select: none;
   text-align: left;
-  background-color: #EFF2F5;
   flex-wrap: wrap;
-  border-bottom: 1px solid #E1E6EC;
 
   &.style2
   {
