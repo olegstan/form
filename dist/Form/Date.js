@@ -157,7 +157,7 @@ export default class DateTime extends BaseInput {
           autoComplete: 'off',
           mask: "99.99.9999",
           id: id,
-          value: props.value || '',
+          value: props.value,
           onChange: e => {
             let value = e.target.value;
             if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {

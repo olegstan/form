@@ -11,6 +11,33 @@ const smallProperty = styled.div`
   max-width: 179px;
   margin: 5px 8px;
 `;
+export const Add = styled.div`
+  ${sharedItemStyle}
+  
+  align-items: center;
+  color: #000;
+  cursor: pointer;
+  line-height: 40px;
+  display: flex;
+  padding: 0 15px;
+  border-bottom: 1px #fff solid !important;
+  user-select: none;
+
+  span{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 export const containerTag = styled.div`
     ${sharedSearchContainer}
 `;

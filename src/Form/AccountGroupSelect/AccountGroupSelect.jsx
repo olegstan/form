@@ -39,11 +39,11 @@ class AccountGroupSelect extends BaseInput
 
   componentDidMount()
   {
-    this.props.loadModuleAccountCreate((module) => {
+    this.props.loadModuleCreate((module) => {
       this.setState({ 
         moduleAccountCreate: module.default
       }, () => {
-        this.props.loadModuleAccountEdit((module) => {
+        this.props.loadModuleEdit((module) => {
           this.setState({ moduleAccountEdit: module.default })
         })
       })
@@ -121,12 +121,37 @@ class AccountGroupSelect extends BaseInput
     });
   }
 
+  renderCreateComponent()
+  {
+    const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;
+
+    if(this.state.showAccountCreate)
+    {
+      return ComponentCreate && <ComponentCreate
+        availableTypes={this.props.types}
+        show={true}
+        callback={() => {
+          this.props.getUserAccounts();
+        }}
+        onClose={() => {
+          this.setState({
+            showAccountCreate: false
+          }, () => {
+            if(typeof this.props.onCloseCreateCallback === 'function')
+            {
+              this.props.onCloseCreateCallback();
+            }
+          });
+        }}
+      />
+    }
+  }
+
   render()
   {
     const { items, handle, showDefault } = this.props;
 
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
-    const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;
 
 
     //TODO сделать добавление субсчета
@@ -178,23 +203,7 @@ class AccountGroupSelect extends BaseInput
         }}/>
         {this.renderTooltipError()}
       </InputWrapper>
-      {ComponentCreate && this.state.showAccountCreate && <ComponentCreate
-        availableTypes={this.props.types}
-        show={true}
-        callback={() => {
-          this.props.getUserAccounts();
-        }}
-        onClose={() => {
-          this.setState({
-            showAccountCreate: false
-          }, () => {
-            if(typeof this.props.onCloseCreateCallback === 'function')
-            {
-              this.props.onCloseCreateCallback();
-            }
-          });
-        }}
-      />}
+      {this.renderCreateComponent()}
     </Container>
   }
 }

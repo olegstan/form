@@ -2,8 +2,77 @@ import React from 'react';
 import Search from "../Search/Search";
 import GroupRemoteSearch from "../GroupSearch/GroupRemoteSearch";
 import RemoteSearch from "../Search/RemoteSearch";
+import ContactSearch from "../ContactSearch/ContactSearch";
 export default function formSearch(Base) {
   class FormSearch extends Base {
+    renderContactSearch({
+      field,
+      items,
+      text,
+      defaultText,
+      disabled = false,
+      onSearch = () => {},
+      callback,
+      id,
+      onClick,
+      selectStyle = {},
+      inputStyle = {},
+      wrapperStyle = {},
+      containerStyle = {},
+      inputContainerStyle = {},
+      clearImageStyle = {},
+      showClearIcon = false,
+      className,
+      contactAddAvailable = true,
+      handleAddContact = () => {},
+      getText = contact => {},
+      importCreate = () => {},
+      importEdit = () => {}
+    } = {}) {
+      return /*#__PURE__*/React.createElement(ContactSearch, {
+        default: defaultText,
+        placeholder: text,
+        className: className,
+        id: id ? id : this.getPrefix() + field,
+        name: field + '_id',
+        disabled: this.getDisabled(disabled),
+        selected: this.getLink(field),
+        search: this.state.form[field + '_search'],
+        onSearch: onSearch,
+        inputStyle: inputStyle,
+        selectStyle: selectStyle,
+        containerStyle: containerStyle,
+        inputContainerStyle: inputContainerStyle,
+        clearImageStyle: clearImageStyle,
+        wrapperStyle: wrapperStyle,
+        showClearIcon: showClearIcon,
+        onClick: onClick,
+        contactAddAvailable: contactAddAvailable,
+        handleAddContact: handleAddContact,
+        getText: getText,
+        loadModuleCreate: importCreate,
+        loadModuleEdit: importEdit,
+        handle: item => {
+          this.setState(prv => {
+            this.setValueSearch(prv, field, item);
+            this.clearFormError(prv, field + '_id');
+            return prv;
+          }, () => {
+            if (typeof callback === 'function') {
+              callback(item);
+            }
+          });
+        },
+        onBlur: () => {
+          this.setState(prv => {
+            this.clearFormError(prv, field + '_id');
+            return prv;
+          });
+        },
+        items: items,
+        errors: this.state.formErrors
+      });
+    }
     renderSearch({
       field,
       items,

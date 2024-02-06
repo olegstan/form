@@ -34,8 +34,8 @@ export default function formAccountGroupSelect(Base)
         accountAddAvailable={accountAddAvailable}
         getUserAccounts={getUserAccounts}
         handleAddAccount={handleAddAccount}
-        loadModuleAccountCreate={importCreate}
-        loadModuleAccountEdit={importEdit}
+        loadModuleCreate={importCreate}
+        loadModuleEdit={importEdit}
         getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         default={defaultText}
@@ -114,8 +114,8 @@ export default function formAccountGroupSelect(Base)
         accountAddAvailable={accountAddAvailable}
         getUserAccounts={getUserAccounts}
         handleAddAccount={handleAddAccount}
-        loadModuleAccountCreate={importCreate}
-        loadModuleAccountEdit={importEdit}
+        loadModuleCreate={importCreate}
+        loadModuleEdit={importEdit}
         getText={getText}
         onCloseCreateCallback={onCloseCreateCallback}
         style={style}

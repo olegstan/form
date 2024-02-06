@@ -108,7 +108,10 @@ export default class BaseInput extends Component {
     } = this.props;
     const {
       hasError
-    } = this.props;
+    } = this.state;
+    console.log('----------------');
+    console.log(hasError);
+    console.log(this.getError());
     return hasError ? /*#__PURE__*/React.createElement(InputPopup, {
       trigger: /*#__PURE__*/React.createElement("img", {
         id: 'tooltip-' + id,

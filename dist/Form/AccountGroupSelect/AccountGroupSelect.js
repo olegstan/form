@@ -28,11 +28,11 @@ class AccountGroupSelect extends BaseInput {
     }
   }
   componentDidMount() {
-    this.props.loadModuleAccountCreate(module => {
+    this.props.loadModuleCreate(module => {
       this.setState({
         moduleAccountCreate: module.default
       }, () => {
-        this.props.loadModuleAccountEdit(module => {
+        this.props.loadModuleEdit(module => {
           this.setState({
             moduleAccountEdit: module.default
           });
@@ -89,6 +89,30 @@ class AccountGroupSelect extends BaseInput {
       this.props.handleAddAccount();
     });
   }
+  renderCreateComponent() {
+    const {
+      moduleAccountCreate: ComponentCreate,
+      moduleAccountEdit: ComponentEdit
+    } = this.state;
+    if (this.state.showAccountCreate) {
+      return ComponentCreate && /*#__PURE__*/React.createElement(ComponentCreate, {
+        availableTypes: this.props.types,
+        show: true,
+        callback: () => {
+          this.props.getUserAccounts();
+        },
+        onClose: () => {
+          this.setState({
+            showAccountCreate: false
+          }, () => {
+            if (typeof this.props.onCloseCreateCallback === 'function') {
+              this.props.onCloseCreateCallback();
+            }
+          });
+        }
+      });
+    }
+  }
   render() {
     const {
       items,
@@ -98,10 +122,6 @@ class AccountGroupSelect extends BaseInput {
     let focus = this.state.hasError ? {
       'border': '1px solid #EF5E70'
     } : {};
-    const {
-      moduleAccountCreate: ComponentCreate,
-      moduleAccountEdit: ComponentEdit
-    } = this.state;
 
     //TODO сделать добавление субсчета
     return /*#__PURE__*/React.createElement(Container, {
@@ -167,22 +187,7 @@ class AccountGroupSelect extends BaseInput {
       onClick: () => {
         this.handleShowSelect(true);
       }
-    }), this.renderTooltipError()), ComponentCreate && this.state.showAccountCreate && /*#__PURE__*/React.createElement(ComponentCreate, {
-      availableTypes: this.props.types,
-      show: true,
-      callback: () => {
-        this.props.getUserAccounts();
-      },
-      onClose: () => {
-        this.setState({
-          showAccountCreate: false
-        }, () => {
-          if (typeof this.props.onCloseCreateCallback === 'function') {
-            this.props.onCloseCreateCallback();
-          }
-        });
-      }
-    }));
+    }), this.renderTooltipError()), this.renderCreateComponent());
   }
 }
 const enhance = connect(state => ({
