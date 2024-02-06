@@ -263,7 +263,7 @@ export const sharedSearchContainer = css`
   margin: 15px 10px;
   width: 100%;
   min-width: 100px;
-  border-radius: 8px;
+  border-radius: 10px;
   position: relative;
 
   &.style1 .select, &.style1 .item, &.style1 .selected, &.style1 .wrapper {
@@ -299,6 +299,10 @@ export const sharedSearchContainer = css`
   &.style1 .add {
     background-color: #EFF2F5;
     border-bottom: 1px solid #E1E6EC;
+  }
+  
+  &.style2{
+    border: 1px solid #454650 !important;
   }
   
   &.style2 .select, &.style2 .item, &.style2 .selected, &.style2 .wrapper {

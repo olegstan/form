@@ -19,7 +19,7 @@ export default class BaseSearch extends BaseInput
   {
     let containerStyle = {...this.props.containerStyle};
 
-    containerStyle.border = '1px solid #D2D1D1';
+    // containerStyle.border = '1px solid #D2D1D1';
 
     if(this.state.focused)
     {

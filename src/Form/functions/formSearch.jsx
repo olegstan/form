@@ -27,9 +27,6 @@ export default function formSearch(Base)
                           className,
                           contactAddAvailable = true,
                           handleAddContact = () => {},
-                          getText = (contact) => {},
-                          importCreate = () => {},
-                          importEdit = () => {},
     } = {})
     {
       return <ContactSearch
@@ -52,9 +49,6 @@ export default function formSearch(Base)
         onClick={onClick}
         contactAddAvailable={contactAddAvailable}
         handleAddContact={handleAddContact}
-        getText={getText}
-        loadModuleCreate={importCreate}
-        loadModuleEdit={importEdit}
         handle={(item) => {
           this.setState((prv) => {
             this.setValueSearch(prv, field, item);

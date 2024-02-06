@@ -24,10 +24,7 @@ export default function formSearch(Base) {
       showClearIcon = false,
       className,
       contactAddAvailable = true,
-      handleAddContact = () => {},
-      getText = contact => {},
-      importCreate = () => {},
-      importEdit = () => {}
+      handleAddContact = () => {}
     } = {}) {
       return /*#__PURE__*/React.createElement(ContactSearch, {
         default: defaultText,
@@ -49,9 +46,6 @@ export default function formSearch(Base) {
         onClick: onClick,
         contactAddAvailable: contactAddAvailable,
         handleAddContact: handleAddContact,
-        getText: getText,
-        loadModuleCreate: importCreate,
-        loadModuleEdit: importEdit,
         handle: item => {
           this.setState(prv => {
             this.setValueSearch(prv, field, item);

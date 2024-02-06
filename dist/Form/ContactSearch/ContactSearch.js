@@ -12,55 +12,13 @@ class ContactSearch extends Search {
       hasError: false,
       handleArrow: false,
       search: props.search ? props.search : '',
-      selected: null,
-      date: new Date()
+      selected: null
     };
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-  componentDidMount() {
-    this.props.loadModuleCreate(module => {
-      this.setState({
-        moduleAccountCreate: module.default
-      }, () => {
-        this.props.loadModuleEdit(module => {
-          this.setState({
-            moduleAccountEdit: module.default
-          });
-        });
-      });
-    });
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
   handleAddContact() {
-    this.setState({
-      showContactCreate: true
-    }, () => {
-      this.props.handleAddContact();
-    });
-  }
-  renderCreateComponent() {
-    if (this.state.showContactCreate) {
-      const {
-        moduleAccountCreate: ComponentCreate,
-        moduleAccountEdit: ComponentEdit
-      } = this.state;
-      return ComponentCreate && /*#__PURE__*/React.createElement(ComponentCreate, {
-        show: true,
-        callback: () => {
-          // this.props.getUserAccounts();
-        },
-        onClose: () => {
-          this.setState({
-            showContactCreate: false
-          }, () => {
-            if (typeof this.props.onCloseCreateCallback === 'function') {
-              this.props.onCloseCreateCallback();
-            }
-          });
-        }
-      });
-    }
+    this.props.handleAddContact();
   }
   render() {
     const {
@@ -122,11 +80,6 @@ class ContactSearch extends Search {
     if (typeof this.state.search === 'number' && this.state.search.toString().length > 0 || typeof this.state.search === 'string' && this.state.search.length > 0) {
       empty = false;
     }
-
-    //исправления бага автозаполнения
-    //если name содержит слова такие как country, street
-    //то будет предлагаться подсказка, которая не нужна
-    //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
     return /*#__PURE__*/React.createElement(Container, {
       dataid: "search",
       style: this.getContainerStyle(),
@@ -218,7 +171,7 @@ class ContactSearch extends Search {
         handle(null);
       },
       alt: ""
-    }), this.renderTooltipError())), this.renderCreateComponent());
+    }), this.renderTooltipError())));
   }
 }
 export default ContactSearch;

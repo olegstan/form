@@ -147,24 +147,13 @@ export default class DateTime extends BaseInput {
                     onReady={(_, __, fp) => {
                         fp.calendarContainer.id = this.props.id + '-container';
                     }}
-                    onChange={(value) => {
+                    onChange={(value, dateStr, instance) => {
                         this.handleDateChange(value);
                     }}
                     onOpen={() => {
                         this.setState({
                             focused: true,
                             hasError: false
-                        });
-                    }}
-                    onClose={() => {
-                        this.setState({
-                            focused: false,
-                            hasError: false
-                        }, () => {
-                            if(typeof this.props.onOutsideClick === 'function')
-                            {
-                                this.props.onOutsideClick();
-                            }
                         });
                     }}
                     render={({ id, ...props }, ref) => {

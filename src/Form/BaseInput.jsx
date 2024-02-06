@@ -127,10 +127,6 @@ export default class BaseInput extends Component
 
     const {hasError} = this.state
 
-    console.log('----------------')
-    console.log(hasError)
-    console.log(this.getError())
-
     return hasError ? <InputPopup
       trigger={<img id={'tooltip-' + id} className='' src={errorSvg} alt='' onClick={() => {}}/>}>
       <label htmlFor={id} className={className + " error"}>{this.getError()}</label>

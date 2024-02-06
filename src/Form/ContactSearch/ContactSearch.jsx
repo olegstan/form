@@ -17,62 +17,17 @@ class ContactSearch extends Search
       handleArrow: false,
       search: props.search ? props.search : '',
       selected: null,
-      date: new Date()
     };
-
 
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  componentDidMount()
-  {
-    this.props.loadModuleCreate((module) => {
-      this.setState({
-        moduleAccountCreate: module.default
-      }, () => {
-        this.props.loadModuleEdit((module) => {
-          this.setState({ moduleAccountEdit: module.default })
-        })
-      })
-    })
-
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
 
   handleAddContact()
   {
-    this.setState({
-      showContactCreate: true
-    }, () => {
-      this.props.handleAddContact()
-    });
-  }
-
-  renderCreateComponent()
-  {
-    if(this.state.showContactCreate)
-    {
-      const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;
-
-      return ComponentCreate && <ComponentCreate
-        show={true}
-        callback={() => {
-          // this.props.getUserAccounts();
-        }}
-        onClose={() => {
-          this.setState({
-            showContactCreate: false
-          }, () => {
-            if(typeof this.props.onCloseCreateCallback === 'function')
-            {
-              this.props.onCloseCreateCallback();
-            }
-          });
-        }}
-      />
-    }
+    this.props.handleAddContact()
   }
 
   render()
@@ -142,10 +97,6 @@ class ContactSearch extends Search
       empty = false;
     }
 
-    //исправления бага автозаполнения
-    //если name содержит слова такие как country, street
-    //то будет предлагаться подсказка, которая не нужна
-    //решение: делаем намеренно ошибку в слове чтобы убрать подсказку
     return <Container dataid='search' style={this.getContainerStyle()} className={this.props.className}>
       <InputWrapper
         className={this.getWrapperClasses(resItems)}
@@ -231,7 +182,6 @@ class ContactSearch extends Search
           {this.renderTooltipError()}
         </InputContainer>
       </InputWrapper>
-      {this.renderCreateComponent()}
     </Container>
   }
 }
