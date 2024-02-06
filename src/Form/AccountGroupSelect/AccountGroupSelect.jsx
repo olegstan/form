@@ -123,7 +123,7 @@ class AccountGroupSelect extends BaseInput
 
   render()
   {
-    const { items, handle, selected, showDefault } = this.props;
+    const { items, handle, showDefault } = this.props;
 
     let focus = (this.state.hasError ? {'border': '1px solid #EF5E70'} : {})
     const { moduleAccountCreate: ComponentCreate, moduleAccountEdit: ComponentEdit } = this.state;

@@ -93,7 +93,6 @@ class AccountGroupSelect extends BaseInput {
     const {
       items,
       handle,
-      selected,
       showDefault
     } = this.props;
     let focus = this.state.hasError ? {

@@ -100,7 +100,7 @@ class GroupMultipleSelect extends BaseInput
 
   render()
   {
-    const { items, handle, selected, showAll } = this.props;
+    const { items, handle, showAll } = this.props;
 
     let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #FF0000'} : {})

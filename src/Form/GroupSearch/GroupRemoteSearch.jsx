@@ -77,7 +77,6 @@ class GroupRemoteSearch extends BaseSearch
   render()
   {
     const { items, handle, name, loading, size, selected} = this.props;
-    const { focused } = this.state;
 
     let search = this.state.search ? this.state.search.toLowerCase() : '';
 

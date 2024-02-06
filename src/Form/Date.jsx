@@ -79,10 +79,24 @@ export default class DateTime extends BaseInput {
         }
     }
 
+    formatDate(date) {
+        var month = '' + (date.getMonth() + 1),
+          day = '' + date.getDate(),
+          year = date.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [day, month, year].join('.');
+    }
+
     handleDateChange = (date) => {
         this.setState({ date: date[0] });
         if (this.props.onChange) {
             this.props.onChange({}, {
+                value: this.formatDate(date[0]),
                 date: date[0]
             });
         }
@@ -110,8 +124,6 @@ export default class DateTime extends BaseInput {
 
     render() {
         const {Input, componentsLoaded} = this.state;
-
-        console.log(this.state.date);
 
         return componentsLoaded ? <Container
             style={this.getContainerStyle()}
@@ -161,7 +173,7 @@ export default class DateTime extends BaseInput {
                             autoComplete={'off'}
                             mask="99.99.9999"
                             id={id}
-                            value={props.value}
+                            value={props.value || ''}
                             onChange={(e) => {
                                 let value = e.target.value;
 

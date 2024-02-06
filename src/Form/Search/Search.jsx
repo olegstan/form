@@ -204,7 +204,6 @@ class Search extends BaseSearch
   render()
   {
     const { items, handle, selected, name, selectStyle, clearImageStyle } = this.props;
-    const { focused } = this.state;
 
     let search = this.state.search ? this.state.search.toLowerCase() : '';
 
@@ -283,7 +282,7 @@ class Search extends BaseSearch
       >
         <InputContainer style={this.getInputContainerStyle()} ref={this.setWrapperRef}>
           <StyledInput
-            selected={selected ? 1 : 2}
+            selected={selected}
             id={this.props.id}
             autoComplete={'off'}
             disabled={this.props.disabled}

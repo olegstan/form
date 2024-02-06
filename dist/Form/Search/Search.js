@@ -162,9 +162,6 @@ class Search extends BaseSearch {
       selectStyle,
       clearImageStyle
     } = this.props;
-    const {
-      focused
-    } = this.state;
     let search = this.state.search ? this.state.search.toLowerCase() : '';
     let resItems = items ? items.filter(item => {
       if (search && search.length) {
@@ -235,7 +232,7 @@ class Search extends BaseSearch {
       style: this.getInputContainerStyle(),
       ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(StyledInput, {
-      selected: selected ? 1 : 2,
+      selected: selected,
       id: this.props.id,
       autoComplete: 'off',
       disabled: this.props.disabled,

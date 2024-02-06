@@ -55,9 +55,6 @@ class GroupRemoteSearch extends BaseSearch {
       size,
       selected
     } = this.props;
-    const {
-      focused
-    } = this.state;
     let search = this.state.search ? this.state.search.toLowerCase() : '';
     let notEmptyItems = false;
     let resItems = items

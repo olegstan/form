@@ -70,12 +70,21 @@ export default class DateTime extends BaseInput {
       });
     }
   }
+  formatDate(date) {
+    var month = '' + (date.getMonth() + 1),
+      day = '' + date.getDate(),
+      year = date.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [day, month, year].join('.');
+  }
   handleDateChange = date => {
     this.setState({
       date: date[0]
     });
     if (this.props.onChange) {
       this.props.onChange({}, {
+        value: this.formatDate(date[0]),
         date: date[0]
       });
     }
@@ -101,7 +110,6 @@ export default class DateTime extends BaseInput {
       Input,
       componentsLoaded
     } = this.state;
-    console.log(this.state.date);
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
@@ -149,7 +157,7 @@ export default class DateTime extends BaseInput {
           autoComplete: 'off',
           mask: "99.99.9999",
           id: id,
-          value: props.value,
+          value: props.value || '',
           onChange: e => {
             let value = e.target.value;
             if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {

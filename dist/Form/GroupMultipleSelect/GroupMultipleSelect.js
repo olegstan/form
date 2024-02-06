@@ -82,7 +82,6 @@ class GroupMultipleSelect extends BaseInput {
     const {
       items,
       handle,
-      selected,
       showAll
     } = this.props;
     let error = this.getError();
