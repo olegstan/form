@@ -303,7 +303,7 @@ export const sharedSearchContainer = css`
   }
   
   &.style2{
-    border: 1px solid #454650 !important;
+    border: 1px solid #454650;
   }
   
   &.style2 .select, &.style2 .item, &.style2 .selected, &.style2 .wrapper {
@@ -533,10 +533,10 @@ export const sharedButtonStyle = css`
   }
 
   &.style3 {
-    background: transparent;
+    background: #333443;
     color: #4378FF;
-    height: 30px !important;
-    padding: 0 !important;
+    height: 30px;
+    padding: 0;
   }
   
   &.style3:hover {

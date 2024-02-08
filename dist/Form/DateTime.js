@@ -61,7 +61,8 @@ export default class DateTime extends Date {
       onClick: e => {}
     }, /*#__PURE__*/React.createElement(InputContainer, {
       needMargin: true,
-      focus: this.state.focused
+      focus: this.state.focused,
+      ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(Input, {
       style: this.props.style,
       id: this.props.id,

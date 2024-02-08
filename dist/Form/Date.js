@@ -117,7 +117,8 @@ export default class DateTime extends BaseInput {
       onClick: e => {}
     }, /*#__PURE__*/React.createElement(InputContainer, {
       needMargin: true,
-      focus: this.state.focused
+      focus: this.state.focused,
+      ref: this.setWrapperRef
     }, /*#__PURE__*/React.createElement(Input, {
       id: this.props.id,
       style: this.props.style,

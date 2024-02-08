@@ -16,8 +16,8 @@ export const sharedContainer = css`
   
   &.style1
   {
-    border: 1px solid #454650 !important;
-    background-color: #2B2D39 !important;
+    border: 1px solid #454650;
+    background-color: #2B2D39;
   }
 
   &.style1{

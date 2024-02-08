@@ -37,6 +37,7 @@ export default class BaseInput extends Component {
       ...this.props.containerStyle
     };
     if (this.state.focused) {
+      //'#1874DE'
       containerStyle.border = '1px solid #1874DE';
     }
     if (this.state.hasError === true) {
@@ -123,7 +124,9 @@ export default class BaseInput extends Component {
     }, this.getError())) : '';
   }
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    console.log(e.target);
+    const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr) {
       if (this.state.focused === true) {
         this.setState({
           focused: false,

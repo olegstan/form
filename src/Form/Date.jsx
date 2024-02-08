@@ -134,6 +134,7 @@ export default class DateTime extends BaseInput {
             <InputContainer
                 needMargin={true}
                 focus={this.state.focused}
+                ref={this.setWrapperRef}
             >
                 <Input
                     id={this.props.id}

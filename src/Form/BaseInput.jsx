@@ -49,6 +49,7 @@ export default class BaseInput extends Component
 
     if(this.state.focused)
     {
+      //'#1874DE'
       containerStyle.border = '1px solid #1874DE';
     }
 
@@ -135,7 +136,10 @@ export default class BaseInput extends Component
 
   handleClickOutside(e)
   {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target))
+    //фикс для дат, поскольку контейнер с датой находится вни контейнера и это не должно отрабатывать как клик вне инпута
+    const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
+
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr)
     {
       if(this.state.focused === true)
       {
