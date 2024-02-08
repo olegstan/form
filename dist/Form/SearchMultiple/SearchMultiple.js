@@ -205,7 +205,7 @@ class SearchMultiple extends BaseInput {
     }
     return /*#__PURE__*/React.createElement(Container, {
       style: this.props.nativeContainerStyle,
-      className: this.props.className,
+      className: this.props.className + ' multi-select',
       size: size,
       onClick: e => {
         e.stopPropagation();

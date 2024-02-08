@@ -234,7 +234,7 @@ class SearchMultiple extends BaseInput
       customStyles.container = () => this.props.containerStyle;
     }
 
-    return <Container style={this.props.nativeContainerStyle} className={this.props.className} size={size} onClick={(e) => {
+    return <Container style={this.props.nativeContainerStyle} className={this.props.className + ' multi-select'} size={size} onClick={(e) => {
       e.stopPropagation();
     }}>
       <InputWrapper

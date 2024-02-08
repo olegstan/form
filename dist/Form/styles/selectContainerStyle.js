@@ -16,7 +16,7 @@ export const sharedSelectContainerStyle = css`
   height: 48px;
   border-radius: 8px;
   position: relative;
-    
+  
   &.select
   {
     border-bottom-left-radius: 0;

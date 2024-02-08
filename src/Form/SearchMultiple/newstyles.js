@@ -16,6 +16,17 @@ export const Container = styled.div`
   ${sharedSearchContainer}
   
   min-height: 46px;
+  
+  &.multi-select
+  {
+    border: none;
+  }
+
+  &.multi-select label.placeholder.active{
+    top: 10px;
+    left: 10px;
+    transform: translate(0.25em,-15%) scale(.8);;
+  }
 `
 
 export const TagText = styled.div`

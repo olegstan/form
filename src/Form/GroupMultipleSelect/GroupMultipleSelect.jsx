@@ -105,7 +105,7 @@ class GroupMultipleSelect extends BaseInput
     let error = this.getError();
     let focus = (this.state.hasError ? {'border': '1px solid #FF0000'} : {})
 
-    return <Container className={this.props.className} style={this.props.style}>
+    return <Container className={this.props.className + ' multi-select'} style={this.props.style}>
       <InputWrapper ref={this.setWrapperRef} style={focus}>
         <Selected id={this.props.id} onClick={() => {
           this.handleShowSelect(true);

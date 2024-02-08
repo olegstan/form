@@ -89,7 +89,7 @@ class GroupMultipleSelect extends BaseInput {
       'border': '1px solid #FF0000'
     } : {};
     return /*#__PURE__*/React.createElement(Container, {
-      className: this.props.className,
+      className: this.props.className + ' multi-select',
       style: this.props.style
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       ref: this.setWrapperRef,
