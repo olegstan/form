@@ -119,7 +119,7 @@ export default class DateTime extends BaseInput {
       needMargin: true,
       focus: this.state.focused,
       ref: this.setWrapperRef
-    }, /*#__PURE__*/React.createElement(Input, {
+    }, this.props.disabled ? this.renderInput() : /*#__PURE__*/React.createElement(Input, {
       id: this.props.id,
       style: this.props.style,
       disabled: this.props.disabled,

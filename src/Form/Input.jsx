@@ -2,7 +2,6 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
 import {Container} from './styles/containerStyle'
-import {detect} from 'detect-browser'
 
 
 export default class Input extends BaseInput {
@@ -40,10 +39,6 @@ export default class Input extends BaseInput {
 
   render()
   {
-    const {name} = this.props;
-
-    const browser = detect();
-
     let empty = true;
 
     if((typeof this.props.value === 'number' && this.props.value.toString().length > 0) || (typeof this.props.value === 'string' && this.props.value.length > 0))
@@ -61,57 +56,7 @@ export default class Input extends BaseInput {
       }}
     >
       <InputContainer ref={this.setWrapperRef}>
-        <StyledInput
-          browser={browser && browser.name}
-          id={this.props.id}
-          style={this.getInputStyle()}
-          size={this.props.size}
-          autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
-          disabled={this.props.disabled}
-          className={this.props.className}
-          type={this.props.type}
-          name={this.getName(name)}
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-          onClick={(e) => {
-            e.stopPropagation();
-
-            if(typeof this.props.onClick === 'function')
-            {
-              this.props.onClick(this);
-            }
-            // this.handleShowSelect(true);
-          }}
-          onKeyPress={(e) => {
-            if (typeof this.props.onKeyPress === 'function')
-            {
-              this.props.onKeyPress(e);
-            }
-          }}
-          onChange={(e) => {
-            this.props.onChange(e, {
-              name: this.props.name,
-              value: e.target.value,
-            });
-            this.setState({
-              hasError: false
-            });
-          }}
-          onFocus={() => {
-            this.setState({
-              focused: true,
-              hasError: false
-            });
-          }}
-          onBlur={() => {
-            // this.setState({
-            //   focused: false,
-            //   hasError: false
-            // }, () => {
-            //   this.onBlur(this.props.value);
-            // });
-          }}
-        />
+        {this.renderInput()}
         {this.renderPlaceholder()}
         {!empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
           this.props.onChange(e, {

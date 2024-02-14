@@ -63,7 +63,7 @@ export default class DateTime extends Date {
       needMargin: true,
       focus: this.state.focused,
       ref: this.setWrapperRef
-    }, /*#__PURE__*/React.createElement(Input, {
+    }, this.props.disabled ? this.renderInput() : /*#__PURE__*/React.createElement(Input, {
       style: this.props.style,
       id: this.props.id,
       disabled: this.props.disabled,

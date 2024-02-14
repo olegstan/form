@@ -868,7 +868,7 @@ export const sharedInputStyle = css`
   font-style: normal;
   font-weight: 500;
   text-align: left;
-  border-radius: 8px;
+  border-radius: 6px;
 
   &:focus {
     outline: 0;

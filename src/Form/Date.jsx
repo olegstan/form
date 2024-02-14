@@ -136,7 +136,7 @@ export default class DateTime extends BaseInput {
                 focus={this.state.focused}
                 ref={this.setWrapperRef}
             >
-                <Input
+                {this.props.disabled ? this.renderInput() : <Input
                     id={this.props.id}
                     style={this.props.style}
                     disabled={this.props.disabled}
@@ -193,7 +193,7 @@ export default class DateTime extends BaseInput {
                           </MaskedStyledInput>
                         );
                     }}
-                />
+                />}
                 {this.renderPlaceholder()}
                 {this.props.icon !== false && <img className='calendar' src={calendarSvg} alt=''/>}
                 {this.renderTooltipError()}

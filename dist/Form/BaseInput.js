@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import InputPopup from "./../Form/InputPopup/InputPopup";
 import errorSvg from "./../assets/error.svg";
+import { StyledInput } from "./newstyles";
+import { detect } from 'detect-browser';
 export default class BaseInput extends Component {
   /**
    * polymorph method
@@ -124,7 +126,7 @@ export default class BaseInput extends Component {
     }, this.getError())) : '';
   }
   handleClickOutside(e) {
-    console.log(e.target);
+    //фикс для дат, поскольку контейнер с датой находится вни контейнера и это не должно отрабатывать как клик вне инпута
     const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
     if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr) {
       if (this.state.focused === true) {
@@ -172,5 +174,67 @@ export default class BaseInput extends Component {
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur();
     }
+  }
+  renderInput() {
+    const browser = detect();
+    const {
+      id,
+      size,
+      autoComplete,
+      disabled,
+      className,
+      type,
+      name,
+      value,
+      placeholder
+    } = this.props;
+    return /*#__PURE__*/React.createElement(StyledInput, {
+      browser: browser && browser.name,
+      id: id,
+      style: this.getInputStyle(),
+      size: size,
+      autoComplete: autoComplete ? autoComplete : 'off',
+      disabled: disabled,
+      className: className,
+      type: type,
+      name: this.getName(name),
+      value: value,
+      placeholder: placeholder,
+      onClick: e => {
+        e.stopPropagation();
+        if (typeof this.props.onClick === 'function') {
+          this.props.onClick(this);
+        }
+        // this.handleShowSelect(true);
+      },
+      onKeyPress: e => {
+        if (typeof this.props.onKeyPress === 'function') {
+          this.props.onKeyPress(e);
+        }
+      },
+      onChange: e => {
+        this.props.onChange(e, {
+          name: this.props.name,
+          value: e.target.value
+        });
+        this.setState({
+          hasError: false
+        });
+      },
+      onFocus: () => {
+        this.setState({
+          focused: true,
+          hasError: false
+        });
+      },
+      onBlur: () => {
+        // this.setState({
+        //   focused: false,
+        //   hasError: false
+        // }, () => {
+        //   this.onBlur(this.props.value);
+        // });
+      }
+    });
   }
 }
