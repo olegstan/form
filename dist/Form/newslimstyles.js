@@ -239,11 +239,9 @@ export const sharedButtonStyle = css`
   }
   
   &.style3{
-      background: #fff;
+      background: transparent;
       color: #4378FF;
-      
-      
-      
+    
       ${props => props.right && `
         margin: 10px 40px 0 0;
       `}

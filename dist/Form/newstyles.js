@@ -103,37 +103,16 @@ export const placeholderStyle = css`
   }
 `;
 export const sharedCheckboxStyle = css`
-  flex-basis: 50%;
-  align-items: center;
-  color: #000;
-  transition: all .3s ease;
-  line-height: 40px;
-  display: flex;
-  padding: 0;
-  box-sizing: border-box;
-  z-index: 100;
-  
-  & > div{
-    display: flex;
-    align-items: center;
-  }
-
-
-  &:last-child {
-    border-bottom: 0;
-  }
-    
-  .container {
-    flex: 1;
-    padding: 5px 12px;
-    margin: 6px 6px;
-  }
+  flex: 1;
+  padding: 5px 12px;
+  margin: 6px 6px;
 
   .checkbox {
     display: flex;
     align-items: center;
     color: #E9E9EA;
     cursor: pointer;
+    transition: opacity 0.3s;
   }
 
   .checkbox > div {
@@ -145,9 +124,12 @@ export const sharedCheckboxStyle = css`
   }
 
   .checkbox {
+    margin: 7px 5px 0 0;
     cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
-    display: flex;
   }
 
   .checkbox > input {
@@ -159,29 +141,33 @@ export const sharedCheckboxStyle = css`
   }
 
   .checkbox > span {
-    height: 20px;
-    width: 21px;
+    border: 2px solid #D7DBE0;
+    height: 18px;
+    width: 18px;
     display: inline-block;
     box-sizing: border-box;
     border-radius: 6px;
     margin-right: 10px;
-    background-color: transparent;
+    background-color: #fff;
   }
 
   .checkbox > span > span {
     display: block;
     position: relative;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    width: 6px;
+    width: 7px;
     height: 11px;
-    //top: 2px;
+    top: 1px;
     z-index: 100000;
-    //left: 6px;
+    left: 4px;
     box-sizing: border-box;
   }
-  
-  .checkbox > input:checked{
-    border: 2px solid #D7DBE0;
+
+  .checkbox > input:checked + span {
+    background-color: #4378FF;
+    border: 2px solid #4378FF;
   }
 
   .checkbox > input:checked + span > span {
@@ -204,6 +190,7 @@ export const sharedCheckboxStyle = css`
   .checkbox.active {
     background-color: #E9E9EA;
   }
+
 `;
 export const placeholderActiveStyle = css`
   &::placeholder {
@@ -533,7 +520,7 @@ export const sharedButtonStyle = css`
   }
 
   &.style3 {
-    background: #333443;
+    background: transparent;
     color: #4378FF;
     height: 30px;
     padding: 0;

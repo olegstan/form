@@ -40,13 +40,10 @@ export default class Checkbox extends Component {
         border: '2px solid #4378FF'
       };
     }
-
-    // let checkboxColor = '';
-
     return /*#__PURE__*/React.createElement(StyleCheckbox, {
       id: props.id,
       style: this.props.style
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    }, /*#__PURE__*/React.createElement("label", {
       className: "checkbox"
     }, /*#__PURE__*/React.createElement("input", _extends({
       className: this.props.checked ? 'active' : '',
@@ -61,13 +58,11 @@ export default class Checkbox extends Component {
       style: {
         borderRadius: this.props.form === 'round' ? '10px' : '6px',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         ...checkboxStyle
       }
     }, /*#__PURE__*/React.createElement("span", {
       className: "rotate"
-    }))), /*#__PURE__*/React.createElement(Body, {
+    })), !!this.props.text && /*#__PURE__*/React.createElement(Body, {
       style: style,
       className: "text",
       onClick: e => {
