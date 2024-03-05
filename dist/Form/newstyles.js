@@ -160,7 +160,7 @@ export const sharedCheckboxStyle = css`
     width: 7px;
     height: 11px;
     top: 1px;
-    z-index: 100000;
+    z-index: 1000;
     left: 4px;
     box-sizing: border-box;
   }
