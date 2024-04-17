@@ -5,7 +5,7 @@ import {Container} from './styles/containerStyle'
 import {detect} from 'detect-browser'
 
 
-export default class File extends BaseInput {
+export default class FileInput extends BaseInput {
 
   constructor(props)
   {
@@ -38,6 +38,20 @@ export default class File extends BaseInput {
     style: {}
   };
 
+  componentDidMount()
+  {
+    const fileInput = document.getElementById(this.props.id);
+
+    const file = new File([], this.props.valueText, {
+      type: 'text/plain',
+      lastModified: new Date(),
+    });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    fileInput.files = dataTransfer.files;
+  }
+
   render()
   {
     let style = {}
@@ -69,6 +83,8 @@ export default class File extends BaseInput {
       empty = false;
     }
 
+    console.log(this.props)
+
     return <Container
       style={style}
       size={this.props.size}
@@ -97,7 +113,7 @@ export default class File extends BaseInput {
               this.props.onChange(e, {
                 name: this.props.name,
                 value: {
-                  name:e.target.files[0].name,
+                  name: e.target.files[0].name,
                   content: base64String
                 },
               });

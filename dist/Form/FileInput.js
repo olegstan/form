@@ -3,7 +3,7 @@ import BaseInput from './BaseInput';
 import { InputContainer, StyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
 import { detect } from 'detect-browser';
-export default class File extends BaseInput {
+export default class FileInput extends BaseInput {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,12 +32,12 @@ export default class File extends BaseInput {
   };
   componentDidMount() {
     const fileInput = document.getElementById(this.props.id);
-    const myFile = new File(['Hello World!'], 'myFile.txt', {
+    const file = new File([], this.props.valueText, {
       type: 'text/plain',
       lastModified: new Date()
     });
     const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(myFile);
+    dataTransfer.items.add(file);
     fileInput.files = dataTransfer.files;
   }
   render() {

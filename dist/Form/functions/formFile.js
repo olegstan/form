@@ -1,7 +1,7 @@
 import React from 'react';
-import File from "../File";
+import FileInput from "./../FileInput";
 export default function formFile(Base) {
-  class FormFile extends Base {
+  class FormFileInput extends Base {
     renderFileInput({
       field,
       text,
@@ -11,16 +11,18 @@ export default function formFile(Base) {
       style,
       className,
       onKeyPress = () => {},
-      onKeyDown = () => {}
+      onKeyDown = () => {},
+      valueText
     } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
-      return /*#__PURE__*/React.createElement(File, {
+      return /*#__PURE__*/React.createElement(FileInput, {
         id: this.getPrefix() + field,
         style: style,
         type: "text",
         name: field,
         size: size,
+        valueText: valueText,
         className: className,
         disabled: this.getDisabled(disabled),
         value: value,
@@ -43,5 +45,5 @@ export default function formFile(Base) {
       });
     }
   }
-  return FormFile;
+  return FormFileInput;
 }

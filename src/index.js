@@ -2,7 +2,7 @@ import Button from "./Form/Button";
 import Checkbox from "./Form/Checkbox";
 import Date from "./Form/Date";
 import DateTime from "./Form/DateTime";
-import File from "./Form/File";
+import FileInput from "./Form/FileInput";
 import Form from "./Form/Form";
 import Input from "./Form/Input";
 import MaskedInput from "./Form/MaskedInput";
@@ -50,7 +50,7 @@ export {
   Checkbox,
   Date,
   DateTime,
-  File,
+  FileInput,
   Form,
   Input,
   MaskedInput,

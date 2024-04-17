@@ -124,11 +124,8 @@ export const sharedCheckboxStyle = css`
   }
 
   .checkbox {
-    margin: 7px 5px 0 0;
+    margin: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
   }
 
@@ -250,9 +247,13 @@ export const sharedSearchContainer = css`
   margin: 15px 10px;
   width: 100%;
   min-width: 100px;
-  border-radius: 10px;
+  border-radius: 8px;
   position: relative;
   border: 1px solid #D2D1D1;
+  
+  input{
+    border-radius: 6px;
+  }
 
   &.style1 .select, &.style1 .item, &.style1 .selected, &.style1 .wrapper {
     background: #F5F5F5;
