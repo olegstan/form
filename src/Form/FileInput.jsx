@@ -83,8 +83,6 @@ export default class FileInput extends BaseInput {
       empty = false;
     }
 
-    console.log(this.props)
-
     return <Container
       style={style}
       size={this.props.size}

@@ -60,7 +60,6 @@ export default class FileInput extends BaseInput {
     if (this.props.value && typeof this.props.value.name === 'string') {
       empty = false;
     }
-    console.log(this.props);
     return /*#__PURE__*/React.createElement(Container, {
       style: style,
       size: this.props.size,
