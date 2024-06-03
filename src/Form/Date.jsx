@@ -28,7 +28,7 @@ export default class DateTime extends BaseInput {
     static defaultProps = {
         onKeyPress: () => {
         },
-        onChange: () => {
+        onChangeDateInner: () => {
         },
         disabled: false,
         value: '',
@@ -94,8 +94,8 @@ export default class DateTime extends BaseInput {
 
     handleDateChange = (date) => {
         this.setState({ date: date[0] });
-        if (this.props.onChange) {
-            this.props.onChange({}, {
+        if (this.props.onChangeDateInner) {
+            this.props.onChangeDateInner({}, {
                 value: this.formatDate(date[0]),
                 date: date[0]
             });
@@ -169,12 +169,12 @@ export default class DateTime extends BaseInput {
 
                                 if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
                                 {
-                                    this.props.onChange({}, {
+                                    this.props.onChangeDateInner({}, {
                                         date: value,
                                         value: value
                                     });
                                 }else{
-                                    this.props.onChange({}, {
+                                    this.props.onChangeDateInner({}, {
                                         date: null,
                                         value: value
                                     });

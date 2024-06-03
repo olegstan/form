@@ -10,7 +10,7 @@ export default class DateTime extends Date {
    */
   static defaultProps = {
     onKeyPress: () => {},
-    onChange: () => {},
+    onChangeDateInner: () => {},
     disabled: false,
     value: '',
     placeholder: '',
@@ -106,12 +106,12 @@ export default class DateTime extends Date {
           onChange: e => {
             let value = e.target.value;
             if (typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_')) {
-              this.props.onChange({}, {
+              this.props.onChangeDateInner({}, {
                 date: value,
                 value: value
               });
             } else {
-              this.props.onChange({}, {
+              this.props.onChangeDateInner({}, {
                 date: null,
                 value: value
               });

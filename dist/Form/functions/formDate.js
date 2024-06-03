@@ -32,7 +32,7 @@ export default function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: value ? value : this.getLink(field + '_user'),
-        onChange: (e, {
+        onChangeDateInner: (e, {
           name,
           value,
           date
@@ -41,39 +41,45 @@ export default function formDate(Base) {
           // {
 
           this.setState(prv => {
-            let momentDate = moment(date);
-            if (momentDate && momentDate.isValid()) {
-              this.setValueInput(prv, field, momentDate.format('YYYY-MM-DD'));
-              this.setValueInput(prv, field + '_user', momentDate.format('DD.MM.YYYY'));
-              this.setValueInput(prv, field + '_date', date);
-            } else {
+            if (!date) {
               this.setValueInput(prv, field, '');
-              this.setValueInput(prv, field + '_user', value);
+              this.setValueInput(prv, field + '_user', '');
               this.setValueInput(prv, field + '_date', null);
             }
+            let momentDate = moment(date);
+
+            // Создаем новые значения для проверки изменений
+            let newField = momentDate && momentDate.isValid() ? momentDate.format('YYYY-MM-DD') : '';
+            let newFieldUser = momentDate && momentDate.isValid() ? momentDate.format('DD.MM.YYYY') : value;
+            let newFieldDate = momentDate && momentDate.isValid() ? date : null;
+            console.log(prv.form[field + '_date']);
+            console.log(newField);
+            console.log(prv.form[field + '_date'] === newField);
+
+            // Проверяем изменения
+            if (prv.form[field + '_date'] === newField) {
+              // Значение не изменилось, выходим без вызова setState и callback
+              return null;
+            }
+
+            // Значения изменились, обновляем состояние
+            this.setValueInput(prv, field, newField);
+            this.setValueInput(prv, field + '_user', newFieldUser);
+            this.setValueInput(prv, field + '_date', newFieldDate);
             return prv;
           }, () => {
+            // callback вызывается только если setState произошел
             if (typeof callback === 'function') {
               callback(value, date);
             }
           });
-          // }
         },
         onBlur: () => {
           this.setState(prv => {
             this.clearFormError(prv, field);
             return prv;
           });
-        }
-        // onOutsideClick={() => {
-        //   this.setState((prv) => {
-        //     this.setValueInput(prv, field, '');
-        //     this.setValueInput(prv, field + '_date', null);
-        //
-        //     return prv;
-        //   });
-        // }}
-        ,
+        },
         placeholder: text,
         errors: this.state.formErrors
       });
@@ -105,7 +111,7 @@ export default function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: this.getLink(field + '_user'),
-        onChange: (e, {
+        onChangeDateInner: (e, {
           name,
           value,
           date
@@ -113,39 +119,46 @@ export default function formDate(Base) {
           // if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
           // {
           this.setState(prv => {
-            let momentDate = moment(date);
-            if (momentDate && momentDate.isValid()) {
-              this.setValueInput(prv, field, momentDate.format('YYYY-MM-DD HH:mm:ss'));
-              this.setValueInput(prv, field + '_user', momentDate.format('DD.MM.YYYY HH:mm:ss'));
-              this.setValueInput(prv, field + '_date', date);
-              this.setValueInput(prv, field + '_datetime', date);
-            } else {
+            if (!date) {
               this.setValueInput(prv, field, '');
-              this.setValueInput(prv, field + '_user', value);
+              this.setValueInput(prv, field + '_user', '');
               this.setValueInput(prv, field + '_date', null);
               this.setValueInput(prv, field + '_datetime', null);
             }
+            let momentDate = moment(date);
+
+            // Создаем новые значения для проверки изменений
+            let newField = momentDate && momentDate.isValid() ? momentDate.format('YYYY-MM-DD HH:mm:ss') : '';
+            let newFieldUser = momentDate && momentDate.isValid() ? momentDate.format('DD.MM.YYYY HH:mm:ss') : value;
+            let newFieldDate = momentDate && momentDate.isValid() ? date : null;
+            let newFieldDatetime = momentDate && momentDate.isValid() ? date : null;
+
+            // Проверяем изменения только одного поля
+            if (prv.form[field + '_datetime'] === newField) {
+              // Значение не изменилось, выходим без вызова setState и callback
+              return null;
+            }
+
+            // Значение изменилось, обновляем состояние
+            this.setValueInput(prv, field, newField);
+            this.setValueInput(prv, field + '_user', newFieldUser);
+            this.setValueInput(prv, field + '_date', newFieldDate);
+            this.setValueInput(prv, field + '_datetime', newFieldDatetime);
             return prv;
           }, () => {
+            console.log(1111);
+            // callback вызывается только если setState произошел
             if (typeof callback === 'function') {
               callback(value, date);
             }
           });
-          // }
         },
         onBlur: () => {
           this.setState(prv => {
             this.clearFormError(prv, field);
             return prv;
           });
-        }
-        // onOutsideClick={() => {
-        //   if(typeof outsideCallback === 'function')
-        //   {
-        //     outsideCallback();
-        //   }
-        // }}
-        ,
+        },
         placeholder: text,
         errors: this.state.formErrors
       });
@@ -168,7 +181,7 @@ export default function formDate(Base) {
         disabled: this.getDisabled(disabled),
         format: format,
         value: this.getLink(field + '_datetime'),
-        onChange: (e, {
+        onChangeDateInner: (e, {
           name,
           value,
           date
