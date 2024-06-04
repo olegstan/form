@@ -40,6 +40,10 @@ export default class FileInput extends BaseInput {
     dataTransfer.items.add(file);
     fileInput.files = dataTransfer.files;
   }
+  getPlaceholderClassName() {
+    let bool = true;
+    return "placeholder " + (bool ? 'active' : '');
+  }
   render() {
     let style = {};
     if (this.props.style) {

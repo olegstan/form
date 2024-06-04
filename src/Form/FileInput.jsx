@@ -52,6 +52,13 @@ export default class FileInput extends BaseInput {
     fileInput.files = dataTransfer.files;
   }
 
+  getPlaceholderClassName()
+  {
+    let bool = true;
+
+    return "placeholder " + (bool ? 'active' : '')
+  }
+
   render()
   {
     let style = {}
