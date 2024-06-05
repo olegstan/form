@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
+    renderInput({field, type = 'text', text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
     {
       let link = this.getLink(field);
       value = value ? value : (link === null ? '' : link);
@@ -41,7 +41,7 @@ export default function formInput(Base)
         style={style}
         containerStyle={containerStyle}
         placeholderStyle={placeholderStyle}
-        type="text"
+        type={type}
         name={field}
         size={size}
         className={className}

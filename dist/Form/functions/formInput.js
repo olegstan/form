@@ -32,6 +32,7 @@ export default function formInput(Base) {
     }
     renderInput({
       field,
+      type = 'text',
       text,
       disabled = false,
       callback,
@@ -51,7 +52,7 @@ export default function formInput(Base) {
         style: style,
         containerStyle: containerStyle,
         placeholderStyle: placeholderStyle,
-        type: "text",
+        type: type,
         name: field,
         size: size,
         className: className,

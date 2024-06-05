@@ -34,6 +34,7 @@ export default class Input extends BaseInput {
     className: '',
     wrapperClassName: '',
     error: '',
+    type: 'text',
     style: {}
   };
 
