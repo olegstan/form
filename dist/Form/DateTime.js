@@ -62,9 +62,6 @@ export default class DateTime extends Date {
       Input,
       componentsLoaded
     } = this.state;
-    if (!componentsLoaded) {
-      return null;
-    }
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
       className: this.props.className + (this.props.disabled ? ' disabled' : ''),
