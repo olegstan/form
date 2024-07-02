@@ -27,51 +27,41 @@ export default class DateTime extends Date
 
   getOptions()
   {
-    return {...{
+    return {
         dateFormat: 'd.m.Y H:i:S',
         allowInput: true,
         enableTime: true,
         enableSeconds: true,
         disableMobile: "true",
-        // position: "auto",
-        // static: true
-      }, ...this.props
+        ...this.props
     }
   }
 
   formatDate(date)
   {
-    var month = (date.getMonth() + 1) + "",
-      day = date.getDate() + "",
-      year = date.getFullYear() + "",
-      hour = date.getHours() + "",
-      minute = date.getMinutes() + "",
-      second = date.getSeconds() + ""
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    const hour = date.getHours().toString().padStart(2, '0');
+    const minute = date.getMinutes().toString().padStart(2, '0');
+    const second = date.getSeconds().toString().padStart(2, '0');
 
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
-    if (hour.length < 2)
-      hour = '0' + hour;
-    if (minute.length < 2)
-      minute = '0' + minute;
-    if (second.length < 2)
-      second = '0' + second;
-
-    return [day, month, year].join('.') + ' ' + hour + ':' + minute + ':' + second;
+    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
   }
 
   render()
   {
     const {Input, componentsLoaded} = this.state;
 
+    if (!componentsLoaded) {
+      return null;
+    }
+
     return componentsLoaded ? <Container
         style={this.getContainerStyle()}
         className={this.props.className + (this.props.disabled ? ' disabled' : '')}
         disabled={this.props.disabled}
-        onClick={(e) => {
-        }}>
+        onClick={(e) => {}}>
         <InputContainer
           needMargin={true}
           focus={this.state.focused}
@@ -99,12 +89,8 @@ export default class DateTime extends Date
               });
             }}
             onClose={(selectedValue, dateStr, instance) => {
-              this.setState({
-                focused: false,
-                hasError: false
-              }, () => {
-                if(typeof this.props.onOutsideClick === 'function')
-                {
+              this.setState({ focused: false, hasError: false }, () => {
+                if (typeof this.props.onOutsideClick === 'function') {
                   this.props.onOutsideClick();
                 }
               });

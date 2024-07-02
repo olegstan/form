@@ -146,7 +146,6 @@ export default function formDate(Base) {
             this.setValueInput(prv, field + '_datetime', newFieldDatetime);
             return prv;
           }, () => {
-            console.log(1111);
             // callback вызывается только если setState произошел
             if (typeof callback === 'function') {
               callback(value, date);
