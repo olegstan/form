@@ -92,12 +92,27 @@ export default class DateTime extends BaseInput {
         return [day, month, year].join('.');
     }
 
-    handleDateChange = (date) => {
-        this.setState({ date: date[0] });
-        if (this.props.onChangeDateInner) {
+    handleDateChange = (value) => {
+        const date = new Date(value);
+        const formattedDate = this.formatDate(date);
+        this.setState({ date: formattedDate });
+        this.props.onChangeDateInner({}, { date: formattedDate, value: formattedDate });
+    };
+
+    handleInputChange = (e) => {
+        const value = e.target.value;
+
+        this.setState({ date: value });
+
+        if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {
             this.props.onChangeDateInner({}, {
-                value: this.formatDate(date[0]),
-                date: date[0]
+                date: value,
+                value: value,
+            });
+        } else {
+            this.props.onChangeDateInner({}, {
+                date: null,
+                value: value,
             });
         }
     };
@@ -164,22 +179,7 @@ export default class DateTime extends BaseInput {
                             mask="99.99.9999"
                             id={id}
                             value={props.value}
-                            onChange={(e) => {
-                                let value = e.target.value;
-
-                                if(typeof value === 'string' && value !== '__.__.____' && !value.includes('_'))
-                                {
-                                    this.props.onChangeDateInner({}, {
-                                        date: value,
-                                        value: value
-                                    });
-                                }else{
-                                    this.props.onChangeDateInner({}, {
-                                        date: null,
-                                        value: value
-                                    });
-                                }
-                            }}
+                            onChange={this.handleInputChange}
                             style={props.style}
                             className={props.className}
                             onFocus={() => {

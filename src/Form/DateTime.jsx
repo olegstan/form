@@ -49,6 +49,24 @@ export default class DateTime extends Date
     return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
   }
 
+  handleInputChange = (e) => {
+    const value = e.target.value;
+
+    this.setState({ date: value });
+
+    if (typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_')) {
+      this.props.onChangeDateInner({}, {
+        date: value,
+        value: value,
+      });
+    } else {
+      this.props.onChangeDateInner({}, {
+        date: null,
+        value: value,
+      });
+    }
+  };
+
   render()
   {
     const {Input, componentsLoaded} = this.state;
@@ -102,22 +120,7 @@ export default class DateTime extends Date
                   mask="99.99.9999 99:99:99"
                   id={id}
                   value={props.value}
-                  onChange={(e) => {
-                    let value = e.target.value;
-
-                    if(typeof value === 'string' && value !== '__.__.____ __:__:__' && !value.includes('_'))
-                    {
-                      this.props.onChangeDateInner({}, {
-                        date: value,
-                        value: value
-                      });
-                    }else{
-                      this.props.onChangeDateInner({}, {
-                        date: null,
-                        value: value
-                      });
-                    }
-                  }}
+                  onChange={this.handleInputChange}
                   style={props.style}
                   className={props.className}
                   onFocus={() => {
