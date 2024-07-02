@@ -87,7 +87,7 @@ export default function formDate(Base) {
     renderDateTimeInput({
       field,
       text,
-      format = 'DD.MM.YYYY',
+      format = 'DD.MM.YYYY HH:mm:ss',
       disabled = false,
       callback,
       size,
@@ -125,7 +125,7 @@ export default function formDate(Base) {
               this.setValueInput(prv, field + '_date', null);
               this.setValueInput(prv, field + '_datetime', null);
             }
-            let momentDate = moment(date);
+            let momentDate = moment(date, format);
 
             // Создаем новые значения для проверки изменений
             let newField = momentDate && momentDate.isValid() ? momentDate.format('YYYY-MM-DD HH:mm:ss') : '';

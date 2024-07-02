@@ -75,7 +75,7 @@ export default function formDate(Base)
       />
     }
 
-    renderDateTimeInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, outsideCallback, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false} = {}) {
+    renderDateTimeInput({field, text, format = 'DD.MM.YYYY HH:mm:ss', disabled = false, callback, size, outsideCallback, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false} = {}) {
       return <DateTime
         id={this.getPrefix() + field}
         type="text"
@@ -102,7 +102,7 @@ export default function formDate(Base)
               this.setValueInput(prv, field + '_datetime', null);
             }
 
-            let momentDate = moment(date);
+            let momentDate = moment(date, format);
 
             // Создаем новые значения для проверки изменений
             let newField = momentDate && momentDate.isValid() ? momentDate.format('YYYY-MM-DD HH:mm:ss') : '';
