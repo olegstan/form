@@ -92,11 +92,14 @@ export default class DateTime extends BaseInput {
         return [day, month, year].join('.');
     }
 
-    handleDateChange = (value) => {
-        const date = new Date(value);
-        const formattedDate = this.formatDate(date);
-        this.setState({ date: formattedDate });
-        this.props.onChangeDateInner({}, { date: formattedDate, value: formattedDate });
+    handleDateChange = (date) => {
+        this.setState({ date: date[0] });
+        if (this.props.onChangeDateInner) {
+            this.props.onChangeDateInner({}, {
+                value: this.formatDate(date[0]),
+                date: date[0]
+            });
+        }
     };
 
     handleInputChange = (e) => {

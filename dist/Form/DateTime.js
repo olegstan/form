@@ -23,22 +23,31 @@ export default class DateTime extends Date {
   };
   getOptions() {
     return {
-      dateFormat: 'd.m.Y H:i:S',
-      allowInput: true,
-      enableTime: true,
-      enableSeconds: true,
-      disableMobile: "true",
+      ...{
+        dateFormat: 'd.m.Y H:i:S',
+        allowInput: true,
+        enableTime: true,
+        enableSeconds: true,
+        disableMobile: "true"
+        // position: "auto",
+        // static: true
+      },
       ...this.props
     };
   }
   formatDate(date) {
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
-    const hour = date.getHours().toString().padStart(2, '0');
-    const minute = date.getMinutes().toString().padStart(2, '0');
-    const second = date.getSeconds().toString().padStart(2, '0');
-    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
+    var month = date.getMonth() + 1 + "",
+      day = date.getDate() + "",
+      year = date.getFullYear() + "",
+      hour = date.getHours() + "",
+      minute = date.getMinutes() + "",
+      second = date.getSeconds() + "";
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    if (hour.length < 2) hour = '0' + hour;
+    if (minute.length < 2) minute = '0' + minute;
+    if (second.length < 2) second = '0' + second;
+    return [day, month, year].join('.') + ' ' + hour + ':' + minute + ':' + second;
   }
   handleInputChange = e => {
     const value = e.target.value;
