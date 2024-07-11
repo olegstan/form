@@ -7,7 +7,7 @@ export default function formDate(Base)
 {
   class FormDate extends Base
   {
-    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false, value, defaultDate} = {}) {
+    renderDateInput({field, text, format = 'DD.MM.YYYY', disabled = false, callback, size, className, style = {}, containerStyle = {}, placeholderStyle = {}, icon = false, value, defaultDate, outsideCallback} = {}) {
       return <Date
         id={this.getPrefix() + field}
         icon={icon}
@@ -69,6 +69,12 @@ export default function formDate(Base)
 
             return prv;
           });
+        }}
+        onOutsideClick={() => {
+          if(typeof outsideCallback === 'function')
+          {
+            outsideCallback();
+          }
         }}
         placeholder={text}
         errors={this.state.formErrors}
@@ -137,6 +143,12 @@ export default function formDate(Base)
 
             return prv;
           });
+        }}
+        onOutsideClick={() => {
+          if(typeof outsideCallback === 'function')
+          {
+            outsideCallback();
+          }
         }}
         placeholder={text}
         errors={this.state.formErrors}

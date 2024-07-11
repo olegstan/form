@@ -17,7 +17,8 @@ export default function formDate(Base) {
       placeholderStyle = {},
       icon = false,
       value,
-      defaultDate
+      defaultDate,
+      outsideCallback
     } = {}) {
       return /*#__PURE__*/React.createElement(Date, {
         id: this.getPrefix() + field,
@@ -79,6 +80,11 @@ export default function formDate(Base) {
             this.clearFormError(prv, field);
             return prv;
           });
+        },
+        onOutsideClick: () => {
+          if (typeof outsideCallback === 'function') {
+            outsideCallback();
+          }
         },
         placeholder: text,
         errors: this.state.formErrors
@@ -157,6 +163,11 @@ export default function formDate(Base) {
             this.clearFormError(prv, field);
             return prv;
           });
+        },
+        onOutsideClick: () => {
+          if (typeof outsideCallback === 'function') {
+            outsideCallback();
+          }
         },
         placeholder: text,
         errors: this.state.formErrors

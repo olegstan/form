@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import {Body, Checkbox as StyleCheckbox} from "./newstyles";
 
 export default class Checkbox extends Component
@@ -10,6 +10,8 @@ export default class Checkbox extends Component
     this.state = {
       value: props.value || ""
     }
+
+    this.inputRef = createRef();
   }
 
   static defaultProps = {
@@ -18,65 +20,45 @@ export default class Checkbox extends Component
     toggleCallback: () => {},
   };
 
+  handleClick = (e) => {
+    e.preventDefault();
+    if (this.inputRef.current) {
+      this.inputRef.current.click();
+    }
+  }
+
   render()
   {
-    let style = {}
-
-    if(this.props.textStyle)
-    {
-      style = {
-        ...this.props.textStyle
-      };
-    }
-
-    let props = {
-
+    const { textStyle, id, checked, checkboxStyle, style, form, text, toggleCallback, name } = this.props;
+    const combinedTextStyle = textStyle ? { ...textStyle } : {};
+    const combinedCheckboxStyle = checkboxStyle ? { ...checkboxStyle } : {
+      backgroundColor: '#4378FF',
+      border: '2px solid #4378FF'
     };
 
-    if(this.props.id)
-    {
-      props.id = this.props.id;
-    }
-
-    if(this.props.checked)
-    {
-      props.checked = true;
-    }else{
-      props.checked = false;
-    }
-
-    let checkboxStyle = {}
-    if(this.props.checkboxStyle)
-    {
-      checkboxStyle = {...this.props.checkboxStyle}
-    }else{
-      checkboxStyle = {
-        backgroundColor: '#4378FF',
-        border: '2px solid #4378FF'
-      }
-    }
-
-    return <StyleCheckbox id={props.id}  style={this.props.style}>
-      <label className='checkbox'>
-        <input
-          className={this.props.checked ? 'active' : ''}
-          onChange={(e) => {
-            this.props.toggleCallback()
-          }}
-          name={this.props.name}
-          type="checkbox"
-          value={this.state.value}
-          {...props}
-        />
-        <span className="rotate-container" style={{
-          borderRadius: this.props.form === 'round' ? '10px' : '6px',
-          display: 'flex',
-          ...checkboxStyle
-        }}>
-          <span className="rotate"/>
-        </span>
-        {!!this.props.text && <Body style={style} className='text' onClick={(e) => {e.preventDefault(); this.props.toggleCallback()}}>{this.props.text}</Body>}
-      </label>
-    </StyleCheckbox>
+    return (
+      <StyleCheckbox id={id} style={style}>
+        <label className='checkbox'>
+          <input
+            ref={this.inputRef}
+            className={checked ? 'active' : ''}
+            onChange={toggleCallback}
+            name={name}
+            type="checkbox"
+            value={this.state.value}
+            id={id}
+            checked={checked}
+          />
+          <span className="rotate-container" style={{
+            borderRadius: form === 'round' ? '10px' : '6px',
+            display: 'flex',
+            ...combinedCheckboxStyle
+          }}>
+            <span className="rotate" />
+          </span>
+          {text && <Body style={combinedTextStyle} className='text' onClick={this.handleClick}>{text}</Body>}
+        </label>
+      </StyleCheckbox>
+    );
   }
 }
