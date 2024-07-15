@@ -43,7 +43,8 @@ export default function formInput(Base) {
       className,
       onKeyPress = () => {},
       onKeyDown = () => {},
-      value
+      value,
+      outsideCallback
     } = {}) {
       let link = this.getLink(field);
       value = value ? value : link === null ? '' : link;
@@ -87,7 +88,11 @@ export default function formInput(Base) {
             return prv;
           });
         },
-        onOutsideClick: () => {},
+        onOutsideClick: () => {
+          if (typeof outsideCallback === 'function') {
+            outsideCallback();
+          }
+        },
         placeholder: text,
         errors: this.state.formErrors
       });
@@ -103,7 +108,8 @@ export default function formInput(Base) {
       placeholderStyle = {},
       className,
       onKeyPress = () => {},
-      onKeyDown = () => {}
+      onKeyDown = () => {},
+      outsideCallback
     } = {}) {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -147,7 +153,11 @@ export default function formInput(Base) {
             return prv;
           });
         },
-        onOutsideClick: () => {},
+        onOutsideClick: () => {
+          if (typeof outsideCallback === 'function') {
+            outsideCallback();
+          }
+        },
         placeholder: text,
         errors: this.state.formErrors
       });

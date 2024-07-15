@@ -126,9 +126,7 @@ export default class BaseInput extends Component {
     }, this.getError())) : '';
   }
   handleClickOutside(e) {
-    //фикс для дат, поскольку контейнер с датой находится вни контейнера и это не должно отрабатывать как клик вне инпута
-    const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr) {
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
       if (this.state.focused === true) {
         this.setState({
           focused: false,

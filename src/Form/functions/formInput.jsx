@@ -31,7 +31,7 @@ export default function formInput(Base)
       />
     }
 
-    renderInput({field, type = 'text', text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {},value} = {})
+    renderInput({field, type = 'text', text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}, value, outsideCallback} = {})
     {
       let link = this.getLink(field);
       value = value ? value : (link === null ? '' : link);
@@ -76,13 +76,18 @@ export default function formInput(Base)
             return prv;
           });
         }}
-        onOutsideClick={() => {}}
+        onOutsideClick={() => {
+          if(typeof outsideCallback === 'function')
+          {
+            outsideCallback();
+          }
+        }}
         placeholder={text}
         errors={this.state.formErrors}
       />
     }
 
-    renderSlimInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}} = {})
+    renderSlimInput({field, text, disabled = false, callback, size, style = {}, containerStyle = {}, placeholderStyle = {}, className, onKeyPress = () => {}, onKeyDown = () => {}, outsideCallback} = {})
     {
       let link = this.getLink(field);
       let value = link === null ? '' : link;
@@ -127,7 +132,12 @@ export default function formInput(Base)
             return prv;
           });
         }}
-        onOutsideClick={() => {}}
+        onOutsideClick={() => {
+          if(typeof outsideCallback === 'function')
+          {
+            outsideCallback();
+          }
+        }}
         placeholder={text}
         errors={this.state.formErrors}
       />

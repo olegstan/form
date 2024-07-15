@@ -37,6 +37,26 @@ export default class DateTime extends BaseInput {
     error: '',
     inputMask: '__.__.____' //маска для формата данных чтобы проверять пустое поле или нет
   };
+  handleClickOutside(e) {
+    // //фикс для дат, поскольку контейнер с датой находится вни контейнера и это не должно отрабатывать как клик вне инпута
+    // const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
+    //
+    // if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr)
+    // {
+    //     if(this.state.focused === true)
+    //     {
+    //         this.setState({
+    //             focused: false,
+    //             hasError: false
+    //         }, () => {
+    //             if(typeof this.props.onOutsideClick === 'function')
+    //             {
+    //                 this.props.onOutsideClick(this.props.value);
+    //             }
+    //         })
+    //     }
+    // }
+  }
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
     // Динамический импорт библиотеки Flatpickr
@@ -155,6 +175,16 @@ export default class DateTime extends BaseInput {
         this.setState({
           focused: true,
           hasError: false
+        });
+      },
+      onClose: (selectedValue, dateStr, instance) => {
+        this.setState({
+          focused: false,
+          hasError: false
+        }, () => {
+          if (typeof this.props.onOutsideClick === 'function') {
+            this.props.onOutsideClick();
+          }
         });
       },
       render: ({
