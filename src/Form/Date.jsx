@@ -115,8 +115,7 @@ export default class DateTime extends BaseInput {
     }
 
     handleDateChange = (date) => {
-        this.setState({ date: date[0] });
-        if (this.props.onChangeDateInner) {
+        if (typeof this.props.onChangeDateInner === 'function') {
             this.props.onChangeDateInner({}, {
                 value: this.formatDate(date[0]),
                 date: date[0]
@@ -189,6 +188,10 @@ export default class DateTime extends BaseInput {
                         fp.calendarContainer.id = this.props.id + '-container';
                     }}
                     onChange={(value, dateStr, instance) => {
+                        console.log(value)
+                        console.log(dateStr)
+                        console.log(instance)
+
                         this.handleDateChange(value);
                     }}
                     onOpen={() => {
