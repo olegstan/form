@@ -282,7 +282,7 @@ class RemoteSearch extends BaseSearch
             {resItems.length ? resItems : (loading || selected ? '' : <Item className={this.props.className}><span>{typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'}</span></Item>)}
           </StyledSelect>
           {this.renderTooltipError()}
-          {loading && <Loader>
+          {loading && <Loader id='loader-for-data'>
             <div onClick={() => {}}>
               <LoadImage/>
             </div>

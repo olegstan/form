@@ -165,7 +165,9 @@ class GroupRemoteSearch extends BaseSearch {
       }));
     }) : loading || selected ? '' : /*#__PURE__*/React.createElement(Item, {
       className: this.props.className
-    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.renderTooltipError(), loading && /*#__PURE__*/React.createElement(Loader, null, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("span", null, typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос'))), this.renderTooltipError(), loading && /*#__PURE__*/React.createElement(Loader, {
+      id: "loader-for-data"
+    }, /*#__PURE__*/React.createElement("div", {
       onClick: () => {}
     }, /*#__PURE__*/React.createElement(LoadImage, null))))));
   }
