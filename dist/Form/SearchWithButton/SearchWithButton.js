@@ -14,30 +14,34 @@ class SearchWithButton extends BaseInput {
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-  componentDidUpdate(nextProps) {
-    const {
-      name
-    } = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      });
-    } else {
-      this.setState({
-        error: null,
-        hasError: false
-      });
-    }
-    for (const index in nextProps) {
-      if (nextProps[index] !== this.props[index]) {
-        if (index === 'search') {
-          this.setState({
-            search: nextProps[index]
-          });
-        }
-      }
-    }
+  componentDidUpdate(prevProps) {
+    // const {name} = this.props;
+    // if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
+    // {
+    //   this.setState({
+    //     error: nextProps.errors[name][0],
+    //     hasError: true
+    //   })
+    // } else
+    // {
+    //   this.setState({
+    //     error: null,
+    //     hasError: false
+    //   })
+    // }
+    //
+    // for (const index in nextProps)
+    // {
+    //   if (nextProps[index] !== this.props[index])
+    //   {
+    //     if (index === 'search')
+    //     {
+    //       this.setState({
+    //         search: nextProps[index]
+    //       });
+    //     }
+    //   }
+    // }
   }
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {

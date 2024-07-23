@@ -48,22 +48,34 @@ export default class BaseSearch extends BaseInput {
       }
     }
   }
-  componentDidUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     const {
       name
     } = this.props;
-    if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
-      this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      });
-    } else {
-      this.setState({
-        error: null,
-        hasError: false
-      });
+    const newState = {
+      ...this.state
+    };
+    let shouldUpdate = false;
+
+    // Обработка ошибок
+    const hasError = this.props.errors && typeof this.props.errors[name] !== 'undefined' && this.props.errors[name].length > 0;
+    const error = hasError ? this.props.errors[name][0] : null;
+    if (hasError !== this.state.hasError || error !== this.state.error) {
+      newState.error = error;
+      newState.hasError = hasError;
+      shouldUpdate = true;
     }
-    this.setSearch(nextProps);
+
+    // Обработка изменения поиска
+    if (this.props.search !== prevProps.search) {
+      newState.search = this.props.search;
+      shouldUpdate = true;
+    }
+
+    // Обновление состояния, если есть изменения
+    if (shouldUpdate) {
+      this.setState(newState);
+    }
   }
   handleClickOutside(e) {
     if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {

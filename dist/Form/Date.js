@@ -85,9 +85,11 @@ export default class DateTime extends BaseInput {
   }
   componentDidUpdate(prevProps) {
     if (this.props.value !== prevProps.value) {
-      this.setState({
-        date: this.props.value
-      });
+      if (this.state.date !== this.props.value) {
+        this.setState({
+          date: this.props.value
+        });
+      }
     }
   }
   formatDate(date) {

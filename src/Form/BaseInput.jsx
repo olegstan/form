@@ -163,20 +163,18 @@ export default class BaseInput extends Component
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
-  componentDidUpdate(nextProps)
+  componentDidUpdate(prevProps)
   {
     const { name } = this.props;
-    if(nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
-    {
+
+    const hasError = this.props.errors && typeof this.props.errors[name] !== 'undefined' && this.props.errors[name].length > 0;
+    const error = hasError ? this.props.errors[name][0] : null;
+
+    if (hasError !== this.state.hasError || error !== this.state.error) {
       this.setState({
-        error: nextProps.errors[name][0],
-        hasError: true
-      })
-    }else{
-      this.setState({
-        error: null,
-        hasError: false
-      })
+        error: error,
+        hasError: hasError
+      });
     }
   }
 
