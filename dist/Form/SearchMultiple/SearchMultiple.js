@@ -29,10 +29,10 @@ class SearchMultiple extends BaseInput {
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps, nextProps) {
     const {
       name
-    } = this.props;
+    } = prevProps;
     if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
       this.setState({
         error: nextProps.errors[name][0],

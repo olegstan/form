@@ -54,7 +54,7 @@ export default class NumberInput extends BaseInput {
 
   componentDidUpdate(prevProps, prevState)
   {
-    const { value } = this.props;
+    const { value } = prevProps;
     const { selectionStart, selectionEnd } = this.state;
     if (prevProps.value !== value && this.state.focused === true)
     {

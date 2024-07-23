@@ -20,9 +20,9 @@ class SearchWithButton extends BaseInput
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps)
+  componentDidUpdate(prevProps, nextProps)
   {
-    const {name} = this.props;
+    const {name} = prevProps;
     if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0)
     {
       this.setState({
