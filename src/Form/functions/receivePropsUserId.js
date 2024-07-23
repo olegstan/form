@@ -4,8 +4,8 @@ export default function receivePropsUserId(Base)
 {
   class ReceivePropsUserId extends Base
   {
-    componentDidUpdate(prevProps, nextProps) {
-      if (prevProps.client === null && nextProps.client) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
+      if (this.props.client === null && nextProps.client) {
         this.setState((prv) => {
           prv.form.user_id = nextProps.client.id;
 
@@ -17,7 +17,7 @@ export default function receivePropsUserId(Base)
 
           return prv;
         })
-      } else if (nextProps.client && prevProps.client && nextProps.client.id !== prevProps.client.id) {
+      } else if (nextProps.client && this.props.client && nextProps.client.id !== this.props.client.id) {
         this.setState((prv) => {
           prv.form.user_id = nextProps.client.id;
 

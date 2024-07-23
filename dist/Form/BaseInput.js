@@ -145,10 +145,10 @@ export default class BaseInput extends Component {
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
-  componentDidUpdate(prevProps, nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       name
-    } = prevProps;
+    } = this.props;
     if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
       this.setState({
         error: nextProps.errors[name][0],

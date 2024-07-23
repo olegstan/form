@@ -14,10 +14,10 @@ class SearchWithButton extends BaseInput {
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-  componentDidUpdate(prevProps, nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {
       name
-    } = prevProps;
+    } = this.props;
     if (nextProps.errors && typeof nextProps.errors[name] !== 'undefined' && nextProps.errors[name].length > 0) {
       this.setState({
         error: nextProps.errors[name][0],

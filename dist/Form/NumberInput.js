@@ -43,7 +43,7 @@ export default class NumberInput extends BaseInput {
   componentDidUpdate(prevProps, prevState) {
     const {
       value
-    } = prevProps;
+    } = this.props;
     const {
       selectionStart,
       selectionEnd
