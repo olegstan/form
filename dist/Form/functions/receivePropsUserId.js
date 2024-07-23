@@ -2,19 +2,19 @@ import React from 'react';
 export default function receivePropsUserId(Base) {
   class ReceivePropsUserId extends Base {
     componentDidUpdate(prevProps) {
-      if (this.props.client === null && nextProps.client) {
+      if (this.props.client === null && prevProps.client) {
         this.setState(prv => {
-          prv.form.user_id = nextProps.client.id;
+          prv.form.user_id = prevProps.client.id;
           return prv;
         });
-      } else if (nextProps.client === null) {
+      } else if (prevProps.client === null) {
         this.setState(prv => {
           prv.form.user_id = '';
           return prv;
         });
-      } else if (nextProps.client && this.props.client && nextProps.client.id !== this.props.client.id) {
+      } else if (prevProps.client && this.props.client && prevProps.client.id !== this.props.client.id) {
         this.setState(prv => {
-          prv.form.user_id = nextProps.client.id;
+          prv.form.user_id = prevProps.client.id;
           return prv;
         });
       }
