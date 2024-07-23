@@ -48,7 +48,7 @@ export default class BaseSearch extends BaseInput {
       }
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     const {
       name
     } = this.props;
