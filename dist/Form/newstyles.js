@@ -528,7 +528,7 @@ export const sharedButtonStyle = css`
   }
   
   &.style3:hover {
-
+    opacity: 0.8;
   }
 
   &.style3:active {
