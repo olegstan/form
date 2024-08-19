@@ -19,7 +19,7 @@ export default class SlimInput extends Input {
         e.stopPropagation();
       }
     }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.setWrapperRef,
+      ref: this.wrapperRef,
       slim: true
     }, /*#__PURE__*/React.createElement(StyledInput, {
       slim: true,

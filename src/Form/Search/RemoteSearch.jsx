@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import {Loader} from '../newstyles'
@@ -20,7 +20,7 @@ class RemoteSearch extends BaseSearch
       search: props.search ? props.search : ''
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -241,7 +241,7 @@ class RemoteSearch extends BaseSearch
       }) : [];
 
     return <Container dataid='remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')}>
-      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
+      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.wrapperRef}>
         <InputContainer>
           <StyledInput
             selected={selected ? JSON.stringify(selected) : ''}

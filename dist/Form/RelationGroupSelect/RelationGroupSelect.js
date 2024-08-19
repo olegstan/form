@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
 import { Money } from "finhelper";
@@ -11,7 +11,7 @@ class RelationGroupSelect extends BaseInput {
       select: false,
       hasError: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleClickOutside(e) {
@@ -80,7 +80,7 @@ class RelationGroupSelect extends BaseInput {
     return /*#__PURE__*/React.createElement(Container, {
       style: focus
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       onClick: () => {

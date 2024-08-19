@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import {connect} from "react-redux";
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
@@ -22,7 +22,7 @@ class AccountGroupSelect extends BaseInput
       showAccountEdit: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -156,7 +156,7 @@ class AccountGroupSelect extends BaseInput
 
     //TODO сделать добавление субсчета
     return <Container size={this.props.size} className={this.props.className} style={this.props.style}>
-      <InputWrapper className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} ref={this.setWrapperRef}>
+      <InputWrapper className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} ref={this.wrapperRef}>
         <Selected id={this.props.id} className='selected' onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>

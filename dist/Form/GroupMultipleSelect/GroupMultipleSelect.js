@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import Checkbox from '../Checkbox';
 import { InputWrapper, Item, Select as StyledSelect, Selected } from './styles';
@@ -11,7 +11,7 @@ class GroupMultipleSelect extends BaseInput {
       select: false,
       hasError: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleClickOutside(e) {
@@ -92,7 +92,7 @@ class GroupMultipleSelect extends BaseInput {
       className: this.props.className + ' multi-select',
       style: this.props.style
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      ref: this.setWrapperRef,
+      ref: this.wrapperRef,
       style: focus
     }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,

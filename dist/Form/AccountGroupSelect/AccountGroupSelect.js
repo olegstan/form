@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { connect } from "react-redux";
 import { Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
@@ -16,7 +16,7 @@ class AccountGroupSelect extends BaseInput {
       showAccountCreate: false,
       showAccountEdit: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   static defaultProps = {
@@ -131,7 +131,7 @@ class AccountGroupSelect extends BaseInput {
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select ? 'select' : ''),
       style: focus,
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       className: "selected",

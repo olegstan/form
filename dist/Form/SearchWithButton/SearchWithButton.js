@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { Container, Input as StyledInput, InputWrapper, Item, Select as StyledSelect } from './styles';
 class SearchWithButton extends BaseInput {
@@ -11,7 +11,7 @@ class SearchWithButton extends BaseInput {
       hasError: false,
       search: props.search ? props.search : ''
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   componentDidUpdate(prevProps) {
@@ -107,7 +107,7 @@ class SearchWithButton extends BaseInput {
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select && resItems.length ? 'select' : ''),
       style: style,
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(StyledInput, {
       id: this.props.id,
       autoComplete: 'off',

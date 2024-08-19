@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import Checkbox from '../Checkbox';
 import {InputWrapper, Select as StyledSelect, Selected} from './styles'
@@ -16,7 +16,7 @@ class MultipleSelect extends BaseInput
       hasError: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -119,7 +119,7 @@ class MultipleSelect extends BaseInput
       style={this.getContainerStyle()}
       className={this.props.className + ' ' + (this.state.select ? 'select' : '')}
     >
-      <InputWrapper ref={this.setWrapperRef} className={'wrapper '  + (this.state.select ? 'select' : '')}>
+      <InputWrapper ref={this.wrapperRef} className={'wrapper '  + (this.state.select ? 'select' : '')}>
         <Selected id={this.props.id} className={this.props.className + ' selected'} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>

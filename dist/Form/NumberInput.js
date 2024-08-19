@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, StyledInput } from './newstyles';
 import { Money } from "finhelper";
@@ -14,7 +14,7 @@ export default class NumberInput extends BaseInput {
       selectionStart: 0,
       selectionEnd: 0
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.setInputRef = this.setInputRef.bind(this);
   }
@@ -137,7 +137,7 @@ export default class NumberInput extends BaseInput {
         e.stopPropagation();
       }
     }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(StyledInput, {
       browser: browser && browser.name,
       ref: this.setInputRef,

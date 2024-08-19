@@ -1,13 +1,15 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-import React from 'react';
+import React, { createRef } from 'react';
 import { InputContainer, MaskedStyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
-import calendarSvg from "./../assets/calendar.svg";
-import Date from "./Date";
+import calendarSvg from './../assets/calendar.svg';
+import Date from './Date';
 export default class DateTime extends Date {
-  /**
-   *
-   */
+  constructor(props) {
+    super(props);
+    this.wrapperRef = /*#__PURE__*/createRef(); // Create ref for wrapper
+    this.inputRef = /*#__PURE__*/createRef(); // Create ref for input
+  }
   static defaultProps = {
     onKeyPress: () => {},
     onChangeDateInner: () => {},
@@ -19,35 +21,26 @@ export default class DateTime extends Date {
     className: '',
     wrapperClassName: '',
     error: '',
-    inputMask: '__.__.____ __:__:__' //маска для формата данных чтобы проверять пустое поле или нет
+    inputMask: '__.__.____ __:__:__' // mask for the data format to check if the field is empty
   };
   getOptions() {
     return {
-      ...{
-        dateFormat: 'd.m.Y H:i:S',
-        allowInput: true,
-        enableTime: true,
-        enableSeconds: true,
-        disableMobile: "true"
-        // position: "auto",
-        // static: true
-      },
+      dateFormat: 'd.m.Y H:i:S',
+      allowInput: true,
+      enableTime: true,
+      enableSeconds: true,
+      disableMobile: 'true',
       ...this.props
     };
   }
   formatDate(date) {
-    var month = date.getMonth() + 1 + "",
-      day = date.getDate() + "",
-      year = date.getFullYear() + "",
-      hour = date.getHours() + "",
-      minute = date.getMinutes() + "",
-      second = date.getSeconds() + "";
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    if (hour.length < 2) hour = '0' + hour;
-    if (minute.length < 2) minute = '0' + minute;
-    if (second.length < 2) second = '0' + second;
-    return [day, month, year].join('.') + ' ' + hour + ':' + minute + ':' + second;
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+    let year = date.getFullYear().toString();
+    let hour = date.getHours().toString().padStart(2, '0');
+    let minute = date.getMinutes().toString().padStart(2, '0');
+    let second = date.getSeconds().toString().padStart(2, '0');
+    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
   }
   handleInputChange = e => {
     const value = e.target.value;
@@ -73,13 +66,12 @@ export default class DateTime extends Date {
     } = this.state;
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
-      className: this.props.className + (this.props.disabled ? ' disabled' : ''),
-      disabled: this.props.disabled,
-      onClick: e => {}
+      className: `${this.props.className} ${this.props.disabled ? 'disabled' : ''}`,
+      disabled: this.props.disabled
     }, /*#__PURE__*/React.createElement(InputContainer, {
       needMargin: true,
       focus: this.state.focused,
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, this.props.disabled ? this.renderInput() : /*#__PURE__*/React.createElement(Input, {
       style: this.props.style,
       id: this.props.id,
@@ -130,7 +122,7 @@ export default class DateTime extends Date {
             });
           }
         }, inputProps => /*#__PURE__*/React.createElement("input", _extends({
-          ref: ref
+          ref: this.inputRef
         }, inputProps)));
       }
     }), this.renderPlaceholder(), this.props.icon !== false && /*#__PURE__*/React.createElement("img", {

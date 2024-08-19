@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
 import {Container} from './styles/containerStyle'
@@ -15,7 +15,7 @@ export default class Input extends BaseInput {
       hasError: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -56,7 +56,7 @@ export default class Input extends BaseInput {
         e.stopPropagation();
       }}
     >
-      <InputContainer ref={this.setWrapperRef}>
+      <InputContainer ref={this.wrapperRef}>
         {this.renderInput()}
         {this.renderPlaceholder()}
         {!empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {

@@ -24,7 +24,7 @@ export default class SlimInput extends Input {
         e.stopPropagation();
       }}
     >
-      <InputContainer ref={this.setWrapperRef} slim>
+      <InputContainer ref={this.wrapperRef} slim>
         <StyledInput
           slim
           browser={browser && browser.name}

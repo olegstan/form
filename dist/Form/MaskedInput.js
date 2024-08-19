@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput } from './newstyles';
 import { detect } from 'detect-browser';
@@ -11,7 +11,7 @@ export default class MaskedInput extends BaseInput {
       focused: false,
       hasError: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -47,7 +47,7 @@ export default class MaskedInput extends BaseInput {
         e.stopPropagation();
       }
     }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(MaskedStyledInput, {
       browser: browser && browser.name,
       id: this.props.id,

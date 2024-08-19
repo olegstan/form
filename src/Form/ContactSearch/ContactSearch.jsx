@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect, Add} from './../Search/newstyles'
 import Search from "../Search/Search";
 
@@ -20,7 +20,7 @@ class ContactSearch extends Search
     };
 
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -105,7 +105,7 @@ class ContactSearch extends Search
           e.stopPropagation();
         }}
       >
-        <InputContainer style={this.getInputContainerStyle()} ref={this.setWrapperRef}>
+        <InputContainer style={this.getInputContainerStyle()} ref={this.wrapperRef}>
           <StyledInput
             selected={selected}
             id={this.props.id}

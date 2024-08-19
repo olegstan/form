@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import {Container, Input as StyledInput, InputWrapper, Item, Select as StyledSelect} from './styles'
 
@@ -16,7 +16,7 @@ class SearchWithButton extends BaseInput
       search: props.search ? props.search : ''
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -129,7 +129,7 @@ class SearchWithButton extends BaseInput
     style.border = focus;
 
     return <Container className={this.props.className}>
-      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '')} style={style} ref={this.setWrapperRef}>
+      <InputWrapper className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '')} style={style} ref={this.wrapperRef}>
         <StyledInput
           id={this.props.id}
           autoComplete={'off'}

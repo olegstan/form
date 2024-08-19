@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 
@@ -19,7 +19,7 @@ class Search extends BaseSearch
       selected: null
     };
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -280,7 +280,7 @@ class Search extends BaseSearch
           e.stopPropagation();
         }}
       >
-        <InputContainer style={this.getInputContainerStyle()} ref={this.setWrapperRef}>
+        <InputContainer style={this.getInputContainerStyle()} ref={this.wrapperRef}>
           <StyledInput
             selected={selected}
             id={this.props.id}

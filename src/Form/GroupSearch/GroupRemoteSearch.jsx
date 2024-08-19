@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseSearch from '../BaseSearch';
 import {
   Container,
@@ -26,7 +26,7 @@ class GroupRemoteSearch extends BaseSearch
       search: props.search ? props.search : ''
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   
@@ -123,7 +123,7 @@ class GroupRemoteSearch extends BaseSearch
       })
 
     return <Container dataid='group-remote-search' style={this.getContainerStyle()} className={this.props.className + (this.props.disabled ? ' disabled' : '')} size={size}>
-      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.setWrapperRef}>
+      <InputWrapper className={this.getWrapperClasses(resItems)} ref={this.wrapperRef}>
         <InputContainer>
           <StyledInput
             selected={selected ? JSON.stringify(selected) : ''}

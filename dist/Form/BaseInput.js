@@ -15,9 +15,6 @@ export default class BaseInput extends Component {
   //   return this.props.selected;
   // }
 
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
   getPlaceholderClassName() {
     let bool = false;
     if (this.state.focused) {

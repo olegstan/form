@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
 import {InputContainer, StyledInput} from './newstyles'
 import {Container} from './styles/containerStyle'
@@ -16,7 +16,7 @@ export default class FileInput extends BaseInput {
       hasError: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -99,7 +99,7 @@ export default class FileInput extends BaseInput {
         e.stopPropagation();
       }}
     >
-      <InputContainer ref={this.setWrapperRef}>
+      <InputContainer ref={this.wrapperRef}>
         <StyledInput
           browser={browser && browser.name}
           id={this.props.id}

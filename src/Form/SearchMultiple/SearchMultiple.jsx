@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import {Container, InputWrapper, TagText} from './newstyles'
 import Select from 'react-select';
@@ -33,7 +33,7 @@ class SearchMultiple extends BaseInput
       search: props.search ? props.search : ''
     };
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -239,7 +239,7 @@ class SearchMultiple extends BaseInput
         className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
         style={{...style, ...{zIndex: this.state.focused ? '1000' : 'auto'}}}
         size={size}
-        ref={this.setWrapperRef}
+        ref={this.wrapperRef}
         onClick={(e) => {
           e.stopPropagation();
         }}>

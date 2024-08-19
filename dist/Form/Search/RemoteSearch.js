@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseSearch from '../BaseSearch';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './newstyles';
 import { Loader } from '../newstyles';
@@ -14,7 +14,7 @@ class RemoteSearch extends BaseSearch {
       hasError: false,
       search: props.search ? props.search : ''
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleArrows() {
@@ -199,7 +199,7 @@ class RemoteSearch extends BaseSearch {
       className: this.props.className + (this.props.disabled ? ' disabled' : '')
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: this.getWrapperClasses(resItems),
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(InputContainer, null, /*#__PURE__*/React.createElement(StyledInput, {
       selected: selected ? JSON.stringify(selected) : '',
       id: this.props.id,

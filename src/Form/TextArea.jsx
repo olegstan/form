@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
 import {ContainerTextArea, TextArea as StyledTextArea, WrapperTextArea} from './newstyles'
 import {detect} from 'detect-browser'
@@ -13,7 +13,7 @@ export default class TextArea extends BaseInput
       hasError: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -50,7 +50,7 @@ export default class TextArea extends BaseInput
         style={this.getContainerStyle()}
       >
         <WrapperTextArea
-          ref={this.setWrapperRef}
+          ref={this.wrapperRef}
           style={this.getWrapperStyle()}
           className={this.props.className + ' ' + this.getWrapperClasses()}
         >

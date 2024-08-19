@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import {InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
 import {Container} from '../styles/selectContainerStyle'
@@ -15,7 +15,7 @@ class GroupSelect extends BaseInput
       hasError: false
     };
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -117,7 +117,7 @@ class GroupSelect extends BaseInput
 
 
     return <Container size={this.props.size} style={style} className={this.props.className}>
-      <InputWrapper size={this.props.size} ref={this.setWrapperRef} className={'wrapper ' + (this.state.select ? 'select' : '')}>
+      <InputWrapper size={this.props.size} ref={this.wrapperRef} className={'wrapper ' + (this.state.select ? 'select' : '')}>
         <Selected id={this.props.id} className='selected' onClick={() =>
         {
           this.handleShowSelect(true);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { InputWrapper, Item, Select as StyledSelect, Selected } from './newstyles';
 import { Container } from '../styles/selectContainerStyle';
@@ -14,7 +14,7 @@ class Select extends BaseInput {
       select: false,
       hasError: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleClickOutside(e) {
@@ -85,7 +85,7 @@ class Select extends BaseInput {
       className: this.props.className + ' ' + (this.state.select ? 'select' : ''),
       style: this.getContainerStyle()
     }, /*#__PURE__*/React.createElement(InputWrapper, {
-      ref: this.setWrapperRef,
+      ref: this.wrapperRef,
       className: 'wrapper ' + (this.state.select ? 'select' : ''),
       style: focus,
       id: this.props.id + '-wrapper'

@@ -15,7 +15,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect
     const { module: Component } = this.state;
 
     return <Container size={this.props.size} className={this.props.className} style={this.props.style}>
-      <InputWrapper className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} ref={this.setWrapperRef}>
+      <InputWrapper className={'wrapper ' + (this.state.select ? 'select' : '')} style={focus} ref={this.wrapperRef}>
         <Selected id={this.props.id} className='selected' onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>

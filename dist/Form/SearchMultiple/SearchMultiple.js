@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { Container, InputWrapper, TagText } from './newstyles';
 import Select from 'react-select';
@@ -26,7 +26,7 @@ class SearchMultiple extends BaseInput {
       hasError: false,
       search: props.search ? props.search : ''
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   componentDidUpdate(prevProps) {
@@ -223,7 +223,7 @@ class SearchMultiple extends BaseInput {
         }
       },
       size: size,
-      ref: this.setWrapperRef,
+      ref: this.wrapperRef,
       onClick: e => {
         e.stopPropagation();
       }

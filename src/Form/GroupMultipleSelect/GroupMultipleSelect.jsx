@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import Checkbox from '../Checkbox';
 import {InputWrapper, Item, Select as StyledSelect, Selected} from './styles'
@@ -16,7 +16,7 @@ class GroupMultipleSelect extends BaseInput
       hasError: false
     }
 
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
@@ -106,7 +106,7 @@ class GroupMultipleSelect extends BaseInput
     let focus = (this.state.hasError ? {'border': '1px solid #FF0000'} : {})
 
     return <Container className={this.props.className + ' multi-select'} style={this.props.style}>
-      <InputWrapper ref={this.setWrapperRef} style={focus}>
+      <InputWrapper ref={this.wrapperRef} style={focus}>
         <Selected id={this.props.id} onClick={() => {
           this.handleShowSelect(true);
         }}><span>{this.renderSelected()}</span></Selected>

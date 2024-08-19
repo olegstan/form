@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from '../BaseInput';
 import { InputWrapper, Item, Select as StyledSelect, Selected, SubItem } from './styles';
 import { Container } from '../styles/selectContainerStyle';
@@ -10,7 +10,7 @@ class GroupSelect extends BaseInput {
       select: false,
       hasError: false
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleClickOutside(e) {
@@ -87,7 +87,7 @@ class GroupSelect extends BaseInput {
       className: this.props.className
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       size: this.props.size,
-      ref: this.setWrapperRef,
+      ref: this.wrapperRef,
       className: 'wrapper ' + (this.state.select ? 'select' : '')
     }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,

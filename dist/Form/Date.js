@@ -3,9 +3,9 @@ import React from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
-import { Url } from "finhelper";
-import styled from "styled-components";
-import calendarSvg from "./../assets/calendar.svg";
+import { Url } from 'finhelper';
+import styled from 'styled-components';
+import calendarSvg from './../assets/calendar.svg';
 export default class DateTime extends BaseInput {
   constructor(props) {
     super(props);
@@ -17,13 +17,9 @@ export default class DateTime extends BaseInput {
       componentsLoaded: false,
       date: props.value ? props.value : null
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.wrapperRef = /*#__PURE__*/React.createRef(); // Use ref API instead of findDOMNode
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-
-  /**
-   *
-   */
   static defaultProps = {
     onKeyPress: () => {},
     onChangeDateInner: () => {},
@@ -38,24 +34,19 @@ export default class DateTime extends BaseInput {
     inputMask: '__.__.____' //маска для формата данных чтобы проверять пустое поле или нет
   };
   handleClickOutside(e) {
-    // //фикс для дат, поскольку контейнер с датой находится вни контейнера и это не должно отрабатывать как клик вне инпута
-    // const isInsideFlatpickr = event.target.closest('.flatpickr-calendar');
-    //
-    // if (this.wrapperRef && !this.wrapperRef.contains(e.target) && !isInsideFlatpickr)
-    // {
-    //     if(this.state.focused === true)
-    //     {
-    //         this.setState({
-    //             focused: false,
-    //             hasError: false
-    //         }, () => {
-    //             if(typeof this.props.onOutsideClick === 'function')
-    //             {
-    //                 this.props.onOutsideClick(this.props.value);
-    //             }
-    //         })
-    //     }
-    // }
+    const isInsideFlatpickr = e.target.closest('.flatpickr-calendar');
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
+      if (this.state.focused === true) {
+        this.setState({
+          focused: false,
+          hasError: false
+        }, () => {
+          if (typeof this.props.onOutsideClick === 'function') {
+            this.props.onOutsideClick(this.props.value);
+          }
+        });
+      }
+    }
   }
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
@@ -72,8 +63,6 @@ export default class DateTime extends BaseInput {
           console.error(e);
         }
       }
-
-      // Определение компонента с применением стилей
       const DateStyledInput = styled(Flatpickr.default)`
               ${sharedInputStyle}
             `;
@@ -127,13 +116,9 @@ export default class DateTime extends BaseInput {
   };
   getOptions() {
     let options = {
-      ...{
-        dateFormat: 'd.m.Y',
-        allowInput: true,
-        // position: "auto",
-        disableMobile: "true"
-        // static: true
-      },
+      dateFormat: 'd.m.Y',
+      allowInput: true,
+      disableMobile: 'true',
       ...this.props
     };
     if (this.props.defaultDate) {
@@ -148,13 +133,12 @@ export default class DateTime extends BaseInput {
     } = this.state;
     return componentsLoaded ? /*#__PURE__*/React.createElement(Container, {
       style: this.getContainerStyle(),
-      className: this.props.className + (this.props.disabled ? ' disabled' : ''),
-      disabled: this.props.disabled,
-      onClick: e => {}
+      className: `${this.props.className} ${this.props.disabled ? 'disabled' : ''}`,
+      disabled: this.props.disabled
     }, /*#__PURE__*/React.createElement(InputContainer, {
       needMargin: true,
       focus: this.state.focused,
-      ref: this.setWrapperRef
+      ref: this.wrapperRef // Attach ref directly to the container
     }, this.props.disabled ? this.renderInput() : /*#__PURE__*/React.createElement(Input, {
       id: this.props.id,
       style: this.props.style,
@@ -165,7 +149,7 @@ export default class DateTime extends BaseInput {
       options: this.getOptions(),
       className: this.props.className,
       onReady: (_, __, fp) => {
-        fp.calendarContainer.id = this.props.id + '-container';
+        fp.calendarContainer.id = `${this.props.id}-container`;
       },
       onChange: (value, dateStr, instance) => {
         console.log(value);

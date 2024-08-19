@@ -25,7 +25,7 @@ class SlimAccountGroupSelect extends AccountGroupSelect {
     }, /*#__PURE__*/React.createElement(InputWrapper, {
       className: 'wrapper ' + (this.state.select ? 'select' : ''),
       style: focus,
-      ref: this.setWrapperRef
+      ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(Selected, {
       id: this.props.id,
       className: "selected",
