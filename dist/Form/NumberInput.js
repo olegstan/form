@@ -16,13 +16,7 @@ export default class NumberInput extends BaseInput {
     };
     this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.setInputRef = this.setInputRef.bind(this);
-  }
-  setInputRef(node) {
-    if (node) {
-      // node.focus();
-    }
-    this.inputRef = node;
+    this.inputRef = /*#__PURE__*/createRef();
   }
 
   /**
@@ -48,9 +42,9 @@ export default class NumberInput extends BaseInput {
       selectionStart,
       selectionEnd
     } = this.state;
-    if (prevProps.value !== value && this.state.focused === true) {
-      this.inputRef.selectionStart = selectionStart;
-      this.inputRef.selectionEnd = selectionEnd;
+    if (prevProps.value !== value && this.state.focused === true && this.inputRef.current) {
+      this.inputRef.current.selectionStart = selectionStart;
+      this.inputRef.current.selectionEnd = selectionEnd;
     }
   }
   handleChange(e) {
@@ -140,7 +134,7 @@ export default class NumberInput extends BaseInput {
       ref: this.wrapperRef
     }, /*#__PURE__*/React.createElement(StyledInput, {
       browser: browser && browser.name,
-      ref: this.setInputRef,
+      ref: this.inputRef,
       id: this.props.id,
       size: this.props.size,
       autoComplete: 'off',

@@ -4,13 +4,8 @@ import { Container } from './styles/containerStyle';
 import calendarSvg from './../assets/calendar.svg';
 import Date from './Date';
 
-export default class DateTime extends Date {
-  constructor(props) {
-    super(props);
-    this.wrapperRef = createRef(); // Create ref for wrapper
-    this.inputRef = createRef(); // Create ref for input
-  }
-
+export default class DateTime extends Date
+{
   static defaultProps = {
     onKeyPress: () => {},
     onChangeDateInner: () => {},
@@ -81,6 +76,7 @@ export default class DateTime extends Date {
               value={this.state.date}
               className={this.props.className}
               onReady={(_, __, fp) => {
+                this.flatpickrInstance = fp;
                 fp.calendarContainer.id = this.props.id + '-container';
               }}
               onChange={(value) => {
@@ -116,7 +112,7 @@ export default class DateTime extends Date {
                       });
                     }}
                   >
-                    {(inputProps) => <input ref={this.inputRef} {...inputProps} />}
+                    {(inputProps) => <input ref={ref} {...inputProps} />}
                   </MaskedStyledInput>
                 );
               }}

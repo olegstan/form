@@ -1,4 +1,4 @@
-import React, {createRef} from 'react';
+import React, { createRef } from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
@@ -15,11 +15,13 @@ export default class DateTime extends BaseInput {
             hasError: false,
             Input: null,
             componentsLoaded: false,
-            date: props.value ? props.value : null
+            date: props.value || null
         };
 
         this.wrapperRef = createRef(); // Use ref API instead of findDOMNode
+        this.inputRef = createRef(); // Create ref for input
         this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.flatpickrInstance = null; // Track the flatpickr instance
     }
 
     static defaultProps = {
@@ -33,18 +35,15 @@ export default class DateTime extends BaseInput {
         className: '',
         wrapperClassName: '',
         error: '',
-        inputMask: '__.__.____' //маска для формата данных чтобы проверять пустое поле или нет
+        inputMask: '__.__.____'
     };
 
     handleClickOutside(e) {
         const isInsideFlatpickr = e.target.closest('.flatpickr-calendar');
 
         if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
-            if (this.state.focused === true) {
-                this.setState({
-                    focused: false,
-                    hasError: false
-                }, () => {
+            if (this.state.focused) {
+                this.setState({ focused: false, hasError: false }, () => {
                     if (typeof this.props.onOutsideClick === 'function') {
                         this.props.onOutsideClick(this.props.value);
                     }
@@ -55,16 +54,15 @@ export default class DateTime extends BaseInput {
 
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
-        // Динамический импорт библиотеки Flatpickr
+        // Dynamic import of Flatpickr library
         Promise.all([
             import('flatpickr'),
             import('react-flatpickr'),
             import('flatpickr/dist/l10n/ru.js'),
             import('flatpickr/dist/flatpickr.css'),
         ]).then(([flatpickr, Flatpickr, { Russian }]) => {
-
-            let url = Url.getCurrentUrl();
-            let lang = localStorage.getItem('language_id');
+            const url = Url.getCurrentUrl();
+            const lang = localStorage.getItem('language_id');
 
             if (url.includes('/ru/') || parseInt(lang) === 1 || lang === null) {
                 try {
@@ -75,12 +73,9 @@ export default class DateTime extends BaseInput {
             }
 
             const DateStyledInput = styled(Flatpickr.default)`
-              ${sharedInputStyle}
+                ${sharedInputStyle}
             `;
-            this.setState({
-                componentsLoaded: true,
-                Input: DateStyledInput
-            });
+            this.setState({ componentsLoaded: true, Input: DateStyledInput });
         });
     }
 
@@ -92,15 +87,18 @@ export default class DateTime extends BaseInput {
         }
     }
 
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClickOutside);
+        if (this.flatpickrInstance) {
+            this.flatpickrInstance.destroy();
+        }
+    }
+
     formatDate(date) {
-        var month = '' + (date.getMonth() + 1),
-          day = '' + date.getDate(),
-          year = date.getFullYear();
-
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-
-        return [day, month, year].join('.');
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
     }
 
     handleDateChange = (date) => {
@@ -118,15 +116,9 @@ export default class DateTime extends BaseInput {
         this.setState({ date: value });
 
         if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {
-            this.props.onChangeDateInner({}, {
-                date: value,
-                value: value
-            });
+            this.props.onChangeDateInner({}, { date: value, value: value });
         } else {
-            this.props.onChangeDateInner({}, {
-                date: null,
-                value: value
-            });
+            this.props.onChangeDateInner({}, { date: null, value: value });
         }
     };
 
@@ -166,60 +158,37 @@ export default class DateTime extends BaseInput {
                       disabled={this.props.disabled}
                       value={this.state.date}
                       placeholder={this.props.placeholder}
-                      autoComplete={this.props.autoComplete ? this.props.autoComplete : 'off'}
+                      autoComplete={this.props.autoComplete || 'off'}
                       options={this.getOptions()}
                       className={this.props.className}
                       onReady={(_, __, fp) => {
+                          this.flatpickrInstance = fp; // Save the flatpickr instance
                           fp.calendarContainer.id = `${this.props.id}-container`;
                       }}
-                      onChange={(value, dateStr, instance) => {
-                          console.log(value);
-                          console.log(dateStr);
-                          console.log(instance);
-
-                          this.handleDateChange(value);
-                      }}
-                      onOpen={() => {
-                          this.setState({
-                              focused: true,
-                              hasError: false
-                          });
-                      }}
-                      onClose={(selectedValue, dateStr, instance) => {
-                          this.setState({ focused: false, hasError: false }, () => {
-                              if (typeof this.props.onOutsideClick === 'function') {
-                                  this.props.onOutsideClick();
-                              }
-                          });
-                      }}
-                      render={({ id, ...props }, ref) => {
-                          return (
-                            <MaskedStyledInput
-                              autoComplete={'off'}
-                              mask="99.99.9999"
-                              id={id}
-                              value={props.value}
-                              onChange={this.handleInputChange}
-                              style={props.style}
-                              className={props.className}
-                              onFocus={() => {
-                                  this.setState({
-                                      focused: true,
-                                      hasError: false
-                                  });
-                              }}
-                            >
-                                {(inputProps) => <input ref={ref} {...inputProps} />}
-                            </MaskedStyledInput>
-                          );
-                      }}
+                      onChange={this.handleDateChange}
+                      onOpen={() => this.setState({ focused: true, hasError: false })}
+                      onClose={() => this.setState({ focused: false, hasError: false })}
+                      render={({ id, ...props }, ref) => (
+                        <MaskedStyledInput
+                          autoComplete="off"
+                          mask="99.99.9999"
+                          id={id}
+                          value={props.value}
+                          onChange={this.handleInputChange}
+                          style={props.style}
+                          className={props.className}
+                          onFocus={() => this.setState({ focused: true, hasError: false })}
+                        >
+                            {(inputProps) => <input ref={ref} {...inputProps} />}
+                        </MaskedStyledInput>
+                      )}
                     />
                   )}
                   {this.renderPlaceholder()}
-                  {this.props.icon !== false && <img className='calendar' src={calendarSvg} alt='' />}
+                  {this.props.icon !== false && <img className="calendar" src={calendarSvg} alt="" />}
                   {this.renderTooltipError()}
               </InputContainer>
           </Container>
-        ) : '';
+        ) : null;
     }
 }
