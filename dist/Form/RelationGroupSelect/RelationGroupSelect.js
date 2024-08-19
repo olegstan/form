@@ -15,7 +15,7 @@ class RelationGroupSelect extends BaseInput {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target)) {
       this.handleShowSelect(false);
     }
   }

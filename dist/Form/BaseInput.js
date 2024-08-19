@@ -123,7 +123,7 @@ export default class BaseInput extends Component {
     }, this.getError())) : '';
   }
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target)) {
       if (this.state.focused === true) {
         this.setState({
           focused: false,

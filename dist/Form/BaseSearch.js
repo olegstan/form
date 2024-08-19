@@ -38,7 +38,7 @@ export default class BaseSearch extends BaseInput {
     return inputContainerStyle;
   }
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target)) {
       if (this.state.focused === true) {
         this.setState({
           select: false,
@@ -78,7 +78,7 @@ export default class BaseSearch extends BaseInput {
     }
   }
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target)) {
       if (this.state.focused === true) {
         this.setState({
           select: false,

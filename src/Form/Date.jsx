@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
@@ -18,7 +18,7 @@ export default class DateTime extends BaseInput {
             date: props.value ? props.value : null
         };
 
-        this.wrapperRef = React.createRef(); // Use ref API instead of findDOMNode
+        this.wrapperRef = createRef(); // Use ref API instead of findDOMNode
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 

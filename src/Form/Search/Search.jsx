@@ -31,7 +31,7 @@ class Search extends BaseSearch
 
   handleClickOutside(e)
   {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target))
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target))
     {
       if(typeof this.props.onOutsideClick === 'function' && this.state.focused === true)
       {

@@ -22,7 +22,7 @@ class Search extends BaseSearch {
     selectStyle: {}
   };
   handleClickOutside(e) {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(e.target)) {
       if (typeof this.props.onOutsideClick === 'function' && this.state.focused === true) {
         this.props.onOutsideClick(this.state.search, this.state.selected);
       }

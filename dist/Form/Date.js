@@ -1,5 +1,5 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-import React from 'react';
+import React, { createRef } from 'react';
 import BaseInput from './BaseInput';
 import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
 import { Container } from './styles/containerStyle';
@@ -17,7 +17,7 @@ export default class DateTime extends BaseInput {
       componentsLoaded: false,
       date: props.value ? props.value : null
     };
-    this.wrapperRef = /*#__PURE__*/React.createRef(); // Use ref API instead of findDOMNode
+    this.wrapperRef = /*#__PURE__*/createRef(); // Use ref API instead of findDOMNode
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
   static defaultProps = {
