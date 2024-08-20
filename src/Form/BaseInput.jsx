@@ -89,6 +89,10 @@ export default class BaseInput extends Component
 
   hasError()
   {
+    console.log('getError')
+    console.log(this.props)
+    console.log(this.state)
+
     const { name } = this.props;
     if(this.props.errors && typeof this.props.errors[name] !== 'undefined' && this.props.errors[name].length > 0)
     {

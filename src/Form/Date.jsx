@@ -80,10 +80,25 @@ export default class DateTime extends BaseInput {
     }
 
     componentDidUpdate(prevProps) {
+        const updates = {};
+
         if (this.props.value !== prevProps.value) {
             if (this.state.date !== this.props.value) {
-                this.setState({ date: this.props.value });
+                updates.date = this.props.value;
             }
+        }
+
+        const { name } = this.props;
+        const hasError = this.props.errors && typeof this.props.errors[name] !== 'undefined' && this.props.errors[name].length > 0;
+        const error = hasError ? this.props.errors[name][0] : null;
+
+        if (hasError !== this.state.hasError || error !== this.state.error) {
+            updates.error = error;
+            updates.hasError = hasError;
+        }
+
+        if (Object.keys(updates).length > 0) {
+            this.setState(updates);
         }
     }
 

@@ -66,6 +66,9 @@ export default class BaseInput extends Component {
     return inputStyle;
   }
   hasError() {
+    console.log('getError');
+    console.log(this.props);
+    console.log(this.state);
     const {
       name
     } = this.props;

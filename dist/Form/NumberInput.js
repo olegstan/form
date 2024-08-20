@@ -46,6 +46,7 @@ export default class NumberInput extends BaseInput {
       this.inputRef.current.selectionStart = selectionStart;
       this.inputRef.current.selectionEnd = selectionEnd;
     }
+    super.componentDidUpdate(prevProps, prevState);
   }
   handleChange(e) {
     let pattern = /^[0-9\.\,\ \-]+$/;
