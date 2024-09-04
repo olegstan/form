@@ -1,4 +1,5 @@
-import React from 'react';
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+import React, { forwardRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import InputMask from "react-input-mask";
 import { NavLink } from 'react-router-dom';
@@ -857,21 +858,6 @@ export const sharedInputStyle = css`
   }
   
   ${placeholderActiveStyle}
-  
-  ${props => props.size === 'undersized' && `
-
-    width: 100%;
-    max-width: 220px;
-    height: 21px;
-    font-size: 12px;
-    line-height: 21px;
-    padding: 2px 5px;
-    
-    :disabled{
-      height: 30px;
-      border-radius: 4px;
-    }
-  `}
 
   ${props => props.slim && `
       padding: 14px 12px 8px 11px;
@@ -909,7 +895,9 @@ export const InputContainer = styled.div`
 export const StyledInput = styled.input`
   ${sharedInputStyle}
 `;
-export const MaskedStyledInput = styled(InputMask)`
+export const MaskedStyledInput = styled( /*#__PURE__*/forwardRef((props, ref) => /*#__PURE__*/React.createElement(InputMask, _extends({}, props, {
+  ref: ref
+}))))`
   ${sharedInputStyle}
 `;
 export const Button = styled.button`

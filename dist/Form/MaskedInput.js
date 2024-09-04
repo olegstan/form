@@ -11,13 +11,11 @@ export default class MaskedInput extends BaseInput {
       focused: false,
       hasError: false
     };
+
+    // Create a ref for the wrapper element
     this.wrapperRef = /*#__PURE__*/createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
-
-  /**
-   *
-   */
   static defaultProps = {
     onKeyPress: () => {},
     onChange: () => {},
@@ -36,6 +34,8 @@ export default class MaskedInput extends BaseInput {
     } = this.props;
     const browser = detect();
     let empty = true;
+
+    // Determine if the input is empty based on the value
     if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
       empty = false;
     }
@@ -80,12 +80,10 @@ export default class MaskedInput extends BaseInput {
         });
       },
       onBlur: () => {
-        // this.setState({
-        //   focused: false,
-        //   hasError: false
-        // }, () => {
-        //   this.onBlur();
-        // });
+        this.setState({
+          focused: false,
+          hasError: false
+        });
       }
     }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
       className: "close",
