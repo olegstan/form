@@ -1,6 +1,6 @@
 {
   "name": "finform",
-  "version": "1.4.40",
+  "version": "1.4.41",
   "description": "",
   "main": "dist/index.js",
   "repository": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/olegstan/form#readme",
   "dependencies": {
+    "exact-math": "^2.2.3",
     "moment": "^2.29.1",
     "react-flatpickr": "^3.10.7",
     "react-input-mask": "^2.0.4"
