@@ -1,5 +1,5 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-import React, { createRef } from 'react';
+import React from 'react';
 import { InputContainer, MaskedStyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
 import calendarSvg from './../assets/calendar.svg';

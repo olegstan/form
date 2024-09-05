@@ -1,8 +1,8 @@
-import React, { createRef } from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
-import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
-import { Container } from './styles/containerStyle';
-import { Url } from 'finhelper';
+import {InputContainer, MaskedStyledInput, sharedInputStyle} from './newstyles';
+import {Container} from './styles/containerStyle';
+import {Url} from 'finhelper';
 import styled from 'styled-components';
 import calendarSvg from './../assets/calendar.svg';
 

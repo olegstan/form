@@ -1,6 +1,6 @@
-import React, { createRef } from 'react';
-import { InputContainer, MaskedStyledInput } from './newstyles';
-import { Container } from './styles/containerStyle';
+import React from 'react';
+import {InputContainer, MaskedStyledInput} from './newstyles';
+import {Container} from './styles/containerStyle';
 import calendarSvg from './../assets/calendar.svg';
 import Date from './Date';
 

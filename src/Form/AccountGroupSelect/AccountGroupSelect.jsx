@@ -1,6 +1,5 @@
 import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
-import {connect} from "react-redux";
 import {Add, HeaderItem, InputWrapper, Item, Select as StyledSelect, Selected, SubItem} from './styles'
 import {CurrencyConstants, Money} from "finhelper";
 import {Container} from '../styles/selectContainerStyle'
@@ -209,15 +208,6 @@ class AccountGroupSelect extends BaseInput
 }
 
 
-const enhance = connect(
-  (state) => ({
-    client: state.interfaceComponents.client,
-    currencies: state.interfaceComponents.currencies,
-    courses: state.interfaceComponents.courses,
-  }),
-  {}
-)
-
 export {AccountGroupSelect}
 
-export default enhance(AccountGroupSelect);
+export default AccountGroupSelect;

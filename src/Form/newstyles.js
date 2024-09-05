@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, {forwardRef} from 'react';
 import styled, {css, keyframes} from 'styled-components'
 import InputMask from "react-input-mask";
 import {NavLink} from 'react-router-dom'

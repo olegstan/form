@@ -1,6 +1,6 @@
 import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
-import {InputContainer, StyledInput} from './newstyles'
+import {InputContainer} from './newstyles'
 import {Container} from './styles/containerStyle'
 
 

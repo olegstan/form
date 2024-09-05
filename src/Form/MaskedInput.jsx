@@ -1,8 +1,8 @@
-import React, { createRef } from 'react';
+import React, {createRef} from 'react';
 import BaseInput from './BaseInput';
-import { InputContainer, MaskedStyledInput } from './newstyles';
-import { detect } from 'detect-browser';
-import { Container } from './styles/containerStyle';
+import {InputContainer, MaskedStyledInput} from './newstyles';
+import {detect} from 'detect-browser';
+import {Container} from './styles/containerStyle';
 
 export default class MaskedInput extends BaseInput {
   constructor(props) {

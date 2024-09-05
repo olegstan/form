@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect, Add } from './../Search/newstyles';
+import { Add, Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect } from './../Search/newstyles';
 import Search from "../Search/Search";
 class ContactSearch extends Search {
   constructor(props) {
