@@ -19,6 +19,7 @@ export default function formCheckbox(Base) {
         form: form,
         textStyle: textStyle,
         checked: checked,
+        checkboxStyle: checkboxStyle,
         toggleCallback: toggleCallback
       });
     }

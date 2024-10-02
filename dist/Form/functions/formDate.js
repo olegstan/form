@@ -39,12 +39,7 @@ export default function formDate(Base) {
           date
         }) => {
           if (typeof value === 'string' && value !== '__.__.____' && !value.includes('_')) {
-            console.log(name);
-            console.log(value);
-            console.log(date);
             let momentDate = moment(date, 'DD.MM.YYYY');
-            console.log(momentDate);
-            console.log(momentDate.format('DD.MM.YYYY'));
 
             // Создаем новые значения для проверки изменений
             let newField = momentDate && momentDate.isValid() ? momentDate.format('YYYY-MM-DD') : '';
