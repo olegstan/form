@@ -13,7 +13,6 @@ export default class Button extends Component {
     switch (this.props.type) {
       case 'href':
         return /*#__PURE__*/React.createElement(Link, {
-          left: this.props.left,
           slim: this.props.slim,
           right: this.props.right,
           flex: this.props.flex,
@@ -25,7 +24,8 @@ export default class Button extends Component {
           id: this.props.id,
           href: this.props.href,
           target: this.props.target,
-          onClick: this.props.onClick
+          onClick: this.props.disabled ? () => {} : this.props.onClick,
+          disabled: this.props.disabled
         }, this.props.children);
       case 'inline-link':
         return /*#__PURE__*/React.createElement(InlineLink, {
@@ -41,7 +41,8 @@ export default class Button extends Component {
           id: this.props.id,
           href: this.props.href,
           target: this.props.target,
-          onClick: this.props.onClick
+          onClick: this.props.disabled ? () => {} : this.props.onClick,
+          disabled: this.props.disabled
         }, this.props.children);
       case 'link':
         return /*#__PURE__*/React.createElement(ButtonLink, {
@@ -55,7 +56,8 @@ export default class Button extends Component {
           className: this.props.className,
           position: this.props.position,
           id: this.props.id,
-          to: this.props.to
+          to: this.props.to,
+          disabled: this.props.disabled
         }, this.props.children);
       case 'button':
       default:
@@ -70,7 +72,8 @@ export default class Button extends Component {
           className: this.props.className,
           position: this.props.position,
           id: this.props.id,
-          onClick: this.props.onClick
+          onClick: this.props.disabled ? () => {} : this.props.onClick,
+          disabled: this.props.disabled
         }, this.props.children);
     }
   }

@@ -19,7 +19,6 @@ export default class Button extends Component {
       case 'href':
         return (
           <Link
-            left={this.props.left}
             slim={this.props.slim}
             right={this.props.right}
             flex={this.props.flex}
@@ -31,7 +30,8 @@ export default class Button extends Component {
             id={this.props.id}
             href={this.props.href}
             target={this.props.target}
-            onClick={this.props.onClick}
+            onClick={this.props.disabled ? () => {} : this.props.onClick}
+            disabled={this.props.disabled}
           >
               {this.props.children}
           </Link>
@@ -51,7 +51,8 @@ export default class Button extends Component {
             id={this.props.id}
             href={this.props.href}
             target={this.props.target}
-            onClick={this.props.onClick}
+            onClick={this.props.disabled ? () => {} : this.props.onClick}
+            disabled={this.props.disabled}
           >
               {this.props.children}
           </InlineLink>
@@ -70,6 +71,7 @@ export default class Button extends Component {
             position={this.props.position}
             id={this.props.id}
             to={this.props.to}
+            disabled={this.props.disabled}
           >
               {this.props.children}
           </ButtonLink>
@@ -88,7 +90,8 @@ export default class Button extends Component {
             className={this.props.className}
             position={this.props.position}
             id={this.props.id}
-            onClick={this.props.onClick}
+            onClick={this.props.disabled ? () => {} : this.props.onClick}
+            disabled={this.props.disabled}
           >
             {this.props.children}
           </StyledButton>
