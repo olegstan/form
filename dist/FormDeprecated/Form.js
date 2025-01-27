@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Input from "./Input";
-import InputWithCurrency from "./InputWithCurrency/InputWithCurrency";
+// import InputWithCurrency from "./InputWithCurrency/InputWithCurrency";
 import SearchMultiple from "./SearchMultiple/SearchMultiple";
 import SearchWithButton from "./SearchWithButton/SearchWithButton";
-import SelectWithDays from "./SelectWithDays/SelectWithDays";
+// import SelectWithDays from "./SelectWithDays/SelectWithDays";
 import GroupMultipleSelect from "./GroupMultipleSelect/GroupMultipleSelect";
 import MultipleSelect from "./MultipleSelect/MultipleSelect";
 import GroupSelect from "./GroupSelect/GroupSelect";
@@ -20,43 +20,48 @@ import formCheckbox from "./functions/formCheckbox";
 import formFile from "./functions/formFile";
 import setField from "./functions/setField";
 export default class Form extends Multi.extend(Component, formInput, formSelect, formSearch, formDate, getLink, formAccountGroupSelect, formCheckbox, formFile, setField) {
-  renderSelectWithDays(field, daysField, items, text, defaultText, disabled = false, callback) {
-    return /*#__PURE__*/React.createElement(SelectWithDays, {
-      default: defaultText,
-      placeholder: text,
-      id: this.getPrefix() + field,
-      name: field + '_id',
-      disabled: this.getDisabled(disabled),
-      selected: this.state.form[field],
-      handle: item => {
-        this.setState(prv => {
-          prv.form[field] = item;
-          prv.form[field + '_id'] = item ? item.id : '';
-          this.clearFormError(prv, field + '_id');
-          return prv;
-        }, () => {
-          if (typeof callback === 'function') {
-            callback(item);
-          }
-        });
-      },
-      items: items,
-      daysField: daysField,
-      daysSelected: this.state.form[daysField],
-      handleDaysField: number => {
-        this.setState(prv => {
-          let i = prv.form[daysField].indexOf(number);
-          if (i !== -1) {
-            prv.form[daysField].splice(i, 1);
-          } else {
-            prv.form[daysField].push(number);
-          }
-          return prv;
-        });
-      },
-      errors: this.state.formErrors
-    });
-  }
+  // renderSelectWithDays(field, daysField, items, text, defaultText, disabled = false, callback) {
+  //   return <SelectWithDays
+  //     default={defaultText}
+  //     placeholder={text}
+  //     id={this.getPrefix() + field}
+  //     name={field + '_id'}
+  //     disabled={this.getDisabled(disabled)}
+  //     selected={this.state.form[field]}
+  //     handle={(item) => {
+  //       this.setState((prv) => {
+  //         prv.form[field] = item;
+  //         prv.form[field + '_id'] = item ? item.id : '';
+  //
+  //         this.clearFormError(prv, field + '_id');
+  //
+  //         return prv;
+  //       }, () => {
+  //         if(typeof callback === 'function')
+  //         {
+  //           callback(item);
+  //         }
+  //       });
+  //     }}
+  //     items={items}
+  //     daysField={daysField}
+  //     daysSelected={this.state.form[daysField]}
+  //     handleDaysField={(number) => {
+  //       this.setState((prv) => {
+  //         let i = prv.form[daysField].indexOf(number);
+  //         if (i !== -1)
+  //         {
+  //           prv.form[daysField].splice(i, 1);
+  //         } else {
+  //           prv.form[daysField].push(number);
+  //         }
+  //         return prv;
+  //       });
+  //     }}
+  //     errors={this.state.formErrors}
+  //   />
+  // }
+
   renderGroupMultipleSelect(field, items, text, defaultText, disabled = false, callback) {
     return /*#__PURE__*/React.createElement(GroupMultipleSelect, {
       default: defaultText,
@@ -419,52 +424,58 @@ export default class Form extends Multi.extend(Component, formInput, formSelect,
       size: size
     });
   }
-  renderInputWithCurrency(field, text, currencyField, disabled = false, callback) {
-    let link = this.getLink(field);
-    let value = link === null ? '' : link;
-    return /*#__PURE__*/React.createElement(InputWithCurrency, {
-      id: this.getPrefix() + field,
-      type: "text",
-      name: field,
-      autoComplete: 'off',
-      disabled: this.getDisabled(disabled),
-      value: value,
-      currencyField: currencyField + '_id',
-      selected: this.state.form[currencyField],
-      onChange: (e, {
-        name,
-        value
-      }) => {
-        this.setState(prv => {
-          this.setValueInput(prv, field, value);
-          return prv;
-        }, () => {
-          if (typeof callback === 'function') {
-            callback();
-          }
-        });
-      },
-      onBlur: () => {
-        this.setState(prv => {
-          this.clearFormError(prv, field);
-          this.clearFormError(prv, currencyField + '_id');
-          return prv;
-        });
-      },
-      handle: item => {
-        this.setState(prv => {
-          prv.form[currencyField] = item;
-          prv.form[currencyField + '_id'] = item ? item.id : '';
-          this.clearFormError(prv, currencyField + '_id');
-          return prv;
-        }, () => {
-          if (typeof callback === 'function') {
-            callback();
-          }
-        });
-      },
-      placeholder: text,
-      errors: this.state.formErrors
-    });
-  }
+
+  // renderInputWithCurrency(field, text, currencyField, disabled = false, callback)
+  // {
+  //   let link = this.getLink(field);
+  //   let value = link === null ? '' : link;
+  //
+  //   return <InputWithCurrency
+  //     id={this.getPrefix() + field}
+  //     type="text"
+  //     name={field}
+  //     autoComplete={'off'}
+  //     disabled={this.getDisabled(disabled)}
+  //     value={value}
+  //     currencyField={currencyField + '_id'}
+  //     selected={this.state.form[currencyField]}
+  //     onChange={(e, {name, value}) => {
+  //       this.setState((prv) => {
+  //         this.setValueInput(prv, field, value);
+  //
+  //         return prv;
+  //       }, () => {
+  //         if(typeof callback === 'function')
+  //         {
+  //           callback();
+  //         }
+  //       });
+  //     }}
+  //     onBlur={() => {
+  //       this.setState((prv) => {
+  //         this.clearFormError(prv, field);
+  //         this.clearFormError(prv, currencyField + '_id');
+  //
+  //         return prv;
+  //       });
+  //     }}
+  //     handle={(item) => {
+  //       this.setState((prv) => {
+  //         prv.form[currencyField] = item;
+  //         prv.form[currencyField + '_id'] = item ? item.id : '';
+  //
+  //         this.clearFormError(prv, currencyField + '_id');
+  //
+  //         return prv;
+  //       }, () => {
+  //         if(typeof callback === 'function')
+  //         {
+  //           callback();
+  //         }
+  //       });
+  //     }}
+  //     placeholder={text}
+  //     errors={this.state.formErrors}
+  //   />
+  // }
 }
