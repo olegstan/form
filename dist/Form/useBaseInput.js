@@ -15,7 +15,7 @@ import { detect } from 'detect-browser';
  * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
 
-export default function useBaseInput(props) {
+export default function useBaseInput(props, callerClassName) {
   // ------------------------------
   // Состояния из BaseInput (this.state)
   // ------------------------------
@@ -153,6 +153,8 @@ export default function useBaseInput(props) {
     } else if (props.value && typeof props.value === 'string' && props.value.replace(props.inputMask, '') !== '') {
       isActive = true;
     } else if (props.search && props.search.length > 0) {
+      isActive = true;
+    } else if (callerClassName === 'FileInput') {
       isActive = true;
     }
     return 'placeholder ' + (isActive ? 'active' : '');

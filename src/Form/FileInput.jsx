@@ -4,6 +4,8 @@ import { InputContainer, StyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
 
 const FileInput = (props) => {
+  const callerClassName = 'FileInput';
+
   const {
     error,
     hasError,
@@ -15,7 +17,7 @@ const FileInput = (props) => {
     getName,
     renderPlaceholder,
     renderTooltipError,
-  } = useBaseInput(props);
+  } = useBaseInput(props, callerClassName);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
