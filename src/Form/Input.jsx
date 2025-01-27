@@ -70,9 +70,6 @@ export default class Input extends BaseInput {
         }} alt=''/>}
         {this.renderTooltipError()}
       </InputContainer>
-      {/*{this.props.icon ? <InputLabel>*/}
-        {/*{this.props.icon}*/}
-      {/*</InputLabel> : null}*/}
     </Container>
   }
 }
