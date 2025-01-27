@@ -87,7 +87,7 @@ export default function useBaseInput(props) {
 
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
   const getName = useCallback(name => {
-    return name.replace('country', 'couuntry').replace('state', 'staate');
+    return name?.replace('country', 'couuntry')?.replace('state', 'staate');
   }, []);
 
   // getContainerStyle

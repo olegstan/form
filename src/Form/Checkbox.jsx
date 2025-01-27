@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Body, Checkbox as StyleCheckbox } from './newstyles';
 
 const Checkbox = ({
+                    // Здесь прописываем дефолты
                     value = 1,
                     name = '',
                     toggleCallback = () => {},
+
                     textStyle,
                     id,
                     checked,
@@ -13,13 +15,14 @@ const Checkbox = ({
                     form,
                     text
                   }) => {
-  // Состояние value (если нужно поддерживать локальное состояние, как в классовом компоненте)
-  const [localValue] = useState(value);
 
-  // Реф для управления input
+  // Локальное состояние для хранения value
+  const [localValue, setLocalValue] = useState(value || '');
+
+  // Реф на <input>
   const inputRef = useRef(null);
 
-  // Обработчик клика
+  // Клик по тексту лейбла, чтобы активировать чекбокс
   const handleClick = (e) => {
     e.preventDefault();
     if (inputRef.current) {
@@ -27,13 +30,12 @@ const Checkbox = ({
     }
   };
 
-  // Объединяем стили текста и чекбокса
   const combinedTextStyle = textStyle ? { ...textStyle } : {};
   const combinedCheckboxStyle = checkboxStyle
     ? { ...checkboxStyle }
     : {
       backgroundColor: '#4378FF',
-      border: '2px solid #4378FF'
+      border: '2px solid #4378FF',
     };
 
   return (
@@ -54,7 +56,7 @@ const Checkbox = ({
           style={{
             borderRadius: form === 'round' ? '10px' : '6px',
             display: 'flex',
-            ...combinedCheckboxStyle
+            ...combinedCheckboxStyle,
           }}
         >
           <span className="rotate" />

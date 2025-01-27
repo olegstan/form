@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Body, Checkbox as StyleCheckbox } from './newstyles';
 const Checkbox = ({
+  // Здесь прописываем дефолты
   value = 1,
   name = '',
   toggleCallback = () => {},
@@ -12,21 +13,19 @@ const Checkbox = ({
   form,
   text
 }) => {
-  // Состояние value (если нужно поддерживать локальное состояние, как в классовом компоненте)
-  const [localValue] = useState(value);
+  // Локальное состояние для хранения value
+  const [localValue, setLocalValue] = useState(value || '');
 
-  // Реф для управления input
+  // Реф на <input>
   const inputRef = useRef(null);
 
-  // Обработчик клика
+  // Клик по тексту лейбла, чтобы активировать чекбокс
   const handleClick = e => {
     e.preventDefault();
     if (inputRef.current) {
       inputRef.current.click();
     }
   };
-
-  // Объединяем стили текста и чекбокса
   const combinedTextStyle = textStyle ? {
     ...textStyle
   } : {};
