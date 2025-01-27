@@ -1,63 +1,155 @@
-import React, { createRef } from 'react';
-import BaseInput from './BaseInput';
-import { InputContainer } from './newstyles';
+// Input.js
+import React from 'react';
+import useBaseInput from './useBaseInput';
+import InputPopup from './../Form/InputPopup/InputPopup';
+import errorSvg from './../assets/error.svg';
+import { StyledInput, InputContainer } from './newstyles';
 import { Container } from './styles/containerStyle';
-export default class Input extends BaseInput {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      focused: false,
-      hasError: false
-    };
-    this.wrapperRef = /*#__PURE__*/createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+function Input(props) {
+  // Деструктурируем всё нужное из хука
+  const {
+    wrapperRef,
+    focused,
+    hasError,
+    error,
+    setFocused,
+    setHasError,
+    browser,
+    handleShowSelect,
+    getPlaceholderClassName,
+    getContainerStyle,
+    getInputStyle,
+    getName,
+    getError,
+    onBlurFunc
+    // если нужен search, тоже можно взять:
+    // search, setSearch,
+  } = useBaseInput(props);
+  const {
+    id,
+    size,
+    autoComplete,
+    disabled,
+    className,
+    type,
+    name,
+    value,
+    placeholder,
+    onKeyPress,
+    onChange
+  } = props;
 
-  /**
-   *
-   */
-  static defaultProps = {
-    onKeyPress: () => {},
-    onChange: () => {},
-    disabled: false,
-    value: '',
-    placeholder: '',
-    icon: '',
-    className: '',
-    wrapperClassName: '',
-    error: '',
-    type: 'text',
-    style: {}
+  // Аналог проверки «пустой ли инпут»
+  const empty = !(typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0);
+
+  // Рендер плейсхолдера (аналог renderPlaceholder)
+  const renderPlaceholder = () => {
+    const {
+      placeholder,
+      id,
+      placeholderStyle
+    } = props;
+    if (!placeholder) return null;
+    return /*#__PURE__*/React.createElement("label", {
+      htmlFor: id,
+      style: placeholderStyle,
+      className: getPlaceholderClassName(),
+      onClick: () => handleShowSelect(true)
+    }, placeholder);
   };
-  render() {
-    let empty = true;
-    if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
-      empty = false;
-    }
-    return /*#__PURE__*/React.createElement(Container, {
-      style: this.getContainerStyle(),
-      size: this.props.size,
-      disabled: this.props.disabled,
-      className: this.props.className + (this.props.disabled ? ' disabled' : ''),
-      onClick: e => {
-        e.stopPropagation();
+
+  // Рендер подсказки-ошибки (аналог renderTooltipError)
+  const renderTooltipError = () => {
+    return hasError ? /*#__PURE__*/React.createElement(InputPopup, {
+      trigger: /*#__PURE__*/React.createElement("img", {
+        id: 'tooltip-' + id,
+        className: "",
+        src: errorSvg,
+        alt: ""
+      })
+    }, /*#__PURE__*/React.createElement("label", {
+      htmlFor: id,
+      className: className + ' error'
+    }, getError())) : null;
+  };
+
+  // Собираем сам <input> (аналог renderInput)
+  const renderInput = () => {
+    const handleClick = e => {
+      e.stopPropagation();
+      if (typeof props.onClick === 'function') {
+        props.onClick(e);
       }
-    }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.wrapperRef
-    }, this.renderInput(), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
-      className: "close",
-      src: require('./../assets/ic_close_only.svg').default,
-      onClick: e => {
-        this.props.onChange(e, {
-          name: this.props.name,
-          value: ''
-        });
-        this.setState({
-          hasError: false
-        });
-      },
-      alt: ""
-    }), this.renderTooltipError()));
-  }
+    };
+    const handleChange = e => {
+      onChange(e, {
+        name: props.name,
+        value: e.target.value
+      });
+      setHasError(false); // сбрасываем ошибку при вводе
+    };
+    const handleFocus = () => {
+      setFocused(true);
+      setHasError(false);
+    };
+    return /*#__PURE__*/React.createElement(StyledInput, {
+      browser: browser && browser.name,
+      id: id,
+      style: getInputStyle(),
+      size: size,
+      autoComplete: autoComplete || 'off',
+      disabled: disabled,
+      className: className,
+      type: type,
+      name: getName(name),
+      value: value,
+      placeholder: placeholder,
+      onClick: handleClick,
+      onKeyPress: onKeyPress,
+      onChange: handleChange,
+      onFocus: handleFocus,
+      onBlur: () => {
+        // Логика onBlur — вызов того, что было раньше:
+        onBlurFunc();
+        // Если нужно вернуть фокус в false по блюру:
+        // setFocused(false);
+      }
+    });
+  };
+  return /*#__PURE__*/React.createElement(Container, {
+    style: getContainerStyle(),
+    size: size,
+    disabled: disabled,
+    className: className + (disabled ? ' disabled' : ''),
+    onClick: e => {
+      e.stopPropagation();
+    }
+  }, /*#__PURE__*/React.createElement(InputContainer, {
+    ref: wrapperRef
+  }, renderInput(), renderPlaceholder(), !empty && typeof size === 'undefined' && props.icon !== false && !disabled && /*#__PURE__*/React.createElement("img", {
+    className: "close",
+    src: require('./../assets/ic_close_only.svg').default,
+    onClick: e => {
+      onChange(e, {
+        name: props.name,
+        value: ''
+      });
+      setHasError(false);
+    },
+    alt: ""
+  }), renderTooltipError()));
 }
+Input.defaultProps = {
+  onKeyPress: () => {},
+  onChange: () => {},
+  disabled: false,
+  value: '',
+  placeholder: '',
+  icon: '',
+  className: '',
+  wrapperClassName: '',
+  error: '',
+  type: 'text',
+  style: {}
+};
+export default Input;

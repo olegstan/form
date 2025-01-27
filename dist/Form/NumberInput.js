@@ -1,179 +1,206 @@
-import React, { createRef } from 'react';
-import BaseInput from './BaseInput';
-import { InputContainer, StyledInput } from './newstyles';
-import { Money } from "finhelper";
+// NumberInput.js
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { Money } from 'finhelper';
 import { detect } from 'detect-browser';
+import useBaseInput from './useBaseInput'; // ВАЖНО: ваш кастомный хук
+import { InputContainer, StyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
-export default class NumberInput extends BaseInput {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      focused: false,
-      hasError: false,
-      selectionStart: 0,
-      selectionEnd: 0
-    };
-    this.wrapperRef = /*#__PURE__*/createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-    this.inputRef = /*#__PURE__*/createRef();
-  }
+function NumberInput(props) {
+  // Достаём общую логику из useBaseInput (аналог "BaseInput")
+  const {
+    wrapperRef,
+    focused,
+    setFocused,
+    hasError,
+    setHasError,
+    error,
+    setError,
+    browser,
+    getContainerStyle,
+    getInputStyle,
+    getName,
+    getPlaceholderClassName
+  } = useBaseInput(props);
 
-  /**
-   *
-   */
-  static defaultProps = {
-    onKeyPress: () => {},
-    onChange: () => {},
-    disabled: false,
-    value: '',
-    placeholder: '',
-    icon: '',
-    className: '',
-    wrapperClassName: '',
-    error: '',
-    style: {}
-  };
-  componentDidUpdate(prevProps, prevState) {
-    const {
-      value
-    } = this.props;
-    const {
-      selectionStart,
-      selectionEnd
-    } = this.state;
-    if (prevProps.value !== value && this.state.focused === true && this.inputRef.current) {
-      this.inputRef.current.selectionStart = selectionStart;
-      this.inputRef.current.selectionEnd = selectionEnd;
+  // Локальный стейт для положения курсора
+  const [selectionStart, setSelectionStart] = useState(0);
+  const [selectionEnd, setSelectionEnd] = useState(0);
+  const inputRef = useRef(null);
+
+  // Аналог componentDidUpdate(prevProps) для значения
+  // Если props.value меняется и у нас есть фокус, возвращаем курсор
+  useEffect(() => {
+    if (focused && inputRef.current) {
+      inputRef.current.selectionStart = selectionStart;
+      inputRef.current.selectionEnd = selectionEnd;
     }
-    super.componentDidUpdate(prevProps, prevState);
-  }
-  handleChange(e) {
-    let pattern = /^[0-9\.\,\ \-]+$/;
+  }, [props.value, focused, selectionStart, selectionEnd]);
+
+  // handleChange — портируем вашу логику
+  const handleChange = useCallback(e => {
+    const pattern = /^[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
+
     if (e.target.value === '' || pattern.test(e.target.value)) {
-      let value = e.target.value.replace(/,/g, '.').replace(/ /g, '');
-      if (this.props.max !== false && value > this.props.max) {
+      let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
+
+      // Проверки на min/max
+      if (props.max !== false && +val > props.max) {
         return;
       }
-      if (this.props.min === 0 && isNaN(value)) {
+      if (props.min === 0 && isNaN(val)) {
         return;
       }
-      if (this.props.min !== false && value < this.props.min) {
+      if (props.min !== false && +val < props.min) {
         return;
       }
+
+      // Позиция курсора
       let position = e.target.selectionStart;
-      if (value.length > 0) {
+      if (val.length > 0) {
         let prefix = '';
-        if (value[0] === '-') {
+        if (val[0] === '-') {
           prefix = '-';
-          value = value.replace('-', '');
+          val = val.replace('-', '');
         }
-        let parts = value.split('.');
-        if (typeof parts[1] !== 'undefined') {
+        const parts = val.split('.');
+        if (parts[1] !== undefined) {
+          // Если есть дробная часть
           if (parts[1] !== '') {
-            if (this.props.decimals !== false) {
-              if (parts[1].length > this.props.decimals) {
+            if (props.decimals !== false) {
+              // Не даём вводить дробную часть длиннее decimals
+              if (parts[1].length > props.decimals) {
                 return;
               }
             }
-            value = Money.formatForInput(value, parts[1].length);
+            val = Money.formatForInput(val, parts[1].length);
           } else {
-            value = Money.formatForInput(value, 0) + '.';
+            // Если точка есть, но дробная часть пустая
+            val = Money.formatForInput(val, 0) + '.';
           }
         } else {
-          value = Money.formatForInput(value, 0);
+          // Нет дробной части
+          val = Money.formatForInput(val, 0);
         }
-        let prevParts = this.props.value.toString().split('.');
-        let newParts = value.split('.');
-        let prevLength = prevParts[0].length;
-        let newLength = newParts[0].length;
+
+        // Логика с изменением длины целой части => сдвиг курсора
+        const prevParts = props.value?.toString().split('.') || [''];
+        const newParts = val.split('.');
+        const prevLength = prevParts[0].length;
+        const newLength = newParts[0].length;
         if (newLength > prevLength) {
+          // Каждые 3 цифры + пробел? => возможно надо сдвинуть курсор
           if ((newLength - 1) % 4 === 0) {
             position += 1;
           }
         }
-        this.props.onChange(e, {
-          name: this.props.name,
-          value: prefix + value
+
+        // Вызываем onChange, пробрасывая prefix
+        props.onChange(e, {
+          name: props.name,
+          value: prefix + val
         });
-        this.setState({
-          hasError: false,
-          selectionStart: position,
-          selectionEnd: position
-        });
+        setHasError(false);
+        setSelectionStart(position);
+        setSelectionEnd(position);
       } else {
-        this.props.onChange(e, {
-          name: this.props.name,
+        // Если val пустое
+        props.onChange(e, {
+          name: props.name,
           value: ''
         });
-        this.setState({
-          hasError: false,
-          selectionStart: position,
-          selectionEnd: position
-        });
+        setHasError(false);
+        setSelectionStart(position);
+        setSelectionEnd(position);
       }
     }
-  }
-  render() {
-    const {
-      name
-    } = this.props;
-    const browser = detect();
-    let empty = true;
-    if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
-      empty = false;
+  }, [props, setHasError]);
+
+  // Функция для рендера placeholder (вместо this.renderPlaceholder())
+  const renderPlaceholder = () => {
+    if (!props.placeholder) return null;
+    return /*#__PURE__*/React.createElement("label", {
+      htmlFor: props.id,
+      style: props.placeholderStyle,
+      className: getPlaceholderClassName()
+    }, props.placeholder);
+  };
+
+  // Функция для рендера ошибки (вместо this.renderTooltipError())
+  const renderTooltipError = () => {
+    if (!hasError || !error) return null;
+    // Если у вас была логика через InputPopup иконку (errorSvg) — добавьте, как нужно
+    return /*#__PURE__*/React.createElement("label", {
+      htmlFor: props.id,
+      className: props.className + ' error'
+    }, error);
+  };
+
+  // Проверка "пустой" ли инпут
+  const isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
+  return /*#__PURE__*/React.createElement(Container, {
+    style: getContainerStyle(),
+    size: props.size,
+    disabled: props.disabled,
+    className: props.className + (props.disabled ? ' disabled' : ''),
+    onClick: e => {
+      e.stopPropagation();
     }
-    return /*#__PURE__*/React.createElement(Container, {
-      style: this.getContainerStyle(),
-      size: this.props.size,
-      disabled: this.props.disabled,
-      className: this.props.className + (this.props.disabled ? ' disabled' : ''),
-      onClick: e => {
-        e.stopPropagation();
+  }, /*#__PURE__*/React.createElement(InputContainer, {
+    ref: wrapperRef
+  }, /*#__PURE__*/React.createElement(StyledInput, {
+    ref: inputRef,
+    browser: browser && browser.name,
+    id: props.id,
+    size: props.size,
+    autoComplete: "off",
+    disabled: props.disabled,
+    style: getInputStyle(),
+    className: props.className,
+    type: props.type || 'text',
+    name: getName(props.name || ''),
+    value: props.value,
+    placeholder: props.placeholder,
+    onKeyPress: e => {
+      if (typeof props.onKeyPress === 'function') {
+        props.onKeyPress(e);
       }
-    }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.wrapperRef
-    }, /*#__PURE__*/React.createElement(StyledInput, {
-      browser: browser && browser.name,
-      ref: this.inputRef,
-      id: this.props.id,
-      size: this.props.size,
-      autoComplete: 'off',
-      disabled: this.props.disabled,
-      style: this.getInputStyle(),
-      className: this.props.className,
-      type: this.props.type,
-      name: this.getName(name),
-      value: this.props.value,
-      placeholder: this.props.placeholder,
-      onKeyPress: e => {
-        if (typeof this.props.onKeyPress === 'function') {
-          this.props.onKeyPress(e);
-        }
-      },
-      onChange: e => {
-        this.handleChange(e);
-      },
-      onFocus: () => {
-        this.setState({
-          focused: true,
-          hasError: false
-        });
-      },
-      onBlur: () => {}
-    }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && /*#__PURE__*/React.createElement("img", {
-      className: "close",
-      src: require('./../assets/ic_close_only.svg').default,
-      onClick: e => {
-        this.props.onChange(e, {
-          name: this.props.name,
-          value: ''
-        });
-        this.setState({
-          hasError: false
-        });
-      },
-      alt: ""
-    }), this.renderTooltipError()));
-  }
+    },
+    onChange: handleChange,
+    onFocus: () => {
+      setFocused(true);
+      setHasError(false);
+    },
+    onBlur: () => {
+      // Если нужно что-то по blur, добавьте здесь
+    }
+  }), renderPlaceholder(), !isEmpty && typeof props.size === 'undefined' && !props.disabled && props.icon !== false && /*#__PURE__*/React.createElement("img", {
+    className: "close",
+    src: require('./../assets/ic_close_only.svg').default,
+    onClick: e => {
+      props.onChange(e, {
+        name: props.name,
+        value: ''
+      });
+      setHasError(false);
+    },
+    alt: ""
+  }), renderTooltipError()));
 }
+
+// Аналог static defaultProps
+NumberInput.defaultProps = {
+  onKeyPress: () => {},
+  onChange: () => {},
+  disabled: false,
+  value: '',
+  placeholder: '',
+  icon: '',
+  className: '',
+  wrapperClassName: '',
+  error: '',
+  style: {},
+  max: false,
+  min: false,
+  decimals: false
+};
+export default NumberInput;

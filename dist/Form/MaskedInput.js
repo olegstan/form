@@ -1,103 +1,111 @@
-import React, { createRef } from 'react';
-import BaseInput from './BaseInput';
-import { InputContainer, MaskedStyledInput } from './newstyles';
+import React, { useState, useRef } from 'react';
+import useBaseInput from './useBaseInput'; // <-- наш кастомный хук
 import { detect } from 'detect-browser';
+import { InputContainer, MaskedStyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
-export default class MaskedInput extends BaseInput {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      focused: false,
-      hasError: false
-    };
+function MaskedInput(props) {
+  // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
+  const {
+    wrapperRef,
+    focused,
+    setFocused,
+    hasError,
+    setHasError,
+    error,
+    browser,
+    getContainerStyle,
+    getInputStyle,
+    getName,
+    getPlaceholderClassName
+  } = useBaseInput(props);
 
-    // Create a ref for the wrapper element
-    this.wrapperRef = /*#__PURE__*/createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-  static defaultProps = {
-    onKeyPress: () => {},
-    onChange: () => {},
-    disabled: false,
-    value: '',
-    placeholder: '',
-    mask: '',
-    icon: '',
-    className: '',
-    wrapperClassName: '',
-    error: ''
+  // 2. Проверка, «пустое ли» поле (как empty из класса)
+  const isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
+
+  // 3. Функция рендера плейсхолдера (аналог this.renderPlaceholder())
+  const renderPlaceholder = () => {
+    if (!props.placeholder) return null;
+    return /*#__PURE__*/React.createElement("label", {
+      htmlFor: props.id,
+      style: props.placeholderStyle,
+      className: getPlaceholderClassName()
+    }, props.placeholder);
   };
-  render() {
-    const {
-      name
-    } = this.props;
-    const browser = detect();
-    let empty = true;
 
-    // Determine if the input is empty based on the value
-    if (typeof this.props.value === 'number' && this.props.value.toString().length > 0 || typeof this.props.value === 'string' && this.props.value.length > 0) {
-      empty = false;
+  // 4. Функция рендера ошибки (аналог this.renderTooltipError())
+  //    Если ранее была логика через InputPopup с иконкой, добавьте при необходимости
+  const renderTooltipError = () => {
+    if (!hasError || !error) return null;
+    return /*#__PURE__*/React.createElement("label", {
+      htmlFor: props.id,
+      className: props.className + ' error'
+    }, error);
+  };
+
+  // 5. Сама разметка
+  return /*#__PURE__*/React.createElement(Container, {
+    style: getContainerStyle(),
+    disabled: props.disabled,
+    className: props.className + (props.disabled ? ' disabled' : ''),
+    onClick: e => e.stopPropagation()
+  }, /*#__PURE__*/React.createElement(InputContainer, {
+    ref: wrapperRef
+  }, /*#__PURE__*/React.createElement(MaskedStyledInput, {
+    browser: browser && browser.name,
+    id: props.id,
+    mask: props.mask,
+    autoComplete: "off",
+    disabled: props.disabled,
+    style: getInputStyle(),
+    className: props.className,
+    type: props.type,
+    name: getName(props.name || ''),
+    value: props.value,
+    onKeyPress: e => {
+      if (typeof props.onKeyPress === 'function') {
+        props.onKeyPress(e);
+      }
+    },
+    onChange: e => {
+      props.onChange(e, {
+        name: props.name,
+        value: e.target.value
+      });
+      setHasError(false);
+    },
+    onFocus: () => {
+      setFocused(true);
+      setHasError(false);
+    },
+    onBlur: () => {
+      setFocused(false);
+      setHasError(false);
     }
-    return /*#__PURE__*/React.createElement(Container, {
-      style: this.getContainerStyle(),
-      disabled: this.props.disabled,
-      className: this.props.className + (this.props.disabled ? ' disabled' : ''),
-      onClick: e => {
-        e.stopPropagation();
-      }
-    }, /*#__PURE__*/React.createElement(InputContainer, {
-      ref: this.wrapperRef
-    }, /*#__PURE__*/React.createElement(MaskedStyledInput, {
-      browser: browser && browser.name,
-      id: this.props.id,
-      mask: this.props.mask,
-      autoComplete: 'off',
-      disabled: this.props.disabled,
-      style: this.getInputStyle(),
-      className: this.props.className,
-      type: this.props.type,
-      name: this.getName(name),
-      value: this.props.value,
-      onKeyPress: e => {
-        if (typeof this.props.onKeyPress === 'function') {
-          this.props.onKeyPress(e);
-        }
-      },
-      onChange: e => {
-        this.props.onChange(e, {
-          name: this.props.name,
-          value: e.target.value
-        });
-        this.setState({
-          hasError: false
-        });
-      },
-      onFocus: () => {
-        this.setState({
-          focused: true,
-          hasError: false
-        });
-      },
-      onBlur: () => {
-        this.setState({
-          focused: false,
-          hasError: false
-        });
-      }
-    }), this.renderPlaceholder(), !empty && typeof this.props.size === 'undefined' && !this.props.disabled && /*#__PURE__*/React.createElement("img", {
-      className: "close",
-      src: require('./../assets/ic_close_only.svg').default,
-      onClick: e => {
-        this.props.onChange(e, {
-          name: this.props.name,
-          value: ''
-        });
-        this.setState({
-          hasError: false
-        });
-      },
-      alt: ""
-    }), this.renderTooltipError()));
-  }
+  }), renderPlaceholder(), !isEmpty && typeof props.size === 'undefined' && !props.disabled && /*#__PURE__*/React.createElement("img", {
+    className: "close",
+    src: require('./../assets/ic_close_only.svg').default,
+    alt: "",
+    onClick: e => {
+      props.onChange(e, {
+        name: props.name,
+        value: ''
+      });
+      setHasError(false);
+    }
+  }), renderTooltipError()));
 }
+
+// Аналог static defaultProps
+MaskedInput.defaultProps = {
+  onKeyPress: () => {},
+  onChange: () => {},
+  disabled: false,
+  value: '',
+  placeholder: '',
+  mask: '',
+  icon: '',
+  className: '',
+  wrapperClassName: '',
+  error: ''
+};
+export default MaskedInput;
