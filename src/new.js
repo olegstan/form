@@ -4,6 +4,7 @@ import MaskedInput from "./Form/MaskedInput";
 import NumberInput from "./Form/NumberInput";
 import Input from "./Form/Input";
 import Checkbox from "./Form/Checkbox";
+import FileInput from "./Form/FileInput";
 
 export {
   DateInput,
@@ -12,4 +13,5 @@ export {
   Checkbox,
   MaskedInput,
   NumberInput,
+  FileInput,
 };
