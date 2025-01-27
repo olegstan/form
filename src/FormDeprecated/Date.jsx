@@ -6,7 +6,7 @@ import {Url} from 'finhelper';
 import styled from 'styled-components';
 import calendarSvg from './../assets/calendar.svg';
 
-export default class DateTime extends BaseInput {
+export default class Date extends BaseInput {
     constructor(props) {
         super(props);
         this.state = {
