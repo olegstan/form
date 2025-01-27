@@ -1,39 +1,60 @@
 // useBaseInput.js
 import { useState, useRef, useEffect, useCallback } from 'react';
+// Если вы используете InputPopup и errorSvg из BaseInput — подключите их тут
+import InputPopup from "./../Form/InputPopup/InputPopup";
+import errorSvg from "./../assets/error.svg";
 import { detect } from 'detect-browser';
 
-function useBaseInput(props) {
-  // Локальный стейт, аналогичен this.state
-  const [focused, setFocused] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [error, setError] = useState(null);
+/**
+ * Универсальный хук, повторяющий логику BaseInput:
+ * - cDM/cWU для клика вне (handleClickOutside)
+ * - cDU для обновления ошибок из props.errors
+ * - focused, hasError, error в стейте
+ * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
+ * - getName (обход бага с autocomplete Safari)
+ * - handleShowSelect
+ * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
+ * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
+ */
 
-  // Если вам действительно нужна логика для search,
-  // которую вы проверяли в getPlaceholderClassName,
-  // можно добавить ещё один стейт:
+export default function useBaseInput(props) {
+  // ------------------------------
+  // Состояния из BaseInput (this.state)
+  // ------------------------------
+  const [error, setError] = useState(null);       // аналог this.state.error
+  const [focused, setFocused] = useState(false);  // аналог this.state.focused
+  const [hasError, setHasError] = useState(false);// аналог this.state.hasError
+
+  // Если вам нужна логика поиска (this.state.search), можете добавить:
   // const [search, setSearch] = useState('');
 
-  // Ref для «клика вне» контейнера
-  const wrapperRef = useRef(null);
+  // ------------------------------
+  // Refs
+  // ------------------------------
+  const wrapperRef = useRef(null); // аналог this.wrapperRef
 
-  // Определяем браузер (как и в вашем коде)
+  // ------------------------------
+  // Определение браузера (detect-browser)
+  // ------------------------------
   const browser = detect();
 
-  /**
-   * Аналог componentDidMount / componentWillUnmount
-   * Вешаем и убираем слушатель клика мышкой
-   */
+  // ------------------------------
+  // Обработка «клика вне компонента» (componentDidMount / willUnmount)
+  // ------------------------------
   const handleClickOutside = useCallback((e) => {
+    // Если кликнули вне wrapperRef...
     if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+      // ...и при этом инпут в фокусе...
       if (focused) {
         setFocused(false);
         setHasError(false);
+        // Если есть коллбэк onOutsideClick
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(props.value);
         }
       }
     }
-  }, [focused, props.onOutsideClick, props.value]);
+  }, [focused, props]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -42,58 +63,38 @@ function useBaseInput(props) {
     };
   }, [handleClickOutside]);
 
-  /**
-   * Аналог componentDidUpdate
-   * Следим за изменениями props.errors и props.name
-   * и при необходимости выставляем (hasError, error) в стейт
-   */
+  // ------------------------------
+  // Аналог componentDidUpdate: следим за props.errors и меняем hasError/error
+  // ------------------------------
   useEffect(() => {
     const { name, errors } = props;
-    const isError = errors && errors[name] && errors[name].length > 0;
+    const isError = errors && name && errors[name] && errors[name].length > 0;
     const newError = isError ? errors[name][0] : null;
 
-    // Если что-то изменилось — обновляем локальный стейт
     if (isError !== hasError || newError !== error) {
       setHasError(isError);
       setError(newError);
     }
   }, [props.errors, props.name, hasError, error]);
 
-  // «Заглушка» из BaseInput — пока метод пустой
-  const handleShowSelect = (select) => {
-    // ваш код для select (если понадобится)
-  };
+  // ------------------------------
+  // Прочие методы из BaseInput
+  // ------------------------------
 
-  // Проверка на placeholder-класс
-  // (если нужно использовать search, раскомментируйте логику)
-  const getPlaceholderClassName = () => {
-    let bool = false;
+  // Полиморфный метод, если где-то вызывается (пока был пустой)
+  const handleShowSelect = useCallback((select) => {
+    // ...
+  }, []);
 
-    if (focused) {
-      bool = true;
-    } else if (props.selected) {
-      bool = true;
-    } else if (
-      (props.value === 0 || props.value) &&
-      props.value !== '' &&
-      !props.inputMask
-    ) {
-      bool = true;
-    } else if (
-      props.value &&
-      typeof props.value === 'string' &&
-      props.value.replace(props.inputMask, '') !== ''
-    ) {
-      bool = true;
-    }else if (typeof search === 'string' && search.length > 0) {
-      bool = true;
-    }
+  // getName — чтобы Safari не автозаполнял поля с "state"/"country"
+  const getName = useCallback((name) => {
+    return name
+      .replace('country', 'couuntry')
+      .replace('state', 'staate');
+  }, []);
 
-    return 'placeholder ' + (bool ? 'active' : '');
-  };
-
-  // Стили контейнера
-  const getContainerStyle = () => {
+  // getContainerStyle
+  const getContainerStyle = useCallback(() => {
     let containerStyle = { ...props.containerStyle };
     if (focused) {
       containerStyle.border = '1px solid #1874DE';
@@ -102,76 +103,161 @@ function useBaseInput(props) {
       containerStyle.border = '1px solid #EF5E70';
     }
     return containerStyle;
-  };
+  }, [props.containerStyle, focused, hasError]);
 
-  // Стили обёртки (если отличается от контейнера)
-  const getWrapperStyle = () => {
-    let containerStyle = { ...props.containerStyle };
+  // getWrapperStyle (если отличался от контейнера — бывает не у всех)
+  const getWrapperStyle = useCallback(() => {
+    let style = { ...props.containerStyle };
     if (focused) {
-      containerStyle.border = '1px solid #1874DE';
+      style.border = '1px solid #1874DE';
     }
     if (hasError) {
-      containerStyle.border = '1px solid #EF5E70';
+      style.border = '1px solid #EF5E70';
     }
-    return containerStyle;
-  };
+    return style;
+  }, [props.containerStyle, focused, hasError]);
 
-  // Стили самого инпута
-  const getInputStyle = () => {
+  // getInputStyle
+  const getInputStyle = useCallback(() => {
     let inputStyle = { ...props.style };
     if (props.className === 'style2') {
       inputStyle.color = '#fff';
     }
     return inputStyle;
-  };
+  }, [props.style, props.className]);
 
-  // Прямой аналог hasError() из класса
-  const hasErrorFunc = () => {
-    const { name, errors } = props;
-    return errors && errors[name] && errors[name].length > 0;
-  };
+  // Если где-то нужно проверить напрямую через функцию (раньше было hasError())
+  const hasErrorFunc = useCallback(() => {
+    return hasError;
+  }, [hasError]);
 
-  // Прямой аналог getError() из класса
-  const getError = () => {
-    const { name, errors } = props;
-    if (errors && errors[name] && errors[name].length > 0) {
-      return error;
+  // getError (ранее было this.getError())
+  const getError = useCallback(() => {
+    return error;
+  }, [error]);
+
+  // getPlaceholderClassName
+  const getPlaceholderClassName = useCallback(() => {
+    let isActive = false;
+    // Логика, которая была в BaseInput:
+    if (focused) {
+      isActive = true;
+    } else if (props.selected) {
+      // если есть props.selected
+      isActive = true;
+    } else if (
+      (props.value === 0 || props.value) &&
+      props.value !== '' &&
+      !props.inputMask
+    ) {
+      isActive = true;
+    } else if (
+      props.value &&
+      typeof props.value === 'string' &&
+      props.value.replace(props.inputMask, '') !== ''
+    ) {
+      isActive = true;
+    }else if (props.search && props.search.length > 0) {
+      isActive = true;
     }
-    return null;
-  };
+    return 'placeholder ' + (isActive ? 'active' : '');
+  }, [focused, props.value, props.selected, props.inputMask]);
 
-  // Для обхода автокомплита в Safari
-  const getName = (name) => {
-    return name.replace('country', 'couuntry').replace('state', 'staate');
-  };
+  // getWrapperClasses (если где-то используется для className)
+  const getWrapperClasses = useCallback(() => {
+    let className = props.wrapperClassName || '';
+    if (props.disabled) {
+      className += ' disabled';
+    }
+    return className;
+  }, [props.wrapperClassName, props.disabled]);
 
-  // Просто вызываем props.onBlur, если он есть
-  const onBlurFunc = () => {
+  // onBlur — если нужно внутри компонента просто вызвать props.onBlur()
+  const onBlurFunc = useCallback(() => {
     if (typeof props.onBlur === 'function') {
       props.onBlur();
     }
-  };
+  }, [props.onBlur]);
 
+  // ------------------------------
+  // Общие рендер-методы (если в детях вы вызывали напрямую)
+  // ------------------------------
+
+  // renderPlaceholder — возвращает готовый <label> (если хотите прям "по-старому")
+  const renderPlaceholder = useCallback(() => {
+    const { placeholder, id, placeholderStyle } = props;
+    if (!placeholder) return null;
+    return (
+      <label
+        htmlFor={id}
+        style={placeholderStyle}
+        className={getPlaceholderClassName()}
+        onClick={() => handleShowSelect(true)}
+      >
+        {placeholder}
+      </label>
+    );
+  }, [props.placeholder, props.id, props.placeholderStyle, handleShowSelect, getPlaceholderClassName]);
+
+  // renderTooltipError — возвращает ваш InputPopup с иконкой errorSvg
+  const renderTooltipError = useCallback(() => {
+    if (!hasError || !error) return null;
+    return (
+      <InputPopup
+        trigger={
+          <img
+            id={'tooltip-' + props.id}
+            src={errorSvg}
+            alt=""
+          />
+        }
+      >
+        <label htmlFor={props.id} className={props.className + ' error'}>
+          {error}
+        </label>
+      </InputPopup>
+    );
+  }, [hasError, error, props.id, props.className]);
+
+  // renderInput — часто в классах вы переопределяли,
+  // но если хотите чтобы hook возвращал «базовый» input, можно оставить:
+  const renderInput = useCallback(() => {
+    // пример:
+    // return <StyledInput .../>
+    // Но чаще вы это делаете уже в дочернем компоненте.
+    return null;
+  }, []);
+
+  // ------------------------------
+  // Возвращаем всё, что может понадобиться дочерним компонентам
+  // ------------------------------
   return {
+    // state и их сеттеры
+    error, setError,
+    hasError, setHasError,
+    focused, setFocused,
+    // ref
     wrapperRef,
-    focused,
-    hasError,
-    error,
-    // search, setSearch, // если нужно работать с поиском
-    setFocused,
-    setHasError,
-    setError,
+
+    // browser detect
     browser,
+
+    // методы
     handleShowSelect,
-    getPlaceholderClassName,
-    getContainerStyle,
-    getWrapperStyle,
-    getInputStyle,
+    handleClickOutside,
     hasErrorFunc,
     getError,
     getName,
-    onBlurFunc
+    getContainerStyle,
+    getWrapperStyle,
+    getInputStyle,
+    getPlaceholderClassName,
+    getWrapperClasses,
+    onBlurFunc,
+
+    // "рендерные" методы, если вы хотите пользоваться ими напрямую
+    renderPlaceholder,
+    renderTooltipError,
+    renderInput
   };
 }
-
-export default useBaseInput;

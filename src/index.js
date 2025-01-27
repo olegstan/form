@@ -1,48 +1,50 @@
-import Button from "./Form/Button";
-import Checkbox from "./Form/Checkbox";
-import Date from "./Form/Date";
-import DateTime from "./Form/DateTime";
-import FileInput from "./Form/FileInput";
-import Form from "./Form/Form";
-import Input from "./Form/Input";
-import MaskedInput from "./Form/MaskedInput";
-import ModalForm from "./Form/ModalForm";
-import NumberInput from "./Form/NumberInput";
-import SlimInput from "./Form/SlimInput";
-import TextArea from "./Form/TextArea";
+import Button from "./FormDeprecated/Button";
+import Checkbox from "./FormDeprecated/Checkbox";
+import Date from "./FormDeprecated/Date";
+import DateTime from "./FormDeprecated/DateTime";
+import FileInput from "./FormDeprecated/FileInput";
+import Form from "./FormDeprecated/Form";
+import Input from "./FormDeprecated/Input";
+import MaskedInput from "./FormDeprecated/MaskedInput";
+import ModalForm from "./FormDeprecated/ModalForm";
+import NumberInput from "./FormDeprecated/NumberInput";
+import SlimInput from "./FormDeprecated/SlimInput";
+import TextArea from "./FormDeprecated/TextArea";
 
-import AccountGroupSelect from "./Form/AccountGroupSelect/AccountGroupSelect";
-import SlimAccountGroupSelect from "./Form/AccountGroupSelect/SlimAccountGroupSelect";
+import AccountGroupSelect from "./FormDeprecated/AccountGroupSelect/AccountGroupSelect";
+import SlimAccountGroupSelect from "./FormDeprecated/AccountGroupSelect/SlimAccountGroupSelect";
 
-import GroupMultipleSelect from "./Form/GroupMultipleSelect/GroupMultipleSelect";
+import GroupMultipleSelect from "./FormDeprecated/GroupMultipleSelect/GroupMultipleSelect";
 
-import GroupRemoteSearch from "./Form/GroupSearch/GroupRemoteSearch";
+import GroupRemoteSearch from "./FormDeprecated/GroupSearch/GroupRemoteSearch";
 
-import GroupSelect from "./Form/GroupSelect/GroupSelect";
+import GroupSelect from "./FormDeprecated/GroupSelect/GroupSelect";
 
-import InputPopup from "./Form/InputPopup/InputPopup";
+import InputPopup from "./FormDeprecated/InputPopup/InputPopup";
 
-import MultipleSelect from "./Form/MultipleSelect/MultipleSelect";
+import MultipleSelect from "./FormDeprecated/MultipleSelect/MultipleSelect";
 
-import RelationGroupSelect from "./Form/RelationGroupSelect/RelationGroupSelect";
+import RelationGroupSelect from "./FormDeprecated/RelationGroupSelect/RelationGroupSelect";
 
-import Search from "./Form/Search/Search";
-import RemoteSearch from "./Form/Search/RemoteSearch";
+import Search from "./FormDeprecated/Search/Search";
+import RemoteSearch from "./FormDeprecated/Search/RemoteSearch";
 
-import SearchMultiple from "./Form/SearchMultiple/SearchMultiple";
+import SearchMultiple from "./FormDeprecated/SearchMultiple/SearchMultiple";
 
-import Select from "./Form/Select/Select";
+import Select from "./FormDeprecated/Select/Select";
 
-import formAccountGroupSelect from "./Form/functions/formAccountGroupSelect"
-import formCheckbox from "./Form/functions/formCheckbox"
-import formDate from "./Form/functions/formDate"
-import formFile from "./Form/functions/formFile"
-import formInput from "./Form/functions/formInput"
-import formSearch from "./Form/functions/formSearch"
-import formSelect from "./Form/functions/formSelect"
-import getLink from "./Form/functions/getLink"
-import receivePropsUserId from "./Form/functions/receivePropsUserId"
-import setField from "./Form/functions/setField"
+import formAccountGroupSelect from "./FormDeprecated/functions/formAccountGroupSelect"
+import formCheckbox from "./FormDeprecated/functions/formCheckbox"
+import formDate from "./FormDeprecated/functions/formDate"
+import formFile from "./FormDeprecated/functions/formFile"
+import formInput from "./FormDeprecated/functions/formInput"
+import formSearch from "./FormDeprecated/functions/formSearch"
+import formSelect from "./FormDeprecated/functions/formSelect"
+import getLink from "./FormDeprecated/functions/getLink"
+import receivePropsUserId from "./FormDeprecated/functions/receivePropsUserId"
+import setField from "./FormDeprecated/functions/setField"
+
+import * as NewForm from "./new";
 
 
 export {
@@ -58,29 +60,18 @@ export {
   NumberInput,
   SlimInput,
   TextArea,
-
   AccountGroupSelect,
   SlimAccountGroupSelect,
-
   GroupMultipleSelect,
-
   GroupRemoteSearch,
-
   GroupSelect,
-
   InputPopup,
-
   MultipleSelect,
-
   RelationGroupSelect,
-
   Search,
   RemoteSearch,
-
   SearchMultiple,
-
   Select,
-
   formAccountGroupSelect,
   formCheckbox,
   formDate,
@@ -91,4 +82,5 @@ export {
   getLink,
   receivePropsUserId,
   setField,
+  NewForm
 };
