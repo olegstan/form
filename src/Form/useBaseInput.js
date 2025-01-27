@@ -1,7 +1,5 @@
-// useBaseInput.js
 import { useState, useRef, useEffect, useCallback } from 'react';
-// Если вы используете InputPopup и errorSvg из BaseInput — подключите их тут
-import InputPopup from "./../Form/InputPopup/InputPopup";
+import InputPopup from "./InputPopup/InputPopup";
 import errorSvg from "./../assets/error.svg";
 import { detect } from 'detect-browser';
 

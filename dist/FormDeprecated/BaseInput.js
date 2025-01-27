@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputPopup from "./../Form/InputPopup/InputPopup";
+import InputPopup from "./../FormDeprecated/InputPopup/InputPopup";
 import errorSvg from "./../assets/error.svg";
 import { StyledInput } from "./newstyles";
 import { detect } from 'detect-browser';
