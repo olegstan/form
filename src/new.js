@@ -5,6 +5,9 @@ import NumberInput from "./Form/NumberInput";
 import Input from "./Form/Input";
 import Checkbox from "./Form/Checkbox";
 import FileInput from "./Form/FileInput";
+import Select from "./Form/Select/Select";
+import Search from "./Form/Search/Search";
+import RemoteSearch from "./Form/Search/RemoteSearch";
 
 export {
   DateInput,
@@ -14,4 +17,7 @@ export {
   MaskedInput,
   NumberInput,
   FileInput,
+  Select,
+  Search,
+  RemoteSearch,
 };
