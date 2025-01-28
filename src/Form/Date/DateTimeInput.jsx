@@ -6,13 +6,14 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 
-import useBaseInput from './useBaseInput';
+import useBaseInput from 'src/Form/useBaseInput';
 // Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
 
-import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
-import { Container } from './styles/containerStyle';
-import calendarSvg from './../assets/calendar.svg';
+import { InputContainer, MaskedStyledInput, sharedInputStyle } from 'src/Form/newstyles';
+import { Container } from 'src/Form/styles/containerStyle';
+import calendarSvg from 'src/assets/calendar.svg';
 import { Url } from 'finhelper';
+import mountFlatpickr from "src/Form/Date/utils/mountFlatpickr";
 
 function DateTimeInput({
                          onKeyPress = () => {},
@@ -43,7 +44,7 @@ function DateTimeInput({
 
   // 2. Локальные состояния
   const [componentsLoaded, setComponentsLoaded] = useState(false);
-  const [FlatpickrComponent, setFlatpickrComponent] = useState(null);
+  const [InputComponent, setInputComponent] = useState(null);
   const [dateValue, setDateValue] = useState(value);
 
   // ref для хранения инстанса flatpickr (чтобы уничтожить при размонтировании)
@@ -51,42 +52,7 @@ function DateTimeInput({
 
   // 3. Динамически импортируем flatpickr, react-flatpickr, стили
   useEffect(() => {
-    let isMounted = true;
-
-    Promise.all([
-      import('flatpickr'),
-      import('react-flatpickr'),
-      import('flatpickr/dist/l10n/ru.js'),
-      import('flatpickr/dist/flatpickr.css')
-    ])
-      .then(([flatpickr, ReactFlatpickr, { Russian }]) => {
-        if (!isMounted) return;
-
-        // Локализация
-        const url = Url.getCurrentUrl();
-        const lang = localStorage.getItem('language_id');
-        if (url.includes('/ru/') || parseInt(lang) === 1 || lang === null) {
-          try {
-            flatpickr.default.localize(Russian);
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
-        // Создаём стилизованный компонент
-        const DateTimeStyled = styled(ReactFlatpickr.default)`
-          ${sharedInputStyle}
-        `;
-        setFlatpickrComponent(() => DateTimeStyled);
-        setComponentsLoaded(true);
-      })
-      .catch((err) => {
-        console.error('Failed to load flatpickr modules', err);
-      });
-
-    return () => {
-      isMounted = false;
-    };
+    return mountFlatpickr(setComponentsLoaded, setInputComponent)
   }, []);
 
   // 4. Уничтожаем flatpickr-инстанс при размонтировании
@@ -189,7 +155,7 @@ function DateTimeInput({
 
   // 11. Отдельный рендер Flatpickr/MaskedInput (учитываем disabled)
   const renderDateTimeInput = () => {
-    if (!FlatpickrComponent) return null;
+    if (!InputComponent) return null;
 
     // Если disabled = true, отрендерим обычный инпут c маской (без flatpickr)
     if (disabled) {
@@ -206,7 +172,7 @@ function DateTimeInput({
     }
 
     // Иначе рендерим Flatpickr с нашей маской
-    const FpComponent = FlatpickrComponent;
+    const FpComponent = InputComponent;
     return (
       <FpComponent
         id={props.id}

@@ -1,5 +1,5 @@
-import DateInput from "./Form/DateInput";
-import DateTimeInput from "./Form/DateTimeInput";
+import DateInput from "./Form/Date/DateInput";
+import DateTimeInput from "./Form/Date/DateTimeInput";
 import MaskedInput from "./Form/MaskedInput";
 import NumberInput from "./Form/NumberInput";
 import Input from "./Form/Input";

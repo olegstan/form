@@ -6,12 +6,13 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 
-import useBaseInput from './useBaseInput';
+import useBaseInput from 'src/Form/useBaseInput';
 
-import { InputContainer, MaskedStyledInput, sharedInputStyle } from './newstyles';
-import { Container } from './styles/containerStyle';
+import { InputContainer, MaskedStyledInput, sharedInputStyle } from 'src/Form/newstyles';
+import { Container } from 'src/Form/styles/containerStyle';
 import { Url } from 'finhelper';
-import calendarSvg from './../assets/calendar.svg';
+import calendarSvg from 'src/assets/calendar.svg';
+import mountFlatpickr from "src/Form/Date/utils/mountFlatpickr";
 
 function DateInput({
                        onKeyPress = () => {},
@@ -23,7 +24,6 @@ function DateInput({
                        icon = '',
                        className = '',
                        wrapperClassName = '',
-                       error = '',
                        inputMask = '__.__.____',
                        ...props
                    }) {
@@ -46,40 +46,7 @@ function DateInput({
     const flatpickrInstance = useRef(null);
 
     useEffect(() => {
-        let isMounted = true;
-
-        Promise.all([
-            import('flatpickr'),
-            import('react-flatpickr'),
-            import('flatpickr/dist/l10n/ru.js'),
-            import('flatpickr/dist/flatpickr.css')
-        ])
-          .then(([flatpickr, Flatpickr, { Russian }]) => {
-              if (!isMounted) return;
-
-              const url = Url.getCurrentUrl();
-              const lang = localStorage.getItem('language_id');
-              if (url.includes('/ru/') || parseInt(lang) === 1 || lang === null) {
-                  try {
-                      flatpickr.default.localize(Russian);
-                  } catch (e) {
-                      console.error(e);
-                  }
-              }
-
-              const DateStyledInput = styled(Flatpickr.default)`
-                    ${sharedInputStyle}
-                `;
-              setInputComponent(() => DateStyledInput);
-              setComponentsLoaded(true);
-          })
-          .catch((error) => {
-              console.error('Error loading flatpickr modules:', error);
-          });
-
-        return () => {
-            isMounted = false;
-        };
+        return mountFlatpickr(setComponentsLoaded, setInputComponent)
     }, []);
 
     const handleClickOutside = useCallback(
