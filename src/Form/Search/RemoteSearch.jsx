@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { Container, Input as StyledInput, InputContainer, InputWrapper, StyledSelect } from './newstyles';
-import useBaseSearch from '../hooks/useBaseSearch';
-import { useDropdownLogic } from '../hooks/useDropdownLogic';
-import SearchResults from './SearchResults';
-import SearchLoader from './SearchLoader';
+import { Container, Input as StyledInput, InputContainer, InputWrapper, Select as StyledSelect } from './newstyles';
+import { useDropdownLogic } from './hooks/useDropdownLogic';
+import SearchResults from './components/SearchResults';
+import SearchLoader from './components/SearchLoader';
+import useBaseInput from "./../../Form/useBaseInput";
 
 const RemoteSearch = (props) => {
   const {
@@ -17,7 +17,7 @@ const RemoteSearch = (props) => {
     getInputStyle,
     getWrapperClasses,
     getName
-  } = useBaseSearch(props, 'RemoteSearch');
+  } = useBaseInput(props, 'RemoteSearch');
 
   const {
     selectOpen,

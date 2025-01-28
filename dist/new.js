@@ -8,4 +8,5 @@ import FileInput from "./Form/FileInput";
 import Select from "./Form/Select/Select";
 import Search from "./Form/Search/Search";
 import RemoteSearch from "./Form/Search/RemoteSearch";
-export { DateInput, DateTimeInput, Input, Checkbox, MaskedInput, NumberInput, FileInput, Select, Search, RemoteSearch };
+import TextArea from "./Form/TextArea";
+export { DateInput, DateTimeInput, Input, Checkbox, MaskedInput, NumberInput, FileInput, Select, Search, RemoteSearch, TextArea };

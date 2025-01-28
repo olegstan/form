@@ -13,9 +13,20 @@ import { Container } from './styles/containerStyle';
 import { Url } from 'finhelper';
 import calendarSvg from './../assets/calendar.svg';
 
-// Функциональный компонент вместо class Date extends BaseInput
-function DateInput(props) {
-    // 1. Забираем из useBaseInput базовую логику:
+function DateInput({
+                       onKeyPress = () => {},
+                       onChange = () => {},
+                       disabled = false,
+                       value = '',
+                       placeholder = '',
+                       mask = '',
+                       icon = '',
+                       className = '',
+                       wrapperClassName = '',
+                       error = '',
+                       inputMask = '__.__.____',
+                       ...props
+                   }) {
     const {
         wrapperRef,
         focused,
@@ -28,16 +39,12 @@ function DateInput(props) {
         getPlaceholderClassName
     } = useBaseInput(props);
 
-    // 2. Локальные стейты, необходимые именно для Date
-    // (dynamic import, локальная дата, flatpickrInstance, и т.д.)
     const [componentsLoaded, setComponentsLoaded] = useState(false);
-    const [InputComponent, setInputComponent] = useState(null); // аналог Input (DateStyledInput)
-    const [date, setDate] = useState(props.value || '');
+    const [InputComponent, setInputComponent] = useState(null);
+    const [date, setDate] = useState(value);
 
-    // ref на инстанс flatpickr
     const flatpickrInstance = useRef(null);
 
-    // 3. Динамическая подгрузка Flatpickr и настройка локализации
     useEffect(() => {
         let isMounted = true;
 
@@ -61,8 +68,8 @@ function DateInput(props) {
               }
 
               const DateStyledInput = styled(Flatpickr.default)`
-          ${sharedInputStyle}
-        `;
+                    ${sharedInputStyle}
+                `;
               setInputComponent(() => DateStyledInput);
               setComponentsLoaded(true);
           })
@@ -75,26 +82,22 @@ function DateInput(props) {
         };
     }, []);
 
-    // 4. Своя логика «клика вне», чтобы ещё учитывать, что курсор может быть в календаре Flatpickr
     const handleClickOutside = useCallback(
       (e) => {
-          // Проверяем, не внутри ли клик в .flatpickr-calendar
           const isInsideFlatpickr = e.target.closest('.flatpickr-calendar');
           if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
               if (focused) {
                   setFocused(false);
                   setHasError(false);
-                  // Если нужно вызвать onOutsideClick
                   if (typeof props.onOutsideClick === 'function') {
-                      props.onOutsideClick(props.value);
+                      props.onOutsideClick(value);
                   }
               }
           }
       },
-      [focused, props.onOutsideClick, props.value, setFocused, setHasError, wrapperRef]
+      [focused, props.onOutsideClick, value, setFocused, setHasError, wrapperRef]
     );
 
-    // 5. Вешаем/снимаем слушатель кликов
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -102,7 +105,6 @@ function DateInput(props) {
         };
     }, [handleClickOutside]);
 
-    // 6. При размонтировании гасим Flatpickr
     useEffect(() => {
         return () => {
             if (flatpickrInstance.current) {
@@ -111,15 +113,12 @@ function DateInput(props) {
         };
     }, []);
 
-    // 7. Аналог componentDidUpdate по `props.value`
     useEffect(() => {
-        if (props.value !== date) {
-            setDate(props.value);
+        if (value !== date) {
+            setDate(value);
         }
-        // Аналогично для ошибки уже обрабатывается внутри useBaseInput
-    }, [props.value, date]);
+    }, [value, date]);
 
-    // 8. Формат даты (ваш метод)
     const formatDate = (d) => {
         if (!(d instanceof Date)) return '';
         const day = String(d.getDate()).padStart(2, '0');
@@ -128,17 +127,15 @@ function DateInput(props) {
         return `${day}.${month}.${year}`;
     };
 
-    // 9. Обработчик изменения даты в виджете
     const handleDateChange = (selectedDates) => {
-        if (typeof props.onChangeDateInner === 'function') {
-            props.onChangeDateInner({}, {
+        if (typeof onChange === 'function') {
+            onChange({}, {
                 value: formatDate(selectedDates[0]),
                 date: selectedDates[0]
             });
         }
     };
 
-    // 10. Обработчик изменения значения в самом input (при вводе руками)
     const handleInputChange = (e) => {
         const val = e.target.value;
         setDate(val);
@@ -148,19 +145,18 @@ function DateInput(props) {
           val !== '__.__.____' &&
           !val.includes('_')
         ) {
-            props.onChangeDateInner({}, { date: val, value: val });
+            onChange({}, { date: val, value: val });
         } else {
-            props.onChangeDateInner({}, { date: null, value: val });
+            onChange({}, { date: null, value: val });
         }
     };
 
-    // 11. Опции Flatpickr
     const getOptions = () => {
         let opts = {
             dateFormat: 'd.m.Y',
             allowInput: true,
             disableMobile: 'true',
-            ...props // вы подмешиваете дополнительные?
+            ...props
         };
         if (props.defaultDate) {
             opts.defaultDate = props.defaultDate;
@@ -168,14 +164,10 @@ function DateInput(props) {
         return opts;
     };
 
-    // 12. Пока не загрузились динамические модули, возвращаем null или «заглушку»
     if (!componentsLoaded || !InputComponent) return null;
 
-    // Если проп `disabled = true`, отрендерим «простой» input (как у вас в классе Date)
-    // Иначе - Flatpickr
     const renderInputOrFlatpickr = () => {
-        if (props.disabled) {
-            // Можно отрендерить простой <input> без Flatpickr
+        if (disabled) {
             return (
               <MaskedStyledInput
                 mask="99.99.9999"
@@ -188,17 +180,16 @@ function DateInput(props) {
             );
         }
 
-        // Иначе рендерим нашу обёртку для Flatpickr
         return (
           <InputComponent
             id={props.id}
             style={props.style}
-            disabled={props.disabled}
+            disabled={disabled}
             value={date}
-            placeholder={props.placeholder}
+            placeholder={placeholder}
             autoComplete={props.autoComplete || 'off'}
             options={getOptions()}
-            className={props.className}
+            className={className}
             onReady={(_, __, fp) => {
                 flatpickrInstance.current = fp;
                 fp.calendarContainer.id = `${props.id}-container`;
@@ -212,7 +203,6 @@ function DateInput(props) {
                 setFocused(false);
                 setHasError(false);
             }}
-            // render — кастомный рендер для замаскированного input
             render={({ id, ...restProps }, refEl) => (
               <MaskedStyledInput
                 autoComplete="off"
@@ -234,38 +224,33 @@ function DateInput(props) {
         );
     };
 
-    // 13. Рендерим сам компонент
     return (
       <Container
         style={getContainerStyle()}
-        className={`${props.className} ${props.disabled ? 'disabled' : ''}`}
-        disabled={props.disabled}
+        className={`${className} ${disabled ? 'disabled' : ''}`}
+        disabled={disabled}
       >
           <InputContainer ref={wrapperRef} needMargin={true} focus={focused}>
-              {/* Сам input (обычный или Flatpickr) */}
               {renderInputOrFlatpickr()}
 
-              {/* Аналог renderPlaceholder() */}
-              {props.placeholder && (
+              {placeholder && (
                 <label
                   htmlFor={props.id}
                   style={props.placeholderStyle}
                   className={getPlaceholderClassName()}
                 >
-                    {props.placeholder}
+                    {placeholder}
                 </label>
               )}
 
-              {/* Иконка календаря, если не отключена */}
-              {props.icon !== false && (
+              {icon !== false && (
                 <img className="calendar" src={calendarSvg} alt="" />
               )}
 
-              {/* Аналог renderTooltipError() — можно в виде отдельного условия */}
               {hasError && error && (
                 <label
                   htmlFor={props.id}
-                  className={`${props.className} error`}
+                  className={`${className} error`}
                   style={{ color: '#EF5E70' }}
                 >
                     {error}
@@ -275,20 +260,5 @@ function DateInput(props) {
       </Container>
     );
 }
-
-// Значения по умолчанию (как static defaultProps)
-DateInput.defaultProps = {
-    onKeyPress: () => {},
-    onChangeDateInner: () => {},
-    disabled: false,
-    value: '',
-    placeholder: '',
-    mask: '',
-    icon: '',
-    className: '',
-    wrapperClassName: '',
-    error: '',
-    inputMask: '__.__.____'
-};
 
 export default DateInput;

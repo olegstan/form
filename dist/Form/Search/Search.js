@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
-import { Container, Input as StyledInput, InputContainer, InputWrapper, StyledSelect } from './newstyles';
+import { Container, Input as StyledInput, InputContainer, InputWrapper, Select as StyledSelect } from './newstyles';
 import useBaseInput from '../useBaseInput';
-import { useDropdownLogic } from './useDropdownLogic';
-import SearchResults from './SearchResults';
-import SearchLoader from './SearchLoader';
+import { useDropdownLogic } from './hooks/useDropdownLogic';
+import SearchResults from './components/SearchResults';
+import SearchLoader from './components/SearchLoader';
+import { ReactComponent as CloseImage } from '../../assets/ic_close_only.svg';
 export default function Search(props) {
   const {
     wrapperRef,
@@ -102,7 +103,7 @@ export default function Search(props) {
   }, /*#__PURE__*/React.createElement("span", null, searchValue ? 'Ничего не найдено' : 'Введите запрос'))), !empty && showClearIcon && !props.disabled && /*#__PURE__*/React.createElement("img", {
     style: props.clearImageStyle,
     className: "close",
-    src: require('./../../assets/ic_close_only.svg').default,
+    src: CloseImage,
     alt: "",
     onClick: () => {
       setSearchValue('');

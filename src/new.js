@@ -8,6 +8,7 @@ import FileInput from "./Form/FileInput";
 import Select from "./Form/Select/Select";
 import Search from "./Form/Search/Search";
 import RemoteSearch from "./Form/Search/RemoteSearch";
+import TextArea from "./Form/TextArea";
 
 export {
   DateInput,
@@ -20,4 +21,5 @@ export {
   Select,
   Search,
   RemoteSearch,
+  TextArea,
 };
