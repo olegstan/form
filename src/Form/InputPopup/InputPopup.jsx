@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Container, PopupContainer} from './styles'
 import Popup from 'reactjs-popup';
 

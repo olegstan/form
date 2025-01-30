@@ -1,11 +1,28 @@
 // Input.js
 import React from 'react';
-import useBaseInput from './useBaseInput';
+import useBaseInput from './hooks/useBaseInput';
 import InputPopup from './../Form/InputPopup/InputPopup';
 import errorSvg from './../assets/error.svg';
-import { StyledInput, InputContainer } from './newstyles';
+import { InputContainer, StyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
-function Input(props) {
+import Close from './../assets/ic_close_only.svg';
+function Input({
+  onKeyPress = () => {},
+  onChange = () => {},
+  disabled = false,
+  value = '',
+  placeholder = '',
+  placeholderStyle = {},
+  icon = '',
+  className = '',
+  wrapperClassName = '',
+  type = 'text',
+  style = {},
+  id,
+  size,
+  autoComplete,
+  ...props
+}) {
   // Деструктурируем всё нужное из хука
   const {
     wrapperRef,
@@ -25,30 +42,12 @@ function Input(props) {
     // если нужен search, тоже можно взять:
     // search, setSearch,
   } = useBaseInput(props);
-  const {
-    id,
-    size,
-    autoComplete,
-    disabled,
-    className,
-    type,
-    name,
-    value,
-    placeholder,
-    onKeyPress,
-    onChange
-  } = props;
 
   // Аналог проверки «пустой ли инпут»
   const empty = !(typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0);
 
   // Рендер плейсхолдера (аналог renderPlaceholder)
   const renderPlaceholder = () => {
-    const {
-      placeholder,
-      id,
-      placeholderStyle
-    } = props;
     if (!placeholder) return null;
     return /*#__PURE__*/React.createElement("label", {
       htmlFor: id,
@@ -101,7 +100,7 @@ function Input(props) {
       disabled: disabled,
       className: className,
       type: type,
-      name: getName(name),
+      name: getName(props.name),
       value: value,
       placeholder: placeholder,
       onClick: handleClick,
@@ -128,7 +127,7 @@ function Input(props) {
     ref: wrapperRef
   }, renderInput(), renderPlaceholder(), !empty && typeof size === 'undefined' && props.icon !== false && !disabled && /*#__PURE__*/React.createElement("img", {
     className: "close",
-    src: require('./../assets/ic_close_only.svg').default,
+    src: Close,
     onClick: e => {
       onChange(e, {
         name: props.name,
@@ -139,17 +138,4 @@ function Input(props) {
     alt: ""
   }), renderTooltipError()));
 }
-Input.defaultProps = {
-  onKeyPress: () => {},
-  onChange: () => {},
-  disabled: false,
-  value: '',
-  placeholder: '',
-  icon: '',
-  className: '',
-  wrapperClassName: '',
-  error: '',
-  type: 'text',
-  style: {}
-};
 export default Input;

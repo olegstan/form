@@ -1,11 +1,11 @@
 // NumberInput.js
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Money } from 'finhelper';
-import { detect } from 'detect-browser';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {Money} from 'finhelper';
 
-import useBaseInput from './useBaseInput'; // ВАЖНО: ваш кастомный хук
-import { InputContainer, StyledInput } from './newstyles';
-import { Container } from './styles/containerStyle';
+import useBaseInput from './hooks/useBaseInput'; // ВАЖНО: ваш кастомный хук
+import {InputContainer, StyledInput} from './newstyles';
+import {Container} from './styles/containerStyle';
+import Close from './../assets/ic_close_only.svg';
 
 function NumberInput(props) {
   // Достаём общую логику из useBaseInput (аналог "BaseInput")
@@ -206,7 +206,7 @@ function NumberInput(props) {
         props.icon !== false && (
           <img
             className="close"
-            src={require('./../assets/ic_close_only.svg').default}
+            src={Close}
             onClick={(e) => {
               props.onChange(e, {
                 name: props.name,

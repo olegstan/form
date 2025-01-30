@@ -1,9 +1,9 @@
 // TextArea.js
 import React from 'react';
-import useBaseInput from './useBaseInput';
+import useBaseInput from './hooks/useBaseInput';
 import InputPopup from './../Form/InputPopup/InputPopup';
 import errorSvg from './../assets/error.svg';
-import { ContainerTextArea, WrapperTextArea, TextArea as StyledTextArea } from './newstyles';
+import { ContainerTextArea, TextArea as StyledTextArea, WrapperTextArea } from './newstyles';
 
 /**
  * A functional TextArea component rewritten from a class-based component.

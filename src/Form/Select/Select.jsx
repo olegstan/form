@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import useBaseInput from './../useBaseInput';
-import { InputWrapper, Item, Select as StyledSelect, Selected } from './newstyles';
-import { Container } from '../styles/selectContainerStyle';
+import React, {useCallback, useEffect, useState} from 'react';
+import useBaseInput from '../hooks/useBaseInput';
+import {InputWrapper, Item, Select as StyledSelect, Selected} from './newstyles';
+import {Container} from '../styles/selectContainerStyle';
 
 export default function Select(props) {
   // Подтягиваем логику «базового инпута» из вашего хука

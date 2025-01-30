@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
-import useBaseInput from './useBaseInput'; // <-- наш кастомный хук
-import { detect } from 'detect-browser';
+import React from 'react';
+import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомный хук
 import { InputContainer, MaskedStyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
+import Close from './../assets/ic_close_only.svg';
 function MaskedInput(props) {
   // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
   const {
@@ -83,7 +83,7 @@ function MaskedInput(props) {
     }
   }), renderPlaceholder(), !isEmpty && typeof props.size === 'undefined' && !props.disabled && /*#__PURE__*/React.createElement("img", {
     className: "close",
-    src: require('./../assets/ic_close_only.svg').default,
+    src: Close,
     alt: "",
     onClick: e => {
       props.onChange(e, {

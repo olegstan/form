@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Container, Input as StyledInput, InputContainer, InputWrapper, Select as StyledSelect } from './newstyles';
-import useBaseInput from '../useBaseInput';
+import useBaseInput from '../hooks/useBaseInput';
 import { useDropdownLogic } from './hooks/useDropdownLogic';
 import SearchResults from './components/SearchResults';
 import SearchLoader from './components/SearchLoader';

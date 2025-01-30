@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 export const useDropdownLogic = (props, wrapperRef, onSearch, handle) => {
   const [selectOpen, setSelectOpen] = useState(false);

@@ -1,19 +1,11 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback
-} from 'react';
-import styled from 'styled-components';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
-import useBaseInput from 'src/Form/useBaseInput';
+import useBaseInput from '../hooks/useBaseInput';
 // Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
-
-import { InputContainer, MaskedStyledInput, sharedInputStyle } from 'src/Form/newstyles';
-import { Container } from 'src/Form/styles/containerStyle';
-import calendarSvg from 'src/assets/calendar.svg';
-import { Url } from 'finhelper';
-import mountFlatpickr from "src/Form/Date/utils/mountFlatpickr";
+import {InputContainer, MaskedStyledInput} from './../newstyles';
+import {Container} from './../styles/containerStyle';
+import calendarSvg from './../../assets/calendar.svg';
+import mountFlatpickr from "./utils/mountFlatpickr";
 
 function DateTimeInput({
                          onKeyPress = () => {},

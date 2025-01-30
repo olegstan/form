@@ -1,12 +1,10 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styled from 'styled-components';
-import useBaseInput from 'src/Form/useBaseInput';
-import { InputContainer, MaskedStyledInput, sharedInputStyle } from 'src/Form/newstyles';
-import { Container } from 'src/Form/styles/containerStyle';
-import { Url } from 'finhelper';
-import calendarSvg from 'src/assets/calendar.svg';
-import mountFlatpickr from "src/Form/Date/utils/mountFlatpickr";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import useBaseInput from '../hooks/useBaseInput';
+import { InputContainer, MaskedStyledInput } from './../newstyles';
+import { Container } from './../styles/containerStyle';
+import calendarSvg from './../../assets/calendar.svg';
+import mountFlatpickr from "./utils/mountFlatpickr";
 function DateInput({
   onKeyPress = () => {},
   onChange = () => {},

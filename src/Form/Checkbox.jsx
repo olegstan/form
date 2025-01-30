@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { Body, Checkbox as StyleCheckbox } from './newstyles';
+import React, {useRef, useState} from 'react';
+import {Body, Checkbox as StyleCheckbox} from './newstyles';
 
 const Checkbox = ({
                     // Здесь прописываем дефолты
                     value = 1,
                     name = '',
                     toggleCallback = () => {},
-
                     textStyle,
                     id,
                     checked,

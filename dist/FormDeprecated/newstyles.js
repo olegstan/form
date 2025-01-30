@@ -895,7 +895,7 @@ export const InputContainer = styled.div`
 export const StyledInput = styled.input`
   ${sharedInputStyle}
 `;
-export const MaskedStyledInput = styled( /*#__PURE__*/forwardRef((props, ref) => /*#__PURE__*/React.createElement(InputMask, _extends({}, props, {
+export const MaskedStyledInput = styled(/*#__PURE__*/forwardRef((props, ref) => /*#__PURE__*/React.createElement(InputMask, _extends({}, props, {
   ref: ref
 }))))`
   ${sharedInputStyle}

@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import InputPopup from "./InputPopup/InputPopup";
-import errorSvg from "./../assets/error.svg";
-import { detect } from 'detect-browser';
+import {useCallback, useEffect, useRef, useState} from 'react';
+import InputPopup from "../InputPopup/InputPopup";
+import errorSvg from "../../assets/error.svg";
+import {detect} from 'detect-browser';
 
 /**
  * Универсальный хук, повторяющий логику BaseInput:
