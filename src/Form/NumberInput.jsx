@@ -7,7 +7,21 @@ import {InputContainer, StyledInput} from './newstyles';
 import {Container} from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
 
-function NumberInput(props) {
+function NumberInput({
+                       onKeyPress = () => {},
+                       onChange = () => {},
+                       disabled = false,
+                       value = '',
+                       placeholder = '',
+                       icon = '',
+                       className = '',
+                       wrapperClassName = '',
+                       style = {},
+                       max = false,
+                       min = false,
+                       decimals = false,
+                       ...props
+                     }) {
   // Достаём общую логику из useBaseInput (аналог "BaseInput")
   const {
     wrapperRef,
@@ -182,8 +196,8 @@ function NumberInput(props) {
           value={props.value}
           placeholder={props.placeholder}
           onKeyPress={(e) => {
-            if (typeof props.onKeyPress === 'function') {
-              props.onKeyPress(e);
+            if (typeof onKeyPress === 'function') {
+              onKeyPress(e);
             }
           }}
           onChange={handleChange}
@@ -224,22 +238,5 @@ function NumberInput(props) {
     </Container>
   );
 }
-
-// Аналог static defaultProps
-NumberInput.defaultProps = {
-  onKeyPress: () => {},
-  onChange: () => {},
-  disabled: false,
-  value: '',
-  placeholder: '',
-  icon: '',
-  className: '',
-  wrapperClassName: '',
-  error: '',
-  style: {},
-  max: false,
-  min: false,
-  decimals: false
-};
 
 export default NumberInput;

@@ -5,15 +5,9 @@ import {Container} from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
 
 const FileInput = ({
-                       field= '',
-                       name= '',
-                       size= '',
-                       id = '',
                        onKeyPress = () => {},
                        onChange = () => {},
                        disabled = false,
-                       value = null,
-                       placeholder = '',
                        icon = '',
                        className = '',
                        wrapperClassName = '',
@@ -73,7 +67,7 @@ const FileInput = ({
 
     const handleClearFile = (e) => {
         onChange(e, {
-            name: name,
+            name: props.name,
             value: null,
         });
         setHasError(false);
@@ -84,12 +78,12 @@ const FileInput = ({
         border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : '',
     };
 
-    const empty = !value || typeof value.name !== 'string';
+    const empty = !props.value || typeof props.value.name !== 'string';
 
     return (
         <Container
             style={inputStyle}
-            size={size}
+            size={props.size}
             disabled={disabled}
             className={`${className}${disabled ? ' disabled' : ''}`}
             onClick={(e) => e.stopPropagation()}
@@ -98,18 +92,18 @@ const FileInput = ({
                 <StyledInput
                     ref={inputRef}
                     browser={browser && browser.name}
-                    id={id}
-                    size={size}
+                    id={props.id}
+                    size={props.size}
                     disabled={disabled}
                     className={className}
                     type="file"
-                    name={getName(name)}
-                    placeholder={placeholder}
+                    name={getName(props.name)}
+                    placeholder={props.placeholder}
                     onChange={handleFileChange}
                 />
                 {renderPlaceholder()}
                 {!empty &&
-                typeof size === 'undefined' &&
+                typeof props.size === 'undefined' &&
                 !disabled && (
                     <img
                         className="close"

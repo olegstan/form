@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import InputPopup from "../InputPopup/InputPopup";
 import errorSvg from "../../assets/error.svg";
 import { detect } from 'detect-browser';
@@ -187,7 +187,9 @@ export default function useBaseInput(props, callerClassName) {
       id,
       placeholderStyle
     } = props;
-    if (!placeholder) return null;
+
+    // console.log(props)
+    // if (!placeholder) return null;
     return /*#__PURE__*/React.createElement("label", {
       htmlFor: id,
       style: placeholderStyle,

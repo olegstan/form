@@ -11,7 +11,6 @@ function Input({
                    onKeyPress = () => {},
                    onChange = () => {},
                    disabled = false,
-                   value = '',
                    placeholder = '',
                    placeholderStyle  = {},
                    icon = '',
@@ -47,8 +46,8 @@ function Input({
 
     // Аналог проверки «пустой ли инпут»
     const empty = !(
-        (typeof value === 'number' && value.toString().length > 0) ||
-        (typeof value === 'string' && value.length > 0)
+        (typeof props.value === 'number' && props.value.toString().length > 0) ||
+        (typeof props.value === 'string' && props.value.length > 0)
     );
 
     // Рендер плейсхолдера (аналог renderPlaceholder)
@@ -120,7 +119,7 @@ function Input({
                 className={className}
                 type={type}
                 name={getName(props.name)}
-                value={value}
+                value={props.value}
                 placeholder={placeholder}
                 onClick={handleClick}
                 onKeyPress={onKeyPress}

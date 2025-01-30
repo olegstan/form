@@ -3,7 +3,14 @@ import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомны�
 import { InputContainer, MaskedStyledInput } from './newstyles';
 import { Container } from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
-function MaskedInput(props) {
+function MaskedInput({
+  onKeyPress = () => {},
+  onChange = () => {},
+  disabled = false,
+  icon = '',
+  wrapperClassName = '',
+  ...props
+}) {
   // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
   const {
     wrapperRef,
@@ -62,12 +69,12 @@ function MaskedInput(props) {
     name: getName(props.name || ''),
     value: props.value,
     onKeyPress: e => {
-      if (typeof props.onKeyPress === 'function') {
-        props.onKeyPress(e);
+      if (typeof onKeyPress === 'function') {
+        onKeyPress(e);
       }
     },
     onChange: e => {
-      props.onChange(e, {
+      onChange(e, {
         name: props.name,
         value: e.target.value
       });
@@ -86,7 +93,7 @@ function MaskedInput(props) {
     src: Close,
     alt: "",
     onClick: e => {
-      props.onChange(e, {
+      onChange(e, {
         name: props.name,
         value: ''
       });
@@ -94,18 +101,4 @@ function MaskedInput(props) {
     }
   }), renderTooltipError()));
 }
-
-// Аналог static defaultProps
-MaskedInput.defaultProps = {
-  onKeyPress: () => {},
-  onChange: () => {},
-  disabled: false,
-  value: '',
-  placeholder: '',
-  mask: '',
-  icon: '',
-  className: '',
-  wrapperClassName: '',
-  error: ''
-};
 export default MaskedInput;

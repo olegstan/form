@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import InputPopup from "../InputPopup/InputPopup";
 import errorSvg from "../../assets/error.svg";
 import {detect} from 'detect-browser';
@@ -184,7 +184,9 @@ export default function useBaseInput(props, callerClassName) {
   // renderPlaceholder — возвращает готовый <label> (если хотите прям "по-старому")
   const renderPlaceholder = useCallback(() => {
     const { placeholder, id, placeholderStyle } = props;
-    if (!placeholder) return null;
+
+    // console.log(props)
+    // if (!placeholder) return null;
     return (
       <label
         htmlFor={id}
