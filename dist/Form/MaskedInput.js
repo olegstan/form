@@ -15,9 +15,9 @@ function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i 
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function MaskedInput(_ref) {
   var _ref$onKeyPress = _ref.onKeyPress,
-    _onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
-    _onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
+    onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     _ref$icon = _ref.icon,
@@ -64,52 +64,67 @@ function MaskedInput(_ref) {
     });
   };
 
-  // 5. Сама разметка
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.InputContainer, {
-    ref: wrapperRef,
-    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
-      browser: browser && browser.name,
-      id: props.id,
-      mask: props.mask,
-      autoComplete: "off",
-      disabled: props.disabled,
-      style: getInputStyle(),
-      className: props.className,
-      type: props.type,
-      name: getName(props.name || ''),
-      value: props.value,
-      onKeyPress: function onKeyPress(e) {
-        if (typeof _onKeyPress === 'function') {
-          _onKeyPress(e);
-        }
-      },
-      onChange: function onChange(e) {
-        _onChange(e, {
-          name: props.name,
-          value: e.target.value
-        });
-        setHasError(false);
-      },
-      onFocus: function onFocus() {
-        setFocused(true);
-        setHasError(false);
-      },
-      onBlur: function onBlur() {
-        setFocused(false);
-        setHasError(false);
-      }
-    }), renderPlaceholder(), !isEmpty && typeof props.size === 'undefined' && !props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-      className: "close",
-      src: _ic_close_only["default"],
-      alt: "",
-      onClick: function onClick(e) {
-        _onChange(e, {
-          name: props.name,
-          value: ''
-        });
-        setHasError(false);
-      }
-    }), renderTooltipError()]
-  });
+  // // 5. Сама разметка
+  // return (
+  //         <InputContainer ref={wrapperRef}>
+  //             <MaskedStyledInput
+  //                 browser={browser && browser.name}
+  //                 id={props.id}
+  //                 mask={props.mask}
+  //                 autoComplete="off"
+  //                 disabled={props.disabled}
+  //                 style={getInputStyle()}
+  //                 className={props.className}
+  //                 type={props.type}
+  //                 name={getName(props.name || '')}
+  //                 value={props.value}
+  //                 onKeyPress={(e) => {
+  //                     if (typeof onKeyPress === 'function') {
+  //                         onKeyPress(e);
+  //                     }
+  //                 }}
+  //                 onChange={(e) => {
+  //                     onChange(e, {
+  //                         name: props.name,
+  //                         value: e.target.value
+  //                     });
+  //                     setHasError(false);
+  //                 }}
+  //                 onFocus={() => {
+  //                     setFocused(true);
+  //                     setHasError(false);
+  //                 }}
+  //                 onBlur={() => {
+  //                     setFocused(false);
+  //                     setHasError(false);
+  //                 }}
+  //             />
+  //
+  //             {/* Плейсхолдер */}
+  //             {renderPlaceholder()}
+  //
+  //             {/* Кнопка очистки (close), если поле не пустое, нет size, не disabled */}
+  //             {!isEmpty &&
+  //             typeof props.size === 'undefined' &&
+  //             !props.disabled && (
+  //                 <img
+  //                     className="close"
+  //                     src={Close}
+  //                     alt=""
+  //                     onClick={(e) => {
+  //                         onChange(e, {
+  //                             name: props.name,
+  //                             value: ''
+  //                         });
+  //                         setHasError(false);
+  //                     }}
+  //                 />
+  //             )}
+  //
+  //             {/* Ошибка */}
+  //             {renderTooltipError()}
+  //         </InputContainer>
+  // );
+  return null;
 }
 var _default = exports["default"] = MaskedInput;

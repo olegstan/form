@@ -63,13 +63,15 @@ function InputContainer(_ref) {
       })
     }) : null;
   };
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.Container, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Container, {
     style: style,
     className: className,
     onClick: function onClick(e) {
       e.stopPropagation();
     },
-    children: [children, renderPlaceholder(), renderTooltipError()]
+    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.InputContainerStyled, {
+      children: [children, renderPlaceholder(), renderTooltipError()]
+    })
   });
 }
 var _default = exports["default"] = InputContainer;

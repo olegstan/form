@@ -80,34 +80,36 @@ const FileInput = ({
 
     const empty = !props.value || typeof props.value.name !== 'string';
 
-    return (
-        <InputContainer ref={wrapperRef}>
-            <StyledInput
-                ref={inputRef}
-                browser={browser && browser.name}
-                id={props.id}
-                size={props.size}
-                disabled={disabled}
-                className={className}
-                type="file"
-                name={getName(props.name)}
-                placeholder={props.placeholder}
-                onChange={handleFileChange}
-            />
-            {renderPlaceholder()}
-            {!empty &&
-            typeof props.size === 'undefined' &&
-            !disabled && (
-                <img
-                    className="close"
-                    src={Close}
-                    onClick={handleClearFile}
-                    alt=""
-                />
-            )}
-            {renderTooltipError()}
-        </InputContainer>
-    );
+    return null;
+
+    // return (
+    //     <InputContainer ref={wrapperRef}>
+    //         <StyledInput
+    //             ref={inputRef}
+    //             browser={browser && browser.name}
+    //             id={props.id}
+    //             size={props.size}
+    //             disabled={disabled}
+    //             className={className}
+    //             type="file"
+    //             name={getName(props.name)}
+    //             placeholder={props.placeholder}
+    //             onChange={handleFileChange}
+    //         />
+    //         {renderPlaceholder()}
+    //         {!empty &&
+    //         typeof props.size === 'undefined' &&
+    //         !disabled && (
+    //             <img
+    //                 className="close"
+    //                 src={Close}
+    //                 onClick={handleClearFile}
+    //                 alt=""
+    //             />
+    //         )}
+    //         {renderTooltipError()}
+    //     </InputContainer>
+    // );
 };
 
 export default FileInput;

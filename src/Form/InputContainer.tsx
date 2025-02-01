@@ -1,6 +1,6 @@
 // Input.js
 import React from 'react';
-import {Container} from './newstyles';
+import {Container, InputContainerStyled} from './newstyles';
 import InputPopup from './InputPopup/InputPopup';
 // @ts-ignore
 import errorSvg from './../assets/error.svg';
@@ -18,8 +18,6 @@ function InputContainer({
     const child = React.Children.only(children);
 
     const {placeholder, id, placeholderStyle, getPlaceholderClassName, handleShowSelect, hasError, getError} = child.props;
-
-    console.log(placeholder)
 
     // Рендер плейсхолдера (аналог renderPlaceholder)
     const renderPlaceholder = () => {
@@ -66,9 +64,11 @@ function InputContainer({
                 e.stopPropagation();
             }}
         >
-            {children}
-            {renderPlaceholder()}
-            {renderTooltipError()}
+            <InputContainerStyled>
+                {children}
+                {renderPlaceholder()}
+                {renderTooltipError()}
+            </InputContainerStyled>
         </Container>
     );
 }

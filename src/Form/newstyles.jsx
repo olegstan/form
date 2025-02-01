@@ -50,7 +50,7 @@ export const Checkbox = styled.div`
 
 `
 
-export const InputContainer = styled.div`
+export const InputContainerStyled = styled.div`
   background-color: transparent;
   outline: none;
   display: flex;
