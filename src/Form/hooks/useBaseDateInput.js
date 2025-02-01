@@ -12,7 +12,6 @@ import {detect} from 'detect-browser';
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
- * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
 
 export default function useBaseDateInput(props, callerClassName) {
@@ -96,36 +95,6 @@ export default function useBaseDateInput(props, callerClassName) {
     return containerStyle;
   }, [props.containerStyle, focused, hasError]);
 
-  // getWrapperStyle (если отличался от контейнера — бывает не у всех)
-  const getWrapperStyle = useCallback(() => {
-    let style = { ...props.containerStyle };
-    if (focused) {
-      style.border = '1px solid #1874DE';
-    }
-    if (hasError) {
-      style.border = '1px solid #EF5E70';
-    }
-    return style;
-  }, [props.containerStyle, focused, hasError]);
-
-  // getInputStyle
-  const getInputStyle = useCallback(() => {
-    let inputStyle = { ...props.style };
-    if (props.className === 'style2') {
-      inputStyle.color = '#fff';
-    }
-    return inputStyle;
-  }, [props.style, props.className]);
-
-  // Если где-то нужно проверить напрямую через функцию (раньше было hasError())
-  const hasErrorFunc = useCallback(() => {
-    return hasError;
-  }, [hasError]);
-
-  // getError (ранее было this.getError())
-  const getError = useCallback(() => {
-    return error;
-  }, [error]);
 
   // getPlaceholderClassName
   const getPlaceholderClassName = useCallback(() => {
@@ -236,15 +205,10 @@ export default function useBaseDateInput(props, callerClassName) {
     // методы
     handleShowSelect,
     handleClickOutside,
-    hasErrorFunc,
-    getError,
     getName,
     getContainerStyle,
-    getWrapperStyle,
-    getInputStyle,
     getPlaceholderClassName,
     getWrapperClasses,
-    onBlurFunc,
 
     // "рендерные" методы, если вы хотите пользоваться ими напрямую
     renderPlaceholder,

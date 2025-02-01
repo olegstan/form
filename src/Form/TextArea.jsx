@@ -15,11 +15,7 @@ function TextArea(props) {
     focused,
     setFocused,
     browser,
-    handleShowSelect,
-    getInputStyle,
     getName,
-    getError,
-    onBlurFunc
   } = useBaseInput(props);
 
   const {
@@ -61,17 +57,10 @@ function TextArea(props) {
       setFocused(true);
     };
 
-    const handleBlur = () => {
-      onBlurFunc();
-      // If you also want to remove focus on blur, uncomment:
-      // setFocused(false);
-    };
 
     return (
       <StyledTextArea
-        browser={browser && browser.name}
         id={id}
-        style={getInputStyle()}
         disabled={disabled}
         className={className}
         name={getName(name)}
@@ -82,7 +71,6 @@ function TextArea(props) {
         onKeyPress={onKeyPress}
         onChange={handleChange}
         onFocus={handleFocus}
-        onBlur={handleBlur}
       />
     );
   };

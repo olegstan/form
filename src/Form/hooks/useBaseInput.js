@@ -7,11 +7,9 @@ import {detect} from 'detect-browser';
  * Универсальный хук, повторяющий логику BaseInput:
  * - cDM/cWU для клика вне (handleClickOutside)
  * - focused
- * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
- * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
 
 export default function useBaseInput(props, callerClassName) {
@@ -90,14 +88,6 @@ export default function useBaseInput(props, callerClassName) {
     return style;
   }, [props.containerStyle, focused]);
 
-  // getInputStyle
-  const getInputStyle = useCallback(() => {
-    let inputStyle = { ...props.style };
-    if (props.className === 'style2') {
-      inputStyle.color = '#fff';
-    }
-    return inputStyle;
-  }, [props.style, props.className]);
 
   // getPlaceholderClassName
   const getPlaceholderClassName = useCallback(() => {
@@ -137,13 +127,6 @@ export default function useBaseInput(props, callerClassName) {
     return className;
   }, [props.wrapperClassName, props.disabled]);
 
-  // onBlur — если нужно внутри компонента просто вызвать props.onBlur()
-  const onBlurFunc = useCallback(() => {
-    if (typeof props.onBlur === 'function') {
-      props.onBlur();
-    }
-  }, [props.onBlur]);
-
   // ------------------------------
   // Возвращаем всё, что может понадобиться дочерним компонентам
   // ------------------------------
@@ -154,8 +137,5 @@ export default function useBaseInput(props, callerClassName) {
     browser,
 
     getName,
-    getInputStyle,
-    getWrapperClasses,
-    onBlurFunc,
   };
 }

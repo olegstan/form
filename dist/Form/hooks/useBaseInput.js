@@ -25,11 +25,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } // import InputP
  * Универсальный хук, повторяющий логику BaseInput:
  * - cDM/cWU для клика вне (handleClickOutside)
  * - focused
- * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
- * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
 
 function useBaseInput(props, callerClassName) {
@@ -110,15 +108,6 @@ function useBaseInput(props, callerClassName) {
     return style;
   }, [props.containerStyle, focused]);
 
-  // getInputStyle
-  var getInputStyle = (0, _react.useCallback)(function () {
-    var inputStyle = _objectSpread({}, props.style);
-    if (props.className === 'style2') {
-      inputStyle.color = '#fff';
-    }
-    return inputStyle;
-  }, [props.style, props.className]);
-
   // getPlaceholderClassName
   var getPlaceholderClassName = (0, _react.useCallback)(function () {
     var isActive = false;
@@ -149,13 +138,6 @@ function useBaseInput(props, callerClassName) {
     return className;
   }, [props.wrapperClassName, props.disabled]);
 
-  // onBlur — если нужно внутри компонента просто вызвать props.onBlur()
-  var onBlurFunc = (0, _react.useCallback)(function () {
-    if (typeof props.onBlur === 'function') {
-      props.onBlur();
-    }
-  }, [props.onBlur]);
-
   // ------------------------------
   // Возвращаем всё, что может понадобиться дочерним компонентам
   // ------------------------------
@@ -165,9 +147,6 @@ function useBaseInput(props, callerClassName) {
     handleClickOutside: handleClickOutside,
     wrapperRef: wrapperRef,
     browser: browser,
-    getName: getName,
-    getInputStyle: getInputStyle,
-    getWrapperClasses: getWrapperClasses,
-    onBlurFunc: onBlurFunc
+    getName: getName
   };
 }

@@ -28,12 +28,16 @@ function InputContainer(_ref) {
     placeholder = _child$props.placeholder,
     id = _child$props.id,
     disabled = _child$props.disabled,
-    isEmpty = _child$props.isEmpty;
+    value = _child$props.value,
+    name = _child$props.name;
   var renderPlaceholder = function renderPlaceholder() {
     if (!placeholder) return null;
+    var notEmpty = typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0;
+
+    //если поле не пустое, то значит placeholder должен быть сверху
     return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
       htmlFor: id,
-      className: 'placeholder',
+      className: 'placeholder' + (notEmpty ? ' active' : ''),
       children: placeholder
     });
   };

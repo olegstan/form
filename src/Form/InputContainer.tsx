@@ -19,13 +19,19 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled, isEmpty} = child.props;
+    const {placeholder, id, disabled, value, name} = child.props;
 
     const renderPlaceholder = () => {
         if (!placeholder) return null;
 
+        let notEmpty = (
+            (typeof value === 'number' && value.toString().length > 0) ||
+            (typeof value === 'string' && value.length > 0)
+        );
+
+        //если поле не пустое, то значит placeholder должен быть сверху
         return (
-            <label htmlFor={id} className={'placeholder'}>
+            <label htmlFor={id} className={'placeholder' + (notEmpty ? ' active' : '')}>
                 {placeholder}
             </label>
         );

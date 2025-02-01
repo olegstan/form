@@ -30,7 +30,6 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } /**
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
- * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
 function useBaseDateInput(props, callerClassName) {
   // ------------------------------
@@ -114,37 +113,6 @@ function useBaseDateInput(props, callerClassName) {
     }
     return containerStyle;
   }, [props.containerStyle, focused, hasError]);
-
-  // getWrapperStyle (если отличался от контейнера — бывает не у всех)
-  var getWrapperStyle = (0, _react.useCallback)(function () {
-    var style = _objectSpread({}, props.containerStyle);
-    if (focused) {
-      style.border = '1px solid #1874DE';
-    }
-    if (hasError) {
-      style.border = '1px solid #EF5E70';
-    }
-    return style;
-  }, [props.containerStyle, focused, hasError]);
-
-  // getInputStyle
-  var getInputStyle = (0, _react.useCallback)(function () {
-    var inputStyle = _objectSpread({}, props.style);
-    if (props.className === 'style2') {
-      inputStyle.color = '#fff';
-    }
-    return inputStyle;
-  }, [props.style, props.className]);
-
-  // Если где-то нужно проверить напрямую через функцию (раньше было hasError())
-  var hasErrorFunc = (0, _react.useCallback)(function () {
-    return hasError;
-  }, [hasError]);
-
-  // getError (ранее было this.getError())
-  var getError = (0, _react.useCallback)(function () {
-    return error;
-  }, [error]);
 
   // getPlaceholderClassName
   var getPlaceholderClassName = (0, _react.useCallback)(function () {
@@ -244,15 +212,10 @@ function useBaseDateInput(props, callerClassName) {
     // методы
     handleShowSelect: handleShowSelect,
     handleClickOutside: handleClickOutside,
-    hasErrorFunc: hasErrorFunc,
-    getError: getError,
     getName: getName,
     getContainerStyle: getContainerStyle,
-    getWrapperStyle: getWrapperStyle,
-    getInputStyle: getInputStyle,
     getPlaceholderClassName: getPlaceholderClassName,
     getWrapperClasses: getWrapperClasses,
-    onBlurFunc: onBlurFunc,
     // "рендерные" методы, если вы хотите пользоваться ими напрямую
     renderPlaceholder: renderPlaceholder,
     renderTooltipError: renderTooltipError,

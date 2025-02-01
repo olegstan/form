@@ -27,28 +27,12 @@ function MaskedInput(_ref) {
     props = _objectWithoutProperties(_ref, _excluded);
   // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
   var _useBaseInput = (0, _useBaseInput2["default"])(props),
-    wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    browser = _useBaseInput.browser,
-    getContainerStyle = _useBaseInput.getContainerStyle,
-    getInputStyle = _useBaseInput.getInputStyle,
-    getName = _useBaseInput.getName,
-    getPlaceholderClassName = _useBaseInput.getPlaceholderClassName;
+    getName = _useBaseInput.getName;
 
   // 2. Проверка, «пустое ли» поле (как empty из класса)
   var isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
-
-  // 3. Функция рендера плейсхолдера (аналог this.renderPlaceholder())
-  var renderPlaceholder = function renderPlaceholder() {
-    if (!props.placeholder) return null;
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: props.id,
-      style: props.placeholderStyle,
-      className: getPlaceholderClassName(),
-      children: props.placeholder
-    });
-  };
 
   // 4. Функция рендера ошибки (аналог this.renderTooltipError())
   //    Если ранее была логика через InputPopup с иконкой, добавьте при необходимости
@@ -65,7 +49,6 @@ function MaskedInput(_ref) {
     mask: props.mask,
     autoComplete: "off",
     disabled: props.disabled,
-    style: getInputStyle(),
     className: props.className,
     type: props.type,
     name: getName(props.name || ''),

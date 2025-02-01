@@ -36,6 +36,14 @@ export const Container = styled.div`
   flex: 1;
   border-radius: 8px;
   position: relative;
+
+  //смотрим что у инпута есть такой класс, значит надо менять border
+  &:has(.focused) {
+    border: 2px solid #4378FF;
+  }
+  &:has(.error) {
+    border: 2px solid #EF5E70;
+  }
   
   ${({ disabled }) => disabled && disabledStyles}
 `;
@@ -85,16 +93,17 @@ export const placeholderActiveStyle = css`
     font-size: 10px;
     line-height: 0.1;
     display: block;
-    width: 100%;
     position: absolute;
-    top: 5px;
-    left: 25px;
+    top: 0;
+    left: 0;
     user-select: none;
     text-align: left;
     color: ${({theme}) => theme.inputPlaceholderTextColor};
     z-index: 1000;
+    width: 300px;
   }
   
+  //скрытый placeholder который идёт по умолчанию
   &::placeholder {
     font-size: 100%;
     transition: all 0.3s ease;
@@ -106,7 +115,8 @@ export const placeholderActiveStyle = css`
     transform-origin: 0 0;
   }
 
-  &:focus + .placeholder, & .placeholder.active {
+  //если поле не пустое или в фокусе, то значит placeholder должен быть сверху 
+  &:focus + .placeholder, & + .placeholder.active {
     transform: translate(.25em, -15%) scale(.8);
   }
 

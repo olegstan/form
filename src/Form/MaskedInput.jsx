@@ -15,14 +15,9 @@ function MaskedInput({
                      }) {
     // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
     const {
-        wrapperRef,
         focused,
         setFocused,
-        browser,
-        getContainerStyle,
-        getInputStyle,
-        getName,
-        getPlaceholderClassName
+        getName
     } = useBaseInput(props);
 
     // 2. Проверка, «пустое ли» поле (как empty из класса)
@@ -31,19 +26,6 @@ function MaskedInput({
         (typeof props.value === 'string' && props.value.length > 0)
     );
 
-    // 3. Функция рендера плейсхолдера (аналог this.renderPlaceholder())
-    const renderPlaceholder = () => {
-        if (!props.placeholder) return null;
-        return (
-            <label
-                htmlFor={props.id}
-                style={props.placeholderStyle}
-                className={getPlaceholderClassName()}
-            >
-                {props.placeholder}
-            </label>
-        );
-    };
 
     // 4. Функция рендера ошибки (аналог this.renderTooltipError())
     //    Если ранее была логика через InputPopup с иконкой, добавьте при необходимости
@@ -61,7 +43,6 @@ function MaskedInput({
         mask={props.mask}
         autoComplete="off"
         disabled={props.disabled}
-        style={getInputStyle()}
         className={props.className}
         type={props.type}
         name={getName(props.name || '')}

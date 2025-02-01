@@ -15,23 +15,16 @@ function Input({
                    style = {},
                    id,
                    autoComplete,
+                   error,
                    ...props
                }) {
 
     // Деструктурируем всё нужное из хука
     const {
+        focused,
         setFocused,
-        browser,
-        getInputStyle,
         getName,
-        onBlurFunc
     } = useBaseInput(props);
-
-    // Аналог проверки «пустой ли инпут»
-    const isEmpty = !(
-        (typeof props.value === 'number' && props.value.toString().length > 0) ||
-        (typeof props.value === 'string' && props.value.length > 0)
-    );
 
     const handleClick = (e) => {
         e.stopPropagation();
@@ -51,25 +44,25 @@ function Input({
         setFocused(true);
     };
 
+    const handleBlur = () => {
+        setFocused(false);
+    };
+
     return (
         <StyledInput
             id={id}
-            isEmpty={isEmpty}
-            style={getInputStyle()}
+            style={style}
             autoComplete={autoComplete || 'off'}
             disabled={disabled}
-            className={className}
+            className={className + (focused ? ' focused' : '') + (error ? ' error' : '')}
             type={type}
             name={getName(props.name)}
             value={props.value}
-            placeholder={placeholder}
             onClick={handleClick}
             onKeyPress={onKeyPress}
             onChange={handleChange}
             onFocus={handleFocus}
-            onBlur={() => {
-                onBlurFunc();
-            }}
+            onBlur={handleBlur}
         />
     );
 

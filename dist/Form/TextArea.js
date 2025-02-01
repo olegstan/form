@@ -21,11 +21,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
     browser = _useBaseInput.browser,
-    handleShowSelect = _useBaseInput.handleShowSelect,
-    getInputStyle = _useBaseInput.getInputStyle,
-    getName = _useBaseInput.getName,
-    getError = _useBaseInput.getError,
-    onBlurFunc = _useBaseInput.onBlurFunc;
+    getName = _useBaseInput.getName;
   var id = props.id,
     rows = props.rows,
     disabled = props.disabled,
@@ -57,15 +53,8 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     var handleFocus = function handleFocus() {
       setFocused(true);
     };
-    var handleBlur = function handleBlur() {
-      onBlurFunc();
-      // If you also want to remove focus on blur, uncomment:
-      // setFocused(false);
-    };
     return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.TextArea, {
-      browser: browser && browser.name,
       id: id,
-      style: getInputStyle(),
       disabled: disabled,
       className: className,
       name: getName(name),
@@ -75,8 +64,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
       onClick: handleClick,
       onKeyPress: onKeyPress,
       onChange: handleChange,
-      onFocus: handleFocus,
-      onBlur: handleBlur
+      onFocus: handleFocus
     });
   };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.ContainerTextArea, {
