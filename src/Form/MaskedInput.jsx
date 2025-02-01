@@ -1,7 +1,6 @@
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомный хук
 import {InputContainer, MaskedStyledInput} from './newstyles';
-import {Container} from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
 
 function MaskedInput({
@@ -60,14 +59,6 @@ function MaskedInput({
 
     // 5. Сама разметка
     return (
-        <Container
-            style={getContainerStyle()}
-            disabled={props.disabled}
-            className={
-                props.className + (props.disabled ? ' disabled' : '')
-            }
-            onClick={(e) => e.stopPropagation()}
-        >
             <InputContainer ref={wrapperRef}>
                 <MaskedStyledInput
                     browser={browser && browser.name}
@@ -126,7 +117,6 @@ function MaskedInput({
                 {/* Ошибка */}
                 {renderTooltipError()}
             </InputContainer>
-        </Container>
     );
 }
 

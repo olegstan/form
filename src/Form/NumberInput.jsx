@@ -171,15 +171,6 @@ function NumberInput({
   );
 
   return (
-    <Container
-      style={getContainerStyle()}
-      size={props.size}
-      disabled={props.disabled}
-      className={props.className + (props.disabled ? ' disabled' : '')}
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
       <InputContainer ref={wrapperRef}>
         {/* Сам <input> */}
         <StyledInput
@@ -231,11 +222,8 @@ function NumberInput({
             alt=""
           />
         )}
-
-        {/* Ошибка/tooltip */}
         {renderTooltipError()}
       </InputContainer>
-    </Container>
   );
 }
 

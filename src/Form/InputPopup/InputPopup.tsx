@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, PopupContainer} from './styles'
+// @ts-ignore
 import Popup from 'reactjs-popup';
 
 const InputPopup = ({ trigger, children }) => {

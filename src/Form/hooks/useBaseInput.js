@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import InputPopup from "../InputPopup/InputPopup";
-import errorSvg from "../../assets/error.svg";
+// import InputPopup from "../InputPopup/InputPopup";
+// import errorSvg from "../../assets/error.svg";
 import {detect} from 'detect-browser';
 
 /**
@@ -202,21 +202,21 @@ export default function useBaseInput(props, callerClassName) {
   // renderTooltipError — возвращает ваш InputPopup с иконкой errorSvg
   const renderTooltipError = useCallback(() => {
     if (!hasError || !error) return null;
-    return (
-      <InputPopup
-        trigger={
-          <img
-            id={'tooltip-' + props.id}
-            src={errorSvg}
-            alt=""
-          />
-        }
-      >
-        <label htmlFor={props.id} className={props.className + ' error'}>
-          {error}
-        </label>
-      </InputPopup>
-    );
+    // return (
+    //   <InputPopup
+    //     trigger={
+    //       <img
+    //         id={'tooltip-' + props.id}
+    //         src={errorSvg}
+    //         alt=""
+    //       />
+    //     }
+    //   >
+    //     <label htmlFor={props.id} className={props.className + ' error'}>
+    //       {error}
+    //     </label>
+    //   </InputPopup>
+    // );
   }, [hasError, error, props.id, props.className]);
 
   // renderInput — часто в классах вы переопределяли,

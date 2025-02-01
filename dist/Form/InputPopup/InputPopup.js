@@ -1,23 +1,41 @@
-import React from 'react';
-import { Container, PopupContainer } from './styles';
-import Popup from 'reactjs-popup';
-const InputPopup = ({
-  trigger,
-  children
-}) => {
-  const handleClose = () => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _styles = require("./styles");
+var _reactjsPopup = _interopRequireDefault(require("reactjs-popup"));
+var _jsxRuntime = require("react/jsx-runtime");
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+// @ts-ignore
+
+var InputPopup = function InputPopup(_ref) {
+  var trigger = _ref.trigger,
+    _children = _ref.children;
+  var handleClose = function handleClose() {
     // Логика закрытия, если потребуется
   };
-  return /*#__PURE__*/React.createElement(Popup, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactjsPopup["default"], {
     on: 'hover',
-    trigger: /*#__PURE__*/React.createElement(Container, null, trigger),
+    trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, {
+      children: trigger
+    }),
     position: "bottom",
     contentStyle: {
       zIndex: 1000
     },
     onClose: handleClose // Добавьте обработку закрытия при необходимости
-  }, close => /*#__PURE__*/React.createElement(PopupContainer, {
-    onClick: e => e.stopPropagation()
-  }, children));
+    ,
+    children: function children(close) {
+      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.PopupContainer, {
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        },
+        children: _children
+      });
+    }
+  });
 };
-export default InputPopup;
+var _default = exports["default"] = InputPopup;

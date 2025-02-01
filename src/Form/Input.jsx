@@ -1,10 +1,8 @@
 // Input.js
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import InputPopup from './../Form/InputPopup/InputPopup';
 import errorSvg from './../assets/error.svg';
 import {InputContainer, StyledInput} from './newstyles';
-import {Container} from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
 
 function Input({
@@ -35,7 +33,6 @@ function Input({
         browser,
         handleShowSelect,
         getPlaceholderClassName,
-        getContainerStyle,
         getInputStyle,
         getName,
         getError,
@@ -135,44 +132,7 @@ function Input({
         );
     };
 
-    return (
-        <Container
-            style={getContainerStyle()}
-            size={size}
-            disabled={disabled}
-            className={className + (disabled ? ' disabled' : '')}
-            onClick={(e) => {
-                e.stopPropagation();
-            }}
-        >
-            <InputContainer ref={wrapperRef}>
-                {renderInput()}
-                {renderPlaceholder()}
-
-                {/* Кнопка очистки, если значение не пустое, нет size, icon !== false и не disabled */}
-                {!empty &&
-                typeof size === 'undefined' &&
-                props.icon !== false &&
-                !disabled && (
-                    <img
-                        className="close"
-                        src={Close}
-                        onClick={(e) => {
-                            onChange(e, {
-                                name: props.name,
-                                value: ''
-                            });
-                            setHasError(false);
-                        }}
-                        alt=""
-                    />
-                )
-                }
-
-                {renderTooltipError()}
-            </InputContainer>
-        </Container>
-    );
+    return (renderInput());
 }
 
 export default Input;

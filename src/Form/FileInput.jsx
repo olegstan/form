@@ -81,40 +81,32 @@ const FileInput = ({
     const empty = !props.value || typeof props.value.name !== 'string';
 
     return (
-        <Container
-            style={inputStyle}
-            size={props.size}
-            disabled={disabled}
-            className={`${className}${disabled ? ' disabled' : ''}`}
-            onClick={(e) => e.stopPropagation()}
-        >
-            <InputContainer ref={wrapperRef}>
-                <StyledInput
-                    ref={inputRef}
-                    browser={browser && browser.name}
-                    id={props.id}
-                    size={props.size}
-                    disabled={disabled}
-                    className={className}
-                    type="file"
-                    name={getName(props.name)}
-                    placeholder={props.placeholder}
-                    onChange={handleFileChange}
+        <InputContainer ref={wrapperRef}>
+            <StyledInput
+                ref={inputRef}
+                browser={browser && browser.name}
+                id={props.id}
+                size={props.size}
+                disabled={disabled}
+                className={className}
+                type="file"
+                name={getName(props.name)}
+                placeholder={props.placeholder}
+                onChange={handleFileChange}
+            />
+            {renderPlaceholder()}
+            {!empty &&
+            typeof props.size === 'undefined' &&
+            !disabled && (
+                <img
+                    className="close"
+                    src={Close}
+                    onClick={handleClearFile}
+                    alt=""
                 />
-                {renderPlaceholder()}
-                {!empty &&
-                typeof props.size === 'undefined' &&
-                !disabled && (
-                    <img
-                        className="close"
-                        src={Close}
-                        onClick={handleClearFile}
-                        alt=""
-                    />
-                )}
-                {renderTooltipError()}
-            </InputContainer>
-        </Container>
+            )}
+            {renderTooltipError()}
+        </InputContainer>
     );
 };
 

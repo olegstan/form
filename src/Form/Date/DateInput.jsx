@@ -185,11 +185,6 @@ function DateInput({
     };
 
     return (
-      <Container
-        style={getContainerStyle()}
-        className={`${className} ${disabled ? 'disabled' : ''}`}
-        disabled={disabled}
-      >
           <InputContainer ref={wrapperRef} needMargin={true} focus={focused}>
               {renderInputOrFlatpickr()}
 
@@ -217,7 +212,6 @@ function DateInput({
                 </label>
               )}
           </InputContainer>
-      </Container>
     );
 }
 

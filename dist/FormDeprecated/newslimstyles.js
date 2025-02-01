@@ -1,659 +1,92 @@
-import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
-import InputMask from "react-input-mask";
-import { NavLink } from 'react-router-dom';
-import zindex from '../interface/zindex';
-import { placeholderActiveStyle, placeholderStyle, sharedCheckboxStyle } from './newstyles';
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
+"use strict";
 
-  to {
-    transform: rotate(360deg);
-  }
-`;
-export const errorStyle = css`
-    background-color: #fff;
-    box-shadow: rgb(38 38 38 / 4%) 0 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;
-    width: 276px;
-    display: block;
-    font-size: 14px;
-    border-radius: 16px;
-    padding: 20px;
-`;
-export const sharedSearchContainer = css`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  box-sizing: content-box;
-  //max-width: 490px;
-  flex: 1;
-  margin: 15px 10px;
-  width: 100%;
-  min-width: 200px;
-  border-radius: 8px;
-  position: relative;
-  
-  &.style1 .select, &.style1 .item, &.style1 .selected, &.style1 .wrapper{
-    background: #F5F5F5;
-    color: #4378FF;
-    border: none;
-  }
-  
-  &.style1 .item:hover, &.style1 .item.hovered{
-    background: #EAF9FF !important;
-  }
-  
-  &.style1 .select{
-  
-  }
-  &.style1 .item:hover, &.style1 .item.hovered{
-    background: #EAF9FF !important;
-  }
-  
-  &.style1 .item:hover span, &.style1 .item.hovered span{
-    background: #EAF9FF !important;
-  }
-  
-  &.style1 .item
-  {
-    background-color: #FAFAFA;
-  }
-  &.style1 .item .subitem
-  {
-    background-color: #FAFAFA;
-  }
-  //&.style1 .item:nth-child(even), .item:nth-child(even)
-  //{
-  //  background-color: #E5E5E5;
-  //}
-  
-  &.disabled{
-    //background-color: #FAFAFA !important;
-  }
-  
-  ${props => props.size === 'small' && `
-    max-width: 256px;
-  `}
-  
-  
-  ${props => props.size === 'medium' && `
-      max-width: 418px;
-  `}
-`;
-export const sharedSearchInputWrapperStyle = css`
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  height: 48px;
-  background-color: #fff;
-  border: 1px solid #D2D1D1;
-  flex: 1;
-  border-radius: 8px;
-  cursor: pointer;
-  
-  &.select{
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom: 1px #fff solid !important;
-  }
-  
-  input::placeholder
-  {
-    color: transparent;
-  }
-  
-  img.arrow {
-    position: absolute;
-    right: 20px;
-    top: 12px;
-    width: 12px;
-    height: 20px;
-  }
-  
-  &.disabled{
-    background-color: #FAFAFA !important;
-  }
-  
-  ${props => props.size === 'small' && `
-      width: 100%;
-      max-width: 130px;
-      height: 30px;
-      line-height: 24px;
-      margin: 3px 2px;
-  `}
-`;
-export const sharedSearchContainerStyle = css`
-  background-color: transparent;
-  width: calc(100% - 58px);
-  outline: none;
-  display: flex;
-  flex: 1;
-  height: 48px;
-  
-  &.disabled{
-    background-color: #F7F9FB;
-  }
-  
-  ${placeholderStyle}
-  
-  label.error{
-    ${errorStyle}
-  }
-`;
-export const sharedSelectWrapperStyle = css`
-  display: flex;
-  box-sizing: border-box;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-  border-radius: 8px;
-  
-  &.select{
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  &.select .selected span{
-    border-bottom: 1px solid #E1E6EC;
-  }
-  &.select.style2 .selected span {
-    border-bottom: 1px solid #414250;
-  }
-  
-  input::placeholder
-  {
-    color: transparent;
-  }
-  
-  img.arrow {
-    position: absolute;
-    right: 20px;
-    top: 11px;
-    width: 12px;
-    height: 20px;
-  }
-  
-  ${placeholderStyle}
-  
-  label.placeholder{
-    top: 10px;
-    left: 17px;
-    z-index: 1000;
-  }
-  
-  label.error{
-    ${errorStyle}
-  }
-  
-  ${props => props.size === 'small' && `
-      width: 100%;
-      max-width: 130px;
-      height: 30px;
-      line-height: 24px;
-      margin: 3px 2px;
-  `}
-`;
-export const sharedButtonStyle = css`
-  display: inline-block;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 28px;
-  white-space: nowrap;
-  height: 48px;
-  border-radius: 10px;
-  border: none;
-  transition: .3s all;
-  outline: none;
-  font-style: normal;
-  font-weight: 600;
-  text-align: center;
-  box-sizing: border-box;
-  padding: 10px 20px;
-
-  &.style2{
-    background: #4378FF;
-    color: #FFFFFF;
-  }
-  &.style2:hover{
-    background: #3C6CE6;
-  }
-  &.style2:active{
-    background: #5685FF;
-  }
-
-  &.style1{
-      background: #EFF2F5;
-      color: #4378FF;
-  }
-  &.style1:hover{
-    background: #D7DADC;
-  }
-  &.style1:active{
-    background: #F1F3F6;
-  }
-  
-  &.style3{
-      background: transparent;
-      color: #4378FF;
-    
-      ${props => props.right && `
-        margin: 10px 40px 0 0;
-      `}
-  }
-  &.style3:hover{
-  
-  }
-  &.style3:active{
-  
-  }
-  &.style4{
-      background: #EFF2F5;
-      color: #FF624D;
-      min-width: auto;
-      padding: 10px 20px;
-      border-radius: 10px;
-      
-      ${props => props.right && `
-        margin: 10px 40px 0 0;
-      `}
-  }
-  &.style3:hover{
-  
-  }
-  &.style3:active{
-  
-  }
-  
-  
-  ${props => props.left && `
-    margin-left: 0;
-  `}
-  ${props => props.slim && `
-    height: 40px;
-    line-height: 20px;
-  `}
-`;
-export const sharedSelectedStyle = css`
-  width: 100%;
-  white-space: nowrap;
-  color: #4378FF;
-  align-items: center;
-  line-height: 21px;
-  padding: 16px 17px 0 17px;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 500;
-  word-break: keep-all;
-  overflow: hidden;
-  background-color: #EFF2F5;
-  border-radius: 8px;
-  
-  span{
-    display: block;
-    text-align: left;
-    font-size: 14px;
-    width: 100%;
-  }
-`;
-export const sharedSelectStyle = css`
-  border-radius: 0 0 4px 4px;
-  position: absolute;
-  z-index: 30000;
-  top: 50px;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 20px 48px rgba(255, 255, 255, 0.25);
-  display: none;
-  overflow-y: auto;
-  overflow-x: hidden;
-  max-height: 250px;
-
-  ${props => props.select && `
-    display: block;
-  `}
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    background-color: #F5F6FB;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(10,10,10,0.2);
-    border-radius: 4px;
-  }
-`;
-export const sharedItemStyle = css`
-  align-items: center;
-  color: #4378FF;
-  cursor: pointer;
-  line-height: 24px;
-  display: flex;
-  padding: 0 15px;
-  font-size: 14px;
-  font-weight: 500;
-  user-select: none;
-  text-align: left;
-  background-color: #EFF2F5;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #E1E6EC;
-
-  span{
-    text-align: left;
-    font-size: 14px;
-    width: 100%;
-    padding: 4px 8px;
-    margin: 10px 0;
-  }
-
-  &:last-child span{
-    border-bottom: none;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-
-  span:hover{
-    background-color: #E1E6EC;
-    border-radius: 8px;
-  }
-
-  &.style2 span:hover
-  {
-    background-color: #414250;
-    border-bottom: 1px solid #414250;
-  }
-`;
-export const sharedSubItemStyle = css`
-  align-items: center;
-  color: #4378FF;
-  cursor: pointer;
-  line-height: 24px;
-  display: flex;
-  padding: 0 15px;
-  font-size: 14px;
-  font-weight: 500;
-  user-select: none;
-  text-align: left;
-  background-color: #EFF2F5;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #E1E6EC;
-
-  span{
-    text-align: left;
-    font-size: 14px;
-    width: 100%;
-    padding: 4px 8px;
-    margin: 10px 0;
-  }
-
-  &:last-child span{
-    border-bottom: none;
-  }
-
-  &:last-child {
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-
-  span:hover{
-    background-color: #E1E6EC;
-
-    border-radius: 8px;
-  }
-
-  &.style2 span:hover
-  {
-    background-color: #414250;
-    border-bottom: 1px solid #414250;
-  }
-`;
-export const sharedInputContainerStyle = css`
-  background-color: transparent;
-  width: calc(100% - 58px);
-  outline: none;
-  display: flex;
-  flex: 1;
-  height: 46px;
-  padding: 0;
-  
-  &.disabled{
-    background-color: #F7F9FB;
-  }
-  
-  ${placeholderStyle}
-  
-  img{
-    z-index: 1000;
-    cursor: pointer;
-  }
-  
-   label.error{
-      ${errorStyle}
-   }
-   
-   img.calendar {
-    position: absolute;
-    right: 16px;
-    top: 14px;
-  }
-  
-   img.close{
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    cursor: pointer;
-  }
-  
-  
-  ${props => props.slim && `
-    height: 38px;
-  `}
-  
-`;
-export const sharedInputStyle = css`
-  width: 100%;
-  line-height: 13px;
-  border-width: 0;
-  z-index: ${zindex.input};
-  color: #000;
-  transition: border-color .25s ease-in-out;
-  border-bottom: 3px solid rgba(255, 255, 255, .05);
-  background-color: transparent;
-  padding: 24px 12px 8px 14px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  text-align: left;
-  border-radius: 8px;
-  
-  &:focus
-  {
-      outline: 0;
-  }
-  
-  ${placeholderActiveStyle}
-  
-  ${props => props.size === 'undersized' && `
-
-    width: 100%;
-    max-width: 220px;
-    height: 21px;
-    font-size: 12px;
-    line-height: 21px;
-    padding: 2px 5px;
-    
-    
-    :disabled{
-      height: 30px;
-      border-radius: 4px;
-    }
-  `}
-    
-     ${props => props.size === 'small' && `
-
-        width: 100%;
-        max-width: 220px;
-        height: 21px;
-        font-size: 12px;
-        line-height: 21px;
-        padding: 2px 5px;
-        
-        
-        :disabled{
-          height: 30px;
-          border-radius: 4px;
-        }
-    `}
-     
-     ${props => props.slim && `
-        padding: 14px 12px 8px 11px;
-
-        &::placeholder
-        {
-            color: #7F818D;
-        }
-    `}
-`;
-export const EmptyContainer = styled.div`
-    display: flex;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px 10px;
-    flex: 1;
-    border-radius: 8px;
-    position: relative;
-    min-width: 200px;
-    
-    ${props => props.size === 'small' && `
-      max-width: 256px;
-    `}
-  
-  
-    ${props => props.size === 'medium' && `
-        max-width: 418px;
-    `}
-`;
-export const InputContainer = styled.div`
-    ${sharedInputContainerStyle}
-`;
-export const StyledInput = styled.input`
-    ${sharedInputStyle}
-`;
-export const MaskedStyledInput = styled(InputMask)`
-    ${sharedInputStyle}
-`;
-export const Button = styled.button`    
-    ${sharedButtonStyle}
-        
-    ${props => props.flex && `
-      flex: 1;
-      max-width: none;
-      min-width: fit-content;
-    `}
-        
-    ${props => props.position === 'right' && `
-      margin: 0 0 0 auto;
-    `}
-    
-    ${props => props.size === 'small' && `
-      border-radius: 8px;
-      font-size: 14px;
-      width: 96px;
-      height: 24px;
-      margin: 10px 5px;
-      padding: 2px 0;
-      min-width: 96px;
-      line-height: 12px;
-    `}
-`;
-export const Link = styled.a`   
-    ${sharedButtonStyle}
-    
-    font-weight: 700 !important;
-    
-    ${props => props.flex && `
-      flex: 1;
-      max-width: none;
-      min-width: fit-content;
-    `}
-        
-    ${props => props.position === 'right' && `
-      margin: 0 0 0 auto;
-    `}
-`;
-export const ButtonLink = styled(NavLink)`
-    ${sharedButtonStyle}
-    
-    font-weight: 700 !important;
-    
-    ${props => props.flex && `
-      flex: 1;
-      max-width: none;
-      min-width: fit-content;
-    `}
-    
-    ${props => props.position === 'right' && `
-      margin: 0 0 0 auto;
-    `}
-`;
-export const ContainerTextArea = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    flex: 1;
-`;
-export const Row = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  position: relative;
-  align-items: center;
-  box-sizing: border-box;
-    
-  ${props => props.flex && `
-    flex: 1;
-  `}
-`;
-export const Checkbox = styled.div`
-    ${sharedCheckboxStyle}
-`;
-export const Loader = styled.div`
-  height: 48px;
-  
-  flex-basis: 48px;
-  position: absolute;
-  right: 36px;
-  
-  img{
-    position: absolute;
-    top: 8px;
-    height: 30px;
-    width: 30px;
-    right: -20px;
-    animation: ${rotate} 2s linear infinite;
-  }
-`;
-export const Selected = styled.div`
-    ${sharedSelectedStyle}
-`;
-export const Select = styled.div`
-  ${sharedSelectStyle}
-`;
-export const Item = styled.div`
-  ${sharedItemStyle}
-`;
-export const SubItem = styled.div`
-  ${sharedSubItemStyle}
-`;
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sharedSubItemStyle = exports.sharedSelectedStyle = exports.sharedSelectWrapperStyle = exports.sharedSelectStyle = exports.sharedSearchInputWrapperStyle = exports.sharedSearchContainerStyle = exports.sharedSearchContainer = exports.sharedItemStyle = exports.sharedInputStyle = exports.sharedInputContainerStyle = exports.sharedButtonStyle = exports.errorStyle = exports.SubItem = exports.StyledInput = exports.Selected = exports.Select = exports.Row = exports.MaskedStyledInput = exports.Loader = exports.Link = exports.Item = exports.InputContainer = exports.EmptyContainer = exports.ContainerTextArea = exports.Checkbox = exports.ButtonLink = exports.Button = void 0;
+var _react = _interopRequireDefault(require("react"));
+var _styledComponents = _interopRequireWildcard(require("styled-components"));
+var _reactInputMask = _interopRequireDefault(require("react-input-mask"));
+var _reactRouterDom = require("react-router-dom");
+var _zindex = _interopRequireDefault(require("../interface/zindex"));
+var _newstyles = require("./newstyles");
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28;
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
+var rotate = (0, _styledComponents.keyframes)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  from {\n    transform: rotate(0deg);\n  }\n\n  to {\n    transform: rotate(360deg);\n  }\n"])));
+var errorStyle = exports.errorStyle = (0, _styledComponents.css)(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    background-color: #fff;\n    box-shadow: rgb(38 38 38 / 4%) 0 1px 2px, rgb(38 38 38 / 16%) 0px 4px 8px;\n    width: 276px;\n    display: block;\n    font-size: 14px;\n    border-radius: 16px;\n    padding: 20px;\n"])));
+var sharedSearchContainer = exports.sharedSearchContainer = (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  background-color: #fff;\n  box-sizing: content-box;\n  //max-width: 490px;\n  flex: 1;\n  margin: 15px 10px;\n  width: 100%;\n  min-width: 200px;\n  border-radius: 8px;\n  position: relative;\n  \n  &.style1 .select, &.style1 .item, &.style1 .selected, &.style1 .wrapper{\n    background: #F5F5F5;\n    color: #4378FF;\n    border: none;\n  }\n  \n  &.style1 .item:hover, &.style1 .item.hovered{\n    background: #EAF9FF !important;\n  }\n  \n  &.style1 .select{\n  \n  }\n  &.style1 .item:hover, &.style1 .item.hovered{\n    background: #EAF9FF !important;\n  }\n  \n  &.style1 .item:hover span, &.style1 .item.hovered span{\n    background: #EAF9FF !important;\n  }\n  \n  &.style1 .item\n  {\n    background-color: #FAFAFA;\n  }\n  &.style1 .item .subitem\n  {\n    background-color: #FAFAFA;\n  }\n  //&.style1 .item:nth-child(even), .item:nth-child(even)\n  //{\n  //  background-color: #E5E5E5;\n  //}\n  \n  &.disabled{\n    //background-color: #FAFAFA !important;\n  }\n  \n  ", "\n  \n  \n  ", "\n"])), function (props) {
+  return props.size === 'small' && "\n    max-width: 256px;\n  ";
+}, function (props) {
+  return props.size === 'medium' && "\n      max-width: 418px;\n  ";
+});
+var sharedSearchInputWrapperStyle = exports.sharedSearchInputWrapperStyle = (0, _styledComponents.css)(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 48px;\n  background-color: #fff;\n  border: 1px solid #D2D1D1;\n  flex: 1;\n  border-radius: 8px;\n  cursor: pointer;\n  \n  &.select{\n    border-bottom-left-radius: 0;\n    border-bottom-right-radius: 0;\n    border-bottom: 1px #fff solid !important;\n  }\n  \n  input::placeholder\n  {\n    color: transparent;\n  }\n  \n  img.arrow {\n    position: absolute;\n    right: 20px;\n    top: 12px;\n    width: 12px;\n    height: 20px;\n  }\n  \n  &.disabled{\n    background-color: #FAFAFA !important;\n  }\n  \n  ", "\n"])), function (props) {
+  return props.size === 'small' && "\n      width: 100%;\n      max-width: 130px;\n      height: 30px;\n      line-height: 24px;\n      margin: 3px 2px;\n  ";
+});
+var sharedSearchContainerStyle = exports.sharedSearchContainerStyle = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  width: calc(100% - 58px);\n  outline: none;\n  display: flex;\n  flex: 1;\n  height: 48px;\n  \n  &.disabled{\n    background-color: #F7F9FB;\n  }\n  \n  ", "\n  \n  label.error{\n    ", "\n  }\n"])), _newstyles.placeholderStyle, errorStyle);
+var sharedSelectWrapperStyle = exports.sharedSelectWrapperStyle = (0, _styledComponents.css)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  flex: 1;\n  border-radius: 8px;\n  \n  &.select{\n    border-bottom-left-radius: 0;\n    border-bottom-right-radius: 0;\n  }\n  &.select .selected span{\n    border-bottom: 1px solid #E1E6EC;\n  }\n  &.select.style2 .selected span {\n    border-bottom: 1px solid #414250;\n  }\n  \n  input::placeholder\n  {\n    color: transparent;\n  }\n  \n  img.arrow {\n    position: absolute;\n    right: 20px;\n    top: 11px;\n    width: 12px;\n    height: 20px;\n  }\n  \n  ", "\n  \n  label.placeholder{\n    top: 10px;\n    left: 17px;\n    z-index: 1000;\n  }\n  \n  label.error{\n    ", "\n  }\n  \n  ", "\n"])), _newstyles.placeholderStyle, errorStyle, function (props) {
+  return props.size === 'small' && "\n      width: 100%;\n      max-width: 130px;\n      height: 30px;\n      line-height: 24px;\n      margin: 3px 2px;\n  ";
+});
+var sharedButtonStyle = exports.sharedButtonStyle = (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  display: inline-block;\n  cursor: pointer;\n  font-size: 14px;\n  line-height: 28px;\n  white-space: nowrap;\n  height: 48px;\n  border-radius: 10px;\n  border: none;\n  transition: .3s all;\n  outline: none;\n  font-style: normal;\n  font-weight: 600;\n  text-align: center;\n  box-sizing: border-box;\n  padding: 10px 20px;\n\n  &.style2{\n    background: #4378FF;\n    color: #FFFFFF;\n  }\n  &.style2:hover{\n    background: #3C6CE6;\n  }\n  &.style2:active{\n    background: #5685FF;\n  }\n\n  &.style1{\n      background: #EFF2F5;\n      color: #4378FF;\n  }\n  &.style1:hover{\n    background: #D7DADC;\n  }\n  &.style1:active{\n    background: #F1F3F6;\n  }\n  \n  &.style3{\n      background: transparent;\n      color: #4378FF;\n    \n      ", "\n  }\n  &.style3:hover{\n  \n  }\n  &.style3:active{\n  \n  }\n  &.style4{\n      background: #EFF2F5;\n      color: #FF624D;\n      min-width: auto;\n      padding: 10px 20px;\n      border-radius: 10px;\n      \n      ", "\n  }\n  &.style3:hover{\n  \n  }\n  &.style3:active{\n  \n  }\n  \n  \n  ", "\n  ", "\n"])), function (props) {
+  return props.right && "\n        margin: 10px 40px 0 0;\n      ";
+}, function (props) {
+  return props.right && "\n        margin: 10px 40px 0 0;\n      ";
+}, function (props) {
+  return props.left && "\n    margin-left: 0;\n  ";
+}, function (props) {
+  return props.slim && "\n    height: 40px;\n    line-height: 20px;\n  ";
+});
+var sharedSelectedStyle = exports.sharedSelectedStyle = (0, _styledComponents.css)(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  width: 100%;\n  white-space: nowrap;\n  color: #4378FF;\n  align-items: center;\n  line-height: 21px;\n  padding: 16px 17px 0 17px;\n  text-align: left;\n  font-size: 14px;\n  font-weight: 500;\n  word-break: keep-all;\n  overflow: hidden;\n  background-color: #EFF2F5;\n  border-radius: 8px;\n  \n  span{\n    display: block;\n    text-align: left;\n    font-size: 14px;\n    width: 100%;\n  }\n"])));
+var sharedSelectStyle = exports.sharedSelectStyle = (0, _styledComponents.css)(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  border-radius: 0 0 4px 4px;\n  position: absolute;\n  z-index: 30000;\n  top: 50px;\n  left: 0;\n  width: 100%;\n  box-shadow: 0 20px 48px rgba(255, 255, 255, 0.25);\n  display: none;\n  overflow-y: auto;\n  overflow-x: hidden;\n  max-height: 250px;\n\n  ", "\n\n  &::-webkit-scrollbar {\n    width: 8px;\n    background-color: #F5F6FB;\n  }\n\n  &::-webkit-scrollbar-thumb {\n    background-color: rgba(10,10,10,0.2);\n    border-radius: 4px;\n  }\n"])), function (props) {
+  return props.select && "\n    display: block;\n  ";
+});
+var sharedItemStyle = exports.sharedItemStyle = (0, _styledComponents.css)(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  align-items: center;\n  color: #4378FF;\n  cursor: pointer;\n  line-height: 24px;\n  display: flex;\n  padding: 0 15px;\n  font-size: 14px;\n  font-weight: 500;\n  user-select: none;\n  text-align: left;\n  background-color: #EFF2F5;\n  flex-wrap: wrap;\n  border-bottom: 1px solid #E1E6EC;\n\n  span{\n    text-align: left;\n    font-size: 14px;\n    width: 100%;\n    padding: 4px 8px;\n    margin: 10px 0;\n  }\n\n  &:last-child span{\n    border-bottom: none;\n  }\n\n  &:last-child {\n    border-bottom-left-radius: 8px;\n    border-bottom-right-radius: 8px;\n  }\n\n  span:hover{\n    background-color: #E1E6EC;\n    border-radius: 8px;\n  }\n\n  &.style2 span:hover\n  {\n    background-color: #414250;\n    border-bottom: 1px solid #414250;\n  }\n"])));
+var sharedSubItemStyle = exports.sharedSubItemStyle = (0, _styledComponents.css)(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  align-items: center;\n  color: #4378FF;\n  cursor: pointer;\n  line-height: 24px;\n  display: flex;\n  padding: 0 15px;\n  font-size: 14px;\n  font-weight: 500;\n  user-select: none;\n  text-align: left;\n  background-color: #EFF2F5;\n  flex-wrap: wrap;\n  border-bottom: 1px solid #E1E6EC;\n\n  span{\n    text-align: left;\n    font-size: 14px;\n    width: 100%;\n    padding: 4px 8px;\n    margin: 10px 0;\n  }\n\n  &:last-child span{\n    border-bottom: none;\n  }\n\n  &:last-child {\n    border-bottom-left-radius: 8px;\n    border-bottom-right-radius: 8px;\n  }\n\n  span:hover{\n    background-color: #E1E6EC;\n\n    border-radius: 8px;\n  }\n\n  &.style2 span:hover\n  {\n    background-color: #414250;\n    border-bottom: 1px solid #414250;\n  }\n"])));
+var sharedInputContainerStyle = exports.sharedInputContainerStyle = (0, _styledComponents.css)(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  width: calc(100% - 58px);\n  outline: none;\n  display: flex;\n  flex: 1;\n  height: 46px;\n  padding: 0;\n  \n  &.disabled{\n    background-color: #F7F9FB;\n  }\n  \n  ", "\n  \n  img{\n    z-index: 1000;\n    cursor: pointer;\n  }\n  \n   label.error{\n      ", "\n   }\n   \n   img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 14px;\n  }\n  \n   img.close{\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n  \n  \n  ", "\n  \n"])), _newstyles.placeholderStyle, errorStyle, function (props) {
+  return props.slim && "\n    height: 38px;\n  ";
+});
+var sharedInputStyle = exports.sharedInputStyle = (0, _styledComponents.css)(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  width: 100%;\n  line-height: 13px;\n  border-width: 0;\n  z-index: ", ";\n  color: #000;\n  transition: border-color .25s ease-in-out;\n  border-bottom: 3px solid rgba(255, 255, 255, .05);\n  background-color: transparent;\n  padding: 24px 12px 8px 14px;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 500;\n  text-align: left;\n  border-radius: 8px;\n  \n  &:focus\n  {\n      outline: 0;\n  }\n  \n  ", "\n  \n  ", "\n    \n     ", "\n     \n     ", "\n"])), _zindex["default"].input, _newstyles.placeholderActiveStyle, function (props) {
+  return props.size === 'undersized' && "\n\n    width: 100%;\n    max-width: 220px;\n    height: 21px;\n    font-size: 12px;\n    line-height: 21px;\n    padding: 2px 5px;\n    \n    \n    :disabled{\n      height: 30px;\n      border-radius: 4px;\n    }\n  ";
+}, function (props) {
+  return props.size === 'small' && "\n\n        width: 100%;\n        max-width: 220px;\n        height: 21px;\n        font-size: 12px;\n        line-height: 21px;\n        padding: 2px 5px;\n        \n        \n        :disabled{\n          height: 30px;\n          border-radius: 4px;\n        }\n    ";
+}, function (props) {
+  return props.slim && "\n        padding: 14px 12px 8px 11px;\n\n        &::placeholder\n        {\n            color: #7F818D;\n        }\n    ";
+});
+var EmptyContainer = exports.EmptyContainer = _styledComponents["default"].div(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n    display: flex;\n    box-sizing: border-box;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    margin: 15px 10px;\n    flex: 1;\n    border-radius: 8px;\n    position: relative;\n    min-width: 200px;\n    \n    ", "\n  \n  \n    ", "\n"])), function (props) {
+  return props.size === 'small' && "\n      max-width: 256px;\n    ";
+}, function (props) {
+  return props.size === 'medium' && "\n        max-width: 418px;\n    ";
+});
+var InputContainer = exports.InputContainer = _styledComponents["default"].div(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n    ", "\n"])), sharedInputContainerStyle);
+var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n    ", "\n"])), sharedInputStyle);
+var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["default"])(_reactInputMask["default"])(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n    ", "\n"])), sharedInputStyle);
+var Button = exports.Button = _styledComponents["default"].button(_templateObject18 || (_templateObject18 = _taggedTemplateLiteral(["    \n    ", "\n        \n    ", "\n        \n    ", "\n    \n    ", "\n"])), sharedButtonStyle, function (props) {
+  return props.flex && "\n      flex: 1;\n      max-width: none;\n      min-width: fit-content;\n    ";
+}, function (props) {
+  return props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ";
+}, function (props) {
+  return props.size === 'small' && "\n      border-radius: 8px;\n      font-size: 14px;\n      width: 96px;\n      height: 24px;\n      margin: 10px 5px;\n      padding: 2px 0;\n      min-width: 96px;\n      line-height: 12px;\n    ";
+});
+var Link = exports.Link = _styledComponents["default"].a(_templateObject19 || (_templateObject19 = _taggedTemplateLiteral(["   \n    ", "\n    \n    font-weight: 700 !important;\n    \n    ", "\n        \n    ", "\n"])), sharedButtonStyle, function (props) {
+  return props.flex && "\n      flex: 1;\n      max-width: none;\n      min-width: fit-content;\n    ";
+}, function (props) {
+  return props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ";
+});
+var ButtonLink = exports.ButtonLink = (0, _styledComponents["default"])(_reactRouterDom.NavLink)(_templateObject20 || (_templateObject20 = _taggedTemplateLiteral(["\n    ", "\n    \n    font-weight: 700 !important;\n    \n    ", "\n    \n    ", "\n"])), sharedButtonStyle, function (props) {
+  return props.flex && "\n      flex: 1;\n      max-width: none;\n      min-width: fit-content;\n    ";
+}, function (props) {
+  return props.position === 'right' && "\n      margin: 0 0 0 auto;\n    ";
+});
+var ContainerTextArea = exports.ContainerTextArea = _styledComponents["default"].div(_templateObject21 || (_templateObject21 = _taggedTemplateLiteral(["\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    background-color: #fff;\n    flex: 1;\n"])));
+var Row = exports.Row = _styledComponents["default"].div(_templateObject22 || (_templateObject22 = _taggedTemplateLiteral(["\n  display: flex;\n  flex-wrap: wrap;\n  width: 100%;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n    \n  ", "\n"])), function (props) {
+  return props.flex && "\n    flex: 1;\n  ";
+});
+var Checkbox = exports.Checkbox = _styledComponents["default"].div(_templateObject23 || (_templateObject23 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedCheckboxStyle);
+var Loader = exports.Loader = _styledComponents["default"].div(_templateObject24 || (_templateObject24 = _taggedTemplateLiteral(["\n  height: 48px;\n  \n  flex-basis: 48px;\n  position: absolute;\n  right: 36px;\n  \n  img{\n    position: absolute;\n    top: 8px;\n    height: 30px;\n    width: 30px;\n    right: -20px;\n    animation: ", " 2s linear infinite;\n  }\n"])), rotate);
+var Selected = exports.Selected = _styledComponents["default"].div(_templateObject25 || (_templateObject25 = _taggedTemplateLiteral(["\n    ", "\n"])), sharedSelectedStyle);
+var Select = exports.Select = _styledComponents["default"].div(_templateObject26 || (_templateObject26 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedSelectStyle);
+var Item = exports.Item = _styledComponents["default"].div(_templateObject27 || (_templateObject27 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedItemStyle);
+var SubItem = exports.SubItem = _styledComponents["default"].div(_templateObject28 || (_templateObject28 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedSubItemStyle);
