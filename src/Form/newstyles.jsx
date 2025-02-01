@@ -4,6 +4,26 @@ import React, {forwardRef} from "react";
 import InputMask from "react-input-mask";
 import zindex from "../interface/zindex";
 
+// Миксин для автозаполнения в Chrome
+const webkitAutofillStyles = css`
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.inputContainerBackground} inset !important;
+  }
+`;
+
+// Миксин для стилей в disabled-состоянии
+const disabledStyles = css`
+  background-color: ${({ theme }) => theme.inputContainerDisabledBackground} !important;
+  ${webkitAutofillStyles} // чтобы в disabled-режиме тоже было корректно
+
+  &.disabled {
+    background-color: ${({ theme }) => theme.inputContainerDisabledBackground};
+  }
+`;
+
 export const Container = styled.div`
   background-color: ${({theme}) => theme.inputContainerBackground};
   display: flex;
@@ -16,33 +36,10 @@ export const Container = styled.div`
   flex: 1;
   border-radius: 8px;
   position: relative;
-
   
-  ${props => props.disabled === true && `
-      background-color: #FAFAFA !important;
-      
-      &.style2
-      {
-        background-color: #2B2D39 !important;
-      }
-
-      
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover, 
-      &:-webkit-autofill:focus, 
-      &:-webkit-autofill:active
-      {
-       -webkit-box-shadow: 0 0 0 30px #FAFAFA inset !important;
-      }
-  `}
+  ${({ disabled }) => disabled && disabledStyles}
 `;
 
-export const Body = styled.div`
-
-`
-export const Checkbox = styled.div`
-
-`
 
 export const InputContainerStyled = styled.div`
   background-color: transparent;
@@ -55,16 +52,12 @@ export const InputContainerStyled = styled.div`
   z-index: 100;
 
   &.disabled {
-    background-color: #F7F9FB;
+    background-color: ${({theme}) => theme.inputContainerDisabledBackground};
   }
 
   img {
     z-index: 1000;
     cursor: pointer;
-  }
-
-  label.error {
-  
   }
 
   img.calendar {
@@ -82,9 +75,23 @@ export const InputContainerStyled = styled.div`
   }
 `
 
+export const Checkbox = styled.div`
+
+`
+
 export const placeholderActiveStyle = css`
-  label.placeholder {
-    color: #6F7080;
+  & + .placeholder{
+    pointer-events: none;
+    font-size: 10px;
+    line-height: 0.1;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 5px;
+    left: 25px;
+    user-select: none;
+    text-align: left;
+    color: ${({theme}) => theme.inputPlaceholderTextColor};
     z-index: 1000;
   }
   
@@ -102,10 +109,6 @@ export const placeholderActiveStyle = css`
   &:focus + .placeholder, & .placeholder.active {
     transform: translate(.25em, -15%) scale(.8);
   }
-
-  //&:focus:has(> div .placeholder), & .placeholder.active {
-  //  transform: translate(.25em, -15%) scale(.8);
-  //}
 
   &:not(textarea) {
     max-height: 4em;
@@ -130,8 +133,8 @@ export const sharedInputStyle = css`
   width: 100%;
   line-height: 13px;
   user-select: none;
+  color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};
-  color: #000;
   transition: border-color .25s ease-in-out;
   border: none;
   background-color: transparent;
@@ -145,17 +148,7 @@ export const sharedInputStyle = css`
   &:focus {
     outline: 0;
   }
-
-  &.style1 {
-    background-color: #2B2D39 !important;
-    color: #fff !important;
-  }
-
-  &.style2 {
-    background-color: #2B2D39 !important;
-    color: #fff !important;
-  }
-
+  
   ${placeholderActiveStyle}
 `
 

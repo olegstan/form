@@ -79,11 +79,6 @@ var Checkbox = function Checkbox(_ref) {
         children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
           className: "rotate"
         })
-      }), text && /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Body, {
-        style: combinedTextStyle,
-        className: "text",
-        onClick: handleClick,
-        children: text
       })]
     })
   });

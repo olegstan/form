@@ -21,7 +21,6 @@ function Input({
     // Деструктурируем всё нужное из хука
     const {
         setFocused,
-        setHasError,
         browser,
         getInputStyle,
         getName,
@@ -29,7 +28,7 @@ function Input({
     } = useBaseInput(props);
 
     // Аналог проверки «пустой ли инпут»
-    const empty = !(
+    const isEmpty = !(
         (typeof props.value === 'number' && props.value.toString().length > 0) ||
         (typeof props.value === 'string' && props.value.length > 0)
     );
@@ -46,18 +45,16 @@ function Input({
             name: props.name,
             value: e.target.value
         });
-        setHasError(false); // сбрасываем ошибку при вводе
     };
 
     const handleFocus = () => {
         setFocused(true);
-        setHasError(false);
     };
 
     return (
         <StyledInput
-            browser={browser && browser.name}
             id={id}
+            isEmpty={isEmpty}
             style={getInputStyle()}
             autoComplete={autoComplete || 'off'}
             disabled={disabled}

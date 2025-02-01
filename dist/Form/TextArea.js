@@ -19,14 +19,9 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
   var _useBaseInput = (0, _useBaseInput2["default"])(props),
     wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
-    hasError = _useBaseInput.hasError,
-    error = _useBaseInput.error,
     setFocused = _useBaseInput.setFocused,
-    setHasError = _useBaseInput.setHasError,
     browser = _useBaseInput.browser,
     handleShowSelect = _useBaseInput.handleShowSelect,
-    getPlaceholderClassName = _useBaseInput.getPlaceholderClassName,
-    getContainerStyle = _useBaseInput.getContainerStyle,
     getInputStyle = _useBaseInput.getInputStyle,
     getName = _useBaseInput.getName,
     getError = _useBaseInput.getError,
@@ -45,35 +40,6 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
   // Check if the TextArea is "empty"
   var empty = !(typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0);
 
-  // Render placeholder label
-  var renderPlaceholder = function renderPlaceholder() {
-    if (!placeholder) return null;
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: id,
-      className: getPlaceholderClassName(),
-      onClick: function onClick() {
-        return handleShowSelect(true);
-      },
-      children: placeholder
-    });
-  };
-
-  // Render error tooltip
-  var renderTooltipError = function renderTooltipError() {
-    return hasError ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputPopup["default"], {
-      trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-        id: 'tooltip-' + id,
-        src: _error["default"],
-        alt: ""
-      }),
-      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-        htmlFor: id,
-        className: "".concat(className, " error"),
-        children: getError()
-      })
-    }) : null;
-  };
-
   // Render the actual <textarea> element
   var renderTextArea = function renderTextArea() {
     var handleClick = function handleClick(e) {
@@ -87,11 +53,9 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
         name: name,
         value: e.target.value
       });
-      setHasError(false); // reset error state on change
     };
     var handleFocus = function handleFocus() {
       setFocused(true);
-      setHasError(false);
     };
     var handleBlur = function handleBlur() {
       onBlurFunc();

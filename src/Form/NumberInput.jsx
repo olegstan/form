@@ -27,10 +27,6 @@ function NumberInput({
     wrapperRef,
     focused,
     setFocused,
-    hasError,
-    setHasError,
-    error,
-    setError,
     browser,
     getContainerStyle,
     getInputStyle,
@@ -121,7 +117,6 @@ function NumberInput({
             value: prefix + val
           });
 
-          setHasError(false);
           setSelectionStart(position);
           setSelectionEnd(position);
         } else {
@@ -130,39 +125,13 @@ function NumberInput({
             name: props.name,
             value: ''
           });
-          setHasError(false);
           setSelectionStart(position);
           setSelectionEnd(position);
         }
       }
     },
-    [props, setHasError]
+    [props]
   );
-
-  // Функция для рендера placeholder (вместо this.renderPlaceholder())
-  const renderPlaceholder = () => {
-    if (!props.placeholder) return null;
-    return (
-      <label
-        htmlFor={props.id}
-        style={props.placeholderStyle}
-        className={getPlaceholderClassName()}
-      >
-        {props.placeholder}
-      </label>
-    );
-  };
-
-  // Функция для рендера ошибки (вместо this.renderTooltipError())
-  const renderTooltipError = () => {
-    if (!hasError || !error) return null;
-    // Если у вас была логика через InputPopup иконку (errorSvg) — добавьте, как нужно
-    return (
-      <label htmlFor={props.id} className={props.className + ' error'}>
-        {error}
-      </label>
-    );
-  };
 
   // Проверка "пустой" ли инпут
   const isEmpty = !(
@@ -194,15 +163,11 @@ function NumberInput({
           onChange={handleChange}
           onFocus={() => {
             setFocused(true);
-            setHasError(false);
           }}
           onBlur={() => {
             // Если нужно что-то по blur, добавьте здесь
           }}
         />
-
-        {/* Плейсхолдер */}
-        {renderPlaceholder()}
 
         {/* Кнопка очистки (close) */}
         {!isEmpty &&
@@ -217,7 +182,6 @@ function NumberInput({
                 name: props.name,
                 value: ''
               });
-              setHasError(false);
             }}
             alt=""
           />

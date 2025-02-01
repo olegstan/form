@@ -26,10 +26,6 @@ function DateTimeInput({
     wrapperRef,
     focused,
     setFocused,
-    hasError,
-    setHasError,
-    error: baseError,
-    setError,
     getContainerStyle,
     getPlaceholderClassName
   } = useBaseInput(props);
@@ -74,14 +70,13 @@ function DateTimeInput({
       ) {
         if (focused) {
           setFocused(false);
-          setHasError(false);
           if (typeof props.onOutsideClick === 'function') {
             props.onOutsideClick(value);
           }
         }
       }
     },
-    [focused, props.onOutsideClick, value, wrapperRef, setFocused, setHasError]
+    [focused, props.onOutsideClick, value, wrapperRef, setFocused]
   );
 
   // Вешаем/снимаем обработчик mousedown
@@ -182,11 +177,9 @@ function DateTimeInput({
         onChange={handleDateChange}
         onOpen={() => {
           setFocused(true);
-          setHasError(false);
         }}
         onClose={() => {
           setFocused(false);
-          setHasError(false);
           if (typeof props.onOutsideClick === 'function') {
             props.onOutsideClick();
           }
@@ -202,7 +195,6 @@ function DateTimeInput({
             className={restProps.className}
             onFocus={() => {
               setFocused(true);
-              setHasError(false);
             }}
           >
             {(inputProps) => <input ref={refEl} {...inputProps} />}

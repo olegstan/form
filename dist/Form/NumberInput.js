@@ -56,10 +56,6 @@ function NumberInput(_ref) {
     wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
-    error = _useBaseInput.error,
-    setError = _useBaseInput.setError,
     browser = _useBaseInput.browser,
     getContainerStyle = _useBaseInput.getContainerStyle,
     getInputStyle = _useBaseInput.getInputStyle,
@@ -150,7 +146,6 @@ function NumberInput(_ref) {
           name: props.name,
           value: prefix + val
         });
-        setHasError(false);
         setSelectionStart(position);
         setSelectionEnd(position);
       } else {
@@ -159,34 +154,11 @@ function NumberInput(_ref) {
           name: props.name,
           value: ''
         });
-        setHasError(false);
         setSelectionStart(position);
         setSelectionEnd(position);
       }
     }
-  }, [props, setHasError]);
-
-  // Функция для рендера placeholder (вместо this.renderPlaceholder())
-  var renderPlaceholder = function renderPlaceholder() {
-    if (!props.placeholder) return null;
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: props.id,
-      style: props.placeholderStyle,
-      className: getPlaceholderClassName(),
-      children: props.placeholder
-    });
-  };
-
-  // Функция для рендера ошибки (вместо this.renderTooltipError())
-  var renderTooltipError = function renderTooltipError() {
-    if (!hasError || !error) return null;
-    // Если у вас была логика через InputPopup иконку (errorSvg) — добавьте, как нужно
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: props.id,
-      className: props.className + ' error',
-      children: error
-    });
-  };
+  }, [props]);
 
   // Проверка "пустой" ли инпут
   var isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
@@ -213,12 +185,11 @@ function NumberInput(_ref) {
       onChange: handleChange,
       onFocus: function onFocus() {
         setFocused(true);
-        setHasError(false);
       },
       onBlur: function onBlur() {
         // Если нужно что-то по blur, добавьте здесь
       }
-    }), renderPlaceholder(), !isEmpty && typeof props.size === 'undefined' && !props.disabled && props.icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+    }), !isEmpty && typeof props.size === 'undefined' && !props.disabled && props.icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
       className: "close",
       src: _ic_close_only["default"],
       onClick: function onClick(e) {
@@ -226,7 +197,6 @@ function NumberInput(_ref) {
           name: props.name,
           value: ''
         });
-        setHasError(false);
       },
       alt: ""
     }), renderTooltipError()]

@@ -13,14 +13,9 @@ function TextArea(props) {
     // Extract everything needed from the custom hook
     wrapperRef,
     focused,
-    hasError,
-    error,
     setFocused,
-    setHasError,
     browser,
     handleShowSelect,
-    getPlaceholderClassName,
-    getContainerStyle,
     getInputStyle,
     getName,
     getError,
@@ -46,40 +41,6 @@ function TextArea(props) {
     (typeof value === 'string' && value.length > 0)
   );
 
-  // Render placeholder label
-  const renderPlaceholder = () => {
-    if (!placeholder) return null;
-
-    return (
-      <label
-        htmlFor={id}
-        className={getPlaceholderClassName()}
-        onClick={() => handleShowSelect(true)}
-      >
-        {placeholder}
-      </label>
-    );
-  };
-
-  // Render error tooltip
-  const renderTooltipError = () => {
-    return hasError ? (
-      <InputPopup
-        trigger={
-          <img
-            id={'tooltip-' + id}
-            src={errorSvg}
-            alt=""
-          />
-        }
-      >
-        <label htmlFor={id} className={`${className} error`}>
-          {getError()}
-        </label>
-      </InputPopup>
-    ) : null;
-  };
-
   // Render the actual <textarea> element
   const renderTextArea = () => {
     const handleClick = (e) => {
@@ -94,12 +55,10 @@ function TextArea(props) {
         name,
         value: e.target.value
       });
-      setHasError(false); // reset error state on change
     };
 
     const handleFocus = () => {
       setFocused(true);
-      setHasError(false);
     };
 
     const handleBlur = () => {

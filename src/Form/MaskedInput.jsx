@@ -18,9 +18,6 @@ function MaskedInput({
         wrapperRef,
         focused,
         setFocused,
-        hasError,
-        setHasError,
-        error,
         browser,
         getContainerStyle,
         getInputStyle,
@@ -79,15 +76,12 @@ function MaskedInput({
                 name: props.name,
                 value: e.target.value
             });
-            setHasError(false);
         }}
         onFocus={() => {
             setFocused(true);
-            setHasError(false);
         }}
         onBlur={() => {
             setFocused(false);
-            setHasError(false);
         }}
     />
 }

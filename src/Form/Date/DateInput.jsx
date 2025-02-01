@@ -24,8 +24,6 @@ function DateInput({
         wrapperRef,
         focused,
         setFocused,
-        hasError,
-        setHasError,
         error,
         setError,
         getContainerStyle,
@@ -48,14 +46,13 @@ function DateInput({
           if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
               if (focused) {
                   setFocused(false);
-                  setHasError(false);
                   if (typeof props.onOutsideClick === 'function') {
                       props.onOutsideClick(value);
                   }
               }
           }
       },
-      [focused, props.onOutsideClick, value, setFocused, setHasError, wrapperRef]
+      [focused, props.onOutsideClick, value, setFocused, wrapperRef]
     );
 
     useEffect(() => {
@@ -157,11 +154,9 @@ function DateInput({
             onChange={handleDateChange}
             onOpen={() => {
                 setFocused(true);
-                setHasError(false);
             }}
             onClose={() => {
                 setFocused(false);
-                setHasError(false);
             }}
             render={({ id, ...restProps }, refEl) => (
               <MaskedStyledInput
@@ -174,7 +169,6 @@ function DateInput({
                 className={restProps.className}
                 onFocus={() => {
                     setFocused(true);
-                    setHasError(false);
                 }}
               >
                   {(inputProps) => <input ref={refEl} {...inputProps} />}

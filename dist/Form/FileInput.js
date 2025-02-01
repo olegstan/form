@@ -43,16 +43,11 @@ var FileInput = function FileInput(_ref) {
   var callerClassName = 'FileInput';
   var inputRef = (0, _react.useRef)(null);
   var _useBaseInput = (0, _useBaseInput2["default"])(props, callerClassName),
-    error = _useBaseInput.error,
-    hasError = _useBaseInput.hasError,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    setHasError = _useBaseInput.setHasError,
     wrapperRef = _useBaseInput.wrapperRef,
     browser = _useBaseInput.browser,
-    getName = _useBaseInput.getName,
-    renderPlaceholder = _useBaseInput.renderPlaceholder,
-    renderTooltipError = _useBaseInput.renderTooltipError;
+    getName = _useBaseInput.getName;
   (0, _react.useEffect)(function () {
     if (inputRef.current) {
       var file = new File([], valueText, {
@@ -81,18 +76,14 @@ var FileInput = function FileInput(_ref) {
       };
       reader.readAsDataURL(file);
     }
-    setHasError(false);
   };
   var handleClearFile = function handleClearFile(e) {
     onChange(e, {
       name: props.name,
       value: null
     });
-    setHasError(false);
   };
-  var inputStyle = _objectSpread(_objectSpread({}, style), {}, {
-    border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : ''
-  });
+  var inputStyle = _objectSpread({}, style);
   var empty = !props.value || typeof props.value.name !== 'string';
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
     ref: inputRef,

@@ -59,10 +59,6 @@ function DateTimeInput(_ref) {
     wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
-    baseError = _useBaseInput.error,
-    setError = _useBaseInput.setError,
     getContainerStyle = _useBaseInput.getContainerStyle,
     getPlaceholderClassName = _useBaseInput.getPlaceholderClassName;
 
@@ -110,13 +106,12 @@ function DateTimeInput(_ref) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
       if (focused) {
         setFocused(false);
-        setHasError(false);
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(value);
         }
       }
     }
-  }, [focused, props.onOutsideClick, value, wrapperRef, setFocused, setHasError]);
+  }, [focused, props.onOutsideClick, value, wrapperRef, setFocused]);
 
   // Вешаем/снимаем обработчик mousedown
   (0, _react.useEffect)(function () {
@@ -215,11 +210,9 @@ function DateTimeInput(_ref) {
       onChange: handleDateChange,
       onOpen: function onOpen() {
         setFocused(true);
-        setHasError(false);
       },
       onClose: function onClose() {
         setFocused(false);
-        setHasError(false);
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick();
         }
@@ -237,7 +230,6 @@ function DateTimeInput(_ref) {
           className: restProps.className,
           onFocus: function onFocus() {
             setFocused(true);
-            setHasError(false);
           },
           children: function children(inputProps) {
             return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({

@@ -7,13 +7,6 @@ export default function Select(props) {
   // Подтягиваем логику «базового инпута» из вашего хука
   const {
     wrapperRef,
-    hasError,
-    setHasError,
-    renderPlaceholder,
-    renderTooltipError,
-    getContainerStyle,
-    // Прочие методы, если нужны:
-    // getWrapperStyle, getInputStyle, ...
   } = useBaseInput(props, 'Select');
 
   // Локальный стейт: открыто ли меню
@@ -23,9 +16,8 @@ export default function Select(props) {
   const handleShowSelect = useCallback((open) => {
     if (!props.disabled) {
       setSelectOpen(open);
-      setHasError(false);
     }
-  }, [props.disabled, setHasError]);
+  }, [props.disabled]);
 
   // Аналог вашей renderSelected
   const renderSelectedText = useCallback(() => {
@@ -146,9 +138,6 @@ export default function Select(props) {
             )}
           </StyledSelect>
         )}
-
-        {/* Плейсхолдер из useBaseInput, если нужен */}
-        {renderPlaceholder()}
 
         {/* Стрелочка */}
         <img

@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Body, Checkbox as StyleCheckbox} from './newstyles';
+import {Checkbox as StyleCheckbox} from './newstyles';
 
 const Checkbox = ({
                     // Здесь прописываем дефолты
@@ -60,11 +60,11 @@ const Checkbox = ({
         >
           <span className="rotate" />
         </span>
-        {text && (
-          <Body style={combinedTextStyle} className="text" onClick={handleClick}>
-            {text}
-          </Body>
-        )}
+        {/*{text && (*/}
+        {/*  <Body style={combinedTextStyle} className="text" onClick={handleClick}>*/}
+        {/*    {text}*/}
+        {/*  </Body>*/}
+        {/*)}*/}
       </label>
     </StyleCheckbox>
   );

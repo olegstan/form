@@ -30,9 +30,6 @@ function MaskedInput(_ref) {
     wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
-    error = _useBaseInput.error,
     browser = _useBaseInput.browser,
     getContainerStyle = _useBaseInput.getContainerStyle,
     getInputStyle = _useBaseInput.getInputStyle,
@@ -83,15 +80,12 @@ function MaskedInput(_ref) {
         name: props.name,
         value: e.target.value
       });
-      setHasError(false);
     },
     onFocus: function onFocus() {
       setFocused(true);
-      setHasError(false);
     },
     onBlur: function onBlur() {
       setFocused(false);
-      setHasError(false);
     }
   });
 }

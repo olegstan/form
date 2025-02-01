@@ -19,19 +19,16 @@ function InputContainer(_ref) {
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
     _ref$style = _ref.style,
-    style = _ref$style === void 0 ? {} : _ref$style;
+    style = _ref$style === void 0 ? {} : _ref$style,
+    _ref$error = _ref.error,
+    error = _ref$error === void 0 ? null : _ref$error;
   // Убедимся, что children — это единственный React.Element
   var child = _react["default"].Children.only(children);
   var _child$props = child.props,
     placeholder = _child$props.placeholder,
     id = _child$props.id,
-    placeholderStyle = _child$props.placeholderStyle,
-    getPlaceholderClassName = _child$props.getPlaceholderClassName,
-    handleShowSelect = _child$props.handleShowSelect,
-    hasError = _child$props.hasError,
-    getError = _child$props.getError;
-
-  // Рендер плейсхолдера (аналог renderPlaceholder)
+    disabled = _child$props.disabled,
+    isEmpty = _child$props.isEmpty;
   var renderPlaceholder = function renderPlaceholder() {
     if (!placeholder) return null;
     return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
@@ -44,7 +41,7 @@ function InputContainer(_ref) {
   // Рендер подсказки-ошибки (аналог renderTooltipError)
   var renderTooltipError = function renderTooltipError() {
     // @ts-ignore
-    return hasError ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputPopup["default"], {
+    return !!error ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputPopup["default"], {
       trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         id: 'tooltip-' + id,
         src: _error["default"],
@@ -53,13 +50,14 @@ function InputContainer(_ref) {
       children: /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
         htmlFor: id,
         className: 'error',
-        children: getError()
+        children: error
       })
     }) : null;
   };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Container, {
     style: style,
-    className: className,
+    className: className + (disabled ? ' disabled' : ''),
+    disabled: disabled,
     onClick: function onClick(e) {
       e.stopPropagation();
     },

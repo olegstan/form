@@ -56,8 +56,6 @@ function DateInput(_ref) {
     wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
     error = _useBaseInput.error,
     setError = _useBaseInput.setError,
     getContainerStyle = _useBaseInput.getContainerStyle,
@@ -83,13 +81,12 @@ function DateInput(_ref) {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
       if (focused) {
         setFocused(false);
-        setHasError(false);
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(value);
         }
       }
     }
-  }, [focused, props.onOutsideClick, value, setFocused, setHasError, wrapperRef]);
+  }, [focused, props.onOutsideClick, value, setFocused, wrapperRef]);
   (0, _react.useEffect)(function () {
     document.addEventListener('mousedown', handleClickOutside);
     return function () {
@@ -178,11 +175,9 @@ function DateInput(_ref) {
       onChange: handleDateChange,
       onOpen: function onOpen() {
         setFocused(true);
-        setHasError(false);
       },
       onClose: function onClose() {
         setFocused(false);
-        setHasError(false);
       },
       render: function render(_ref2, refEl) {
         var id = _ref2.id,
@@ -197,7 +192,6 @@ function DateInput(_ref) {
           className: restProps.className,
           onFocus: function onFocus() {
             setFocused(true);
-            setHasError(false);
           },
           children: function children(inputProps) {
             return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({

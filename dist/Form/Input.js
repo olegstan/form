@@ -37,14 +37,13 @@ function Input(_ref) {
   // Деструктурируем всё нужное из хука
   var _useBaseInput = (0, _useBaseInput2["default"])(props),
     setFocused = _useBaseInput.setFocused,
-    setHasError = _useBaseInput.setHasError,
     browser = _useBaseInput.browser,
     getInputStyle = _useBaseInput.getInputStyle,
     getName = _useBaseInput.getName,
     onBlurFunc = _useBaseInput.onBlurFunc;
 
   // Аналог проверки «пустой ли инпут»
-  var empty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
+  var isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
   var handleClick = function handleClick(e) {
     e.stopPropagation();
     if (typeof props.onClick === 'function') {
@@ -56,15 +55,13 @@ function Input(_ref) {
       name: props.name,
       value: e.target.value
     });
-    setHasError(false); // сбрасываем ошибку при вводе
   };
   var handleFocus = function handleFocus() {
     setFocused(true);
-    setHasError(false);
   };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
-    browser: browser && browser.name,
     id: id,
+    isEmpty: isEmpty,
     style: getInputStyle(),
     autoComplete: autoComplete || 'off',
     disabled: disabled,

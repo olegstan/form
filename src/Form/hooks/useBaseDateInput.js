@@ -19,9 +19,7 @@ export default function useBaseDateInput(props, callerClassName) {
   // ------------------------------
   // Состояния из BaseInput (this.state)
   // ------------------------------
-  const [error, setError] = useState(null);       // аналог this.state.error
   const [focused, setFocused] = useState(false);  // аналог this.state.focused
-  const [hasError, setHasError] = useState(false);// аналог this.state.hasError
 
   // Если вам нужна логика поиска (this.state.search), можете добавить:
   // const [search, setSearch] = useState('');
@@ -45,7 +43,6 @@ export default function useBaseDateInput(props, callerClassName) {
       // ...и при этом инпут в фокусе...
       if (focused) {
         setFocused(false);
-        setHasError(false);
         // Если есть коллбэк onOutsideClick
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(props.value);
@@ -70,8 +67,6 @@ export default function useBaseDateInput(props, callerClassName) {
     const newError = isError ? errors[name][0] : null;
 
     if (isError !== hasError || newError !== error) {
-      setHasError(isError);
-      setError(newError);
     }
   }, [props.errors, props.name, hasError, error]);
 
@@ -231,8 +226,6 @@ export default function useBaseDateInput(props, callerClassName) {
   // ------------------------------
   return {
     // state и их сеттеры
-    error, setError,
-    hasError, setHasError,
     focused, setFocused,
     // ref
     wrapperRef,

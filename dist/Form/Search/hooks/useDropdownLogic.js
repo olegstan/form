@@ -151,9 +151,6 @@ var useDropdownLogic = exports.useDropdownLogic = function useDropdownLogic(prop
   var onChange = (0, _react.useCallback)(function (e) {
     var value = e.target.value;
     setSearchValue(value);
-    if (typeof props.setHasError === 'function') {
-      props.setHasError(false);
-    }
     onSearch(value);
   }, [onSearch, props]);
   return {

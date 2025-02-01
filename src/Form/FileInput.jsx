@@ -19,16 +19,11 @@ const FileInput = ({
     const inputRef = useRef(null);
 
     const {
-        error,
-        hasError,
         focused,
         setFocused,
-        setHasError,
         wrapperRef,
         browser,
         getName,
-        renderPlaceholder,
-        renderTooltipError,
     } = useBaseInput(props, callerClassName);
 
     useEffect(() => {
@@ -62,7 +57,6 @@ const FileInput = ({
             };
             reader.readAsDataURL(file);
         }
-        setHasError(false);
     };
 
     const handleClearFile = (e) => {
@@ -70,12 +64,11 @@ const FileInput = ({
             name: props.name,
             value: null,
         });
-        setHasError(false);
     };
 
     const inputStyle = {
         ...style,
-        border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : '',
+        // border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : '',
     };
 
     const empty = !props.value || typeof props.value.name !== 'string';

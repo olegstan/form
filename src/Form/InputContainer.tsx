@@ -9,17 +9,18 @@ function InputContainer({
                             children,
                             className = '',
                             style = {},
+                            error = null
                         }: {
     children: React.ReactNode;
     className?: string;
     getContainerStyle?: React.CSSProperties;
+    error?: string|null;
 }) {
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, hasError, getError} = child.props;
+    const {placeholder, id, disabled, isEmpty} = child.props;
 
-    // Рендер плейсхолдера (аналог renderPlaceholder)
     const renderPlaceholder = () => {
         if (!placeholder) return null;
 
@@ -33,10 +34,10 @@ function InputContainer({
     // Рендер подсказки-ошибки (аналог renderTooltipError)
     const renderTooltipError = () => {
         // @ts-ignore
-        return hasError ? (
+        return !!error ? (
             <InputPopup trigger={<img id={'tooltip-' + id} src={errorSvg} alt=""/>}>
                 <label htmlFor={id} className={'error'}>
-                    {getError()}
+                    {error}
                 </label>
             </InputPopup>
         ) : null;
@@ -45,7 +46,8 @@ function InputContainer({
     return (
         <Container
             style={style}
-            className={className}
+            className={className + (disabled ? ' disabled' : '')}
+            disabled={disabled}
             onClick={(e) => {
                 e.stopPropagation();
             }}

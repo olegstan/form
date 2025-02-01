@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = useBaseInput;
 var _react = _interopRequireWildcard(require("react"));
 var _detectBrowser = require("detect-browser");
-var _jsxRuntime = require("react/jsx-runtime");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -25,30 +24,22 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } // import InputP
 /**
  * Универсальный хук, повторяющий логику BaseInput:
  * - cDM/cWU для клика вне (handleClickOutside)
- * - cDU для обновления ошибок из props.errors
- * - focused, hasError, error в стейте
+ * - focused
  * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
  * - на ваше усмотрение getWrapperClasses, onBlurFunc и т.д.
  */
+
 function useBaseInput(props, callerClassName) {
   // ------------------------------
   // Состояния из BaseInput (this.state)
   // ------------------------------
-  var _useState = (0, _react.useState)(null),
+  var _useState = (0, _react.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
-    error = _useState2[0],
-    setError = _useState2[1]; // аналог this.state.error
-  var _useState3 = (0, _react.useState)(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    focused = _useState4[0],
-    setFocused = _useState4[1]; // аналог this.state.focused
-  var _useState5 = (0, _react.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    hasError = _useState6[0],
-    setHasError = _useState6[1]; // аналог this.state.hasError
+    focused = _useState2[0],
+    setFocused = _useState2[1]; // аналог this.state.focused
 
   // Если вам нужна логика поиска (this.state.search), можете добавить:
   // const [search, setSearch] = useState('');
@@ -72,7 +63,6 @@ function useBaseInput(props, callerClassName) {
       // ...и при этом инпут в фокусе...
       if (focused) {
         setFocused(false);
-        setHasError(false);
         // Если есть коллбэк onOutsideClick
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(props.value);
@@ -108,11 +98,8 @@ function useBaseInput(props, callerClassName) {
     if (focused) {
       containerStyle.border = '1px solid #1874DE';
     }
-    if (hasError) {
-      containerStyle.border = '1px solid #EF5E70';
-    }
     return containerStyle;
-  }, [props.containerStyle, focused, hasError]);
+  }, [props.containerStyle, focused]);
 
   // getWrapperStyle (если отличался от контейнера — бывает не у всех)
   var getWrapperStyle = (0, _react.useCallback)(function () {
@@ -120,11 +107,8 @@ function useBaseInput(props, callerClassName) {
     if (focused) {
       style.border = '1px solid #1874DE';
     }
-    if (hasError) {
-      style.border = '1px solid #EF5E70';
-    }
     return style;
-  }, [props.containerStyle, focused, hasError]);
+  }, [props.containerStyle, focused]);
 
   // getInputStyle
   var getInputStyle = (0, _react.useCallback)(function () {
@@ -134,16 +118,6 @@ function useBaseInput(props, callerClassName) {
     }
     return inputStyle;
   }, [props.style, props.className]);
-
-  // Если где-то нужно проверить напрямую через функцию (раньше было hasError())
-  var hasErrorFunc = (0, _react.useCallback)(function () {
-    return hasError;
-  }, [hasError]);
-
-  // getError (ранее было this.getError())
-  var getError = (0, _react.useCallback)(function () {
-    return error;
-  }, [error]);
 
   // getPlaceholderClassName
   var getPlaceholderClassName = (0, _react.useCallback)(function () {
@@ -183,87 +157,17 @@ function useBaseInput(props, callerClassName) {
   }, [props.onBlur]);
 
   // ------------------------------
-  // Общие рендер-методы (если в детях вы вызывали напрямую)
-  // ------------------------------
-
-  // renderPlaceholder — возвращает готовый <label> (если хотите прям "по-старому")
-  var renderPlaceholder = (0, _react.useCallback)(function () {
-    var placeholder = props.placeholder,
-      id = props.id,
-      placeholderStyle = props.placeholderStyle;
-
-    // console.log(props)
-    // if (!placeholder) return null;
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-      htmlFor: id,
-      style: placeholderStyle,
-      className: getPlaceholderClassName(),
-      onClick: function onClick() {
-        return handleShowSelect(true);
-      },
-      children: placeholder
-    });
-  }, [props.placeholder, props.id, props.placeholderStyle, handleShowSelect, getPlaceholderClassName]);
-
-  // renderTooltipError — возвращает ваш InputPopup с иконкой errorSvg
-  var renderTooltipError = (0, _react.useCallback)(function () {
-    if (!hasError || !error) return null;
-    // return (
-    //   <InputPopup
-    //     trigger={
-    //       <img
-    //         id={'tooltip-' + props.id}
-    //         src={errorSvg}
-    //         alt=""
-    //       />
-    //     }
-    //   >
-    //     <label htmlFor={props.id} className={props.className + ' error'}>
-    //       {error}
-    //     </label>
-    //   </InputPopup>
-    // );
-  }, [hasError, error, props.id, props.className]);
-
-  // renderInput — часто в классах вы переопределяли,
-  // но если хотите чтобы hook возвращал «базовый» input, можно оставить:
-  var renderInput = (0, _react.useCallback)(function () {
-    // пример:
-    // return <StyledInput .../>
-    // Но чаще вы это делаете уже в дочернем компоненте.
-    return null;
-  }, []);
-
-  // ------------------------------
   // Возвращаем всё, что может понадобиться дочерним компонентам
   // ------------------------------
   return {
-    // state и их сеттеры
-    error: error,
-    setError: setError,
-    hasError: hasError,
-    setHasError: setHasError,
     focused: focused,
     setFocused: setFocused,
-    // ref
-    wrapperRef: wrapperRef,
-    // browser detect
-    browser: browser,
-    // методы
-    handleShowSelect: handleShowSelect,
     handleClickOutside: handleClickOutside,
-    hasErrorFunc: hasErrorFunc,
-    getError: getError,
+    wrapperRef: wrapperRef,
+    browser: browser,
     getName: getName,
-    getContainerStyle: getContainerStyle,
-    getWrapperStyle: getWrapperStyle,
     getInputStyle: getInputStyle,
-    getPlaceholderClassName: getPlaceholderClassName,
     getWrapperClasses: getWrapperClasses,
-    onBlurFunc: onBlurFunc,
-    // "рендерные" методы, если вы хотите пользоваться ими напрямую
-    renderPlaceholder: renderPlaceholder,
-    renderTooltipError: renderTooltipError,
-    renderInput: renderInput
+    onBlurFunc: onBlurFunc
   };
 }

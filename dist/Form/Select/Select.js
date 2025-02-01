@@ -22,12 +22,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function Select(props) {
   // Подтягиваем логику «базового инпута» из вашего хука
   var _useBaseInput = (0, _useBaseInput2["default"])(props, 'Select'),
-    wrapperRef = _useBaseInput.wrapperRef,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
-    renderPlaceholder = _useBaseInput.renderPlaceholder,
-    renderTooltipError = _useBaseInput.renderTooltipError,
-    getContainerStyle = _useBaseInput.getContainerStyle;
+    wrapperRef = _useBaseInput.wrapperRef;
 
   // Локальный стейт: открыто ли меню
   var _useState = (0, _react.useState)(false),
@@ -39,9 +34,8 @@ function Select(props) {
   var handleShowSelect = (0, _react.useCallback)(function (open) {
     if (!props.disabled) {
       setSelectOpen(open);
-      setHasError(false);
     }
-  }, [props.disabled, setHasError]);
+  }, [props.disabled]);
 
   // Аналог вашей renderSelected
   var renderSelectedText = (0, _react.useCallback)(function () {
@@ -155,7 +149,7 @@ function Select(props) {
             children: "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"
           })
         })
-      }), renderPlaceholder(), /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         className: "arrow",
         src: getArrow(),
         alt: "",

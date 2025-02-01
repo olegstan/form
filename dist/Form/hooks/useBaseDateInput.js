@@ -36,18 +36,10 @@ function useBaseDateInput(props, callerClassName) {
   // ------------------------------
   // Состояния из BaseInput (this.state)
   // ------------------------------
-  var _useState = (0, _react.useState)(null),
+  var _useState = (0, _react.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
-    error = _useState2[0],
-    setError = _useState2[1]; // аналог this.state.error
-  var _useState3 = (0, _react.useState)(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    focused = _useState4[0],
-    setFocused = _useState4[1]; // аналог this.state.focused
-  var _useState5 = (0, _react.useState)(false),
-    _useState6 = _slicedToArray(_useState5, 2),
-    hasError = _useState6[0],
-    setHasError = _useState6[1]; // аналог this.state.hasError
+    focused = _useState2[0],
+    setFocused = _useState2[1]; // аналог this.state.focused
 
   // Если вам нужна логика поиска (this.state.search), можете добавить:
   // const [search, setSearch] = useState('');
@@ -71,7 +63,6 @@ function useBaseDateInput(props, callerClassName) {
       // ...и при этом инпут в фокусе...
       if (focused) {
         setFocused(false);
-        setHasError(false);
         // Если есть коллбэк onOutsideClick
         if (typeof props.onOutsideClick === 'function') {
           props.onOutsideClick(props.value);
@@ -94,10 +85,7 @@ function useBaseDateInput(props, callerClassName) {
       errors = props.errors;
     var isError = errors && name && errors[name] && errors[name].length > 0;
     var newError = isError ? errors[name][0] : null;
-    if (isError !== hasError || newError !== error) {
-      setHasError(isError);
-      setError(newError);
-    }
+    if (isError !== hasError || newError !== error) {}
   }, [props.errors, props.name, hasError, error]);
 
   // ------------------------------
@@ -247,10 +235,6 @@ function useBaseDateInput(props, callerClassName) {
   // ------------------------------
   return {
     // state и их сеттеры
-    error: error,
-    setError: setError,
-    hasError: hasError,
-    setHasError: setHasError,
     focused: focused,
     setFocused: setFocused,
     // ref

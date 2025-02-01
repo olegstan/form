@@ -118,9 +118,6 @@ export const useDropdownLogic = (props, wrapperRef, onSearch, handle) => {
   const onChange = useCallback((e) => {
     const value = e.target.value;
     setSearchValue(value);
-    if (typeof props.setHasError === 'function') {
-      props.setHasError(false);
-    }
     onSearch(value);
   }, [onSearch, props]);
 
