@@ -4,6 +4,7 @@ import {Container, InputContainerStyled} from './newstyles';
 import InputPopup from './InputPopup/InputPopup';
 // @ts-ignore
 import errorSvg from './../assets/error.svg';
+import Close from "../assets/ic_close_only.svg";
 
 function InputContainer({
                             children,
@@ -19,15 +20,63 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled, value, name} = child.props;
+    const {placeholder, id, disabled, value, name, onChange, iconClose} = child.props;
+
+    const renderCloseIcon = () =>
+    {
+        //если передано iconClose = false то рендерить икноку для очистки не нужно
+        if(!iconClose)
+        {
+            return null;
+        }
+
+        let notEmpty = false;
+        switch (child.type.name)
+        {
+            case 'FileInput':
+                return null;
+            default:
+                notEmpty = (
+                    (typeof value === 'number' && value.toString().length > 0) ||
+                    (typeof value === 'string' && value.length > 0)
+                )
+                break;
+        }
+
+        return <img
+            className="close"
+            src={Close}
+            onClick={(e) => {
+                onChange(e, {
+                    name: name,
+                    value: ''
+                });
+            }}
+            alt=""
+        />
+    }
 
     const renderPlaceholder = () => {
         if (!placeholder) return null;
 
-        let notEmpty = (
-            (typeof value === 'number' && value.toString().length > 0) ||
-            (typeof value === 'string' && value.length > 0)
-        );
+        if(!child.type) return null;
+
+        let notEmpty = false;
+        switch (child.type.name)
+        {
+            case 'MaskedInput':
+                notEmpty = true;//всегда есть внутри инпута, поэтому показывае placeholder всегда сверху
+                break;
+            case 'FileInput':
+                notEmpty = true;//всегда есть внутри инпута, поэтому показывае placeholder всегда сверху
+                break;
+            default:
+                notEmpty = (
+                    (typeof value === 'number' && value.toString().length > 0) ||
+                    (typeof value === 'string' && value.length > 0)
+                )
+                break;
+        }
 
         //если поле не пустое, то значит placeholder должен быть сверху
         return (
@@ -62,6 +111,7 @@ function InputContainer({
                 {children}
                 {renderPlaceholder()}
                 {renderTooltipError()}
+                {renderCloseIcon()}
             </InputContainerStyled>
         </Container>
     );

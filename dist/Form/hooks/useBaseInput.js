@@ -75,15 +75,6 @@ function useBaseInput(props, callerClassName) {
     };
   }, [handleClickOutside]);
 
-  // ------------------------------
-  // Прочие методы из BaseInput
-  // ------------------------------
-
-  // Полиморфный метод, если где-то вызывается (пока был пустой)
-  var handleShowSelect = (0, _react.useCallback)(function (select) {
-    // ...
-  }, []);
-
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
   var getName = (0, _react.useCallback)(function (name) {
     var _name$replace;

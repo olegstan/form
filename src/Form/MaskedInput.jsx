@@ -1,16 +1,24 @@
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомный хук
-import {InputContainer, MaskedStyledInput} from './newstyles';
+import {InputContainer, MaskedStyledInput, StyledInput} from './newstyles';
 import Close from './../assets/ic_close_only.svg';
 
 function MaskedInput({
-                         onKeyPress = () => {
-                         },
-                         onChange = () => {
-                         },
+                         onKeyPress = () => {},
+                         onChange = () => {},
+                         onClick = () => {},
                          disabled = false,
-                         icon = '',
-                         wrapperClassName = '',
+                         placeholder = '',
+                         iconClose = true,
+                         className = '',
+                         type = 'text',
+                         style = {},
+                         id,
+                         name,
+                         value,
+                         autoComplete = 'off',
+                         error,
+                         mask,
                          ...props
                      }) {
     // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
@@ -20,50 +28,45 @@ function MaskedInput({
         getName
     } = useBaseInput(props);
 
-    // 2. Проверка, «пустое ли» поле (как empty из класса)
-    const isEmpty = !(
-        (typeof props.value === 'number' && props.value.toString().length > 0) ||
-        (typeof props.value === 'string' && props.value.length > 0)
-    );
 
+    const handleClick = (e) => {
+        e.stopPropagation();
+        if (typeof onClick === 'function') {
+            onClick(e);
+        }
+    };
 
-    // 4. Функция рендера ошибки (аналог this.renderTooltipError())
-    //    Если ранее была логика через InputPopup с иконкой, добавьте при необходимости
-    const renderTooltipError = () => {
-        if (!hasError || !error) return null;
-        return (
-            <label htmlFor={props.id} className={props.className + ' error'}>
-                {error}
-            </label>
-        );
+    const handleChange = (e) => {
+        onChange(e, {
+            name: name,
+            value: e.target.value
+        });
+    };
+
+    const handleFocus = () => {
+        setFocused(true);
+    };
+
+    const handleBlur = () => {
+        setFocused(false);
     };
 
     return <MaskedStyledInput
-        id={props.id}
-        mask={props.mask}
-        autoComplete="off"
-        disabled={props.disabled}
-        className={props.className}
-        type={props.type}
-        name={getName(props.name || '')}
-        value={props.value}
-        onKeyPress={(e) => {
-            if (typeof onKeyPress === 'function') {
-                onKeyPress(e);
-            }
-        }}
-        onChange={(e) => {
-            onChange(e, {
-                name: props.name,
-                value: e.target.value
-            });
-        }}
-        onFocus={() => {
-            setFocused(true);
-        }}
-        onBlur={() => {
-            setFocused(false);
-        }}
+        id={id}
+        style={style}
+        autoComplete={autoComplete || 'off'}
+        disabled={disabled}
+        className={className + (focused ? ' focused' : '') + (error ? ' error' : '')}
+        type={type}
+        name={getName(name)}
+        value={value}
+        onClick={handleClick}
+        onKeyPress={onKeyPress}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+
+        mask={mask}
     />
 }
 

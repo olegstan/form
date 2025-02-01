@@ -8,15 +8,20 @@ import {Container} from './styles/containerStyle';
 import Close from './../assets/ic_close_only.svg';
 
 function NumberInput({
-                       onKeyPress = () => {},
-                       onChange = () => {},
-                       disabled = false,
-                       value = '',
-                       placeholder = '',
-                       icon = '',
-                       className = '',
-                       wrapperClassName = '',
-                       style = {},
+                     onKeyPress = () => {},
+                     onChange = () => {},
+                     onClick = () => {},
+                     disabled = false,
+                     placeholder = '',
+                     iconClose = true,
+                     className = '',
+                     type = 'number',
+                     style = {},
+                     id,
+                     name,
+                     value,
+                     autoComplete = 'off',
+                     error,
                        max = false,
                        min = false,
                        decimals = false,
@@ -24,14 +29,10 @@ function NumberInput({
                      }) {
   // Достаём общую логику из useBaseInput (аналог "BaseInput")
   const {
-    wrapperRef,
     focused,
     setFocused,
-    browser,
-    getContainerStyle,
     getInputStyle,
     getName,
-    getPlaceholderClassName
   } = useBaseInput(props);
 
   // Локальный стейт для положения курсора
@@ -47,7 +48,7 @@ function NumberInput({
       inputRef.current.selectionStart = selectionStart;
       inputRef.current.selectionEnd = selectionEnd;
     }
-  }, [props.value, focused, selectionStart, selectionEnd]);
+  }, [value, focused, selectionStart, selectionEnd]);
 
   // handleChange — портируем вашу логику
   const handleChange = useCallback(
@@ -58,13 +59,13 @@ function NumberInput({
         let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
         // Проверки на min/max
-        if (props.max !== false && +val > props.max) {
+        if (max !== false && +val > max) {
           return;
         }
-        if (props.min === 0 && isNaN(val)) {
+        if (min === 0 && isNaN(val)) {
           return;
         }
-        if (props.min !== false && +val < props.min) {
+        if (min !== false && +val < min) {
           return;
         }
 
@@ -82,9 +83,9 @@ function NumberInput({
           if (parts[1] !== undefined) {
             // Если есть дробная часть
             if (parts[1] !== '') {
-              if (props.decimals !== false) {
+              if (decimals !== false) {
                 // Не даём вводить дробную часть длиннее decimals
-                if (parts[1].length > props.decimals) {
+                if (parts[1].length > decimals) {
                   return;
                 }
               }
@@ -99,7 +100,7 @@ function NumberInput({
           }
 
           // Логика с изменением длины целой части => сдвиг курсора
-          const prevParts = props.value?.toString().split('.') || [''];
+          const prevParts = value?.toString().split('.') || [''];
           const newParts = val.split('.');
           const prevLength = prevParts[0].length;
           const newLength = newParts[0].length;
@@ -112,8 +113,8 @@ function NumberInput({
           }
 
           // Вызываем onChange, пробрасывая prefix
-          props.onChange(e, {
-            name: props.name,
+          onChange(e, {
+            name: name,
             value: prefix + val
           });
 
@@ -121,8 +122,8 @@ function NumberInput({
           setSelectionEnd(position);
         } else {
           // Если val пустое
-          props.onChange(e, {
-            name: props.name,
+          onChange(e, {
+            name: name,
             value: ''
           });
           setSelectionStart(position);
@@ -133,62 +134,36 @@ function NumberInput({
     [props]
   );
 
-  // Проверка "пустой" ли инпут
-  const isEmpty = !(
-    (typeof props.value === 'number' && props.value.toString().length > 0) ||
-    (typeof props.value === 'string' && props.value.length > 0)
-  );
+    const handleClick = (e) => {
+        e.stopPropagation();
+        if (typeof onClick === 'function') {
+            onClick(e);
+        }
+    };
 
-  return (
-      <InputContainer ref={wrapperRef}>
-        {/* Сам <input> */}
-        <StyledInput
-          ref={inputRef}
-          browser={browser && browser.name}
-          id={props.id}
-          size={props.size}
-          autoComplete="off"
-          disabled={props.disabled}
-          style={getInputStyle()}
-          className={props.className}
-          type={props.type || 'text'}
-          name={getName(props.name || '')}
-          value={props.value}
-          placeholder={props.placeholder}
-          onKeyPress={(e) => {
-            if (typeof onKeyPress === 'function') {
-              onKeyPress(e);
-            }
-          }}
+    const handleFocus = () => {
+        setFocused(true);
+    };
+
+    const handleBlur = () => {
+        setFocused(false);
+    };
+
+  return (<StyledInput
+          id={id}
+          style={style}
+          autoComplete={autoComplete || 'off'}
+          disabled={disabled}
+          className={className + (focused ? ' focused' : '') + (error ? ' error' : '')}
+          type={type}
+          name={getName(name)}
+          value={value}
+          onClick={handleClick}
+          onKeyPress={onKeyPress}
           onChange={handleChange}
-          onFocus={() => {
-            setFocused(true);
-          }}
-          onBlur={() => {
-            // Если нужно что-то по blur, добавьте здесь
-          }}
-        />
-
-        {/* Кнопка очистки (close) */}
-        {!isEmpty &&
-        typeof props.size === 'undefined' &&
-        !props.disabled &&
-        props.icon !== false && (
-          <img
-            className="close"
-            src={Close}
-            onClick={(e) => {
-              props.onChange(e, {
-                name: props.name,
-                value: ''
-              });
-            }}
-            alt=""
-          />
-        )}
-        {renderTooltipError()}
-      </InputContainer>
-  );
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />);
 }
 
 export default NumberInput;

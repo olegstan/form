@@ -12,7 +12,7 @@ var _newstyles = require("./newstyles");
 var _containerStyle = require("./styles/containerStyle");
 var _ic_close_only = _interopRequireDefault(require("./../assets/ic_close_only.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _excluded = ["onKeyPress", "onChange", "disabled", "value", "placeholder", "icon", "className", "wrapperClassName", "style", "max", "min", "decimals"]; // NumberInput.js
+var _excluded = ["onKeyPress", "onChange", "onClick", "disabled", "placeholder", "iconClose", "className", "type", "style", "id", "name", "value", "autoComplete", "error", "max", "min", "decimals"]; // NumberInput.js
 // ВАЖНО: ваш кастомный хук
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -27,23 +27,29 @@ function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i 
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function NumberInput(_ref) {
   var _ref$onKeyPress = _ref.onKeyPress,
-    _onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
+    _ref$onClick = _ref.onClick,
+    onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    _ref$value = _ref.value,
-    value = _ref$value === void 0 ? '' : _ref$value,
     _ref$placeholder = _ref.placeholder,
     placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
-    _ref$icon = _ref.icon,
-    icon = _ref$icon === void 0 ? '' : _ref$icon,
+    _ref$iconClose = _ref.iconClose,
+    iconClose = _ref$iconClose === void 0 ? true : _ref$iconClose,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$wrapperClassName = _ref.wrapperClassName,
-    wrapperClassName = _ref$wrapperClassName === void 0 ? '' : _ref$wrapperClassName,
+    _ref$type = _ref.type,
+    type = _ref$type === void 0 ? 'number' : _ref$type,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style,
+    id = _ref.id,
+    name = _ref.name,
+    value = _ref.value,
+    _ref$autoComplete = _ref.autoComplete,
+    autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
+    error = _ref.error,
     _ref$max = _ref.max,
     max = _ref$max === void 0 ? false : _ref$max,
     _ref$min = _ref.min,
@@ -53,14 +59,10 @@ function NumberInput(_ref) {
     props = _objectWithoutProperties(_ref, _excluded);
   // Достаём общую логику из useBaseInput (аналог "BaseInput")
   var _useBaseInput = (0, _useBaseInput2["default"])(props),
-    wrapperRef = _useBaseInput.wrapperRef,
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    browser = _useBaseInput.browser,
-    getContainerStyle = _useBaseInput.getContainerStyle,
     getInputStyle = _useBaseInput.getInputStyle,
-    getName = _useBaseInput.getName,
-    getPlaceholderClassName = _useBaseInput.getPlaceholderClassName;
+    getName = _useBaseInput.getName;
 
   // Локальный стейт для положения курсора
   var _useState = (0, _react.useState)(0),
@@ -80,7 +82,7 @@ function NumberInput(_ref) {
       inputRef.current.selectionStart = selectionStart;
       inputRef.current.selectionEnd = selectionEnd;
     }
-  }, [props.value, focused, selectionStart, selectionEnd]);
+  }, [value, focused, selectionStart, selectionEnd]);
 
   // handleChange — портируем вашу логику
   var handleChange = (0, _react.useCallback)(function (e) {
@@ -90,20 +92,19 @@ function NumberInput(_ref) {
       var val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
       // Проверки на min/max
-      if (props.max !== false && +val > props.max) {
+      if (max !== false && +val > max) {
         return;
       }
-      if (props.min === 0 && isNaN(val)) {
+      if (min === 0 && isNaN(val)) {
         return;
       }
-      if (props.min !== false && +val < props.min) {
+      if (min !== false && +val < min) {
         return;
       }
 
       // Позиция курсора
       var position = e.target.selectionStart;
       if (val.length > 0) {
-        var _props$value;
         var prefix = '';
         if (val[0] === '-') {
           prefix = '-';
@@ -113,9 +114,9 @@ function NumberInput(_ref) {
         if (parts[1] !== undefined) {
           // Если есть дробная часть
           if (parts[1] !== '') {
-            if (props.decimals !== false) {
+            if (decimals !== false) {
               // Не даём вводить дробную часть длиннее decimals
-              if (parts[1].length > props.decimals) {
+              if (parts[1].length > decimals) {
                 return;
               }
             }
@@ -130,7 +131,7 @@ function NumberInput(_ref) {
         }
 
         // Логика с изменением длины целой части => сдвиг курсора
-        var prevParts = ((_props$value = props.value) === null || _props$value === void 0 ? void 0 : _props$value.toString().split('.')) || [''];
+        var prevParts = (value === null || value === void 0 ? void 0 : value.toString().split('.')) || [''];
         var newParts = val.split('.');
         var prevLength = prevParts[0].length;
         var newLength = newParts[0].length;
@@ -142,16 +143,16 @@ function NumberInput(_ref) {
         }
 
         // Вызываем onChange, пробрасывая prefix
-        props.onChange(e, {
-          name: props.name,
+        onChange(e, {
+          name: name,
           value: prefix + val
         });
         setSelectionStart(position);
         setSelectionEnd(position);
       } else {
         // Если val пустое
-        props.onChange(e, {
-          name: props.name,
+        onChange(e, {
+          name: name,
           value: ''
         });
         setSelectionStart(position);
@@ -159,47 +160,32 @@ function NumberInput(_ref) {
       }
     }
   }, [props]);
-
-  // Проверка "пустой" ли инпут
-  var isEmpty = !(typeof props.value === 'number' && props.value.toString().length > 0 || typeof props.value === 'string' && props.value.length > 0);
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.InputContainer, {
-    ref: wrapperRef,
-    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
-      ref: inputRef,
-      browser: browser && browser.name,
-      id: props.id,
-      size: props.size,
-      autoComplete: "off",
-      disabled: props.disabled,
-      style: getInputStyle(),
-      className: props.className,
-      type: props.type || 'text',
-      name: getName(props.name || ''),
-      value: props.value,
-      placeholder: props.placeholder,
-      onKeyPress: function onKeyPress(e) {
-        if (typeof _onKeyPress === 'function') {
-          _onKeyPress(e);
-        }
-      },
-      onChange: handleChange,
-      onFocus: function onFocus() {
-        setFocused(true);
-      },
-      onBlur: function onBlur() {
-        // Если нужно что-то по blur, добавьте здесь
-      }
-    }), !isEmpty && typeof props.size === 'undefined' && !props.disabled && props.icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-      className: "close",
-      src: _ic_close_only["default"],
-      onClick: function onClick(e) {
-        props.onChange(e, {
-          name: props.name,
-          value: ''
-        });
-      },
-      alt: ""
-    }), renderTooltipError()]
+  var handleClick = function handleClick(e) {
+    e.stopPropagation();
+    if (typeof onClick === 'function') {
+      onClick(e);
+    }
+  };
+  var handleFocus = function handleFocus() {
+    setFocused(true);
+  };
+  var handleBlur = function handleBlur() {
+    setFocused(false);
+  };
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
+    id: id,
+    style: style,
+    autoComplete: autoComplete || 'off',
+    disabled: disabled,
+    className: className + (focused ? ' focused' : '') + (error ? ' error' : ''),
+    type: type,
+    name: getName(name),
+    value: value,
+    onClick: handleClick,
+    onKeyPress: onKeyPress,
+    onChange: handleChange,
+    onFocus: handleFocus,
+    onBlur: handleBlur
   });
 }
 var _default = exports["default"] = NumberInput;

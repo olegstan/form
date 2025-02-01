@@ -6,15 +6,17 @@ import {StyledInput} from './newstyles';
 function Input({
                    onKeyPress = () => {},
                    onChange = () => {},
+                   onClick = () => {},
                    disabled = false,
                    placeholder = '',
-                   placeholderStyle = {},
-                   icon = '',
+                   iconClose = true,
                    className = '',
                    type = 'text',
                    style = {},
                    id,
-                   autoComplete,
+                   name,
+                   value,
+                   autoComplete = 'off',
                    error,
                    ...props
                }) {
@@ -28,14 +30,14 @@ function Input({
 
     const handleClick = (e) => {
         e.stopPropagation();
-        if (typeof props.onClick === 'function') {
-            props.onClick(e);
+        if (typeof onClick === 'function') {
+            onClick(e);
         }
     };
 
     const handleChange = (e) => {
         onChange(e, {
-            name: props.name,
+            name: name,
             value: e.target.value
         });
     };
@@ -56,8 +58,8 @@ function Input({
             disabled={disabled}
             className={className + (focused ? ' focused' : '') + (error ? ' error' : '')}
             type={type}
-            name={getName(props.name)}
-            value={props.value}
+            name={getName(name)}
+            value={value}
             onClick={handleClick}
             onKeyPress={onKeyPress}
             onChange={handleChange}
@@ -65,7 +67,6 @@ function Input({
             onBlur={handleBlur}
         />
     );
-
 }
 
 export default Input;
