@@ -28,11 +28,13 @@ function InputContainer(_ref) {
   var _child$props = child.props,
     placeholder = _child$props.placeholder,
     id = _child$props.id,
-    disabled = _child$props.disabled,
+    _child$props$disabled = _child$props.disabled,
+    disabled = _child$props$disabled === void 0 ? false : _child$props$disabled,
     value = _child$props.value,
     name = _child$props.name,
     onChange = _child$props.onChange,
-    iconClose = _child$props.iconClose;
+    _child$props$iconClos = _child$props.iconClose,
+    iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos;
   var renderCloseIcon = function renderCloseIcon() {
     //если передано iconClose = false то рендерить икноку для очистки не нужно
     if (!iconClose) {
@@ -46,7 +48,7 @@ function InputContainer(_ref) {
         notEmpty = typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0;
         break;
     }
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+    return notEmpty ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
       className: "close",
       src: _ic_close_only["default"],
       onClick: function onClick(e) {
@@ -56,7 +58,7 @@ function InputContainer(_ref) {
         });
       },
       alt: ""
-    });
+    }) : null;
   };
   var renderPlaceholder = function renderPlaceholder() {
     if (!placeholder) return null;

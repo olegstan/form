@@ -3,7 +3,6 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import useBaseInput from '../hooks/useBaseInput';
 
 import {InputContainer, MaskedStyledInput} from './../newstyles';
-import {Container} from './../styles/containerStyle';
 import calendarSvg from './../../assets/calendar.svg';
 import mountFlatpickr from "./utils/mountFlatpickr";
 

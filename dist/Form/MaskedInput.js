@@ -7,7 +7,6 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("./hooks/useBaseInput"));
 var _newstyles = require("./newstyles");
-var _ic_close_only = _interopRequireDefault(require("./../assets/ic_close_only.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["onKeyPress", "onChange", "onClick", "disabled", "placeholder", "iconClose", "className", "type", "style", "id", "name", "value", "autoComplete", "error", "mask"]; // <-- наш кастомный хук
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
@@ -40,35 +39,22 @@ function MaskedInput(_ref) {
     error = _ref.error,
     mask = _ref.mask,
     props = _objectWithoutProperties(_ref, _excluded);
-  // 1. Достаём из useBaseInput (аналог "наследования" BaseInput)
-  var _useBaseInput = (0, _useBaseInput2["default"])(props),
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      onClick: onClick,
+      onChange: onChange
+    }),
     focused = _useBaseInput.focused,
-    setFocused = _useBaseInput.setFocused,
+    handleClick = _useBaseInput.handleClick,
+    handleChange = _useBaseInput.handleChange,
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  var handleClick = function handleClick(e) {
-    e.stopPropagation();
-    if (typeof onClick === 'function') {
-      onClick(e);
-    }
-  };
-  var handleChange = function handleChange(e) {
-    onChange(e, {
-      name: name,
-      value: e.target.value
-    });
-  };
-  var handleFocus = function handleFocus() {
-    setFocused(true);
-  };
-  var handleBlur = function handleBlur() {
-    setFocused(false);
-  };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
-    className: className + (focused ? ' focused' : '') + (error ? ' error' : ''),
+    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
     type: type,
     name: getName(name),
     value: value,

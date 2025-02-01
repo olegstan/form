@@ -21,34 +21,17 @@ function Input({
                    ...props
                }) {
 
-    // Деструктурируем всё нужное из хука
     const {
         focused,
-        setFocused,
+        handleClick,
+        handleChange,
+        handleFocus,
+        handleBlur,
         getName,
-    } = useBaseInput(props);
-
-    const handleClick = (e) => {
-        e.stopPropagation();
-        if (typeof onClick === 'function') {
-            onClick(e);
-        }
-    };
-
-    const handleChange = (e) => {
-        onChange(e, {
-            name: name,
-            value: e.target.value
-        });
-    };
-
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
+    } = useBaseInput({
+        onClick,
+        onChange,
+    });
 
     return (
         <StyledInput
@@ -56,7 +39,7 @@ function Input({
             style={style}
             autoComplete={autoComplete || 'off'}
             disabled={disabled}
-            className={className + (focused ? ' focused' : '') + (error ? ' error' : '')}
+            className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
             type={type}
             name={getName(name)}
             value={value}

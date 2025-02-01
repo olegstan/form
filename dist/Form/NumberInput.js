@@ -9,8 +9,6 @@ var _react = _interopRequireWildcard(require("react"));
 var _finhelper = require("finhelper");
 var _useBaseInput2 = _interopRequireDefault(require("./hooks/useBaseInput"));
 var _newstyles = require("./newstyles");
-var _containerStyle = require("./styles/containerStyle");
-var _ic_close_only = _interopRequireDefault(require("./../assets/ic_close_only.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["onKeyPress", "onChange", "onClick", "disabled", "placeholder", "iconClose", "className", "type", "style", "id", "name", "value", "autoComplete", "error", "max", "min", "decimals"]; // NumberInput.js
 // ВАЖНО: ваш кастомный хук
@@ -57,13 +55,6 @@ function NumberInput(_ref) {
     _ref$decimals = _ref.decimals,
     decimals = _ref$decimals === void 0 ? false : _ref$decimals,
     props = _objectWithoutProperties(_ref, _excluded);
-  // Достаём общую логику из useBaseInput (аналог "BaseInput")
-  var _useBaseInput = (0, _useBaseInput2["default"])(props),
-    focused = _useBaseInput.focused,
-    setFocused = _useBaseInput.setFocused,
-    getInputStyle = _useBaseInput.getInputStyle,
-    getName = _useBaseInput.getName;
-
   // Локальный стейт для положения курсора
   var _useState = (0, _react.useState)(0),
     _useState2 = _slicedToArray(_useState, 2),
@@ -160,24 +151,22 @@ function NumberInput(_ref) {
       }
     }
   }, [props]);
-  var handleClick = function handleClick(e) {
-    e.stopPropagation();
-    if (typeof onClick === 'function') {
-      onClick(e);
-    }
-  };
-  var handleFocus = function handleFocus() {
-    setFocused(true);
-  };
-  var handleBlur = function handleBlur() {
-    setFocused(false);
-  };
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      onClick: onClick,
+      onChange: onChange
+    }),
+    focused = _useBaseInput.focused,
+    handleClick = _useBaseInput.handleClick,
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
+    getName = _useBaseInput.getName;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
+    ref: inputRef,
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
-    className: className + (focused ? ' focused' : '') + (error ? ' error' : ''),
+    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
     type: type,
     name: getName(name),
     value: value,

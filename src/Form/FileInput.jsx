@@ -1,8 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {InputContainer, StyledInput} from './newstyles';
-import {Container} from './styles/containerStyle';
-import Close from './../assets/ic_close_only.svg';
+import {StyledInput} from './newstyles';
 
 const FileInput = ({
                        onKeyPress = () => {},
@@ -21,7 +19,6 @@ const FileInput = ({
     const {
         focused,
         setFocused,
-        wrapperRef,
         browser,
         getName,
     } = useBaseInput(props, callerClassName);

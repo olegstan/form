@@ -38,35 +38,22 @@ function Input(_ref) {
     autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
     error = _ref.error,
     props = _objectWithoutProperties(_ref, _excluded);
-  // Деструктурируем всё нужное из хука
-  var _useBaseInput = (0, _useBaseInput2["default"])(props),
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      onClick: onClick,
+      onChange: onChange
+    }),
     focused = _useBaseInput.focused,
-    setFocused = _useBaseInput.setFocused,
+    handleClick = _useBaseInput.handleClick,
+    handleChange = _useBaseInput.handleChange,
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  var handleClick = function handleClick(e) {
-    e.stopPropagation();
-    if (typeof onClick === 'function') {
-      onClick(e);
-    }
-  };
-  var handleChange = function handleChange(e) {
-    onChange(e, {
-      name: name,
-      value: e.target.value
-    });
-  };
-  var handleFocus = function handleFocus() {
-    setFocused(true);
-  };
-  var handleBlur = function handleBlur() {
-    setFocused(false);
-  };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
-    className: className + (focused ? ' focused' : '') + (error ? ' error' : ''),
+    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
     type: type,
     name: getName(name),
     value: value,

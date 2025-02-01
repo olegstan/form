@@ -8,8 +8,6 @@ exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("./hooks/useBaseInput"));
 var _newstyles = require("./newstyles");
-var _containerStyle = require("./styles/containerStyle");
-var _ic_close_only = _interopRequireDefault(require("./../assets/ic_close_only.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["onKeyPress", "onChange", "disabled", "icon", "className", "wrapperClassName", "valueText", "style"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
@@ -45,7 +43,6 @@ var FileInput = function FileInput(_ref) {
   var _useBaseInput = (0, _useBaseInput2["default"])(props, callerClassName),
     focused = _useBaseInput.focused,
     setFocused = _useBaseInput.setFocused,
-    wrapperRef = _useBaseInput.wrapperRef,
     browser = _useBaseInput.browser,
     getName = _useBaseInput.getName;
   (0, _react.useEffect)(function () {

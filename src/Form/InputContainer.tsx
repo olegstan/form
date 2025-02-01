@@ -20,7 +20,7 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled, value, name, onChange, iconClose} = child.props;
+    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true} = child.props;
 
     const renderCloseIcon = () =>
     {
@@ -43,7 +43,7 @@ function InputContainer({
                 break;
         }
 
-        return <img
+        return notEmpty ? <img
             className="close"
             src={Close}
             onClick={(e) => {
@@ -53,7 +53,7 @@ function InputContainer({
                 });
             }}
             alt=""
-        />
+        /> : null;
     }
 
     const renderPlaceholder = () => {
