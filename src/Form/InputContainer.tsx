@@ -17,19 +17,14 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, placeholderStyle, getPlaceholderClassName, handleShowSelect, hasError, getError} = child.props;
+    const {placeholder, id, hasError, getError} = child.props;
 
     // Рендер плейсхолдера (аналог renderPlaceholder)
     const renderPlaceholder = () => {
         if (!placeholder) return null;
 
         return (
-            <label
-                htmlFor={id}
-                style={placeholderStyle}
-                className={getPlaceholderClassName?.()}
-                onClick={() => handleShowSelect(true)}
-            >
+            <label htmlFor={id} className={'placeholder'}>
                 {placeholder}
             </label>
         );
@@ -39,17 +34,8 @@ function InputContainer({
     const renderTooltipError = () => {
         // @ts-ignore
         return hasError ? (
-            <InputPopup
-                trigger={
-                    <img
-                        id={'tooltip-' + id}
-                        className=""
-                        src={errorSvg}
-                        alt=""
-                    />
-                }
-            >
-                <label htmlFor={id} className={className + ' error'}>
+            <InputPopup trigger={<img id={'tooltip-' + id} src={errorSvg} alt=""/>}>
+                <label htmlFor={id} className={'error'}>
                     {getError()}
                 </label>
             </InputPopup>

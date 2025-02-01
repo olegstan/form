@@ -61,19 +61,6 @@ export default function useBaseInput(props, callerClassName) {
     };
   }, [handleClickOutside]);
 
-  // ------------------------------
-  // Аналог componentDidUpdate: следим за props.errors и меняем hasError/error
-  // ------------------------------
-  useEffect(() => {
-    const { name, errors } = props;
-    const isError = errors && name && errors[name] && errors[name].length > 0;
-    const newError = isError ? errors[name][0] : null;
-
-    if (isError !== hasError || newError !== error) {
-      setHasError(isError);
-      setError(newError);
-    }
-  }, [props.errors, props.name, hasError, error]);
 
   // ------------------------------
   // Прочие методы из BaseInput

@@ -10,6 +10,7 @@ var _useBaseInput2 = _interopRequireDefault(require("./hooks/useBaseInput"));
 var _newstyles = require("./newstyles");
 var _containerStyle = require("./styles/containerStyle");
 var _ic_close_only = _interopRequireDefault(require("./../assets/ic_close_only.svg"));
+var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["onKeyPress", "onChange", "disabled", "icon", "className", "wrapperClassName", "valueText", "style"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -93,22 +94,22 @@ var FileInput = function FileInput(_ref) {
     border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : ''
   });
   var empty = !props.value || typeof props.value.name !== 'string';
-  return null;
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
+    ref: inputRef,
+    browser: browser && browser.name,
+    id: props.id,
+    size: props.size,
+    disabled: disabled,
+    className: className,
+    type: "file",
+    name: getName(props.name),
+    placeholder: props.placeholder,
+    onChange: handleFileChange
+  });
 
   // return (
   //     <InputContainer ref={wrapperRef}>
-  //         <StyledInput
-  //             ref={inputRef}
-  //             browser={browser && browser.name}
-  //             id={props.id}
-  //             size={props.size}
-  //             disabled={disabled}
-  //             className={className}
-  //             type="file"
-  //             name={getName(props.name)}
-  //             placeholder={props.placeholder}
-  //             onChange={handleFileChange}
-  //         />
+
   //         {renderPlaceholder()}
   //         {!empty &&
   //         typeof props.size === 'undefined' &&

@@ -17,13 +17,7 @@ export const Container = styled.div`
   border-radius: 8px;
   position: relative;
 
-
-  label.placeholder {
-    color: #6F7080;
-    z-index: 1000;
-  }
   
-
   ${props => props.disabled === true && `
       background-color: #FAFAFA !important;
       
@@ -70,6 +64,7 @@ export const InputContainerStyled = styled.div`
   }
 
   label.error {
+  
   }
 
   img.calendar {
@@ -88,6 +83,11 @@ export const InputContainerStyled = styled.div`
 `
 
 export const placeholderActiveStyle = css`
+  label.placeholder {
+    color: #6F7080;
+    z-index: 1000;
+  }
+  
   &::placeholder {
     font-size: 100%;
     transition: all 0.3s ease;

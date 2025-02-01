@@ -80,22 +80,22 @@ const FileInput = ({
 
     const empty = !props.value || typeof props.value.name !== 'string';
 
-    return null;
+    return <StyledInput
+            ref={inputRef}
+            browser={browser && browser.name}
+            id={props.id}
+            size={props.size}
+            disabled={disabled}
+            className={className}
+            type="file"
+            name={getName(props.name)}
+            placeholder={props.placeholder}
+            onChange={handleFileChange}
+        />;
 
     // return (
     //     <InputContainer ref={wrapperRef}>
-    //         <StyledInput
-    //             ref={inputRef}
-    //             browser={browser && browser.name}
-    //             id={props.id}
-    //             size={props.size}
-    //             disabled={disabled}
-    //             className={className}
-    //             type="file"
-    //             name={getName(props.name)}
-    //             placeholder={props.placeholder}
-    //             onChange={handleFileChange}
-    //         />
+
     //         {renderPlaceholder()}
     //         {!empty &&
     //         typeof props.size === 'undefined' &&

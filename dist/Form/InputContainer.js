@@ -30,18 +30,13 @@ function InputContainer(_ref) {
     handleShowSelect = _child$props.handleShowSelect,
     hasError = _child$props.hasError,
     getError = _child$props.getError;
-  console.log(placeholder);
 
   // Рендер плейсхолдера (аналог renderPlaceholder)
   var renderPlaceholder = function renderPlaceholder() {
     if (!placeholder) return null;
     return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
       htmlFor: id,
-      style: placeholderStyle,
-      className: getPlaceholderClassName === null || getPlaceholderClassName === void 0 ? void 0 : getPlaceholderClassName(),
-      onClick: function onClick() {
-        return handleShowSelect(true);
-      },
+      className: 'placeholder',
       children: placeholder
     });
   };
@@ -52,13 +47,12 @@ function InputContainer(_ref) {
     return hasError ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputPopup["default"], {
       trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         id: 'tooltip-' + id,
-        className: "",
         src: _error["default"],
         alt: ""
       }),
       children: /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
         htmlFor: id,
-        className: className + ' error',
+        className: 'error',
         children: getError()
       })
     }) : null;

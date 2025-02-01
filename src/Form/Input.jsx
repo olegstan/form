@@ -1,20 +1,16 @@
 // Input.js
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import errorSvg from './../assets/error.svg';
 import {StyledInput} from './newstyles';
 
 function Input({
-                   onKeyPress = () => {
-                   },
-                   onChange = () => {
-                   },
+                   onKeyPress = () => {},
+                   onChange = () => {},
                    disabled = false,
                    placeholder = '',
                    placeholderStyle = {},
                    icon = '',
                    className = '',
-                   wrapperClassName = '',
                    type = 'text',
                    style = {},
                    id,
@@ -24,21 +20,12 @@ function Input({
 
     // Деструктурируем всё нужное из хука
     const {
-        wrapperRef,
-        focused,
-        hasError,
-        error,
         setFocused,
         setHasError,
         browser,
-        handleShowSelect,
-        getPlaceholderClassName,
         getInputStyle,
         getName,
-        getError,
         onBlurFunc
-        // если нужен search, тоже можно взять:
-        // search, setSearch,
     } = useBaseInput(props);
 
     // Аналог проверки «пустой ли инпут»
@@ -84,10 +71,7 @@ function Input({
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={() => {
-                // Логика onBlur — вызов того, что было раньше:
                 onBlurFunc();
-                // Если нужно вернуть фокус в false по блюру:
-                // setFocused(false);
             }}
         />
     );
