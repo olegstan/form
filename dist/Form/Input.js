@@ -11,7 +11,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
 
-function Input(_ref) {
+var Input = function Input(_ref) {
   var _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
@@ -58,5 +58,5 @@ function Input(_ref) {
     onFocus: handleFocus,
     onBlur: handleBlur
   });
-}
+};
 var _default = exports["default"] = Input;

@@ -1,8 +1,9 @@
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомный хук
 import {MaskedStyledInput} from './newstyles';
+import MaskedInputProps from "./types/MaskedInputProps";
 
-function MaskedInput({
+const MaskedInput: React.FC<MaskedInputProps> = ({
                          onKeyPress = () => {},
                          onChange = () => {},
                          onClick = () => {},
@@ -16,7 +17,7 @@ function MaskedInput({
                          autoComplete = 'off',
                          error,
                          mask,
-                     }) {
+                     }) => {
     const {
         focused,
         handleClick,

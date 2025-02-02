@@ -54,7 +54,6 @@ export const InputContainerStyled = styled.div`
   outline: none;
   display: flex;
   flex: 1;
-  height: 46px;
   padding: 0;
   position: relative;
   z-index: 100;
@@ -84,7 +83,7 @@ export const InputContainerStyled = styled.div`
 `
 
 
-export const Checkbox = styled.div`
+export const StyledCheckbox = styled.div`
   flex: 1;
   display: flex;
   padding: 5px 12px;
@@ -207,6 +206,7 @@ export const placeholderActiveStyle = css`
 export const sharedInputStyle = css`
   width: 100%;
   line-height: 13px;
+  height: 19px;
   user-select: none;
   color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};
@@ -236,5 +236,13 @@ export const MaskedStyledInput = styled(forwardRef((props, ref) => (
 )))`
   ${sharedInputStyle}
 `;
+
+export const StyledTextArea = styled.textarea`
+  width: 100%;
+  resize: vertical;
+  overflow-y: hidden;
+
+  ${sharedInputStyle}
+`
 
 

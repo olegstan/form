@@ -34,6 +34,7 @@ function InputContainer({
         switch (child.type.name)
         {
             case 'DateInput':
+            case 'DateTimeInput':
                 //там и так будет иконка календаря
                 return null;
             case 'FileInput':
@@ -68,13 +69,12 @@ function InputContainer({
         switch (child.type.name)
         {
             case 'DateInput':
+            case 'DateTimeInput':
                 if(value instanceof Date)
                 {
                     notEmpty = true;
                 }
 
-                console.log(value)
-                console.log(notEmpty)
                 break;
             case 'MaskedInput':
                 notEmpty = true;//всегда есть внутри инпута, поэтому показывае placeholder всегда сверху

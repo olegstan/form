@@ -1,7 +1,9 @@
 import React, {useRef, useState} from 'react';
-import {Checkbox as StyleCheckbox} from './newstyles';
+import {StyledCheckbox} from './newstyles';
+import InputProps from "./types/InputProps";
+import CheckboxProps from "./types/CheckboxProps";
 
-const Checkbox = ({
+const Checkbox: React.FC<CheckboxProps> = ({
                       // Здесь прописываем дефолты
                       value = 1,
                       name = '',
@@ -37,7 +39,7 @@ const Checkbox = ({
         };
 
     return (
-        <StyleCheckbox
+        <StyledCheckbox
             id={id}
             style={style}
             onClick={(e) => {
@@ -64,7 +66,7 @@ const Checkbox = ({
                     {text}
                 </div>
             )}
-        </StyleCheckbox>
+        </StyledCheckbox>
     );
 };
 

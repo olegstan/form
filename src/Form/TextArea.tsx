@@ -1,18 +1,15 @@
 // TextArea.js
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {TextArea as StyledTextArea} from './newstyles';
+import {StyledTextArea} from './newstyles';
+import TextAreaProps from "./types/TextAreaProps";
 
-/**
- * A functional TextArea component rewritten from a class-based component.
- */
-function TextArea({
+const TextArea: React.FC<TextAreaProps> = ({
                     onKeyPress = () => {},
                     onChange = () => {},
                     onClick = () => {},
                     disabled = false,
                     className = '',
-                    type = 'text',
                     style = {},
                     id,
                     name,
@@ -20,7 +17,7 @@ function TextArea({
                     autoComplete = 'off',
                     error,
                     rows = 3,
-                  }) {
+                  }) => {
 
     const {
         focused,
@@ -42,7 +39,6 @@ function TextArea({
           autoComplete={autoComplete || 'off'}
           disabled={disabled}
           className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
-          type={type}
           name={getName(name)}
           value={value}
           onClick={handleClick}

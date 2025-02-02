@@ -55,7 +55,7 @@ var Checkbox = function Checkbox(_ref) {
     backgroundColor: '#4378FF',
     border: '2px solid #4378FF'
   };
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.Checkbox, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.StyledCheckbox, {
     id: id,
     style: style,
     onClick: function onClick(e) {

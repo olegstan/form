@@ -1,10 +1,8 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
 // Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
-import {InputContainer, MaskedStyledInput} from './../newstyles';
-import {Container} from './../styles/containerStyle';
-import calendarSvg from './../../assets/calendar.svg';
+import {MaskedStyledInput} from './../newstyles';
 import mountFlatpickr from "./utils/mountFlatpickr";
 import moment from "moment";
 

@@ -2,21 +2,22 @@
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
 import {StyledInput} from './newstyles';
+import InputProps from "./types/InputProps";
 
-function Input({
-                   onKeyPress = () => {},
-                   onChange = () => {},
-                   onClick = () => {},
-                   disabled = false,
-                   className = '',
-                   type = 'text',
-                   style = {},
-                   id,
-                   name,
-                   value,
-                   autoComplete = 'off',
-                   error
-               }) {
+const Input: React.FC<InputProps> = ({
+                                        onKeyPress = () => {},
+                                        onChange = () => {},
+                                        onClick = () => {},
+                                        disabled = false,
+                                        className = '',
+                                        type = 'text',
+                                        style = {},
+                                        id,
+                                        name,
+                                        value,
+                                        autoComplete = 'off',
+                                        error
+                                    }) => {
 
     const {
         focused,

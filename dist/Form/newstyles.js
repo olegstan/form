@@ -4,13 +4,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.sharedInputStyle = exports.placeholderActiveStyle = exports.StyledInput = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = exports.Checkbox = void 0;
+exports.sharedInputStyle = exports.placeholderActiveStyle = exports.StyledTextArea = exports.StyledInput = exports.StyledCheckbox = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = void 0;
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 var _react = _interopRequireWildcard(require("react"));
 var _reactInputMask = _interopRequireDefault(require("react-input-mask"));
 var _zindex = _interopRequireDefault(require("../interface/zindex"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9; // styles/containerStyle.js
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10; // styles/containerStyle.js
 // Миксин для автозаполнения в Chrome
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -44,11 +44,11 @@ var Container = exports.Container = _styledComponents["default"].div(_templateOb
   var disabled = _ref6.disabled;
   return disabled && disabledStyles;
 });
-var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  height: 46px;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 14px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n"])), function (_ref7) {
+var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 14px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n"])), function (_ref7) {
   var theme = _ref7.theme;
   return theme.inputContainerDisabledBackground;
 });
-var Checkbox = exports.Checkbox = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  flex: 1;\n  display: flex;\n  padding: 5px 12px;\n  align-items: center;\n  color: ", ";\n  cursor: pointer;\n  transition: opacity 0.3s;\n  margin: 0;\n  user-select: none;\n  \n\n  & > div {\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 18px;\n    letter-spacing: 0;\n    color: #E9E9EA;\n  }\n\n  & > input {\n    height: 0;\n    width: 0;\n    opacity: 0;\n    z-index: -10;\n    position: absolute;\n  }\n\n  & > span {\n    border: 2px solid ", ";\n    height: 18px;\n    width: 18px;\n    box-sizing: border-box;\n    margin-right: 10px;\n    background-color: ", ";\n    border-radius: 6px;\n    display: flex;\n  }\n\n  & > span > span {\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(45deg);\n    -ms-transform: rotate(45deg);\n    transform: rotate(45deg);\n    width: 7px;\n    height: 11px;\n    top: 1px;\n    z-index: 1000;\n    left: 4px;\n    box-sizing: border-box;\n  }\n\n  & > input:checked + span {\n    background-color: ", ";\n    border: 2px solid ", ";\n  }\n\n  & > input:checked + span > span {\n    border-bottom: 3px solid ", ";\n    border-right: 3px solid ", ";\n  }\n\n  &:hover {\n    opacity: 0.7;\n  }\n"])), function (_ref8) {
+var StyledCheckbox = exports.StyledCheckbox = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  flex: 1;\n  display: flex;\n  padding: 5px 12px;\n  align-items: center;\n  color: ", ";\n  cursor: pointer;\n  transition: opacity 0.3s;\n  margin: 0;\n  user-select: none;\n  \n\n  & > div {\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 18px;\n    letter-spacing: 0;\n    color: #E9E9EA;\n  }\n\n  & > input {\n    height: 0;\n    width: 0;\n    opacity: 0;\n    z-index: -10;\n    position: absolute;\n  }\n\n  & > span {\n    border: 2px solid ", ";\n    height: 18px;\n    width: 18px;\n    box-sizing: border-box;\n    margin-right: 10px;\n    background-color: ", ";\n    border-radius: 6px;\n    display: flex;\n  }\n\n  & > span > span {\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(45deg);\n    -ms-transform: rotate(45deg);\n    transform: rotate(45deg);\n    width: 7px;\n    height: 11px;\n    top: 1px;\n    z-index: 1000;\n    left: 4px;\n    box-sizing: border-box;\n  }\n\n  & > input:checked + span {\n    background-color: ", ";\n    border: 2px solid ", ";\n  }\n\n  & > input:checked + span > span {\n    border-bottom: 3px solid ", ";\n    border-right: 3px solid ", ";\n  }\n\n  &:hover {\n    opacity: 0.7;\n  }\n"])), function (_ref8) {
   var theme = _ref8.theme;
   return theme.checkMarkColor;
 }, function (_ref9) {
@@ -74,7 +74,7 @@ var placeholderActiveStyle = exports.placeholderActiveStyle = (0, _styledCompone
   var theme = _ref15.theme;
   return theme.inputPlaceholderTextColor;
 });
-var sharedInputStyle = exports.sharedInputStyle = (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  width: 100%;\n  line-height: 13px;\n  user-select: none;\n  color: ", ";\n  z-index: ", ";\n  transition: border-color .25s ease-in-out;\n  border: none;\n  background-color: transparent;\n  padding: 24px 12px 8px 14px;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 500;\n  text-align: left;\n  border-radius: 6px;\n\n  &:focus {\n    outline: 0;\n  }\n  \n  ", "\n"])), function (_ref16) {
+var sharedInputStyle = exports.sharedInputStyle = (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  width: 100%;\n  line-height: 13px;\n  height: 19px;\n  user-select: none;\n  color: ", ";\n  z-index: ", ";\n  transition: border-color .25s ease-in-out;\n  border: none;\n  background-color: transparent;\n  padding: 24px 12px 8px 14px;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 500;\n  text-align: left;\n  border-radius: 6px;\n\n  &:focus {\n    outline: 0;\n  }\n  \n  ", "\n"])), function (_ref16) {
   var theme = _ref16.theme;
   return theme.inputTextColor;
 }, _zindex["default"].input, placeholderActiveStyle);
@@ -84,3 +84,4 @@ var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["defau
     ref: ref
   }));
 }))(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedInputStyle);
+var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n\n  ", "\n"])), sharedInputStyle);

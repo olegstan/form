@@ -11,7 +11,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // <-- наш кастомный хук
 
-function MaskedInput(_ref) {
+var MaskedInput = function MaskedInput(_ref) {
   var _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
@@ -60,5 +60,5 @@ function MaskedInput(_ref) {
     onBlur: handleBlur,
     mask: mask
   });
-}
+};
 var _default = exports["default"] = MaskedInput;

@@ -44,7 +44,7 @@ import getLink from "./FormDeprecated/functions/getLink"
 import receivePropsUserId from "./FormDeprecated/functions/receivePropsUserId"
 import setField from "./FormDeprecated/functions/setField"
 
-import * as NewForm from "./new";
+import * as NewForm from "./Form";
 
 
 export {

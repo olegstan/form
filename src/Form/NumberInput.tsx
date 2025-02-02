@@ -1,11 +1,11 @@
 // NumberInput.js
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Money} from 'finhelper';
-
-import useBaseInput from './hooks/useBaseInput'; // ВАЖНО: ваш кастомный хук
+import useBaseInput from './hooks/useBaseInput';
 import {StyledInput} from './newstyles';
+import NumberInputProps from "./types/NumberInputProps";
 
-function NumberInput({
+const NumberInput: React.FC<NumberInputProps> = ({
                          onKeyPress = () => {},
                          onChange = () => {},
                          onClick = () => {},
@@ -21,7 +21,7 @@ function NumberInput({
                          max = false,
                          min = false,
                          decimals = false,
-                     }) {
+                     }) => {
 
     // Локальный стейт для положения курсора
     const [selectionStart, setSelectionStart] = useState(0);

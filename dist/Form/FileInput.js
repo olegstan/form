@@ -25,7 +25,8 @@ var FileInput = function FileInput(_ref) {
     style = _ref$style === void 0 ? {} : _ref$style,
     id = _ref.id,
     name = _ref.name,
-    value = _ref.value,
+    _ref$valueText = _ref.valueText,
+    valueText = _ref$valueText === void 0 ? '' : _ref$valueText,
     error = _ref.error;
   var inputRef = (0, _react.useRef)(null);
   var _useBaseInput = (0, _useBaseInput2["default"])({

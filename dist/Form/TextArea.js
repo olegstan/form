@@ -11,9 +11,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // TextArea.js
 
-/**
- * A functional TextArea component rewritten from a class-based component.
- */function TextArea(_ref) {
+var TextArea = function TextArea(_ref) {
   var _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
@@ -24,8 +22,6 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? 'text' : _ref$type,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style,
     id = _ref.id,
@@ -47,13 +43,12 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.TextArea, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledTextArea, {
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
     className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
-    type: type,
     name: getName(name),
     value: value,
     onClick: handleClick,
@@ -63,5 +58,5 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     onBlur: handleBlur,
     rows: rows
   });
-}
+};
 var _default = exports["default"] = TextArea;
