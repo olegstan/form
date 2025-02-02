@@ -84,4 +84,4 @@ var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["defau
     ref: ref
   }));
 }))(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedInputStyle);
-var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n\n  ", "\n"])), sharedInputStyle);
+var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n"])), sharedInputStyle);

@@ -28,10 +28,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-function DateInput(_ref) {
-  var _ref$onKeyPress = _ref.onKeyPress,
-    onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
-    _ref$onChange = _ref.onChange,
+var DateInput = function DateInput(_ref) {
+  var _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
     onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
@@ -39,12 +37,8 @@ function DateInput(_ref) {
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     _ref$placeholder = _ref.placeholder,
     placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
-    _ref$iconClose = _ref.iconClose,
-    iconClose = _ref$iconClose === void 0 ? true : _ref$iconClose,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? 'text' : _ref$type,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style,
     id = _ref.id,
@@ -54,11 +48,7 @@ function DateInput(_ref) {
     autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
     error = _ref.error,
     _ref$defaultDate = _ref.defaultDate,
-    defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate,
-    _ref$mask = _ref.mask,
-    mask = _ref$mask === void 0 ? '' : _ref$mask,
-    _ref$inputMask = _ref.inputMask,
-    inputMask = _ref$inputMask === void 0 ? '__.__.____' : _ref$inputMask;
+    defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate;
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
       onClick: onClick,
@@ -190,5 +180,5 @@ function DateInput(_ref) {
       });
     }
   });
-}
+};
 var _default = exports["default"] = DateInput;

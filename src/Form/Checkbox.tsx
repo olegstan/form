@@ -1,6 +1,5 @@
 import React, {useRef, useState} from 'react';
 import {StyledCheckbox} from './newstyles';
-import InputProps from "./types/InputProps";
 import CheckboxProps from "./types/CheckboxProps";
 
 const Checkbox: React.FC<CheckboxProps> = ({

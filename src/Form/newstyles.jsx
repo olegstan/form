@@ -238,11 +238,13 @@ export const MaskedStyledInput = styled(forwardRef((props, ref) => (
 `;
 
 export const StyledTextArea = styled.textarea`
+  ${sharedInputStyle}
+
   width: 100%;
   resize: vertical;
   overflow-y: hidden;
-
-  ${sharedInputStyle}
+  min-height: 57px;
+  height: auto;
 `
 
 

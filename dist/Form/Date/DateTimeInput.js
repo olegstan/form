@@ -11,11 +11,12 @@ var _newstyles = require("./../newstyles");
 var _mountFlatpickr = _interopRequireDefault(require("./utils/mountFlatpickr"));
 var _moment = _interopRequireDefault(require("moment"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _excluded = ["onKeyPress", "onChange", "onClick", "disabled", "placeholder", "iconClose", "className", "type", "style", "id", "name", "value", "autoComplete", "error", "defaultDate", "mask", "inputMask"],
-  _excluded2 = ["id"]; // Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
+var _excluded = ["id"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
@@ -27,12 +28,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
-function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
-function DateTimeInput(_ref) {
-  var _ref$onKeyPress = _ref.onKeyPress,
-    onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
-    _ref$onChange = _ref.onChange,
+var DateTimeInput = function DateTimeInput(_ref) {
+  var _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
     onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
@@ -40,12 +37,8 @@ function DateTimeInput(_ref) {
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     _ref$placeholder = _ref.placeholder,
     placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
-    _ref$iconClose = _ref.iconClose,
-    iconClose = _ref$iconClose === void 0 ? true : _ref$iconClose,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? 'text' : _ref$type,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style,
     id = _ref.id,
@@ -55,12 +48,7 @@ function DateTimeInput(_ref) {
     autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
     error = _ref.error,
     _ref$defaultDate = _ref.defaultDate,
-    defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate,
-    _ref$mask = _ref.mask,
-    mask = _ref$mask === void 0 ? '' : _ref$mask,
-    _ref$inputMask = _ref.inputMask,
-    inputMask = _ref$inputMask === void 0 ? '__.__.____ __:__:__' : _ref$inputMask,
-    props = _objectWithoutProperties(_ref, _excluded);
+    defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate;
   // 1. Забираем из useBaseInput общую логику (аналог BaseInput)
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
@@ -156,9 +144,6 @@ function DateTimeInput(_ref) {
   var handleInputChange = function handleInputChange(e) {
     var val = e.target.value;
     setDateString(val);
-
-    // Проверяем, заполнил ли пользователь всю маску
-    // (например, "__.__.____ __:__:__" => неполная, есть '_')
     if (typeof val === 'string' && val !== '__.__.____ __:__:__' && !val.includes('_')) {
       var _date = (0, _moment["default"])(val, 'DD.MM.YYYY HH:mm:ss');
       if (_date.isValid()) {
@@ -200,7 +185,7 @@ function DateTimeInput(_ref) {
     onClose: handleBlur,
     render: function render(_ref2, refEl) {
       var id = _ref2.id,
-        restProps = _objectWithoutProperties(_ref2, _excluded2);
+        restProps = _objectWithoutProperties(_ref2, _excluded);
       return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
         autoComplete: "off",
         mask: "99.99.9999 99:99:99",
@@ -219,5 +204,5 @@ function DateTimeInput(_ref) {
       });
     }
   });
-}
+};
 var _default = exports["default"] = DateTimeInput;

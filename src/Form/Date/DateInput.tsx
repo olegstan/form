@@ -5,27 +5,22 @@ import useBaseInput from '../hooks/useBaseInput';
 import {MaskedStyledInput} from './../newstyles';
 import mountFlatpickr from "./utils/mountFlatpickr";
 import moment from "moment";
+import DateInputProps from "../types/DateInputProps";
 
-function DateInput({
-                       onKeyPress = () => {},
+const DateInput: React.FC<DateInputProps> = ({
                        onChange = () => {},
                        onClick = () => {},
                        disabled = false,
                        placeholder = '',
-                       iconClose = true,
                        className = '',
-                       type = 'text',
                        style = {},
                        id,
                        name,
                        value,
                        autoComplete = 'off',
                        error,
-
                        defaultDate = null,
-                       mask = '',
-                       inputMask = '__.__.____',
-                   }) {
+                   }) => {
     const {
         focused,
         handleFocus,

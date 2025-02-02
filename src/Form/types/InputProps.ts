@@ -6,6 +6,7 @@ export default interface InputProps {
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     className?: string;
+    placeholder?: string;
     type?: string;
     style?: React.CSSProperties;
     id?: string;

@@ -1,20 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
-// Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
 import {MaskedStyledInput} from './../newstyles';
 import mountFlatpickr from "./utils/mountFlatpickr";
 import moment from "moment";
+import DateTimeInputProps from "../types/DateTimeInputProps";
 
-function DateTimeInput({
-                         onKeyPress = () => {},
+const DateTimeInput: React.FC<DateTimeInputProps> = ({
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
                          placeholder = '',
-                         iconClose = true,
                          className = '',
-                         type = 'text',
                          style = {},
                          id,
                          name,
@@ -23,10 +20,7 @@ function DateTimeInput({
                          error,
 
                          defaultDate = null,
-                         mask = '',
-                         inputMask = '__.__.____ __:__:__',
-                         ...props
-                       }) {
+                       }) => {
   // 1. Забираем из useBaseInput общую логику (аналог BaseInput)
   const {
     focused,
@@ -115,8 +109,6 @@ function DateTimeInput({
     const val = e.target.value;
     setDateString(val);
 
-    // Проверяем, заполнил ли пользователь всю маску
-    // (например, "__.__.____ __:__:__" => неполная, есть '_')
     if (
       typeof val === 'string' &&
       val !== '__.__.____ __:__:__' &&
