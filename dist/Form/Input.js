@@ -39,6 +39,7 @@ function Input(_ref) {
     error = _ref.error,
     props = _objectWithoutProperties(_ref, _excluded);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
       onClick: onClick,
       onChange: onChange
     }),

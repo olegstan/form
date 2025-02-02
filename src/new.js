@@ -1,4 +1,4 @@
-// import DateInput from "./Form/Date/DateInput";
+import DateInput from "./Form/Date/DateInput";
 // import DateTimeInput from "./Form/Date/DateTimeInput";
 import MaskedInput from "./Form/MaskedInput";
 import NumberInput from "./Form/NumberInput";
@@ -12,7 +12,7 @@ import TextArea from "./Form/TextArea";
 import InputContainer from "./Form/InputContainer";
 
 export {
-  // DateInput,
+  DateInput,
   // DateTimeInput,
   Input,
   Checkbox,

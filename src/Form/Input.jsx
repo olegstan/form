@@ -29,6 +29,7 @@ function Input({
         handleBlur,
         getName,
     } = useBaseInput({
+        name,
         onClick,
         onChange,
     });

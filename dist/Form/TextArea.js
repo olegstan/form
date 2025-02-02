@@ -44,6 +44,7 @@ function TextArea(_ref) {
     rows = _ref$rows === void 0 ? 3 : _ref$rows,
     props = _objectWithoutProperties(_ref, _excluded);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
       onClick: onClick,
       onChange: onChange
     }),

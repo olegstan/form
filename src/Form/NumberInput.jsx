@@ -132,6 +132,7 @@ function NumberInput({
         handleBlur,
         getName,
     } = useBaseInput({
+        name,
         onClick,
         onChange,
     });

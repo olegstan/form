@@ -9,6 +9,12 @@ Object.defineProperty(exports, "Checkbox", {
     return _Checkbox["default"];
   }
 });
+Object.defineProperty(exports, "DateInput", {
+  enumerable: true,
+  get: function get() {
+    return _DateInput["default"];
+  }
+});
 Object.defineProperty(exports, "FileInput", {
   enumerable: true,
   get: function get() {
@@ -51,6 +57,7 @@ Object.defineProperty(exports, "TextArea", {
     return _TextArea["default"];
   }
 });
+var _DateInput = _interopRequireDefault(require("./Form/Date/DateInput"));
 var _MaskedInput = _interopRequireDefault(require("./Form/MaskedInput"));
 var _NumberInput = _interopRequireDefault(require("./Form/NumberInput"));
 var _Input = _interopRequireDefault(require("./Form/Input"));

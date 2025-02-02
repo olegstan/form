@@ -34,14 +34,18 @@ function InputContainer(_ref) {
     name = _child$props.name,
     onChange = _child$props.onChange,
     _child$props$iconClos = _child$props.iconClose,
-    iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos;
+    iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos,
+    inputMask = _child$props.inputMask;
   var renderCloseIcon = function renderCloseIcon() {
+    if (!child.type) return null;
+
     //если передано iconClose = false то рендерить икноку для очистки не нужно
-    if (!iconClose) {
-      return null;
-    }
+    if (!iconClose) return null;
     var notEmpty = false;
     switch (child.type.name) {
+      case 'DateInput':
+        //там и так будет иконка календаря
+        return null;
       case 'FileInput':
         return null;
       default:
@@ -65,6 +69,13 @@ function InputContainer(_ref) {
     if (!child.type) return null;
     var notEmpty = false;
     switch (child.type.name) {
+      case 'DateInput':
+        if (value instanceof Date) {
+          notEmpty = true;
+        }
+        console.log(value);
+        console.log(notEmpty);
+        break;
       case 'MaskedInput':
         notEmpty = true; //всегда есть внутри инпута, поэтому показывае placeholder всегда сверху
         break;

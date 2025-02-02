@@ -11,8 +11,9 @@ var _newstyles = require("./../newstyles");
 var _containerStyle = require("./../styles/containerStyle");
 var _calendar = _interopRequireDefault(require("./../../assets/calendar.svg"));
 var _mountFlatpickr = _interopRequireDefault(require("./utils/mountFlatpickr"));
+var _moment = _interopRequireDefault(require("moment"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _excluded = ["onKeyPress", "onChange", "disabled", "value", "placeholder", "mask", "icon", "className", "wrapperClassName", "error", "inputMask"],
+var _excluded = ["onKeyPress", "onChange", "onClick", "disabled", "placeholder", "iconClose", "className", "type", "style", "id", "name", "value", "autoComplete", "error", "defaultDate", "mask", "inputMask"],
   _excluded2 = ["id"]; // Хук, в котором хранится вся "базовая" логика: focused, errors, handleClickOutside, стили, etc.
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -35,32 +36,55 @@ function DateTimeInput(_ref) {
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
+    _ref$onClick = _ref.onClick,
+    onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
     _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    _ref$value = _ref.value,
-    value = _ref$value === void 0 ? '' : _ref$value,
     _ref$placeholder = _ref.placeholder,
     placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,
-    _ref$mask = _ref.mask,
-    mask = _ref$mask === void 0 ? '' : _ref$mask,
-    _ref$icon = _ref.icon,
-    icon = _ref$icon === void 0 ? '' : _ref$icon,
+    _ref$iconClose = _ref.iconClose,
+    iconClose = _ref$iconClose === void 0 ? true : _ref$iconClose,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$wrapperClassName = _ref.wrapperClassName,
-    wrapperClassName = _ref$wrapperClassName === void 0 ? '' : _ref$wrapperClassName,
-    _ref$error = _ref.error,
-    error = _ref$error === void 0 ? '' : _ref$error,
+    _ref$type = _ref.type,
+    type = _ref$type === void 0 ? 'text' : _ref$type,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style,
+    id = _ref.id,
+    name = _ref.name,
+    value = _ref.value,
+    _ref$autoComplete = _ref.autoComplete,
+    autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
+    error = _ref.error,
+    _ref$defaultDate = _ref.defaultDate,
+    defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate,
+    _ref$mask = _ref.mask,
+    mask = _ref$mask === void 0 ? '' : _ref$mask,
     _ref$inputMask = _ref.inputMask,
     inputMask = _ref$inputMask === void 0 ? '__.__.____ __:__:__' : _ref$inputMask,
     props = _objectWithoutProperties(_ref, _excluded);
   // 1. Забираем из useBaseInput общую логику (аналог BaseInput)
-  var _useBaseInput = (0, _useBaseInput2["default"])(props),
-    wrapperRef = _useBaseInput.wrapperRef,
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
+      onClick: onClick,
+      onChange: onChange
+    }),
     focused = _useBaseInput.focused,
-    setFocused = _useBaseInput.setFocused,
-    getContainerStyle = _useBaseInput.getContainerStyle,
-    getPlaceholderClassName = _useBaseInput.getPlaceholderClassName;
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
+    getName = _useBaseInput.getName;
+
+  // 7. Форматирование даты/времени
+  var formatDateTime = function formatDateTime(dateObj) {
+    if (!(dateObj instanceof Date)) return '';
+    var day = String(dateObj.getDate()).padStart(2, '0');
+    var month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    var year = dateObj.getFullYear().toString();
+    var hour = String(dateObj.getHours()).padStart(2, '0');
+    var minute = String(dateObj.getMinutes()).padStart(2, '0');
+    var second = String(dateObj.getSeconds()).padStart(2, '0');
+    return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
+  };
 
   // 2. Локальные состояния
   var _useState = (0, _react.useState)(false),
@@ -71,10 +95,14 @@ function DateTimeInput(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     InputComponent = _useState4[0],
     setInputComponent = _useState4[1];
-  var _useState5 = (0, _react.useState)(value),
+  var _useState5 = (0, _react.useState)(formatDateTime(value)),
     _useState6 = _slicedToArray(_useState5, 2),
-    dateValue = _useState6[0],
-    setDateValue = _useState6[1];
+    dateString = _useState6[0],
+    setDateString = _useState6[1];
+  var _useState7 = (0, _react.useState)(value),
+    _useState8 = _slicedToArray(_useState7, 2),
+    date = _useState8[0],
+    setDate = _useState8[1];
 
   // ref для хранения инстанса flatpickr (чтобы уничтожить при размонтировании)
   var flatpickrInstance = (0, _react.useRef)(null);
@@ -95,53 +123,24 @@ function DateTimeInput(_ref) {
 
   // 5. При изменении props.value обновляем локальный dateValue
   (0, _react.useEffect)(function () {
-    if (value !== dateValue) {
-      setDateValue(value);
+    if (value !== date) {
+      setDate(value);
     }
-  }, [value, dateValue]);
-
-  // 6. Локальная обработка клика вне — учитываем окно календаря
-  var handleClickOutside = (0, _react.useCallback)(function (e) {
-    var isInsideFlatpickr = e.target.closest('.flatpickr-calendar');
-    if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
-      if (focused) {
-        setFocused(false);
-        if (typeof props.onOutsideClick === 'function') {
-          props.onOutsideClick(value);
-        }
-      }
-    }
-  }, [focused, props.onOutsideClick, value, wrapperRef, setFocused]);
-
-  // Вешаем/снимаем обработчик mousedown
-  (0, _react.useEffect)(function () {
-    document.addEventListener('mousedown', handleClickOutside);
-    return function () {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [handleClickOutside]);
-
-  // 7. Форматирование даты/времени
-  var formatDateTime = function formatDateTime(dateObj) {
-    if (!(dateObj instanceof Date)) return '';
-    var day = String(dateObj.getDate()).padStart(2, '0');
-    var month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    var year = dateObj.getFullYear().toString();
-    var hour = String(dateObj.getHours()).padStart(2, '0');
-    var minute = String(dateObj.getMinutes()).padStart(2, '0');
-    var second = String(dateObj.getSeconds()).padStart(2, '0');
-    return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
-  };
+  }, [value, date]);
 
   // 8. Опции для Flatpickr (включаем время и секунды)
   var getOptions = function getOptions() {
-    return _objectSpread({
+    var opts = {
       dateFormat: 'd.m.Y H:i:S',
       allowInput: true,
       enableTime: true,
       enableSeconds: true,
       disableMobile: 'true'
-    }, props);
+    };
+    if (defaultDate) {
+      opts.defaultDate = defaultDate;
+    }
+    return opts;
   };
 
   // 9. При выборе даты/времени в календаре
@@ -149,7 +148,7 @@ function DateTimeInput(_ref) {
     var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
     if (typeof onChange === 'function') {
       onChange({}, {
-        date: dateObj ? formatDateTime(dateObj) : null,
+        date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
         value: dateObj ? formatDateTime(dateObj) : ''
       });
     }
@@ -158,121 +157,69 @@ function DateTimeInput(_ref) {
   // 10. Изменение внутри инпута вручную (с учётом маски)
   var handleInputChange = function handleInputChange(e) {
     var val = e.target.value;
-    setDateValue(val);
+    setDateString(val);
 
     // Проверяем, заполнил ли пользователь всю маску
     // (например, "__.__.____ __:__:__" => неполная, есть '_')
     if (typeof val === 'string' && val !== '__.__.____ __:__:__' && !val.includes('_')) {
-      onChange({}, {
-        date: val,
-        value: val
-      });
-    } else {
-      onChange({}, {
-        date: null,
-        value: val
-      });
-    }
-  };
-
-  // 11. Отдельный рендер Flatpickr/MaskedInput (учитываем disabled)
-  var renderDateTimeInput = function renderDateTimeInput() {
-    if (!InputComponent) return null;
-
-    // Если disabled = true, отрендерим обычный инпут c маской (без flatpickr)
-    if (disabled) {
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
-        mask: "99.99.9999 99:99:99",
-        value: dateValue,
-        disabled: true,
-        onChange: function onChange() {},
-        children: function children(inputProps) {
-          return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({}, inputProps));
-        }
-      });
-    }
-
-    // Иначе рендерим Flatpickr с нашей маской
-    var FpComponent = InputComponent;
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)(FpComponent, {
-      id: props.id,
-      style: props.style,
-      disabled: disabled,
-      placeholder: placeholder,
-      autoComplete: props.autoComplete || 'off',
-      options: getOptions(),
-      value: dateValue,
-      className: className,
-      onReady: function onReady(_, __, fp) {
-        flatpickrInstance.current = fp;
-        fp.calendarContainer.id = "".concat(props.id, "-container");
-      },
-      onChange: handleDateChange,
-      onOpen: function onOpen() {
-        setFocused(true);
-      },
-      onClose: function onClose() {
-        setFocused(false);
-        if (typeof props.onOutsideClick === 'function') {
-          props.onOutsideClick();
-        }
-      },
-      render: function render(_ref2, refEl) {
-        var id = _ref2.id,
-          restProps = _objectWithoutProperties(_ref2, _excluded2);
-        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
-          autoComplete: "off",
-          mask: "99.99.9999 99:99:99",
-          id: id,
-          value: restProps.value,
-          onChange: handleInputChange,
-          style: restProps.style,
-          className: restProps.className,
-          onFocus: function onFocus() {
-            setFocused(true);
-          },
-          children: function children(inputProps) {
-            return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({
-              ref: refEl
-            }, inputProps));
-          }
+      var _date = (0, _moment["default"])(val, 'DD.MM.YYYY HH:mm:ss');
+      if (_date.isValid()) {
+        onChange({}, {
+          date: _date.toDate(),
+          value: val
         });
       }
-    });
+    }
   };
-
-  // 12. Если модули не подгрузились, можно рендерить null или «заглушку»
-  if (!componentsLoaded) {
-    return null;
+  if (!componentsLoaded || !InputComponent) return null;
+  if (disabled) {
+    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
+      mask: "99.99.9999 99:99:99",
+      value: date instanceof Date ? date : null,
+      disabled: true,
+      onChange: function onChange() {},
+      children: function children(inputProps) {
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({}, inputProps));
+      }
+    });
   }
-
-  // 13. Финальный рендер
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_containerStyle.Container, {
-    style: getContainerStyle(),
-    className: "".concat(className, " ").concat(disabled ? 'disabled' : ''),
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(InputComponent, {
+    id: id,
+    style: style,
     disabled: disabled,
-    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.InputContainer, {
-      ref: wrapperRef,
-      needMargin: true,
-      focus: focused,
-      children: [renderDateTimeInput(), placeholder && /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-        htmlFor: props.id,
-        style: props.placeholderStyle,
-        className: getPlaceholderClassName(),
-        children: placeholder
-      }), icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-        className: "calendar",
-        src: _calendar["default"],
-        alt: ""
-      }), hasError && error && /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
-        htmlFor: props.id,
-        className: "".concat(className, " error"),
-        style: {
-          color: '#EF5E70'
-        },
-        children: error
-      })]
-    })
+    value: date instanceof Date ? date : null,
+    valueString: dateString,
+    placeholder: placeholder,
+    autoComplete: autoComplete || 'off',
+    options: getOptions(),
+    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
+    onReady: function onReady(_, __, fp) {
+      flatpickrInstance.current = fp;
+      fp.calendarContainer.id = "".concat(id, "-container");
+    },
+    onChange: handleDateChange,
+    onOpen: handleFocus,
+    onClose: handleBlur,
+    render: function render(_ref2, refEl) {
+      var id = _ref2.id,
+        restProps = _objectWithoutProperties(_ref2, _excluded2);
+      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
+        autoComplete: "off",
+        mask: "99.99.9999 99:99:99",
+        name: getName(name),
+        id: id,
+        value: restProps.valueString,
+        onChange: handleInputChange,
+        style: restProps.style,
+        className: restProps.className,
+        onFocus: handleFocus,
+        children: function children(inputProps) {
+          return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({
+            ref: refEl
+          }, inputProps));
+        }
+      });
+    }
   });
 }
 var _default = exports["default"] = DateTimeInput;

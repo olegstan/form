@@ -33,6 +33,7 @@ function TextArea({
         handleBlur,
         getName,
     } = useBaseInput({
+        name,
         onClick,
         onChange,
     });

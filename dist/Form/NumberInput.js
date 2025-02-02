@@ -152,6 +152,7 @@ function NumberInput(_ref) {
     }
   }, [props]);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
       onClick: onClick,
       onChange: onChange
     }),

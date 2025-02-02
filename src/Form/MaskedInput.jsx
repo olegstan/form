@@ -28,6 +28,7 @@ function MaskedInput({
         handleBlur,
         getName,
     } = useBaseInput({
+        name,
         onClick,
         onChange,
     });

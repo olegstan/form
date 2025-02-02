@@ -33,7 +33,6 @@ var Checkbox = function Checkbox(_ref) {
     checked = _ref.checked,
     checkboxStyle = _ref.checkboxStyle,
     style = _ref.style,
-    form = _ref.form,
     text = _ref.text;
   // Локальное состояние для хранения value
   var _useState = (0, _react.useState)(value || ''),
@@ -56,31 +55,33 @@ var Checkbox = function Checkbox(_ref) {
     backgroundColor: '#4378FF',
     border: '2px solid #4378FF'
   };
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Checkbox, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.Checkbox, {
     id: id,
     style: style,
-    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("label", {
-      className: "checkbox",
-      children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
-        ref: inputRef,
-        className: checked ? 'active' : '',
-        onChange: toggleCallback,
-        name: name,
-        type: "checkbox",
-        value: localValue,
-        id: id,
-        checked: checked
-      }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-        className: "rotate-container",
-        style: _objectSpread({
-          borderRadius: form === 'round' ? '10px' : '6px',
-          display: 'flex'
-        }, combinedCheckboxStyle),
-        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-          className: "rotate"
-        })
-      })]
-    })
+    onClick: function onClick(e) {
+      e.stopPropagation();
+    },
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("input", {
+      ref: inputRef,
+      className: checked ? 'active' : '',
+      onChange: toggleCallback,
+      name: name,
+      type: "checkbox",
+      value: localValue,
+      id: id,
+      checked: checked
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+      className: "rotate-container",
+      style: combinedCheckboxStyle,
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
+        className: "rotate"
+      })
+    }), text && /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      style: combinedTextStyle,
+      className: "text",
+      onClick: handleClick,
+      children: text
+    })]
   });
 };
 var _default = exports["default"] = Checkbox;

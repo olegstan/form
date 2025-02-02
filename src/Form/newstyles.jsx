@@ -83,8 +83,73 @@ export const InputContainerStyled = styled.div`
   }
 `
 
-export const Checkbox = styled.div`
 
+export const Checkbox = styled.div`
+  flex: 1;
+  display: flex;
+  padding: 5px 12px;
+  align-items: center;
+  color: ${({theme}) => theme.checkMarkColor};
+  cursor: pointer;
+  transition: opacity 0.3s;
+  margin: 0;
+  user-select: none;
+  
+
+  & > div {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0;
+    color: #E9E9EA;
+  }
+
+  & > input {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    z-index: -10;
+    position: absolute;
+  }
+
+  & > span {
+    border: 2px solid ${({theme}) => theme.checkMarkColor};
+    height: 18px;
+    width: 18px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    background-color: ${({theme}) => theme.checkMarkColor};
+    border-radius: 6px;
+    display: flex;
+  }
+
+  & > span > span {
+    display: block;
+    position: relative;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 7px;
+    height: 11px;
+    top: 1px;
+    z-index: 1000;
+    left: 4px;
+    box-sizing: border-box;
+  }
+
+  & > input:checked + span {
+    background-color: ${({theme}) => theme.checkboxColor};
+    border: 2px solid ${({theme}) => theme.checkboxColor};
+  }
+
+  & > input:checked + span > span {
+    border-bottom: 3px solid ${({theme}) => theme.checkMarkColor};
+    border-right: 3px solid ${({theme}) => theme.checkMarkColor};
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
 `
 
 export const placeholderActiveStyle = css`

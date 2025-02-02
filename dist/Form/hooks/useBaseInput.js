@@ -39,38 +39,6 @@ function useBaseInput(_ref) {
     var _name$replace;
     return name === null || name === void 0 || (_name$replace = name.replace('country', 'couuntry')) === null || _name$replace === void 0 ? void 0 : _name$replace.replace('state', 'staate');
   }, []);
-
-  //
-  //
-  // // getPlaceholderClassName
-  // const getPlaceholderClassName = useCallback(() => {
-  //   let isActive = false;
-  //   // Логика, которая была в BaseInput:
-  //   if (focused) {
-  //     isActive = true;
-  //   } else if (props.selected) {
-  //     // если есть props.selected
-  //     isActive = true;
-  //   } else if (
-  //     (props.value === 0 || props.value) &&
-  //     props.value !== '' &&
-  //     !props.inputMask
-  //   ) {
-  //     isActive = true;
-  //   } else if (
-  //     props.value &&
-  //     typeof props.value === 'string' &&
-  //     props.value.replace(props.inputMask, '') !== ''
-  //   ) {
-  //     isActive = true;
-  //   }else if (props.search && props.search.length > 0) {
-  //     isActive = true;
-  //   }else if (callerClassName === 'FileInput') {
-  //     isActive = true;
-  //   }
-  //   return 'placeholder ' + (isActive ? 'active' : '');
-  // }, [focused, props.value, props.selected, props.inputMask]);
-
   var handleClick = function handleClick(e) {
     e.stopPropagation();
     if (typeof onClick === 'function') {

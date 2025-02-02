@@ -2,35 +2,53 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
 
-import {InputContainer, MaskedStyledInput} from './../newstyles';
-import calendarSvg from './../../assets/calendar.svg';
+import {MaskedStyledInput} from './../newstyles';
 import mountFlatpickr from "./utils/mountFlatpickr";
+import moment from "moment";
 
 function DateInput({
                        onKeyPress = () => {},
                        onChange = () => {},
+                       onClick = () => {},
                        disabled = false,
-                       value = '',
                        placeholder = '',
-                       mask = '',
-                       icon = '',
+                       iconClose = true,
                        className = '',
-                       wrapperClassName = '',
+                       type = 'text',
+                       style = {},
+                       id,
+                       name,
+                       value,
+                       autoComplete = 'off',
+                       error,
+
+                       defaultDate = null,
+                       mask = '',
                        inputMask = '__.__.____',
                        ...props
                    }) {
     const {
-        wrapperRef,
         focused,
-        setFocused,
-        error,
-        setError,
-        getContainerStyle,
-        getPlaceholderClassName
-    } = useBaseInput(props);
+        handleFocus,
+        handleBlur,
+        getName,
+    } = useBaseInput({
+        name,
+        onClick,
+        onChange,
+    });
+
+    const formatDate = (d) => {
+        if (!(d instanceof Date)) return '';
+        const day = String(d.getDate()).padStart(2, '0');
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = d.getFullYear();
+        return `${day}.${month}.${year}`;
+    };
 
     const [componentsLoaded, setComponentsLoaded] = useState(false);
     const [InputComponent, setInputComponent] = useState(null);
+    const [dateString, setDateString] = useState(formatDate(value));
     const [date, setDate] = useState(value);
 
     const flatpickrInstance = useRef(null);
@@ -38,28 +56,6 @@ function DateInput({
     useEffect(() => {
         return mountFlatpickr(setComponentsLoaded, setInputComponent)
     }, []);
-
-    const handleClickOutside = useCallback(
-      (e) => {
-          const isInsideFlatpickr = e.target.closest('.flatpickr-calendar');
-          if (wrapperRef.current && !wrapperRef.current.contains(e.target) && !isInsideFlatpickr) {
-              if (focused) {
-                  setFocused(false);
-                  if (typeof props.onOutsideClick === 'function') {
-                      props.onOutsideClick(value);
-                  }
-              }
-          }
-      },
-      [focused, props.onOutsideClick, value, setFocused, wrapperRef]
-    );
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [handleClickOutside]);
 
     useEffect(() => {
         return () => {
@@ -75,35 +71,33 @@ function DateInput({
         }
     }, [value, date]);
 
-    const formatDate = (d) => {
-        if (!(d instanceof Date)) return '';
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = d.getFullYear();
-        return `${day}.${month}.${year}`;
-    };
+    const handleDateChange = (selectedDates) =>
+    {
+        const dateObj = selectedDates?.[0];
 
-    const handleDateChange = (selectedDates) => {
         if (typeof onChange === 'function') {
             onChange({}, {
-                value: formatDate(selectedDates[0]),
-                date: selectedDates[0]
+                date: dateObj,
+                value: dateObj ? formatDate(dateObj) : ''
             });
         }
     };
 
     const handleInputChange = (e) => {
         const val = e.target.value;
-        setDate(val);
+        setDateString(val);
 
         if (
-          typeof val === 'string' &&
-          val !== '__.__.____' &&
-          !val.includes('_')
+            typeof val === 'string' &&
+            val !== '__.__.____' &&
+            !val.includes('_')
         ) {
-            onChange({}, { date: val, value: val });
-        } else {
-            onChange({}, { date: null, value: val });
+            let date = moment(val, 'DD.MM.YYYY');
+
+            if(date.isValid())
+            {
+                onChange({}, {date: date.toDate(), value: val});
+            }
         }
     };
 
@@ -111,100 +105,64 @@ function DateInput({
         let opts = {
             dateFormat: 'd.m.Y',
             allowInput: true,
-            disableMobile: 'true',
-            ...props
+            disableMobile: 'true'
         };
-        if (props.defaultDate) {
-            opts.defaultDate = props.defaultDate;
+        if (defaultDate) {
+            opts.defaultDate = defaultDate;
         }
         return opts;
     };
 
     if (!componentsLoaded || !InputComponent) return null;
 
-    const renderInputOrFlatpickr = () => {
-        if (disabled) {
-            return (
-              <MaskedStyledInput
+    if (disabled) {
+        return (
+            <MaskedStyledInput
                 mask="99.99.9999"
-                value={date}
+                value={date instanceof Date ? date : null}
                 disabled
                 onChange={() => {}}
-              >
-                  {(inputProps) => <input {...inputProps} />}
-              </MaskedStyledInput>
-            );
-        }
-
-        return (
-          <InputComponent
-            id={props.id}
-            style={props.style}
-            disabled={disabled}
-            value={date}
-            placeholder={placeholder}
-            autoComplete={props.autoComplete || 'off'}
-            options={getOptions()}
-            className={className}
-            onReady={(_, __, fp) => {
-                flatpickrInstance.current = fp;
-                fp.calendarContainer.id = `${props.id}-container`;
-            }}
-            onChange={handleDateChange}
-            onOpen={() => {
-                setFocused(true);
-            }}
-            onClose={() => {
-                setFocused(false);
-            }}
-            render={({ id, ...restProps }, refEl) => (
-              <MaskedStyledInput
-                autoComplete="off"
-                mask="99.99.9999"
-                id={id}
-                value={restProps.value}
-                onChange={handleInputChange}
-                style={restProps.style}
-                className={restProps.className}
-                onFocus={() => {
-                    setFocused(true);
-                }}
-              >
-                  {(inputProps) => <input ref={refEl} {...inputProps} />}
-              </MaskedStyledInput>
-            )}
-          />
+            >
+                {(inputProps) => <input {...inputProps} />}
+            </MaskedStyledInput>
         );
-    };
+    }
 
     return (
-          <InputContainer ref={wrapperRef} needMargin={true} focus={focused}>
-              {renderInputOrFlatpickr()}
+        <InputComponent
+            id={id}
+            style={style}
+            disabled={disabled}
+            value={date instanceof Date ? date : null}
+            valueString={dateString}
+            placeholder={placeholder}
+            autoComplete={autoComplete || 'off'}
+            options={getOptions()}
+            className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
+            onReady={(_, __, fp) => {
+                flatpickrInstance.current = fp;
+                fp.calendarContainer.id = `${id}-container`;
+            }}
+            onChange={handleDateChange}
+            onOpen={handleFocus}
+            onClose={handleBlur}
+            render={({id, ...restProps}, refEl) => {
 
-              {placeholder && (
-                <label
-                  htmlFor={props.id}
-                  style={props.placeholderStyle}
-                  className={getPlaceholderClassName()}
+                return <MaskedStyledInput
+                    autoComplete="off"
+                    mask="99.99.9999"
+                    name={getName(name)}
+                    id={id}
+                    value={restProps.valueString}
+                    onChange={handleInputChange}
+                    style={restProps.style}
+                    className={restProps.className}
+                    onFocus={handleFocus}
                 >
-                    {placeholder}
-                </label>
-              )}
-
-              {icon !== false && (
-                <img className="calendar" src={calendarSvg} alt="" />
-              )}
-
-              {hasError && error && (
-                <label
-                  htmlFor={props.id}
-                  className={`${className} error`}
-                  style={{ color: '#EF5E70' }}
-                >
-                    {error}
-                </label>
-              )}
-          </InputContainer>
+                    {(inputProps) => <input ref={refEl} {...inputProps} />}
+                </MaskedStyledInput>
+            }}
+        />
     );
 }
 

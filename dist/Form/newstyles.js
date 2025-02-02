@@ -48,13 +48,34 @@ var InputContainerStyled = exports.InputContainerStyled = _styledComponents["def
   var theme = _ref7.theme;
   return theme.inputContainerDisabledBackground;
 });
-var Checkbox = exports.Checkbox = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n\n"])));
-var placeholderActiveStyle = exports.placeholderActiveStyle = (0, _styledComponents.css)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  & + .placeholder{\n    pointer-events: none;\n    font-size: 10px;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    z-index: 1000;\n    width: 300px;\n  }\n  \n  //\u0441\u043A\u0440\u044B\u0442\u044B\u0439 placeholder \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0438\u0434\u0451\u0442 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E\n  &::placeholder {\n    font-size: 100%;\n    transition: all 0.3s ease;\n    color: transparent !important;\n  }\n\n  & + .placeholder {\n    transition: transform .25s, opacity .25s ease-in-out;\n    transform-origin: 0 0;\n  }\n\n  //\u0435\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E \u0437\u043D\u0430\u0447\u0438\u0442 placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n  &:focus + .placeholder, & + .placeholder.active {\n    transform: translate(.25em, -15%) scale(.8);\n  }\n\n  &:not(textarea) {\n    max-height: 4em;\n  }\n\n  & + .placeholder {\n    padding: 25px 12px;\n    font-size: 16px;\n    text-align: left;\n    z-index: 1500;\n  }\n\n  &:-webkit-autofill,\n  &:-webkit-autofill:hover,\n  &:-webkit-autofill:focus,\n  &:-webkit-autofill:active {\n    -webkit-box-shadow: 0 0 0 30px transparent inset !important;\n  }\n"])), function (_ref8) {
+var Checkbox = exports.Checkbox = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  flex: 1;\n  display: flex;\n  padding: 5px 12px;\n  align-items: center;\n  color: ", ";\n  cursor: pointer;\n  transition: opacity 0.3s;\n  margin: 0;\n  user-select: none;\n  \n\n  & > div {\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 18px;\n    letter-spacing: 0;\n    color: #E9E9EA;\n  }\n\n  & > input {\n    height: 0;\n    width: 0;\n    opacity: 0;\n    z-index: -10;\n    position: absolute;\n  }\n\n  & > span {\n    border: 2px solid ", ";\n    height: 18px;\n    width: 18px;\n    box-sizing: border-box;\n    margin-right: 10px;\n    background-color: ", ";\n    border-radius: 6px;\n    display: flex;\n  }\n\n  & > span > span {\n    display: block;\n    position: relative;\n    -webkit-transform: rotate(45deg);\n    -ms-transform: rotate(45deg);\n    transform: rotate(45deg);\n    width: 7px;\n    height: 11px;\n    top: 1px;\n    z-index: 1000;\n    left: 4px;\n    box-sizing: border-box;\n  }\n\n  & > input:checked + span {\n    background-color: ", ";\n    border: 2px solid ", ";\n  }\n\n  & > input:checked + span > span {\n    border-bottom: 3px solid ", ";\n    border-right: 3px solid ", ";\n  }\n\n  &:hover {\n    opacity: 0.7;\n  }\n"])), function (_ref8) {
   var theme = _ref8.theme;
+  return theme.checkMarkColor;
+}, function (_ref9) {
+  var theme = _ref9.theme;
+  return theme.checkMarkColor;
+}, function (_ref10) {
+  var theme = _ref10.theme;
+  return theme.checkMarkColor;
+}, function (_ref11) {
+  var theme = _ref11.theme;
+  return theme.checkboxColor;
+}, function (_ref12) {
+  var theme = _ref12.theme;
+  return theme.checkboxColor;
+}, function (_ref13) {
+  var theme = _ref13.theme;
+  return theme.checkMarkColor;
+}, function (_ref14) {
+  var theme = _ref14.theme;
+  return theme.checkMarkColor;
+});
+var placeholderActiveStyle = exports.placeholderActiveStyle = (0, _styledComponents.css)(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  & + .placeholder{\n    pointer-events: none;\n    font-size: 10px;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    z-index: 1000;\n    width: 300px;\n  }\n  \n  //\u0441\u043A\u0440\u044B\u0442\u044B\u0439 placeholder \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0438\u0434\u0451\u0442 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E\n  &::placeholder {\n    font-size: 100%;\n    transition: all 0.3s ease;\n    color: transparent !important;\n  }\n\n  & + .placeholder {\n    transition: transform .25s, opacity .25s ease-in-out;\n    transform-origin: 0 0;\n  }\n\n  //\u0435\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E \u0437\u043D\u0430\u0447\u0438\u0442 placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n  &:focus + .placeholder, & + .placeholder.active {\n    transform: translate(.25em, -15%) scale(.8);\n  }\n\n  &:not(textarea) {\n    max-height: 4em;\n  }\n\n  & + .placeholder {\n    padding: 25px 12px;\n    font-size: 16px;\n    text-align: left;\n    z-index: 1500;\n  }\n\n  &:-webkit-autofill,\n  &:-webkit-autofill:hover,\n  &:-webkit-autofill:focus,\n  &:-webkit-autofill:active {\n    -webkit-box-shadow: 0 0 0 30px transparent inset !important;\n  }\n"])), function (_ref15) {
+  var theme = _ref15.theme;
   return theme.inputPlaceholderTextColor;
 });
-var sharedInputStyle = exports.sharedInputStyle = (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  width: 100%;\n  line-height: 13px;\n  user-select: none;\n  color: ", ";\n  z-index: ", ";\n  transition: border-color .25s ease-in-out;\n  border: none;\n  background-color: transparent;\n  padding: 24px 12px 8px 14px;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 500;\n  text-align: left;\n  border-radius: 6px;\n\n  &:focus {\n    outline: 0;\n  }\n  \n  ", "\n"])), function (_ref9) {
-  var theme = _ref9.theme;
+var sharedInputStyle = exports.sharedInputStyle = (0, _styledComponents.css)(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  width: 100%;\n  line-height: 13px;\n  user-select: none;\n  color: ", ";\n  z-index: ", ";\n  transition: border-color .25s ease-in-out;\n  border: none;\n  background-color: transparent;\n  padding: 24px 12px 8px 14px;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 500;\n  text-align: left;\n  border-radius: 6px;\n\n  &:focus {\n    outline: 0;\n  }\n  \n  ", "\n"])), function (_ref16) {
+  var theme = _ref16.theme;
   return theme.inputTextColor;
 }, _zindex["default"].input, placeholderActiveStyle);
 var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), sharedInputStyle);
