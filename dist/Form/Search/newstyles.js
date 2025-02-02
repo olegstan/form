@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.sharedContainer = exports.containerTag = exports.Selected = exports.Select = exports.Item = exports.InputWrapper = exports.InputContainer = exports.Input = exports.Container = exports.Add = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
-var _newstyles = require("../newstyles");
+var _styles = require("../styles");
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["children", "tag", "size"];
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
@@ -23,17 +23,17 @@ function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i 
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function _taggedTemplateLiteral(e, t) { return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } })); }
 var sharedContainer = exports.sharedContainer = (0, _styledComponents.css)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  \n"])));
-var smallProperty = _styledComponents["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  ", "\n  \n  max-width: 179px;\n  margin: 5px 8px;\n"])), _newstyles.sharedSearchContainer);
-var Add = exports.Add = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  ", "\n  \n  align-items: center;\n  color: #000;\n  cursor: pointer;\n  line-height: 40px;\n  display: flex;\n  padding: 0 15px;\n  user-select: none;\n\n  span{\n    text-align: left;\n    font-size: 14px;\n    font-weight: 600;\n    width: 100%;\n  }\n\n  &:last-child {\n    border-bottom: 0;\n  }\n\n  &:hover {\n    text-decoration: underline;\n  }\n"])), _newstyles.sharedItemStyle);
-var containerTag = exports.containerTag = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedSearchContainer);
-var InputWrapper = exports.InputWrapper = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedSearchInputWrapperStyle);
-var Selected = exports.Selected = _styledComponents["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedSelectedStyle);
-var Select = exports.Select = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedSelectStyle);
-var Item = exports.Item = _styledComponents["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), _newstyles.sharedItemStyle);
-var Input = exports.Input = _styledComponents["default"].input(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedInputStyle);
-var InputContainer = exports.InputContainer = _styledComponents["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    ", "\n"])), _newstyles.sharedSearchContainerStyle);
-var tacticsMonthSelect = _styledComponents["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  ", "\n  \n  max-width: 163px;\n  min-width: 163px;\n  margin: 15px 0 15px 15px;\n"])), _newstyles.sharedSearchContainerStyle);
-var incomesAndExpensesTag = _styledComponents["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  ", "\n  \n  & > div{\n    height: 28px;\n  }\n  \n  input{\n    padding: 3px 10px !important;\n  }\n  \n  .placeholder{\n    display: none !important;\n  }\n"])), _newstyles.sharedSearchContainer);
+var smallProperty = _styledComponents["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  ", "\n  \n  max-width: 179px;\n  margin: 5px 8px;\n"])), _styles.sharedSearchContainer);
+var Add = exports.Add = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  ", "\n  \n  align-items: center;\n  color: #000;\n  cursor: pointer;\n  line-height: 40px;\n  display: flex;\n  padding: 0 15px;\n  user-select: none;\n\n  span{\n    text-align: left;\n    font-size: 14px;\n    font-weight: 600;\n    width: 100%;\n  }\n\n  &:last-child {\n    border-bottom: 0;\n  }\n\n  &:hover {\n    text-decoration: underline;\n  }\n"])), _styles.sharedItemStyle);
+var containerTag = exports.containerTag = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    ", "\n"])), _styles.sharedSearchContainer);
+var InputWrapper = exports.InputWrapper = _styledComponents["default"].div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    ", "\n"])), _styles.sharedSearchInputWrapperStyle);
+var Selected = exports.Selected = _styledComponents["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    ", "\n"])), _styles.sharedSelectedStyle);
+var Select = exports.Select = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n"])), _styles.sharedSelectStyle);
+var Item = exports.Item = _styledComponents["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), _styles.sharedItemStyle);
+var Input = exports.Input = _styledComponents["default"].input(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    ", "\n"])), _styles.sharedInputStyle);
+var InputContainer = exports.InputContainer = _styledComponents["default"].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    ", "\n"])), _styles.sharedSearchContainerStyle);
+var tacticsMonthSelect = _styledComponents["default"].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  ", "\n  \n  max-width: 163px;\n  min-width: 163px;\n  margin: 15px 0 15px 15px;\n"])), _styles.sharedSearchContainerStyle);
+var incomesAndExpensesTag = _styledComponents["default"].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n  ", "\n  \n  & > div{\n    height: 28px;\n  }\n  \n  input{\n    padding: 3px 10px !important;\n  }\n  \n  .placeholder{\n    display: none !important;\n  }\n"])), _styles.sharedSearchContainer);
 var Container = exports.Container = function Container(_ref) {
   var children = _ref.children,
     _ref$tag = _ref.tag,

@@ -2,10 +2,18 @@ import React, {useEffect, useRef, useState} from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
 
-import {MaskedStyledInput} from './../newstyles';
+import {MaskedStyledInput} from '../styles';
 import mountFlatpickr from "./utils/mountFlatpickr";
 import moment from "moment";
 import DateInputProps from "../types/DateInputProps";
+
+const formatDate = (d) => {
+    if (!(d instanceof Date)) return '';
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = d.getFullYear();
+    return `${day}.${month}.${year}`;
+};
 
 const DateInput: React.FC<DateInputProps> = ({
                        onChange = () => {},
@@ -19,7 +27,7 @@ const DateInput: React.FC<DateInputProps> = ({
                        value,
                        autoComplete = 'off',
                        error,
-                       defaultDate = null,
+                       defaultDate = null
                    }) => {
     const {
         focused,
@@ -30,15 +38,7 @@ const DateInput: React.FC<DateInputProps> = ({
         name,
         onClick,
         onChange,
-    });
-
-    const formatDate = (d) => {
-        if (!(d instanceof Date)) return '';
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
-        const year = d.getFullYear();
-        return `${day}.${month}.${year}`;
-    };
+    })
 
     const [componentsLoaded, setComponentsLoaded] = useState(false);
     const [InputComponent, setInputComponent] = useState(null);

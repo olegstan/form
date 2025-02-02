@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("./hooks/useBaseInput"));
-var _newstyles = require("./newstyles");
+var _styles = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -70,7 +70,7 @@ var FileInput = function FileInput(_ref) {
       value: null
     });
   };
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.StyledInput, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     ref: inputRef,
     id: id,
     style: style,

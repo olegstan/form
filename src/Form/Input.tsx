@@ -1,7 +1,7 @@
 // Input.js
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {StyledInput} from './newstyles';
+import {StyledInput} from './styles';
 import InputProps from "./types/InputProps";
 
 const Input: React.FC<InputProps> = ({

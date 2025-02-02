@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {StyledInput} from './newstyles';
+import {StyledInput} from './styles';
 
 const FileInput = ({
                        onChange = () => {},

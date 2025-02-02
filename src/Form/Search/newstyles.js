@@ -8,7 +8,7 @@ import {
     sharedSearchInputWrapperStyle,
     sharedSelectedStyle,
     sharedSelectStyle
-} from '../newstyles'
+} from '../styles'
 
 export const sharedContainer = css`
   

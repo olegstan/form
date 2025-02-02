@@ -1,7 +1,7 @@
 // TextArea.js
 import React from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {StyledTextArea} from './newstyles';
+import {StyledTextArea} from './styles';
 import TextAreaProps from "./types/TextAreaProps";
 
 const TextArea: React.FC<TextAreaProps> = ({

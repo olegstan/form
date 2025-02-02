@@ -1,10 +1,11 @@
 // Input.js
 import React from 'react';
-import {Container, InputContainerStyled} from './newstyles';
+import {Container, InputContainerStyled} from './styles';
 import InputPopup from './InputPopup/InputPopup';
 // @ts-ignore
 import errorSvg from './../assets/error.svg';
 import Close from "../assets/ic_close_only.svg";
+import CalendarSvg from '../assets/calendar.svg';
 
 function InputContainer({
                             children,
@@ -20,7 +21,24 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, inputMask} = child.props;
+    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, iconCalendar} = child.props;
+
+    const renderIcon = () =>
+    {
+        if(!child.type) return null;
+
+        //если передано iconClose = false то рендерить икноку для очистки не нужно
+        if(!iconClose) return null;
+
+        switch (child.type.name)
+        {
+            case 'DateInput':
+            case 'DateTimeInput':
+                return  <img className="calendar" src={CalendarSvg} alt="" />
+        }
+
+        return null;
+    }
 
     const renderCloseIcon = () =>
     {
@@ -33,6 +51,7 @@ function InputContainer({
         let notEmpty = false;
         switch (child.type.name)
         {
+            case 'Select':
             case 'DateInput':
             case 'DateTimeInput':
                 //там и так будет иконка календаря
@@ -124,6 +143,7 @@ function InputContainer({
                 {renderPlaceholder()}
                 {renderTooltipError()}
                 {renderCloseIcon()}
+                {renderIcon()}
             </InputContainerStyled>
         </Container>
     );

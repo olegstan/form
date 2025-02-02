@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = _default;
 var _finhelper = require("finhelper");
-var _newstyles = require("./../../newstyles");
+var _styles = require("../../styles");
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 var _templateObject;
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
@@ -48,7 +48,7 @@ function _default(setComponentsLoaded, setFlatpickrComponent) {
     }
 
     // Создаём стилизованный компонент
-    var DateTimeStyled = (0, _styledComponents["default"])(ReactFlatpickr["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        ", "\n      "])), _newstyles.sharedInputStyle);
+    var DateTimeStyled = (0, _styledComponents["default"])(ReactFlatpickr["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        ", "\n      "])), _styles.sharedInputStyle);
     setFlatpickrComponent(function () {
       return DateTimeStyled;
     });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Loader} from '../../newstyles';
+import {Loader} from '../../styles';
 import {ReactComponent as LoadImage} from '../../../assets/loader.svg';
 
 const SearchLoader = ({ loading }) => {

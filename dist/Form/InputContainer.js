@@ -5,10 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
-var _newstyles = require("./newstyles");
+var _styles = require("./styles");
 var _InputPopup = _interopRequireDefault(require("./InputPopup/InputPopup"));
 var _error = _interopRequireDefault(require("./../assets/error.svg"));
 var _ic_close_only = _interopRequireDefault(require("../assets/ic_close_only.svg"));
+var _calendar = _interopRequireDefault(require("../assets/calendar.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
@@ -35,7 +36,23 @@ function InputContainer(_ref) {
     onChange = _child$props.onChange,
     _child$props$iconClos = _child$props.iconClose,
     iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos,
-    inputMask = _child$props.inputMask;
+    iconCalendar = _child$props.iconCalendar;
+  var renderIcon = function renderIcon() {
+    if (!child.type) return null;
+
+    //если передано iconClose = false то рендерить икноку для очистки не нужно
+    if (!iconClose) return null;
+    switch (child.type.name) {
+      case 'DateInput':
+      case 'DateTimeInput':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+          className: "calendar",
+          src: _calendar["default"],
+          alt: ""
+        });
+    }
+    return null;
+  };
   var renderCloseIcon = function renderCloseIcon() {
     if (!child.type) return null;
 
@@ -43,6 +60,7 @@ function InputContainer(_ref) {
     if (!iconClose) return null;
     var notEmpty = false;
     switch (child.type.name) {
+      case 'Select':
       case 'DateInput':
       case 'DateTimeInput':
         //там и так будет иконка календаря
@@ -111,15 +129,15 @@ function InputContainer(_ref) {
       })
     }) : null;
   };
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Container, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, {
     style: style,
     className: className + (disabled ? ' disabled' : ''),
     disabled: disabled,
     onClick: function onClick(e) {
       e.stopPropagation();
     },
-    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_newstyles.InputContainerStyled, {
-      children: [children, renderPlaceholder(), renderTooltipError(), renderCloseIcon()]
+    children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.InputContainerStyled, {
+      children: [children, renderPlaceholder(), renderTooltipError(), renderCloseIcon(), renderIcon()]
     })
   });
 }

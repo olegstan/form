@@ -57,6 +57,12 @@ Object.defineProperty(exports, "RemoteSearch", {
     return _RemoteSearch["default"];
   }
 });
+Object.defineProperty(exports, "Select", {
+  enumerable: true,
+  get: function get() {
+    return _Select["default"];
+  }
+});
 Object.defineProperty(exports, "TextArea", {
   enumerable: true,
   get: function get() {
@@ -70,6 +76,7 @@ var _NumberInput = _interopRequireDefault(require("./NumberInput"));
 var _Input = _interopRequireDefault(require("./Input"));
 var _Checkbox = _interopRequireDefault(require("./Checkbox"));
 var _FileInput = _interopRequireDefault(require("./FileInput"));
+var _Select = _interopRequireDefault(require("./Select/Select"));
 var _RemoteSearch = _interopRequireDefault(require("./Search/RemoteSearch"));
 var _TextArea = _interopRequireDefault(require("./TextArea"));
 var _InputContainer = _interopRequireDefault(require("./InputContainer"));

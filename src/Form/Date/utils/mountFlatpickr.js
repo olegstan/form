@@ -1,5 +1,5 @@
 import {Url} from "finhelper";
-import {sharedInputStyle} from "./../../newstyles";
+import {sharedInputStyle} from "../../styles";
 import styled from 'styled-components';
 
 export default function (setComponentsLoaded, setFlatpickrComponent)

@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
-var _newstyles = require("./../newstyles");
+var _styles = require("../styles");
 var _mountFlatpickr = _interopRequireDefault(require("./utils/mountFlatpickr"));
 var _moment = _interopRequireDefault(require("moment"));
 var _jsxRuntime = require("react/jsx-runtime");
@@ -28,6 +28,16 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+var formatDateTime = function formatDateTime(dateObj) {
+  if (!(dateObj instanceof Date)) return '';
+  var day = String(dateObj.getDate()).padStart(2, '0');
+  var month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  var year = dateObj.getFullYear().toString();
+  var hour = String(dateObj.getHours()).padStart(2, '0');
+  var minute = String(dateObj.getMinutes()).padStart(2, '0');
+  var second = String(dateObj.getSeconds()).padStart(2, '0');
+  return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
+};
 var DateTimeInput = function DateTimeInput(_ref) {
   var _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
@@ -61,16 +71,6 @@ var DateTimeInput = function DateTimeInput(_ref) {
     getName = _useBaseInput.getName;
 
   // 7. Форматирование даты/времени
-  var formatDateTime = function formatDateTime(dateObj) {
-    if (!(dateObj instanceof Date)) return '';
-    var day = String(dateObj.getDate()).padStart(2, '0');
-    var month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    var year = dateObj.getFullYear().toString();
-    var hour = String(dateObj.getHours()).padStart(2, '0');
-    var minute = String(dateObj.getMinutes()).padStart(2, '0');
-    var second = String(dateObj.getSeconds()).padStart(2, '0');
-    return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
-  };
 
   // 2. Локальные состояния
   var _useState = (0, _react.useState)(false),
@@ -156,7 +156,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
   };
   if (!componentsLoaded || !InputComponent) return null;
   if (disabled) {
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
+    return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
       mask: "99.99.9999 99:99:99",
       value: date instanceof Date ? date : null,
       disabled: true,
@@ -186,7 +186,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     render: function render(_ref2, refEl) {
       var id = _ref2.id,
         restProps = _objectWithoutProperties(_ref2, _excluded);
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.MaskedStyledInput, {
+      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
         autoComplete: "off",
         mask: "99.99.9999 99:99:99",
         name: getName(name),

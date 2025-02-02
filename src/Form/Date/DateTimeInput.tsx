@@ -1,10 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
-import {MaskedStyledInput} from './../newstyles';
+import {MaskedStyledInput} from '../styles';
 import mountFlatpickr from "./utils/mountFlatpickr";
 import moment from "moment";
 import DateTimeInputProps from "../types/DateTimeInputProps";
+
+const formatDateTime = (dateObj) => {
+  if (!(dateObj instanceof Date)) return '';
+  let day = String(dateObj.getDate()).padStart(2, '0');
+  let month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  let year = dateObj.getFullYear().toString();
+  let hour = String(dateObj.getHours()).padStart(2, '0');
+  let minute = String(dateObj.getMinutes()).padStart(2, '0');
+  let second = String(dateObj.getSeconds()).padStart(2, '0');
+  return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
+};
 
 const DateTimeInput: React.FC<DateTimeInputProps> = ({
                          onChange = () => {},
@@ -34,16 +45,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
   });
 
   // 7. Форматирование даты/времени
-  const formatDateTime = (dateObj) => {
-    if (!(dateObj instanceof Date)) return '';
-    let day = String(dateObj.getDate()).padStart(2, '0');
-    let month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    let year = dateObj.getFullYear().toString();
-    let hour = String(dateObj.getHours()).padStart(2, '0');
-    let minute = String(dateObj.getMinutes()).padStart(2, '0');
-    let second = String(dateObj.getSeconds()).padStart(2, '0');
-    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
-  };
+
 
   // 2. Локальные состояния
   const [componentsLoaded, setComponentsLoaded] = useState(false);

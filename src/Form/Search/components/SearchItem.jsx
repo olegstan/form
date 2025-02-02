@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item} from './../newstyles';
+import {Item} from './../styles';
 
 const SearchItem = ({ item, hovered, onClick, className, id }) => (
   <Item
