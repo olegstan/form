@@ -8,8 +8,6 @@ function Input({
                    onChange = () => {},
                    onClick = () => {},
                    disabled = false,
-                   placeholder = '',
-                   iconClose = true,
                    className = '',
                    type = 'text',
                    style = {},
@@ -17,8 +15,7 @@ function Input({
                    name,
                    value,
                    autoComplete = 'off',
-                   error,
-                   ...props
+                   error
                }) {
 
     const {

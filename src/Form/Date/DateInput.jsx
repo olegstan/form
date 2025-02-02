@@ -25,7 +25,6 @@ function DateInput({
                        defaultDate = null,
                        mask = '',
                        inputMask = '__.__.____',
-                       ...props
                    }) {
     const {
         focused,

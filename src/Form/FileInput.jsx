@@ -3,25 +3,26 @@ import useBaseInput from './hooks/useBaseInput';
 import {StyledInput} from './newstyles';
 
 const FileInput = ({
-                       onKeyPress = () => {},
                        onChange = () => {},
+                       onClick = () => {},
                        disabled = false,
-                       icon = '',
                        className = '',
-                       wrapperClassName = '',
-                       valueText = '',
                        style = {},
-                       ...props
+                       id,
+                       name,
+                       value,
+                       error
                    }) => {
-    const callerClassName = 'FileInput';
+
     const inputRef = useRef(null);
 
     const {
-        focused,
-        setFocused,
-        browser,
         getName,
-    } = useBaseInput(props, callerClassName);
+    } = useBaseInput({
+        name,
+        onClick,
+        onChange,
+    });
 
     useEffect(() => {
         if (inputRef.current) {
@@ -44,7 +45,7 @@ const FileInput = ({
                 const base64String = reader.result;
 
                 onChange(e, {
-                    name: props.name,
+                    name: name,
                     value: {
                         size: file.size,
                         name: file.name,
@@ -58,48 +59,21 @@ const FileInput = ({
 
     const handleClearFile = (e) => {
         onChange(e, {
-            name: props.name,
+            name: name,
             value: null,
         });
     };
 
-    const inputStyle = {
-        ...style,
-        // border: focused ? '1px solid #1874DE' : hasError ? '1px solid #EF5E70' : '',
-    };
-
-    const empty = !props.value || typeof props.value.name !== 'string';
-
     return <StyledInput
             ref={inputRef}
-            browser={browser && browser.name}
-            id={props.id}
-            size={props.size}
+            id={id}
+            style={style}
             disabled={disabled}
-            className={className}
+            className={className + (error?.[0] ? ' error' : '')}
             type="file"
-            name={getName(props.name)}
-            placeholder={props.placeholder}
+            name={getName(name)}
             onChange={handleFileChange}
         />;
-
-    // return (
-    //     <InputContainer ref={wrapperRef}>
-
-    //         {renderPlaceholder()}
-    //         {!empty &&
-    //         typeof props.size === 'undefined' &&
-    //         !disabled && (
-    //             <img
-    //                 className="close"
-    //                 src={Close}
-    //                 onClick={handleClearFile}
-    //                 alt=""
-    //             />
-    //         )}
-    //         {renderTooltipError()}
-    //     </InputContainer>
-    // );
 };
 
 export default FileInput;

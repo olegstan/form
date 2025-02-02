@@ -11,8 +11,6 @@ function TextArea({
                     onChange = () => {},
                     onClick = () => {},
                     disabled = false,
-                    placeholder = '',
-                    iconClose = true,
                     className = '',
                     type = 'text',
                     style = {},
@@ -22,7 +20,6 @@ function TextArea({
                     autoComplete = 'off',
                     error,
                     rows = 3,
-                     ...props
                   }) {
 
     const {

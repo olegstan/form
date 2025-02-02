@@ -7,8 +7,6 @@ function MaskedInput({
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
-                         placeholder = '',
-                         iconClose = true,
                          className = '',
                          type = 'text',
                          style = {},
@@ -18,7 +16,6 @@ function MaskedInput({
                          autoComplete = 'off',
                          error,
                          mask,
-                         ...props
                      }) {
     const {
         focused,
@@ -47,7 +44,6 @@ function MaskedInput({
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-
         mask={mask}
     />
 }

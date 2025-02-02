@@ -10,8 +10,6 @@ function NumberInput({
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
-                         placeholder = '',
-                         iconClose = true,
                          className = '',
                          type = 'number',
                          style = {},
@@ -23,7 +21,6 @@ function NumberInput({
                          max = false,
                          min = false,
                          decimals = false,
-                         ...props
                      }) {
 
     // Локальный стейт для положения курсора
