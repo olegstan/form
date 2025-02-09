@@ -30,8 +30,6 @@ var NumberInput = function NumberInput(_ref) {
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? 'number' : _ref$type,
     _ref$style = _ref.style,
     style = _ref$style === void 0 ? {} : _ref$style,
     id = _ref.id,
@@ -56,6 +54,16 @@ var NumberInput = function NumberInput(_ref) {
     selectionEnd = _useState4[0],
     setSelectionEnd = _useState4[1];
   var inputRef = (0, _react.useRef)(null);
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
+      onClick: onClick,
+      onChange: onChange
+    }),
+    focused = _useBaseInput.focused,
+    handleClick = _useBaseInput.handleClick,
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
+    getName = _useBaseInput.getName;
 
   // Аналог componentDidUpdate(prevProps) для значения
   // Если props.value меняется и у нас есть фокус, возвращаем курсор
@@ -64,11 +72,11 @@ var NumberInput = function NumberInput(_ref) {
       inputRef.current.selectionStart = selectionStart;
       inputRef.current.selectionEnd = selectionEnd;
     }
-  }, [value, focused, selectionStart, selectionEnd]);
+  }, [value, selectionStart, selectionEnd]);
 
   // handleChange — портируем вашу логику
   var handleChange = (0, _react.useCallback)(function (e) {
-    var pattern = /^[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
+    var pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
     if (e.target.value === '' || pattern.test(e.target.value)) {
       var val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
@@ -141,25 +149,15 @@ var NumberInput = function NumberInput(_ref) {
         setSelectionEnd(position);
       }
     }
-  }, [props]);
-  var _useBaseInput = (0, _useBaseInput2["default"])({
-      name: name,
-      onClick: onClick,
-      onChange: onChange
-    }),
-    focused = _useBaseInput.focused,
-    handleClick = _useBaseInput.handleClick,
-    handleFocus = _useBaseInput.handleFocus,
-    handleBlur = _useBaseInput.handleBlur,
-    getName = _useBaseInput.getName;
+  }, []);
+  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     ref: inputRef,
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
-    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
-    type: type,
+    className: inputClassName,
     name: getName(name),
     value: value,
     onClick: handleClick,

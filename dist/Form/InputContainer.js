@@ -10,6 +10,7 @@ var _InputPopup = _interopRequireDefault(require("./InputPopup/InputPopup"));
 var _error = _interopRequireDefault(require("./../assets/error.svg"));
 var _ic_close_only = _interopRequireDefault(require("../assets/ic_close_only.svg"));
 var _calendar = _interopRequireDefault(require("../assets/calendar.svg"));
+var _arrow = _interopRequireDefault(require("../assets/arrow.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
@@ -48,6 +49,13 @@ function InputContainer(_ref) {
         return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
           className: "calendar",
           src: _calendar["default"],
+          alt: ""
+        });
+      case 'Select':
+      case 'Search':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+          className: "arrow",
+          src: _arrow["default"],
           alt: ""
         });
     }
@@ -129,9 +137,10 @@ function InputContainer(_ref) {
       })
     }) : null;
   };
+  var containerClassName = "".concat(className).concat(disabled ? ' disabled' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, {
     style: style,
-    className: className + (disabled ? ' disabled' : ''),
+    className: containerClassName,
     disabled: disabled,
     onClick: function onClick(e) {
       e.stopPropagation();

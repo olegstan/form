@@ -6,6 +6,7 @@ import InputPopup from './InputPopup/InputPopup';
 import errorSvg from './../assets/error.svg';
 import Close from "../assets/ic_close_only.svg";
 import CalendarSvg from '../assets/calendar.svg';
+import ArrowSvg from '../assets/arrow.svg';
 
 function InputContainer({
                             children,
@@ -35,6 +36,9 @@ function InputContainer({
             case 'DateInput':
             case 'DateTimeInput':
                 return  <img className="calendar" src={CalendarSvg} alt="" />
+            case 'Select':
+            case 'Search':
+                return  <img className="arrow" src={ArrowSvg} alt="" />
         }
 
         return null;
@@ -129,10 +133,12 @@ function InputContainer({
         ) : null;
     };
 
+    const containerClassName = `${className}${disabled ? ' disabled' : ''}`;
+
     return (
         <Container
             style={style}
-            className={className + (disabled ? ' disabled' : '')}
+            className={containerClassName}
             disabled={disabled}
             onClick={(e) => {
                 e.stopPropagation();

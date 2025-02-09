@@ -34,7 +34,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         ? {...checkboxStyle}
         : {
             backgroundColor: '#4378FF',
-            border: '2px solid #4378FF',
+            border: '1px solid #4378FF',
         };
 
     return (

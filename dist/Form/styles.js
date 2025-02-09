@@ -4,13 +4,13 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StyledTextArea = exports.StyledInput = exports.StyledCheckbox = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = void 0;
+exports.StyledTextArea = exports.StyledInput = exports.StyledFakeInput = exports.StyledCheckbox = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = void 0;
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 var _react = _interopRequireWildcard(require("react"));
 var _reactInputMask = _interopRequireDefault(require("react-input-mask"));
 var _sharedStyles = require("./sharedStyles");
 var _jsxRuntime = require("react/jsx-runtime");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8; // styles/containerStyle.js
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9; // styles/containerStyle.js
 // Миксин для автозаполнения в Chrome
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -34,7 +34,7 @@ var disabledStyles = (0, _styledComponents.css)(_templateObject2 || (_templateOb
   var theme = _ref3.theme;
   return theme.inputContainerDisabledBackground;
 });
-var Container = exports.Container = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: ", ";\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  border: 1px solid ", ";\n  margin: 15px 10px;\n  flex: 1;\n  border-radius: 8px;\n  position: relative;\n\n  //\u0441\u043C\u043E\u0442\u0440\u0438\u043C \u0447\u0442\u043E \u0443 \u0438\u043D\u043F\u0443\u0442\u0430 \u0435\u0441\u0442\u044C \u0442\u0430\u043A\u043E\u0439 \u043A\u043B\u0430\u0441\u0441, \u0437\u043D\u0430\u0447\u0438\u0442 \u043D\u0430\u0434\u043E \u043C\u0435\u043D\u044F\u0442\u044C border\n  &:has(.focused) {\n    border: 2px solid #4378FF;\n  }\n  &:has(.error) {\n    border: 2px solid #EF5E70;\n  }\n  \n  ", "\n"])), function (_ref4) {
+var Container = exports.Container = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: ", ";\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  border: 1px solid ", ";\n  margin: 15px 10px;\n  flex: 1;\n  border-radius: 8px;\n  position: relative;\n\n  //\u0441\u043C\u043E\u0442\u0440\u0438\u043C \u0447\u0442\u043E \u0443 \u0438\u043D\u043F\u0443\u0442\u0430 \u0435\u0441\u0442\u044C \u0442\u0430\u043A\u043E\u0439 \u043A\u043B\u0430\u0441\u0441, \u0437\u043D\u0430\u0447\u0438\u0442 \u043D\u0430\u0434\u043E \u043C\u0435\u043D\u044F\u0442\u044C border\n  &:has(.focused) {\n    z-index: 1000;\n    border: 1px solid #4378FF;\n  }\n  &:has(.error) {\n    border: 2px solid #EF5E70;\n  }\n  \n  ", "\n"])), function (_ref4) {
   var theme = _ref4.theme;
   return theme.inputContainerBackground;
 }, function (_ref5) {
@@ -44,7 +44,7 @@ var Container = exports.Container = _styledComponents["default"].div(_templateOb
   var disabled = _ref6.disabled;
   return disabled && disabledStyles;
 });
-var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 16px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n"])), function (_ref7) {
+var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n  border-radius: 12px;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 16px;\n    pointer-events: none;\n  }\n  \n  img.arrow {\n    position: absolute;\n    right: 20px;\n    top: 15px;\n    width: 12px;\n    height: 20px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n"])), function (_ref7) {
   var theme = _ref7.theme;
   return theme.inputContainerDisabledBackground;
 });
@@ -71,9 +71,11 @@ var StyledCheckbox = exports.StyledCheckbox = _styledComponents["default"].div(_
   return theme.checkMarkColor;
 });
 var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
+//чтобы рендерить не текст а Symbol(react.element)
+var StyledFakeInput = exports.StyledFakeInput = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n  \n  \n"])), _sharedStyles.sharedInputStyle);
 var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["default"])(/*#__PURE__*/(0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactInputMask["default"], _objectSpread(_objectSpread({}, props), {}, {
     ref: ref
   }));
-}))(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
-var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n"])), _sharedStyles.sharedInputStyle);
+}))(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
+var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n"])), _sharedStyles.sharedInputStyle);

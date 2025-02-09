@@ -1,8 +1,9 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {OptionsWrapper, StyledOption, StyledSelect} from "./styles";
-import {StyledInput} from "../styles";
-import useBaseInput from "../hooks/useBaseInput";
-import SelectProps from "../types/SelectProps";
+import {StyledInput, StyledFakeInput} from "../../styles";
+import useBaseInput from "../../hooks/useBaseInput";
+import SelectProps from "../../types/SelectProps";
+import Results from "../components/Results";
 
 const Select: React.FC<SelectProps> = ({
                                    onKeyPress = () => {},
@@ -44,7 +45,9 @@ const Select: React.FC<SelectProps> = ({
 
     }
 
-    const handleChange = (item) => {
+    const handleChange = (e, item) => {
+        e.stopPropagation();
+
         onChange({}, {
             name: name,
             id: item.id ?? '',
@@ -53,12 +56,16 @@ const Select: React.FC<SelectProps> = ({
         handleClose()
     }
 
-    const handleOpen = () => {
+    const handleOpen = (e) => {
+        console.log(111)
+
         setSelectOpen(true)
         setFocused(true)
     }
 
     const handleClose = () => {
+        console.log(222)
+
         setSelectOpen(false)
         setFocused(false)
     }
@@ -89,37 +96,34 @@ const Select: React.FC<SelectProps> = ({
         () => options.find((option) => option.id === value),
         [options, value]
     );
+    console.log('-----------')
+    console.log(name)
+    console.log(value)
+
     const valueText = selectedOption ? selectedOption.name : '';
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+
+    console.log(valueText)
+    console.log(selectedOption)
 
     return (<StyledSelect
         onClick={handleOpen}
         ref={selectRef}
     >
-        <StyledInput
+        <StyledFakeInput
             id={id}
             style={style}
-            disabled={true}
-            className={inputClassName}
-            type={'text'}
+            className={inputClassName + ' input'}
             name={getName(name)}
-            value={valueText}
-            onKeyPress={onKeyPress}
-            onChange={fakeOnChange}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-        />
-        {selectOpen && !disabled && <OptionsWrapper id={id ? `${id}-select` : undefined}>
-            {filteredOptions.length === 0 ? (<StyledOption>
-                <span>Нет элементов</span>
-            </StyledOption>)
-            :
-            filteredOptions.map((option) => (
-                <StyledOption key={option.id} value={option.id} onClick={() => handleChange(option)}>
-                    <span>{option.name}</span>
-                </StyledOption>
-            ))}
-        </OptionsWrapper>}
+        >
+            {valueText}
+        </StyledFakeInput>
+        {selectOpen && !disabled && <Results
+            id={id}
+            options={filteredOptions}
+            handleClick={handleChange}
+            idPrefix={getName(name)}
+        />}
     </StyledSelect>)
 }
 

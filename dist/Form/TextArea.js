@@ -43,12 +43,13 @@ var TextArea = function TextArea(_ref) {
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
+  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledTextArea, {
     id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
-    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
+    className: inputClassName,
     name: getName(name),
     value: value,
     onClick: handleClick,

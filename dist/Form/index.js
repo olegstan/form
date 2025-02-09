@@ -51,10 +51,10 @@ Object.defineProperty(exports, "NumberInput", {
     return _NumberInput["default"];
   }
 });
-Object.defineProperty(exports, "RemoteSearch", {
+Object.defineProperty(exports, "Search", {
   enumerable: true,
   get: function get() {
-    return _RemoteSearch["default"];
+    return _Search["default"];
   }
 });
 Object.defineProperty(exports, "Select", {
@@ -76,8 +76,8 @@ var _NumberInput = _interopRequireDefault(require("./NumberInput"));
 var _Input = _interopRequireDefault(require("./Input"));
 var _Checkbox = _interopRequireDefault(require("./Checkbox"));
 var _FileInput = _interopRequireDefault(require("./FileInput"));
-var _Select = _interopRequireDefault(require("./Select/Select"));
-var _RemoteSearch = _interopRequireDefault(require("./Search/RemoteSearch"));
+var _Select = _interopRequireDefault(require("./Dropdown/Select/Select"));
+var _Search = _interopRequireDefault(require("./Dropdown/Search/Search"));
 var _TextArea = _interopRequireDefault(require("./TextArea"));
 var _InputContainer = _interopRequireDefault(require("./InputContainer"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }

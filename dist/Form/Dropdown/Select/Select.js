@@ -7,8 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _styles = require("./styles");
-var _styles2 = require("../styles");
-var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
+var _styles2 = require("../../styles");
+var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
+var _Results = _interopRequireDefault(require("../components/Results"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -61,8 +62,9 @@ var Select = function Select(_ref) {
     setSelectOpen = _useState2[1];
   var selectRef = (0, _react.useRef)(null);
   var fakeOnChange = function fakeOnChange() {};
-  var handleChange = function handleChange(item) {
+  var handleChange = function handleChange(e, item) {
     var _item$id;
+    e.stopPropagation();
     onChange({}, {
       name: name,
       id: (_item$id = item.id) !== null && _item$id !== void 0 ? _item$id : '',
@@ -70,11 +72,13 @@ var Select = function Select(_ref) {
     });
     handleClose();
   };
-  var handleOpen = function handleOpen() {
+  var handleOpen = function handleOpen(e) {
+    console.log(111);
     setSelectOpen(true);
     setFocused(true);
   };
   var handleClose = function handleClose() {
+    console.log(222);
     setSelectOpen(false);
     setFocused(false);
   };
@@ -117,35 +121,17 @@ var Select = function Select(_ref) {
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
     onClick: handleOpen,
     ref: selectRef,
-    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles2.StyledInput, {
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles2.StyledFakeInput, {
       id: id,
       style: style,
-      disabled: true,
-      className: inputClassName,
-      type: 'text',
+      className: inputClassName + ' input',
       name: getName(name),
-      value: valueText,
-      onKeyPress: onKeyPress,
-      onChange: fakeOnChange,
-      onFocus: handleFocus,
-      onBlur: handleBlur
-    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.OptionsWrapper, {
-      id: id ? "".concat(id, "-select") : undefined,
-      children: filteredOptions.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledOption, {
-        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-          children: "\u041D\u0435\u0442 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432"
-        })
-      }) : filteredOptions.map(function (option) {
-        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledOption, {
-          value: option.id,
-          onClick: function onClick() {
-            return handleChange(option);
-          },
-          children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", {
-            children: option.name
-          })
-        }, option.id);
-      })
+      children: valueText
+    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+      id: id,
+      options: filteredOptions,
+      handleClick: handleChange,
+      idPrefix: getName(name)
     })]
   });
 };

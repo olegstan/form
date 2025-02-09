@@ -1,17 +1,17 @@
 import React from 'react';
-import {Loader} from '../../styles';
+import {StyledLoader} from './styles';
 import {ReactComponent as LoadImage} from '../../../assets/loader.svg';
 
-const SearchLoader = ({ loading }) => {
+const Loader = ({ loading }) => {
   if (!loading) return null;
 
   return (
-    <Loader id="loader-for-data">
+    <StyledLoader id="loader-for-data">
       <div onClick={() => {}}>
         <LoadImage />
       </div>
-    </Loader>
+    </StyledLoader>
   );
 };
 
-export default SearchLoader;
+export default Loader;

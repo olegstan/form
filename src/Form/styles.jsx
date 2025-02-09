@@ -39,7 +39,8 @@ export const Container = styled.div`
 
   //смотрим что у инпута есть такой класс, значит надо менять border
   &:has(.focused) {
-    border: 2px solid #4378FF;
+    z-index: 1000;
+    border: 1px solid #4378FF;
   }
   &:has(.error) {
     border: 2px solid #EF5E70;
@@ -57,6 +58,7 @@ export const InputContainerStyled = styled.div`
   padding: 0;
   position: relative;
   z-index: 100;
+  border-radius: 12px;
 
   &.disabled {
     background-color: ${({theme}) => theme.inputContainerDisabledBackground};
@@ -71,6 +73,15 @@ export const InputContainerStyled = styled.div`
     position: absolute;
     right: 16px;
     top: 16px;
+    pointer-events: none;
+  }
+  
+  img.arrow {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 12px;
+    height: 20px;
     pointer-events: none;
   }
 
@@ -153,6 +164,12 @@ export const StyledCheckbox = styled.div`
 
 export const StyledInput = styled.input`
   ${sharedInputStyle}
+`
+//чтобы рендерить не текст а Symbol(react.element)
+export const StyledFakeInput = styled.div`
+  ${sharedInputStyle}
+  
+  
 `
 
 export const MaskedStyledInput = styled(forwardRef((props, ref) => (

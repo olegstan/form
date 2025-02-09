@@ -53,7 +53,7 @@ var Checkbox = function Checkbox(_ref) {
   var combinedTextStyle = textStyle ? _objectSpread({}, textStyle) : {};
   var combinedCheckboxStyle = checkboxStyle ? _objectSpread({}, checkboxStyle) : {
     backgroundColor: '#4378FF',
-    border: '2px solid #4378FF'
+    border: '1px solid #4378FF'
   };
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledCheckbox, {
     id: id,
