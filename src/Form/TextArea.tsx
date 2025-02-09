@@ -32,13 +32,15 @@ const TextArea: React.FC<TextAreaProps> = ({
         onChange,
     });
 
-  return (
+    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+
+    return (
       <StyledTextArea
           id={id}
           style={style}
           autoComplete={autoComplete || 'off'}
           disabled={disabled}
-          className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
+          className={inputClassName}
           name={getName(name)}
           value={value}
           onClick={handleClick}

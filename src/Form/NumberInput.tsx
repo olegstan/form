@@ -11,7 +11,6 @@ const NumberInput: React.FC<NumberInputProps> = ({
                          onClick = () => {},
                          disabled = false,
                          className = '',
-                         type = 'number',
                          style = {},
                          id,
                          name,
@@ -29,6 +28,18 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     const inputRef = useRef(null);
 
+    const {
+        focused,
+        handleClick,
+        handleFocus,
+        handleBlur,
+        getName,
+    } = useBaseInput({
+        name,
+        onClick,
+        onChange,
+    });
+
     // Аналог componentDidUpdate(prevProps) для значения
     // Если props.value меняется и у нас есть фокус, возвращаем курсор
     useEffect(() => {
@@ -36,12 +47,12 @@ const NumberInput: React.FC<NumberInputProps> = ({
             inputRef.current.selectionStart = selectionStart;
             inputRef.current.selectionEnd = selectionEnd;
         }
-    }, [value, focused, selectionStart, selectionEnd]);
+    }, [value, selectionStart, selectionEnd]);
 
     // handleChange — портируем вашу логику
     const handleChange = useCallback(
         (e) => {
-            const pattern = /^[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
+            const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
             if (e.target.value === '' || pattern.test(e.target.value)) {
                 let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
@@ -119,20 +130,10 @@ const NumberInput: React.FC<NumberInputProps> = ({
                 }
             }
         },
-        [props]
+        []
     );
 
-    const {
-        focused,
-        handleClick,
-        handleFocus,
-        handleBlur,
-        getName,
-    } = useBaseInput({
-        name,
-        onClick,
-        onChange,
-    });
+    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledInput
         ref={inputRef}
@@ -140,8 +141,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         style={style}
         autoComplete={autoComplete || 'off'}
         disabled={disabled}
-        className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
-        type={type}
+        className={inputClassName}
         name={getName(name)}
         value={value}
         onClick={handleClick}

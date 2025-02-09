@@ -123,13 +123,10 @@ export const sharedInputStyle = css`
 
 export const sharedOptionsWrapperStyle = css`
   border-radius: 0 0 4px 4px;
-  position: absolute;
-  z-index: 300000;
   top: 50px;
   left: 0;
   width: 100%;
   box-shadow: 0 20px 48px rgba(255, 255, 255, 0.25);
-  display: none;
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 250px;

@@ -70,12 +70,13 @@ var FileInput = function FileInput(_ref) {
       value: null
     });
   };
+  var inputClassName = "".concat(className).concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     ref: inputRef,
     id: id,
     style: style,
     disabled: disabled,
-    className: className + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
+    className: inputClassName,
     type: "file",
     name: getName(name),
     onChange: handleFileChange

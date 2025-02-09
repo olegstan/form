@@ -1,15 +1,13 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {StyledSelect, StyledOption, OptionsWrapper} from "./styles";
+import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {OptionsWrapper, StyledOption, StyledSelect} from "./styles";
 import {StyledInput} from "../styles";
 import useBaseInput from "../hooks/useBaseInput";
+import SelectProps from "../types/SelectProps";
 
-export default function Select({
-                                   onKeyPress = () => {
-                                   },
-                                   onChange = () => {
-                                   },
-                                   onClick = () => {
-                                   },
+const Select: React.FC<SelectProps> = ({
+                                   onKeyPress = () => {},
+                                   onChange = () => {},
+                                   onClick = () => {},
                                    disabled = false,
                                    className = '',
                                    style = {},
@@ -17,17 +15,12 @@ export default function Select({
                                    name,
                                    value,
                                    error,
-
                                    options = [],
-                                   selected = null,
-                                   ...props
-                               }) {
+                               }) => {
 
     const {
         focused,
         setFocused,
-        handleClick,
-        handleChange,
         handleFocus,
         handleBlur,
         getName,
@@ -47,47 +40,34 @@ export default function Select({
     const [selectOpen, setSelectOpen] = useState(false);
     const selectRef = useRef(null);
 
-    //
-    // // Аналог старого handleShowSelect
-    // const handleShowSelect = useCallback((open) => {
-    //   if (!props.disabled) {
-    //     setSelectOpen(open);
-    //   }
-    // }, [props.disabled]);
-    //
-    // // Аналог вашей renderSelected
-    // const renderSelectedText = useCallback(() => {
-    //   const { items, selected, default: defaultText, textLength } = props;
-    //
-    //   // Если нет выбранного item, отдаем props.default
-    //   if (!selected) return defaultText;
-    //
-    //   // Ищем name в items
-    //   let name = null;
-    //   items?.forEach((item) => {
-    //     if (parseInt(item.id, 10) === parseInt(selected.id, 10)) {
-    //       name = item.name;
-    //     }
-    //   });
-    //
-    //   // Если не нашли — тоже возвращаем default
-    //   if (!name) return defaultText;
-    //
-    //   // Обрезаем, если длиннее textLength
-    //   if (textLength && name.length > textLength) {
-    //     return name.slice(0, textLength - 1) + '...';
-    //   }
-    //
-    //   return name;
-    // }, [props]);
-    //
+    const fakeOnChange = () => {
+
+    }
+
+    const handleChange = (item) => {
+        onChange({}, {
+            name: name,
+            id: item.id ?? '',
+            value: item
+        });
+        handleClose()
+    }
+
+    const handleOpen = () => {
+        setSelectOpen(true)
+        setFocused(true)
+    }
+
+    const handleClose = () => {
+        setSelectOpen(false)
+        setFocused(false)
+    }
 
     // // Обработка клика вне компонента
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
-                setSelectOpen(false);
-                setFocused(false);
+                handleClose()
             }
         };
 
@@ -101,23 +81,16 @@ export default function Select({
     }, [setSelectOpen]);
 
     // // Подготавливаем список элементов (без выбранного)
-    const resOptions = options.filter((item) => {
-        if (value === item.id) {
-            return false;
-        }
-        return true;
-    });
-    let selectedItemIndex = options.findIndex((row) => row.id === value)
-    const valueText = selectedItemIndex !== -1 ? options[selectedItemIndex].name : '';
-
-    const fakeOnChange = () => {
-
-    }
-
-    const handleOpen = () => {
-        setSelectOpen(true)
-        setFocused(true)
-    }
+    const filteredOptions = useMemo(
+        () => options.filter((option) => option.id !== value),
+        [options, value]
+    );
+    const selectedOption = useMemo(
+        () => options.find((option) => option.id === value),
+        [options, value]
+    );
+    const valueText = selectedOption ? selectedOption.name : '';
+    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect
         onClick={handleOpen}
@@ -127,7 +100,7 @@ export default function Select({
             id={id}
             style={style}
             disabled={true}
-            className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
+            className={inputClassName}
             type={'text'}
             name={getName(name)}
             value={valueText}
@@ -136,17 +109,18 @@ export default function Select({
             onFocus={handleFocus}
             onBlur={handleBlur}
         />
-        {selectOpen && <OptionsWrapper id={id ? (id + '-select') : ''}>
-            <StyledOption onClick={() => {
-                // this.handleShowSelect(false)
-            }}>
+        {selectOpen && !disabled && <OptionsWrapper id={id ? `${id}-select` : undefined}>
+            {filteredOptions.length === 0 ? (<StyledOption>
                 <span>Нет элементов</span>
-            </StyledOption>
-            {resOptions.map((option) => (
-                <StyledOption key={option.id} value={option.id}>
+            </StyledOption>)
+            :
+            filteredOptions.map((option) => (
+                <StyledOption key={option.id} value={option.id} onClick={() => handleChange(option)}>
                     <span>{option.name}</span>
                 </StyledOption>
             ))}
         </OptionsWrapper>}
     </StyledSelect>)
 }
+
+export default Select;

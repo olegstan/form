@@ -1,8 +1,9 @@
 import React, {useEffect, useRef} from 'react';
 import useBaseInput from './hooks/useBaseInput';
 import {StyledInput} from './styles';
+import FileInputProps from "./types/FileInputProps";
 
-const FileInput = ({
+const FileInput: React.FC<FileInputProps> = ({
                        onChange = () => {},
                        onClick = () => {},
                        disabled = false,
@@ -64,12 +65,15 @@ const FileInput = ({
         });
     };
 
+    const inputClassName = `${className}${error?.[0] ? ' error' : ''}`;
+
+
     return <StyledInput
             ref={inputRef}
             id={id}
             style={style}
             disabled={disabled}
-            className={className + (error?.[0] ? ' error' : '')}
+            className={inputClassName}
             type="file"
             name={getName(name)}
             onChange={handleFileChange}
