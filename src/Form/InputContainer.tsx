@@ -89,12 +89,13 @@ function InputContainer({
         if(!child.type) return null;
 
         let notEmpty = false;
-        switch (child.type.name)
-        {
+        switch (child.type.name) {
             case 'DateInput':
             case 'DateTimeInput':
-                if(value instanceof Date)
-                {
+                console.log(child.props)
+
+
+                if (value instanceof Date) {
                     notEmpty = true;
                 }
 

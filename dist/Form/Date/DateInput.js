@@ -62,8 +62,8 @@ var DateInput = function DateInput(_ref) {
       onChange: onChange
     }),
     focused = _useBaseInput.focused,
+    setFocused = _useBaseInput.setFocused,
     handleFocus = _useBaseInput.handleFocus,
-    handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
   var _useState = (0, _react.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -97,6 +97,39 @@ var DateInput = function DateInput(_ref) {
       setDate(value);
     }
   }, [value, date]);
+  var handleBlur = function handleBlur() {
+    setFocused(false);
+    console.log(value);
+    console.log(dateString);
+    // debugger
+
+    // Дополнительная логика при потере фокуса
+    if (flatpickrInstance.current) {
+      // flatpickrInstance.current.close();
+
+      if (typeof dateString === 'string' && dateString !== '__.__.____' && !dateString.includes('_')) {
+        var _date = (0, _moment["default"])(dateString, 'DD.MM.YYYY');
+        if (_date.isValid()) {
+          onChange({}, {
+            date: _date.toDate(),
+            value: dateString
+          });
+        } else {
+          onChange({}, {
+            date: null,
+            value: ''
+          });
+          setDateString('');
+        }
+      } else {
+        onChange({}, {
+          date: null,
+          value: ''
+        });
+        setDateString('');
+      }
+    }
+  };
   var handleDateChange = function handleDateChange(selectedDates) {
     var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
     if (typeof onChange === 'function') {
@@ -110,10 +143,10 @@ var DateInput = function DateInput(_ref) {
     var val = e.target.value;
     setDateString(val);
     if (typeof val === 'string' && val !== '__.__.____' && !val.includes('_')) {
-      var _date = (0, _moment["default"])(val, 'DD.MM.YYYY');
-      if (_date.isValid()) {
+      var _date2 = (0, _moment["default"])(val, 'DD.MM.YYYY');
+      if (_date2.isValid()) {
         onChange({}, {
-          date: _date.toDate(),
+          date: _date2.toDate(),
           value: val
         });
       }
@@ -134,7 +167,7 @@ var DateInput = function DateInput(_ref) {
   if (disabled) {
     return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
       mask: "99.99.9999",
-      value: date instanceof Date ? date : null,
+      value: dateString,
       disabled: true,
       onChange: function onChange() {},
       children: function children(inputProps) {

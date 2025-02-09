@@ -35,8 +35,8 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
   // 1. Забираем из useBaseInput общую логику (аналог BaseInput)
   const {
     focused,
+    setFocused,
     handleFocus,
-    handleBlur,
     getName,
   } = useBaseInput({
     name,
@@ -94,6 +94,34 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     return opts;
   };
 
+  const handleBlur = () => {
+    setFocused(false);
+
+    // Дополнительная логика при потере фокуса
+    if (flatpickrInstance.current) {
+      // flatpickrInstance.current.close();
+
+      if (
+          typeof dateString === 'string' &&
+          dateString !== '__.__.____ __:__:__' &&
+          !dateString.includes('_')
+      ) {
+        let date = moment(dateString, 'DD.MM.YYYY');
+
+        if(date.isValid())
+        {
+          onChange({}, {date: date.toDate(), value: dateString});
+        }else{
+          onChange({}, {date: null, value: ''});
+          setDateString('');
+        }
+      }else{
+        onChange({}, {date: null, value: ''});
+        setDateString('');
+      }
+    }
+  };
+
   // 9. При выборе даты/времени в календаре
   const handleDateChange = (selectedDates) => {
     const dateObj = selectedDates?.[0];
@@ -132,7 +160,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     return (
         <MaskedStyledInput
             mask="99.99.9999 99:99:99"
-            value={date instanceof Date ? date : null}
+            value={dateString}
             disabled
             onChange={() => {}}
         >

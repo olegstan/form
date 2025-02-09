@@ -31,8 +31,8 @@ const DateInput: React.FC<DateInputProps> = ({
                    }) => {
     const {
         focused,
+        setFocused,
         handleFocus,
-        handleBlur,
         getName,
     } = useBaseInput({
         name,
@@ -65,13 +65,41 @@ const DateInput: React.FC<DateInputProps> = ({
         }
     }, [value, date]);
 
+    const handleBlur = () => {
+        setFocused(false);
+
+        // Дополнительная логика при потере фокуса
+        if (flatpickrInstance.current) {
+            // flatpickrInstance.current.close();
+
+            if (
+                typeof dateString === 'string' &&
+                dateString !== '__.__.____' &&
+                !dateString.includes('_')
+            ) {
+                let date = moment(dateString, 'DD.MM.YYYY');
+
+                if(date.isValid())
+                {
+                    onChange({}, {date: date.toDate(), value: dateString});
+                }else{
+                    onChange({}, {date: null, value: ''});
+                    setDateString('');
+                }
+            }else{
+                onChange({}, {date: null, value: ''});
+                setDateString('');
+            }
+        }
+    };
+
     const handleDateChange = (selectedDates) =>
     {
         const dateObj = selectedDates?.[0];
 
         if (typeof onChange === 'function') {
             onChange({}, {
-                date: dateObj,
+                date: dateObj ?? null,
                 value: dateObj ? formatDate(dateObj) : ''
             });
         }
@@ -113,7 +141,7 @@ const DateInput: React.FC<DateInputProps> = ({
         return (
             <MaskedStyledInput
                 mask="99.99.9999"
-                value={date instanceof Date ? date : null}
+                value={dateString}
                 disabled
                 onChange={() => {}}
             >

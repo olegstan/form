@@ -50,11 +50,6 @@ var Select = function Select(_ref) {
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
 
-  // Подтягиваем логику «базового инпута» из вашего хука
-  // const {
-  //   wrapperRef,
-  // } = useBaseInput(props);
-
   // Локальный стейт: открыто ли меню
   var _useState = (0, _react.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
@@ -73,12 +68,10 @@ var Select = function Select(_ref) {
     handleClose();
   };
   var handleOpen = function handleOpen(e) {
-    console.log(111);
     setSelectOpen(true);
     setFocused(true);
   };
   var handleClose = function handleClose() {
-    console.log(222);
     setSelectOpen(false);
     setFocused(false);
   };

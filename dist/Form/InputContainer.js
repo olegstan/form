@@ -98,6 +98,7 @@ function InputContainer(_ref) {
     switch (child.type.name) {
       case 'DateInput':
       case 'DateTimeInput':
+        console.log(child.props);
         if (value instanceof Date) {
           notEmpty = true;
         }

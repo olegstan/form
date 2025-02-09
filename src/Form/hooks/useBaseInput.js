@@ -4,7 +4,6 @@ import React, {useCallback, useState} from 'react';
 
 /**
  * Универсальный хук, повторяющий логику BaseInput:
- * - cDM/cWU для клика вне (handleClickOutside)
  * - focused
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect

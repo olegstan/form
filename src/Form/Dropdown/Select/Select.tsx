@@ -32,11 +32,6 @@ const Select: React.FC<SelectProps> = ({
     });
 
 
-    // Подтягиваем логику «базового инпута» из вашего хука
-    // const {
-    //   wrapperRef,
-    // } = useBaseInput(props);
-
     // Локальный стейт: открыто ли меню
     const [selectOpen, setSelectOpen] = useState(false);
     const selectRef = useRef(null);
@@ -57,15 +52,11 @@ const Select: React.FC<SelectProps> = ({
     }
 
     const handleOpen = (e) => {
-        console.log(111)
-
         setSelectOpen(true)
         setFocused(true)
     }
 
     const handleClose = () => {
-        console.log(222)
-
         setSelectOpen(false)
         setFocused(false)
     }

@@ -158,7 +158,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
   if (disabled) {
     return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
       mask: "99.99.9999 99:99:99",
-      value: date instanceof Date ? date : null,
+      value: dateString,
       disabled: true,
       onChange: function onChange() {},
       children: function children(inputProps) {
