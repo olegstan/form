@@ -102,8 +102,7 @@ var DateInput = function DateInput(_ref) {
 
     // Дополнительная логика при потере фокуса
     if (flatpickrInstance.current) {
-      // flatpickrInstance.current.close();
-
+      console.log(dateString);
       if (typeof dateString === 'string' && dateString !== '__.__.____' && !dateString.includes('_')) {
         var _date = (0, _moment["default"])(dateString, 'DD.MM.YYYY');
         if (_date.isValid()) {
@@ -130,10 +129,12 @@ var DateInput = function DateInput(_ref) {
   var handleDateChange = function handleDateChange(selectedDates) {
     var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
     if (typeof onChange === 'function') {
+      var _dateString = dateObj ? formatDate(dateObj) : '';
       onChange({}, {
         date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
-        value: dateObj ? formatDate(dateObj) : ''
+        value: _dateString
       });
+      setDateString(_dateString);
     }
   };
   var handleInputChange = function handleInputChange(e) {

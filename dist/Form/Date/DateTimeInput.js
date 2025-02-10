@@ -163,10 +163,12 @@ var DateTimeInput = function DateTimeInput(_ref) {
   var handleDateChange = function handleDateChange(selectedDates) {
     var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
     if (typeof onChange === 'function') {
+      var _dateString = dateObj ? formatDateTime(dateObj) : '';
       onChange({}, {
         date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
-        value: dateObj ? formatDateTime(dateObj) : ''
+        value: _dateString
       });
+      setDateString(_dateString);
     }
   };
 

@@ -127,10 +127,14 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     const dateObj = selectedDates?.[0];
 
     if (typeof onChange === 'function') {
+      let dateString = dateObj ? formatDateTime(dateObj) : '';
+
       onChange({}, {
         date: dateObj ?? null,
-        value: dateObj ? formatDateTime(dateObj) : ''
+        value: dateString
       });
+
+      setDateString(dateString);
     }
   };
 

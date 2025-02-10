@@ -70,7 +70,7 @@ const DateInput: React.FC<DateInputProps> = ({
 
         // Дополнительная логика при потере фокуса
         if (flatpickrInstance.current) {
-            // flatpickrInstance.current.close();
+            console.log(dateString)
 
             if (
                 typeof dateString === 'string' &&
@@ -98,10 +98,12 @@ const DateInput: React.FC<DateInputProps> = ({
         const dateObj = selectedDates?.[0];
 
         if (typeof onChange === 'function') {
+            let dateString = dateObj ? formatDate(dateObj) : '';
             onChange({}, {
                 date: dateObj ?? null,
-                value: dateObj ? formatDate(dateObj) : ''
+                value: dateString
             });
+            setDateString(dateString);
         }
     };
 
