@@ -7,15 +7,15 @@ export const StyledSelect = styled.div`
   cursor: pointer;
   height: 50px;
   position: relative;
-  background-color: ${({theme}) => theme.selectBackgroundColor};
-  border-radius: 7px;
+  // background-color: ${({theme}) => theme.selectBackgroundColor};
+  // border-radius: 7px;
   
   //тут может быть div если вдруг вместо текста передали иконки или друглй элемент
   & > input, & > div.input{
     width: 100%;
-    pointer-events: none;
-    color: ${({theme}) => theme.selectTextColor};
-    background-color: ${({theme}) => theme.selectBackgroundColor};
+    // pointer-events: none;
+    // color: ${({theme}) => theme.selectTextColor};
+    // background-color: ${({theme}) => theme.selectBackgroundColor};
     padding: 0 !important;
   }
 

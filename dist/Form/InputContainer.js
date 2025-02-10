@@ -38,8 +38,8 @@ function InputContainer(_ref) {
     onChange = _child$props.onChange,
     _child$props$iconClos = _child$props.iconClose,
     iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos,
-    iconCalendar = _child$props.iconCalendar,
-    loading = _child$props.loading;
+    loading = _child$props.loading,
+    search = _child$props.search;
   var renderIcon = function renderIcon() {
     if (!child.type) return null;
 
@@ -105,7 +105,6 @@ function InputContainer(_ref) {
     switch (child.type.name) {
       case 'DateInput':
       case 'DateTimeInput':
-        console.log(child.props);
         if (value instanceof Date) {
           notEmpty = true;
         }
@@ -115,6 +114,9 @@ function InputContainer(_ref) {
         break;
       case 'FileInput':
         notEmpty = true; //всегда есть внутри инпута, поэтому показывае placeholder всегда сверху
+        break;
+      case 'Search':
+        notEmpty = typeof search === 'number' && search.toString().length > 0 || typeof search === 'string' && search.length > 0;
         break;
       default:
         notEmpty = typeof value === 'number' && value.toString().length > 0 || typeof value === 'string' && value.length > 0;

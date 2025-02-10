@@ -64,6 +64,10 @@ var Search = function Search(_ref) {
     var handleClickOutside = function handleClickOutside(event) {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         handleClose();
+        //если элемент не выбран, то очистим поле поиска
+        if (!value) {
+          onSearch('');
+        }
       }
     };
 
@@ -112,6 +116,9 @@ var Search = function Search(_ref) {
     setSelectOpen(false);
     setFocused(false);
   };
+  var handleSearch = function handleSearch(e) {
+    onSearch(e.target.value);
+  };
   var filteredOptions = (0, _react.useMemo)(function () {
     return options.filter(function (option) {
       // Первое условие: исключаем элемент с определённым id
@@ -139,7 +146,7 @@ var Search = function Search(_ref) {
       type: "text",
       name: getName(name),
       value: search,
-      onChange: onChange
+      onChange: handleSearch
     }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
       id: id,
       options: filteredOptions,

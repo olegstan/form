@@ -42,6 +42,11 @@ const Search: React.FC<SearchProps> = ({
         const handleClickOutside = (event) => {
             if (selectRef.current && !selectRef.current.contains(event.target)) {
                 handleClose()
+                //если элемент не выбран, то очистим поле поиска
+                if(!value)
+                {
+                    onSearch('');
+                }
             }
         };
 
@@ -93,6 +98,10 @@ const Search: React.FC<SearchProps> = ({
         setFocused(false)
     }
 
+    const handleSearch = (e) => {
+        onSearch(e.target.value);
+    }
+
     const filteredOptions = useMemo(() => {
         return options.filter((option) => {
             // Первое условие: исключаем элемент с определённым id
@@ -128,7 +137,7 @@ const Search: React.FC<SearchProps> = ({
                   type='text'
                   name={getName(name)}
                   value={search}
-                  onChange={onChange}
+                  onChange={handleSearch}
               />
                 {selectOpen && !disabled && <Results
                     id={id}

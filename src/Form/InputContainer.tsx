@@ -23,7 +23,7 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, iconCalendar, loading} = child.props;
+    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, loading, search} = child.props;
 
     const renderIcon = () =>
     {
@@ -94,8 +94,6 @@ function InputContainer({
         switch (child.type.name) {
             case 'DateInput':
             case 'DateTimeInput':
-                console.log(child.props)
-
 
                 if (value instanceof Date) {
                     notEmpty = true;
@@ -107,6 +105,12 @@ function InputContainer({
                 break;
             case 'FileInput':
                 notEmpty = true;//всегда есть внутри инпута, поэтому показывае placeholder всегда сверху
+                break;
+            case 'Search':
+                notEmpty = (
+                    (typeof search === 'number' && search.toString().length > 0) ||
+                    (typeof search === 'string' && search.length > 0)
+                )
                 break;
             default:
                 notEmpty = (
