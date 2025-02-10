@@ -11,6 +11,7 @@ var _error = _interopRequireDefault(require("./../assets/error.svg"));
 var _ic_close_only = _interopRequireDefault(require("../assets/ic_close_only.svg"));
 var _calendar = _interopRequireDefault(require("../assets/calendar.svg"));
 var _arrow = _interopRequireDefault(require("../assets/arrow.svg"));
+var _loader = _interopRequireDefault(require("../assets/loader.svg"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
@@ -37,7 +38,8 @@ function InputContainer(_ref) {
     onChange = _child$props.onChange,
     _child$props$iconClos = _child$props.iconClose,
     iconClose = _child$props$iconClos === void 0 ? true : _child$props$iconClos,
-    iconCalendar = _child$props.iconCalendar;
+    iconCalendar = _child$props.iconCalendar,
+    loading = _child$props.loading;
   var renderIcon = function renderIcon() {
     if (!child.type) return null;
 
@@ -52,12 +54,17 @@ function InputContainer(_ref) {
           alt: ""
         });
       case 'Select':
-      case 'Search':
         return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
           className: "arrow",
           src: _arrow["default"],
           alt: ""
         });
+      case 'Search':
+        return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+          className: "loader",
+          src: _loader["default"],
+          alt: ""
+        }) : null;
     }
     return null;
   };

@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {OptionsWrapper, StyledOption, StyledSelect} from "./styles";
-import {StyledInput, StyledFakeInput} from "../../styles";
+import {StyledSelect} from "./styles";
+import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import Results from "../components/Results";
@@ -87,15 +87,8 @@ const Select: React.FC<SelectProps> = ({
         () => options.find((option) => option.id === value),
         [options, value]
     );
-    console.log('-----------')
-    console.log(name)
-    console.log(value)
-
     const valueText = selectedOption ? selectedOption.name : '';
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
-
-    console.log(valueText)
-    console.log(selectedOption)
 
     return (<StyledSelect
         onClick={handleOpen}

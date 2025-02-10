@@ -7,6 +7,7 @@ import errorSvg from './../assets/error.svg';
 import Close from "../assets/ic_close_only.svg";
 import CalendarSvg from '../assets/calendar.svg';
 import ArrowSvg from '../assets/arrow.svg';
+import LoadImage from '../assets/loader.svg';
 
 function InputContainer({
                             children,
@@ -22,7 +23,7 @@ function InputContainer({
     // Убедимся, что children — это единственный React.Element
     const child = React.Children.only(children);
 
-    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, iconCalendar} = child.props;
+    const {placeholder, id, disabled = false, value, name, onChange, iconClose = true, iconCalendar, loading} = child.props;
 
     const renderIcon = () =>
     {
@@ -37,8 +38,9 @@ function InputContainer({
             case 'DateTimeInput':
                 return  <img className="calendar" src={CalendarSvg} alt="" />
             case 'Select':
-            case 'Search':
                 return  <img className="arrow" src={ArrowSvg} alt="" />
+            case 'Search':
+                return  loading ? <img className="loader" src={LoadImage} alt="" /> : null;
         }
 
         return null;

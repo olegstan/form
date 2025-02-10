@@ -4,10 +4,10 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.StyledOption = exports.StyledLoader = exports.OptionsWrapper = void 0;
+exports.StyledOption = exports.OptionsWrapper = void 0;
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 var _zindex = _interopRequireDefault(require("../../../interface/zindex"));
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3;
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
@@ -27,4 +27,3 @@ var OptionsWrapper = exports.OptionsWrapper = _styledComponents["default"].div(_
   var theme = _ref4.theme;
   return theme.selectScrollBarColor;
 });
-var StyledLoader = exports.StyledLoader = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  height: 48px;\n\n  flex-basis: 48px;\n  position: absolute;\n  right: 36px;\n\n  img, svg {\n    position: absolute;\n    top: 8px;\n    height: 30px;\n    width: 30px;\n    right: -20px;\n    animation: ", " 2s linear infinite;\n  }\n"])), rotate);

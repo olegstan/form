@@ -4,139 +4,148 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = Search;
+exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _newstyles = require("./newstyles");
+var _styles = require("./styles");
+var _styles2 = require("../../styles");
 var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
-var _useDropdownLogic2 = require("../hooks/useDropdownLogic");
-var _ic_close_only = require("../../../assets/ic_close_only.svg");
+var _Results = _interopRequireDefault(require("../components/Results"));
+var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
-// import SearchResults from '../components/SearchResults';
-// import SearchLoader from '../components/SearchLoader';
-
-function Search(props) {
-  var _useBaseInput = (0, _useBaseInput2["default"])(props, 'Search'),
-    wrapperRef = _useBaseInput.wrapperRef,
-    hasError = _useBaseInput.hasError,
-    setHasError = _useBaseInput.setHasError,
-    renderPlaceholder = _useBaseInput.renderPlaceholder,
-    renderTooltipError = _useBaseInput.renderTooltipError,
-    getContainerStyle = _useBaseInput.getContainerStyle,
-    getWrapperStyle = _useBaseInput.getWrapperStyle,
-    getInputStyle = _useBaseInput.getInputStyle,
-    getWrapperClasses = _useBaseInput.getWrapperClasses,
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+var Search = function Search(_ref) {
+  var _ref$onKeyPress = _ref.onKeyPress,
+    onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    _ref$onChange = _ref.onChange,
+    onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
+    _ref$onClick = _ref.onClick,
+    onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
+    _ref$disabled = _ref.disabled,
+    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+    _ref$className = _ref.className,
+    className = _ref$className === void 0 ? '' : _ref$className,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? {} : _ref$style,
+    id = _ref.id,
+    name = _ref.name,
+    value = _ref.value,
+    error = _ref.error,
+    _ref$options = _ref.options,
+    options = _ref$options === void 0 ? [] : _ref$options,
+    _ref$search = _ref.search,
+    search = _ref$search === void 0 ? '' : _ref$search,
+    _ref$onSearch = _ref.onSearch,
+    onSearch = _ref$onSearch === void 0 ? function () {} : _ref$onSearch;
+  var _useState = (0, _react.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectOpen = _useState2[0],
+    setSelectOpen = _useState2[1];
+  var selectRef = (0, _react.useRef)(null);
+  var _useBaseInput = (0, _useBaseInput2["default"])({
+      name: name,
+      onClick: onClick,
+      onChange: onChange
+    }),
+    focused = _useBaseInput.focused,
+    setFocused = _useBaseInput.setFocused,
+    handleFocus = _useBaseInput.handleFocus,
+    handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  var _useDropdownLogic = (0, _useDropdownLogic2.useDropdownLogic)(props, wrapperRef, onSearch),
-    selectOpen = _useDropdownLogic.selectOpen,
-    focused = _useDropdownLogic.focused,
-    setFocused = _useDropdownLogic.setFocused,
-    hovered = _useDropdownLogic.hovered,
-    searchValue = _useDropdownLogic.searchValue,
-    selectedItem = _useDropdownLogic.selectedItem,
-    setSearchValue = _useDropdownLogic.setSearchValue,
-    setSelectedItem = _useDropdownLogic.setSelectedItem,
-    handleShowSelect = _useDropdownLogic.handleShowSelect,
-    onChange = _useDropdownLogic.onChange;
-  var onSearch = (0, _react.useCallback)(function () {
-    if (typeof props.onSearch === 'function') {
-      props.onSearch(searchValue, selectedItem);
-    }
-  }, [props, searchValue, selectedItem]);
-  var _props$items = props.items,
-    items = _props$items === void 0 ? [] : _props$items,
-    handle = props.handle,
-    _props$selectStyle = props.selectStyle,
-    selectStyle = _props$selectStyle === void 0 ? {} : _props$selectStyle,
-    _props$showClearIcon = props.showClearIcon,
-    showClearIcon = _props$showClearIcon === void 0 ? true : _props$showClearIcon;
-  var filteredItems = items.filter(function (item) {
-    if (!searchValue) return true;
-    var searchLower = searchValue.toLowerCase();
-    var parts = searchLower.split(' ');
-    return parts.some(function (part) {
-      var _item$name;
-      return item === null || item === void 0 || (_item$name = item.name) === null || _item$name === void 0 ? void 0 : _item$name.toLowerCase().replace('ё', 'е').replace('й', 'и').includes(part.replace('ё', 'е').replace('й', 'и'));
-    });
-  });
-  var handleItemClick = function handleItemClick(e, item) {
-    e.stopPropagation();
-    if (typeof handle === 'function') {
-      handle(item);
-    }
-    handleShowSelect(false);
-    setSearchValue(item.name);
-    setSelectedItem(item);
-  };
-  var empty = !searchValue || typeof searchValue === 'string' && !searchValue.length;
-  return null;
 
-  // return (
-  //   <Container dataid="search" style={getContainerStyle()} className={props.className}>
-  //     <InputWrapper className={getWrapperClasses()} style={getWrapperStyle()} onClick={(e) => e.stopPropagation()}>
-  //       <InputContainer ref={wrapperRef}>
-  //         <StyledInput
-  //           selected={selectedItem}
-  //           id={props.id}
-  //           autoComplete="off"
-  //           disabled={props.disabled}
-  //           style={getInputStyle()}
-  //           className={props.className}
-  //           type={props.type}
-  //           name={getName(props.name)}
-  //           value={searchValue}
-  //           placeholder={props.placeholder}
-  //           onClick={() => handleShowSelect(true)}
-  //           onKeyPress={props.onKeyPress}
-  //           onChange={onChange}
-  //           onFocus={() => {
-  //             setFocused(true);
-  //             setHasError(false);
-  //             handleShowSelect(true);
-  //           }}
-  //         />
-  //         {renderPlaceholder()}
-  //         <StyledSelect
-  //           id={`${props.id}-select`}
-  //           className={`${props.className} select`}
-  //           select={selectOpen || focused}
-  //           style={selectStyle}
-  //           onClick={(e) => e.stopPropagation()}
-  //         >
-  //           <SearchResults
-  //             items={filteredItems}
-  //             hoveredIndex={hovered}
-  //             handleClick={handleItemClick}
-  //             className={props.className}
-  //             idPrefix={props.id}
-  //           />
-  //           {!filteredItems.length && !selectedItem && (
-  //             <div className={props.className}>
-  //               <span>{searchValue ? 'Ничего не найдено' : 'Введите запрос'}</span>
-  //             </div>
-  //           )}
-  //         </StyledSelect>
-  //         {!empty && showClearIcon && !props.disabled && (
-  //           <img
-  //             style={props.clearImageStyle}
-  //             className="close"
-  //             src={CloseImage}
-  //             alt=""
-  //             onClick={() => {
-  //               setSearchValue('');
-  //               setHasError(false);
-  //               onSearch();
-  //               if (typeof handle === 'function') {
-  //                 handle(null);
-  //               }
-  //             }}
-  //           />
-  //         )}
-  //         <SearchLoader loading={props.loading} />
-  //         {renderTooltipError()}
-  //       </InputContainer>
-  //     </InputWrapper>
-  //   </Container>
-  // );
-}
+  // // Обработка клика вне компонента
+  (0, _react.useEffect)(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
+
+    // Добавляем обработчик события при монтировании компонента
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Убираем обработчик события при размонтировании компонента
+    return function () {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setSelectOpen]);
+
+  // const onSearch = useCallback(() => {
+  //   if (typeof props.onSearch === 'function') {
+  //     props.onSearch(searchValue, selectedItem);
+  //   }
+  // }, [props, searchValue, selectedItem]);
+  //
+
+  //
+  // const handleItemClick = (e, item) => {
+  //   e.stopPropagation();
+  //   if (typeof handle === 'function') {
+  //     handle(item);
+  //   }
+  //   handleShowSelect(false);
+  //   setSearchValue(item.name);
+  //   setSelectedItem(item);
+  // };
+
+  var handleChange = function handleChange(e, item) {
+    var _item$id;
+    e.stopPropagation();
+    onChange({}, {
+      name: name,
+      id: (_item$id = item.id) !== null && _item$id !== void 0 ? _item$id : '',
+      value: item
+    });
+    handleClose();
+  };
+  var handleOpen = function handleOpen(e) {
+    setSelectOpen(true);
+    setFocused(true);
+  };
+  var handleClose = function handleClose() {
+    setSelectOpen(false);
+    setFocused(false);
+  };
+  var filteredOptions = (0, _react.useMemo)(function () {
+    return options.filter(function (option) {
+      // Первое условие: исключаем элемент с определённым id
+      if (option.id === value) return false;
+
+      // Второе условие: фильтрация по поисковому запросу
+      if (!search) return true;
+      var searchLower = search.toLowerCase();
+      var parts = searchLower.split(' ');
+      return parts.some(function (part) {
+        var _option$name;
+        return option === null || option === void 0 || (_option$name = option.name) === null || _option$name === void 0 ? void 0 : _option$name.toLowerCase().replace('ё', 'е').replace('й', 'и').includes(part.replace('ё', 'е').replace('й', 'и'));
+      });
+    });
+  }, [options, value, search]);
+  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
+    onClick: handleOpen,
+    ref: selectRef,
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles2.StyledInput, {
+      id: id,
+      autoComplete: "off",
+      disabled: disabled,
+      className: inputClassName + ' input',
+      type: "text",
+      name: getName(name),
+      value: search,
+      onChange: onChange
+    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+      id: id,
+      options: filteredOptions,
+      handleClick: handleChange,
+      idPrefix: getName(name)
+    })]
+  });
+};
+var _default = exports["default"] = Search;

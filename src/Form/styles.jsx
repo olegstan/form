@@ -1,8 +1,18 @@
 // styles/containerStyle.js
-import styled, {css} from "styled-components";
+import styled, {css, keyframes} from "styled-components";
 import React, {forwardRef} from "react";
 import InputMask from "react-input-mask";
 import {sharedInputStyle} from "./sharedStyles";
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 // Миксин для автозаполнения в Chrome
 const webkitAutofillStyles = css`
@@ -90,6 +100,25 @@ export const InputContainerStyled = styled.div`
     right: 8px;
     top: 8px;
     cursor: pointer;
+  }
+  
+  img.loader {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    cursor: pointer;
+
+    height: 48px;
+    flex-basis: 48px;
+
+    img, svg {
+      position: absolute;
+      top: 8px;
+      height: 30px;
+      width: 30px;
+      right: -20px;
+      animation: ${rotate} 2s linear infinite;
+    }
   }
 `
 

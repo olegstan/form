@@ -70,20 +70,3 @@ export const OptionsWrapper = styled.div`
     border-radius: 4px;
   }
 `
-
-export const StyledLoader = styled.div`
-  height: 48px;
-
-  flex-basis: 48px;
-  position: absolute;
-  right: 36px;
-
-  img, svg {
-    position: absolute;
-    top: 8px;
-    height: 30px;
-    width: 30px;
-    right: -20px;
-    animation: ${rotate} 2s linear infinite;
-  }
-`

@@ -99,9 +99,6 @@ var DateInput = function DateInput(_ref) {
   }, [value, date]);
   var handleBlur = function handleBlur() {
     setFocused(false);
-    console.log(value);
-    console.log(dateString);
-    // debugger
 
     // Дополнительная логика при потере фокуса
     if (flatpickrInstance.current) {
@@ -134,7 +131,7 @@ var DateInput = function DateInput(_ref) {
     var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
     if (typeof onChange === 'function') {
       onChange({}, {
-        date: dateObj,
+        date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
         value: dateObj ? formatDate(dateObj) : ''
       });
     }

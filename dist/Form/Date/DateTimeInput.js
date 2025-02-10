@@ -66,8 +66,8 @@ var DateTimeInput = function DateTimeInput(_ref) {
       onChange: onChange
     }),
     focused = _useBaseInput.focused,
+    setFocused = _useBaseInput.setFocused,
     handleFocus = _useBaseInput.handleFocus,
-    handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
 
   // 7. Форматирование даты/времени
@@ -128,6 +128,36 @@ var DateTimeInput = function DateTimeInput(_ref) {
     }
     return opts;
   };
+  var handleBlur = function handleBlur() {
+    setFocused(false);
+
+    // Дополнительная логика при потере фокуса
+    if (flatpickrInstance.current) {
+      // flatpickrInstance.current.close();
+
+      if (typeof dateString === 'string' && dateString !== '__.__.____ __:__:__' && !dateString.includes('_')) {
+        var _date = (0, _moment["default"])(dateString, 'DD.MM.YYYY');
+        if (_date.isValid()) {
+          onChange({}, {
+            date: _date.toDate(),
+            value: dateString
+          });
+        } else {
+          onChange({}, {
+            date: null,
+            value: ''
+          });
+          setDateString('');
+        }
+      } else {
+        onChange({}, {
+          date: null,
+          value: ''
+        });
+        setDateString('');
+      }
+    }
+  };
 
   // 9. При выборе даты/времени в календаре
   var handleDateChange = function handleDateChange(selectedDates) {
@@ -145,10 +175,10 @@ var DateTimeInput = function DateTimeInput(_ref) {
     var val = e.target.value;
     setDateString(val);
     if (typeof val === 'string' && val !== '__.__.____ __:__:__' && !val.includes('_')) {
-      var _date = (0, _moment["default"])(val, 'DD.MM.YYYY HH:mm:ss');
-      if (_date.isValid()) {
+      var _date2 = (0, _moment["default"])(val, 'DD.MM.YYYY HH:mm:ss');
+      if (_date2.isValid()) {
         onChange({}, {
-          date: _date.toDate(),
+          date: _date2.toDate(),
           value: val
         });
       }

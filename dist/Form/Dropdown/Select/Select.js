@@ -104,13 +104,8 @@ var Select = function Select(_ref) {
       return option.id === value;
     });
   }, [options, value]);
-  console.log('-----------');
-  console.log(name);
-  console.log(value);
   var valueText = selectedOption ? selectedOption.name : '';
   var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
-  console.log(valueText);
-  console.log(selectedOption);
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
     onClick: handleOpen,
     ref: selectRef,

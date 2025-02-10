@@ -1,7 +1,7 @@
 import React from "react";
 
 export default interface FileInputProps {
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>, data: object) => void;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     className?: string;
