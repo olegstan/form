@@ -1,19 +1,9 @@
-import styled, {keyframes} from 'styled-components'
+import styled from 'styled-components'
 import zindex from "../../../interface/zindex";
-
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
 
 export const StyledOption = styled.div`
   align-items: center;
-  color: #4378FF;
+  color: ${({theme}) => theme.selectOptionTextColor};
   line-height: 24px;
   display: flex;
   padding: 0 15px;
@@ -23,6 +13,7 @@ export const StyledOption = styled.div`
   text-align: left;
   flex-wrap: wrap;
   cursor: pointer;
+  width: 100%;
 
   background-color: ${({theme}) => theme.inputContainerDisabledBackground}
 
@@ -50,11 +41,13 @@ export const StyledOption = styled.div`
 `
 
 export const OptionsWrapper = styled.div`
+  position: absolute;
   border-radius: 0 0 4px 4px;
   top: 50px;
   left: 0;
   width: 100%;
   box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
+  background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 250px;

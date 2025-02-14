@@ -29,10 +29,7 @@ export default function useBaseInput({
   };
 
   const handleChange = (e) => {
-    onChange(e, {
-      name: name,
-      value: e.target.value
-    });
+    onChange(e.target.value);
   };
 
   const handleFocus = () => {

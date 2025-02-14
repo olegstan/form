@@ -35,10 +35,7 @@ function useBaseInput(_ref) {
     }
   };
   var handleChange = function handleChange(e) {
-    onChange(e, {
-      name: name,
-      value: e.target.value
-    });
+    onChange(e.target.value);
   };
   var handleFocus = function handleFocus() {
     setFocused(true);

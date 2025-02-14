@@ -27,7 +27,7 @@ export const useDateInput = ({
         setDate(dateObj);
         setDateString(newDateString);
         if (typeof onChange === 'function') {
-            onChange({}, { date: dateObj ?? null, value: newDateString });
+            onChange(dateObj ?? null);
         }
     };
 
@@ -39,7 +39,7 @@ export const useDateInput = ({
             if (parsedDate.isValid()) {
                 setDate(parsedDate.toDate());
                 if (typeof onChange === 'function') {
-                    onChange({}, { date: parsedDate.toDate(), value: val });
+                    onChange(parsedDate.toDate());
                 }
             }else{
                 setInnerError(['Ошибка, неверный формат даты']);
@@ -58,14 +58,14 @@ export const useDateInput = ({
             ) {
                 const parsedDate = moment(dateString, dateFormat);
                 if (parsedDate.isValid()) {
-                    onChange({}, { date: parsedDate.toDate(), value: dateString });
+                    onChange(parsedDate.toDate());
                     setInnerError(null);
                 } else {
-                    onChange({}, { date: null, value: '' });
+                    onChange(null);
                     setDateString('');
                 }
             } else {
-                onChange({}, { date: null, value: '' });
+                onChange(null);
                 setDateString('');
             }
         }

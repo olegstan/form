@@ -48,13 +48,10 @@ const FileInput: React.FC<FileInputProps> = ({
             reader.onloadend = () => {
                 const base64String = reader.result;
 
-                onChange(e, {
-                    name: name,
-                    value: {
-                        size: file.size,
-                        name: file.name,
-                        content: base64String,
-                    },
+                onChange({
+                    size: file.size,
+                    name: file.name,
+                    content: base64String,
                 });
             };
             reader.readAsDataURL(file);

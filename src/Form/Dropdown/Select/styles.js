@@ -16,6 +16,7 @@ export const StyledSelect = styled.div`
     color: ${({theme}) => theme.selectTextColor};
     background-color: ${({theme}) => theme.selectBackgroundColor};
     padding: 0 !important;
+    
   }
 
   ${sharedInputStyle}

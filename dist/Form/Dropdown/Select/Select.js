@@ -63,7 +63,7 @@ var Select = function Select(_ref) {
   var handleChange = function handleChange(e, item) {
     var _item$id;
     e.stopPropagation();
-    onChange({}, {
+    onChange({
       name: name,
       id: (_item$id = item.id) !== null && _item$id !== void 0 ? _item$id : '',
       value: item

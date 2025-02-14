@@ -44,7 +44,7 @@ const Select: React.FC<SelectProps> = ({
     const handleChange = (e, item) => {
         e.stopPropagation();
 
-        onChange({}, {
+        onChange({
             name: name,
             id: item.id ?? '',
             value: item

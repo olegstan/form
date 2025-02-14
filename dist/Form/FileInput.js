@@ -57,13 +57,10 @@ var FileInput = function FileInput(_ref) {
       var reader = new FileReader();
       reader.onloadend = function () {
         var base64String = reader.result;
-        onChange(e, {
-          name: name,
-          value: {
-            size: file.size,
-            name: file.name,
-            content: base64String
-          }
+        onChange({
+          size: file.size,
+          name: file.name,
+          content: base64String
         });
       };
       reader.readAsDataURL(file);

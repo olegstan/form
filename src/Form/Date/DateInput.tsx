@@ -92,8 +92,6 @@ const DateInput: React.FC<DateInputProps> = ({
 
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] || innerError?.[0] ? ' error' : ''}`;
 
-    console.log(dateString)
-
     return (
         <DateInputComponent
             id={id}

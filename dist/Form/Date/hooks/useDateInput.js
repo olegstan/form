@@ -42,10 +42,7 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
     setDate(dateObj);
     setDateString(newDateString);
     if (typeof onChange === 'function') {
-      onChange({}, {
-        date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
-        value: newDateString
-      });
+      onChange(dateObj !== null && dateObj !== void 0 ? dateObj : null);
     }
   };
   var handleInputChange = function handleInputChange(e) {
@@ -56,10 +53,7 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
       if (parsedDate.isValid()) {
         setDate(parsedDate.toDate());
         if (typeof onChange === 'function') {
-          onChange({}, {
-            date: parsedDate.toDate(),
-            value: val
-          });
+          onChange(parsedDate.toDate());
         }
       } else {
         setInnerError(['Ошибка, неверный формат даты']);
@@ -72,23 +66,14 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
       if (typeof dateString === 'string' && dateString !== dateMask && !dateString.includes('_')) {
         var parsedDate = (0, _moment["default"])(dateString, dateFormat);
         if (parsedDate.isValid()) {
-          onChange({}, {
-            date: parsedDate.toDate(),
-            value: dateString
-          });
+          onChange(parsedDate.toDate());
           setInnerError(null);
         } else {
-          onChange({}, {
-            date: null,
-            value: ''
-          });
+          onChange(null);
           setDateString('');
         }
       } else {
-        onChange({}, {
-          date: null,
-          value: ''
-        });
+        onChange(null);
         setDateString('');
       }
     }

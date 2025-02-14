@@ -114,19 +114,13 @@ const NumberInput: React.FC<NumberInputProps> = ({
                     }
 
                     // Вызываем onChange, пробрасывая prefix
-                    onChange(e, {
-                        name: name,
-                        value: prefix + val
-                    });
+                    onChange(prefix + val);
 
                     setSelectionStart(position);
                     setSelectionEnd(position);
                 } else {
                     // Если val пустое
-                    onChange(e, {
-                        name: name,
-                        value: ''
-                    });
+                    onChange('');
                     setSelectionStart(position);
                     setSelectionEnd(position);
                 }

@@ -107,7 +107,6 @@ var DateInput = function DateInput(_ref) {
     });
   }
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] || innerError !== null && innerError !== void 0 && innerError[0] ? ' error' : '');
-  console.log(dateString);
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(DateInputComponent, {
     id: id,
     style: style,
