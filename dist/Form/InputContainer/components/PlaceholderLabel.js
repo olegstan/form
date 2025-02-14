@@ -12,7 +12,8 @@ var _jsxRuntime = require("react/jsx-runtime");
  */
 
 var PlaceholderLabel = /*#__PURE__*/(0, _react.memo)(function PlaceholderLabel(_ref) {
-  var focused = _ref.focused,
+  var active = _ref.active,
+    focused = _ref.focused,
     placeholder = _ref.placeholder,
     id = _ref.id;
   if (!placeholder) return null;

@@ -5,7 +5,7 @@ import PlaceholderLabel from "./components/PlaceholderLabel";
 import ErrorTooltip from "./components/ErrorTooltip";
 import CloseIcon from "./components/CloseIcon";
 import InputIcon from "./components/InputIcon";
-import { useTheme } from 'styled-components';
+import {useTheme} from 'styled-components';
 
 export function isNotEmpty(value: any) {
     if (value === null || value === undefined) return false;

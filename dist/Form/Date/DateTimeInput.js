@@ -1,20 +1,18 @@
 "use strict";
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
-var _mountFlatpickr = _interopRequireDefault(require("./utils/mountFlatpickr"));
-var _moment = _interopRequireDefault(require("moment"));
+var _useDateInput2 = require("./hooks/useDateInput");
+var _useFlatpickrMount2 = require("./hooks/useFlatpickrMount");
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["id"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], -1 === t.indexOf(o) && {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (-1 !== e.indexOf(n)) continue; t[n] = r[n]; } return t; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -22,12 +20,6 @@ function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t =
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
-function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var formatDateTime = function formatDateTime(dateObj) {
   if (!(dateObj instanceof Date)) return '';
   var day = String(dateObj.getDate()).padStart(2, '0');
@@ -39,7 +31,11 @@ var formatDateTime = function formatDateTime(dateObj) {
   return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
 };
 var DateTimeInput = function DateTimeInput(_ref) {
-  var _ref$onChange = _ref.onChange,
+  var _ref$focused = _ref.focused,
+    focused = _ref$focused === void 0 ? false : _ref$focused,
+    _ref$setFocused = _ref.setFocused,
+    setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
     onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
@@ -59,60 +55,31 @@ var DateTimeInput = function DateTimeInput(_ref) {
     error = _ref.error,
     _ref$defaultDate = _ref.defaultDate,
     defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate;
-  // 1. Забираем из useBaseInput общую логику (аналог BaseInput)
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
       onClick: onClick,
-      onChange: onChange
+      onChange: onChange,
+      setFocused: setFocused
     }),
-    focused = _useBaseInput.focused,
-    setFocused = _useBaseInput.setFocused,
     handleFocus = _useBaseInput.handleFocus,
     getName = _useBaseInput.getName;
-
-  // 7. Форматирование даты/времени
-
-  // 2. Локальные состояния
-  var _useState = (0, _react.useState)(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    componentsLoaded = _useState2[0],
-    setComponentsLoaded = _useState2[1];
-  var _useState3 = (0, _react.useState)(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    InputComponent = _useState4[0],
-    setInputComponent = _useState4[1];
-  var _useState5 = (0, _react.useState)(formatDateTime(value)),
-    _useState6 = _slicedToArray(_useState5, 2),
-    dateString = _useState6[0],
-    setDateString = _useState6[1];
-  var _useState7 = (0, _react.useState)(value),
-    _useState8 = _slicedToArray(_useState7, 2),
-    date = _useState8[0],
-    setDate = _useState8[1];
-
-  // ref для хранения инстанса flatpickr (чтобы уничтожить при размонтировании)
-  var flatpickrInstance = (0, _react.useRef)(null);
-
-  // 3. Динамически импортируем flatpickr, react-flatpickr, стили
-  (0, _react.useEffect)(function () {
-    return (0, _mountFlatpickr["default"])(setComponentsLoaded, setInputComponent);
-  }, []);
-
-  // 4. Уничтожаем flatpickr-инстанс при размонтировании
-  (0, _react.useEffect)(function () {
-    return function () {
-      if (flatpickrInstance.current) {
-        flatpickrInstance.current.destroy();
-      }
-    };
-  }, []);
-
-  // 5. При изменении props.value обновляем локальный dateValue
-  (0, _react.useEffect)(function () {
-    if (value !== date) {
-      setDate(value);
-    }
-  }, [value, date]);
+  var _useFlatpickrMount = (0, _useFlatpickrMount2.useFlatpickrMount)(),
+    componentsLoaded = _useFlatpickrMount.componentsLoaded,
+    DateInputComponent = _useFlatpickrMount.DateInputComponent,
+    flatpickrInstance = _useFlatpickrMount.flatpickrInstance;
+  var _useDateInput = (0, _useDateInput2.useDateInput)({
+      value: value,
+      onChange: onChange,
+      flatpickrInstance: flatpickrInstance,
+      setFocused: setFocused,
+      dateFormat: 'DD.MM.YYYY HH:mm:ss',
+      formatDate: formatDateTime
+    }),
+    date = _useDateInput.date,
+    dateString = _useDateInput.dateString,
+    handleDateChange = _useDateInput.handleDateChange,
+    handleInputChange = _useDateInput.handleInputChange,
+    handleBlur = _useDateInput.handleBlur;
 
   // 8. Опции для Flatpickr (включаем время и секунды)
   var getOptions = function getOptions() {
@@ -128,65 +95,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     }
     return opts;
   };
-  var handleBlur = function handleBlur() {
-    setFocused(false);
-
-    // Дополнительная логика при потере фокуса
-    if (flatpickrInstance.current) {
-      // flatpickrInstance.current.close();
-
-      if (typeof dateString === 'string' && dateString !== '__.__.____ __:__:__' && !dateString.includes('_')) {
-        var _date = (0, _moment["default"])(dateString, 'DD.MM.YYYY');
-        if (_date.isValid()) {
-          onChange({}, {
-            date: _date.toDate(),
-            value: dateString
-          });
-        } else {
-          onChange({}, {
-            date: null,
-            value: ''
-          });
-          setDateString('');
-        }
-      } else {
-        onChange({}, {
-          date: null,
-          value: ''
-        });
-        setDateString('');
-      }
-    }
-  };
-
-  // 9. При выборе даты/времени в календаре
-  var handleDateChange = function handleDateChange(selectedDates) {
-    var dateObj = selectedDates === null || selectedDates === void 0 ? void 0 : selectedDates[0];
-    if (typeof onChange === 'function') {
-      var _dateString = dateObj ? formatDateTime(dateObj) : '';
-      onChange({}, {
-        date: dateObj !== null && dateObj !== void 0 ? dateObj : null,
-        value: _dateString
-      });
-      setDateString(_dateString);
-    }
-  };
-
-  // 10. Изменение внутри инпута вручную (с учётом маски)
-  var handleInputChange = function handleInputChange(e) {
-    var val = e.target.value;
-    setDateString(val);
-    if (typeof val === 'string' && val !== '__.__.____ __:__:__' && !val.includes('_')) {
-      var _date2 = (0, _moment["default"])(val, 'DD.MM.YYYY HH:mm:ss');
-      if (_date2.isValid()) {
-        onChange({}, {
-          date: _date2.toDate(),
-          value: val
-        });
-      }
-    }
-  };
-  if (!componentsLoaded || !InputComponent) return null;
+  if (!componentsLoaded || !DateInputComponent) return null;
   if (disabled) {
     return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
       mask: "99.99.9999 99:99:99",
@@ -199,7 +108,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     });
   }
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(InputComponent, {
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(DateInputComponent, {
     id: id,
     style: style,
     disabled: disabled,

@@ -5,6 +5,7 @@
 import {memo} from "react";
 
 const PlaceholderLabel = memo(function PlaceholderLabel({
+                                                            active,
                                                             focused,
                                                             placeholder,
                                                             id

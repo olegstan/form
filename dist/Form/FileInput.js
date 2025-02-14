@@ -13,7 +13,11 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
 var FileInput = function FileInput(_ref) {
-  var _ref$onChange = _ref.onChange,
+  var _ref$focused = _ref.focused,
+    focused = _ref$focused === void 0 ? false : _ref$focused,
+    _ref$setFocused = _ref.setFocused,
+    setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
     onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,
@@ -32,7 +36,8 @@ var FileInput = function FileInput(_ref) {
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
       onClick: onClick,
-      onChange: onChange
+      onChange: onChange,
+      setFocused: setFocused
     }),
     getName = _useBaseInput.getName;
   (0, _react.useEffect)(function () {

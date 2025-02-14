@@ -1,11 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 
 import useBaseInput from '../hooks/useBaseInput';
 
 import {MaskedStyledInput} from '../styles';
-import mountFlatpickr from "./utils/mountFlatpickr";
-import moment from "moment";
 import DateInputProps from "../types/DateInputProps";
+import {useDateInput} from "./hooks/useDateInput";
+import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
 
 const formatDate = (d) => {
     if (!(d instanceof Date)) return '';
@@ -32,8 +32,6 @@ const DateInput: React.FC<DateInputProps> = ({
                        defaultDate = null
                    }) => {
     const {
-        focused,
-        setFocused,
         handleFocus,
         getName,
     } = useBaseInput({
@@ -43,90 +41,23 @@ const DateInput: React.FC<DateInputProps> = ({
         setFocused
     })
 
-    const [componentsLoaded, setComponentsLoaded] = useState(false);
-    const [InputComponent, setInputComponent] = useState(null);
-    const [dateString, setDateString] = useState(formatDate(value));
-    const [date, setDate] = useState(value);
+    const { componentsLoaded, DateInputComponent, flatpickrInstance } = useFlatpickrMount();
 
-    const flatpickrInstance = useRef(null);
+    const {
+        date,
+        dateString,
+        handleDateChange,
+        handleInputChange,
+        handleBlur
+    } = useDateInput({
+        value,
+        onChange,
+        flatpickrInstance,
+        setFocused,
+        dateFormat: 'DD.MM.YYYY',
+        formatDate
+    });
 
-    useEffect(() => {
-        return mountFlatpickr(setComponentsLoaded, setInputComponent)
-    }, []);
-
-    useEffect(() => {
-        return () => {
-            if (flatpickrInstance.current) {
-                flatpickrInstance.current.destroy();
-            }
-        };
-    }, []);
-
-    useEffect(() => {
-        if (value !== date) {
-            setDate(value);
-        }
-    }, [value, date]);
-
-    const handleBlur = () => {
-        setFocused(false);
-
-        // Дополнительная логика при потере фокуса
-        if (flatpickrInstance.current) {
-            console.log(dateString)
-
-            if (
-                typeof dateString === 'string' &&
-                dateString !== '__.__.____' &&
-                !dateString.includes('_')
-            ) {
-                let date = moment(dateString, 'DD.MM.YYYY');
-
-                if(date.isValid())
-                {
-                    onChange({}, {date: date.toDate(), value: dateString});
-                }else{
-                    onChange({}, {date: null, value: ''});
-                    setDateString('');
-                }
-            }else{
-                onChange({}, {date: null, value: ''});
-                setDateString('');
-            }
-        }
-    };
-
-    const handleDateChange = (selectedDates) =>
-    {
-        const dateObj = selectedDates?.[0];
-
-        if (typeof onChange === 'function') {
-            let dateString = dateObj ? formatDate(dateObj) : '';
-            onChange({}, {
-                date: dateObj ?? null,
-                value: dateString
-            });
-            setDateString(dateString);
-        }
-    };
-
-    const handleInputChange = (e) => {
-        const val = e.target.value;
-        setDateString(val);
-
-        if (
-            typeof val === 'string' &&
-            val !== '__.__.____' &&
-            !val.includes('_')
-        ) {
-            let date = moment(val, 'DD.MM.YYYY');
-
-            if(date.isValid())
-            {
-                onChange({}, {date: date.toDate(), value: val});
-            }
-        }
-    };
 
     const getOptions = () => {
         let opts = {
@@ -140,7 +71,7 @@ const DateInput: React.FC<DateInputProps> = ({
         return opts;
     };
 
-    if (!componentsLoaded || !InputComponent) return null;
+    if (!componentsLoaded || !DateInputComponent) return null;
 
     if (disabled) {
         return (
@@ -158,7 +89,7 @@ const DateInput: React.FC<DateInputProps> = ({
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (
-        <InputComponent
+        <DateInputComponent
             id={id}
             style={style}
             disabled={disabled}
