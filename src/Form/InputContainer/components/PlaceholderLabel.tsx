@@ -5,9 +5,9 @@
 import {memo} from "react";
 
 const PlaceholderLabel = memo(function PlaceholderLabel({
+                                                            focused,
                                                             placeholder,
-                                                            id,
-                                                            active
+                                                            id
                                                         }: {
     placeholder?: string;
     id?: string;
@@ -16,7 +16,7 @@ const PlaceholderLabel = memo(function PlaceholderLabel({
     if (!placeholder) return null;
 
     return (
-        <label htmlFor={id} className={`placeholder${active ? ' active' : ''}`}>
+        <label htmlFor={id} className={`placeholder${focused ? ' focused' : ''}`}>
             {placeholder}
         </label>
     );

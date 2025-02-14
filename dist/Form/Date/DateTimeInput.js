@@ -198,6 +198,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       }
     });
   }
+  var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(InputComponent, {
     id: id,
     style: style,
@@ -207,7 +208,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     placeholder: placeholder,
     autoComplete: autoComplete || 'off',
     options: getOptions(),
-    className: className + (focused ? ' focused' : '') + (error !== null && error !== void 0 && error[0] ? ' error' : ''),
+    className: inputClassName,
     onReady: function onReady(_, __, fp) {
       flatpickrInstance.current = fp;
       fp.calendarContainer.id = "".concat(id, "-container");

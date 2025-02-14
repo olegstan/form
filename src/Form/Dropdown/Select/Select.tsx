@@ -6,6 +6,8 @@ import SelectProps from "../../types/SelectProps";
 import Results from "../components/Results";
 
 const Select: React.FC<SelectProps> = ({
+                                   focused = false,
+                                   setFocused = () => {},
                                    onKeyPress = () => {},
                                    onChange = () => {},
                                    onClick = () => {},
@@ -20,8 +22,6 @@ const Select: React.FC<SelectProps> = ({
                                }) => {
 
     const {
-        focused,
-        setFocused,
         handleFocus,
         handleBlur,
         getName,
@@ -29,6 +29,7 @@ const Select: React.FC<SelectProps> = ({
         name,
         onClick,
         onChange,
+        setFocused
     });
 
 
@@ -88,7 +89,7 @@ const Select: React.FC<SelectProps> = ({
         [options, value]
     );
     const valueText = selectedOption ? selectedOption.name : '';
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect
         onClick={handleOpen}
@@ -97,7 +98,7 @@ const Select: React.FC<SelectProps> = ({
         <StyledFakeInput
             id={id}
             style={style}
-            className={inputClassName + ' input'}
+            className={inputClassName}
             name={getName(name)}
         >
             {valueText}

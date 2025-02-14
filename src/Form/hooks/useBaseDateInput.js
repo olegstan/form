@@ -8,7 +8,7 @@ import {detect} from 'detect-browser';
  * - cDM/cWU для клика вне (handleClickOutside)
  * - cDU для обновления ошибок из props.errors
  * - focused, hasError, error в стейте
- * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
+ * - getPlaceholderClassName, style, getWrapperStyle, getInputStyle
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
@@ -83,8 +83,8 @@ export default function useBaseDateInput(props, callerClassName) {
     return name?.replace('country', 'couuntry')?.replace('state', 'staate');
   }, []);
 
-  // getContainerStyle
-  const getContainerStyle = useCallback(() => {
+  // style
+  const style = useCallback(() => {
     let containerStyle = { ...props.containerStyle };
     if (focused) {
       containerStyle.border = '1px solid #1874DE';
@@ -206,7 +206,7 @@ export default function useBaseDateInput(props, callerClassName) {
     handleShowSelect,
     handleClickOutside,
     getName,
-    getContainerStyle,
+    style,
     getPlaceholderClassName,
     getWrapperClasses,
 

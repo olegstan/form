@@ -12,7 +12,11 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 // <-- наш кастомный хук
 
 var MaskedInput = function MaskedInput(_ref) {
-  var _ref$onKeyPress = _ref.onKeyPress,
+  var _ref$focused = _ref.focused,
+    focused = _ref$focused === void 0 ? false : _ref$focused,
+    _ref$setFocused = _ref.setFocused,
+    setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
@@ -36,9 +40,9 @@ var MaskedInput = function MaskedInput(_ref) {
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
       onClick: onClick,
-      onChange: onChange
+      onChange: onChange,
+      setFocused: setFocused
     }),
-    focused = _useBaseInput.focused,
     handleClick = _useBaseInput.handleClick,
     handleChange = _useBaseInput.handleChange,
     handleFocus = _useBaseInput.handleFocus,

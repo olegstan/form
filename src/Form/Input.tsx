@@ -5,6 +5,8 @@ import {StyledInput} from './styles';
 import InputProps from "./types/InputProps";
 
 const Input: React.FC<InputProps> = ({
+                                        focused = false,
+                                        setFocused = () => {},
                                         onKeyPress = () => {},
                                         onChange = () => {},
                                         onClick = () => {},
@@ -20,7 +22,6 @@ const Input: React.FC<InputProps> = ({
                                     }) => {
 
     const {
-        focused,
         handleClick,
         handleChange,
         handleFocus,
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
         name,
         onClick,
         onChange,
+        setFocused,
     });
 
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;

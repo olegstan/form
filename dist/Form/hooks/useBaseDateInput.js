@@ -26,7 +26,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } /**
  * - cDM/cWU для клика вне (handleClickOutside)
  * - cDU для обновления ошибок из props.errors
  * - focused, hasError, error в стейте
- * - getPlaceholderClassName, getContainerStyle, getWrapperStyle, getInputStyle
+ * - getPlaceholderClassName, style, getWrapperStyle, getInputStyle
  * - getName (обход бага с autocomplete Safari)
  * - handleShowSelect
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
@@ -102,8 +102,8 @@ function useBaseDateInput(props, callerClassName) {
     return name === null || name === void 0 || (_name$replace = name.replace('country', 'couuntry')) === null || _name$replace === void 0 ? void 0 : _name$replace.replace('state', 'staate');
   }, []);
 
-  // getContainerStyle
-  var getContainerStyle = (0, _react.useCallback)(function () {
+  // style
+  var style = (0, _react.useCallback)(function () {
     var containerStyle = _objectSpread({}, props.containerStyle);
     if (focused) {
       containerStyle.border = '1px solid #1874DE';
@@ -213,7 +213,7 @@ function useBaseDateInput(props, callerClassName) {
     handleShowSelect: handleShowSelect,
     handleClickOutside: handleClickOutside,
     getName: getName,
-    getContainerStyle: getContainerStyle,
+    style: style,
     getPlaceholderClassName: getPlaceholderClassName,
     getWrapperClasses: getWrapperClasses,
     // "рендерные" методы, если вы хотите пользоваться ими напрямую

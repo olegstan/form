@@ -5,6 +5,8 @@ import {StyledTextArea} from './styles';
 import TextAreaProps from "./types/TextAreaProps";
 
 const TextArea: React.FC<TextAreaProps> = ({
+                    focused = false,
+                    setFocused = () => {},
                     onKeyPress = () => {},
                     onChange = () => {},
                     onClick = () => {},
@@ -20,7 +22,6 @@ const TextArea: React.FC<TextAreaProps> = ({
                   }) => {
 
     const {
-        focused,
         handleClick,
         handleChange,
         handleFocus,
@@ -30,6 +31,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         name,
         onClick,
         onChange,
+        setFocused,
     });
 
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;

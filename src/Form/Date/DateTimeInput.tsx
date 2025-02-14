@@ -18,6 +18,8 @@ const formatDateTime = (dateObj) => {
 };
 
 const DateTimeInput: React.FC<DateTimeInputProps> = ({
+                         focused = false,
+                         setFocused = () => {},
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
@@ -42,6 +44,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     name,
     onClick,
     onChange,
+    setFocused
   });
 
   // 7. Форматирование даты/времени
@@ -173,6 +176,8 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     );
   }
 
+  const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+
   return (
       <InputComponent
           id={id}
@@ -183,7 +188,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
           placeholder={placeholder}
           autoComplete={autoComplete || 'off'}
           options={getOptions()}
-          className={className + (focused ? ' focused' : '') + (error?.[0] ? ' error' : '')}
+          className={inputClassName}
           onReady={(_, __, fp) => {
             flatpickrInstance.current = fp;
             fp.calendarContainer.id = `${id}-container`;

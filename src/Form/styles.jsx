@@ -59,6 +59,31 @@ export const Container = styled.div`
   ${({ disabled }) => disabled && disabledStyles}
 `;
 
+const placeholder = css`
+  & .placeholder {
+    pointer-events: none;
+    line-height: 0.1;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    user-select: none;
+    text-align: left;
+    color: ${({ theme }) => theme.inputPlaceholderTextColor};
+    width: 300px;
+    transition: transform 0.25s, opacity 0.25s ease-in-out;
+    transform-origin: 0 0;
+    padding: 25px 12px;
+    font-size: 14px;
+    z-index: 1500;
+  }
+
+  // Если поле не пустое или в фокусе, то placeholder должен быть сверху 
+
+  & .placeholder.focused {
+    transform: translate(0.25em, -15%) scale(0.8);
+  }
+`
 
 export const InputContainerStyled = styled.div`
   background-color: transparent;
@@ -120,6 +145,8 @@ export const InputContainerStyled = styled.div`
       animation: ${rotate} 2s linear infinite;
     }
   }
+  
+  ${placeholder};
 `
 
 

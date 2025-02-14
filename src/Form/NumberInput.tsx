@@ -6,6 +6,8 @@ import {StyledInput} from './styles';
 import NumberInputProps from "./types/NumberInputProps";
 
 const NumberInput: React.FC<NumberInputProps> = ({
+                         focused = false,
+                         setFocused = () => {},
                          onKeyPress = () => {},
                          onChange = () => {},
                          onClick = () => {},
@@ -29,7 +31,6 @@ const NumberInput: React.FC<NumberInputProps> = ({
     const inputRef = useRef(null);
 
     const {
-        focused,
         handleClick,
         handleFocus,
         handleBlur,
@@ -38,6 +39,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         name,
         onClick,
         onChange,
+        setFocused
     });
 
     // Аналог componentDidUpdate(prevProps) для значения

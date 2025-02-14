@@ -6,6 +6,8 @@ import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
 
 const Search: React.FC<SearchProps> = ({
+                                   focused = false,
+                                   setFocused = () => {},
                                    onKeyPress = () => {},
                                    onChange = () => {},
                                    onClick = () => {},
@@ -26,8 +28,6 @@ const Search: React.FC<SearchProps> = ({
 
 
     const {
-        focused,
-        setFocused,
         handleFocus,
         handleBlur,
         getName,
@@ -35,6 +35,7 @@ const Search: React.FC<SearchProps> = ({
         name,
         onClick,
         onChange,
+        setFocused
     });
 
 // // Обработка клика вне компонента
@@ -123,7 +124,7 @@ const Search: React.FC<SearchProps> = ({
         });
     }, [options, value, search]);
 
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect
             onClick={handleOpen}
@@ -133,7 +134,7 @@ const Search: React.FC<SearchProps> = ({
                   id={id}
                   autoComplete="off"
                   disabled={disabled}
-                  className={inputClassName + ' input'}
+                  className={inputClassName}
                   type='text'
                   name={getName(name)}
                   value={search}

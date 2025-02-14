@@ -4,6 +4,8 @@ import {StyledInput} from './styles';
 import FileInputProps from "./types/FileInputProps";
 
 const FileInput: React.FC<FileInputProps> = ({
+                       focused = false,
+                       setFocused = () => {},
                        onChange = () => {},
                        onClick = () => {},
                        disabled = false,
@@ -23,6 +25,7 @@ const FileInput: React.FC<FileInputProps> = ({
         name,
         onClick,
         onChange,
+        setFocused
     });
 
     useEffect(() => {

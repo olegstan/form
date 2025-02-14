@@ -12,13 +12,13 @@ var _jsxRuntime = require("react/jsx-runtime");
  */
 
 var PlaceholderLabel = /*#__PURE__*/(0, _react.memo)(function PlaceholderLabel(_ref) {
-  var placeholder = _ref.placeholder,
-    id = _ref.id,
-    active = _ref.active;
+  var focused = _ref.focused,
+    placeholder = _ref.placeholder,
+    id = _ref.id;
   if (!placeholder) return null;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
     htmlFor: id,
-    className: "placeholder".concat(active ? ' active' : ''),
+    className: "placeholder".concat(focused ? ' focused' : ''),
     children: placeholder
   });
 });

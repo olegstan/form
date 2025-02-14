@@ -13,9 +13,8 @@ import React, {useCallback, useState} from 'react';
 export default function useBaseInput({
                                        onClick,
                                        onChange,
+                                       setFocused
                                      }) {
-
-  const [focused, setFocused] = useState(false);  // аналог this.state.focused
 
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
   const getName = useCallback((name) => {
@@ -45,8 +44,6 @@ export default function useBaseInput({
   };
 
   return {
-    focused,
-    setFocused,
     handleClick,
     handleChange,
     handleFocus,

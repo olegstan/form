@@ -4,6 +4,8 @@ import {MaskedStyledInput} from './styles';
 import MaskedInputProps from "./types/MaskedInputProps";
 
 const MaskedInput: React.FC<MaskedInputProps> = ({
+                         focused = false,
+                         setFocused = () => {},
                          onKeyPress = () => {},
                          onChange = () => {},
                          onClick = () => {},
@@ -19,7 +21,6 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
                          mask,
                      }) => {
     const {
-        focused,
         handleClick,
         handleChange,
         handleFocus,
@@ -29,6 +30,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         name,
         onClick,
         onChange,
+        setFocused,
     });
 
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;

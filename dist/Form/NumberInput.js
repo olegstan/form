@@ -20,7 +20,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } // NumberInput.js
 var NumberInput = function NumberInput(_ref) {
-  var _ref$onKeyPress = _ref.onKeyPress,
+  var _ref$focused = _ref.focused,
+    focused = _ref$focused === void 0 ? false : _ref$focused,
+    _ref$setFocused = _ref.setFocused,
+    setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
@@ -57,9 +61,9 @@ var NumberInput = function NumberInput(_ref) {
   var _useBaseInput = (0, _useBaseInput2["default"])({
       name: name,
       onClick: onClick,
-      onChange: onChange
+      onChange: onChange,
+      setFocused: setFocused
     }),
-    focused = _useBaseInput.focused,
     handleClick = _useBaseInput.handleClick,
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
