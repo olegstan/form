@@ -32,6 +32,7 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
         alt: "calendar"
       });
     case 'Select':
+    case 'GroupSelect':
       return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         className: "arrow",
         src: _arrow["default"],

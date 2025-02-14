@@ -49,6 +49,7 @@ var MaskedInput = function MaskedInput(_ref) {
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
   var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  console.log(mask);
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
     id: id,
     style: style,

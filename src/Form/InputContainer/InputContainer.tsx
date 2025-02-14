@@ -91,6 +91,7 @@ function InputContainer({
 
         switch (typeName) {
             case 'Select':
+            case 'GroupSelect':
                 return {...style, ...{backgroundColor: theme.selectBackgroundColor}}
             default:
                 return style

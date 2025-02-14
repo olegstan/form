@@ -2,7 +2,7 @@ import React from 'react';
 import Item from './Item';
 import {OptionsWrapper} from "./styles";
 
-const Results = ({id, options, handleClick, className, idPrefix}) => (
+const GroupResults = ({id, options, handleClick, className, idPrefix}) => (
     <OptionsWrapper id={id ? `${id}-select` : undefined}>
         {options.length === 0 ? (<Item
                 key={'none'}
@@ -23,4 +23,4 @@ const Results = ({id, options, handleClick, className, idPrefix}) => (
     </OptionsWrapper>
 );
 
-export default Results;
+export default GroupResults;

@@ -26,6 +26,7 @@ var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
   var notEmpty = false;
   switch (typeName) {
     case 'Select':
+    case 'GroupSelect':
     case 'DateInput':
     case 'DateTimeInput':
       //там и так будет иконка календаря
@@ -41,10 +42,7 @@ var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
     src: _ic_close_only["default"],
     alt: "close",
     onClick: function onClick(e) {
-      onChange === null || onChange === void 0 || onChange(e, {
-        name: name || '',
-        value: ''
-      });
+      onChange === null || onChange === void 0 || onChange('');
     }
   });
 });

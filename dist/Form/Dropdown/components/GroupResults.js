@@ -9,7 +9,7 @@ var _Item = _interopRequireDefault(require("./Item"));
 var _styles = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-var Results = function Results(_ref) {
+var GroupResults = function GroupResults(_ref) {
   var id = _ref.id,
     options = _ref.options,
     handleClick = _ref.handleClick,
@@ -36,4 +36,4 @@ var Results = function Results(_ref) {
     })
   });
 };
-var _default = exports["default"] = Results;
+var _default = exports["default"] = GroupResults;

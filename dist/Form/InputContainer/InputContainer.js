@@ -103,6 +103,7 @@ function InputContainer(_ref) {
   var containerStyle = (0, _react.useMemo)(function () {
     switch (typeName) {
       case 'Select':
+      case 'GroupSelect':
         return _objectSpread(_objectSpread({}, style), {
           backgroundColor: theme.selectBackgroundColor
         });

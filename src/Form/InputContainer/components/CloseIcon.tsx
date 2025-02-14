@@ -17,7 +17,7 @@ const CloseIcon = memo(function CloseIcon({
     iconClose?: boolean;
     value?: any;
     name?: string;
-    onChange?: (e: MouseEvent<HTMLImageElement>, data: { name: string; value: any }) => void;
+    onChange?: (value: any) => void;
 }) {
     // если тип не подходит или выключена опция iconClose — не показываем
     //если передано iconClose = false то рендерить икноку для очистки не нужно
@@ -28,6 +28,7 @@ const CloseIcon = memo(function CloseIcon({
     switch (typeName)
     {
         case 'Select':
+        case 'GroupSelect':
         case 'DateInput':
         case 'DateTimeInput':
             //там и так будет иконка календаря
@@ -46,7 +47,7 @@ const CloseIcon = memo(function CloseIcon({
             src={Close}
             alt="close"
             onClick={(e) => {
-                onChange?.(e, { name: name || '', value: '' });
+                onChange?.('' );
             }}
         />
     );
