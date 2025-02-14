@@ -79,5 +79,5 @@ var _FileInput = _interopRequireDefault(require("./FileInput"));
 var _Select = _interopRequireDefault(require("./Dropdown/Select/Select"));
 var _Search = _interopRequireDefault(require("./Dropdown/Search/Search"));
 var _TextArea = _interopRequireDefault(require("./TextArea"));
-var _InputContainer = _interopRequireDefault(require("./InputContainer"));
+var _InputContainer = _interopRequireDefault(require("./InputContainer/InputContainer"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
