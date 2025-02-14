@@ -35,6 +35,10 @@ var DateTimeInput = function DateTimeInput(_ref) {
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$innerError = _ref.innerError,
+    innerError = _ref$innerError === void 0 ? [] : _ref$innerError,
+    _ref$setInnerError = _ref.setInnerError,
+    setInnerError = _ref$setInnerError === void 0 ? function () {} : _ref$setInnerError,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
@@ -72,8 +76,10 @@ var DateTimeInput = function DateTimeInput(_ref) {
       onChange: onChange,
       flatpickrInstance: flatpickrInstance,
       setFocused: setFocused,
+      dateMask: '__.__.____ __:__:__',
       dateFormat: 'DD.MM.YYYY HH:mm:ss',
-      formatDate: formatDateTime
+      formatDate: formatDateTime,
+      setInnerError: setInnerError
     }),
     date = _useDateInput.date,
     dateString = _useDateInput.dateString,
@@ -107,7 +113,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       }
     });
   }
-  var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] || innerError !== null && innerError !== void 0 && innerError[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(DateInputComponent, {
     id: id,
     style: style,
@@ -118,7 +124,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
     autoComplete: autoComplete || 'off',
     options: getOptions(),
     className: inputClassName,
-    onReady: function onReady(_, __, fp) {
+    onReady: function onReady(selectedDates, dateStr, fp) {
       flatpickrInstance.current = fp;
       fp.calendarContainer.id = "".concat(id, "-container");
     },

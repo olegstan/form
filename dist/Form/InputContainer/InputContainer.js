@@ -46,6 +46,10 @@ function InputContainer(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     focused = _useState2[0],
     setFocused = _useState2[1]; // аналог this.state.focused
+  var _useState3 = (0, _react.useState)(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    innerError = _useState4[0],
+    setInnerError = _useState4[1]; // аналог this.state.focused
 
   var theme = (0, _styledComponents.useTheme)();
 
@@ -56,7 +60,9 @@ function InputContainer(_ref) {
   //@ts-ignore
   var clonedChild = /*#__PURE__*/_react["default"].cloneElement(child, {
     focused: focused,
-    setFocused: setFocused
+    setFocused: setFocused,
+    innerError: innerError,
+    setInnerError: setInnerError
   });
   var _ref2 = child.props || {},
     placeholder = _ref2.placeholder,
@@ -93,10 +99,6 @@ function InputContainer(_ref) {
         return isNotEmpty(value);
     }
   }, [placeholder, typeName, value, search]);
-  console.log('----------');
-  console.log(typeName);
-  console.log(value);
-  console.log(isPlaceholderActive);
   var containerClassName = "".concat(className).concat(disabled ? ' disabled' : '');
   var containerStyle = (0, _react.useMemo)(function () {
     switch (typeName) {
@@ -122,7 +124,7 @@ function InputContainer(_ref) {
         id: id,
         active: isPlaceholderActive
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_ErrorTooltip["default"], {
-        error: error,
+        error: error || innerError,
         id: id
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_CloseIcon["default"], {
         typeName: typeName,

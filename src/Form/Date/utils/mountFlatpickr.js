@@ -34,8 +34,8 @@ export default function initFlatpickr(setComponentsLoaded, setFlatpickrComponent
 
             // Создаём стилизованный компонент на базе ReactFlatpickr
             const StyledFlatpickr = styled(ReactFlatpickr)`
-        ${sharedInputStyle}
-      `;
+                ${sharedInputStyle}
+              `;
 
             // Передаём компонент в состояние
             setFlatpickrComponent(() => StyledFlatpickr);

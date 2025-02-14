@@ -19,7 +19,9 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
     flatpickrInstance = _ref.flatpickrInstance,
     setFocused = _ref.setFocused,
     dateFormat = _ref.dateFormat,
-    formatDate = _ref.formatDate;
+    dateMask = _ref.dateMask,
+    formatDate = _ref.formatDate,
+    setInnerError = _ref.setInnerError;
   var _useState = (0, _react.useState)(value),
     _useState2 = _slicedToArray(_useState, 2),
     date = _useState2[0],
@@ -59,19 +61,22 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
             value: val
           });
         }
+      } else {
+        setInnerError(['Ошибка, неверный формат даты']);
       }
     }
   };
   var handleBlur = function handleBlur() {
     setFocused(false);
     if (flatpickrInstance.current) {
-      if (typeof dateString === 'string' && dateString !== '__.__.____' && !dateString.includes('_')) {
+      if (typeof dateString === 'string' && dateString !== dateMask && !dateString.includes('_')) {
         var parsedDate = (0, _moment["default"])(dateString, dateFormat);
         if (parsedDate.isValid()) {
           onChange({}, {
             date: parsedDate.toDate(),
             value: dateString
           });
+          setInnerError(null);
         } else {
           onChange({}, {
             date: null,

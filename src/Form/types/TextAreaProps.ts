@@ -13,4 +13,6 @@ export default interface TextAreaProps {
     autoComplete?: string;
     error?: string|object;
     rows?: number;
+    autoResize?: boolean;
+    disableResize?: boolean;
 }

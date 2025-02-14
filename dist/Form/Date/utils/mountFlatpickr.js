@@ -54,7 +54,7 @@ function initFlatpickr(setComponentsLoaded, setFlatpickrComponent) {
     }
 
     // Создаём стилизованный компонент на базе ReactFlatpickr
-    var StyledFlatpickr = (0, _styledComponents["default"])(ReactFlatpickr)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        ", "\n      "])), _styles.sharedInputStyle);
+    var StyledFlatpickr = (0, _styledComponents["default"])(ReactFlatpickr)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n                ", "\n              "])), _styles.sharedInputStyle);
 
     // Передаём компонент в состояние
     setFlatpickrComponent(function () {

@@ -53,7 +53,7 @@ export const Container = styled.div`
     border: 1px solid #4378FF;
   }
   &:has(.error) {
-    border: 2px solid #EF5E70;
+    border: 1px solid #EF5E70;
   }
   
   ${({ disabled }) => disabled && disabledStyles}

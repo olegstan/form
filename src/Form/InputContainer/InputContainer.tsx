@@ -32,6 +32,7 @@ function InputContainer({
     error?: string|null;
 }) {
     const [focused, setFocused] = useState(false);  // аналог this.state.focused
+    const [innerError, setInnerError] = useState(false);  // аналог this.state.focused
 
     const theme = useTheme();
 
@@ -41,8 +42,10 @@ function InputContainer({
     // Клонируем элемент и добавляем обработчики событий
     //@ts-ignore
     const clonedChild = React.cloneElement(child, {
-        focused: focused,
-        setFocused: setFocused,
+        focused,
+        setFocused,
+        innerError,
+        setInnerError,
     });
 
     const {
@@ -82,11 +85,6 @@ function InputContainer({
         }
     }, [placeholder, typeName, value, search]);
 
-    console.log('----------')
-    console.log(typeName)
-    console.log(value)
-    console.log(isPlaceholderActive)
-
     const containerClassName = `${className}${disabled ? ' disabled' : ''}`;
 
     const containerStyle = useMemo(() => {
@@ -115,7 +113,7 @@ function InputContainer({
                     active={isPlaceholderActive}
                 />
                 <ErrorTooltip
-                    error={error}
+                    error={error || innerError}
                     id={id}
                 />
                 <CloseIcon

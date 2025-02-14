@@ -7,7 +7,9 @@ export const useDateInput = ({
                                  flatpickrInstance,
                                  setFocused,
                                  dateFormat,
-                                 formatDate
+                                 dateMask,
+                                 formatDate,
+                                 setInnerError
                             }) => {
     const [date, setDate] = useState(value);
     const [dateString, setDateString] = useState(formatDate(value, dateFormat));
@@ -39,6 +41,8 @@ export const useDateInput = ({
                 if (typeof onChange === 'function') {
                     onChange({}, { date: parsedDate.toDate(), value: val });
                 }
+            }else{
+                setInnerError(['Ошибка, неверный формат даты']);
             }
         }
     };
@@ -49,12 +53,13 @@ export const useDateInput = ({
         if (flatpickrInstance.current) {
             if (
                 typeof dateString === 'string' &&
-                dateString !== '__.__.____' &&
+                dateString !== dateMask &&
                 !dateString.includes('_')
             ) {
                 const parsedDate = moment(dateString, dateFormat);
                 if (parsedDate.isValid()) {
                     onChange({}, { date: parsedDate.toDate(), value: dateString });
+                    setInnerError(null);
                 } else {
                     onChange({}, { date: null, value: '' });
                     setDateString('');

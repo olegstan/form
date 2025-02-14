@@ -1,25 +1,28 @@
 // TextArea.js
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import useBaseInput from './hooks/useBaseInput';
-import {StyledTextArea} from './styles';
+import { StyledTextArea } from './styles';
 import TextAreaProps from "./types/TextAreaProps";
 
 const TextArea: React.FC<TextAreaProps> = ({
-                    focused = false,
-                    setFocused = () => {},
-                    onKeyPress = () => {},
-                    onChange = () => {},
-                    onClick = () => {},
-                    disabled = false,
-                    className = '',
-                    style = {},
-                    id,
-                    name,
-                    value,
-                    autoComplete = 'off',
-                    error,
-                    rows = 3,
-                  }) => {
+                                               focused = false,
+                                               setFocused = () => {},
+                                               onKeyPress = () => {},
+                                               onChange = () => {},
+                                               onClick = () => {},
+                                               disabled = false,
+                                               className = '',
+                                               style = {},
+                                               id,
+                                               name,
+                                               value,
+                                               autoComplete = 'off',
+                                               error,
+                                               rows = 3,
+                                               autoResize = true,
+                                               disableResize = false,
+                                           }) => {
+    const textAreaRef = useRef<HTMLTextAreaElement|null>(null);
 
     const {
         handleClick,
@@ -34,25 +37,54 @@ const TextArea: React.FC<TextAreaProps> = ({
         setFocused,
     });
 
+    // Функция для корректировки высоты textarea
+    const adjustHeight = () => {
+        if (!autoResize) return;
+        const textArea = textAreaRef.current;
+        if (textArea) {
+            // Сбрасываем высоту, чтобы правильно вычислить scrollHeight
+            textArea.style.height = 'auto';
+            textArea.style.height = `${textArea.scrollHeight}px`;
+        }
+    };
+
+    // Оборачиваем handleChange, чтобы после изменения значения корректировать высоту
+    const handleInternalChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        handleChange(e);
+        adjustHeight();
+    };
+
+    // Корректируем высоту при изменении value или параметра autoResize
+    useEffect(() => {
+        adjustHeight();
+    }, [value, autoResize]);
+
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
+    // Объединяем стиль из пропсов с условием отключения ресайза
+    const mergedStyle = {
+        ...style,
+        ...(disableResize ? { resize: 'none' } : {}),
+    };
+
     return (
-      <StyledTextArea
-          id={id}
-          style={style}
-          autoComplete={autoComplete || 'off'}
-          disabled={disabled}
-          className={inputClassName}
-          name={getName(name)}
-          value={value}
-          onClick={handleClick}
-          onKeyPress={onKeyPress}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          rows={rows}
-      />
-  );
-}
+        <StyledTextArea
+            ref={textAreaRef}
+            id={id}
+            style={mergedStyle}
+            autoComplete={autoComplete || 'off'}
+            disabled={disabled}
+            className={inputClassName}
+            name={getName(name)}
+            value={value}
+            onClick={handleClick}
+            onKeyPress={onKeyPress}
+            onChange={handleInternalChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            rows={rows}
+        />
+    );
+};
 
 export default TextArea;

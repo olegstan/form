@@ -18,6 +18,8 @@ const formatDate = (d) => {
 const DateInput: React.FC<DateInputProps> = ({
                        focused = false,
                        setFocused = () => {},
+                       innerError = [],//метод чтобьы показывать ошибку, если ввели неверный формат даты
+                       setInnerError = () => {},//метод чтобьы показывать ошибку, если ввели неверный формат даты
                        onChange = () => {},
                        onClick = () => {},
                        disabled = false,
@@ -54,8 +56,10 @@ const DateInput: React.FC<DateInputProps> = ({
         onChange,
         flatpickrInstance,
         setFocused,
+        dateMask: '__.__.____',
         dateFormat: 'DD.MM.YYYY',
-        formatDate
+        formatDate,
+        setInnerError
     });
 
 
@@ -86,7 +90,9 @@ const DateInput: React.FC<DateInputProps> = ({
         );
     }
 
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] || innerError?.[0] ? ' error' : ''}`;
+
+    console.log(dateString)
 
     return (
         <DateInputComponent
@@ -99,7 +105,7 @@ const DateInput: React.FC<DateInputProps> = ({
             autoComplete={autoComplete || 'off'}
             options={getOptions()}
             className={inputClassName}
-            onReady={(_, __, fp) => {
+            onReady={(selectedDates, dateStr, fp) => {
                 flatpickrInstance.current = fp;
                 fp.calendarContainer.id = `${id}-container`;
             }}
