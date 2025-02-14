@@ -82,6 +82,11 @@ function InputContainer({
         }
     }, [placeholder, typeName, value, search]);
 
+    console.log('----------')
+    console.log(typeName)
+    console.log(value)
+    console.log(isPlaceholderActive)
+
     const containerClassName = `${className}${disabled ? ' disabled' : ''}`;
 
     const containerStyle = useMemo(() => {

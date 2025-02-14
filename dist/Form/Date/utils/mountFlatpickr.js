@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = _default;
+exports["default"] = initFlatpickr;
 var _finhelper = require("finhelper");
 var _styles = require("../../styles");
 var _styledComponents = _interopRequireDefault(require("styled-components"));
@@ -19,7 +19,7 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
-function _default(setComponentsLoaded, setFlatpickrComponent) {
+function initFlatpickr(setComponentsLoaded, setFlatpickrComponent) {
   var isMounted = true;
   Promise.all([Promise.resolve().then(function () {
     return _interopRequireWildcard(require('flatpickr'));
@@ -31,30 +31,38 @@ function _default(setComponentsLoaded, setFlatpickrComponent) {
     return _interopRequireWildcard(require('flatpickr/dist/flatpickr.css'));
   })]).then(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 3),
-      flatpickr = _ref2[0],
-      ReactFlatpickr = _ref2[1],
-      Russian = _ref2[2].Russian;
+      flatpickrModule = _ref2[0],
+      reactFlatpickrModule = _ref2[1],
+      ruLocaleModule = _ref2[2];
     if (!isMounted) return;
 
-    // Локализация
-    var url = _finhelper.Url.getCurrentUrl();
-    var lang = localStorage.getItem('language_id');
-    if (url.includes('/ru/') || parseInt(lang) === 1 || lang === null) {
+    // Используем экспорт по умолчанию, если он есть
+    var Flatpickr = flatpickrModule["default"] || flatpickrModule;
+    var ReactFlatpickr = reactFlatpickrModule["default"] || reactFlatpickrModule;
+    var Russian = ruLocaleModule.Russian;
+
+    // Определяем, нужно ли локализовать в русский язык
+    var currentUrl = _finhelper.Url.getCurrentUrl();
+    var languageId = localStorage.getItem('language_id');
+    var shouldLocalizeToRussian = currentUrl.includes('/ru/') || parseInt(languageId, 10) === 1 || languageId === null;
+    if (shouldLocalizeToRussian) {
       try {
-        flatpickr["default"].localize(Russian);
-      } catch (e) {
-        console.error(e);
+        Flatpickr.localize(Russian);
+      } catch (error) {
+        console.error("Ошибка при локализации Flatpickr:", error);
       }
     }
 
-    // Создаём стилизованный компонент
-    var DateTimeStyled = (0, _styledComponents["default"])(ReactFlatpickr["default"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        ", "\n      "])), _styles.sharedInputStyle);
+    // Создаём стилизованный компонент на базе ReactFlatpickr
+    var StyledFlatpickr = (0, _styledComponents["default"])(ReactFlatpickr)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n        ", "\n      "])), _styles.sharedInputStyle);
+
+    // Передаём компонент в состояние
     setFlatpickrComponent(function () {
-      return DateTimeStyled;
+      return StyledFlatpickr;
     });
     setComponentsLoaded(true);
-  })["catch"](function (err) {
-    console.error('Failed to load flatpickr modules', err);
+  })["catch"](function (error) {
+    console.error("Не удалось загрузить модули Flatpickr:", error);
   });
   return function () {
     isMounted = false;

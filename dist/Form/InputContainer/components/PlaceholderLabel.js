@@ -19,7 +19,7 @@ var PlaceholderLabel = /*#__PURE__*/(0, _react.memo)(function PlaceholderLabel(_
   if (!placeholder) return null;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)("label", {
     htmlFor: id,
-    className: "placeholder".concat(focused ? ' focused' : ''),
+    className: "placeholder".concat(focused || active ? ' active' : ''),
     children: placeholder
   });
 });

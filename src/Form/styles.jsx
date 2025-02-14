@@ -80,7 +80,7 @@ const placeholder = css`
 
   // Если поле не пустое или в фокусе, то placeholder должен быть сверху 
 
-  & .placeholder.focused {
+  & .placeholder.active {
     transform: translate(0.25em, -15%) scale(0.8);
   }
 `
@@ -239,9 +239,11 @@ export const StyledTextArea = styled.textarea`
 
   width: 100%;
   resize: vertical;
+  line-height: 18px;
   overflow-y: hidden;
   min-height: 57px;
   height: auto;
+  font-weight: 500;
 `
 
 

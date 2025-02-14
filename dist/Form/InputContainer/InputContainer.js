@@ -93,6 +93,10 @@ function InputContainer(_ref) {
         return isNotEmpty(value);
     }
   }, [placeholder, typeName, value, search]);
+  console.log('----------');
+  console.log(typeName);
+  console.log(value);
+  console.log(isPlaceholderActive);
   var containerClassName = "".concat(className).concat(disabled ? ' disabled' : '');
   var containerStyle = (0, _react.useMemo)(function () {
     switch (typeName) {

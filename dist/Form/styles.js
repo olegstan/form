@@ -46,7 +46,7 @@ var Container = exports.Container = _styledComponents["default"].div(_templateOb
   var disabled = _ref6.disabled;
   return disabled && disabledStyles;
 });
-var placeholder = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  & .placeholder {\n    pointer-events: none;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    width: 300px;\n    transition: transform 0.25s, opacity 0.25s ease-in-out;\n    transform-origin: 0 0;\n    padding: 25px 12px;\n    font-size: 14px;\n    z-index: 1500;\n  }\n\n  // \u0415\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n\n  & .placeholder.focused {\n    transform: translate(0.25em, -15%) scale(0.8);\n  }\n"])), function (_ref7) {
+var placeholder = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  & .placeholder {\n    pointer-events: none;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    width: 300px;\n    transition: transform 0.25s, opacity 0.25s ease-in-out;\n    transform-origin: 0 0;\n    padding: 25px 12px;\n    font-size: 14px;\n    z-index: 1500;\n  }\n\n  // \u0415\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n\n  & .placeholder.active {\n    transform: translate(0.25em, -15%) scale(0.8);\n  }\n"])), function (_ref7) {
   var theme = _ref7.theme;
   return theme.inputPlaceholderTextColor;
 });
@@ -84,4 +84,4 @@ var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["defau
     ref: ref
   }));
 }))(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
-var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n"])), _sharedStyles.sharedInputStyle);
+var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  line-height: 18px;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n  font-weight: 500;\n"])), _sharedStyles.sharedInputStyle);
