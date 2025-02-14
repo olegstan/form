@@ -44,11 +44,7 @@ const GroupSelect: React.FC<SelectProps> = ({
   const handleChange = (e, item) => {
     e.stopPropagation();
 
-    onChange({
-      name: name,
-      id: item.id ?? '',
-      value: item
-    });
+    onChange(item);
     handleClose()
   }
 

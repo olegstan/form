@@ -102,13 +102,8 @@ var Search = function Search(_ref) {
   // };
 
   var handleChange = function handleChange(e, item) {
-    var _item$id;
     e.stopPropagation();
-    onChange({}, {
-      name: name,
-      id: (_item$id = item.id) !== null && _item$id !== void 0 ? _item$id : '',
-      value: item
-    });
+    onChange(item);
     handleClose();
   };
   var handleOpen = function handleOpen(e) {

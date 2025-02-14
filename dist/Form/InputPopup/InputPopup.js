@@ -14,9 +14,6 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 var InputPopup = function InputPopup(_ref) {
   var trigger = _ref.trigger,
     _children = _ref.children;
-  var handleClose = function handleClose() {
-    // Логика закрытия, если потребуется
-  };
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactjsPopup["default"], {
     on: 'hover',
     trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, {
@@ -26,8 +23,6 @@ var InputPopup = function InputPopup(_ref) {
     contentStyle: {
       zIndex: 1000
     },
-    onClose: handleClose // Добавьте обработку закрытия при необходимости
-    ,
     children: function children(close) {
       return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.PopupContainer, {
         onClick: function onClick(e) {

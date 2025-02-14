@@ -37,8 +37,6 @@ var TextArea = function TextArea(_ref) {
     id = _ref.id,
     name = _ref.name,
     value = _ref.value,
-    _ref$autoComplete = _ref.autoComplete,
-    autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
     error = _ref.error,
     _ref$rows = _ref.rows,
     rows = _ref$rows === void 0 ? 3 : _ref$rows,
@@ -90,17 +88,16 @@ var TextArea = function TextArea(_ref) {
     ref: textAreaRef,
     id: id,
     style: mergedStyle,
-    autoComplete: autoComplete || 'off',
     disabled: disabled,
     className: inputClassName,
     name: getName(name),
-    value: value,
     onClick: handleClick,
     onKeyPress: onKeyPress,
     onChange: handleInternalChange,
     onFocus: handleFocus,
     onBlur: handleBlur,
-    rows: rows
+    rows: rows,
+    children: value
   });
 };
 var _default = exports["default"] = TextArea;

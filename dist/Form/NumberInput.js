@@ -82,7 +82,7 @@ var NumberInput = function NumberInput(_ref) {
   var handleChange = (0, _react.useCallback)(function (e) {
     var pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
-    if (e.target.value === '' || pattern.test(e.target.value)) {
+    if (e.target && e.target.value === '' || pattern.test(e.target.value)) {
       var val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
       // Проверки на min/max

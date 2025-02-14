@@ -16,7 +16,6 @@ const TextArea: React.FC<TextAreaProps> = ({
                                                id,
                                                name,
                                                value,
-                                               autoComplete = 'off',
                                                error,
                                                rows = 3,
                                                autoResize = true,
@@ -72,18 +71,17 @@ const TextArea: React.FC<TextAreaProps> = ({
             ref={textAreaRef}
             id={id}
             style={mergedStyle}
-            autoComplete={autoComplete || 'off'}
             disabled={disabled}
             className={inputClassName}
             name={getName(name)}
-            value={value}
             onClick={handleClick}
             onKeyPress={onKeyPress}
             onChange={handleInternalChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            rows={rows}
-        />
+            rows={rows}>
+            {value}
+        </StyledTextArea>
     );
 };
 

@@ -28,7 +28,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     const [selectionStart, setSelectionStart] = useState(0);
     const [selectionEnd, setSelectionEnd] = useState(0);
 
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const {
         handleClick,
@@ -53,10 +53,10 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     // handleChange — портируем вашу логику
     const handleChange = useCallback(
-        (e) => {
+        (e: Event) => {
             const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
-            if (e.target.value === '' || pattern.test(e.target.value)) {
+            if (e.target && e.target.value === '' || pattern.test(e.target.value)) {
                 let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
                 // Проверки на min/max

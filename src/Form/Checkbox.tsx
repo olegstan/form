@@ -19,7 +19,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     const [localValue, setLocalValue] = useState(value || '');
 
     // Реф на <input>
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     // Клик по тексту лейбла, чтобы активировать чекбокс
     const handleClick = (e) => {

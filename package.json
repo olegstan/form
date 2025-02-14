@@ -3,6 +3,10 @@
   "version": "1.5.5",
   "description": "",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./NewForm": "./dist/NewForm.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/olegstan/form.git"
