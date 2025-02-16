@@ -1,5 +1,5 @@
-import { Url } from "finhelper";
-import { sharedInputStyle } from "../../styles";
+import {Url} from "finhelper";
+import {sharedInputStyle} from "../../styles";
 import styled from "styled-components";
 
 export default function initFlatpickr(setComponentsLoaded, setFlatpickrComponent) {

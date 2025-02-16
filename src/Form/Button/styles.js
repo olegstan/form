@@ -18,8 +18,23 @@ export const sharedButtonStyle = css`
   padding: 10px 20px;
   font-family: inherit;
   margin: 15px 5px;
+  min-width: 100px;
   font-weight: 700 !important;
 
+  &.narrow {
+    height: 40px; /* Уменьшаем внутренние отступы */
+    line-height: 20px;
+  }
+  
+  &.main{
+    background-color: ${({theme}) => theme.mainButtonBackgroundColor};
+    color: ${({theme}) => theme.mainButtonTextColor};
+  }
+
+  &.cancel{
+    background-color: ${({theme}) => theme.cancelButtonBackgroundColor};
+    color: ${({theme}) => theme.cancelButtonTextColor};
+  }
 
   &:disabled, &.disabled {
     color: #7F818D !important;

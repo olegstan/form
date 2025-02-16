@@ -3,7 +3,6 @@ import {StyledSelect} from "./styles";
 import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
-import Results from "../components/Results";
 
 const GroupSelect: React.FC<SelectProps> = ({
                                          focused = false,

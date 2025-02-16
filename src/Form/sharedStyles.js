@@ -13,7 +13,6 @@ export const placeholderActiveStyle = css`
 export const sharedInputStyle = css`
   width: 100%;
   line-height: 13px;
-  height: 19px;
   user-select: none;
   color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};

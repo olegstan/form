@@ -82,25 +82,6 @@ var Search = function Search(_ref) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [setSelectOpen]);
-
-  // const onSearch = useCallback(() => {
-  //   if (typeof props.onSearch === 'function') {
-  //     props.onSearch(searchValue, selectedItem);
-  //   }
-  // }, [props, searchValue, selectedItem]);
-  //
-
-  //
-  // const handleItemClick = (e, item) => {
-  //   e.stopPropagation();
-  //   if (typeof handle === 'function') {
-  //     handle(item);
-  //   }
-  //   handleShowSelect(false);
-  //   setSearchValue(item.name);
-  //   setSelectedItem(item);
-  // };
-
   var handleChange = function handleChange(e, item) {
     e.stopPropagation();
     onChange(item);

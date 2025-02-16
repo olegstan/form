@@ -7,7 +7,6 @@ export const StyledSelect = styled.div`
   cursor: pointer;
   position: relative;
   line-height: 13px;
-  height: 19px;
   user-select: none;
   color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};
@@ -20,6 +19,7 @@ export const StyledSelect = styled.div`
   font-weight: 500;
   text-align: left;
   border-radius: 6px;
+  min-height: 16px;
   
   //тут может быть div если вдруг вместо текста передали иконки или друглй элемент
   & > input, & > div.input{

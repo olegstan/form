@@ -7,7 +7,6 @@ export const StyledSelect = styled.div`
   cursor: pointer;
   position: relative;
   line-height: 13px;
-  height: 19px;
   user-select: none;
   color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};

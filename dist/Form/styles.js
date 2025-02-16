@@ -78,7 +78,7 @@ var StyledCheckbox = exports.StyledCheckbox = _styledComponents["default"].div(_
 });
 var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
 //чтобы рендерить не текст а Symbol(react.element)
-var StyledFakeInput = exports.StyledFakeInput = _styledComponents["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n  \n  \n"])), _sharedStyles.sharedInputStyle);
+var StyledFakeInput = exports.StyledFakeInput = _styledComponents["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n"])), _sharedStyles.sharedInputStyle);
 var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["default"])(/*#__PURE__*/(0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactInputMask["default"], _objectSpread(_objectSpread({}, props), {}, {
     ref: ref

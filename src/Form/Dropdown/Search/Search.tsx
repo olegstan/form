@@ -6,22 +6,27 @@ import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
 
 const Search: React.FC<SearchProps> = ({
-                                   focused = false,
-                                   setFocused = () => {},
-                                   onKeyPress = () => {},
-                                   onChange = () => {},
-                                   onClick = () => {},
-                                   disabled = false,
-                                   className = '',
-                                   style = {},
-                                   id,
-                                   name,
-                                   value,
-                                   error,
-                                   options = [],
-                                   search = '',
-                                   onSearch = () => {},
-                               }) => {
+                                           focused = false,
+                                           setFocused = () => {
+                                           },
+                                           onKeyPress = () => {
+                                           },
+                                           onChange = () => {
+                                           },
+                                           onClick = () => {
+                                           },
+                                           disabled = false,
+                                           className = '',
+                                           style = {},
+                                           id,
+                                           name,
+                                           value,
+                                           error,
+                                           options = [],
+                                           search = '',
+                                           onSearch = () => {
+                                           },
+                                       }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
     const selectRef = useRef(null);
@@ -44,8 +49,7 @@ const Search: React.FC<SearchProps> = ({
             if (selectRef.current && !selectRef.current.contains(event.target)) {
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
-                if(!value)
-                {
+                if (!value) {
                     onSearch('');
                 }
             }
@@ -59,24 +63,6 @@ const Search: React.FC<SearchProps> = ({
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [setSelectOpen]);
-
-  // const onSearch = useCallback(() => {
-  //   if (typeof props.onSearch === 'function') {
-  //     props.onSearch(searchValue, selectedItem);
-  //   }
-  // }, [props, searchValue, selectedItem]);
-  //
-
-  //
-  // const handleItemClick = (e, item) => {
-  //   e.stopPropagation();
-  //   if (typeof handle === 'function') {
-  //     handle(item);
-  //   }
-  //   handleShowSelect(false);
-  //   setSearchValue(item.name);
-  //   setSelectedItem(item);
-  // };
 
     const handleChange = (e, item) => {
         e.stopPropagation();
@@ -125,25 +111,25 @@ const Search: React.FC<SearchProps> = ({
     return (<StyledSelect
             onClick={handleOpen}
             ref={selectRef}
-          >
-              <StyledInput
-                  id={id}
-                  autoComplete="off"
-                  disabled={disabled}
-                  className={inputClassName}
-                  type='text'
-                  name={getName(name)}
-                  value={search}
-                  onChange={handleSearch}
-              />
-                {selectOpen && !disabled && <Results
-                    id={id}
-                    options={filteredOptions}
-                    handleClick={handleChange}
-                    idPrefix={getName(name)}
-                />}
-          </StyledSelect>
-  );
+        >
+            <StyledInput
+                id={id}
+                autoComplete="off"
+                disabled={disabled}
+                className={inputClassName}
+                type='text'
+                name={getName(name)}
+                value={search}
+                onChange={handleSearch}
+            />
+            {selectOpen && !disabled && <Results
+                id={id}
+                options={filteredOptions}
+                handleClick={handleChange}
+                idPrefix={getName(name)}
+            />}
+        </StyledSelect>
+    );
 }
 
 export default Search;

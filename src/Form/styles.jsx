@@ -224,8 +224,6 @@ export const StyledInput = styled.input`
 //чтобы рендерить не текст а Symbol(react.element)
 export const StyledFakeInput = styled.div`
   ${sharedInputStyle}
-  
-  
 `
 
 export const MaskedStyledInput = styled(forwardRef((props, ref) => (
