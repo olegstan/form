@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
-import {StyledCheckbox} from './styles';
-import CheckboxProps from "./types/CheckboxProps";
+import {StyledCheckbox} from '../styles';
+import CheckboxProps from "../types/CheckboxProps";
 
 const Checkbox: React.FC<CheckboxProps> = ({
                       // Здесь прописываем дефолты

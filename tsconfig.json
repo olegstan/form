@@ -17,7 +17,11 @@
     "jsx": "react-jsx",
     "declaration": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "typeRoots": [
+      "src/@types",
+      "src/Form/types/*"
+    ]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

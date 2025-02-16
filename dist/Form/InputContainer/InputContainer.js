@@ -88,7 +88,6 @@ function InputContainer(_ref) {
       case 'DateTimeInput':
         // "value instanceof Date"
         return value instanceof Date;
-      case 'MaskedInput':
       case 'FileInput':
         // у этих типов placeholder всегда сверху
         return true;

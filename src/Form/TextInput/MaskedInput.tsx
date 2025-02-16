@@ -1,7 +1,7 @@
 import React from 'react';
-import useBaseInput from './hooks/useBaseInput'; // <-- наш кастомный хук
-import {MaskedStyledInput} from './styles';
-import MaskedInputProps from "./types/MaskedInputProps";
+import useBaseInput from '../hooks/useBaseInput'; // <-- наш кастомный хук
+import {MaskedStyledInput} from '../styles';
+import MaskedInputProps from "../types/MaskedInputProps";
 
 const MaskedInput: React.FC<MaskedInputProps> = ({
                          focused = false,

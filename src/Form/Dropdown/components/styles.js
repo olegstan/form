@@ -13,9 +13,9 @@ export const StyledOption = styled.div`
   text-align: left;
   flex-wrap: wrap;
   cursor: pointer;
-  width: 100%;
+  transition: backtground-color 0.2s ease, transform 0.2s ease;
 
-  background-color: ${({theme}) => theme.inputContainerDisabledBackground}
+  background-color: ${({theme}) => theme.inputContainerDisabledBackground};
 
   span {
     text-align: left;
@@ -42,24 +42,36 @@ export const StyledOption = styled.div`
 
 export const OptionsWrapper = styled.div`
   position: absolute;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */
   top: 50px;
   left: 0;
   width: 100%;
-  box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
-  background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
+  box-shadow: 0 20px 48px ${({ theme }) => theme.selectShadowColor};
+  background-color: ${({ theme }) => theme.selectWrapperOptionBackgroundColor};
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 250px;
   z-index: ${zindex.input};
+  display: flex;
+  flex-direction: column;
 
   &::-webkit-scrollbar {
-    width: 8px;
-    background-color: ${({theme}) => theme.selectScrollBarColor};
+    width: 8px; /* Фиксированная ширина скроллбара */
+    background-color: transparent; /* Прозрачный фон для области скроллбара */
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(10, 10, 10, 0.2);
-    border-radius: 4px;
+    background-color: ${({ theme }) => theme.selectScrollThumbColor}; /* Цвет ползунка */
+    border-radius: 0 0 8px 0; /* Закругляем только правый нижний угол */
+    border: 2px solid transparent; /* Эффект внутреннего отступа */
+    background-clip: padding-box; /* Ограничение фона ползунка */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: ${({ theme }) => theme.selectScrollThumbHoverColor || theme.selectScrollThumbColor}; /* Цвет ползунка при наведении */
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent; /* Прозрачный трек */
   }
 `

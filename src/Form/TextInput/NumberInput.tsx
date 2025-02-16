@@ -1,9 +1,9 @@
 // NumberInput.js
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Money} from 'finhelper';
-import useBaseInput from './hooks/useBaseInput';
-import {StyledInput} from './styles';
-import NumberInputProps from "./types/NumberInputProps";
+import useBaseInput from '../hooks/useBaseInput';
+import {StyledInput} from '../styles';
+import NumberInputProps from "../types/NumberInputProps";
 
 const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
