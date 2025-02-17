@@ -32,6 +32,10 @@ export const sharedButtonStyle = css`
     margin: 10px;
   }
   
+  &.wide {
+    width: 100%;
+  }
+  
   &.main{
     background-color: ${({theme}) => theme.mainButtonBackgroundColor};
     color: ${({theme}) => theme.mainButtonTextColor};

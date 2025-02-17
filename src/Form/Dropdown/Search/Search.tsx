@@ -4,6 +4,7 @@ import {StyledInput} from '../../styles';
 import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
+import useOnceWhen from "../../helpers/useOnceWhen";
 
 const Search: React.FC<SearchProps> = ({
                                            focused = false,
@@ -21,8 +22,7 @@ const Search: React.FC<SearchProps> = ({
                                            error,
                                            options = [],
                                            search = '',
-                                           onSearch = () => {
-                                           },
+                                           onSearch = () => {},
                                        }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
@@ -39,6 +39,16 @@ const Search: React.FC<SearchProps> = ({
         onChange,
         setFocused,
         onBlur
+    });
+
+    //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
+    useOnceWhen(value && options?.length, () => {
+        const matchingContact = options.find(option => option.id === value);
+
+        if (matchingContact) {
+            // Здесь можно добавить любое другое действие
+            onSearch(matchingContact.name); // Например, вызов функции
+        }
     });
 
 // // Обработка клика вне компонента

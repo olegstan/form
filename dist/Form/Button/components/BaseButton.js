@@ -29,6 +29,9 @@ var BaseButton = function BaseButton(_ref) {
   if ('disabled' in props) {
     classNames.push('disabled'); // Добавляем класс "disabled"
   }
+  if ('wide' in props) {
+    classNames.push('wide'); // Добавляем класс "disabled"
+  }
   if ('narrow' in props) {
     classNames.push('narrow'); // Добавляем класс "narrow"
   }

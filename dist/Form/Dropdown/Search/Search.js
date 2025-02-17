@@ -10,6 +10,7 @@ var _styles = require("./styles");
 var _styles2 = require("../../styles");
 var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
 var _Results = _interopRequireDefault(require("../components/Results"));
+var _useOnceWhen = _interopRequireDefault(require("../../helpers/useOnceWhen"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -64,6 +65,17 @@ var Search = function Search(_ref) {
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
+
+  //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
+  (0, _useOnceWhen["default"])(value && (options === null || options === void 0 ? void 0 : options.length), function () {
+    var matchingContact = options.find(function (option) {
+      return option.id === value;
+    });
+    if (matchingContact) {
+      // Здесь можно добавить любое другое действие
+      onSearch(matchingContact.name); // Например, вызов функции
+    }
+  });
 
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {

@@ -29,6 +29,10 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classNames.push('disabled'); // Добавляем класс "disabled"
     }
 
+    if ('wide' in props) {
+        classNames.push('wide'); // Добавляем класс "disabled"
+    }
+
     if ('narrow' in props) {
         classNames.push('narrow'); // Добавляем класс "narrow"
     }

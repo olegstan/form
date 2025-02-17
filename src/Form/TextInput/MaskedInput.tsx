@@ -37,8 +37,6 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
 
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
-    console.log(mask)
-
     return <MaskedStyledInput
         id={id}
         style={style}
