@@ -1,6 +1,4 @@
 import React, {useCallback} from 'react';
-// import InputPopup from "../InputPopup/InputPopup";
-// import errorSvg from "../../assets/error.svg";
 
 /**
  * Универсальный хук, повторяющий логику BaseInput:

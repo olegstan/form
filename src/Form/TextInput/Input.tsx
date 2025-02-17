@@ -4,6 +4,23 @@ import useBaseInput from '../hooks/useBaseInput';
 import {StyledInput} from '../styles';
 import InputProps from "../types/InputProps";
 
+/**
+ * @param {Object} props - Компонент Input Props
+ * @param {boolean} [props.focused=false] - Флаг фокуса
+ * @param {function} [props.setFocused=() => {}] - Функция для установки фокуса
+ * @param {function} [props.onKeyPress=() => {}] - Обработчик нажатия клавиш
+ * @param {function} [props.onChange=() => {}] - Обработчик изменения значения
+ * @param {function} [props.onClick=() => {}] - Обработчик клика
+ * @param {boolean} [props.disabled=false] - Отключение инпута
+ * @param {string} [props.className=''] - Дополнительный класс
+ * @param {string} [props.type='text'] - Тип инпута
+ * @param {object} [props.style={}] - Стили
+ * @param {string} [props.id] - ID элемента
+ * @param {string} [props.name] - Имя инпута
+ * @param {string|number} [props.value] - Значение инпута
+ * @param {string} [props.autoComplete='off'] - Автозаполнение
+ * @param {Array.<boolean|string>} [props.error] - Ошибка (массив с флагом и сообщением)
+ */
 const Input: React.FC<InputProps> = ({
                                         focused = false,
                                         setFocused = () => {},

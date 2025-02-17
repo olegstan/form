@@ -1,8 +1,7 @@
-import InputProps from "./InputProps";
+import SelectProps from "./SelectProps";
 
-export default interface SearchProps extends InputProps {
-    options: any;
-    search: boolean;
+export default interface SearchProps extends SelectProps {
+    search: string;
     onSearch: (text: string) => void;
     loading: boolean;
 }
