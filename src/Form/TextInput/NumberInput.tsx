@@ -9,6 +9,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
                          setFocused = () => {},
                          onKeyPress = () => {},
+                         onBlur = () => {},
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
@@ -39,7 +40,8 @@ const NumberInput: React.FC<NumberInputProps> = ({
         name,
         onClick,
         onChange,
-        setFocused
+        setFocused,
+        onBlur
     });
 
     // Аналог componentDidUpdate(prevProps) для значения
@@ -139,7 +141,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         disabled={disabled}
         className={inputClassName}
         name={getName(name)}
-        value={value}
+        value={value || ''}
         onClick={handleClick}
         onKeyPress={onKeyPress}
         onChange={handleChange}

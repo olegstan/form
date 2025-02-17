@@ -32,6 +32,8 @@ var DateInput = function DateInput(_ref) {
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$innerError = _ref.innerError,
     innerError = _ref$innerError === void 0 ? [] : _ref$innerError,
     _ref$setInnerError = _ref.setInnerError,
@@ -60,7 +62,8 @@ var DateInput = function DateInput(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     handleFocus = _useBaseInput.handleFocus,
     getName = _useBaseInput.getName;

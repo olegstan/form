@@ -6,6 +6,7 @@ export default interface InputProps {
     onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     onChange?: (data: object|string|number) => void;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+    onBlur?: (event: React.MouseEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     className?: string;
     placeholder?: string;

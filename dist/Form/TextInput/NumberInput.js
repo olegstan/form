@@ -26,6 +26,8 @@ var NumberInput = function NumberInput(_ref) {
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
     _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
@@ -62,7 +64,8 @@ var NumberInput = function NumberInput(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     handleClick = _useBaseInput.handleClick,
     handleFocus = _useBaseInput.handleFocus,
@@ -157,7 +160,7 @@ var NumberInput = function NumberInput(_ref) {
     disabled: disabled,
     className: inputClassName,
     name: getName(name),
-    value: value,
+    value: value || '',
     onClick: handleClick,
     onKeyPress: onKeyPress,
     onChange: handleChange,

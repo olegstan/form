@@ -57,7 +57,8 @@ function InputContainer({
         onChange,
         iconClose = true,
         loading,
-        search
+        search,
+        onSearch
     } = child.props || {};
 
     const typeName: string | undefined = child.type?.name;
@@ -120,6 +121,8 @@ function InputContainer({
                     typeName={typeName}
                     iconClose={iconClose}
                     value={value}
+                    search={search}
+                    onSearch={onSearch}
                     name={name}
                     onChange={onChange}
                 />

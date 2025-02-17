@@ -25,6 +25,7 @@ const Input: React.FC<InputProps> = ({
                                         focused = false,
                                         setFocused = () => {},
                                         onKeyPress = () => {},
+                                        onBlur = () => {},
                                         onChange = () => {},
                                         onClick = () => {},
                                         disabled = false,
@@ -49,6 +50,7 @@ const Input: React.FC<InputProps> = ({
         onClick,
         onChange,
         setFocused,
+        onBlur
     });
 
     const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
@@ -62,7 +64,7 @@ const Input: React.FC<InputProps> = ({
             className={inputClassName}
             type={type}
             name={getName(name)}
-            value={value}
+            value={value || ''}
             onClick={handleClick}
             onKeyPress={onKeyPress}
             onChange={handleChange}

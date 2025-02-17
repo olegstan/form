@@ -75,7 +75,8 @@ function InputContainer(_ref) {
     _ref2$iconClose = _ref2.iconClose,
     iconClose = _ref2$iconClose === void 0 ? true : _ref2$iconClose,
     loading = _ref2.loading,
-    search = _ref2.search;
+    search = _ref2.search,
+    onSearch = _ref2.onSearch;
   var typeName = (_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.name;
 
   /**
@@ -130,6 +131,8 @@ function InputContainer(_ref) {
         typeName: typeName,
         iconClose: iconClose,
         value: value,
+        search: search,
+        onSearch: onSearch,
         name: name,
         onChange: onChange
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputIcon["default"], {

@@ -9,21 +9,26 @@ import {isNotEmpty} from "../InputContainer";
 const CloseIcon = memo(function CloseIcon({
                                               typeName,
                                               iconClose,
-                                              value,
+                                              search,
+                                              onSearch,
                                               name,
+                                              value,
                                               onChange
                                           }: {
     typeName?: string;
     iconClose?: boolean;
     value?: any;
+    search?: any;
     name?: string;
     onChange?: (value: any) => void;
+    onSearch?: (value: any) => void;
 }) {
     // если тип не подходит или выключена опция iconClose — не показываем
     //если передано iconClose = false то рендерить икноку для очистки не нужно
     if (!typeName || !iconClose) return null;
 
 
+    let action = () => {};
     let notEmpty = false;
     switch (typeName)
     {
@@ -35,7 +40,15 @@ const CloseIcon = memo(function CloseIcon({
             return null;
         case 'FileInput':
             return null;
+        case 'Search':
+            action = () => {
+                onChange?.(null)
+                onSearch?.('')
+            };
+            notEmpty = isNotEmpty(search);
+            break;
         default:
+            action = () => {onChange?.('')};
             notEmpty = isNotEmpty(value);
             break;
     }
@@ -47,7 +60,7 @@ const CloseIcon = memo(function CloseIcon({
             src={Close}
             alt="close"
             onClick={(e) => {
-                onChange?.('' );
+                action()
             }}
         />
     );

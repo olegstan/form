@@ -18,6 +18,7 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 
 function useBaseInput(_ref) {
   var onClick = _ref.onClick,
+    onBlur = _ref.onBlur,
     onChange = _ref.onChange,
     setFocused = _ref.setFocused;
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
@@ -39,6 +40,7 @@ function useBaseInput(_ref) {
   };
   var handleBlur = function handleBlur() {
     setFocused(false);
+    onBlur();
   };
   return {
     handleClick: handleClick,

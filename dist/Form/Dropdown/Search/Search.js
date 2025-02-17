@@ -25,6 +25,8 @@ var Search = function Search(_ref) {
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
     _ref$onChange = _ref.onChange,
@@ -56,7 +58,8 @@ var Search = function Search(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
@@ -69,7 +72,16 @@ var Search = function Search(_ref) {
         handleClose();
         //если элемент не выбран, то очистим поле поиска
         if (!value) {
-          onSearch('');
+          var matchedOption = options.find(function (option) {
+            return option.name.toLowerCase() === search.toLowerCase();
+          });
+
+          // Если найдено совпадение, выбираем этот элемент
+          if (matchedOption) {
+            onChange(matchedOption);
+          } else {
+            onSearch('');
+          }
         }
       }
     };
@@ -81,7 +93,7 @@ var Search = function Search(_ref) {
     return function () {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [setSelectOpen]);
+  }, [search, value, options, setSelectOpen, onChange]);
   var handleChange = function handleChange(e, item) {
     e.stopPropagation();
     onChange(item);

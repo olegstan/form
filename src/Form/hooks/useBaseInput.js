@@ -10,6 +10,7 @@ import React, {useCallback} from 'react';
 
 export default function useBaseInput({
                                        onClick,
+                                       onBlur,
                                        onChange,
                                        setFocused
                                      }) {
@@ -36,6 +37,7 @@ export default function useBaseInput({
 
   const handleBlur = () => {
     setFocused(false);
+    onBlur();
   };
 
   return {

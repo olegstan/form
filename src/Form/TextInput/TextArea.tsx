@@ -8,6 +8,7 @@ const TextArea: React.FC<TextAreaProps> = ({
                                                focused = false,
                                                setFocused = () => {},
                                                onKeyPress = () => {},
+                                               onBlur = () => {},
                                                onChange = () => {},
                                                onClick = () => {},
                                                disabled = false,
@@ -34,6 +35,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         onClick,
         onChange,
         setFocused,
+        onBlur
     });
 
     // Функция для корректировки высоты textarea
@@ -80,7 +82,7 @@ const TextArea: React.FC<TextAreaProps> = ({
             onFocus={handleFocus}
             onBlur={handleBlur}
             rows={rows}
-            value={value}
+            value={value || ''}
         />
     );
 };

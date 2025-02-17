@@ -20,6 +20,7 @@ const formatDateTime = (dateObj) => {
 const DateTimeInput: React.FC<DateTimeInputProps> = ({
                          focused = false,
                          setFocused = () => {},
+                         onBlur = () => {},
                          innerError = [],//метод чтобьы показывать ошибку, если ввели неверный формат даты
                          setInnerError = () => {},//метод чтобьы показывать ошибку, если ввели неверный формат даты
                          onChange = () => {},
@@ -43,7 +44,8 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     name,
     onClick,
     onChange,
-    setFocused
+    setFocused,
+    onBlur
   });
 
   const { componentsLoaded, DateInputComponent, flatpickrInstance } = useFlatpickrMount();

@@ -8,6 +8,7 @@ import Results from "../components/Results";
 const Select: React.FC<SelectProps> = ({
                                    focused = false,
                                    setFocused = () => {},
+                                   onBlur = () => {},
                                    onKeyPress = () => {},
                                    onChange = () => {},
                                    onClick = () => {},
@@ -29,7 +30,8 @@ const Select: React.FC<SelectProps> = ({
         name,
         onClick,
         onChange,
-        setFocused
+        setFocused,
+        onBlur
     });
 
 

@@ -35,6 +35,8 @@ var Input = function Input(_ref) {
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
     _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
@@ -57,7 +59,8 @@ var Input = function Input(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     handleClick = _useBaseInput.handleClick,
     handleChange = _useBaseInput.handleChange,
@@ -73,7 +76,7 @@ var Input = function Input(_ref) {
     className: inputClassName,
     type: type,
     name: getName(name),
-    value: value,
+    value: value || '',
     onClick: handleClick,
     onKeyPress: onKeyPress,
     onChange: handleChange,

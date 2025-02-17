@@ -24,6 +24,8 @@ var TextArea = function TextArea(_ref) {
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
     _ref$onKeyPress = _ref.onKeyPress,
     onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
@@ -49,7 +51,8 @@ var TextArea = function TextArea(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     handleClick = _useBaseInput.handleClick,
     handleChange = _useBaseInput.handleChange,
@@ -97,7 +100,7 @@ var TextArea = function TextArea(_ref) {
     onFocus: handleFocus,
     onBlur: handleBlur,
     rows: rows,
-    value: value
+    value: value || ''
   });
 };
 var _default = exports["default"] = TextArea;

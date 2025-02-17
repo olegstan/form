@@ -7,14 +7,11 @@ import Results from "../components/Results";
 
 const Search: React.FC<SearchProps> = ({
                                            focused = false,
-                                           setFocused = () => {
-                                           },
-                                           onKeyPress = () => {
-                                           },
-                                           onChange = () => {
-                                           },
-                                           onClick = () => {
-                                           },
+                                           setFocused = () => {},
+                                           onBlur = () => {},
+                                           onKeyPress = () => {},
+                                           onChange = () => {},
+                                           onClick = () => {},
                                            disabled = false,
                                            className = '',
                                            style = {},
@@ -40,7 +37,8 @@ const Search: React.FC<SearchProps> = ({
         name,
         onClick,
         onChange,
-        setFocused
+        setFocused,
+        onBlur
     });
 
 // // Обработка клика вне компонента
@@ -50,7 +48,14 @@ const Search: React.FC<SearchProps> = ({
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
-                    onSearch('');
+                    const matchedOption = options.find(option => option.name.toLowerCase() === search.toLowerCase());
+
+                    // Если найдено совпадение, выбираем этот элемент
+                    if (matchedOption) {
+                        onChange(matchedOption);
+                    }else{
+                        onSearch('');
+                    }
                 }
             }
         };
@@ -62,7 +67,7 @@ const Search: React.FC<SearchProps> = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [setSelectOpen]);
+    }, [search, value, options, setSelectOpen, onChange]);
 
     const handleChange = (e, item) => {
         e.stopPropagation();

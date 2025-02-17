@@ -7,6 +7,7 @@ import SelectProps from "../../types/SelectProps";
 const GroupSelect: React.FC<SelectProps> = ({
                                          focused = false,
                                          setFocused = () => {},
+                                         onBlur = () => {},
                                          onKeyPress = () => {},
                                          onChange = () => {},
                                          onClick = () => {},
@@ -28,7 +29,8 @@ const GroupSelect: React.FC<SelectProps> = ({
     name,
     onClick,
     onChange,
-    setFocused
+    setFocused,
+    onBlur
   });
 
 
