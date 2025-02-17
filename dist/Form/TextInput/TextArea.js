@@ -97,7 +97,7 @@ var TextArea = function TextArea(_ref) {
     onFocus: handleFocus,
     onBlur: handleBlur,
     rows: rows,
-    children: value
+    value: value
   });
 };
 var _default = exports["default"] = TextArea;

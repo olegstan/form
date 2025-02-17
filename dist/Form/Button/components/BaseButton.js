@@ -32,9 +32,15 @@ var BaseButton = function BaseButton(_ref) {
   if ('narrow' in props) {
     classNames.push('narrow'); // Добавляем класс "narrow"
   }
+  if ('withMargin' in props) {
+    classNames.push('margin'); // Добавляем класс "narrow"
+  }
   switch (type) {
     case 'cancel':
       classNames.push('cancel'); // Добавляем класс "narrow"
+      break;
+    case 'block':
+      classNames.push('block'); // Добавляем класс "narrow"
       break;
     default:
       classNames.push('main');

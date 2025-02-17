@@ -1,37 +1,31 @@
-import React, {useRef, useState} from 'react';
-import {StyledCheckbox} from '../styles';
-import CheckboxProps from "../types/CheckboxProps";
+import React, { useRef, useState } from 'react';
+import { StyledCheckbox } from '../styles';
+import CheckboxProps from '../types/CheckboxProps';
 
 const Checkbox: React.FC<CheckboxProps> = ({
-                      // Здесь прописываем дефолты
-                      value = 1,
-                      name = '',
-                      toggleCallback = () => {},
-                      textStyle,
-                      id,
-                      checked,
-                      checkboxStyle,
-                      style,
-                      text
-                  }) => {
-
-    // Локальное состояние для хранения value
-    const [localValue, setLocalValue] = useState(value || '');
-
+                                               value = 1,
+                                               name = '',
+                                               toggleCallback = () => {},
+                                               textStyle,
+                                               id,
+                                               checked,
+                                               checkboxStyle,
+                                               style,
+                                               text,
+                                           }) => {
     // Реф на <input>
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    // Клик по тексту лейбла, чтобы активировать чекбокс
-    const handleClick = (e) => {
-        e.preventDefault();
+    // Обработчик клика для всего компонента
+    const handleToggle = () => {
         if (inputRef.current) {
-            inputRef.current.click();
+            inputRef.current.click(); // Имитируем клик на чекбоксе
         }
     };
 
-    const combinedTextStyle = textStyle ? {...textStyle} : {};
+    const combinedTextStyle = textStyle ? { ...textStyle } : {};
     const combinedCheckboxStyle = checkboxStyle
-        ? {...checkboxStyle}
+        ? { ...checkboxStyle }
         : {
             backgroundColor: '#4378FF',
             border: '1px solid #4378FF',
@@ -41,27 +35,23 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <StyledCheckbox
             id={id}
             style={style}
-            onClick={(e) => {
-                e.stopPropagation();
-            }}>
+            onClick={handleToggle} // Общий обработчик клика для всего компонента
+        >
             <input
                 ref={inputRef}
                 className={checked ? 'active' : ''}
-                onChange={toggleCallback}
+                onChange={(e) => toggleCallback ? toggleCallback(e.target.checked) : () => {}} // Передаем новое состояние в callback
                 name={name}
                 type="checkbox"
-                value={localValue}
+                value={value}
                 id={id}
                 checked={checked}
             />
-            <span
-                className="rotate-container"
-                style={combinedCheckboxStyle}
-            >
-          <span className="rotate"/>
-        </span>
+            <span className="rotate-container" style={combinedCheckboxStyle}>
+                <span className="rotate" />
+            </span>
             {text && (
-                <div style={combinedTextStyle} className="text" onClick={handleClick}>
+                <div style={combinedTextStyle} className="text">
                     {text}
                 </div>
             )}

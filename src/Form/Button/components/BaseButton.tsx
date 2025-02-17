@@ -9,6 +9,7 @@ interface BaseButtonProps {
     children: React.ReactNode; // Содержимое кнопки
     onClick?: () => void; // Обработчик клика
     narrow?: boolean;
+    withMargin?: boolean;
     type?: string;
     [key: string]: any; // Любые дополнительные пропсы
 }
@@ -32,10 +33,17 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         classNames.push('narrow'); // Добавляем класс "narrow"
     }
 
+    if ('withMargin' in props) {
+        classNames.push('margin'); // Добавляем класс "narrow"
+    }
+
     switch (type)
     {
         case 'cancel':
             classNames.push('cancel'); // Добавляем класс "narrow"
+            break;
+        case 'block':
+            classNames.push('block'); // Добавляем класс "narrow"
             break;
         default:
             classNames.push('main');

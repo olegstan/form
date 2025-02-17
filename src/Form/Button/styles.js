@@ -24,6 +24,12 @@ export const sharedButtonStyle = css`
   &.narrow {
     height: 40px; /* Уменьшаем внутренние отступы */
     line-height: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  &.margin {
+    margin: 10px;
   }
   
   &.main{
@@ -35,6 +41,13 @@ export const sharedButtonStyle = css`
     background-color: ${({theme}) => theme.cancelButtonBackgroundColor};
     color: ${({theme}) => theme.cancelButtonTextColor};
   }
+  
+  &.block{
+    background-color: ${({theme}) => theme.blockButtonBackgroundColor};
+    color: ${({theme}) => theme.blockButtonTextColor};
+  }
+  
+  
 
   &:disabled, &.disabled {
     color: #7F818D !important;

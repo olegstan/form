@@ -79,9 +79,9 @@ const TextArea: React.FC<TextAreaProps> = ({
             onChange={handleInternalChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            rows={rows}>
-            {value}
-        </StyledTextArea>
+            rows={rows}
+            value={value}
+        />
     );
 };
 
