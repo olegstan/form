@@ -137,12 +137,13 @@ const Search: React.FC<SearchProps> = ({
                 value={search}
                 onChange={handleSearch}
             />
-            {selectOpen && !disabled && <Results
+            <Results
+                active={selectOpen && !disabled}
                 id={id}
                 options={filteredOptions}
                 handleClick={handleChange}
                 idPrefix={getName(name)}
-            />}
+            />
         </StyledSelect>
     );
 }

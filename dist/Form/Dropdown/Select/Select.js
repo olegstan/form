@@ -116,7 +116,8 @@ var Select = function Select(_ref) {
       className: inputClassName,
       name: getName(name),
       children: valueText
-    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+      active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,
       handleClick: handleChange,

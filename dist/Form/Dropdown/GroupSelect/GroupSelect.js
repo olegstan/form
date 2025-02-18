@@ -9,6 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 var _styles = require("./styles");
 var _styles2 = require("../../styles");
 var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
+var _GroupResults = _interopRequireDefault(require("../components/GroupResults"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -115,7 +116,8 @@ var GroupSelect = function GroupSelect(_ref) {
       className: inputClassName,
       name: getName(name),
       children: valueText
-    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(GroupResults, {
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_GroupResults["default"], {
+      active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,
       handleClick: handleChange,

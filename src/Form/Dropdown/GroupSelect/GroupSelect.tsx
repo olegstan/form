@@ -3,6 +3,7 @@ import {StyledSelect} from "./styles";
 import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
+import GroupResults from "../components/GroupResults";
 
 const GroupSelect: React.FC<SelectProps> = ({
                                          focused = false,
@@ -100,12 +101,13 @@ const GroupSelect: React.FC<SelectProps> = ({
     >
       {valueText}
     </StyledFakeInput>
-    {selectOpen && !disabled && <GroupResults
+    <GroupResults
+        active={selectOpen && !disabled}
         id={id}
         options={filteredOptions}
         handleClick={handleChange}
         idPrefix={getName(name)}
-    />}
+    />
   </StyledSelect>)
 }
 

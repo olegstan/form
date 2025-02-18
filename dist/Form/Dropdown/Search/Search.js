@@ -150,7 +150,8 @@ var Search = function Search(_ref) {
       name: getName(name),
       value: search,
       onChange: handleSearch
-    }), selectOpen && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+      active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,
       handleClick: handleChange,

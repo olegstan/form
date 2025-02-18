@@ -58,12 +58,11 @@ export const sharedButtonStyle = css`
     line-height: normal;
   }
   
-  
-
-  &:disabled, &.disabled {
-    color: #7F818D !important;
-    background-color: #7F818D !important;
+  &.main.disabled {
+    background-color: ${({theme}) => theme.mainButtonDisabledBackgroundColor} !important;
+    color: ${({theme}) => theme.mainButtonDisabledTextColor} !important;
   }
+  
 
   svg, img {
     height: 10px !important;

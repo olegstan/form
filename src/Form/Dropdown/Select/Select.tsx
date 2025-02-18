@@ -101,12 +101,13 @@ const Select: React.FC<SelectProps> = ({
         >
             {valueText}
         </StyledFakeInput>
-        {selectOpen && !disabled && <Results
+        <Results
+            active={selectOpen && !disabled}
             id={id}
             options={filteredOptions}
             handleClick={handleChange}
             idPrefix={getName(name)}
-        />}
+        />
     </StyledSelect>)
 }
 

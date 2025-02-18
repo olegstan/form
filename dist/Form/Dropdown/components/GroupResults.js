@@ -14,7 +14,8 @@ var GroupResults = function GroupResults(_ref) {
     options = _ref.options,
     handleClick = _ref.handleClick,
     className = _ref.className,
-    idPrefix = _ref.idPrefix;
+    idPrefix = _ref.idPrefix,
+    active = _ref.active;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.OptionsWrapper, {
     id: id ? "".concat(id, "-select") : undefined,
     children: options.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_Item["default"], {

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import zindex from "../../../interface/zindex";
 
 export const StyledOption = styled.div`
@@ -50,10 +50,20 @@ export const OptionsWrapper = styled.div`
   background-color: ${({ theme }) => theme.selectWrapperOptionBackgroundColor};
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 250px;
   z-index: ${zindex.input};
   display: flex;
   flex-direction: column;
+  max-height: 250px;
+  pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
+
+  /* Анимация открытия */
+
+  /* При появлении (active: true) плавное изменение, при скрытии сразу */
+  opacity: ${({ active }) => (active ? 1 : 0)};
+  transform: ${({ active }) =>
+          active ? 'translateY(0)' : 'translateY(-10px)'};
+  transition: ${({ active }) =>
+          active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
 
   &::-webkit-scrollbar {
     width: 8px; /* Фиксированная ширина скроллбара */
