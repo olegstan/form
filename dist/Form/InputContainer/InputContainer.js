@@ -62,7 +62,8 @@ function InputContainer(_ref) {
     focused: focused,
     setFocused: setFocused,
     innerError: innerError,
-    setInnerError: setInnerError
+    setInnerError: setInnerError,
+    error: error
   });
   var _ref2 = child.props || {},
     placeholder = _ref2.placeholder,

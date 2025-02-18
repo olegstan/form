@@ -40,10 +40,13 @@ var BaseButton = function BaseButton(_ref) {
   }
   switch (type) {
     case 'cancel':
-      classNames.push('cancel'); // Добавляем класс "narrow"
+      classNames.push('cancel');
       break;
     case 'block':
-      classNames.push('block'); // Добавляем класс "narrow"
+      classNames.push('block');
+      break;
+    case 'transparent':
+      classNames.push('transparent');
       break;
     default:
       classNames.push('main');

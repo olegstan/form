@@ -1,6 +1,7 @@
 import React from 'react';
 import LoaderGif from "../../../assets/loader_white.gif";
 
+// Интерфейс для пропсов кнопки
 interface BaseButtonProps {
     Component: React.ElementType; // Тип компонента (например, 'button', 'a', или кастомный компонент)
     loading?: boolean; // Статус загрузки
@@ -8,60 +9,44 @@ interface BaseButtonProps {
     className?: string; // Дополнительные классы
     children: React.ReactNode; // Содержимое кнопки
     onClick?: () => void; // Обработчик клика
-    narrow?: boolean;
-    withMargin?: boolean;
-    type?: string;
+    narrow?: boolean; // Узкая кнопка
+    withMargin?: boolean; // Кнопка с отступами
+    type?: 'main' | 'cancel' | 'block' | 'transparent'; // Тип кнопки
     [key: string]: any; // Любые дополнительные пропсы
 }
 
 const BaseButton: React.FC<BaseButtonProps> = ({
                                                    Component,
-                                                   loading,
-                                                   className,
+                                                   loading = false,
+                                                   disabled = false,
+                                                   className = '',
                                                    children,
-                                                   type,
+                                                   type = 'main',
+                                                   narrow = false,
+                                                   withMargin = false,
+                                                   onClick,
                                                    ...props
                                                }) => {
-
     // Формируем список классов
-    const classNames = [className];
-    if ('disabled' in props) {
-        classNames.push('disabled'); // Добавляем класс "disabled"
-    }
-
-    if ('wide' in props) {
-        classNames.push('wide'); // Добавляем класс "disabled"
-    }
-
-    if ('narrow' in props) {
-        classNames.push('narrow'); // Добавляем класс "narrow"
-    }
-
-    if ('withMargin' in props) {
-        classNames.push('margin'); // Добавляем класс "narrow"
-    }
-
-    switch (type)
-    {
-        case 'cancel':
-            classNames.push('cancel'); // Добавляем класс "narrow"
-            break;
-        case 'block':
-            classNames.push('block'); // Добавляем класс "narrow"
-            break;
-        default:
-            classNames.push('main');
-    }
+    const classNames = [
+        className,
+        disabled && 'disabled',
+        narrow && 'narrow',
+        withMargin && 'margin',
+        type // Добавляем класс на основе типа кнопки
+    ]
+        .filter(Boolean) // Убираем falsy значения
+        .join(' ');
 
     return (
         <Component
             {...props}
-            onClick={props.disabled || loading ? () => {} : props?.onClick}
-            disabled={props.disabled}
-            className={classNames.join(' ')} // Применяем классы
+            onClick={disabled || loading ? undefined : onClick} // Отключаем клик при disabled или loading
+            disabled={disabled}
+            className={classNames.trim()} // Применяем классы
         >
             {loading ? (
-                <img src={LoaderGif} alt=''/>
+                <img src={LoaderGif} alt="Loading..." />
             ) : (
                 children
             )}

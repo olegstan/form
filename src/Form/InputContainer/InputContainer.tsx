@@ -46,6 +46,7 @@ function InputContainer({
         setFocused,
         innerError,
         setInnerError,
+        error,
     });
 
     const {

@@ -1,14 +1,6 @@
 import zindex from "../interface/zindex";
 import {css} from "styled-components";
-
-export const placeholderActiveStyle = css`
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
-  }
-`
+import {webkitAutofillStyles} from "./styles";
 
 export const sharedInputStyle = css`
   width: 100%;
@@ -37,5 +29,5 @@ export const sharedInputStyle = css`
     outline: 0;
   }
   
-  ${placeholderActiveStyle}
+  ${webkitAutofillStyles}
 `

@@ -50,6 +50,13 @@ export const sharedButtonStyle = css`
     background-color: ${({theme}) => theme.blockButtonBackgroundColor};
     color: ${({theme}) => theme.blockButtonTextColor};
   }
+
+  &.transparent{
+    background-color: transparent;
+    color: ${({theme}) => theme.transparentButtonTextColor};
+    height: auto;
+    line-height: normal;
+  }
   
   
 

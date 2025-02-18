@@ -15,12 +15,16 @@ const rotate = keyframes`
 `;
 
 // Миксин для автозаполнения в Chrome
-const webkitAutofillStyles = css`
+export const webkitAutofillStyles = css`
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.inputContainerBackground} inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.inputContainerBackground} inset !important;
+    box-shadow: 0 0 0px 1000px ${({ theme }) => theme.inputContainerBackground} inset !important;
+    -webkit-text-fill-color: #fff !important;
+    //color: #000000 !important;
+    //-webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.inputContainerBackground} inset !important;
   }
 `;
 
