@@ -15,6 +15,7 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {
     values = _ref.values,
     options = _ref.options,
     handleClick = _ref.handleClick,
+    handleClickAll = _ref.handleClickAll,
     className = _ref.className,
     idPrefix = _ref.idPrefix,
     active = _ref.active;
@@ -28,16 +29,29 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {
       },
       className: className,
       id: "".concat(idPrefix, "-none")
-    }, 'none') : options.map(function (option) {
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_ItemWithCheckbox["default"], {
-        item: option,
-        checked: values.includes(option.id),
-        onClick: function onClick(e) {
-          return handleClick(e, option);
+    }, 'none') : /*#__PURE__*/(0, _jsxRuntime.jsxs)(_jsxRuntime.Fragment, {
+      children: [handleClickAll && /*#__PURE__*/(0, _jsxRuntime.jsx)(_ItemWithCheckbox["default"], {
+        item: (values === null || values === void 0 ? void 0 : values.length) === (options === null || options === void 0 ? void 0 : options.length) ? {
+          id: 'all',
+          name: 'Снять выбор'
+        } : {
+          id: 'all',
+          name: 'Выбрать все'
         },
-        className: className,
-        id: "".concat(idPrefix, "-").concat(option.id)
-      }, option.id);
+        checked: (values === null || values === void 0 ? void 0 : values.length) === (options === null || options === void 0 ? void 0 : options.length),
+        onClick: handleClickAll,
+        className: className
+      }), options.map(function (option) {
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_ItemWithCheckbox["default"], {
+          item: option,
+          checked: values.includes(option.id),
+          onClick: function onClick(e) {
+            return handleClick(e, option);
+          },
+          className: className,
+          id: "".concat(idPrefix, "-").concat(option.id)
+        }, option.id);
+      })]
     })
   });
 };

@@ -45,7 +45,9 @@ var MultiSelect = function MultiSelect(_ref) {
     values = _ref$values === void 0 ? [] : _ref$values,
     error = _ref.error,
     _ref$options = _ref.options,
-    options = _ref$options === void 0 ? [] : _ref$options;
+    options = _ref$options === void 0 ? [] : _ref$options,
+    _ref$onChangeAll = _ref.onChangeAll,
+    onChangeAll = _ref$onChangeAll === void 0 ? [] : _ref$onChangeAll;
   var _useBaseInput = (0, _useBaseInput2["default"])({
       disabled: disabled,
       name: name,
@@ -67,6 +69,13 @@ var MultiSelect = function MultiSelect(_ref) {
   var fakeOnChange = function fakeOnChange() {};
   var handleChange = function handleChange(e, item) {
     onChange(item);
+    handleClose();
+  };
+
+  //функция для итема который выбирает все или снимает все
+  var handleChangeAll = function handleChangeAll() {
+    var areAllSelected = (values === null || values === void 0 ? void 0 : values.length) === (options === null || options === void 0 ? void 0 : options.length);
+    onChangeAll(!areAllSelected);
     handleClose();
   };
   var handleOpen = function handleOpen(e) {
@@ -125,6 +134,7 @@ var MultiSelect = function MultiSelect(_ref) {
       values: values,
       options: options,
       handleClick: handleChange,
+      handleClickAll: handleChangeAll,
       idPrefix: getName(name)
     })]
   });

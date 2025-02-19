@@ -21,6 +21,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                                    values= [],
                                    error,
                                    options = [],
+                                   onChangeAll = [],
                                }) => {
 
     const {
@@ -47,6 +48,13 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
     const handleChange = (e, item) => {
         onChange(item);
+        handleClose()
+    }
+
+    //функция для итема который выбирает все или снимает все
+    const handleChangeAll = () => {
+        const areAllSelected = values?.length === options?.length;
+        onChangeAll(!areAllSelected);
         handleClose()
     }
 
@@ -117,6 +125,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             values={values}
             options={options}
             handleClick={handleChange}
+            handleClickAll={handleChangeAll}
             idPrefix={getName(name)}
         />
     </StyledSelect>)
