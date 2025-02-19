@@ -43,11 +43,11 @@ const Search: React.FC<SearchProps> = ({
 
     //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
     useOnceWhen(value && options?.length, () => {
-        const matchingContact = options.find(option => option.id === value);
+        const matchingOption = options.find(option => option.id === value);
 
-        if (matchingContact) {
+        if (matchingOption) {
             // Здесь можно добавить любое другое действие
-            onSearch(matchingContact.name); // Например, вызов функции
+            onSearch(matchingOption.name); // Например, вызов функции
         }
     });
 

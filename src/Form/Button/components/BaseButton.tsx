@@ -9,7 +9,8 @@ interface BaseButtonProps {
     className?: string; // Дополнительные классы
     children: React.ReactNode; // Содержимое кнопки
     onClick?: () => void; // Обработчик клика
-    narrow?: boolean; // Узкая кнопка
+    narrow?: boolean; // Узкая кнопка в высоту
+    wide?: boolean; //на всю ширину
     withMargin?: boolean; // Кнопка с отступами
     type?: 'main' | 'cancel' | 'block' | 'transparent'; // Тип кнопки
     [key: string]: any; // Любые дополнительные пропсы
@@ -24,6 +25,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
                                                    type = 'main',
                                                    narrow = false,
                                                    withMargin = false,
+                                                   wide = false,
                                                    onClick,
                                                    ...props
                                                }) => {
@@ -32,6 +34,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         className,
         disabled && 'disabled',
         narrow && 'narrow',
+        wide && 'wide',
         withMargin && 'margin',
         type // Добавляем класс на основе типа кнопки
     ]

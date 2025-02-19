@@ -8,7 +8,7 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _loader_white = _interopRequireDefault(require("../../../assets/loader_white.gif"));
 var _jsxRuntime = require("react/jsx-runtime");
-var _excluded = ["Component", "loading", "disabled", "className", "children", "type", "narrow", "withMargin", "onClick"]; // Интерфейс для пропсов кнопки
+var _excluded = ["Component", "loading", "disabled", "className", "children", "type", "narrow", "withMargin", "wide", "onClick"]; // Интерфейс для пропсов кнопки
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -32,10 +32,12 @@ var BaseButton = function BaseButton(_ref) {
     narrow = _ref$narrow === void 0 ? false : _ref$narrow,
     _ref$withMargin = _ref.withMargin,
     withMargin = _ref$withMargin === void 0 ? false : _ref$withMargin,
+    _ref$wide = _ref.wide,
+    wide = _ref$wide === void 0 ? false : _ref$wide,
     onClick = _ref.onClick,
     props = _objectWithoutProperties(_ref, _excluded);
   // Формируем список классов
-  var classNames = [className, disabled && 'disabled', narrow && 'narrow', withMargin && 'margin', type // Добавляем класс на основе типа кнопки
+  var classNames = [className, disabled && 'disabled', narrow && 'narrow', wide && 'wide', withMargin && 'margin', type // Добавляем класс на основе типа кнопки
   ].filter(Boolean) // Убираем falsy значения
   .join(' ');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(Component, _objectSpread(_objectSpread({}, props), {}, {

@@ -68,12 +68,12 @@ var Search = function Search(_ref) {
 
   //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
   (0, _useOnceWhen["default"])(value && (options === null || options === void 0 ? void 0 : options.length), function () {
-    var matchingContact = options.find(function (option) {
+    var matchingOption = options.find(function (option) {
       return option.id === value;
     });
-    if (matchingContact) {
+    if (matchingOption) {
       // Здесь можно добавить любое другое действие
-      onSearch(matchingContact.name); // Например, вызов функции
+      onSearch(matchingOption.name); // Например, вызов функции
     }
   });
 
