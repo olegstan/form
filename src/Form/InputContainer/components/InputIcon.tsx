@@ -27,6 +27,7 @@ const InputIcon = memo(function InputIcon({
             return <img className="calendar" src={CalendarSvg} alt="calendar" />;
         case 'Select':
         case 'GroupSelect':
+        case 'MultiSelect':
             return <img className="arrow" src={ArrowSvg} alt="arrow" />;
         case 'Search':
             return loading ? <img className="loader" src={LoadImage} alt="loading" /> : null;

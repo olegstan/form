@@ -40,6 +40,49 @@ export const StyledOption = styled.div`
   }
 `
 
+export const StyledCheckboxOption = styled.div`
+  align-items: center;
+  color: ${({theme}) => theme.selectOptionTextColor};
+  line-height: 24px;
+  display: flex;
+  padding: 0 15px;
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+  text-align: left;
+  flex-wrap: wrap;
+  cursor: pointer;
+  transition: backtground-color 0.2s ease, transform 0.2s ease;
+
+  background-color: ${({theme}) => theme.inputContainerDisabledBackground};
+
+  & > span {
+    text-align: left;
+    font-size: 14px;
+    width: 100%;
+    padding: 4px 8px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  //&:last-child span {
+  //  border-bottom: none;
+  //}
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  & > span:hover {
+    background-color: ${({ theme }) => theme.selectOptionBackgroundHovererColor};
+    border-radius: 8px;
+  }
+`
+
 export const OptionsWrapper = styled.div`
   position: absolute;
   border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */

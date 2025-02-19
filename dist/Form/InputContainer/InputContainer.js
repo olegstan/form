@@ -71,6 +71,7 @@ function InputContainer(_ref) {
     _ref2$disabled = _ref2.disabled,
     disabled = _ref2$disabled === void 0 ? false : _ref2$disabled,
     value = _ref2.value,
+    values = _ref2.values,
     name = _ref2.name,
     onChange = _ref2.onChange,
     _ref2$icon = _ref2.icon,
@@ -93,6 +94,9 @@ function InputContainer(_ref) {
       case 'FileInput':
         // у этих типов placeholder всегда сверху
         return true;
+      case 'MultiSelect':
+        // для поля поиска смотрим свойство search
+        return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
         // для поля поиска смотрим свойство search
         return isNotEmpty(search);
@@ -104,6 +108,7 @@ function InputContainer(_ref) {
   var containerStyle = (0, _react.useMemo)(function () {
     switch (typeName) {
       case 'Select':
+      case 'MultiSelect':
       case 'GroupSelect':
         return _objectSpread(_objectSpread({}, style), {
           backgroundColor: theme.selectBackgroundColor

@@ -7,6 +7,7 @@ export { default as Input } from "./TextInput/Input";
 export { default as Checkbox } from "./Checkboxes/Checkbox";
 export { default as FileInput } from "./FileInput";
 export { default as Select } from "./Dropdown/Select/Select";
+export { default as MultiSelect } from "./Dropdown/MultiSelect/MultiSelect";
 export { default as Search } from "./Dropdown/Search/Search";
 export { default as TextArea } from "./TextInput/TextArea";
 export { default as InputContainer } from "./InputContainer/InputContainer";

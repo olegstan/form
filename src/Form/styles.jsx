@@ -182,7 +182,7 @@ export const StyledCheckbox = styled.div`
     position: absolute;
   }
 
-  & > span {
+  & > span.rotate-container {
     border: 2px solid ${({theme}) => theme.checkMarkColor};
     height: 18px;
     width: 18px;
@@ -191,19 +191,18 @@ export const StyledCheckbox = styled.div`
     background-color: ${({theme}) => theme.checkMarkColor};
     border-radius: 6px;
     display: flex;
+    position: relative;
   }
 
   & > span > span {
     display: block;
-    position: relative;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
+    position: absolute;
     transform: rotate(45deg);
     width: 7px;
     height: 11px;
     top: 1px;
     z-index: 1000;
-    left: 4px;
+    left: 5px;
     box-sizing: border-box;
   }
 

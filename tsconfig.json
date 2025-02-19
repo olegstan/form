@@ -19,7 +19,6 @@
     "outDir": "dist",
     "rootDir": "src",
     "typeRoots": [
-      "src/@types",
       "src/Form/types/*"
     ]
   },

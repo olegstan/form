@@ -69,6 +69,12 @@ Object.defineProperty(exports, "MaskedInput", {
     return _MaskedInput["default"];
   }
 });
+Object.defineProperty(exports, "MultiSelect", {
+  enumerable: true,
+  get: function get() {
+    return _MultiSelect["default"];
+  }
+});
 Object.defineProperty(exports, "NumberInput", {
   enumerable: true,
   get: function get() {
@@ -101,6 +107,7 @@ var _Input = _interopRequireDefault(require("./TextInput/Input"));
 var _Checkbox = _interopRequireDefault(require("./Checkboxes/Checkbox"));
 var _FileInput = _interopRequireDefault(require("./FileInput"));
 var _Select = _interopRequireDefault(require("./Dropdown/Select/Select"));
+var _MultiSelect = _interopRequireDefault(require("./Dropdown/MultiSelect/MultiSelect"));
 var _Search = _interopRequireDefault(require("./Dropdown/Search/Search"));
 var _TextArea = _interopRequireDefault(require("./TextInput/TextArea"));
 var _InputContainer = _interopRequireDefault(require("./InputContainer/InputContainer"));

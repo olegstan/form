@@ -47,6 +47,7 @@ function InputContainer({
         id,
         disabled = false,
         value,
+        values,//для MultiSelect
         name,
         onChange,
         icon = true,
@@ -71,6 +72,9 @@ function InputContainer({
             case 'FileInput':
                 // у этих типов placeholder всегда сверху
                 return true;
+            case 'MultiSelect':
+                // для поля поиска смотрим свойство search
+                return !!values?.length;
             case 'Search':
                 // для поля поиска смотрим свойство search
                 return isNotEmpty(search);
@@ -85,6 +89,7 @@ function InputContainer({
 
         switch (typeName) {
             case 'Select':
+            case 'MultiSelect':
             case 'GroupSelect':
                 return {...style, ...{backgroundColor: theme.selectBackgroundColor}}
             default:

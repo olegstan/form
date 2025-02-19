@@ -33,6 +33,7 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
       });
     case 'Select':
     case 'GroupSelect':
+    case 'MultiSelect':
       return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         className: "arrow",
         src: _arrow["default"],
