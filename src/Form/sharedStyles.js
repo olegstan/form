@@ -25,6 +25,8 @@ export const sharedInputStyle = css`
     color: transparent !important;
   }
   
+  
+  
   &:focus {
     outline: 0;
   }

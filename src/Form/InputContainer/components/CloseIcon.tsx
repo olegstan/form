@@ -8,7 +8,7 @@ import {isNotEmpty} from "../InputContainer";
 
 const CloseIcon = memo(function CloseIcon({
                                               typeName,
-                                              iconClose,
+                                              icon,
                                               search,
                                               onSearch,
                                               name,
@@ -16,16 +16,16 @@ const CloseIcon = memo(function CloseIcon({
                                               onChange
                                           }: {
     typeName?: string;
-    iconClose?: boolean;
+    icon?: boolean;
     value?: any;
     search?: any;
     name?: string;
     onChange?: (value: any) => void;
     onSearch?: (value: any) => void;
 }) {
-    // если тип не подходит или выключена опция iconClose — не показываем
-    //если передано iconClose = false то рендерить икноку для очистки не нужно
-    if (!typeName || !iconClose) return null;
+    // если тип не подходит или выключена опция icon — не показываем
+    //если передано icon = false то рендерить икноку для очистки не нужно
+    if (!typeName || !icon) return null;
 
 
     let action = () => {};

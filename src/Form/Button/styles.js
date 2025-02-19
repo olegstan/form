@@ -10,7 +10,6 @@ export const sharedButtonStyle = css`
   height: 48px;
   border-radius: 10px;
   border: none;
-  transition: .3s all;
   outline: none;
   font-style: normal;
   text-align: center;
@@ -20,6 +19,7 @@ export const sharedButtonStyle = css`
   margin: 15px 5px;
   min-width: 100px;
   font-weight: 700 !important;
+  transition: opacity 0.2s ease;
 
   &.narrow {
     height: 40px; /* Уменьшаем внутренние отступы */
@@ -67,6 +67,10 @@ export const sharedButtonStyle = css`
   svg, img {
     height: 10px !important;
     margin-top: 4px !important;
+  }
+  
+  &:hover{
+    opacity: 0.7;
   }
 `
 

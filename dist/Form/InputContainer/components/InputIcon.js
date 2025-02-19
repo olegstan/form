@@ -17,12 +17,12 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 
 var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
   var typeName = _ref.typeName,
-    iconClose = _ref.iconClose,
+    icon = _ref.icon,
     loading = _ref.loading;
-  // Если опция iconClose = false, в исходном коде вообще не рендерилась "доп. иконка".
-  // Если нужно поведение "календарь/стрелку рендерить всегда, а iconClose управляет только крестиком",
+  // Если опция icon = false, в исходном коде вообще не рендерилась "доп. иконка".
+  // Если нужно поведение "календарь/стрелку рендерить всегда, а icon управляет только крестиком",
   // уберите эту проверку или вынесите её в CloseIcon.
-  if (!typeName || !iconClose) return null;
+  if (!typeName || !icon) return null;
   switch (typeName) {
     case 'DateInput':
     case 'DateTimeInput':

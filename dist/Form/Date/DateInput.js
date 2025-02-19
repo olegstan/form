@@ -59,6 +59,7 @@ var DateInput = function DateInput(_ref) {
     _ref$defaultDate = _ref.defaultDate,
     defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate;
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,

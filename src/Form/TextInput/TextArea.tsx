@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import useBaseInput from '../hooks/useBaseInput';
 import {StyledTextArea} from '../styles';
 import TextAreaProps from "../types/TextAreaProps";
+import useInputClassNames from "../hooks/useInputClassNames";
 
 const TextArea: React.FC<TextAreaProps> = ({
                                                focused = false,
@@ -31,6 +32,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         handleBlur,
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,
@@ -60,7 +62,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         adjustHeight();
     }, [value, autoResize]);
 
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);;
 
     // Объединяем стиль из пропсов с условием отключения ресайза
     const mergedStyle = {

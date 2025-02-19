@@ -3,6 +3,7 @@ import React from 'react';
 import useBaseInput from '../hooks/useBaseInput';
 import {StyledInput} from '../styles';
 import InputProps from "../types/InputProps";
+import useInputClassNames from "../hooks/useInputClassNames";
 
 /**
  * @param {Object} props - Компонент Input Props
@@ -46,6 +47,7 @@ const Input: React.FC<InputProps> = ({
         handleBlur,
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,
@@ -53,7 +55,7 @@ const Input: React.FC<InputProps> = ({
         onBlur
     });
 
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (
         <StyledInput

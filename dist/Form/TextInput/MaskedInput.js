@@ -7,6 +7,7 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
+var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // <-- наш кастомный хук
@@ -40,6 +41,7 @@ var MaskedInput = function MaskedInput(_ref) {
     error = _ref.error,
     mask = _ref.mask;
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,
@@ -51,7 +53,8 @@ var MaskedInput = function MaskedInput(_ref) {
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
+  ;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
     id: id,
     style: style,

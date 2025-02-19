@@ -4,6 +4,7 @@ import {Money} from 'finhelper';
 import useBaseInput from '../hooks/useBaseInput';
 import {StyledInput} from '../styles';
 import NumberInputProps from "../types/NumberInputProps";
+import useInputClassNames from "../hooks/useInputClassNames";
 
 const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
@@ -37,6 +38,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         handleBlur,
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,
@@ -131,7 +133,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         []
     );
 
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);;
 
     return (<StyledInput
         ref={inputRef}

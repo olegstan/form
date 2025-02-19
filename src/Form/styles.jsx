@@ -33,7 +33,7 @@ const disabledStyles = css`
   background-color: ${({ theme }) => theme.inputContainerDisabledBackground} !important;
   ${webkitAutofillStyles} // чтобы в disabled-режиме тоже было корректно
 
-  &.disabled {
+  &:disabled, &.disabled {
     background-color: ${({ theme }) => theme.inputContainerDisabledBackground};
   }
 `;

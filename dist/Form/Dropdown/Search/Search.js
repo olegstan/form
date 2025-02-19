@@ -56,6 +56,7 @@ var Search = function Search(_ref) {
     setSelectOpen = _useState2[1];
   var selectRef = (0, _react.useRef)(null);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,

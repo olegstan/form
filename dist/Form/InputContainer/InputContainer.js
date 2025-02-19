@@ -73,8 +73,8 @@ function InputContainer(_ref) {
     value = _ref2.value,
     name = _ref2.name,
     onChange = _ref2.onChange,
-    _ref2$iconClose = _ref2.iconClose,
-    iconClose = _ref2$iconClose === void 0 ? true : _ref2$iconClose,
+    _ref2$icon = _ref2.icon,
+    icon = _ref2$icon === void 0 ? true : _ref2$icon,
     loading = _ref2.loading,
     search = _ref2.search,
     onSearch = _ref2.onSearch;
@@ -130,7 +130,7 @@ function InputContainer(_ref) {
         id: id
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_CloseIcon["default"], {
         typeName: typeName,
-        iconClose: iconClose,
+        icon: icon,
         value: value,
         search: search,
         onSearch: onSearch,
@@ -138,7 +138,7 @@ function InputContainer(_ref) {
         onChange: onChange
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_InputIcon["default"], {
         typeName: typeName,
-        iconClose: iconClose,
+        icon: icon,
         loading: loading
       })]
     })

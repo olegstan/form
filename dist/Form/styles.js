@@ -35,7 +35,7 @@ var webkitAutofillStyles = exports.webkitAutofillStyles = (0, _styledComponents.
 });
 
 // Миксин для стилей в disabled-состоянии
-var disabledStyles = (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: ", " !important;\n  ", " // \u0447\u0442\u043E\u0431\u044B \u0432 disabled-\u0440\u0435\u0436\u0438\u043C\u0435 \u0442\u043E\u0436\u0435 \u0431\u044B\u043B\u043E \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E\n\n  &.disabled {\n    background-color: ", ";\n  }\n"])), function (_ref4) {
+var disabledStyles = (0, _styledComponents.css)(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  background-color: ", " !important;\n  ", " // \u0447\u0442\u043E\u0431\u044B \u0432 disabled-\u0440\u0435\u0436\u0438\u043C\u0435 \u0442\u043E\u0436\u0435 \u0431\u044B\u043B\u043E \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E\n\n  &:disabled, &.disabled {\n    background-color: ", ";\n  }\n"])), function (_ref4) {
   var theme = _ref4.theme;
   return theme.inputContainerDisabledBackground;
 }, webkitAutofillStyles, function (_ref5) {

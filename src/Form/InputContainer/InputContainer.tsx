@@ -13,13 +13,6 @@ export function isNotEmpty(value: any) {
     return value.length > 0; // для строки (или массивов, если что-то такое)
 }
 
-interface InputProps {
-    focused: boolean;
-    setFocused: React.Dispatch<React.SetStateAction<boolean>>;
-    // другие пропсы компонента...
-}
-
-
 function InputContainer({
                             children,
                             className = '',
@@ -56,7 +49,7 @@ function InputContainer({
         value,
         name,
         onChange,
-        iconClose = true,
+        icon = true,
         loading,
         search,
         onSearch
@@ -120,7 +113,7 @@ function InputContainer({
                 />
                 <CloseIcon
                     typeName={typeName}
-                    iconClose={iconClose}
+                    icon={icon}
                     value={value}
                     search={search}
                     onSearch={onSearch}
@@ -129,7 +122,7 @@ function InputContainer({
                 />
                 <InputIcon
                     typeName={typeName}
-                    iconClose={iconClose}
+                    icon={icon}
                     loading={loading}
                 />
             </InputContainerStyled>

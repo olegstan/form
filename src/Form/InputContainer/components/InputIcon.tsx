@@ -9,17 +9,17 @@ import LoadImage from '../../../assets/loader.svg';
 
 const InputIcon = memo(function InputIcon({
                                               typeName,
-                                              iconClose,
+                                              icon,
                                               loading
                                           }: {
     typeName?: string;
-    iconClose?: boolean;
+    icon?: boolean;
     loading?: boolean;
 }) {
-    // Если опция iconClose = false, в исходном коде вообще не рендерилась "доп. иконка".
-    // Если нужно поведение "календарь/стрелку рендерить всегда, а iconClose управляет только крестиком",
+    // Если опция icon = false, в исходном коде вообще не рендерилась "доп. иконка".
+    // Если нужно поведение "календарь/стрелку рендерить всегда, а icon управляет только крестиком",
     // уберите эту проверку или вынесите её в CloseIcon.
-    if (!typeName || !iconClose) return null;
+    if (!typeName || !icon) return null;
 
     switch (typeName) {
         case 'DateInput':

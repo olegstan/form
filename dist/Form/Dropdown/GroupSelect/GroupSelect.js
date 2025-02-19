@@ -46,6 +46,7 @@ var GroupSelect = function GroupSelect(_ref) {
     _ref$options = _ref.options,
     options = _ref$options === void 0 ? [] : _ref$options;
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,

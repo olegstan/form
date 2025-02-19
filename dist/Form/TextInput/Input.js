@@ -7,6 +7,7 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
+var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
@@ -27,8 +28,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * @param {string|number} [props.value] - Значение инпута
  * @param {string} [props.autoComplete='off'] - Автозаполнение
  * @param {Array.<boolean|string>} [props.error] - Ошибка (массив с флагом и сообщением)
- */
-var Input = function Input(_ref) {
+ */var Input = function Input(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
@@ -56,6 +56,7 @@ var Input = function Input(_ref) {
     autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,
     error = _ref.error;
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,
@@ -67,7 +68,7 @@ var Input = function Input(_ref) {
     handleFocus = _useBaseInput.handleFocus,
     handleBlur = _useBaseInput.handleBlur,
     getName = _useBaseInput.getName;
-  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     id: id,
     style: style,

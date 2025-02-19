@@ -16,15 +16,15 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 
 var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
   var typeName = _ref.typeName,
-    iconClose = _ref.iconClose,
+    icon = _ref.icon,
     search = _ref.search,
     onSearch = _ref.onSearch,
     name = _ref.name,
     value = _ref.value,
     onChange = _ref.onChange;
-  // если тип не подходит или выключена опция iconClose — не показываем
-  //если передано iconClose = false то рендерить икноку для очистки не нужно
-  if (!typeName || !iconClose) return null;
+  // если тип не подходит или выключена опция icon — не показываем
+  //если передано icon = false то рендерить икноку для очистки не нужно
+  if (!typeName || !icon) return null;
   var action = function action() {};
   var notEmpty = false;
   switch (typeName) {

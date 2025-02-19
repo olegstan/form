@@ -22,6 +22,7 @@ const FileInput: React.FC<FileInputProps> = ({
     const {
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,

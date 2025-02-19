@@ -27,6 +27,7 @@ const GroupSelect: React.FC<SelectProps> = ({
     handleBlur,
     getName,
   } = useBaseInput({
+    disabled,
     name,
     onClick,
     onChange,

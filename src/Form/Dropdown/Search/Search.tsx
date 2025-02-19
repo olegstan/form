@@ -34,6 +34,7 @@ const Search: React.FC<SearchProps> = ({
         handleBlur,
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,

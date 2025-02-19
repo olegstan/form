@@ -2,6 +2,7 @@ import React from 'react';
 import useBaseInput from '../hooks/useBaseInput'; // <-- наш кастомный хук
 import {MaskedStyledInput} from '../styles';
 import MaskedInputProps from "../types/MaskedInputProps";
+import useInputClassNames from "../hooks/useInputClassNames";
 
 const MaskedInput: React.FC<MaskedInputProps> = ({
                          focused = false,
@@ -28,6 +29,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         handleBlur,
         getName,
     } = useBaseInput({
+        disabled,
         name,
         onClick,
         onChange,
@@ -35,7 +37,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         onBlur
     });
 
-    const inputClassName = `${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);;
 
     return <MaskedStyledInput
         id={id}

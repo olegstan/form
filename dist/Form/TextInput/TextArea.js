@@ -7,6 +7,7 @@ exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
+var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -48,6 +49,7 @@ var TextArea = function TextArea(_ref) {
     disableResize = _ref$disableResize === void 0 ? false : _ref$disableResize;
   var textAreaRef = (0, _react.useRef)(null);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,
@@ -81,7 +83,8 @@ var TextArea = function TextArea(_ref) {
   (0, _react.useEffect)(function () {
     adjustHeight();
   }, [value, autoResize]);
-  var inputClassName = "".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
+  ;
 
   // Объединяем стиль из пропсов с условием отключения ресайза
   var mergedStyle = _objectSpread(_objectSpread({}, style), disableResize ? {

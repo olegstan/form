@@ -41,6 +41,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     handleFocus,
     getName,
   } = useBaseInput({
+    disabled,
     name,
     onClick,
     onChange,

@@ -34,6 +34,7 @@ var FileInput = function FileInput(_ref) {
     error = _ref.error;
   var inputRef = (0, _react.useRef)(null);
   var _useBaseInput = (0, _useBaseInput2["default"])({
+      disabled: disabled,
       name: name,
       onClick: onClick,
       onChange: onChange,
