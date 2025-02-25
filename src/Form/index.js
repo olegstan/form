@@ -1,4 +1,3 @@
-// Form/index.js
 export { default as DateInput } from "./Date/DateInput";
 export { default as DateTimeInput } from "./Date/DateTimeInput";
 export { default as MaskedInput } from "./TextInput/MaskedInput";
