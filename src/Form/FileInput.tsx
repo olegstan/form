@@ -6,6 +6,7 @@ import FileInputProps from "./types/FileInputProps";
 const FileInput: React.FC<FileInputProps> = ({
                        focused = false,
                        setFocused = () => {},
+                       onBlur = () => {},
                        onChange = () => {},
                        onClick = () => {},
                        disabled = false,
@@ -26,23 +27,26 @@ const FileInput: React.FC<FileInputProps> = ({
         name,
         onClick,
         onChange,
-        setFocused
+        setFocused,
+        onBlur
     });
 
     useEffect(() => {
         if (inputRef.current) {
             const file = new File([], valueText, {
                 type: 'text/plain',
+                // @ts-ignore
                 lastModified: new Date(),
             });
 
             const dataTransfer = new DataTransfer();
             dataTransfer.items.add(file);
+            // @ts-ignore
             inputRef.current.files = dataTransfer.files;
         }
     }, []);
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e: any) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -59,13 +63,7 @@ const FileInput: React.FC<FileInputProps> = ({
         }
     };
 
-    const handleClearFile = (e) => {
-        onChange(e, {
-            name: name,
-            value: null,
-        });
-    };
-
+    // @ts-ignore
     const inputClassName = `${className}${error?.[0] ? ' error' : ''}`;
 
 

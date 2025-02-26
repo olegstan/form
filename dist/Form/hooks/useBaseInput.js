@@ -19,6 +19,7 @@ function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; 
 function useBaseInput(_ref) {
   var _ref$disabled = _ref.disabled,
     disabled = _ref$disabled === void 0 ? false : _ref$disabled,
+    name = _ref.name,
     onClick = _ref.onClick,
     onBlur = _ref.onBlur,
     onChange = _ref.onChange,
@@ -27,7 +28,7 @@ function useBaseInput(_ref) {
   var getName = (0, _react.useCallback)(function (name) {
     var _name$replace;
     return name === null || name === void 0 || (_name$replace = name.replace('country', 'couuntry')) === null || _name$replace === void 0 ? void 0 : _name$replace.replace('state', 'staate');
-  }, []);
+  }, [name]);
   var handleClick = (0, _react.useCallback)(function (e) {
     e.stopPropagation();
     if (disabled) {

@@ -10,6 +10,7 @@ import React, {useCallback} from 'react';
 
 export default function useBaseInput({
                                        disabled = false,
+                                       name,
                                        onClick,
                                        onBlur,
                                        onChange,
@@ -19,7 +20,7 @@ export default function useBaseInput({
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
   const getName = useCallback((name) => {
     return name?.replace('country', 'couuntry')?.replace('state', 'staate');
-  }, []);
+  }, [name]);
 
   const handleClick = useCallback((e) => {
     e.stopPropagation();

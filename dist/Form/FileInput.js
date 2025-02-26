@@ -17,6 +17,8 @@ var FileInput = function FileInput(_ref) {
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
     setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,
+    _ref$onBlur = _ref.onBlur,
+    onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,
     _ref$onChange = _ref.onChange,
     onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,
     _ref$onClick = _ref.onClick,
@@ -38,17 +40,20 @@ var FileInput = function FileInput(_ref) {
       name: name,
       onClick: onClick,
       onChange: onChange,
-      setFocused: setFocused
+      setFocused: setFocused,
+      onBlur: onBlur
     }),
     getName = _useBaseInput.getName;
   (0, _react.useEffect)(function () {
     if (inputRef.current) {
       var file = new File([], valueText, {
         type: 'text/plain',
+        // @ts-ignore
         lastModified: new Date()
       });
       var dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
+      // @ts-ignore
       inputRef.current.files = dataTransfer.files;
     }
   }, []);
@@ -67,12 +72,8 @@ var FileInput = function FileInput(_ref) {
       reader.readAsDataURL(file);
     }
   };
-  var handleClearFile = function handleClearFile(e) {
-    onChange(e, {
-      name: name,
-      value: null
-    });
-  };
+
+  // @ts-ignore
   var inputClassName = "".concat(className).concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     ref: inputRef,
