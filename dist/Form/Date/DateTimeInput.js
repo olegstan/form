@@ -157,4 +157,5 @@ var DateTimeInput = function DateTimeInput(_ref) {
     }
   });
 };
+DateTimeInput.displayName = 'DateTimeInput';
 var _default = exports["default"] = DateTimeInput;

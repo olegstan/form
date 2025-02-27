@@ -5,6 +5,7 @@ import {MaskedStyledInput} from '../styles';
 import DateTimeInputProps from "../types/DateTimeInputProps";
 import {useDateInput} from "./hooks/useDateInput";
 import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
+import DateInput from "./DateInput";
 
 const formatDateTime = (dateObj) => {
   if (!(dateObj instanceof Date)) return '';
@@ -139,5 +140,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
       />
   );
 }
+
+DateTimeInput.displayName = 'DateTimeInput';
 
 export default DateTimeInput;

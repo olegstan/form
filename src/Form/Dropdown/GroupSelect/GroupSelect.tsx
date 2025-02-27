@@ -4,6 +4,7 @@ import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import GroupResults from "../components/GroupResults";
+import MultiSelect from "../MultiSelect/MultiSelect";
 
 const GroupSelect: React.FC<SelectProps> = ({
                                          focused = false,
@@ -111,5 +112,7 @@ const GroupSelect: React.FC<SelectProps> = ({
     />
   </StyledSelect>)
 }
+
+GroupSelect.displayName = 'GroupSelect';
 
 export default GroupSelect;

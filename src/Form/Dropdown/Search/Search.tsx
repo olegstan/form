@@ -5,6 +5,7 @@ import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
 import useOnceWhen from "../../helpers/useOnceWhen";
+import Select from "../Select/Select";
 
 const Search: React.FC<SearchProps> = ({
                                            focused = false,
@@ -148,5 +149,7 @@ const Search: React.FC<SearchProps> = ({
         </StyledSelect>
     );
 }
+
+Search.displayName = 'Search';
 
 export default Search;

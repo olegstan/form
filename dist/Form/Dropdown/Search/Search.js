@@ -160,4 +160,5 @@ var Search = function Search(_ref) {
     })]
   });
 };
+Search.displayName = 'Search';
 var _default = exports["default"] = Search;

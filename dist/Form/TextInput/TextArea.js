@@ -106,4 +106,5 @@ var TextArea = function TextArea(_ref) {
     value: value || ''
   });
 };
+TextArea.displayName = 'TextArea';
 var _default = exports["default"] = TextArea;

@@ -5,6 +5,7 @@ import useBaseInput from '../hooks/useBaseInput';
 import {StyledInput} from '../styles';
 import NumberInputProps from "../types/NumberInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
+import Input from "./Input";
 
 const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
@@ -60,7 +61,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         (e: Event) => {
             const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
-            if (e.target && e.target.value === '' || pattern.test(e.target.value)) {
+            if (e.target && e?.target?.value === '' || pattern.test(e?.target?.value)) {
                 let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
                 // Проверки на min/max
@@ -75,7 +76,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                 }
 
                 // Позиция курсора
-                let position = e.target.selectionStart;
+                let position = e?.target?.selectionStart;
 
                 if (val.length > 0) {
                     let prefix = '';
@@ -151,5 +152,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         onBlur={handleBlur}
     />);
 }
+
+NumberInput.displayName = 'NumberInput';
 
 export default NumberInput;

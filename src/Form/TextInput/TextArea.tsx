@@ -4,6 +4,7 @@ import useBaseInput from '../hooks/useBaseInput';
 import {StyledTextArea} from '../styles';
 import TextAreaProps from "../types/TextAreaProps";
 import useInputClassNames from "../hooks/useInputClassNames";
+import Input from "./Input";
 
 const TextArea: React.FC<TextAreaProps> = ({
                                                focused = false,
@@ -88,5 +89,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         />
     );
 };
+
+TextArea.displayName = 'TextArea';
 
 export default TextArea;

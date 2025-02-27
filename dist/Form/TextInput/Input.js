@@ -85,4 +85,5 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
     onBlur: handleBlur
   });
 };
+Input.displayName = 'Input';
 var _default = exports["default"] = Input;

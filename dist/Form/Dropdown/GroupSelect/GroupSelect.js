@@ -126,4 +126,5 @@ var GroupSelect = function GroupSelect(_ref) {
     })]
   });
 };
+GroupSelect.displayName = 'GroupSelect';
 var _default = exports["default"] = GroupSelect;

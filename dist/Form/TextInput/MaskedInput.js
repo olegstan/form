@@ -72,4 +72,5 @@ var MaskedInput = function MaskedInput(_ref) {
     mask: mask
   });
 };
+MaskedInput.displayName = 'MaskedInput';
 var _default = exports["default"] = MaskedInput;

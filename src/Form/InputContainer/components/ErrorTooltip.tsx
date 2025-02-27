@@ -4,13 +4,14 @@
  */
 import {memo} from "react";
 import InputPopup from '../../InputPopup/InputPopup';
+// @ts-ignore
 import errorSvg from './../../../assets/error.svg';
 
 const ErrorTooltip = memo(function ErrorTooltip({
                                                     error,
                                                     id
                                                 }: {
-    error?: string | null;
+    error?: string | null | undefined | boolean;
     id?: string;
 }) {
     if (!error) return null;

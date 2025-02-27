@@ -1,4 +1,3 @@
-// Input.js
 import React, {useMemo, useState} from 'react';
 import {Container, InputContainerStyled} from '../styles';
 import PlaceholderLabel from "./components/PlaceholderLabel";
@@ -8,6 +7,8 @@ import InputIcon from "./components/InputIcon";
 import {useTheme} from 'styled-components';
 
 export function isNotEmpty(value: any) {
+    console.log(value)
+
     if (value === null || value === undefined) return false;
     if (typeof value === 'number') return value.toString().length > 0;
     return value.length > 0; // для строки (или массивов, если что-то такое)
@@ -54,34 +55,31 @@ function InputContainer({
         loading,
         search,
         onSearch
+        // @ts-ignore
     } = child.props || {};
 
-    const typeName: string | undefined = child.type?.name;
+    // @ts-ignore
+    const typeName: string | undefined = child.type?.displayName || child.type?.name;
 
     /**
      * Определяем, нужно ли отображать placeholder сверху (активное состояние).
      */
     const isPlaceholderActive = useMemo(() => {
         if (!placeholder || !typeName) return false;
-
         switch (typeName) {
             case 'DateInput':
             case 'DateTimeInput':
-                // "value instanceof Date"
                 return value instanceof Date;
             case 'FileInput':
-                // у этих типов placeholder всегда сверху
                 return true;
             case 'MultiSelect':
-                // для поля поиска смотрим свойство search
                 return !!values?.length;
             case 'Search':
-                // для поля поиска смотрим свойство search
                 return isNotEmpty(search);
             default:
                 return isNotEmpty(value);
         }
-    }, [placeholder, typeName, value, search]);
+    }, [placeholder, typeName, value, search, values, isNotEmpty]);
 
     const containerClassName = `${className}${disabled ? ' disabled' : ''}`;
 
@@ -102,7 +100,7 @@ function InputContainer({
             style={containerStyle}
             className={containerClassName}
             disabled={disabled}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: any) => e.stopPropagation()}
         >
             <InputContainerStyled className={`styled-input__main-wrapper`}>
                 {clonedChild}

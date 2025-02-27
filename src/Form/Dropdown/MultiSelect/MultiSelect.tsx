@@ -5,6 +5,7 @@ import useBaseInput from "../../hooks/useBaseInput";
 import MultiSelectProps from "../../types/MultiSelectProps";
 import Results from "../components/Results";
 import ResultsWithCheckbox from "../components/ResultsWithCheckbox";
+import Search from "../Search/Search";
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
                                    focused = false,
@@ -130,5 +131,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         />
     </StyledSelect>)
 }
+
+MultiSelect.displayName = 'MultiSelect';
 
 export default MultiSelect;

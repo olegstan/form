@@ -139,4 +139,5 @@ var MultiSelect = function MultiSelect(_ref) {
     })]
   });
 };
+MultiSelect.displayName = 'MultiSelect';
 var _default = exports["default"] = MultiSelect;

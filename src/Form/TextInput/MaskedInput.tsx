@@ -3,6 +3,7 @@ import useBaseInput from '../hooks/useBaseInput'; // <-- наш кастомны
 import {MaskedStyledInput} from '../styles';
 import MaskedInputProps from "../types/MaskedInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
+import Input from "./Input";
 
 const MaskedInput: React.FC<MaskedInputProps> = ({
                          focused = false,
@@ -56,5 +57,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         mask={mask}
     />
 }
+
+MaskedInput.displayName = 'MaskedInput';
 
 export default MaskedInput;

@@ -150,4 +150,5 @@ var DateInput = function DateInput(_ref) {
     }
   });
 };
+DateInput.displayName = 'DateInput';
 var _default = exports["default"] = DateInput;

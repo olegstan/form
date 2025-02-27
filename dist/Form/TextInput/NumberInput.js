@@ -85,9 +85,11 @@ var NumberInput = function NumberInput(_ref) {
 
   // handleChange — портируем вашу логику
   var handleChange = (0, _react.useCallback)(function (e) {
+    var _e$target, _e$target2;
     var pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
-    if (e.target && e.target.value === '' || pattern.test(e.target.value)) {
+    if (e.target && (e === null || e === void 0 || (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.value) === '' || pattern.test(e === null || e === void 0 || (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.value)) {
+      var _e$target3;
       var val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
       // Проверки на min/max
@@ -102,7 +104,7 @@ var NumberInput = function NumberInput(_ref) {
       }
 
       // Позиция курсора
-      var position = e.target.selectionStart;
+      var position = e === null || e === void 0 || (_e$target3 = e.target) === null || _e$target3 === void 0 ? void 0 : _e$target3.selectionStart;
       if (val.length > 0) {
         var prefix = '';
         if (val[0] === '-') {
@@ -171,4 +173,5 @@ var NumberInput = function NumberInput(_ref) {
     onBlur: handleBlur
   });
 };
+NumberInput.displayName = 'NumberInput';
 var _default = exports["default"] = NumberInput;

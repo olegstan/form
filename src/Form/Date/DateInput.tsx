@@ -6,6 +6,7 @@ import {MaskedStyledInput} from '../styles';
 import DateInputProps from "../types/DateInputProps";
 import {useDateInput} from "./hooks/useDateInput";
 import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
+import GroupSelect from "../Dropdown/GroupSelect/GroupSelect";
 
 const formatDate = (d) => {
     if (!(d instanceof Date)) return '';
@@ -106,7 +107,7 @@ const DateInput: React.FC<DateInputProps> = ({
             autoComplete={autoComplete || 'off'}
             options={getOptions()}
             className={inputClassName}
-            onReady={(selectedDates, dateStr, fp) => {
+            onReady={(selectedDates: any, dateStr: string, fp: any) => {
                 flatpickrInstance.current = fp;
                 fp.calendarContainer.id = `${id}-container`;
             }}
@@ -126,11 +127,12 @@ const DateInput: React.FC<DateInputProps> = ({
                     className={restProps.className}
                     onFocus={handleFocus}
                 >
-                    {(inputProps) => <input ref={refEl} {...inputProps} />}
+                    {(inputProps: any) => <input ref={refEl} {...inputProps} />}
                 </MaskedStyledInput>
             }}
         />
     );
 }
 
+DateInput.displayName = 'DateInput';
 export default DateInput;

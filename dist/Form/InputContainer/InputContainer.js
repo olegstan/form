@@ -27,14 +27,15 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } // Input.js
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 function isNotEmpty(value) {
+  console.log(value);
   if (value === null || value === undefined) return false;
   if (typeof value === 'number') return value.toString().length > 0;
   return value.length > 0; // для строки (или массивов, если что-то такое)
 }
 function InputContainer(_ref) {
-  var _child$type;
+  var _child$type, _child$type2;
   var children = _ref.children,
     _ref$className = _ref.className,
     className = _ref$className === void 0 ? '' : _ref$className,
@@ -79,7 +80,9 @@ function InputContainer(_ref) {
     loading = _ref2.loading,
     search = _ref2.search,
     onSearch = _ref2.onSearch;
-  var typeName = (_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.name;
+
+  // @ts-ignore
+  var typeName = ((_child$type = child.type) === null || _child$type === void 0 ? void 0 : _child$type.displayName) || ((_child$type2 = child.type) === null || _child$type2 === void 0 ? void 0 : _child$type2.name);
 
   /**
    * Определяем, нужно ли отображать placeholder сверху (активное состояние).
@@ -89,21 +92,17 @@ function InputContainer(_ref) {
     switch (typeName) {
       case 'DateInput':
       case 'DateTimeInput':
-        // "value instanceof Date"
         return value instanceof Date;
       case 'FileInput':
-        // у этих типов placeholder всегда сверху
         return true;
       case 'MultiSelect':
-        // для поля поиска смотрим свойство search
         return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
-        // для поля поиска смотрим свойство search
         return isNotEmpty(search);
       default:
         return isNotEmpty(value);
     }
-  }, [placeholder, typeName, value, search]);
+  }, [placeholder, typeName, value, search, values, isNotEmpty]);
   var containerClassName = "".concat(className).concat(disabled ? ' disabled' : '');
   var containerStyle = (0, _react.useMemo)(function () {
     switch (typeName) {
@@ -125,6 +124,7 @@ function InputContainer(_ref) {
       return e.stopPropagation();
     },
     children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.InputContainerStyled, {
+      className: "styled-input__main-wrapper",
       children: [clonedChild, /*#__PURE__*/(0, _jsxRuntime.jsx)(_PlaceholderLabel["default"], {
         focused: focused,
         placeholder: placeholder,

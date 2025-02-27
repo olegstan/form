@@ -5,6 +5,7 @@ import Results from "../components/Results";
 
 import {StyledFakeInput} from "../../styles";
 import {StyledSelect} from "./styles";
+import Input from "../../TextInput/Input";
 
 const Select: React.FC<SelectProps> = ({
                                            focused = false,
@@ -50,14 +51,14 @@ const Select: React.FC<SelectProps> = ({
 
     }
 
-    const handleChange = (e, item) => {
+    const handleChange = (e: any, item: any) => {
         e.stopPropagation();
 
         onChange(item);
         handleClose()
     }
 
-    const handleOpen = (e) => {
+    const handleOpen = (e: any) => {
         setSelectOpen(true)
         setFocused(true)
     }
@@ -69,8 +70,8 @@ const Select: React.FC<SelectProps> = ({
 
     // // Обработка клика вне компонента
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (selectRef.current && !selectRef.current.contains(event.target)) {
+        const handleClickOutside = (event: any) => {
+            if (selectRef.current && !selectRef.current?.contains(event.target)) {
                 handleClose()
             }
         };
@@ -94,6 +95,7 @@ const Select: React.FC<SelectProps> = ({
         [options, value]
     );
     const valueText = selectedOption ? selectedOption.name : '';
+    // @ts-ignore
     const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (
@@ -121,5 +123,7 @@ const Select: React.FC<SelectProps> = ({
         </StyledSelect>
     )
 }
+
+Select.displayName = 'Select';
 
 export default Select;

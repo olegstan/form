@@ -14,6 +14,8 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * Мемоизирован.
  */
 
+// @ts-ignore
+
 var ErrorTooltip = /*#__PURE__*/(0, _react.memo)(function ErrorTooltip(_ref) {
   var error = _ref.error,
     id = _ref.id;

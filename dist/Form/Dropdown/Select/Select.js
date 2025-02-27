@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _styles = require("./styles");
-var _styles2 = require("../../styles");
 var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
 var _Results = _interopRequireDefault(require("../components/Results"));
+var _styles = require("../../styles");
+var _styles2 = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -81,7 +81,8 @@ var Select = function Select(_ref) {
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
+      var _selectRef$current;
+      if (selectRef.current && !((_selectRef$current = selectRef.current) !== null && _selectRef$current !== void 0 && _selectRef$current.contains(event.target))) {
         handleClose();
       }
     };
@@ -107,17 +108,20 @@ var Select = function Select(_ref) {
     });
   }, [options, value]);
   var valueText = selectedOption ? selectedOption.name : '';
-  var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
+  // @ts-ignore
+  var inputClassName = "styled-input__pseudo-input input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles2.StyledSelect, {
+    className: "styled-input__select-wrapper",
     onClick: handleOpen,
     ref: selectRef,
-    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles2.StyledFakeInput, {
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledFakeInput, {
       id: id,
       style: style,
       className: inputClassName,
       name: getName(name),
       children: valueText
     }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+      className: "styled-input__results-list",
       active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,
@@ -126,4 +130,5 @@ var Select = function Select(_ref) {
     })]
   });
 };
+Select.displayName = 'Select';
 var _default = exports["default"] = Select;
