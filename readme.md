@@ -17,3 +17,16 @@ npm link
 #переходи в нужный проект и пишем
 
 npm link react finform
+
+### UPDATED 27.02.25
+в этой папке
+```bash
+npm run build
+rm -rf node_modules/react
+npm link
+```
+
+в папке целевого проекта: 
+```bash
+npm link finform
+```
