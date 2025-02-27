@@ -17,7 +17,7 @@ function InputContainer({
                             children,
                             className = '',
                             style = {},
-                            error = null
+                            error = null,
                         }: {
     children: React.ReactNode;
     className?: string;
@@ -104,7 +104,7 @@ function InputContainer({
             disabled={disabled}
             onClick={(e) => e.stopPropagation()}
         >
-            <InputContainerStyled>
+            <InputContainerStyled className={`styled-input__main-wrapper`}>
                 {clonedChild}
                 <PlaceholderLabel
                     focused={focused}

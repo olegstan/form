@@ -84,47 +84,51 @@ export const StyledCheckboxOption = styled.div`
 `
 
 export const OptionsWrapper = styled.div`
-  position: absolute;
-  border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */
-  top: 50px;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 20px 48px ${({ theme }) => theme.selectShadowColor};
-  background-color: ${({ theme }) => theme.selectWrapperOptionBackgroundColor};
-  overflow-y: auto;
-  overflow-x: hidden;
-  z-index: ${zindex.input};
-  display: flex;
-  flex-direction: column;
-  max-height: 250px;
-  pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
+    position: absolute;
+    border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
+    background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: ${zindex.input};
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    pointer-events: ${({active}) => (active ? 'auto' : 'none')};
+    
+    &.styled-input__results-list {
+        
+    }
+    
+    /* Анимация открытия */
 
-  /* Анимация открытия */
+    /* При появлении (active: true) плавное изменение, при скрытии сразу */
+    opacity: ${({active}) => (active ? 1 : 0)};
+    transform: ${({active}) =>
+            active ? 'translateY(0)' : 'translateY(-10px)'};
+    transition: ${({active}) =>
+            active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
 
-  /* При появлении (active: true) плавное изменение, при скрытии сразу */
-  opacity: ${({ active }) => (active ? 1 : 0)};
-  transform: ${({ active }) =>
-          active ? 'translateY(0)' : 'translateY(-10px)'};
-  transition: ${({ active }) =>
-          active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
+    &::-webkit-scrollbar {
+        width: 8px; /* Фиксированная ширина скроллбара */
+        background-color: transparent; /* Прозрачный фон для области скроллбара */
+    }
 
-  &::-webkit-scrollbar {
-    width: 8px; /* Фиксированная ширина скроллбара */
-    background-color: transparent; /* Прозрачный фон для области скроллбара */
-  }
+    &::-webkit-scrollbar-thumb {
+        background-color: ${({theme}) => theme.selectScrollThumbColor}; /* Цвет ползунка */
+        border-radius: 0 0 8px 0; /* Закругляем только правый нижний угол */
+        border: 2px solid transparent; /* Эффект внутреннего отступа */
+        background-clip: padding-box; /* Ограничение фона ползунка */
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.selectScrollThumbColor}; /* Цвет ползунка */
-    border-radius: 0 0 8px 0; /* Закругляем только правый нижний угол */
-    border: 2px solid transparent; /* Эффект внутреннего отступа */
-    background-clip: padding-box; /* Ограничение фона ползунка */
-  }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: ${({theme}) => theme.selectScrollThumbHoverColor || theme.selectScrollThumbColor}; /* Цвет ползунка при наведении */
+    }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: ${({ theme }) => theme.selectScrollThumbHoverColor || theme.selectScrollThumbColor}; /* Цвет ползунка при наведении */
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent; /* Прозрачный трек */
-  }
+    &::-webkit-scrollbar-track {
+        background-color: transparent; /* Прозрачный трек */
+    }
 `

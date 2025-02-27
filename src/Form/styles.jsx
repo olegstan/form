@@ -51,10 +51,89 @@ export const Container = styled.div`
   border-radius: 8px;
   position: relative;
 
+  &.styled-input__container {
+    border: 1px solid transparent;
+    border-radius: 12px;
+  }
+
+  &.styled-input__container:has(.focused) {
+    border: 1px solid #4378FF;
+  }
+
+  &.styled-input__container .styled-input__main-wrapper {
+    height: 100%;
+  }
+
+  &.styled-input__container .styled-input__main-wrapper .placeholder {
+    padding: 0;
+    width: fit-content;
+    font-size: 12px;
+    top: 5px;
+    line-height: 14px;
+    text-align: start;
+    left: 14px;
+  }
+
+  &.styled-input__container .styled-input__main-wrapper .arrow {
+    height: 100%;
+    align-self: center;
+    justify-self: center;
+    position: absolute;
+    top: 0;
+  }
+
+  &.styled-input__container .styled-input__select-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 0;
+  }
+  
+  &.styled-input__container .styled-input__results-list {
+    
+  }
+
+
+  &.styled-input__container .styled-input__pseudo-input,
+  &.styled-input__container .styled-input__pseudo-input.input {
+    position: absolute;
+    bottom: 3px;
+    left: 16px;
+    background-color: transparent;
+    width: fit-content;
+    line-height: 18px;
+    font-size: 14px;
+  }
+
+  &.styled-input__container .styled-input__pseudo-input > div > .sort-arrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    font-size: 1em;
+    width: fit-content;
+  }
+
+  &.styled-input__container .styled-input__pseudo-input > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 5px;
+  }
+
+  &.styled-input__container .styled-input__pseudo-input > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+  }
+  
   //смотрим что у инпута есть такой класс, значит надо менять border
   &:has(.focused) {
     z-index: 1000;
-    border: 1px solid #4378FF;
+    // border: 1px solid #4378FF;
   }
   &:has(.error) {
     border: 1px solid #EF5E70;

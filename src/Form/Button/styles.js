@@ -5,7 +5,7 @@ export const sharedButtonStyle = css`
   display: inline-block;
   cursor: pointer;
   font-size: 14px;
-  line-height: 28px;
+  line-height: normal;
   white-space: nowrap;
   height: 48px;
   border-radius: 10px;
@@ -36,7 +36,7 @@ export const sharedButtonStyle = css`
     width: 100%;
   }
   
-  &.main{
+  &.main {
     background-color: ${({theme}) => theme.mainButtonBackgroundColor};
     color: ${({theme}) => theme.mainButtonTextColor};
   }
@@ -46,12 +46,12 @@ export const sharedButtonStyle = css`
     color: ${({theme}) => theme.cancelButtonTextColor};
   }
   
-  &.block{
+  &.block {
     background-color: ${({theme}) => theme.blockButtonBackgroundColor};
     color: ${({theme}) => theme.blockButtonTextColor};
   }
 
-  &.transparent{
+  &.transparent {
     background-color: transparent;
     color: ${({theme}) => theme.transparentButtonTextColor};
     height: auto;
@@ -75,6 +75,10 @@ export const sharedButtonStyle = css`
 `
 
 export const StyledButton = styled.button`
+  &.button__header {
+    min-width: 8em;
+  }
+  
   ${sharedButtonStyle}
 `
 

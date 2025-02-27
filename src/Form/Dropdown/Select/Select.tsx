@@ -1,26 +1,32 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-import {StyledSelect} from "./styles";
-import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import Results from "../components/Results";
 
+import {StyledFakeInput} from "../../styles";
+import {StyledSelect} from "./styles";
+
 const Select: React.FC<SelectProps> = ({
-                                   focused = false,
-                                   setFocused = () => {},
-                                   onBlur = () => {},
-                                   onKeyPress = () => {},
-                                   onChange = () => {},
-                                   onClick = () => {},
-                                   disabled = false,
-                                   className = '',
-                                   style = {},
-                                   id,
-                                   name,
-                                   value,
-                                   error,
-                                   options = [],
-                               }) => {
+                                           focused = false,
+                                           setFocused = () => {
+                                           },
+                                           onBlur = () => {
+                                           },
+                                           onKeyPress = () => {
+                                           },
+                                           onChange = () => {
+                                           },
+                                           onClick = () => {
+                                           },
+                                           disabled = false,
+                                           className = '',
+                                           style = {},
+                                           id,
+                                           name,
+                                           value,
+                                           error,
+                                           options = [],
+                                       }) => {
 
     const {
         handleFocus,
@@ -88,28 +94,32 @@ const Select: React.FC<SelectProps> = ({
         [options, value]
     );
     const valueText = selectedOption ? selectedOption.name : '';
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
-    return (<StyledSelect
-        onClick={handleOpen}
-        ref={selectRef}
-    >
-        <StyledFakeInput
-            id={id}
-            style={style}
-            className={inputClassName}
-            name={getName(name)}
+    return (
+        <StyledSelect
+            className={`styled-input__select-wrapper`}
+            onClick={handleOpen}
+            ref={selectRef}
         >
-            {valueText}
-        </StyledFakeInput>
-        <Results
-            active={selectOpen && !disabled}
-            id={id}
-            options={filteredOptions}
-            handleClick={handleChange}
-            idPrefix={getName(name)}
-        />
-    </StyledSelect>)
+            <StyledFakeInput
+                id={id}
+                style={style}
+                className={inputClassName}
+                name={getName(name)}
+            >
+                {valueText}
+            </StyledFakeInput>
+            <Results
+                className={`styled-input__results-list`}
+                active={selectOpen && !disabled}
+                id={id}
+                options={filteredOptions}
+                handleClick={handleChange}
+                idPrefix={getName(name)}
+            />
+        </StyledSelect>
+    )
 }
 
 export default Select;
