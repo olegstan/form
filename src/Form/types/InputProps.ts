@@ -16,5 +16,5 @@ export default interface InputProps {
     name?: string;
     value?: string;
     autoComplete?: string;
-    error?: string|object;
+    error?: string[];
 }

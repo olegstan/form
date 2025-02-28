@@ -12,6 +12,26 @@ var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // <-- наш кастомный хук
 
+/**
+ *
+ * @param focused
+ * @param setFocused
+ * @param onBlur
+ * @param onKeyPress
+ * @param onChange
+ * @param onClick
+ * @param disabled
+ * @param className
+ * @param type
+ * @param style
+ * @param id
+ * @param name
+ * @param value
+ * @param autoComplete
+ * @param error
+ * @param mask
+ * @constructor
+ */
 var MaskedInput = function MaskedInput(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,

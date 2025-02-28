@@ -20,7 +20,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
  * @param {string} [props.name] - Имя инпута
  * @param {string|number} [props.value] - Значение инпута
  * @param {string} [props.autoComplete='off'] - Автозаполнение
- * @param {Array.<boolean|string>} [props.error] - Ошибка (массив с флагом и сообщением)
+ * @param {Array.<string>} [props.error] - Ошибка (массив с флагом и сообщением)
  */
 const Input: React.FC<InputProps> = ({
                                         focused = false,
@@ -38,7 +38,23 @@ const Input: React.FC<InputProps> = ({
                                         value,
                                         autoComplete = 'off',
                                         error
-                                    }) => {
+                                    }: {
+    focused?: boolean;
+    setFocused?: Function;
+    onKeyPress?: Function;
+    onBlur?: Function;
+    onChange?: Function;
+    onClick?: Function;
+    disabled?: boolean;
+    className?: string;
+    type?: string;
+    style?: object;
+    id?: string;
+    name?: string;
+    value?: string | number;
+    autoComplete?: string;
+    error?: string[];
+}) => {
 
     const {
         handleClick,

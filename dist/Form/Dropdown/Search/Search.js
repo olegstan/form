@@ -81,7 +81,9 @@ var Search = function Search(_ref) {
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
+      var _selectRef$current;
+      // @ts-ignore
+      if (selectRef.current && !((_selectRef$current = selectRef.current) !== null && _selectRef$current !== void 0 && _selectRef$current.contains(event.target))) {
         handleClose();
         //если элемент не выбран, то очистим поле поиска
         if (!value) {
@@ -107,9 +109,9 @@ var Search = function Search(_ref) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [search, value, options, setSelectOpen, onChange]);
-  var handleChange = function handleChange(e, item) {
+  var handleChange = function handleChange(e, option) {
     e.stopPropagation();
-    onChange(item);
+    onChange(option);
     handleClose();
   };
   var handleOpen = function handleOpen(e) {
@@ -138,6 +140,8 @@ var Search = function Search(_ref) {
       });
     });
   }, [options, value, search]);
+
+  // @ts-ignore
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
     onClick: handleOpen,

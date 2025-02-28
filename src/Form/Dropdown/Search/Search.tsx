@@ -55,8 +55,9 @@ const Search: React.FC<SearchProps> = ({
 
 // // Обработка клика вне компонента
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (selectRef.current && !selectRef.current.contains(event.target)) {
+        const handleClickOutside = (event: any) => {
+            // @ts-ignore
+            if (selectRef.current && !selectRef.current?.contains(event.target)) {
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
@@ -81,14 +82,14 @@ const Search: React.FC<SearchProps> = ({
         };
     }, [search, value, options, setSelectOpen, onChange]);
 
-    const handleChange = (e, item) => {
+    const handleChange = (e: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any): void => {
         e.stopPropagation();
 
-        onChange(item);
+        onChange(option);
         handleClose()
     }
 
-    const handleOpen = (e) => {
+    const handleOpen = (e: any) => {
         setSelectOpen(true)
         setFocused(true)
     }
@@ -98,7 +99,7 @@ const Search: React.FC<SearchProps> = ({
         setFocused(false)
     }
 
-    const handleSearch = (e) => {
+    const handleSearch = (e: any) => {
         onSearch(e.target.value);
     }
 
@@ -123,6 +124,7 @@ const Search: React.FC<SearchProps> = ({
         });
     }, [options, value, search]);
 
+    // @ts-ignore
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect

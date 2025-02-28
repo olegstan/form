@@ -27,7 +27,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * @param {string} [props.name] - Имя инпута
  * @param {string|number} [props.value] - Значение инпута
  * @param {string} [props.autoComplete='off'] - Автозаполнение
- * @param {Array.<boolean|string>} [props.error] - Ошибка (массив с флагом и сообщением)
+ * @param {Array.<string>} [props.error] - Ошибка (массив с флагом и сообщением)
  */var Input = function Input(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,

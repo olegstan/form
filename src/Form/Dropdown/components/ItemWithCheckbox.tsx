@@ -2,10 +2,22 @@ import React from 'react';
 import {StyledCheckboxOption} from './styles';
 import Checkbox from "../../Checkboxes/Checkbox";
 
-const ItemWithCheckbox = ({ item, checked, hovered, onClick, className, id }) => (
+const ItemWithCheckbox = ({
+                              item,
+                              checked,
+                              onClick,
+                              className,
+                              id
+}: {
+    item: any,
+    checked: boolean,
+    onClick: (e: any) => void,
+    className?: string,
+    id?: string,
+}) => (
   <StyledCheckboxOption
     key={item.id}
-    className={`${className} item ${hovered ? 'hovered' : ''}`}
+    className={`${className} item`}
     id={id}
     onClick={onClick}
   >
@@ -13,7 +25,7 @@ const ItemWithCheckbox = ({ item, checked, hovered, onClick, className, id }) =>
       <span>{item.name}</span>
       <Checkbox
           checked={checked}
-          toggleCallback={() => {onClick()}}
+          toggleCallback={onClick}
           checkboxStyle={{
             margin: '0',
             backgroundColor: '#4378FF',

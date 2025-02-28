@@ -71,7 +71,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
     // // Обработка клика вне компонента
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: any) => {
+
             if (selectRef.current && !selectRef.current.contains(event.target)) {
                 handleClose()
             }

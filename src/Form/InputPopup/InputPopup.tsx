@@ -3,7 +3,10 @@ import {Container, PopupContainer} from './styles'
 // @ts-ignore
 import Popup from 'reactjs-popup';
 
-const InputPopup = ({ trigger, children }) => {
+const InputPopup = ({ trigger, children }: {
+  trigger: any,
+  children: any,
+}) => {
   return (
     <Popup
       on={'hover'}
@@ -11,8 +14,8 @@ const InputPopup = ({ trigger, children }) => {
       position="bottom"
       contentStyle={{ zIndex: 1000 }}
     >
-      {(close) => (
-        <PopupContainer onClick={(e) => e.stopPropagation()}>
+      {(close: any) => (
+        <PopupContainer onClick={(e: any) => e.stopPropagation()}>
           {children}
         </PopupContainer>
       )}

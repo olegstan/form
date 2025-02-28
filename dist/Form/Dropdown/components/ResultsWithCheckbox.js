@@ -10,6 +10,7 @@ var _ItemWithCheckbox = _interopRequireDefault(require("./ItemWithCheckbox"));
 var _styles = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+// @ts-ignore
 var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {
   var id = _ref.id,
     values = _ref.values,
@@ -46,7 +47,7 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {
           item: option,
           checked: values.includes(option.id),
           onClick: function onClick(e) {
-            return handleClick(e, option);
+            handleClick(e, option);
           },
           className: className,
           id: "".concat(idPrefix, "-").concat(option.id)

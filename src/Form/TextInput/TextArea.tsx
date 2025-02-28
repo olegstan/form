@@ -6,6 +6,26 @@ import TextAreaProps from "../types/TextAreaProps";
 import useInputClassNames from "../hooks/useInputClassNames";
 import Input from "./Input";
 
+/**
+ *
+ * @param focused
+ * @param setFocused
+ * @param onKeyPress
+ * @param onBlur
+ * @param onChange
+ * @param onClick
+ * @param disabled
+ * @param className
+ * @param style
+ * @param id
+ * @param name
+ * @param value
+ * @param error
+ * @param rows
+ * @param autoResize
+ * @param disableResize
+ * @constructor
+ */
 const TextArea: React.FC<TextAreaProps> = ({
                                                focused = false,
                                                setFocused = () => {},

@@ -3,7 +3,26 @@ import Item from './Item';
 import ItemWithCheckbox from './ItemWithCheckbox';
 import {OptionsWrapper} from "./styles";
 
-const ResultsWithCheckbox = ({id, values, options, handleClick, handleClickAll, className, idPrefix, active}) => (
+// @ts-ignore
+const ResultsWithCheckbox = ({
+                                 id,
+                                 values,
+                                 options,
+                                 handleClick,
+                                 handleClickAll,
+                                 className,
+                                 idPrefix,
+                                 active
+} : {
+    options: any[],
+    values: any[],
+    handleClickAll: (event: React.MouseEvent<HTMLInputElement>) => void,
+    handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void,
+    className?: string,
+    id?: string,
+    idPrefix?: string,
+    active?: boolean,
+}) => (
     <OptionsWrapper active={active} id={id ? `${id}-select` : undefined}>
         {options.length === 0 ? (<Item
                 key={'none'}
@@ -20,12 +39,12 @@ const ResultsWithCheckbox = ({id, values, options, handleClick, handleClickAll, 
                     onClick={handleClickAll}
                     className={className}
                 />}
-                {options.map((option) => (
+                {options.map((option: any) => (
                     <ItemWithCheckbox
                         key={option.id}
                         item={option}
                         checked={values.includes(option.id)}
-                        onClick={(e) => handleClick(e, option)}
+                        onClick={(e: any) => {handleClick(e, option)}}
                         className={className}
                         id={`${idPrefix}-${option.id}`}
                     />

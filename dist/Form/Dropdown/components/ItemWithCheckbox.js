@@ -12,12 +12,11 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
 var ItemWithCheckbox = function ItemWithCheckbox(_ref) {
   var item = _ref.item,
     checked = _ref.checked,
-    hovered = _ref.hovered,
     onClick = _ref.onClick,
     className = _ref.className,
     id = _ref.id;
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledCheckboxOption, {
-    className: "".concat(className, " item ").concat(hovered ? 'hovered' : ''),
+    className: "".concat(className, " item"),
     id: id,
     onClick: onClick,
     children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("span", {
@@ -25,9 +24,7 @@ var ItemWithCheckbox = function ItemWithCheckbox(_ref) {
         children: item.name
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Checkbox["default"], {
         checked: checked,
-        toggleCallback: function toggleCallback() {
-          onClick();
-        },
+        toggleCallback: onClick,
         checkboxStyle: {
           margin: '0',
           backgroundColor: '#4378FF',

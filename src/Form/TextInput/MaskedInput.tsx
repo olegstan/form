@@ -5,6 +5,26 @@ import MaskedInputProps from "../types/MaskedInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
 import Input from "./Input";
 
+/**
+ *
+ * @param focused
+ * @param setFocused
+ * @param onBlur
+ * @param onKeyPress
+ * @param onChange
+ * @param onClick
+ * @param disabled
+ * @param className
+ * @param type
+ * @param style
+ * @param id
+ * @param name
+ * @param value
+ * @param autoComplete
+ * @param error
+ * @param mask
+ * @constructor
+ */
 const MaskedInput: React.FC<MaskedInputProps> = ({
                          focused = false,
                          setFocused = () => {},
