@@ -22,7 +22,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                                    values= [],
                                    error,
                                    options = [],
-                                   onChangeAll = [],
+                                   onChangeAll = () => {},
                                }) => {
 
     const {
@@ -47,7 +47,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
     }
 
-    const handleChange = (e, item) => {
+    const handleChange = (e: any, item: any) => {
         onChange(item);
         handleClose()
     }
@@ -59,7 +59,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         handleClose()
     }
 
-    const handleOpen = (e) => {
+    const handleOpen = (e: any) => {
         setSelectOpen(true)
         setFocused(true)
     }
@@ -73,6 +73,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     useEffect(() => {
         const handleClickOutside = (event: any) => {
 
+            // @ts-ignore
             if (selectRef.current && !selectRef.current.contains(event.target)) {
                 handleClose()
             }
