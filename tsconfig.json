@@ -19,8 +19,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "typeRoots": [
-      "src/Form/types/*",
-      "src/types/assets.d.ts"
+      "dist/Form/types/*",
     ]
   },
   "include": ["src"],

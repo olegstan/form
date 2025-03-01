@@ -47,7 +47,7 @@ var MultiSelect = function MultiSelect(_ref) {
     _ref$options = _ref.options,
     options = _ref$options === void 0 ? [] : _ref$options,
     _ref$onChangeAll = _ref.onChangeAll,
-    onChangeAll = _ref$onChangeAll === void 0 ? [] : _ref$onChangeAll;
+    onChangeAll = _ref$onChangeAll === void 0 ? function () {} : _ref$onChangeAll;
   var _useBaseInput = (0, _useBaseInput2["default"])({
       disabled: disabled,
       name: name,
@@ -90,6 +90,7 @@ var MultiSelect = function MultiSelect(_ref) {
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {
+      // @ts-ignore
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         handleClose();
       }
