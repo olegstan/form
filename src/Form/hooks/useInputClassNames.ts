@@ -10,6 +10,7 @@ export default function useInputClassNames(baseClassName: string | undefined, fo
             newClassName += ' focused';
         }
 
+        // @ts-ignore
         if (error?.[0]) {
             newClassName += ' error';
         }

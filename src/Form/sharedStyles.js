@@ -25,7 +25,10 @@ export const sharedInputStyle = css`
     color: transparent !important;
   }
   
-  
+  &.disabled{
+    color: ${({theme}) => theme.inputDisableTextColor} !important;
+    background-color: ${({theme}) => theme.inputDisabledContainerBackground} !important;
+  }
   
   &:focus {
     outline: 0;
