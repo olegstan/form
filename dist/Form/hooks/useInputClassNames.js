@@ -21,6 +21,8 @@ function useInputClassNames(baseClassName, focused, error, disabled) {
     if (focused) {
       newClassName += ' focused';
     }
+
+    // @ts-ignore
     if (error !== null && error !== void 0 && error[0]) {
       newClassName += ' error';
     }
