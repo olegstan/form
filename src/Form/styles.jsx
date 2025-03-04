@@ -93,6 +93,32 @@ export const Container = styled.div`
   &.styled-input__container .styled-input__results-list {
     
   }
+  
+  &.styled-input__no-margin {
+    margin: 0;
+  }
+  
+  &.styled-input__width-small {
+    width: 25%;
+  }
+  
+  &.styled-input__width-medium {
+    width: 50%;
+  }
+  
+  @media screen and (max-width: 1280px) {
+    &.styled-input__width-medium,
+    &.styled-input__width-small {
+      width: 50%;
+    }
+  }
+  
+  @media screen and (max-width: 1044px) {
+    &.styled-input__width-medium,
+    &.styled-input__width-small {
+      width: 100%;
+    }
+  }
 
 
   &.styled-input__container .styled-input__pseudo-input,
@@ -153,7 +179,7 @@ const placeholder = css`
     user-select: none;
     text-align: left;
     color: ${({ theme }) => theme.inputPlaceholderTextColor};
-    width: 300px;
+    width: 75%;
     transition: transform 0.25s, opacity 0.25s ease-in-out;
     transform-origin: 0 0;
     padding: 25px 12px;
