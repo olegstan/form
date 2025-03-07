@@ -238,21 +238,13 @@ export const InputContainerStyled = styled.div`
   
   img.loader {
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: 10px;
+    top: 10px;
     cursor: pointer;
 
-    height: 48px;
-    flex-basis: 48px;
-
-    img, svg {
-      position: absolute;
-      top: 8px;
-      height: 30px;
-      width: 30px;
-      right: -20px;
-      animation: ${rotate} 2s linear infinite;
-    }
+    height: 30px;
+    width: 30px;
+    animation: ${rotate} 2s linear infinite;
   }
   
   ${placeholder};
