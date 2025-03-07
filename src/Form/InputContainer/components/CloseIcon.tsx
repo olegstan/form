@@ -41,6 +41,7 @@ const CloseIcon = memo(function CloseIcon({
         case 'FileInput':
             return null;
         case 'Search':
+        case 'GroupSearch':
             action = () => {
                 onChange?.(null)
                 onSearch?.('')

@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import useBaseInput from './hooks/useBaseInput';
 import {StyledInput} from './styles';
 import FileInputProps from "./types/FileInputProps";
+import GroupSearch from "./Dropdown/GroupSearch/GroupSearch";
 
 const FileInput: React.FC<FileInputProps> = ({
                        focused = false,
@@ -78,5 +79,7 @@ const FileInput: React.FC<FileInputProps> = ({
             onChange={handleFileChange}
         />;
 };
+
+FileInput.displayName = 'FileInput';
 
 export default FileInput;

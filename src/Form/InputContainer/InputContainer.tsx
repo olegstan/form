@@ -73,6 +73,7 @@ function InputContainer({
             case 'MultiSelect':
                 return !!values?.length;
             case 'Search':
+            case 'GroupSearch':
                 return isNotEmpty(search);
             default:
                 return isNotEmpty(value);

@@ -40,6 +40,7 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
         alt: "arrow"
       });
     case 'Search':
+    case 'GroupSearch':
       return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
         className: "loader",
         src: _loader["default"],

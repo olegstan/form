@@ -86,4 +86,5 @@ var FileInput = function FileInput(_ref) {
     onChange: handleFileChange
   });
 };
+FileInput.displayName = 'FileInput';
 var _default = exports["default"] = FileInput;

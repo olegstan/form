@@ -37,6 +37,7 @@ var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
     case 'FileInput':
       return null;
     case 'Search':
+    case 'GroupSearch':
       action = function action() {
         onChange === null || onChange === void 0 || onChange(null);
         onSearch === null || onSearch === void 0 || onSearch('');

@@ -97,6 +97,7 @@ function InputContainer(_ref) {
       case 'MultiSelect':
         return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
+      case 'GroupSearch':
         return isNotEmpty(search);
       default:
         return isNotEmpty(value);

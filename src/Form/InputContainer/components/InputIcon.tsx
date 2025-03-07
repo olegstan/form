@@ -30,6 +30,7 @@ const InputIcon = memo(function InputIcon({
         case 'MultiSelect':
             return <img className="arrow" src={ArrowSvg} alt="arrow" />;
         case 'Search':
+        case 'GroupSearch':
             return loading ? <img className="loader" src={LoadImage} alt="loading" /> : null;
         default:
             return null;

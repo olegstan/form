@@ -33,6 +33,12 @@ Object.defineProperty(exports, "FileInput", {
     return _FileInput["default"];
   }
 });
+Object.defineProperty(exports, "GroupSearch", {
+  enumerable: true,
+  get: function get() {
+    return _GroupSearch["default"];
+  }
+});
 Object.defineProperty(exports, "HrefButton", {
   enumerable: true,
   get: function get() {
@@ -109,6 +115,7 @@ var _FileInput = _interopRequireDefault(require("./FileInput"));
 var _Select = _interopRequireDefault(require("./Dropdown/Select/Select"));
 var _MultiSelect = _interopRequireDefault(require("./Dropdown/MultiSelect/MultiSelect"));
 var _Search = _interopRequireDefault(require("./Dropdown/Search/Search"));
+var _GroupSearch = _interopRequireDefault(require("./Dropdown/GroupSearch/GroupSearch"));
 var _TextArea = _interopRequireDefault(require("./TextInput/TextArea"));
 var _InputContainer = _interopRequireDefault(require("./InputContainer/InputContainer"));
 var _Button = _interopRequireDefault(require("./Button/components/Button"));
