@@ -3,8 +3,11 @@
  * Мемоизирован.
  */
 import {memo} from "react";
+// @ts-ignore
 import CalendarSvg from '../../../assets/calendar.svg';
+// @ts-ignore
 import ArrowSvg from '../../../assets/arrow.svg';
+// @ts-ignore
 import LoadImage from '../../../assets/loader.svg';
 
 const InputIcon = memo(function InputIcon({

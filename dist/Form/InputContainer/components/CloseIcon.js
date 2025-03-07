@@ -14,6 +14,8 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * Мемоизирован с помощью React.memo
  */
 
+// @ts-ignore
+
 var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
   var typeName = _ref.typeName,
     icon = _ref.icon,

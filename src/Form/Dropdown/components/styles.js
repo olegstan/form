@@ -1,6 +1,61 @@
 import styled, {keyframes} from 'styled-components'
 import zindex from "../../../interface/zindex";
 
+export const StyledSubItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px; // Внутренние отступы для подэлементов
+  background-color: ${({ theme }) => theme.subItemsContainerBackground};
+  border-radius: 6px; // Закругленные углы для контейнера
+  margin-top: 8px; // Отступ между заголовком и контейнером
+`;
+
+export const StyledGroupOption = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: ${({ theme }) => theme.groupSelectBackground};
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    & > span {
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 6px;
+        color: ${({ theme }) => theme.groupSelectTitleColor};
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+`
+
+export const StyledSubOption = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: ${({ theme }) => theme.subItemHoverBackground};
+    }
+
+    span {
+        font-size: 14px;
+        color: ${({ theme }) => theme.subItemTextColor};
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 1;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 6px; // Отступ между подэлементами
+    }
+`
+
 export const StyledOption = styled.div`
   align-items: center;
   color: ${({theme}) => theme.selectOptionTextColor};

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import Item from './Item';
 import {OptionsWrapper} from "./styles";
+import SubItem from "./SubItem";
+import GroupItem from "./GroupItem";
 
 const GroupResults = ({
                           id,
@@ -11,13 +13,13 @@ const GroupResults = ({
                           active
 }: {
     options: any[],
-    handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => {},
+    handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void,
     className?: string,
     id?: string,
     idPrefix?: string,
     active?: boolean,
 }) => (
-    <OptionsWrapper id={id ? `${id}-select` : undefined}>
+    <OptionsWrapper active={active} id={id ? `${id}-select` : undefined}>
         {options.length === 0 ? (<Item
                 key={'none'}
                 item={{id: null, name: 'Нет элементов'}}
@@ -25,11 +27,11 @@ const GroupResults = ({
                 id={`${idPrefix}-none`}
             />)
             :
-            options.map((option: any) => (
-                <Item
-                    key={option.id}
+            options.map((option: any, key: number) => (
+                <GroupItem
+                    key={key}
                     item={option}
-                    onClick={(e: any) => handleClick(e, option)}
+                    onClick={handleClick}
                     className={className}
                     id={`${idPrefix}-${option.id}`}
                 />

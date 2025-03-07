@@ -45,14 +45,14 @@ const GroupSelect: React.FC<SelectProps> = ({
 
   }
 
-  const handleChange = (e, item) => {
+  const handleChange = (e: any, item: any) => {
     e.stopPropagation();
 
     onChange(item);
     handleClose()
   }
 
-  const handleOpen = (e) => {
+  const handleOpen = (e: any) => {
     setSelectOpen(true)
     setFocused(true)
   }
@@ -64,7 +64,8 @@ const GroupSelect: React.FC<SelectProps> = ({
 
   // // Обработка клика вне компонента
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
+        //@ts-ignore
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         handleClose()
       }

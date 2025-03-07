@@ -5,6 +5,7 @@ import useBaseInput from '../../hooks/useBaseInput';
 import Results from "../components/Results";
 import useOnceWhen from "../../helpers/useOnceWhen";
 import GroupSearchProps from "../../types/GroupSearchProps";
+import GroupResults from "../components/GroupResults";
 
 const GroupSearch: React.FC<GroupSearchProps> = ({
                                            focused = false,
@@ -81,8 +82,8 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
         };
     }, [search, value, options, setSelectOpen, onChange]);
 
-    const handleChange = (e: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any): void => {
-        e.stopPropagation();
+    const handleChange = (event: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any): void => {
+        event.stopPropagation();
 
         onChange(option);
         handleClose()
@@ -104,27 +105,52 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
 
     const filteredOptions = useMemo(() => {
         return options.filter((option) => {
-            // Первое условие: исключаем элемент с определённым id
-            if (option.id === value) return false;
 
-            // Второе условие: фильтрация по поисковому запросу
-            if (!search) return true;
+            // Второе условие: если поисковый запрос пустой, проверяем наличие items
+            if (!search) {
+                // Если search пустой, показываем опцию только если есть items
+                //@ts-ignore
+                return option.items && option.items.length > 0;
+            }
 
+            // Третье условие: фильтрация по поисковому запросу
             const searchLower = search.toLowerCase();
             const parts = searchLower.split(' ');
 
-            return parts.some((part) =>
+            // Проверяем, есть ли совпадения в имени самой опции
+            const matchesOptionName = parts.some((part) =>
                 option?.name
                     ?.toLowerCase()
                     .replace('ё', 'е')
                     .replace('й', 'и')
                     .includes(part.replace('ё', 'е').replace('й', 'и'))
             );
+
+            // Проверяем, есть ли совпадения в именах вложенных items
+            //@ts-ignore
+            const matchesItems = option?.items?.some((item: any) =>
+                parts.some((part) =>
+                    item?.name
+                        ?.toLowerCase()
+                        .replace('ё', 'е')
+                        .replace('й', 'и')
+                        .includes(part.replace('ё', 'е').replace('й', 'и'))
+                )
+            );
+
+            // Опция показывается, если:
+            // 1. Есть совпадение в имени самой опции
+            // ИЛИ
+            // 2. Есть хотя бы один подходящий элемент в items
+            return matchesOptionName || matchesItems;
         });
     }, [options, value, search]);
 
     // @ts-ignore
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+
+    console.log(options)
+    console.log(filteredOptions)
 
     return (<StyledSelect
             onClick={handleOpen}
@@ -140,12 +166,12 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 value={search}
                 onChange={handleSearch}
             />
-            <Results
+            <GroupResults
                 active={selectOpen && !disabled}
                 id={id}
                 options={filteredOptions}
                 handleClick={handleChange}
-                idPrefix={getName(name)}
+                idPrefix={getName(name) ?? id}
             />
         </StyledSelect>
     );

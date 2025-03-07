@@ -9,8 +9,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _styles = require("./styles");
 var _styles2 = require("../../styles");
 var _useBaseInput2 = _interopRequireDefault(require("../../hooks/useBaseInput"));
-var _Results = _interopRequireDefault(require("../components/Results"));
 var _useOnceWhen = _interopRequireDefault(require("../../helpers/useOnceWhen"));
+var _GroupResults = _interopRequireDefault(require("../components/GroupResults"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -22,6 +22,7 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var GroupSearch = function GroupSearch(_ref) {
+  var _getName;
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,
@@ -109,8 +110,8 @@ var GroupSearch = function GroupSearch(_ref) {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [search, value, options, setSelectOpen, onChange]);
-  var handleChange = function handleChange(e, option) {
-    e.stopPropagation();
+  var handleChange = function handleChange(event, option) {
+    event.stopPropagation();
     onChange(option);
     handleClose();
   };
@@ -127,22 +128,45 @@ var GroupSearch = function GroupSearch(_ref) {
   };
   var filteredOptions = (0, _react.useMemo)(function () {
     return options.filter(function (option) {
-      // Первое условие: исключаем элемент с определённым id
-      if (option.id === value) return false;
+      var _option$items;
+      // Второе условие: если поисковый запрос пустой, проверяем наличие items
+      if (!search) {
+        // Если search пустой, показываем опцию только если есть items
+        //@ts-ignore
+        return option.items && option.items.length > 0;
+      }
 
-      // Второе условие: фильтрация по поисковому запросу
-      if (!search) return true;
+      // Третье условие: фильтрация по поисковому запросу
       var searchLower = search.toLowerCase();
       var parts = searchLower.split(' ');
-      return parts.some(function (part) {
+
+      // Проверяем, есть ли совпадения в имени самой опции
+      var matchesOptionName = parts.some(function (part) {
         var _option$name;
         return option === null || option === void 0 || (_option$name = option.name) === null || _option$name === void 0 ? void 0 : _option$name.toLowerCase().replace('ё', 'е').replace('й', 'и').includes(part.replace('ё', 'е').replace('й', 'и'));
       });
+
+      // Проверяем, есть ли совпадения в именах вложенных items
+      //@ts-ignore
+      var matchesItems = option === null || option === void 0 || (_option$items = option.items) === null || _option$items === void 0 ? void 0 : _option$items.some(function (item) {
+        return parts.some(function (part) {
+          var _item$name;
+          return item === null || item === void 0 || (_item$name = item.name) === null || _item$name === void 0 ? void 0 : _item$name.toLowerCase().replace('ё', 'е').replace('й', 'и').includes(part.replace('ё', 'е').replace('й', 'и'));
+        });
+      });
+
+      // Опция показывается, если:
+      // 1. Есть совпадение в имени самой опции
+      // ИЛИ
+      // 2. Есть хотя бы один подходящий элемент в items
+      return matchesOptionName || matchesItems;
     });
   }, [options, value, search]);
 
   // @ts-ignore
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
+  console.log(options);
+  console.log(filteredOptions);
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
     onClick: handleOpen,
     ref: selectRef,
@@ -155,12 +179,12 @@ var GroupSearch = function GroupSearch(_ref) {
       name: getName(name),
       value: search,
       onChange: handleSearch
-    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_Results["default"], {
+    }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_GroupResults["default"], {
       active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,
       handleClick: handleChange,
-      idPrefix: getName(name)
+      idPrefix: (_getName = getName(name)) !== null && _getName !== void 0 ? _getName : id
     })]
   });
 };

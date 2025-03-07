@@ -3,6 +3,7 @@
  * Мемоизирован с помощью React.memo
  */
 import {memo} from "react";
+// @ts-ignore
 import Close from "../../../assets/ic_close_only.svg";
 import {isNotEmpty} from "../InputContainer";
 

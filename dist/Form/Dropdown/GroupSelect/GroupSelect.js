@@ -81,6 +81,7 @@ var GroupSelect = function GroupSelect(_ref) {
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {
+      //@ts-ignore
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         handleClose();
       }

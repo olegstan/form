@@ -56,7 +56,7 @@ export const Container = styled.div`
     border-radius: 12px;
   }
 
-  &.styled-input__container:has(.focused) {
+  &.styled-input__container:has(.focused){
     border: 1px solid #4378FF;
   }
 
@@ -159,7 +159,7 @@ export const Container = styled.div`
   //смотрим что у инпута есть такой класс, значит надо менять border
   &:has(.focused) {
     z-index: 1000;
-    // border: 1px solid #4378FF;
+    border: 1px solid #4378FF;
   }
   &:has(.error) {
     border: 1px solid #EF5E70;

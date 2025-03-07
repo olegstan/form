@@ -15,6 +15,12 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * Мемоизирован.
  */
 
+// @ts-ignore
+
+// @ts-ignore
+
+// @ts-ignore
+
 var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
   var typeName = _ref.typeName,
     icon = _ref.icon,

@@ -5,7 +5,6 @@ import Results from "../components/Results";
 
 import {StyledFakeInput} from "../../styles";
 import {StyledSelect} from "./styles";
-import Input from "../../TextInput/Input";
 
 const Select: React.FC<SelectProps> = ({
                                            focused = false,
