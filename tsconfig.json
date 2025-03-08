@@ -19,7 +19,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "typeRoots": [
-      "dist/Form/types/*",
+      "dist/*",
     ]
   },
   "include": ["src"],

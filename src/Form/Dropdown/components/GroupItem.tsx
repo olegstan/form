@@ -10,7 +10,8 @@ const GroupItem = ({
 } : {
   item: any,
   className?: string,
-  onClick?: () => void,
+//@ts-ignore
+  onClick?: (event: MouseEvent<HTMLInputElement, MouseEvent>, option: any) => void,
   id?: string,
 }) => (
   <StyledGroupOption

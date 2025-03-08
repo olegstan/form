@@ -61,12 +61,30 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
-                    const matchedOption = options.find(option => option.name.toLowerCase() === search.toLowerCase());
+                    const findMatchedOption = (options: any[]): any | undefined => {
+                        for (const option of options) {
+                            // Проверяем текущий уровень
+                            if (option.name && option.name.toLowerCase() === search.toLowerCase()) {
+                                return option;
+                            }
+
+                            // Если есть вложенные элементы, проверяем их
+                            if (option.items && Array.isArray(option.items)) {
+                                const matchedInItems = findMatchedOption(option.items);
+                                if (matchedInItems) {
+                                    return matchedInItems;
+                                }
+                            }
+                        }
+                        return undefined; // Если ничего не найдено
+                    };
+
+                    const matchedOption = findMatchedOption(options);
 
                     // Если найдено совпадение, выбираем этот элемент
                     if (matchedOption) {
                         onChange(matchedOption);
-                    }else{
+                    } else {
                         onSearch('');
                     }
                 }
