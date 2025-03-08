@@ -20,6 +20,7 @@ var GroupResults = function GroupResults(_ref) {
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.OptionsWrapper, {
     active: active,
     id: id ? "".concat(id, "-select") : undefined,
+    className: className,
     children: options.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_Item["default"], {
       item: {
         id: null,

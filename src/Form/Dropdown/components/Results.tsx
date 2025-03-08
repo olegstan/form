@@ -17,7 +17,7 @@ const Results = ({
     idPrefix?: string,
     active?: boolean,
 }) => (
-    <OptionsWrapper active={active} id={id ? `${id}-select` : undefined}>
+    <OptionsWrapper active={active} id={id ? `${id}-select` : undefined} className={className}>
         {options.length === 0 ? (<Item
                 key={'none'}
                 item={{id: null, name: 'Нет элементов'}}
