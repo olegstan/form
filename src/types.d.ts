@@ -1,18 +1,25 @@
-declare module 'finform' {
-    import React from 'react';
-    import DateInputProps from "./Form/types/DateInputProps";
-    import DateTimeInputProps from "./Form/types/DateTimeInputProps";
-    import MaskedInputProps from "./Form/types/MaskedInputProps";
-    import NumberInputProps from "./Form/types/NumberInputProps";
-    import InputProps from "./Form/types/InputProps";
-    import CheckboxProps from "./Form/types/CheckboxProps";
-    import FileInputProps from "./Form/types/FileInputProps";
-    import SelectProps from "./Form/types/SelectProps";
-    import MultiSelectProps from "./Form/types/MultiSelectProps";
-    import SearchProps from "./Form/types/SearchProps";
-    import GroupSearchProps from "./Form/types/GroupSearchProps";
-    import TextAreaProps from "./Form/types/TextAreaProps";
+import React from 'react';
+import {
+    DateInputProps,
+    DateTimeInputProps,
+    MaskedInputProps,
+    NumberInputProps,
+    InputProps,
+    CheckboxProps,
+    FileInputProps,
+    SelectProps,
+    MultiSelectProps,
+    GroupSelectProps,
+    SearchProps,
+    GroupSearchProps,
+    TextAreaProps,
+    ButtonProps,
+    LinkButtonProps,
+    InlineLinkButtonProps,
+    HrefButtonProps,
+} from './types';
 
+declare module 'finform' {
     // Определение типов для компонентов
     export const DateInput: React.FC<DateInputProps>;
     export const DateTimeInput: React.FC<DateTimeInputProps>;
@@ -23,6 +30,7 @@ declare module 'finform' {
     export const FileInput: React.FC<FileInputProps>;
     export const Select: React.FC<SelectProps>;
     export const MultiSelect: React.FC<MultiSelectProps>;
+    export const GroupSelect: React.FC<GroupSelectProps>;
     export const Search: React.FC<SearchProps>;
     export const GroupSearch: React.FC<GroupSearchProps>;
     export const TextArea: React.FC<TextAreaProps>;
