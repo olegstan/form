@@ -13,3 +13,4 @@ export default interface FileInputProps {
     valueText?: string;
     error?: string | object;
 }
+//# sourceMappingURL=FileInputProps.d.ts.map

@@ -4,3 +4,4 @@ export default interface SearchProps extends SelectProps {
     onSearch: (text: string) => void;
     loading: boolean;
 }
+//# sourceMappingURL=SearchProps.d.ts.map

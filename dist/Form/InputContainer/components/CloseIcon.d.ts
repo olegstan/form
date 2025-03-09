@@ -10,3 +10,4 @@ declare const CloseIcon: import("react").NamedExoticComponent<{
     onSearch?: (value: any) => void;
 }>;
 export default CloseIcon;
+//# sourceMappingURL=CloseIcon.d.ts.map

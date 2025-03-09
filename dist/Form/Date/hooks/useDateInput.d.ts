@@ -15,3 +15,4 @@ export declare const useDateInput: ({ value, onChange, flatpickrInstance, setFoc
     handleBlur: () => void;
     setDateString: import("react").Dispatch<any>;
 };
+//# sourceMappingURL=useDateInput.d.ts.map

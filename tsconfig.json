@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "sourceMap": true,
+    "declarationMap": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "rootDir": "src",
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "esModuleInterop": true,
@@ -12,7 +14,7 @@
     "strict": true,
     "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
     "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
-    "target": "es5"           // Добавлено: указание целевой версии JavaScript
+    "target": "es6"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

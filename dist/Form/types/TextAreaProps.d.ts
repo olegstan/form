@@ -4,3 +4,4 @@ export default interface TextAreaProps extends InputProps {
     autoResize?: boolean;
     disableResize?: boolean;
 }
+//# sourceMappingURL=TextAreaProps.d.ts.map

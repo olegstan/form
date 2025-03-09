@@ -4,3 +4,4 @@ export default interface NumberInputProps extends InputProps {
     min?: boolean | number;
     decimals?: boolean | number;
 }
+//# sourceMappingURL=NumberInputProps.d.ts.map

@@ -6,3 +6,4 @@ declare const Item: ({ item, onClick, className, id }: {
     id?: string;
 }) => import("react/jsx-runtime").JSX.Element;
 export default Item;
+//# sourceMappingURL=Item.d.ts.map

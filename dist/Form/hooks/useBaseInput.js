@@ -1,10 +1,5 @@
-"use strict";
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports["default"] = useBaseInput;var _react = require("react");
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = useBaseInput;
-var _react = require("react");
 /**
  * Универсальный хук, повторяющий логику BaseInput:
  * - focused
@@ -13,19 +8,20 @@ var _react = require("react");
  * - renderPlaceholder, renderTooltipError (если нужно внутри потом вызывать)
  */
 
-function useBaseInput(_ref) {
-  var _ref$disabled = _ref.disabled,
-    disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-    name = _ref.name,
-    onClick = _ref.onClick,
-    onBlur = _ref.onBlur,
-    onChange = _ref.onChange,
-    setFocused = _ref.setFocused;
+function useBaseInput(_ref)
+
+
+
+
+
+
+{var _ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,name = _ref.name,onClick = _ref.onClick,onBlur = _ref.onBlur,onChange = _ref.onChange,setFocused = _ref.setFocused;
+
   // getName — чтобы Safari не автозаполнял поля с "state"/"country"
-  var getName = (0, _react.useCallback)(function (name) {
-    var _name$replace;
+  var getName = (0, _react.useCallback)(function (name) {var _name$replace;
     return name === null || name === void 0 || (_name$replace = name.replace('country', 'couuntry')) === null || _name$replace === void 0 ? void 0 : _name$replace.replace('state', 'staate');
   }, [name]);
+
   var handleClick = (0, _react.useCallback)(function (e) {
     e.stopPropagation();
     if (disabled) {
@@ -36,6 +32,7 @@ function useBaseInput(_ref) {
       onClick(e);
     }
   }, [disabled, onClick]);
+
   var handleChange = (0, _react.useCallback)(function (e) {
     if (disabled) {
       // Если инпут отключен, игнорируем изменение
@@ -43,6 +40,7 @@ function useBaseInput(_ref) {
     }
     onChange(e.target.value);
   }, [disabled, onChange]);
+
   var handleFocus = (0, _react.useCallback)(function () {
     if (disabled) {
       // Если инпут отключен, не устанавливаем фокус
@@ -50,12 +48,14 @@ function useBaseInput(_ref) {
     }
     setFocused(true);
   }, [disabled, setFocused]);
+
   var handleBlur = (0, _react.useCallback)(function () {
     setFocused(false);
     if (typeof onBlur === 'function') {
       onBlur();
     }
   }, [onBlur, setFocused]);
+
   return {
     handleClick: handleClick,
     handleChange: handleChange,
@@ -64,3 +64,4 @@ function useBaseInput(_ref) {
     getName: getName
   };
 }
+//# sourceMappingURL=useBaseInput.js.map

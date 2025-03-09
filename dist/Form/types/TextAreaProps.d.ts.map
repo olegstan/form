@@ -1,0 +1,1 @@
+{"version":3,"file":"TextAreaProps.d.ts","sourceRoot":"","sources":["../../../src/Form/types/TextAreaProps.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,cAAc,CAAC;AAEtC,MAAM,CAAC,OAAO,WAAW,aAAc,SAAQ,UAAU;IACrD,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,UAAU,CAAC,EAAE,OAAO,CAAC;IACrB,aAAa,CAAC,EAAE,OAAO,CAAC;CAC3B"}

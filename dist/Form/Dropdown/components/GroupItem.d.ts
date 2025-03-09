@@ -5,3 +5,4 @@ declare const GroupItem: ({ item, onClick, className, id }: {
     id?: string;
 }) => import("react/jsx-runtime").JSX.Element;
 export default GroupItem;
+//# sourceMappingURL=GroupItem.d.ts.map

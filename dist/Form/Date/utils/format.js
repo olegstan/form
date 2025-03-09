@@ -1,10 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.formatDateTime = exports.formatDate = void 0;
-var formatDate = exports.formatDate = function formatDate(dateObj) {
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.formatDateTime = exports.formatDate = void 0;var formatDate = exports.formatDate = function formatDate(dateObj) {
   if (!(dateObj instanceof Date)) return '';
   // @ts-ignore
   var day = String(dateObj.getDate()).padStart(2, '0');
@@ -13,6 +7,7 @@ var formatDate = exports.formatDate = function formatDate(dateObj) {
   var year = dateObj.getFullYear();
   return "".concat(day, ".").concat(month, ".").concat(year);
 };
+
 var formatDateTime = exports.formatDateTime = function formatDateTime(dateObj) {
   if (!(dateObj instanceof Date)) return '';
   // @ts-ignore
@@ -28,3 +23,4 @@ var formatDateTime = exports.formatDateTime = function formatDateTime(dateObj) {
   var second = String(dateObj.getSeconds()).padStart(2, '0');
   return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
 };
+//# sourceMappingURL=format.js.map

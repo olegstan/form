@@ -22,3 +22,4 @@ import TextAreaProps from "../types/TextAreaProps";
  */
 declare const TextArea: React.FC<TextAreaProps>;
 export default TextArea;
+//# sourceMappingURL=TextArea.d.ts.map

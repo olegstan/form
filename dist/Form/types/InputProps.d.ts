@@ -17,3 +17,4 @@ export default interface InputProps {
     autoComplete?: string;
     error?: string[];
 }
+//# sourceMappingURL=InputProps.d.ts.map

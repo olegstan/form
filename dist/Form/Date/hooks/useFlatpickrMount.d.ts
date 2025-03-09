@@ -3,3 +3,4 @@ export declare const useFlatpickrMount: () => {
     DateInputComponent: null;
     flatpickrInstance: import("react").RefObject<null>;
 };
+//# sourceMappingURL=useFlatpickrMount.d.ts.map

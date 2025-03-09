@@ -12,3 +12,4 @@ export default interface GroupSearchProps extends SelectProps {
         };
     }[];
 }
+//# sourceMappingURL=GroupSearchProps.d.ts.map

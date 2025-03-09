@@ -5,3 +5,4 @@ export default interface SelectProps extends InputProps {
         name: string;
     }[];
 }
+//# sourceMappingURL=SelectProps.d.ts.map

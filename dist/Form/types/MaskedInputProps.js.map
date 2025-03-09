@@ -1,0 +1,1 @@
+{"version":3,"file":"MaskedInputProps.js","names":[],"sources":["../../../src/Form/types/MaskedInputProps.ts"],"sourcesContent":["import InputProps from \"./InputProps\";\r\n\r\nexport default interface MaskedInputProps extends InputProps {\r\n    mask?: string;\r\n}"],"mappings":"","ignoreList":[]}

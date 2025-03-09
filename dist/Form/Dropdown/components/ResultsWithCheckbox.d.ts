@@ -10,3 +10,4 @@ declare const ResultsWithCheckbox: ({ id, values, options, handleClick, handleCl
     active?: boolean;
 }) => import("react/jsx-runtime").JSX.Element;
 export default ResultsWithCheckbox;
+//# sourceMappingURL=ResultsWithCheckbox.d.ts.map

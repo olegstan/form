@@ -10,3 +10,4 @@ export default interface CheckboxProps {
     checkboxStyle?: React.CSSProperties;
     style?: React.CSSProperties;
 }
+//# sourceMappingURL=CheckboxProps.d.ts.map

@@ -8,3 +8,4 @@ declare const GroupResults: ({ id, options, handleClick, className, idPrefix, ac
     active?: boolean;
 }) => import("react/jsx-runtime").JSX.Element;
 export default GroupResults;
+//# sourceMappingURL=GroupResults.d.ts.map

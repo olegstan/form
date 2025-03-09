@@ -4,3 +4,4 @@ export default interface DateInputProps extends InputProps {
     innerError: object;
     setInnerError: (error: object) => void;
 }
+//# sourceMappingURL=DateInputProps.d.ts.map

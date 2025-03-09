@@ -14,3 +14,4 @@ export interface BaseButtonProps {
 }
 declare const BaseButton: React.FC<BaseButtonProps>;
 export default BaseButton;
+//# sourceMappingURL=BaseButton.d.ts.map

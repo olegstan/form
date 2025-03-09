@@ -3,3 +3,4 @@ declare const ErrorTooltip: import("react").NamedExoticComponent<{
     id?: string;
 }>;
 export default ErrorTooltip;
+//# sourceMappingURL=ErrorTooltip.d.ts.map

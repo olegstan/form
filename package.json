@@ -1,13 +1,22 @@
 {
   "name": "finform",
-  "version": "1.5.14",
+  "version": "1.5.17",
   "description": "",
   "main": "dist/index.js",
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "source": "./src/index.tsx"
+    },
     "./old": "./dist/old.js"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/olegstan/form.git"
@@ -19,7 +28,10 @@
     "url": "https://github.com/olegstan/form/issues"
   },
   "scripts": {
-    "build": "tsc --emitDeclarationOnly && babel src -d dist --extensions \".ts,.tsx,.js,.jsx\" && copyfiles -u 1 src/assets/* dist/"
+    "build": "npm run build:types && npm run build:js && npm run copy:assets",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\"",
+    "copy:assets": "copyfiles -u 1 src/assets/* dist/"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -18,6 +18,10 @@ export const sharedInputStyle = css`
   text-align: left;
   border-radius: 6px;
 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
   //скрытый placeholder который идёт по умолчанию
   &::placeholder {
     font-size: 100%;

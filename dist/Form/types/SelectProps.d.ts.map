@@ -1,0 +1,1 @@
+{"version":3,"file":"SelectProps.d.ts","sourceRoot":"","sources":["../../../src/Form/types/SelectProps.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,cAAc,CAAC;AAEtC,MAAM,CAAC,OAAO,WAAW,WAAY,SAAQ,UAAU;IACnD,OAAO,EAAE;QAAE,EAAE,EAAE,GAAG,CAAC;QAAC,IAAI,EAAE,MAAM,CAAA;KAAE,EAAE,CAAC;CACxC"}

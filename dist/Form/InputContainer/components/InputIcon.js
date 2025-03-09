@@ -1,59 +1,44 @@
-"use strict";
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports["default"] = void 0;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+
+
 var _react = require("react");
+
 var _calendar = _interopRequireDefault(require("../../../assets/calendar.svg"));
+
 var _arrow = _interopRequireDefault(require("../../../assets/arrow.svg"));
-var _loader = _interopRequireDefault(require("../../../assets/loader.svg"));
-var _jsxRuntime = require("react/jsx-runtime");
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-/**
+
+var _loader = _interopRequireDefault(require("../../../assets/loader.svg"));var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} /**
  * Компонент "основной" иконки (календарь, стрелка для Select, лоадер для Search).
  * Мемоизирован.
- */
-
+ */ // @ts-ignore
 // @ts-ignore
-
 // @ts-ignore
+var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref)
 
-// @ts-ignore
 
-var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref) {
-  var typeName = _ref.typeName,
-    icon = _ref.icon,
-    loading = _ref.loading;
-  // Если опция icon = false, в исходном коде вообще не рендерилась "доп. иконка".
-  // Если нужно поведение "календарь/стрелку рендерить всегда, а icon управляет только крестиком",
-  // уберите эту проверку или вынесите её в CloseIcon.
-  if (!typeName || !icon) return null;
-  switch (typeName) {
-    case 'DateInput':
-    case 'DateTimeInput':
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-        className: "calendar",
-        src: _calendar["default"],
-        alt: "calendar"
-      });
-    case 'Select':
-    case 'GroupSelect':
-    case 'MultiSelect':
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-        className: "arrow",
-        src: _arrow["default"],
-        alt: "arrow"
-      });
-    case 'Search':
-    case 'GroupSearch':
-      return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
-        className: "loader",
-        src: _loader["default"],
-        alt: "loading"
-      }) : null;
-    default:
-      return null;
-  }
-});
-var _default = exports["default"] = InputIcon;
+
+  {var typeName = _ref.typeName,icon = _ref.icon,loading = _ref.loading;
+    // Если опция icon = false, в исходном коде вообще не рендерилась "доп. иконка".
+    // Если нужно поведение "календарь/стрелку рендерить всегда, а icon управляет только крестиком",
+    // уберите эту проверку или вынесите её в CloseIcon.
+    if (!typeName || !icon) return null;
+
+    switch (typeName) {
+      case 'DateInput':
+      case 'DateTimeInput':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "calendar", src: _calendar["default"], alt: "calendar" });
+      case 'Select':
+      case 'GroupSelect':
+      case 'MultiSelect':
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "arrow", src: _arrow["default"], alt: "arrow" });
+      case 'Search':
+      case 'GroupSearch':
+        return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "loader", src: _loader["default"], alt: "loading" }) : null;
+      default:
+        return null;
+    }
+  });var _default = exports["default"] =
+
+InputIcon;
+//# sourceMappingURL=InputIcon.js.map

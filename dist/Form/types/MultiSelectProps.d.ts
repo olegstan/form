@@ -7,3 +7,4 @@ export default interface MultiSelectProps extends InputProps {
     values: [];
     onChangeAll?: (bool: boolean) => void;
 }
+//# sourceMappingURL=MultiSelectProps.d.ts.map

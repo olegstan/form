@@ -5,3 +5,4 @@ declare const PlaceholderLabel: import("react").NamedExoticComponent<{
     focused: boolean;
 }>;
 export default PlaceholderLabel;
+//# sourceMappingURL=PlaceholderLabel.d.ts.map

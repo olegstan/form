@@ -1,0 +1,1 @@
+{"version":3,"file":"SearchProps.js","names":[],"sources":["../../../src/Form/types/SearchProps.ts"],"sourcesContent":["import SelectProps from \"./SelectProps\";\r\n\r\nexport default interface SearchProps extends SelectProps {\r\n    search: string;\r\n    onSearch: (text: string) => void;\r\n    loading: boolean;\r\n}"],"mappings":"","ignoreList":[]}

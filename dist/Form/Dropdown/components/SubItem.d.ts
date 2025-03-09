@@ -6,3 +6,4 @@ declare const SubItem: ({ item, onClick, className, id }: {
     id?: string;
 }) => import("react/jsx-runtime").JSX.Element;
 export default SubItem;
+//# sourceMappingURL=SubItem.d.ts.map

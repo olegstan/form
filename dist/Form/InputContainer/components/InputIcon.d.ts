@@ -4,3 +4,4 @@ declare const InputIcon: import("react").NamedExoticComponent<{
     loading?: boolean;
 }>;
 export default InputIcon;
+//# sourceMappingURL=InputIcon.d.ts.map
