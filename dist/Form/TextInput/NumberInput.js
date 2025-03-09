@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
-var _finhelper = require("finhelper");
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
 var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));
+var _formatNumber = require("./utils/formatNumber");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
@@ -20,6 +20,8 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } // NumberInput.js
+//@ts-ignore
+//@ts-ignore
 var NumberInput = function NumberInput(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
@@ -78,7 +80,9 @@ var NumberInput = function NumberInput(_ref) {
   // Если props.value меняется и у нас есть фокус, возвращаем курсор
   (0, _react.useEffect)(function () {
     if (focused && inputRef.current) {
+      //@ts-ignore
       inputRef.current.selectionStart = selectionStart;
+      //@ts-ignore
       inputRef.current.selectionEnd = selectionEnd;
     }
   }, [value, selectionStart, selectionEnd]);
@@ -88,22 +92,28 @@ var NumberInput = function NumberInput(_ref) {
     var _e$target, _e$target2;
     var pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
+    //@ts-ignore
     if (e.target && (e === null || e === void 0 || (_e$target = e.target) === null || _e$target === void 0 ? void 0 : _e$target.value) === '' || pattern.test(e === null || e === void 0 || (_e$target2 = e.target) === null || _e$target2 === void 0 ? void 0 : _e$target2.value)) {
       var _e$target3;
+      //@ts-ignore
       var val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
       // Проверки на min/max
+      //@ts-ignore
       if (max !== false && +val > max) {
         return;
       }
       if (min === 0 && isNaN(val)) {
         return;
       }
+
+      //@ts-ignore
       if (min !== false && +val < min) {
         return;
       }
 
       // Позиция курсора
+      //@ts-ignore
       var position = e === null || e === void 0 || (_e$target3 = e.target) === null || _e$target3 === void 0 ? void 0 : _e$target3.selectionStart;
       if (val.length > 0) {
         var prefix = '';
@@ -121,14 +131,14 @@ var NumberInput = function NumberInput(_ref) {
                 return;
               }
             }
-            val = _finhelper.Money.formatForInput(val, parts[1].length);
+            val = (0, _formatNumber.formatForInput)(val, parts[1].length);
           } else {
             // Если точка есть, но дробная часть пустая
-            val = _finhelper.Money.formatForInput(val, 0) + '.';
+            val = (0, _formatNumber.formatForInput)(val, 0) + '.';
           }
         } else {
           // Нет дробной части
-          val = _finhelper.Money.formatForInput(val, 0);
+          val = (0, _formatNumber.formatForInput)(val, 0);
         }
 
         // Логика с изменением длины целой части => сдвиг курсора

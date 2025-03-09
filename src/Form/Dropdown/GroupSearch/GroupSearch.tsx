@@ -1,8 +1,11 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+//@ts-ignore
 import {StyledSelect} from './styles';
+//@ts-ignore
 import {StyledInput} from '../../styles';
+//@ts-ignore
 import useBaseInput from '../../hooks/useBaseInput';
-import Results from "../components/Results";
+//@ts-ignore
 import useOnceWhen from "../../helpers/useOnceWhen";
 import GroupSearchProps from "../../types/GroupSearchProps";
 import GroupResults from "../components/GroupResults";
@@ -45,6 +48,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
 
     //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
     useOnceWhen(value && options?.length, () => {
+        //@ts-ignore
         const matchingOption = options.find(option => option.id === value);
 
         if (matchingOption) {
@@ -141,6 +145,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                     ?.toLowerCase()
                     .replace('ё', 'е')
                     .replace('й', 'и')
+                    //@ts-ignore
                     .includes(part.replace('ё', 'е').replace('й', 'и'))
             );
 

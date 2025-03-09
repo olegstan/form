@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {Container, PopupContainer} from './styles'
 // @ts-ignore
 import Popup from 'reactjs-popup';

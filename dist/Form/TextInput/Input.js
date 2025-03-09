@@ -12,6 +12,10 @@ var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 // Input.js
 
+//@ts-ignore
+
+//@ts-ignore
+
 /**
  * @param {Object} props - Компонент Input Props
  * @param {boolean} [props.focused=false] - Флаг фокуса

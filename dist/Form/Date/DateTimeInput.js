@@ -9,6 +9,7 @@ var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
 var _styles = require("../styles");
 var _useDateInput2 = require("./hooks/useDateInput");
 var _useFlatpickrMount2 = require("./hooks/useFlatpickrMount");
+var _format = require("./utils/format");
 var _jsxRuntime = require("react/jsx-runtime");
 var _excluded = ["id"];
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
@@ -19,17 +20,8 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-var formatDateTime = function formatDateTime(dateObj) {
-  if (!(dateObj instanceof Date)) return '';
-  var day = String(dateObj.getDate()).padStart(2, '0');
-  var month = String(dateObj.getMonth() + 1).padStart(2, '0');
-  var year = dateObj.getFullYear().toString();
-  var hour = String(dateObj.getHours()).padStart(2, '0');
-  var minute = String(dateObj.getMinutes()).padStart(2, '0');
-  var second = String(dateObj.getSeconds()).padStart(2, '0');
-  return "".concat(day, ".").concat(month, ".").concat(year, " ").concat(hour, ":").concat(minute, ":").concat(second);
-};
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); } // @ts-ignore
+// @ts-ignore
 var DateTimeInput = function DateTimeInput(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
@@ -82,7 +74,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       setFocused: setFocused,
       dateMask: '__.__.____ __:__:__',
       dateFormat: 'DD.MM.YYYY HH:mm:ss',
-      formatDate: formatDateTime,
+      formatDate: _format.formatDateTime,
       setInnerError: setInnerError
     }),
     date = _useDateInput.date,
@@ -101,6 +93,7 @@ var DateTimeInput = function DateTimeInput(_ref) {
       disableMobile: 'true'
     };
     if (defaultDate) {
+      // @ts-ignore
       opts.defaultDate = defaultDate;
     }
     return opts;
@@ -117,45 +110,55 @@ var DateTimeInput = function DateTimeInput(_ref) {
       }
     });
   }
+
+  // @ts-ignore
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] || innerError !== null && innerError !== void 0 && innerError[0] ? ' error' : '');
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(DateInputComponent, {
-    id: id,
-    style: style,
-    disabled: disabled,
-    value: date instanceof Date ? date : null,
-    valueString: dateString,
-    placeholder: placeholder,
-    autoComplete: autoComplete || 'off',
-    options: getOptions(),
-    className: inputClassName,
-    onReady: function onReady(selectedDates, dateStr, fp) {
-      flatpickrInstance.current = fp;
-      fp.calendarContainer.id = "".concat(id, "-container");
-    },
-    onChange: handleDateChange,
-    onOpen: handleFocus,
-    onClose: handleBlur,
-    render: function render(_ref2, refEl) {
-      var id = _ref2.id,
-        restProps = _objectWithoutProperties(_ref2, _excluded);
-      return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
-        autoComplete: "off",
-        mask: "99.99.9999 99:99:99",
-        name: getName(name),
-        id: id,
-        value: restProps.valueString,
-        onChange: handleInputChange,
-        style: restProps.style,
-        className: restProps.className,
-        onFocus: handleFocus,
-        children: function children(inputProps) {
-          return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({
-            ref: refEl
-          }, inputProps));
-        }
-      });
-    }
-  });
+  return (
+    /*#__PURE__*/
+    // @ts-ignore
+    (0, _jsxRuntime.jsx)(DateInputComponent, {
+      id: id,
+      style: style,
+      disabled: disabled,
+      value: date instanceof Date ? date : null,
+      valueString: dateString,
+      placeholder: placeholder,
+      autoComplete: autoComplete || 'off',
+      options: getOptions(),
+      className: inputClassName
+      //@ts-ignore
+      ,
+      onReady: function onReady(selectedDates, dateStr, fp) {
+        flatpickrInstance.current = fp;
+        fp.calendarContainer.id = "".concat(id, "-container");
+      },
+      onChange: handleDateChange,
+      onOpen: handleFocus,
+      onClose: handleBlur
+      //@ts-ignore
+      ,
+      render: function render(_ref2, refEl) {
+        var id = _ref2.id,
+          restProps = _objectWithoutProperties(_ref2, _excluded);
+        return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
+          autoComplete: "off",
+          mask: "99.99.9999 99:99:99",
+          name: getName(name),
+          id: id,
+          value: restProps.valueString,
+          onChange: handleInputChange,
+          style: restProps.style,
+          className: restProps.className,
+          onFocus: handleFocus,
+          children: function children(inputProps) {
+            return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({
+              ref: refEl
+            }, inputProps));
+          }
+        });
+      }
+    })
+  );
 };
 DateTimeInput.displayName = 'DateTimeInput';
 var _default = exports["default"] = DateTimeInput;

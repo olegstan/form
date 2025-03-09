@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
+//@ts-ignore
 import mountFlatpickr from "../utils/mountFlatpickr";
 
 export const useFlatpickrMount = () => {
@@ -11,7 +12,8 @@ export const useFlatpickrMount = () => {
         return () => {
             cleanup();
             if (flatpickrInstance.current) {
-                flatpickrInstance.current.destroy();
+                //@ts-ignore
+                flatpickrInstance.current?.destroy();
             }
         };
     }, []);

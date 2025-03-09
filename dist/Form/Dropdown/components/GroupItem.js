@@ -9,6 +9,8 @@ var _styles = require("./styles");
 var _SubItem = _interopRequireDefault(require("./SubItem"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+//@ts-ignore
+
 var GroupItem = function GroupItem(_ref) {
   var _item$items;
   var item = _ref.item,

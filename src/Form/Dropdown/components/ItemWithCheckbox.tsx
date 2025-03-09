@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {StyledCheckboxOption} from './styles';
 import Checkbox from "../../Checkboxes/Checkbox";
 

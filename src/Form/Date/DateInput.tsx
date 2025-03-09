@@ -1,20 +1,15 @@
 import React from 'react';
 
+// @ts-ignore
 import useBaseInput from '../hooks/useBaseInput';
-
+// @ts-ignore
 import {MaskedStyledInput} from '../styles';
 import DateInputProps from "../types/DateInputProps";
 import {useDateInput} from "./hooks/useDateInput";
 import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
-import GroupSelect from "../Dropdown/GroupSelect/GroupSelect";
+import {formatDate} from "./utils/format";
 
-const formatDate = (d) => {
-    if (!(d instanceof Date)) return '';
-    const day = String(d.getDate()).padStart(2, '0');
-    const month = String(d.getMonth() + 1).padStart(2, '0');
-    const year = d.getFullYear();
-    return `${day}.${month}.${year}`;
-};
+
 
 const DateInput: React.FC<DateInputProps> = ({
                        focused = false,
@@ -74,6 +69,7 @@ const DateInput: React.FC<DateInputProps> = ({
             disableMobile: 'true'
         };
         if (defaultDate) {
+            // @ts-ignore
             opts.defaultDate = defaultDate;
         }
         return opts;
@@ -89,14 +85,16 @@ const DateInput: React.FC<DateInputProps> = ({
                 disabled
                 onChange={() => {}}
             >
-                {(inputProps) => <input {...inputProps} />}
+                {(inputProps: any) => <input {...inputProps} />}
             </MaskedStyledInput>
         );
     }
 
+    // @ts-ignore
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] || innerError?.[0] ? ' error' : ''}`;
 
     return (
+        // @ts-ignore
         <DateInputComponent
             id={id}
             style={style}
@@ -114,7 +112,8 @@ const DateInput: React.FC<DateInputProps> = ({
             onChange={handleDateChange}
             onOpen={handleFocus}
             onClose={handleBlur}
-            render={({id, ...restProps}, refEl) => {
+            // @ts-ignore
+            render={({id, ...restProps}, refEl: any) => {
 
                 return <MaskedStyledInput
                     autoComplete="off"

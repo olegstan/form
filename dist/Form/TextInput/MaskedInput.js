@@ -10,7 +10,9 @@ var _styles = require("../styles");
 var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-// <-- наш кастомный хук
+//@ts-ignore
+
+//@ts-ignore
 
 /**
  *
@@ -31,8 +33,7 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default":
  * @param error
  * @param mask
  * @constructor
- */
-var MaskedInput = function MaskedInput(_ref) {
+ */var MaskedInput = function MaskedInput(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
     _ref$setFocused = _ref.setFocused,

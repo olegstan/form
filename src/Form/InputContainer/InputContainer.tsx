@@ -1,9 +1,11 @@
 import React, {useMemo, useState} from 'react';
+//@ts-ignore
 import {Container, InputContainerStyled} from '../styles';
 import PlaceholderLabel from "./components/PlaceholderLabel";
 import ErrorTooltip from "./components/ErrorTooltip";
 import CloseIcon from "./components/CloseIcon";
 import InputIcon from "./components/InputIcon";
+//@ts-ignore
 import {useTheme} from 'styled-components';
 
 export function isNotEmpty(value: any) {

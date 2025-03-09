@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import ItemWithCheckbox from './ItemWithCheckbox';
+//@ts-ignore
 import {OptionsWrapper} from "./styles";
 
 // @ts-ignore
@@ -43,7 +44,8 @@ const ResultsWithCheckbox = ({
                     <ItemWithCheckbox
                         key={option.id}
                         item={option}
-                        checked={values.includes(option.id)}
+                        //@ts-ignore
+                        checked={values?.includes(option.id)}
                         onClick={(e: any) => {handleClick(e, option)}}
                         className={className}
                         id={`${idPrefix}-${option.id}`}

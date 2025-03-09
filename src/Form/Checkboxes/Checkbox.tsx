@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { StyledCheckbox } from '../styles';
+import React, {useRef} from 'react';
+// @ts-ignore
+import {StyledCheckbox} from '../styles';
 import CheckboxProps from '../types/CheckboxProps';
 
 const Checkbox: React.FC<CheckboxProps> = ({

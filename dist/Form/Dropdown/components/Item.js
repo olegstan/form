@@ -8,6 +8,8 @@ var _react = _interopRequireDefault(require("react"));
 var _styles = require("./styles");
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+//@ts-ignore
+
 var Item = function Item(_ref) {
   var item = _ref.item,
     onClick = _ref.onClick,

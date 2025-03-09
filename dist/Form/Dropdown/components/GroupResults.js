@@ -10,6 +10,8 @@ var _styles = require("./styles");
 var _GroupItem = _interopRequireDefault(require("./GroupItem"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+//@ts-ignore
+
 var GroupResults = function GroupResults(_ref) {
   var id = _ref.id,
     options = _ref.options,

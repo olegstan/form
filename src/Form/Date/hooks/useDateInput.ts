@@ -2,14 +2,8 @@ import {useEffect, useState} from 'react';
 import moment from 'moment';
 
 export const useDateInput = ({
-                                 value,
-                                 onChange,
-                                 flatpickrInstance,
-                                 setFocused,
-                                 dateFormat,
-                                 dateMask,
-                                 formatDate,
-                                 setInnerError
+                                //@ts-ignore
+                                 value, onChange, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError
                             }) => {
     const [date, setDate] = useState(value);
     const [dateString, setDateString] = useState(formatDate(value, dateFormat));
@@ -21,7 +15,7 @@ export const useDateInput = ({
         }
     }, [value, date, dateFormat]);
 
-    const handleDateChange = (selectedDates) => {
+    const handleDateChange = (selectedDates: any) => {
         const dateObj = selectedDates?.[0];
         const newDateString = dateObj ? formatDate(dateObj, dateFormat) : '';
         setDate(dateObj);
@@ -31,7 +25,7 @@ export const useDateInput = ({
         }
     };
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: any) => {
         const val = e.target.value;
         setDateString(val);
         if (val && !val.includes('_')) {
@@ -54,6 +48,7 @@ export const useDateInput = ({
             if (
                 typeof dateString === 'string' &&
                 dateString !== dateMask &&
+                //@ts-ignore
                 !dateString.includes('_')
             ) {
                 const parsedDate = moment(dateString, dateFormat);

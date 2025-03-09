@@ -9,6 +9,8 @@ var _styles = require("./styles");
 var _reactjsPopup = _interopRequireDefault(require("reactjs-popup"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+//@ts-ignore
+
 // @ts-ignore
 
 var InputPopup = function InputPopup(_ref) {

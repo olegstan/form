@@ -1,11 +1,12 @@
 // NumberInput.js
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Money} from 'finhelper';
+//@ts-ignore
 import useBaseInput from '../hooks/useBaseInput';
+//@ts-ignore
 import {StyledInput} from '../styles';
 import NumberInputProps from "../types/NumberInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
-import Input from "./Input";
+import {formatForInput} from "./utils/formatNumber";
 
 const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
@@ -51,7 +52,9 @@ const NumberInput: React.FC<NumberInputProps> = ({
     // Если props.value меняется и у нас есть фокус, возвращаем курсор
     useEffect(() => {
         if (focused && inputRef.current) {
+            //@ts-ignore
             inputRef.current.selectionStart = selectionStart;
+            //@ts-ignore
             inputRef.current.selectionEnd = selectionEnd;
         }
     }, [value, selectionStart, selectionEnd]);
@@ -61,21 +64,27 @@ const NumberInput: React.FC<NumberInputProps> = ({
         (e: Event) => {
             const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
+            //@ts-ignore
             if (e.target && e?.target?.value === '' || pattern.test(e?.target?.value)) {
+                //@ts-ignore
                 let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
 
                 // Проверки на min/max
+                //@ts-ignore
                 if (max !== false && +val > max) {
                     return;
                 }
                 if (min === 0 && isNaN(val)) {
                     return;
                 }
+
+                //@ts-ignore
                 if (min !== false && +val < min) {
                     return;
                 }
 
                 // Позиция курсора
+                //@ts-ignore
                 let position = e?.target?.selectionStart;
 
                 if (val.length > 0) {
@@ -95,14 +104,14 @@ const NumberInput: React.FC<NumberInputProps> = ({
                                     return;
                                 }
                             }
-                            val = Money.formatForInput(val, parts[1].length);
+                            val = formatForInput(val, parts[1].length);
                         } else {
                             // Если точка есть, но дробная часть пустая
-                            val = Money.formatForInput(val, 0) + '.';
+                            val = formatForInput(val, 0) + '.';
                         }
                     } else {
                         // Нет дробной части
-                        val = Money.formatForInput(val, 0);
+                        val = formatForInput(val, 0);
                     }
 
                     // Логика с изменением длины целой части => сдвиг курсора

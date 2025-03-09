@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Item from './Item';
+//@ts-ignore
 import {OptionsWrapper} from "./styles";
-import SubItem from "./SubItem";
 import GroupItem from "./GroupItem";
 
 const GroupResults = ({

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 
 export default function useInputClassNames(baseClassName: string | undefined, focused: boolean, error?: string | object | undefined, disabled?: boolean | undefined): string {
     const [className, setClassName] = useState<string|undefined>(baseClassName);

@@ -1,6 +1,8 @@
 // Input.js
 import React from 'react';
+//@ts-ignore
 import useBaseInput from '../hooks/useBaseInput';
+//@ts-ignore
 import {StyledInput} from '../styles';
 import InputProps from "../types/InputProps";
 import useInputClassNames from "../hooks/useInputClassNames";

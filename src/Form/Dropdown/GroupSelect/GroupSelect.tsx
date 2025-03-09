@@ -1,10 +1,12 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+//@ts-ignore
 import {StyledSelect} from "./styles";
+//@ts-ignore
 import {StyledFakeInput} from "../../styles";
+//@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import GroupResults from "../components/GroupResults";
-import MultiSelect from "../MultiSelect/MultiSelect";
 
 const GroupSelect: React.FC<SelectProps> = ({
                                                 focused = false,
@@ -95,6 +97,7 @@ const GroupSelect: React.FC<SelectProps> = ({
         let foundOption = null;
 
         // Ищем выбранный элемент в верхнем уровне options
+        //@ts-ignore
         foundOption = options.find((option) => option.id === value);
 
         if (!foundOption) {

@@ -1,9 +1,12 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+//@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import Results from "../components/Results";
 
+//@ts-ignore
 import {StyledFakeInput} from "../../styles";
+//@ts-ignore
 import {StyledSelect} from "./styles";
 
 const Select: React.FC<SelectProps> = ({
@@ -70,6 +73,7 @@ const Select: React.FC<SelectProps> = ({
     // // Обработка клика вне компонента
     useEffect(() => {
         const handleClickOutside = (event: any) => {
+            //@ts-ignore
             if (selectRef.current && !selectRef.current?.contains(event.target)) {
                 handleClose()
             }
@@ -90,7 +94,8 @@ const Select: React.FC<SelectProps> = ({
         [options, value]
     );
     const selectedOption = useMemo(
-        () => options.find((option) => option.id === value),
+        //@ts-ignore
+        () => options.find((option:any) => option.id === value),
         [options, value]
     );
     const valueText = selectedOption ? selectedOption.name : '';

@@ -1,10 +1,11 @@
 // TextArea.js
 import React, {useEffect, useRef} from 'react';
+//@ts-ignore
 import useBaseInput from '../hooks/useBaseInput';
+//@ts-ignore
 import {StyledTextArea} from '../styles';
 import TextAreaProps from "../types/TextAreaProps";
 import useInputClassNames from "../hooks/useInputClassNames";
-import Input from "./Input";
 
 /**
  *

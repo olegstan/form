@@ -1,22 +1,13 @@
 import React from 'react';
 
+// @ts-ignore
 import useBaseInput from '../hooks/useBaseInput';
+// @ts-ignore
 import {MaskedStyledInput} from '../styles';
 import DateTimeInputProps from "../types/DateTimeInputProps";
 import {useDateInput} from "./hooks/useDateInput";
 import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
-import DateInput from "./DateInput";
-
-const formatDateTime = (dateObj) => {
-  if (!(dateObj instanceof Date)) return '';
-  let day = String(dateObj.getDate()).padStart(2, '0');
-  let month = String(dateObj.getMonth() + 1).padStart(2, '0');
-  let year = dateObj.getFullYear().toString();
-  let hour = String(dateObj.getHours()).padStart(2, '0');
-  let minute = String(dateObj.getMinutes()).padStart(2, '0');
-  let second = String(dateObj.getSeconds()).padStart(2, '0');
-  return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
-};
+import {formatDateTime} from "./utils/format";
 
 const DateTimeInput: React.FC<DateTimeInputProps> = ({
                          focused = false,
@@ -80,6 +71,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
     };
 
     if (defaultDate) {
+      // @ts-ignore
       opts.defaultDate = defaultDate;
     }
 
@@ -96,14 +88,16 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
             disabled
             onChange={() => {}}
         >
-          {(inputProps) => <input {...inputProps} />}
+          {(inputProps: any) => <input {...inputProps} />}
         </MaskedStyledInput>
     );
   }
 
+  // @ts-ignore
   const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] || innerError?.[0] ? ' error' : ''}`;
 
-  return (
+    return (
+      // @ts-ignore
       <DateInputComponent
           id={id}
           style={style}
@@ -114,6 +108,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
           autoComplete={autoComplete || 'off'}
           options={getOptions()}
           className={inputClassName}
+          //@ts-ignore
           onReady={(selectedDates, dateStr, fp) => {
             flatpickrInstance.current = fp;
             fp.calendarContainer.id = `${id}-container`;
@@ -121,7 +116,8 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
           onChange={handleDateChange}
           onOpen={handleFocus}
           onClose={handleBlur}
-          render={({id, ...restProps}, refEl) => {
+          //@ts-ignore
+          render={({id, ...restProps}, refEl: any) => {
 
             return <MaskedStyledInput
                 autoComplete="off"
@@ -134,7 +130,7 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
                 className={restProps.className}
                 onFocus={handleFocus}
             >
-              {(inputProps) => <input ref={refEl} {...inputProps} />}
+              {(inputProps: any) => <input ref={refEl} {...inputProps} />}
             </MaskedStyledInput>
           }}
       />

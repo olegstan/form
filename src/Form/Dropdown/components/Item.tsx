@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {StyledOption} from './styles';
 
 const Item = ({

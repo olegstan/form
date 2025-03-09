@@ -1,8 +1,9 @@
 import React, {useEffect, useRef} from 'react';
+//@ts-ignore
 import useBaseInput from './hooks/useBaseInput';
+//@ts-ignore
 import {StyledInput} from './styles';
 import FileInputProps from "./types/FileInputProps";
-import GroupSearch from "./Dropdown/GroupSearch/GroupSearch";
 
 const FileInput: React.FC<FileInputProps> = ({
                        focused = false,

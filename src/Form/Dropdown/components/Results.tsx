@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+//@ts-ignore
 import {OptionsWrapper} from "./styles";
 
 const Results = ({

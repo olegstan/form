@@ -1,26 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false,
-    "jsx": "react-jsx",
-    "declaration": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "typeRoots": [
-      "dist/*",
-    ]
+    "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
+    "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
+    "target": "es5"           // Добавлено: указание целевой версии JavaScript
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

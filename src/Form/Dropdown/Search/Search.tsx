@@ -1,11 +1,14 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+//@ts-ignore
 import {StyledSelect} from './styles';
+//@ts-ignore
 import {StyledInput} from '../../styles';
+//@ts-ignore
 import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
+//@ts-ignore
 import useOnceWhen from "../../helpers/useOnceWhen";
-import Select from "../Select/Select";
 
 const Search: React.FC<SearchProps> = ({
                                            focused = false,
@@ -45,6 +48,7 @@ const Search: React.FC<SearchProps> = ({
 
     //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
     useOnceWhen(value && options?.length, () => {
+        //@ts-ignore
         const matchingOption = options.find(option => option.id === value);
 
         if (matchingOption) {
@@ -61,6 +65,7 @@ const Search: React.FC<SearchProps> = ({
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
+                    //@ts-ignore
                     const matchedOption = options.find(option => option.name.toLowerCase() === search.toLowerCase());
 
                     // Если найдено совпадение, выбираем этот элемент
@@ -119,6 +124,7 @@ const Search: React.FC<SearchProps> = ({
                     ?.toLowerCase()
                     .replace('ё', 'е')
                     .replace('й', 'и')
+                    //@ts-ignore
                     .includes(part.replace('ё', 'е').replace('й', 'и'))
             );
         });

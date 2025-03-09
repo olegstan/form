@@ -1,11 +1,12 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
+//@ts-ignore
 import {StyledSelect} from "./styles";
+//@ts-ignore
 import {StyledFakeInput} from "../../styles";
+//@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
 import MultiSelectProps from "../../types/MultiSelectProps";
-import Results from "../components/Results";
 import ResultsWithCheckbox from "../components/ResultsWithCheckbox";
-import Search from "../Search/Search";
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
                                    focused = false,

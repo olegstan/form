@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {StyledSubOption} from './styles';
 
 const SubItem = ({

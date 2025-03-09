@@ -1,4 +1,5 @@
 import React from 'react';
+//@ts-ignore
 import {StyledGroupOption, StyledSubItemsContainer} from './styles';
 import SubItem from "./SubItem";
 

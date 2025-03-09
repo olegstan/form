@@ -9,6 +9,8 @@ var _styles = require("./styles");
 var _Checkbox = _interopRequireDefault(require("../../Checkboxes/Checkbox"));
 var _jsxRuntime = require("react/jsx-runtime");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
+//@ts-ignore
+
 var ItemWithCheckbox = function ItemWithCheckbox(_ref) {
   var item = _ref.item,
     checked = _ref.checked,

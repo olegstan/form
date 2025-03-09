@@ -1,8 +1,9 @@
 import React from 'react';
+// @ts-ignore
 import LoaderGif from "../../../assets/loader_white.gif";
 
 // Интерфейс для пропсов кнопки
-interface BaseButtonProps {
+export interface BaseButtonProps {
     Component: React.ElementType; // Тип компонента (например, 'button', 'a', или кастомный компонент)
     loading?: boolean; // Статус загрузки
     disabled?: boolean; // Статус отключения

@@ -20,7 +20,10 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; } //@ts-ignore
+//@ts-ignore
+//@ts-ignore
+//@ts-ignore
 var Search = function Search(_ref) {
   var _ref$focused = _ref.focused,
     focused = _ref$focused === void 0 ? false : _ref$focused,
@@ -69,6 +72,7 @@ var Search = function Search(_ref) {
 
   //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
   (0, _useOnceWhen["default"])(value && (options === null || options === void 0 ? void 0 : options.length), function () {
+    //@ts-ignore
     var matchingOption = options.find(function (option) {
       return option.id === value;
     });
@@ -87,6 +91,7 @@ var Search = function Search(_ref) {
         handleClose();
         //если элемент не выбран, то очистим поле поиска
         if (!value) {
+          //@ts-ignore
           var matchedOption = options.find(function (option) {
             return option.name.toLowerCase() === search.toLowerCase();
           });
@@ -136,7 +141,9 @@ var Search = function Search(_ref) {
       var parts = searchLower.split(' ');
       return parts.some(function (part) {
         var _option$name;
-        return option === null || option === void 0 || (_option$name = option.name) === null || _option$name === void 0 ? void 0 : _option$name.toLowerCase().replace('ё', 'е').replace('й', 'и').includes(part.replace('ё', 'е').replace('й', 'и'));
+        return option === null || option === void 0 || (_option$name = option.name) === null || _option$name === void 0 ? void 0 : _option$name.toLowerCase().replace('ё', 'е').replace('й', 'и')
+        //@ts-ignore
+        .includes(part.replace('ё', 'е').replace('й', 'и'));
       });
     });
   }, [options, value, search]);

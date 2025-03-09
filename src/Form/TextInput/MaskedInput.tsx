@@ -1,9 +1,10 @@
 import React from 'react';
-import useBaseInput from '../hooks/useBaseInput'; // <-- наш кастомный хук
+//@ts-ignore
+import useBaseInput from '../hooks/useBaseInput';
+//@ts-ignore
 import {MaskedStyledInput} from '../styles';
 import MaskedInputProps from "../types/MaskedInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
-import Input from "./Input";
 
 /**
  *

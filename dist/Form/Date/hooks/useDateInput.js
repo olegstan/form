@@ -63,7 +63,9 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref) {
   var handleBlur = function handleBlur() {
     setFocused(false);
     if (flatpickrInstance.current) {
-      if (typeof dateString === 'string' && dateString !== dateMask && !dateString.includes('_')) {
+      if (typeof dateString === 'string' && dateString !== dateMask &&
+      //@ts-ignore
+      !dateString.includes('_')) {
         var parsedDate = (0, _moment["default"])(dateString, dateFormat);
         if (parsedDate.isValid()) {
           onChange(parsedDate.toDate());
