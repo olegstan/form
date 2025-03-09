@@ -119,6 +119,7 @@ function InputContainer({
                     value={value}
                     search={search}
                     loading={loading}
+                    disabled={disabled}
                     onSearch={onSearch}
                     name={name}
                     onChange={onChange}

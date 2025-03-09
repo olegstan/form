@@ -190,8 +190,6 @@ var GroupSearch = function GroupSearch(_ref) {
 
   // @ts-ignore
   var inputClassName = "input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
-  console.log(options);
-  console.log(filteredOptions);
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
     onClick: handleOpen,
     ref: selectRef,

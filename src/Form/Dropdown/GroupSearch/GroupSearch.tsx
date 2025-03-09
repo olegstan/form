@@ -167,9 +167,6 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
     // @ts-ignore
     const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
-    console.log(options)
-    console.log(filteredOptions)
-
     return (<StyledSelect
             onClick={handleOpen}
             ref={selectRef}

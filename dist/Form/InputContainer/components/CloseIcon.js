@@ -22,6 +22,7 @@ var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
     search = _ref.search,
     onSearch = _ref.onSearch,
     loading = _ref.loading,
+    disabled = _ref.disabled,
     name = _ref.name,
     value = _ref.value,
     onChange = _ref.onChange;
@@ -54,7 +55,7 @@ var CloseIcon = /*#__PURE__*/(0, _react.memo)(function CloseIcon(_ref) {
       notEmpty = (0, _InputContainer.isNotEmpty)(value);
       break;
   }
-  return notEmpty && !loading && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
+  return notEmpty && !loading && !disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", {
     className: "close",
     src: _ic_close_only["default"],
     alt: "close",

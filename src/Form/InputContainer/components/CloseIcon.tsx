@@ -13,6 +13,7 @@ const CloseIcon = memo(function CloseIcon({
                                               search,
                                               onSearch,
                                               loading,
+                                              disabled,
                                               name,
                                               value,
                                               onChange
@@ -22,6 +23,7 @@ const CloseIcon = memo(function CloseIcon({
     value?: any;
     search?: any;
     loading?: boolean;
+    disabled?: boolean;
     name?: string;
     onChange?: (value: any) => void;
     onSearch?: (value: any) => void;
@@ -59,7 +61,7 @@ const CloseIcon = memo(function CloseIcon({
 
 
     return (
-        notEmpty && !loading && <img
+        notEmpty && !loading && !disabled && <img
             className="close"
             src={Close}
             alt="close"

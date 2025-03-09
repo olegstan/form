@@ -139,6 +139,7 @@ function InputContainer(_ref) {
         value: value,
         search: search,
         loading: loading,
+        disabled: disabled,
         onSearch: onSearch,
         name: name,
         onChange: onChange
