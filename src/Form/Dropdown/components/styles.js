@@ -153,11 +153,7 @@ export const OptionsWrapper = styled.div`
     flex-direction: column;
     max-height: 250px;
     pointer-events: ${({active}) => (active ? 'auto' : 'none')};
-    
-    &.styled-input__results-list {
-        
-    }
-    
+
     /* Анимация открытия */
 
     /* При появлении (active: true) плавное изменение, при скрытии сразу */

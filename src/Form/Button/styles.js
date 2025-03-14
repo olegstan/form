@@ -75,10 +75,6 @@ export const sharedButtonStyle = css`
 `
 
 export const StyledButton = styled.button`
-  &.button__header {
-    min-width: 8em;
-  }
-  
   ${sharedButtonStyle}
 `
 
