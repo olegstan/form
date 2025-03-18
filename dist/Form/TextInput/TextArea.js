@@ -106,7 +106,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
       onFocus: handleFocus,
       onBlur: handleBlur,
       rows: rows,
-      value: value || '' }
+      value: value === undefined || value === null ? '' : String(value) }
     ));
 
 };

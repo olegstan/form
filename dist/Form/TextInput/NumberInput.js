@@ -153,7 +153,7 @@ var NumberInput = function NumberInput(_ref)
     disabled: disabled,
     className: inputClassName,
     name: getName(name),
-    value: value || '',
+    value: value === undefined || value === null ? '' : String(value),
     onClick: handleClick,
     onKeyPress: onKeyPress,
     onChange: handleChange,

@@ -106,7 +106,7 @@ const TextArea: React.FC<TextAreaProps> = ({
             onFocus={handleFocus}
             onBlur={handleBlur}
             rows={rows}
-            value={value || ''}
+            value={value === undefined || value === null ? '' : String(value)}
         />
     );
 };

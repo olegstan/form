@@ -84,7 +84,7 @@ const Input: React.FC<InputProps> = ({
             className={inputClassName}
             type={type}
             name={getName(name)}
-            value={value || ''}
+            value={value === undefined || value === null ? '' : String(value)}
             onClick={handleClick}
             onKeyPress={onKeyPress}
             onChange={handleChange}

@@ -84,7 +84,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
       className: inputClassName,
       type: type,
       name: getName(name),
-      value: value || '',
+      value: value === undefined || value === null ? '' : String(value),
       onClick: handleClick,
       onKeyPress: onKeyPress,
       onChange: handleChange,
