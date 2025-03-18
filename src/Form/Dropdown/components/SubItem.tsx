@@ -12,15 +12,24 @@ const SubItem = ({
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
   className?: string,
   id?: string,
-}) => (
-  <StyledSubOption
-    key={item.id}
-    className={`${className} item`}
-    id={id}
-    onClick={onClick}
-  >
-    <span>{item.name}</span>
-  </StyledSubOption>
-);
+}) => {
+    const renderName = () => {
+        if (React.isValidElement(item.name)) {
+            // Если item.name - React-элемент, рендерим его как есть
+            return item.name;
+        }
+        // В противном случае рендерим как обычный текст
+        return <span>{item.name}</span>;
+    };
+
+    return <StyledSubOption
+        key={item.id}
+        className={`${className} item`}
+        id={id}
+        onClick={onClick}
+    >
+        {renderName()}
+    </StyledSubOption>
+};
 
 export default SubItem;

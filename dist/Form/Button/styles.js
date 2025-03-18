@@ -74,11 +74,7 @@ function (_ref9) {var theme = _ref9.theme;return theme.mainButtonDisabledTextCol
 
 
 
-var StyledButton = exports.StyledButton = _styledComponents["default"].button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  &.button__header {\n    min-width: 8em;\n  }\n  \n  ", "\n"])),
-
-
-
-
+var StyledButton = exports.StyledButton = _styledComponents["default"].button(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  ", "\n"])),
 sharedButtonStyle);
 
 
