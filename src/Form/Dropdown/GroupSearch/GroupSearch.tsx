@@ -126,7 +126,17 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
     }
 
     const filteredOptions = useMemo(() => {
+        if (!Array.isArray(options)) {
+            console.error('Invalid options: expected an array');
+            return [];
+        }
+
         return options.filter((option) => {
+
+            if (typeof option !== 'object' || option === null) {
+                console.warn('Invalid option: expected an object', option);
+                return false;
+            }
 
             // Второе условие: если поисковый запрос пустой, проверяем наличие items
             if (!search) {
@@ -136,30 +146,49 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
             }
 
             // Третье условие: фильтрация по поисковому запросу
+            if (typeof search !== 'string') {
+                console.warn('Invalid search query: expected a string', search);
+                return false;
+            }
+
+            // Третье условие: фильтрация по поисковому запросу
             const searchLower = search.toLowerCase();
             const parts = searchLower.split(' ');
 
             // Проверяем, есть ли совпадения в имени самой опции
-            const matchesOptionName = parts.some((part) =>
-                option?.name
-                    ?.toLowerCase()
-                    .replace('ё', 'е')
-                    .replace('й', 'и')
-                    //@ts-ignore
-                    .includes(part.replace('ё', 'е').replace('й', 'и'))
-            );
-
-            // Проверяем, есть ли совпадения в именах вложенных items
-            //@ts-ignore
-            const matchesItems = option?.items?.some((item: any) =>
+            const matchesOptionName =
+                typeof option.name === 'string' &&
                 parts.some((part) =>
-                    item?.name
-                        ?.toLowerCase()
+                    option.name
+                        .toLowerCase()
                         .replace('ё', 'е')
                         .replace('й', 'и')
                         .includes(part.replace('ё', 'е').replace('й', 'и'))
-                )
-            );
+                );
+
+            // Проверяем, есть ли совпадения в именах вложенных items
+            //@ts-ignore
+            const matchesItems =
+                Array.isArray(option.items) &&
+                option.items.some((item) => {
+                    // Проверяем, что item является объектом
+                    if (typeof item !== 'object' || item === null) {
+                        console.warn('Invalid item: expected an object', item);
+                        return false;
+                    }
+
+                    // Проверяем, что item.name является строкой
+                    return (
+                        typeof item.name === 'string' &&
+                        parts.some((part) =>
+                            item.name
+                                .toLowerCase()
+                                .replace('ё', 'е')
+                                .replace('й', 'и')
+                                .includes(part.replace('ё', 'е').replace('й', 'и'))
+                        )
+                    );
+                });
 
             // Опция показывается, если:
             // 1. Есть совпадение в имени самой опции
