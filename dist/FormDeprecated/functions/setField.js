@@ -44,28 +44,28 @@ function setField(Base)
           console.error('Invalid number:', value);
           return '';
         }
-
-        // Определяем количество десятичных знаков
-        var decimalCount = 0;
-        if (num !== Math.floor(num)) {// Если число не целое
-          // Находим количество десятичных знаков
-          var parts = num.toFixed(20).split('.'); // Используем toFixed(20) для точности
-          if (parts[1]) {
-            decimalCount = parts[1].replace(/0+$/, '').length; // Убираем лишние нули
-          }
-        }
-
-        // Форматируем число без экспоненциальной записи
-        var formattedValue = num.toFixed(decimalCount);
-
-        // Разделяем на целую и дробную части
-        var _formattedValue$split = formattedValue.split('.'),_formattedValue$split2 = _slicedToArray(_formattedValue$split, 2),integerPart = _formattedValue$split2[0],_formattedValue$split3 = _formattedValue$split2[1],fractionalPart = _formattedValue$split3 === void 0 ? '' : _formattedValue$split3;
-
-        // Возвращаем результат
-        if (fractionalPart) {
-          return "".concat(integerPart, ".").concat(fractionalPart);
+        if (Math.abs(num) >= 1) {
+          // Если число имеет целую часть, форматируем его с двумя знаками после запятой
+          return num;
         } else {
-          return integerPart; // Если дробной части нет, возвращаем только целую часть
+          // Определяем количество десятичных знаков
+          var decimalCount = 0;
+          if (num !== Math.floor(num)) {// Если число не целое
+            // Находим количество десятичных знаков
+            var parts = num.toFixed(20).split('.'); // Используем toFixed(20) для точности
+            if (parts[1]) {
+              decimalCount = parts[1].replace(/0+$/, '').length; // Убираем лишние нули
+            }
+          }
+
+          // Форматируем число без экспоненциальной записи
+          var formattedValue = num.toFixed(decimalCount);
+
+          // Разделяем на целую и дробную части
+          var _formattedValue$split = formattedValue.split('.'),_formattedValue$split2 = _slicedToArray(_formattedValue$split, 2),integerPart = _formattedValue$split2[0],_formattedValue$split3 = _formattedValue$split2[1],fractionalPart = _formattedValue$split3 === void 0 ? '' : _formattedValue$split3;
+
+          // Возвращаем результат
+          return "".concat(integerPart, ".").concat(fractionalPart);
         }
       }
 

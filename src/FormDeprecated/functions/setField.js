@@ -44,28 +44,28 @@ export default function setField(Base)
         console.error('Invalid number:', value);
         return '';
       }
-
-      // Определяем количество десятичных знаков
-      let decimalCount = 0;
-      if (num !== Math.floor(num)) { // Если число не целое
-        // Находим количество десятичных знаков
-        let parts = num.toFixed(20).split('.'); // Используем toFixed(20) для точности
-        if (parts[1]) {
-          decimalCount = parts[1].replace(/0+$/, '').length; // Убираем лишние нули
-        }
-      }
-
-      // Форматируем число без экспоненциальной записи
-      let formattedValue = num.toFixed(decimalCount);
-
-      // Разделяем на целую и дробную части
-      let [integerPart, fractionalPart = ''] = formattedValue.split('.');
-
-      // Возвращаем результат
-      if (fractionalPart) {
-        return `${integerPart}.${fractionalPart}`;
+      if (Math.abs(num) >= 1) {
+        // Если число имеет целую часть, форматируем его с двумя знаками после запятой
+        return num;
       } else {
-        return integerPart; // Если дробной части нет, возвращаем только целую часть
+        // Определяем количество десятичных знаков
+        let decimalCount = 0;
+        if (num !== Math.floor(num)) { // Если число не целое
+          // Находим количество десятичных знаков
+          let parts = num.toFixed(20).split('.'); // Используем toFixed(20) для точности
+          if (parts[1]) {
+            decimalCount = parts[1].replace(/0+$/, '').length; // Убираем лишние нули
+          }
+        }
+
+        // Форматируем число без экспоненциальной записи
+        let formattedValue = num.toFixed(decimalCount);
+
+        // Разделяем на целую и дробную части
+        let [integerPart, fractionalPart = ''] = formattedValue.split('.');
+
+        // Возвращаем результат
+        return `${integerPart}.${fractionalPart}`;
       }
     }
 
