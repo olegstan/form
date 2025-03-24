@@ -13,29 +13,59 @@ export default function setField(Base)
       prv.form[field] = this.convertToNumber(value);
     }
 
-    convertToNumber(value)
-    {
-      if(typeof value === 'undefined')
-      {
-        value = '';
+    convertToNumber(value) {
+      // Обработка undefined и null
+      if (typeof value === 'undefined' || value === null) {
+        return ''; // Возвращаем пустую строку для таких случаев
       }
 
-      if(value === null)
-      {
-        value = '';
-      }
-
-      if(typeof value === 'number')
-      {
+      // Преобразуем число в строку, если оно является числом
+      if (typeof value === 'number') {
         value = value.toString();
       }
 
-      let parts = value.split('.');
-      if(parts[1] && parts[1].length > 0)
-      {
-        return Money.format(value, parts[1].length);
-      }else{
-        return Money.format(value, 0);
+      // Проверяем, является ли значение строкой
+      if (typeof value !== 'string') {
+        console.error('Invalid input type:', typeof value);
+        return ''; // Возвращаем пустую строку для недопустимых типов
+      }
+
+      // Удаляем пробелы и проверяем на пустую строку
+      value = value.trim();
+      if (value === '') {
+        return '';
+      }
+
+      // Преобразуем строку обратно в число
+      let num = Number(value);
+
+      // Если число не является числом (NaN), возвращаем пустую строку
+      if (isNaN(num)) {
+        console.error('Invalid number:', value);
+        return '';
+      }
+
+      // Определяем количество десятичных знаков
+      let decimalCount = 0;
+      if (num !== Math.floor(num)) { // Если число не целое
+        // Находим количество десятичных знаков
+        let parts = num.toFixed(20).split('.'); // Используем toFixed(20) для точности
+        if (parts[1]) {
+          decimalCount = parts[1].replace(/0+$/, '').length; // Убираем лишние нули
+        }
+      }
+
+      // Форматируем число без экспоненциальной записи
+      let formattedValue = num.toFixed(decimalCount);
+
+      // Разделяем на целую и дробную части
+      let [integerPart, fractionalPart = ''] = formattedValue.split('.');
+
+      // Возвращаем результат
+      if (fractionalPart) {
+        return `${integerPart}.${fractionalPart}`;
+      } else {
+        return integerPart; // Если дробной части нет, возвращаем только целую часть
       }
     }
 
