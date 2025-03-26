@@ -85,7 +85,7 @@ const Search: React.FC<SearchProps> = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [search, value, options, setSelectOpen, onChange]);
+    }, [search, value, options, setSelectOpen, onChange, focused]);
 
     const handleChange = (e: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any): void => {
         e.stopPropagation();

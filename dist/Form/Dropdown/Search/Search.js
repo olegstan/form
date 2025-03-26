@@ -85,7 +85,7 @@ var Search = function Search(_ref)
     return function () {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [search, value, options, setSelectOpen, onChange]);
+  }, [search, value, options, setSelectOpen, onChange, focused]);
 
   var handleChange = function handleChange(e, option) {
     e.stopPropagation();

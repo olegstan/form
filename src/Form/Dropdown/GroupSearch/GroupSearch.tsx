@@ -102,7 +102,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [search, value, options, setSelectOpen, onChange]);
+    }, [search, value, options, setSelectOpen, onChange, focused]);
 
     const handleChange = (event: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any): void => {
         event.stopPropagation();
