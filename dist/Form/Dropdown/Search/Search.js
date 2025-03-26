@@ -61,7 +61,7 @@ var Search = function Search(_ref)
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {var _selectRef$current;
       // @ts-ignore
-      if (selectRef.current && !((_selectRef$current = selectRef.current) !== null && _selectRef$current !== void 0 && _selectRef$current.contains(event.target))) {
+      if (focused && selectRef.current && !((_selectRef$current = selectRef.current) !== null && _selectRef$current !== void 0 && _selectRef$current.contains(event.target))) {
         handleClose();
         //если элемент не выбран, то очистим поле поиска
         if (!value) {

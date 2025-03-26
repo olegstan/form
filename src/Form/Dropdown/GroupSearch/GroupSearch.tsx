@@ -61,7 +61,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
     useEffect(() => {
         const handleClickOutside = (event: any) => {
             // @ts-ignore
-            if (selectRef.current && !selectRef.current?.contains(event.target)) {
+            if (focused && selectRef.current && !selectRef.current?.contains(event.target)) {
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
