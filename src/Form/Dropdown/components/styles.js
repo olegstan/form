@@ -138,6 +138,11 @@ export const StyledCheckboxOption = styled.div`
   }
 `
 
+export const ParentContainer = styled.div`
+    position: relative;
+    //display: inline-block; /* Чтобы занимать только необходимое место */
+`;
+
 export const OptionsWrapper = styled.div`
     position: absolute;
     border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */
@@ -146,12 +151,13 @@ export const OptionsWrapper = styled.div`
     width: 100%;
     box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
     background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: ${zindex.input};
     display: flex;
     flex-direction: column;
     max-height: 250px;
     pointer-events: ${({active}) => (active ? 'auto' : 'none')};
-    overflow: visible;
 
     /* Анимация открытия */
 

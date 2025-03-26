@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Item from './Item';
 //@ts-ignore
-import {OptionsWrapper} from "./styles";
+import {OptionsWrapper, ParentContainer} from "./styles";
 
 const Results = ({
                      id,
@@ -19,26 +19,28 @@ const Results = ({
     idPrefix?: string,
     active?: boolean,
     addButton?: any,
-}) => (
-    <OptionsWrapper active={active} id={id ? `${id}-select` : undefined} className={className}>
-        {addButton}
-        {options.length === 0 ? (<Item
-                key={'none'}
-                item={{id: null, name: 'Нет элементов'}}
-                className={className}
-                id={`${idPrefix}-none`}
-            />)
-            :
-            options.map((option: any) => (
-                <Item
-                    key={option.id}
-                    item={option}
-                    onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => handleClick(e, option)}
+}) => {
+    return <ParentContainer>
+        {active && addButton}
+        <OptionsWrapper active={active} id={id ? `${id}-select` : undefined} className={className}>
+            {options.length === 0 ? (<Item
+                    key={'none'}
+                    item={{id: null, name: 'Нет элементов'}}
                     className={className}
-                    id={`${idPrefix}-${option.id}`}
-                />
-            ))}
-    </OptionsWrapper>
-);
+                    id={`${idPrefix}-none`}
+                />)
+                :
+                options.map((option: any) => (
+                    <Item
+                        key={option.id}
+                        item={option}
+                        onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => handleClick(e, option)}
+                        className={className}
+                        id={`${idPrefix}-${option.id}`}
+                    />
+                ))}
+        </OptionsWrapper>
+    </ParentContainer>
+};
 
 export default Results;
