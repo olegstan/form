@@ -146,13 +146,12 @@ export const OptionsWrapper = styled.div`
     width: 100%;
     box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
     background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
-    overflow-y: auto;
-    overflow-x: hidden;
     z-index: ${zindex.input};
     display: flex;
     flex-direction: column;
     max-height: 250px;
     pointer-events: ${({active}) => (active ? 'auto' : 'none')};
+    overflow: visible;
 
     /* Анимация открытия */
 

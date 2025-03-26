@@ -27,7 +27,8 @@ const Search: React.FC<SearchProps> = ({
                                            options = [],
                                            search = '',
                                            onSearch = () => {},
-                                           clearOnClickOutside = true
+                                           clearOnClickOutside = true,
+                                           addButton = false
                                        }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
@@ -152,6 +153,7 @@ const Search: React.FC<SearchProps> = ({
                 onChange={handleSearch}
             />
             <Results
+                addButton={addButton}
                 active={selectOpen && !disabled}
                 id={id}
                 options={filteredOptions}

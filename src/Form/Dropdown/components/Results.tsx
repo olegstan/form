@@ -9,7 +9,8 @@ const Results = ({
                      handleClick,
                      className,
                      idPrefix,
-                     active
+                     active,
+                     addButton
 }: {
     options: any[],
     handleClick: (event: React.MouseEvent<HTMLInputElement, MouseEvent>, option: any) => void,
@@ -17,8 +18,10 @@ const Results = ({
     id?: string,
     idPrefix?: string,
     active?: boolean,
+    addButton?: any,
 }) => (
     <OptionsWrapper active={active} id={id ? `${id}-select` : undefined} className={className}>
+        {addButton}
         {options.length === 0 ? (<Item
                 key={'none'}
                 item={{id: null, name: 'Нет элементов'}}

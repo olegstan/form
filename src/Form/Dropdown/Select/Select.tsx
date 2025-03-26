@@ -11,16 +11,11 @@ import {StyledSelect} from "./styles";
 
 const Select: React.FC<SelectProps> = ({
                                            focused = false,
-                                           setFocused = () => {
-                                           },
-                                           onBlur = () => {
-                                           },
-                                           onKeyPress = () => {
-                                           },
-                                           onChange = () => {
-                                           },
-                                           onClick = () => {
-                                           },
+                                           setFocused = () => {},
+                                           onBlur = () => {},
+                                           onKeyPress = () => {},
+                                           onChange = () => {},
+                                           onClick = () => {},
                                            disabled = false,
                                            className = '',
                                            style = {},
@@ -29,6 +24,7 @@ const Select: React.FC<SelectProps> = ({
                                            value,
                                            error,
                                            options = [],
+                                           addButton = false,
                                        }) => {
 
     const {
@@ -117,6 +113,7 @@ const Select: React.FC<SelectProps> = ({
                 {valueText}
             </StyledFakeInput>
             <Results
+                addButton={addButton}
                 className={`styled-input__results-list`}
                 active={selectOpen && !disabled}
                 id={id}

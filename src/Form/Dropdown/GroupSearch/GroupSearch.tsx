@@ -27,6 +27,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                                            options = [],
                                            search = '',
                                            onSearch = () => {},
+                                           addButton = false
                                        }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
@@ -216,6 +217,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 onChange={handleSearch}
             />
             <GroupResults
+                addButton={addButton}
                 active={selectOpen && !disabled}
                 id={id}
                 options={filteredOptions}

@@ -7,19 +7,15 @@ import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import GroupResults from "../components/GroupResults";
+import GroupSelectProps from "../../types/GroupSelectProps";
 
-const GroupSelect: React.FC<SelectProps> = ({
+const GroupSelect: React.FC<GroupSelectProps> = ({
                                                 focused = false,
-                                                setFocused = () => {
-                                                },
-                                                onBlur = () => {
-                                                },
-                                                onKeyPress = () => {
-                                                },
-                                                onChange = () => {
-                                                },
-                                                onClick = () => {
-                                                },
+                                                setFocused = () => {},
+                                                onBlur = () => {},
+                                                onKeyPress = () => {},
+                                                onChange = () => {},
+                                                onClick = () => {},
                                                 disabled = false,
                                                 className = '',
                                                 style = {},
@@ -28,6 +24,7 @@ const GroupSelect: React.FC<SelectProps> = ({
                                                 value,
                                                 error,
                                                 options = [],
+                                                addButton = false
                                             }) => {
 
     const {
@@ -132,6 +129,7 @@ const GroupSelect: React.FC<SelectProps> = ({
             {valueText}
         </StyledFakeInput>
         <GroupResults
+            addButton={addButton}
             className={`styled-input__results-list`}
             active={selectOpen && !disabled}
             id={id}
