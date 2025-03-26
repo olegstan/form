@@ -27,6 +27,7 @@ const Search: React.FC<SearchProps> = ({
                                            options = [],
                                            search = '',
                                            onSearch = () => {},
+                                           clearOnClickOutside = true
                                        }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
@@ -72,7 +73,10 @@ const Search: React.FC<SearchProps> = ({
                     if (matchedOption) {
                         onChange(matchedOption);
                     }else{
-                        onSearch('');
+                        if(clearOnClickOutside)
+                        {
+                            onSearch('');
+                        }
                     }
                 }
             }
