@@ -14,7 +14,11 @@
     "strict": true,
     "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
     "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
-    "target": "es6"
+    "target": "es6",
+
+    // Добавьте эти параметры:
+    "declarationDir": "dist/types", // Выходная директория для .d.ts файлов
+    "composite": true // Опционально: помогает при работе с проектами TypeScript
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
