@@ -100,7 +100,7 @@ var Select = function Select(_ref)
 
   return (/*#__PURE__*/
     (0, _jsxRuntime.jsxs)(_styles2.StyledSelect, {
-      id: 'wrapper-' + id,
+      id: id ? 'wrapper-' + id : undefined,
       className: "styled-input__select-wrapper",
       onClick: handleOpen,
       ref: selectRef, children: [/*#__PURE__*/

@@ -116,6 +116,7 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
     const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect
+        id={id ? 'wrapper-' + id : undefined}
         className={`styled-input__select-wrapper`}
         onClick={handleOpen}
         ref={selectRef}

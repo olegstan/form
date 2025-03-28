@@ -100,7 +100,7 @@ const Select: React.FC<SelectProps> = ({
 
     return (
         <StyledSelect
-            id={'wrapper-' + id}
+            id={id ? 'wrapper-' + id : undefined}
             className={`styled-input__select-wrapper`}
             onClick={handleOpen}
             ref={selectRef}

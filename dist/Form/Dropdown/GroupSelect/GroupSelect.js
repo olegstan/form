@@ -116,6 +116,7 @@ var GroupSelect = function GroupSelect(_ref)
   var inputClassName = "styled-input__pseudo-input input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
 
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.StyledSelect, {
+    id: id ? 'wrapper-' + id : undefined,
     className: "styled-input__select-wrapper",
     onClick: handleOpen,
     ref: selectRef, children: [/*#__PURE__*/
