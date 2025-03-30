@@ -5,7 +5,7 @@ import MaskedInputProps from "../types/MaskedInputProps";
  * @param focused
  * @param setFocused
  * @param onBlur
- * @param onKeyPress
+ * @param onKeyDown
  * @param onChange
  * @param onClick
  * @param disabled

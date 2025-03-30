@@ -1,13 +1,8 @@
-/**
- * Компонент иконки очистки (крестика).
- * Мемоизирован с помощью React.memo
- */
-import {memo} from "react";
 // @ts-ignore
 import Close from "../../../assets/ic_close_only.svg";
 import {isNotEmpty} from "../InputContainer";
 
-const CloseIcon = memo(function CloseIcon({
+const CloseIcon = ({
                                               typeName,
                                               icon,
                                               search,
@@ -27,7 +22,7 @@ const CloseIcon = memo(function CloseIcon({
     name?: string;
     onChange?: (value: any) => void;
     onSearch?: (value: any) => void;
-}) {
+}) => {
     // если тип не подходит или выключена опция icon — не показываем
     //если передано icon = false то рендерить икноку для очистки не нужно
     if (!typeName || !icon) return null;
@@ -59,9 +54,13 @@ const CloseIcon = memo(function CloseIcon({
             break;
     }
 
+    if(!notEmpty || loading || disabled)
+    {
+        return null;
+    }
 
     return (
-        notEmpty && !loading && !disabled && <img
+        <img
             className="close"
             src={Close}
             alt="close"
@@ -70,6 +69,6 @@ const CloseIcon = memo(function CloseIcon({
             }}
         />
     );
-});
+};
 
 export default CloseIcon

@@ -14,7 +14,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                                            focused = false,
                                            setFocused = () => {},
                                            onBlur = () => {},
-                                           onKeyPress = () => {},
+                                           onKeyDown = () => {},
                                            onChange = () => {},
                                            onClick = () => {},
                                            disabled = false,

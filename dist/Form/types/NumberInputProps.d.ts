@@ -1,5 +1,5 @@
 import InputProps from "./InputProps";
-export default interface NumberInputProps extends InputProps {
+export default interface NumberInputProps extends InputProps<HTMLInputElement> {
     max?: boolean | number;
     min?: boolean | number;
     decimals?: boolean | number;

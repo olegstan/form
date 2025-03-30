@@ -13,7 +13,7 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
                                                 focused = false,
                                                 setFocused = () => {},
                                                 onBlur = () => {},
-                                                onKeyPress = () => {},
+                                                onKeyDown = () => {},
                                                 onChange = () => {},
                                                 onClick = () => {},
                                                 disabled = false,
@@ -125,7 +125,6 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
             id={id}
             style={style}
             className={inputClassName}
-            name={getName(name)}
         >
             {valueText}
         </StyledFakeInput>

@@ -14,7 +14,7 @@ const Search: React.FC<SearchProps> = ({
                                            focused = false,
                                            setFocused = () => {},
                                            onBlur = () => {},
-                                           onKeyPress = () => {},
+                                           onKeyDown = () => {},
                                            onChange = () => {},
                                            onClick = () => {},
                                            disabled = false,

@@ -19,6 +19,7 @@ const GroupItem = ({
     key={item.id}
     className={`${className} item`}
     id={id}
+  // @ts-ignore
     onClick={onClick}
   >
       <span>{item.name}</span>

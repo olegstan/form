@@ -1,3 +1,4 @@
+/// <reference types="react" />
 export declare const useDateInput: ({ value, onChange, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError }: {
     value: any;
     onChange: any;

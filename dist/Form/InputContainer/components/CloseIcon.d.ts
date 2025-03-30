@@ -1,13 +1,13 @@
-declare const CloseIcon: import("react").NamedExoticComponent<{
-    typeName?: string;
-    icon?: boolean;
+declare const CloseIcon: ({ typeName, icon, search, onSearch, loading, disabled, name, value, onChange }: {
+    typeName?: string | undefined;
+    icon?: boolean | undefined;
     value?: any;
     search?: any;
-    loading?: boolean;
-    disabled?: boolean;
-    name?: string;
-    onChange?: (value: any) => void;
-    onSearch?: (value: any) => void;
-}>;
+    loading?: boolean | undefined;
+    disabled?: boolean | undefined;
+    name?: string | undefined;
+    onChange?: ((value: any) => void) | undefined;
+    onSearch?: ((value: any) => void) | undefined;
+}) => import("react/jsx-runtime").JSX.Element | null;
 export default CloseIcon;
 //# sourceMappingURL=CloseIcon.d.ts.map

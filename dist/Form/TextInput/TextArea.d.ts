@@ -4,7 +4,7 @@ import TextAreaProps from "../types/TextAreaProps";
  *
  * @param focused
  * @param setFocused
- * @param onKeyPress
+ * @param onKeyDown
  * @param onBlur
  * @param onChange
  * @param onClick

@@ -23,7 +23,7 @@ const GroupResults = ({
 }) => {
     return <ParentContainer>
         {active && addButton}
-        <OptionsWrapper active={active} id={id ? `${id}-select` : undefined} className={className}>
+        <OptionsWrapper active={active ?? false} id={id ? `${id}-select` : undefined} className={className}>
             {options.length === 0 ? (<Item
                     key={'none'}
                     item={{id: null, name: 'Нет элементов'}}

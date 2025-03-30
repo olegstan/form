@@ -18,8 +18,9 @@ var GroupItem = function GroupItem(_ref) {var _item$items;var
     (0, _jsxRuntime.jsxs)(_styles.StyledGroupOption, {
 
       className: "".concat(className, " item"),
-      id: id,
-      onClick: _onClick, children: [/*#__PURE__*/
+      id: id
+      // @ts-ignore
+      , onClick: _onClick, children: [/*#__PURE__*/
 
       (0, _jsxRuntime.jsx)("span", { children: item.name }), /*#__PURE__*/
       (0, _jsxRuntime.jsx)(_styles.StyledSubItemsContainer, { children:

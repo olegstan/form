@@ -2,7 +2,6 @@
   "compilerOptions": {
     "sourceMap": true,
     "declarationMap": true,
-    "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
     "rootDir": "src",
@@ -15,9 +14,10 @@
     "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
     "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
     "target": "es6",
+    "allowJs": true,
 
     // Добавьте эти параметры:
-    "declarationDir": "dist/types", // Выходная директория для .d.ts файлов
+    "declaration": true, // Выходная директория для .d.ts файлов
     "composite": true // Опционально: помогает при работе с проектами TypeScript
   },
   "include": ["src"],

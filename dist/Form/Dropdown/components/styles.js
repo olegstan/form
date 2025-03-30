@@ -1,5 +1,5 @@
-"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.StyledSubOption = exports.StyledSubItemsContainer = exports.StyledOption = exports.StyledGroupOption = exports.StyledCheckboxOption = exports.ParentContainer = exports.OptionsWrapper = void 0;var _styledComponents = _interopRequireDefault(require("styled-components"));
-var _zindex = _interopRequireDefault(require("../../../interface/zindex"));var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };}function _taggedTemplateLiteral(e, t) {return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));}
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.StyledSubOption = exports.StyledSubItemsContainer = exports.StyledOption = exports.StyledGroupOption = exports.StyledCheckboxOption = exports.ParentContainer = exports.OptionsWrapper = void 0;var _zindex = _interopRequireDefault(require("../../../interface/zindex"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7;function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };}function _taggedTemplateLiteral(e, t) {return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));}
 
 var StyledSubItemsContainer = exports.StyledSubItemsContainer = _styledComponents["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  padding: 8px; // \u0412\u043D\u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0435 \u043E\u0442\u0441\u0442\u0443\u043F\u044B \u0434\u043B\u044F \u043F\u043E\u0434\u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432\n  background-color: ", ";\n  border-radius: 6px; // \u0417\u0430\u043A\u0440\u0443\u0433\u043B\u0435\u043D\u043D\u044B\u0435 \u0443\u0433\u043B\u044B \u0434\u043B\u044F \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430\n  margin-top: 8px; // \u041E\u0442\u0441\u0442\u0443\u043F \u043C\u0435\u0436\u0434\u0443 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043A\u043E\u043C \u0438 \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u043E\u043C\n"])),
 
@@ -139,6 +139,19 @@ function (_ref11) {var theme = _ref11.theme;return theme.selectOptionBackgroundH
 
 
 var ParentContainer = exports.ParentContainer = _styledComponents["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    position: relative;\n    //display: inline-block; /* \u0427\u0442\u043E\u0431\u044B \u0437\u0430\u043D\u0438\u043C\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0435 \u043C\u0435\u0441\u0442\u043E */\n"])));
+
+
+
+
+
+
+
+
+
+
+
+// Расширяем интерфейс для props
+
 
 
 

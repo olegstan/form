@@ -82,6 +82,7 @@ var DateTimeInput = function DateTimeInput(_ref)
 
   if (disabled) {
     return (/*#__PURE__*/
+      // @ts-ignore
       (0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
         mask: "99.99.9999 99:99:99",
         value: dateString,
@@ -119,6 +120,7 @@ var DateTimeInput = function DateTimeInput(_ref)
       //@ts-ignore
       , render: function render(_ref2, refEl) {var id = _ref2.id,restProps = _objectWithoutProperties(_ref2, _excluded);
 
+        // @ts-ignore
         return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
           autoComplete: "off",
           mask: "99.99.9999 99:99:99",

@@ -24,7 +24,7 @@ const ResultsWithCheckbox = ({
     idPrefix?: string,
     active?: boolean,
 }) => (
-    <OptionsWrapper active={active} id={id ? `${id}-select` : undefined}>
+    <OptionsWrapper active={active ?? false} id={id ? `${id}-select` : undefined}>
         {options.length === 0 ? (<Item
                 key={'none'}
                 item={{id: null, name: 'Нет элементов'}}

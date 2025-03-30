@@ -11,7 +11,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
  *
  * @param focused
  * @param setFocused
- * @param onKeyPress
+ * @param onKeyDown
  * @param onBlur
  * @param onChange
  * @param onClick
@@ -30,7 +30,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
 const TextArea: React.FC<TextAreaProps> = ({
                                                focused = false,
                                                setFocused = () => {},
-                                               onKeyPress = () => {},
+                                               onKeyDown = () => {},
                                                onBlur = () => {},
                                                onChange = () => {},
                                                onClick = () => {},
@@ -84,10 +84,10 @@ const TextArea: React.FC<TextAreaProps> = ({
         adjustHeight();
     }, [value, autoResize]);
 
-    const inputClassName = useInputClassNames(className, focused, error, disabled);;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     // Объединяем стиль из пропсов с условием отключения ресайза
-    const mergedStyle = {
+    const mergedStyle: React.CSSProperties = {
         ...style,
         ...(disableResize ? { resize: 'none' } : {}),
     };
@@ -101,7 +101,7 @@ const TextArea: React.FC<TextAreaProps> = ({
             className={inputClassName}
             name={getName(name)}
             onClick={handleClick}
-            onKeyPress={onKeyPress}
+            onKeyDown={onKeyDown}
             onChange={handleInternalChange}
             onFocus={handleFocus}
             onBlur={handleBlur}

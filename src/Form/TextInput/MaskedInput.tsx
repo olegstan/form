@@ -11,7 +11,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
  * @param focused
  * @param setFocused
  * @param onBlur
- * @param onKeyPress
+ * @param onKeyDown
  * @param onChange
  * @param onClick
  * @param disabled
@@ -30,7 +30,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
                          focused = false,
                          setFocused = () => {},
                          onBlur = () => {},
-                         onKeyPress = () => {},
+                         onKeyDown = () => {},
                          onChange = () => {},
                          onClick = () => {},
                          disabled = false,
@@ -59,9 +59,10 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         onBlur
     });
 
-    const inputClassName = useInputClassNames(className, focused, error, disabled);;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return <MaskedStyledInput
+        // @ts-ignore
         id={id}
         style={style}
         autoComplete={autoComplete || 'off'}
@@ -71,7 +72,7 @@ const MaskedInput: React.FC<MaskedInputProps> = ({
         name={getName(name)}
         value={value}
         onClick={handleClick}
-        onKeyPress={onKeyPress}
+        onKeyDown={onKeyDown}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}

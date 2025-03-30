@@ -12,7 +12,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
  *
  * @param focused
  * @param setFocused
- * @param onKeyPress
+ * @param onKeyDown
  * @param onBlur
  * @param onChange
  * @param onClick
@@ -44,7 +44,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
 
 
 
-{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyPress = _ref.onKeyPress,onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,error = _ref.error,_ref$rows = _ref.rows,rows = _ref$rows === void 0 ? 3 : _ref$rows,_ref$autoResize = _ref.autoResize,autoResize = _ref$autoResize === void 0 ? true : _ref$autoResize,_ref$disableResize = _ref.disableResize,disableResize = _ref$disableResize === void 0 ? false : _ref$disableResize;
+{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyDown = _ref.onKeyDown,onKeyDown = _ref$onKeyDown === void 0 ? function () {} : _ref$onKeyDown,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,error = _ref.error,_ref$rows = _ref.rows,rows = _ref$rows === void 0 ? 3 : _ref$rows,_ref$autoResize = _ref.autoResize,autoResize = _ref$autoResize === void 0 ? true : _ref$autoResize,_ref$disableResize = _ref.disableResize,disableResize = _ref$disableResize === void 0 ? false : _ref$disableResize;
   var textAreaRef = (0, _react.useRef)(null);
 
   var _useBaseInput =
@@ -84,7 +84,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
     adjustHeight();
   }, [value, autoResize]);
 
-  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);;
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
 
   // Объединяем стиль из пропсов с условием отключения ресайза
   var mergedStyle = _objectSpread(_objectSpread({},
@@ -101,7 +101,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
       className: inputClassName,
       name: getName(name),
       onClick: handleClick,
-      onKeyPress: onKeyPress,
+      onKeyDown: onKeyDown,
       onChange: handleInternalChange,
       onFocus: handleFocus,
       onBlur: handleBlur,

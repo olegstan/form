@@ -25,7 +25,7 @@ export const Container = styled.div`
   &.multi-select label.placeholder.active{
     top: 10px;
     left: 10px;
-    transform: translate(0.25em,-15%) scale(.8);;
+    transform: translate(0.25em,-15%) scale(.8);
   }
 `
 
@@ -105,7 +105,7 @@ export const InputWrapper = styled.div`
     label.placeholder.active{
       top: 10px;
       left: -20px;
-      transform: translate(0.25em,-15%) scale(.8);;
+      transform: translate(0.25em,-15%) scale(.8);
     }
     
     label.error{

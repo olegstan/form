@@ -11,7 +11,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
  * @param {Object} props - Компонент Input Props
  * @param {boolean} [props.focused=false] - Флаг фокуса
  * @param {function} [props.setFocused=() => {}] - Функция для установки фокуса
- * @param {function} [props.onKeyPress=() => {}] - Обработчик нажатия клавиш
+ * @param {function} [props.onKeyDown=() => {}] - Обработчик нажатия клавиш
  * @param {function} [props.onChange=() => {}] - Обработчик изменения значения
  * @param {function} [props.onClick=() => {}] - Обработчик клика
  * @param {boolean} [props.disabled=false] - Отключение инпута
@@ -27,7 +27,7 @@ import useInputClassNames from "../hooks/useInputClassNames";
 const Input: React.FC<InputProps> = ({
                                         focused = false,
                                         setFocused = () => {},
-                                        onKeyPress = () => {},
+                                        onKeyDown = () => {},
                                         onBlur = () => {},
                                         onChange = () => {},
                                         onClick = () => {},
@@ -43,7 +43,7 @@ const Input: React.FC<InputProps> = ({
                                     }: {
     focused?: boolean;
     setFocused?: Function;
-    onKeyPress?: Function;
+    onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
     onBlur?: Function;
     onChange?: Function;
     onClick?: Function;
@@ -86,7 +86,7 @@ const Input: React.FC<InputProps> = ({
             name={getName(name)}
             value={value === undefined || value === null ? '' : String(value)}
             onClick={handleClick}
-            onKeyPress={onKeyPress}
+            onKeyDown={onKeyDown}
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}

@@ -13,7 +13,7 @@ const Select: React.FC<SelectProps> = ({
                                            focused = false,
                                            setFocused = () => {},
                                            onBlur = () => {},
-                                           onKeyPress = () => {},
+                                           onKeyDown = () => {},
                                            onChange = () => {},
                                            onClick = () => {},
                                            disabled = false,
@@ -109,7 +109,6 @@ const Select: React.FC<SelectProps> = ({
                 id={id}
                 style={style}
                 className={inputClassName}
-                name={getName(name)}
             >
                 {valueText}
             </StyledFakeInput>

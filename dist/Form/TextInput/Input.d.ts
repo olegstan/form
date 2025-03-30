@@ -4,7 +4,7 @@ import InputProps from "../types/InputProps";
  * @param {Object} props - Компонент Input Props
  * @param {boolean} [props.focused=false] - Флаг фокуса
  * @param {function} [props.setFocused=() => {}] - Функция для установки фокуса
- * @param {function} [props.onKeyPress=() => {}] - Обработчик нажатия клавиш
+ * @param {function} [props.onKeyDown=() => {}] - Обработчик нажатия клавиш
  * @param {function} [props.onChange=() => {}] - Обработчик изменения значения
  * @param {function} [props.onClick=() => {}] - Обработчик клика
  * @param {boolean} [props.disabled=false] - Отключение инпута

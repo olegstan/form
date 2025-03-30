@@ -12,7 +12,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
  * @param {Object} props - Компонент Input Props
  * @param {boolean} [props.focused=false] - Флаг фокуса
  * @param {function} [props.setFocused=() => {}] - Функция для установки фокуса
- * @param {function} [props.onKeyPress=() => {}] - Обработчик нажатия клавиш
+ * @param {function} [props.onKeyDown=() => {}] - Обработчик нажатия клавиш
  * @param {function} [props.onChange=() => {}] - Обработчик изменения значения
  * @param {function} [props.onClick=() => {}] - Обработчик клика
  * @param {boolean} [props.disabled=false] - Отключение инпута
@@ -56,7 +56,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
 
 
 
-{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyPress = _ref.onKeyPress,onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$type = _ref.type,type = _ref$type === void 0 ? 'text' : _ref$type,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error;
+{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyDown = _ref.onKeyDown,onKeyDown = _ref$onKeyDown === void 0 ? function () {} : _ref$onKeyDown,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$type = _ref.type,type = _ref$type === void 0 ? 'text' : _ref$type,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error;
 
   var _useBaseInput =
 
@@ -86,7 +86,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
       name: getName(name),
       value: value === undefined || value === null ? '' : String(value),
       onClick: handleClick,
-      onKeyPress: onKeyPress,
+      onKeyDown: onKeyDown,
       onChange: handleChange,
       onFocus: handleFocus,
       onBlur: handleBlur }

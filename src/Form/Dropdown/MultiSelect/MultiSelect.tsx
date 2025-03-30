@@ -12,7 +12,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                                    focused = false,
                                    setFocused = () => {},
                                    onBlur = () => {},
-                                   onKeyPress = () => {},
+                                   onKeyDown = () => {},
                                    onChange = () => {},
                                    onClick = () => {},
                                    disabled = false,
@@ -119,7 +119,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
             id={id}
             style={style}
             className={inputClassName}
-            name={getName(name)}
         >
             {valueText}
         </StyledFakeInput>

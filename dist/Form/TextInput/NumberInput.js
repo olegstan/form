@@ -26,7 +26,7 @@ var NumberInput = function NumberInput(_ref)
 
 
 
-{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyPress = _ref.onKeyPress,onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,_ref$max = _ref.max,max = _ref$max === void 0 ? false : _ref$max,_ref$min = _ref.min,min = _ref$min === void 0 ? false : _ref$min,_ref$decimals = _ref.decimals,decimals = _ref$decimals === void 0 ? false : _ref$decimals;
+{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onKeyDown = _ref.onKeyDown,onKeyDown = _ref$onKeyDown === void 0 ? function () {} : _ref$onKeyDown,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,_ref$max = _ref.max,max = _ref$max === void 0 ? false : _ref$max,_ref$min = _ref.min,min = _ref$min === void 0 ? false : _ref$min,_ref$decimals = _ref.decimals,decimals = _ref$decimals === void 0 ? false : _ref$decimals;
 
   // Локальный стейт для положения курсора
   var _useState = (0, _react.useState)(0),_useState2 = _slicedToArray(_useState, 2),selectionStart = _useState2[0],setSelectionStart = _useState2[1];
@@ -74,6 +74,7 @@ var NumberInput = function NumberInput(_ref)
         if (max !== false && +val > max) {
           return;
         }
+        //@ts-ignore
         if (min === 0 && isNaN(val)) {
           return;
         }
@@ -123,6 +124,7 @@ var NumberInput = function NumberInput(_ref)
           if (newLength > prevLength) {
             // Каждые 3 цифры + пробел? => возможно надо сдвинуть курсор
             if ((newLength - 1) % 4 === 0) {
+              //@ts-ignore
               position += 1;
             }
           }
@@ -130,12 +132,16 @@ var NumberInput = function NumberInput(_ref)
           // Вызываем onChange, пробрасывая prefix
           onChange(prefix + val);
 
+          //@ts-ignore
           setSelectionStart(position);
+          //@ts-ignore
           setSelectionEnd(position);
         } else {
           // Если val пустое
           onChange('');
+          //@ts-ignore
           setSelectionStart(position);
+          //@ts-ignore
           setSelectionEnd(position);
         }
       }
@@ -143,7 +149,7 @@ var NumberInput = function NumberInput(_ref)
     []
   );
 
-  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);;
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
 
   return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledInput, {
     ref: inputRef,
@@ -155,7 +161,7 @@ var NumberInput = function NumberInput(_ref)
     name: getName(name),
     value: value === undefined || value === null ? '' : String(value),
     onClick: handleClick,
-    onKeyPress: onKeyPress,
+    onKeyDown: onKeyDown,
     onChange: handleChange,
     onFocus: handleFocus,
     onBlur: handleBlur }

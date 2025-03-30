@@ -14,6 +14,20 @@ function isNotEmpty(value) {
   return value.length > 0; // для строки (или массивов, если что-то такое)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function InputContainer(_ref)
 
 
@@ -96,11 +110,11 @@ function InputContainer(_ref)
     }
   }, [typeName, style, theme]);
 
+  // @ts-ignore
   return (/*#__PURE__*/
     (0, _jsxRuntime.jsx)(_styles.Container, {
       style: containerStyle,
       className: containerClassName,
-      disabled: disabled,
       onClick: function onClick(e) {return e.stopPropagation();}, children: /*#__PURE__*/
 
       (0, _jsxRuntime.jsxs)(_styles.InputContainerStyled, { className: "styled-input__main-wrapper", children: [
@@ -115,8 +129,9 @@ function InputContainer(_ref)
           error: error || innerError,
           id: id }
         ), /*#__PURE__*/
-        (0, _jsxRuntime.jsx)(_CloseIcon["default"], {
-          typeName: typeName,
+        (0, _jsxRuntime.jsx)(_CloseIcon["default"]
+        //@ts-ignore
+        , { typeName: typeName,
           icon: icon,
           value: value,
           search: search,

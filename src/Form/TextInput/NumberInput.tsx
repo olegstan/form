@@ -11,7 +11,7 @@ import {formatForInput} from "./utils/formatNumber";
 const NumberInput: React.FC<NumberInputProps> = ({
                          focused = false,
                          setFocused = () => {},
-                         onKeyPress = () => {},
+                         onKeyDown = () => {},
                          onBlur = () => {},
                          onChange = () => {},
                          onClick = () => {},
@@ -61,7 +61,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     // handleChange — портируем вашу логику
     const handleChange = useCallback(
-        (e: Event) => {
+        (e: React.ChangeEvent<HTMLInputElement>) => {
             const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
 
             //@ts-ignore
@@ -74,6 +74,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                 if (max !== false && +val > max) {
                     return;
                 }
+                //@ts-ignore
                 if (min === 0 && isNaN(val)) {
                     return;
                 }
@@ -123,6 +124,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                     if (newLength > prevLength) {
                         // Каждые 3 цифры + пробел? => возможно надо сдвинуть курсор
                         if ((newLength - 1) % 4 === 0) {
+                            //@ts-ignore
                             position += 1;
                         }
                     }
@@ -130,12 +132,16 @@ const NumberInput: React.FC<NumberInputProps> = ({
                     // Вызываем onChange, пробрасывая prefix
                     onChange(prefix + val);
 
+                    //@ts-ignore
                     setSelectionStart(position);
+                    //@ts-ignore
                     setSelectionEnd(position);
                 } else {
                     // Если val пустое
                     onChange('');
+                    //@ts-ignore
                     setSelectionStart(position);
+                    //@ts-ignore
                     setSelectionEnd(position);
                 }
             }
@@ -143,7 +149,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         []
     );
 
-    const inputClassName = useInputClassNames(className, focused, error, disabled);;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (<StyledInput
         ref={inputRef}
@@ -155,7 +161,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         name={getName(name)}
         value={value === undefined || value === null ? '' : String(value)}
         onClick={handleClick}
-        onKeyPress={onKeyPress}
+        onKeyDown={onKeyDown}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}

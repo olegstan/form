@@ -12,7 +12,7 @@ var _newstyles = require("../newstyles");var _templateObject, _templateObject2, 
 var close = require('./../../assets/close_white.svg')["default"];
 var closeHovered = require('./../../assets/close_white_hovered.svg')["default"];
 
-var Container = exports.Container = _styledComponents["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  ", "\n  \n  min-height: 46px;\n  \n  &.multi-select\n  {\n    border: none;\n  }\n\n  &.multi-select label.placeholder.active{\n    top: 10px;\n    left: 10px;\n    transform: translate(0.25em,-15%) scale(.8);;\n  }\n"])),
+var Container = exports.Container = _styledComponents["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  ", "\n  \n  min-height: 46px;\n  \n  &.multi-select\n  {\n    border: none;\n  }\n\n  &.multi-select label.placeholder.active{\n    top: 10px;\n    left: 10px;\n    transform: translate(0.25em,-15%) scale(.8);\n  }\n"])),
 _newstyles.sharedSearchContainer);
 
 
@@ -58,7 +58,7 @@ closeHovered);
 
 
 
-var InputWrapper = exports.InputWrapper = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    display: flex;\n    box-sizing: border-box;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    min-height: 48px;\n    background-color: #fff;\n    flex: 1;\n    border-radius: 8px;\n    position: relative;\n    cursor: pointer;\n    \n    &.select{\n      border-bottom-left-radius: 0;\n      border-bottom-right-radius: 0;\n      border-bottom: 1px #fff solid !important;\n    }\n    \n    input::placeholder\n    {\n        color: transparent;\n    }\n    \n    img.arrow {\n      position: absolute;\n      right: 20px;\n      top: 12px;\n      width: 12px;\n      height: 20px;\n    }\n    \n    ", "\n\n    label.placeholder{\n      z-index: auto !important;\n    }\n    \n    label.placeholder{\n      transition: .3s all;\n      top: 29px;\n      left: 12px;\n    }\n  \n    label.placeholder.active{\n      top: 10px;\n      left: -20px;\n      transform: translate(0.25em,-15%) scale(.8);;\n    }\n    \n    label.error{\n      ", "\n    }\n    \n    &.disabled{\n      background-color: #FAFAFA !important;\n    }\n    \n    ", "\n"])),
+var InputWrapper = exports.InputWrapper = _styledComponents["default"].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    display: flex;\n    box-sizing: border-box;\n    flex-wrap: wrap;\n    justify-content: space-between;\n    align-items: center;\n    min-height: 48px;\n    background-color: #fff;\n    flex: 1;\n    border-radius: 8px;\n    position: relative;\n    cursor: pointer;\n    \n    &.select{\n      border-bottom-left-radius: 0;\n      border-bottom-right-radius: 0;\n      border-bottom: 1px #fff solid !important;\n    }\n    \n    input::placeholder\n    {\n        color: transparent;\n    }\n    \n    img.arrow {\n      position: absolute;\n      right: 20px;\n      top: 12px;\n      width: 12px;\n      height: 20px;\n    }\n    \n    ", "\n\n    label.placeholder{\n      z-index: auto !important;\n    }\n    \n    label.placeholder{\n      transition: .3s all;\n      top: 29px;\n      left: 12px;\n    }\n  \n    label.placeholder.active{\n      top: 10px;\n      left: -20px;\n      transform: translate(0.25em,-15%) scale(.8);\n    }\n    \n    label.error{\n      ", "\n    }\n    \n    &.disabled{\n      background-color: #FAFAFA !important;\n    }\n    \n    ", "\n"])),
 
 
 

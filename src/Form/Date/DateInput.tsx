@@ -79,6 +79,7 @@ const DateInput: React.FC<DateInputProps> = ({
 
     if (disabled) {
         return (
+            // @ts-ignore
             <MaskedStyledInput
                 mask="99.99.9999"
                 value={dateString}
@@ -115,6 +116,7 @@ const DateInput: React.FC<DateInputProps> = ({
             // @ts-ignore
             render={({id, ...restProps}, refEl: any) => {
 
+                // @ts-ignore
                 return <MaskedStyledInput
                     autoComplete="off"
                     mask="99.99.9999"

@@ -11,7 +11,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
  * @param focused
  * @param setFocused
  * @param onBlur
- * @param onKeyPress
+ * @param onKeyDown
  * @param onChange
  * @param onClick
  * @param disabled
@@ -43,7 +43,7 @@ var MaskedInput = function MaskedInput(_ref)
 
 
 
-{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onKeyPress = _ref.onKeyPress,onKeyPress = _ref$onKeyPress === void 0 ? function () {} : _ref$onKeyPress,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$type = _ref.type,type = _ref$type === void 0 ? 'text' : _ref$type,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,mask = _ref.mask;
+{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$onKeyDown = _ref.onKeyDown,onKeyDown = _ref$onKeyDown === void 0 ? function () {} : _ref$onKeyDown,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$type = _ref.type,type = _ref$type === void 0 ? 'text' : _ref$type,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,mask = _ref.mask;
   var _useBaseInput =
 
 
@@ -59,10 +59,11 @@ var MaskedInput = function MaskedInput(_ref)
       onBlur: onBlur
     }),handleClick = _useBaseInput.handleClick,handleChange = _useBaseInput.handleChange,handleFocus = _useBaseInput.handleFocus,handleBlur = _useBaseInput.handleBlur,getName = _useBaseInput.getName;
 
-  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);;
+  var inputClassName = (0, _useInputClassNames["default"])(className, focused, error, disabled);
 
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
-    id: id,
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.MaskedStyledInput
+  // @ts-ignore
+  , { id: id,
     style: style,
     autoComplete: autoComplete || 'off',
     disabled: disabled,
@@ -71,7 +72,7 @@ var MaskedInput = function MaskedInput(_ref)
     name: getName(name),
     value: value,
     onClick: handleClick,
-    onKeyPress: onKeyPress,
+    onKeyDown: onKeyDown,
     onChange: handleChange,
     onFocus: handleFocus,
     onBlur: handleBlur,

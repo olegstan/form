@@ -24,7 +24,7 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {var
 
 
 
-    (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, { active: active, id: id ? "".concat(id, "-select") : undefined, children:
+    (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, { active: active !== null && active !== void 0 ? active : false, id: id ? "".concat(id, "-select") : undefined, children:
       options.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_Item["default"], {
 
         item: { id: null, name: 'Нет элементов' },

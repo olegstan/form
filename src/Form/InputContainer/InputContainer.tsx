@@ -14,6 +14,20 @@ export function isNotEmpty(value: any) {
     return value.length > 0; // для строки (или массивов, если что-то такое)
 }
 
+interface ChildProps {
+    placeholder?: string; // Значение плейсхолдера, строка (необязательное)
+    id?: string; // Идентификатор, строка (необязательное)
+    disabled?: boolean; // Флаг отключения, по умолчанию false
+    value?: string | number | null | Date | undefined; // Значение для одиночного выбора (строка, число или null)
+    values?: (string | number)[]; // Значения для множественного выбора (массив строк или чисел)
+    name?: string; // Имя поля, строка (необязательное)
+    onChange?: (event: React.ChangeEvent<any>) => void; // Обработчик изменения значения
+    icon?: boolean; // Флаг наличия иконки, по умолчанию true
+    loading?: boolean; // Флаг загрузки, логическое значение (необязательное)
+    search?: boolean; // Флаг возможности поиска, логическое значение (необязательное)
+    onSearch?: (query: string) => void; // Обработчик поиска, принимает строку запроса
+}
+
 function InputContainer({
                             children,
                             className = '',
@@ -56,7 +70,7 @@ function InputContainer({
         search,
         onSearch
         // @ts-ignore
-    } = child.props || {};
+    }: ChildProps = child.props || {};
 
     // @ts-ignore
     const typeName: string | undefined = child.type?.displayName || child.type?.name;
@@ -96,11 +110,11 @@ function InputContainer({
         }
     }, [typeName, style, theme]);
 
+    // @ts-ignore
     return (
         <Container
             style={containerStyle}
             className={containerClassName}
-            disabled={disabled}
             onClick={(e: any) => e.stopPropagation()}
         >
             <InputContainerStyled className={`styled-input__main-wrapper`}>
@@ -116,6 +130,7 @@ function InputContainer({
                     id={id}
                 />
                 <CloseIcon
+                    //@ts-ignore
                     typeName={typeName}
                     icon={icon}
                     value={value}
