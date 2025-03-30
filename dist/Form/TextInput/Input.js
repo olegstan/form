@@ -2,45 +2,11 @@
 var _react = _interopRequireDefault(require("react"));
 
 var _useBaseInput2 = _interopRequireDefault(require("../hooks/useBaseInput"));
-
 var _styles = require("../styles");
 
 var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClassNames"));var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} // Input.js
 //@ts-ignore
-//@ts-ignore
-/**
- * @param {Object} props - Компонент Input Props
- * @param {boolean} [props.focused=false] - Флаг фокуса
- * @param {function} [props.setFocused=() => {}] - Функция для установки фокуса
- * @param {function} [props.onKeyDown=() => {}] - Обработчик нажатия клавиш
- * @param {function} [props.onChange=() => {}] - Обработчик изменения значения
- * @param {function} [props.onClick=() => {}] - Обработчик клика
- * @param {boolean} [props.disabled=false] - Отключение инпута
- * @param {string} [props.className=''] - Дополнительный класс
- * @param {string} [props.type='text'] - Тип инпута
- * @param {object} [props.style={}] - Стили
- * @param {string} [props.id] - ID элемента
- * @param {string} [props.name] - Имя инпута
- * @param {string|number} [props.value] - Значение инпута
- * @param {string} [props.autoComplete='off'] - Автозаполнение
- * @param {Array.<string>} [props.error] - Ошибка (массив с флагом и сообщением)
- */var Input = function Input(_ref)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var Input = function Input(_ref)
 
 
 

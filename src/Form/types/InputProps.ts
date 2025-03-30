@@ -14,7 +14,7 @@ export default interface InputProps<T = HTMLInputElement> {
     style?: React.CSSProperties;
     id?: string;
     name?: string;
-    value?: number | string | undefined;
+    value?: string | number | null | undefined;
     autoComplete?: string;
     error?: string[];
 }
