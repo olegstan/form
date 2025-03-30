@@ -1,7 +1,10 @@
 import InputProps from "./InputProps";
 
-export default interface DateInputProps extends InputProps{
+type DateInputProps = Omit<InputProps, "onChange"> & {
     defaultDate?: string;
-    innerError: object,//метод чтобьы показывать ошибку, если ввели неверный формат даты
+    innerError: object;
     setInnerError: (error: object) => void;
-}
+    onChange?: (date: Date | null | undefined) => void;
+};
+
+export default DateInputProps;

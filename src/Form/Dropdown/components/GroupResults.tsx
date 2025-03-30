@@ -19,7 +19,7 @@ const GroupResults = ({
     id?: string,
     idPrefix?: string,
     active?: boolean,
-    addButton: any,
+    addButton?: any,
 }) => {
     return <ParentContainer>
         {active && addButton}

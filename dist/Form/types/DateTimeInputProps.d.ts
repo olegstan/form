@@ -1,7 +1,4 @@
-import InputProps from "./InputProps";
-export default interface DateTimeInputProps extends InputProps {
-    defaultDate?: string;
-    innerError: object;
-    setInnerError: (error: object) => void;
+import DateInputProps from "./DateInputProps";
+export default interface DateTimeInputProps extends DateInputProps {
 }
 //# sourceMappingURL=DateTimeInputProps.d.ts.map

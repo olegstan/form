@@ -8,6 +8,6 @@ export default interface GroupSelectProps extends InputProps {
             name: string;
         };
     }[];
-    addButton: any;
+    addButton?: any;
 }
 //# sourceMappingURL=GroupSelectProps.d.ts.map

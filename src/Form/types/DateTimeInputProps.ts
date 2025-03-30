@@ -1,7 +1,6 @@
-import InputProps from "./InputProps";
+import DateInputProps from "./DateInputProps";
 
-export default interface DateTimeInputProps extends InputProps{
-    defaultDate?: string;
-    innerError: object,//метод чтобьы показывать ошибку, если ввели неверный формат даты
-    setInnerError: (error: object) => void;
+export default interface DateTimeInputProps extends DateInputProps{
+
+
 }

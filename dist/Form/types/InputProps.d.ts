@@ -1,6 +1,6 @@
 import React from "react";
 export default interface InputProps<T = HTMLInputElement> {
-    focused: boolean;
+    focused?: boolean;
     setFocused?: (focus: boolean) => void;
     onKeyDown?: (event: React.KeyboardEvent<T>) => void;
     onChange?: (data: object | string | number) => void;
