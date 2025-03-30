@@ -1,0 +1,13 @@
+import InputProps from "./InputProps";
+export default interface GroupSelectProps extends InputProps {
+    options: {
+        id: any;
+        name: string;
+        items: {
+            id: any;
+            name: string;
+        };
+    }[];
+    addButton?: any;
+}
+//# sourceMappingURL=GroupSelectProps.d.ts.map

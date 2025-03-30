@@ -1,0 +1,1 @@
+{"version":3,"file":"ResultsWithCheckbox.d.ts","sourceRoot":"","sources":["../../../../src/Form/Dropdown/components/ResultsWithCheckbox.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAO1B,QAAA,MAAM,mBAAmB;aAUZ,GAAG,EAAE;YACN,GAAG,EAAE;4BACW,gBAAgB,CAAC,gBAAgB,CAAC,KAAK,IAAI;yBAC9C,gBAAgB,CAAC,gBAAgB,CAAC,UAAU,GAAG,KAAK,IAAI;;;;;6CAmChF,CAAC;AAEF,eAAe,mBAAmB,CAAC"}

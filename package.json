@@ -1,6 +1,6 @@
 {
   "name": "finform",
-  "version": "1.5.41",
+  "version": "1.5.42",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
   "scripts": {
     "build": "npm run build:types && npm run build:js && npm run copy:assets",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\"",
+    "build:js": "babel src -d dist --extensions \".ts,.tsx,.js,.jsx\" --ignore \"**/*.d.ts\"",
     "copy:assets": "copyfiles -u 1 src/assets/* dist/"
   },
   "eslintConfig": {

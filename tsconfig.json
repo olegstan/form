@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "lib": ["es2015", "dom"], // Добавлено: поддержка современных типов (включая Iterable)
-    "skipLibCheck": true,     // Добавлено: игнорирование ошибок в сторонних библиотеках
-    "target": "es6",
-    "allowJs": true,
-
-    // Добавьте эти параметры:
-    "declaration": true, // Выходная директория для .d.ts файлов
-    "composite": true // Опционально: помогает при работе с проектами TypeScript
+    "declaration": true, // Генерация файлов типов (.d.ts)
+    "emitDeclarationOnly": true, // Создание только файлов типов (без JavaScript)
+    "outDir": "dist", // Директория для выходных файлов
+    "rootDir": "src", // Корневая директория с исходным кодом
+    "module": "commonjs", // Формат модулей
+    "moduleResolution": "node", // Стратегия разрешения модулей
+    "jsx": "react-jsx", // Поддержка JSX для React
+    "esModuleInterop": true, // Совместимость с CommonJS модулями
+    "allowSyntheticDefaultImports": true, // Разрешение синтетических импортов по умолчанию
+    "strict": true, // Строгий режим проверки типов
+    "lib": ["es2015", "dom"], // Библиотеки для поддержки современных типов
+    "skipLibCheck": true, // Пропуск проверки типов в сторонних библиотеках
+    "target": "es6", // Целевая версия ECMAScript
+    "allowJs": true, // Разрешение использования JavaScript-файлов
+    "sourceMap": true, // Генерация source map файлов
+    "declarationMap": true // Генерация source map для .d.ts файлов
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"], // Включаемые файлы и директории
+  "exclude": ["node_modules", "dist"] // Исключаемые файлы и директории
 }
