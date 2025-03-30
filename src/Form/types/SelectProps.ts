@@ -1,6 +1,10 @@
 import InputProps from "./InputProps";
+import DateInputProps from "./DateInputProps";
 
-export default interface SelectProps extends InputProps {
+type SelectProps = Omit<InputProps, "onChange"> & {
     options: { id: any; name: string }[];
     addButton?: any
-}
+    onChange?: (date: object | null | undefined) => void;
+};
+
+export default SelectProps;

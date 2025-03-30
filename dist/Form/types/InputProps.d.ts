@@ -3,7 +3,7 @@ export default interface InputProps<T = HTMLInputElement> {
     focused?: boolean;
     setFocused?: (focus: boolean) => void;
     onKeyDown?: (event: React.KeyboardEvent<T>) => void;
-    onChange?: (data: object | string | number) => void;
+    onChange?: (data: string) => void;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
     onBlur?: (event: React.MouseEvent<HTMLInputElement>) => void;
     disabled?: boolean;
@@ -13,7 +13,7 @@ export default interface InputProps<T = HTMLInputElement> {
     style?: React.CSSProperties;
     id?: string;
     name?: string;
-    value?: string;
+    value?: number | string | undefined;
     autoComplete?: string;
     error?: string[];
 }

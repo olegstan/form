@@ -1,5 +1,5 @@
-import InputProps from "./InputProps";
-export default interface GroupSelectProps extends InputProps {
+import SelectProps from "./SelectProps";
+export default interface GroupSelectProps extends SelectProps {
     options: {
         id: any;
         name: string;

@@ -1,5 +1,5 @@
 import InputProps from "./InputProps";
-type DateInputProps = Omit<InputProps, "onChange"> & {
+type DateInputProps = Omit<InputProps, "onChange" | "value"> & {
     defaultDate?: string;
     innerError: object;
     setInnerError: (error: object) => void;
