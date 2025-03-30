@@ -4,7 +4,7 @@ export default interface InputProps<T = HTMLInputElement> {
     focused?: boolean;
     setFocused?: (focus: boolean) => void;
     onKeyDown?: (event: React.KeyboardEvent<T>) => void;
-    onChange?: (data: string) => void;
+    onChange?: React.Dispatch<React.SetStateAction<string>>;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
     onBlur?: (event: React.MouseEvent<HTMLInputElement>) => void;
     disabled?: boolean;
