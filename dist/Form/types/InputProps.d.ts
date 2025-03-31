@@ -16,5 +16,6 @@ export default interface InputProps<T = HTMLInputElement> {
     value?: string | number | null | undefined;
     autoComplete?: string;
     error?: string[];
+    required?: boolean;
 }
 //# sourceMappingURL=InputProps.d.ts.map

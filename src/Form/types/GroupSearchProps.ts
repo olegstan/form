@@ -1,8 +1,8 @@
 import SelectProps from "./SelectProps";
+import GroupSelectProps from "./GroupSelectProps";
 
-export default interface GroupSearchProps extends SelectProps {
+export default interface GroupSearchProps extends GroupSelectProps {
     search: string;
     onSearch: (text: string) => void;
     loading?: boolean;
-    options: { id: any; name: string, items: {id: any, name: string} }[];
 }

@@ -2,7 +2,7 @@ import InputProps from "./InputProps";
 type SelectProps = Omit<InputProps, "onChange"> & {
     options: {
         id: any;
-        name: string;
+        name: any;
     }[];
     addButton?: any;
     onChange?: (date: object | null | undefined) => void;
