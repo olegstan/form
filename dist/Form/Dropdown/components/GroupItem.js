@@ -27,6 +27,7 @@ var GroupItem = function GroupItem(_ref) {var _item$items;var
         item === null || item === void 0 || (_item$items = item.items) === null || _item$items === void 0 ? void 0 : _item$items.map(function (subOption, subKey) {return (/*#__PURE__*/
             (0, _jsxRuntime.jsx)(_SubItem["default"], {
 
+              id: (subOption === null || subOption === void 0 ? void 0 : subOption.id) + '-subitem',
               item: subOption
               // @ts-ignore
               , onClick: function onClick(e) {return _onClick(e, subOption);},

@@ -9,6 +9,10 @@ import SelectProps from "../../types/SelectProps";
 import GroupResults from "../components/GroupResults";
 import GroupSelectProps from "../../types/GroupSelectProps";
 
+//TODO сделать отображение выбранного элемента
+//TODO сделать настройку как отображать текст выбранного,
+//TODO например для счетов, не видно счет, видно название субсчета, что затрудняет понимание как счет используется
+
 const GroupSelect: React.FC<GroupSelectProps> = ({
                                                 focused = false,
                                                 setFocused = () => {},
@@ -24,7 +28,8 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
                                                 value,
                                                 error,
                                                 options = [],
-                                                addButton = false
+                                                addButton = false,
+                                                getText = (item: any, subItem?: any) => subItem?.name || '',
                                             }) => {
 
     const {
@@ -112,7 +117,19 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
         return foundOption;
     }, [options, value]);
 
-    const valueText = selectedOption ? selectedOption.name : '';
+    const valueText = useMemo(() => {
+        if (!selectedOption) return '';
+
+        // Пытаемся найти родительский элемент, если selectedOption является subItem
+        const parentOption = options.find((option) =>
+            //@ts-ignore
+            option?.items?.some((item: any) => item.id === selectedOption.id)
+        );
+
+        // Вызываем функцию getText, передавая item и subItem
+        return getText(selectedOption, parentOption);
+    }, [selectedOption, getText, options]);
+
     const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (<StyledSelect

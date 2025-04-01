@@ -27,6 +27,7 @@ const GroupItem = ({
           {item?.items?.map((subOption: any, subKey: number) => (
               <SubItem
                   key={subKey}
+                  id={subOption?.id + '-subitem'}
                   item={subOption}
                   // @ts-ignore
                   onClick={(e: any) => onClick(e, subOption)}

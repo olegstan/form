@@ -9,5 +9,6 @@ export default interface GroupSelectProps extends SelectProps {
         };
     }[];
     addButton?: any;
+    getText?: (item: any, subItem: any) => string;
 }
 //# sourceMappingURL=GroupSelectProps.d.ts.map
