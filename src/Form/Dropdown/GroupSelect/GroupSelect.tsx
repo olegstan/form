@@ -127,7 +127,7 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
         );
 
         // Вызываем функцию getText, передавая item и subItem
-        return getText(selectedOption, parentOption);
+        return getText(parentOption, selectedOption);
     }, [selectedOption, getText, options]);
 
     const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;

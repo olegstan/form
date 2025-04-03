@@ -104,6 +104,7 @@ function InputContainer({
             case 'Select':
             case 'MultiSelect':
             case 'GroupSelect':
+                //@ts-ignore
                 return {...style, ...{backgroundColor: theme.selectBackgroundColor}}
             default:
                 return style

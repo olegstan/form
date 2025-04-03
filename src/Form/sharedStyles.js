@@ -5,6 +5,7 @@ import {webkitAutofillStyles} from "./styles";
 export const sharedInputStyle = css`
   width: 100%;
   line-height: 13px;
+  box-sizing: border-box;
   user-select: none;
   color: ${({theme}) => theme.inputTextColor};
   z-index: ${zindex.input};

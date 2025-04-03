@@ -70,7 +70,7 @@ export const StyledOption = styled.div`
   cursor: pointer;
   transition: backtground-color 0.2s ease, transform 0.2s ease;
 
-  background-color: ${({theme}) => theme.inputContainerDisabledBackground};
+  background-color: ${({theme}) => theme.inputDisabledContainerBackground};
 
   span {
     text-align: left;
@@ -95,6 +95,7 @@ export const StyledOption = styled.div`
   }
 `
 
+// @ts-ignore
 export const StyledCheckboxOption = styled.div`
   align-items: center;
   color: ${({theme}) => theme.selectOptionTextColor};
@@ -109,7 +110,7 @@ export const StyledCheckboxOption = styled.div`
   cursor: pointer;
   transition: backtground-color 0.2s ease, transform 0.2s ease;
 
-  background-color: ${({theme}) => theme.inputContainerDisabledBackground};
+  background-color: ${({theme}) => theme.inputDisabledContainerBackground};
 
   & > span {
     text-align: left;
@@ -133,7 +134,8 @@ export const StyledCheckboxOption = styled.div`
   }
 
   & > span:hover {
-    background-color: ${({ theme }) => theme.selectOptionBackgroundHovererColor};
+      //@ts-ignore
+    background-color: ${({ theme }) => theme.selectOptionBackgroundHovererColor || ''};
     border-radius: 8px;
   }
 `
@@ -156,6 +158,7 @@ interface OptionsWrapperProps {
     theme: Theme;    // Добавляем тип для темы
 }
 
+// @ts-ignore
 export const OptionsWrapper = styled.div<OptionsWrapperProps>`
     position: absolute;
     border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */

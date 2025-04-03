@@ -104,6 +104,7 @@ function InputContainer(_ref)
       case 'Select':
       case 'MultiSelect':
       case 'GroupSelect':
+        //@ts-ignore
         return _objectSpread(_objectSpread({}, style), { backgroundColor: theme.selectBackgroundColor });
       default:
         return style;

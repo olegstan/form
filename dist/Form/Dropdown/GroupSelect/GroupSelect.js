@@ -127,7 +127,7 @@ var GroupSelect = function GroupSelect(_ref)
     );
 
     // Вызываем функцию getText, передавая item и subItem
-    return getText(selectedOption, parentOption);
+    return getText(parentOption, selectedOption);
   }, [selectedOption, getText, options]);
 
   var inputClassName = "styled-input__pseudo-input input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
