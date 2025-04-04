@@ -1,2 +1,2 @@
-export const sharedInputStyle: import("styled-components").RuleSet<object>;
+export const sharedInputStyle: any;
 //# sourceMappingURL=sharedStyles.d.ts.map

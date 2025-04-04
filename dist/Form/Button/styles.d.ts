@@ -1,6 +1,6 @@
-export const sharedButtonStyle: import("styled-components").RuleSet<object>;
-export const StyledButton: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, never>> & string;
-export const Link: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
-export const InlineLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
-export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<any, never>> & string & ({} | Omit<any, keyof import("react").Component<any, {}, any>>);
+export const sharedButtonStyle: any;
+export const StyledButton: any;
+export const Link: any;
+export const InlineLink: any;
+export const ButtonLink: any;
 //# sourceMappingURL=styles.d.ts.map

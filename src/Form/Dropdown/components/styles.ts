@@ -1,20 +1,28 @@
 import zindex from "../../../interface/zindex";
+// @ts-ignore
 import styled from 'styled-components';
+import {DefaultTheme} from "../../DefaultTheme";
 
-export const StyledSubItemsContainer = styled.div`
+interface OptionsWrapperProps {
+    active: boolean;
+    theme: DefaultTheme;
+}
+
+
+export const StyledSubItemsContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   padding: 8px; // Внутренние отступы для подэлементов
-  background-color: ${({ theme }) => theme.subItemsContainerBackground};
+  background-color: ${({theme}: {theme: DefaultTheme}) => theme.subItemsContainerBackground};
   border-radius: 6px; // Закругленные углы для контейнера
   margin-top: 8px; // Отступ между заголовком и контейнером
 `;
 
-export const StyledGroupOption = styled.div`
+export const StyledGroupOption = styled.div<{ theme: DefaultTheme }>`
     display: flex;
     flex-direction: column;
     padding: 16px;
-    background-color: ${({ theme }) => theme.groupSelectBackground};
+    background-color: ${({theme}: {theme: DefaultTheme}) => theme.groupSelectBackground};
     border-radius: 8px;
     margin-bottom: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -23,14 +31,14 @@ export const StyledGroupOption = styled.div`
         font-size: 16px;
         font-weight: 600;
         margin-left: 6px;
-        color: ${({ theme }) => theme.groupSelectTitleColor};
+        color: ${({theme}: {theme: DefaultTheme}) => theme.groupSelectTitleColor};
         display: block;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
 `
 
-export const StyledSubOption = styled.div`
+export const StyledSubOption = styled.div<{ theme: DefaultTheme }>`
     display: flex;
     align-items: center;
     padding: 8px 12px;
@@ -39,12 +47,12 @@ export const StyledSubOption = styled.div`
     transition: background-color 0.2s ease;
 
     &:hover {
-        background-color: ${({ theme }) => theme.subItemHoverBackground};
+        background-color: ${({theme}: {theme: DefaultTheme}) => theme.subItemHoverBackground};
     }
 
     span {
         font-size: 14px;
-        color: ${({ theme }) => theme.subItemTextColor};
+        color: ${({theme}: {theme: DefaultTheme}) => theme.subItemTextColor};
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -56,9 +64,9 @@ export const StyledSubOption = styled.div`
     }
 `
 
-export const StyledOption = styled.div`
+export const StyledOption = styled.div<{ theme: DefaultTheme }>`
   align-items: center;
-  color: ${({theme}) => theme.selectOptionTextColor};
+  color: ${({theme}: {theme: DefaultTheme}) => theme.selectOptionTextColor};
   line-height: 24px;
   display: flex;
   padding: 0 15px;
@@ -68,9 +76,9 @@ export const StyledOption = styled.div`
   text-align: left;
   flex-wrap: wrap;
   cursor: pointer;
-  transition: backtground-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 
-  background-color: ${({theme}) => theme.inputDisabledContainerBackground};
+  background-color: ${({theme}: {theme: DefaultTheme}) => theme.inputDisabledContainerBackground};
 
   span {
     text-align: left;
@@ -90,15 +98,15 @@ export const StyledOption = styled.div`
   }
 
   span:hover {
-    background-color: ${({ theme }) => theme.selectOptionBackgroundHovererColor};
+    background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectOptionBackgroundHovererColor};
     border-radius: 8px;
   }
 `
 
 // @ts-ignore
-export const StyledCheckboxOption = styled.div`
+export const StyledCheckboxOption = styled.div<{ theme: DefaultTheme }>`
   align-items: center;
-  color: ${({theme}) => theme.selectOptionTextColor};
+  color: ${({theme}: {theme: DefaultTheme}) => theme.selectOptionTextColor};
   line-height: 24px;
   display: flex;
   padding: 0 15px;
@@ -110,7 +118,7 @@ export const StyledCheckboxOption = styled.div`
   cursor: pointer;
   transition: backtground-color 0.2s ease, transform 0.2s ease;
 
-  background-color: ${({theme}) => theme.inputDisabledContainerBackground};
+  background-color: ${({theme}: {theme: DefaultTheme}) => theme.inputDisabledContainerBackground};
 
   & > span {
     text-align: left;
@@ -135,28 +143,15 @@ export const StyledCheckboxOption = styled.div`
 
   & > span:hover {
       //@ts-ignore
-    background-color: ${({ theme }) => theme.selectOptionBackgroundHovererColor || ''};
+    background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectOptionBackgroundHovererColor || ''};
     border-radius: 8px;
   }
 `
 
-export const ParentContainer = styled.div`
+export const ParentContainer = styled.div<{ theme: DefaultTheme }>`
     position: relative;
     //display: inline-block; /* Чтобы занимать только необходимое место */
 `;
-
-interface Theme {
-    selectShadowColor: string;
-    selectWrapperOptionBackgroundColor: string;
-    selectScrollThumbColor: string;
-    selectScrollThumbHoverColor?: string; // Необязательное свойство
-}
-
-// Расширяем интерфейс для props
-interface OptionsWrapperProps {
-    active: boolean; // Пропс active должен быть булевым
-    theme: Theme;    // Добавляем тип для темы
-}
 
 // @ts-ignore
 export const OptionsWrapper = styled.div<OptionsWrapperProps>`
@@ -165,23 +160,23 @@ export const OptionsWrapper = styled.div<OptionsWrapperProps>`
     top: 100%;
     left: 0;
     width: 100%;
-    box-shadow: 0 20px 48px ${({theme}) => theme.selectShadowColor};
-    background-color: ${({theme}) => theme.selectWrapperOptionBackgroundColor};
+    box-shadow: 0 20px 48px ${({theme}: {theme: DefaultTheme}) => theme.selectShadowColor};
+    background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectWrapperOptionBackgroundColor};
     overflow-y: auto;
     overflow-x: hidden;
     z-index: ${zindex.input};
     display: flex;
     flex-direction: column;
     max-height: 250px;
-    pointer-events: ${({active}) => (active ? 'auto' : 'none')};
+    pointer-events: ${({active}: any) => (active ? 'auto' : 'none')};
 
     /* Анимация открытия */
 
     /* При появлении (active: true) плавное изменение, при скрытии сразу */
-    opacity: ${({active}) => (active ? 1 : 0)};
-    transform: ${({active}) =>
+    opacity: ${({active}: any) => (active ? 1 : 0)};
+    transform: ${({active}: any) =>
             active ? 'translateY(0)' : 'translateY(-10px)'};
-    transition: ${({active}) =>
+    transition: ${({active}: any) =>
             active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
 
     &::-webkit-scrollbar {
@@ -190,14 +185,14 @@ export const OptionsWrapper = styled.div<OptionsWrapperProps>`
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: ${({theme}) => theme.selectScrollThumbColor}; /* Цвет ползунка */
+        background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectScrollThumbColor}; /* Цвет ползунка */
         border-radius: 0 0 8px 0; /* Закругляем только правый нижний угол */
         border: 2px solid transparent; /* Эффект внутреннего отступа */
         background-clip: padding-box; /* Ограничение фона ползунка */
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background-color: ${({theme}) => theme.selectScrollThumbHoverColor || theme.selectScrollThumbColor}; /* Цвет ползунка при наведении */
+        background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectScrollThumbHoverColor}; /* Цвет ползунка при наведении */
     }
 
     &::-webkit-scrollbar-track {

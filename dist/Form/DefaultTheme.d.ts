@@ -1,0 +1,37 @@
+export interface DefaultTheme {
+    inputContainerBackground: string;
+    inputContainerBorder: string;
+    inputTextColor: string;
+    inputPlaceholderTextColor: string;
+    inputDisabledContainerBackground: string;
+    inputDisableTextColor: string;
+    checkboxColor: string;
+    checkMarkColor: string;
+    selectBackgroundColor: string;
+    selectTextColor: string;
+    selectArrowColor: string;
+    selectShadowColor: string;
+    selectScrollBarColor: string;
+    selectScrollThumbColor: string;
+    selectScrollThumbHoverColor: string;
+    selectWrapperOptionBackgroundColor: string;
+    selectOptionBackgroundHovererColor: string;
+    selectOptionTextColor: string;
+    mainButtonBackgroundColor: string;
+    mainButtonTextColor: string;
+    mainButtonDisabledBackgroundColor: string;
+    mainButtonDisabledTextColor: string;
+    cancelButtonBackgroundColor: string;
+    cancelButtonTextColor: string;
+    cancelButtonDisabledBackgroundColor: string;
+    blockButtonBackgroundColor: string;
+    blockButtonTextColor: string;
+    blockButtonDisabledBackgroundColor: string;
+    transparentButtonTextColor: string;
+    groupSelectBackground: string;
+    groupSelectTitleColor: string;
+    subItemsContainerBackground: string;
+    subItemTextColor: string;
+    subItemHoverBackground: string;
+}
+//# sourceMappingURL=DefaultTheme.d.ts.map

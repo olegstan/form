@@ -50,9 +50,8 @@ export const Container = styled.div`
   flex: 1;
   border-radius: 8px;
   position: relative;
+  min-width: 0;
 
-  
-  
   //смотрим что у инпута есть такой класс, значит надо менять border
   &:has(.focused) {
     z-index: 1000;
@@ -100,6 +99,7 @@ export const InputContainerStyled = styled.div`
   position: relative;
   z-index: 100;
   border-radius: 12px;
+  min-width: 0;
 
   &.disabled {
     background-color: ${({theme}) => theme.inputContainerDisabledBackground};

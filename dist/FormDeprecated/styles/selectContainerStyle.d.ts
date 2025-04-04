@@ -1,4 +1,4 @@
-export const sharedSelectContainerStyle: import("styled-components").RuleSet<object>;
+export const sharedSelectContainerStyle: any;
 export function Container({ children, tag, size, ...props }: {
     [x: string]: any;
     children: any;

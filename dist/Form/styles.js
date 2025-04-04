@@ -38,7 +38,7 @@ function (_ref5) {var theme = _ref5.theme;return theme.inputContainerDisabledBac
 
 
 
-var Container = exports.Container = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: ", ";\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  border: 1px solid ", ";\n  margin: 15px 10px;\n  flex: 1;\n  border-radius: 8px;\n  position: relative;\n\n  \n  \n  //\u0441\u043C\u043E\u0442\u0440\u0438\u043C \u0447\u0442\u043E \u0443 \u0438\u043D\u043F\u0443\u0442\u0430 \u0435\u0441\u0442\u044C \u0442\u0430\u043A\u043E\u0439 \u043A\u043B\u0430\u0441\u0441, \u0437\u043D\u0430\u0447\u0438\u0442 \u043D\u0430\u0434\u043E \u043C\u0435\u043D\u044F\u0442\u044C border\n  &:has(.focused) {\n    z-index: 1000;\n    border: 1px solid #4378FF;\n  }\n  &:has(.error) {\n    border: 1px solid #EF5E70;\n  }\n  \n  ", "\n"])),
+var Container = exports.Container = _styledComponents["default"].div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  background-color: ", ";\n  display: flex;\n  box-sizing: border-box;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  border: 1px solid ", ";\n  margin: 15px 10px;\n  flex: 1;\n  border-radius: 8px;\n  position: relative;\n  min-width: 0;\n\n\n\n  //\u0441\u043C\u043E\u0442\u0440\u0438\u043C \u0447\u0442\u043E \u0443 \u0438\u043D\u043F\u0443\u0442\u0430 \u0435\u0441\u0442\u044C \u0442\u0430\u043A\u043E\u0439 \u043A\u043B\u0430\u0441\u0441, \u0437\u043D\u0430\u0447\u0438\u0442 \u043D\u0430\u0434\u043E \u043C\u0435\u043D\u044F\u0442\u044C border\n  &:has(.focused) {\n    z-index: 1000;\n    border: 1px solid #4378FF;\n  }\n  &:has(.error) {\n    border: 1px solid #EF5E70;\n  }\n  \n  ", "\n"])),
 function (_ref6) {var theme = _ref6.theme;return theme.inputContainerBackground;},
 
 
@@ -46,6 +46,7 @@ function (_ref6) {var theme = _ref6.theme;return theme.inputContainerBackground;
 
 
 function (_ref7) {var theme = _ref7.theme;return theme.inputContainerBorder;},
+
 
 
 
@@ -91,7 +92,8 @@ function (_ref9) {var theme = _ref9.theme;return theme.inputPlaceholderTextColor
 
 
 
-var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n  border-radius: 12px;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 16px;\n    pointer-events: none;\n  }\n  \n  img.arrow {\n    position: absolute;\n    right: 20px;\n    top: 15px;\n    width: 12px;\n    height: 20px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n  \n  img.loader {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    cursor: pointer;\n\n    height: 30px;\n    width: 30px;\n    animation: ", " 2s linear infinite;\n  }\n  \n  ", ";\n"])),
+var InputContainerStyled = exports.InputContainerStyled = _styledComponents["default"].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  background-color: transparent;\n  outline: none;\n  display: flex;\n  flex: 1;\n  padding: 0;\n  position: relative;\n  z-index: 100;\n  border-radius: 12px;\n  min-width: 0;\n\n  &.disabled {\n    background-color: ", ";\n  }\n\n  img {\n    z-index: 1000;\n    cursor: pointer;\n  }\n\n  img.calendar {\n    position: absolute;\n    right: 16px;\n    top: 16px;\n    pointer-events: none;\n  }\n  \n  img.arrow {\n    position: absolute;\n    right: 20px;\n    top: 15px;\n    width: 12px;\n    height: 20px;\n    pointer-events: none;\n  }\n\n  img.close {\n    position: absolute;\n    right: 8px;\n    top: 8px;\n    cursor: pointer;\n  }\n  \n  img.loader {\n    position: absolute;\n    right: 10px;\n    top: 10px;\n    cursor: pointer;\n\n    height: 30px;\n    width: 30px;\n    animation: ", " 2s linear infinite;\n  }\n  \n  ", ";\n"])),
+
 
 
 

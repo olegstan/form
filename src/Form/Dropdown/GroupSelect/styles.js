@@ -20,6 +20,7 @@ export const StyledSelect = styled.div`
   text-align: left;
   border-radius: 6px;
   min-height: 16px;
+  min-width: 0;
 
   //тут может быть div если вдруг вместо текста передали иконки или друглй элемент
   & > input, & > div.input{
