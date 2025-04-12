@@ -35,6 +35,7 @@ export const StyledGroupOption = styled.div<{ theme: DefaultTheme }>`
         display: block;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        line-height: 15px;
     }
 `
 

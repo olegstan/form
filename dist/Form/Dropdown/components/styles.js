@@ -18,7 +18,7 @@ function (_ref) {var theme = _ref.theme;return theme.subItemsContainerBackground
 
 
 
-var StyledGroupOption = exports.StyledGroupOption = _styledComponents["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    flex-direction: column;\n    padding: 16px;\n    background-color: ", ";\n    border-radius: 8px;\n    margin-bottom: 16px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n\n    & > span {\n        font-size: 16px;\n        font-weight: 600;\n        margin-left: 6px;\n        color: ", ";\n        display: block;\n        text-transform: uppercase;\n        letter-spacing: 0.5px;\n    }\n"])),
+var StyledGroupOption = exports.StyledGroupOption = _styledComponents["default"].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    display: flex;\n    flex-direction: column;\n    padding: 16px;\n    background-color: ", ";\n    border-radius: 8px;\n    margin-bottom: 16px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n\n    & > span {\n        font-size: 16px;\n        font-weight: 600;\n        margin-left: 6px;\n        color: ", ";\n        display: block;\n        text-transform: uppercase;\n        letter-spacing: 0.5px;\n        line-height: 15px;\n    }\n"])),
 
 
 
@@ -32,6 +32,7 @@ function (_ref2) {var theme = _ref2.theme;return theme.groupSelectBackground;},
 
 
 function (_ref3) {var theme = _ref3.theme;return theme.groupSelectTitleColor;});
+
 
 
 
