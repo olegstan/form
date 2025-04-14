@@ -27,6 +27,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                                            options = [],
                                            search = '',
                                            onSearch = () => {},
+                                           clearOnClickOutside = true,
                                            addButton = false
                                        }) => {
 
@@ -90,7 +91,10 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                     if (matchedOption) {
                         onChange(matchedOption);
                     } else {
-                        onSearch('');
+                        if(clearOnClickOutside)
+                        {
+                            onSearch('');
+                        }
                     }
                 }
             }
