@@ -1,29 +1,25 @@
 import React from 'react';
-import { Container, PopupContainer } from './styles';
+import {Container, PopupContainer} from './styles'
 import Popup from 'reactjs-popup';
 
-// Определяем интерфейс для пропсов компонента
-interface InputPopupProps {
-  trigger: React.ReactNode;
-  children: React.ReactNode;
-}
-
-const InputPopup: React.FC<InputPopupProps> = ({ trigger, children }) => {
+const InputPopup = ({ trigger, children }: {
+  trigger: any,
+  children: any,
+}) => {
   return (
-      <Popup
-          trigger={<Container>{trigger}</Container>}
-          position="bottom center"
-          on="hover"
-          contentStyle={{ zIndex: 1000 }}
-      >
-        <>
-          {((close: () => void) => (
-              <PopupContainer onClick={(e: React.MouseEvent) => e.stopPropagation()}>
-                {children}
-              </PopupContainer>
-          ))} {/* Обернутая функция */}
-        </>
-      </Popup>
+    <Popup
+      on={'hover'}
+      trigger={<Container>{trigger}</Container>}
+      position="bottom center"
+      contentStyle={{ zIndex: 1000 }}
+    >
+      {/*//@ts-ignore*/}
+      {(close: void) => (
+        <PopupContainer onClick={(e: any) => e.stopPropagation()}>
+          {children}
+        </PopupContainer>
+      )}
+    </Popup>
   );
 };
 
