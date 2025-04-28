@@ -1,29 +1,29 @@
 import React from 'react';
-//@ts-ignore
-import {Container, PopupContainer} from './styles'
-// @ts-ignore
+import { Container, PopupContainer } from './styles';
 import Popup from 'reactjs-popup';
 
-const InputPopup = ({ trigger, children }: {
-  trigger: any,
-  children: any,
-}) => {
+// Определяем интерфейс для пропсов компонента
+interface InputPopupProps {
+  trigger: React.ReactNode;
+  children: React.ReactNode;
+}
+
+const InputPopup: React.FC<InputPopupProps> = ({ trigger, children }) => {
   return (
-    //@ts-ignore
-    <Popup
-      on={'hover'}
-      trigger={<Container>{trigger}</Container>}
-      //@ts-ignore
-      position="bottom"
-      contentStyle={{ zIndex: 1000 }}
-    >
-      //@ts-ignore
-      {(close: any) => (
-        <PopupContainer onClick={(e: any) => e.stopPropagation()}>
-          {children}
-        </PopupContainer>
-      )}
-    </Popup>
+      <Popup
+          trigger={<Container>{trigger}</Container>}
+          position="bottom center"
+          on="hover"
+          contentStyle={{ zIndex: 1000 }}
+      >
+        <>
+          {((close: () => void) => (
+              <PopupContainer onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+                {children}
+              </PopupContainer>
+          ))} {/* Обернутая функция */}
+        </>
+      </Popup>
   );
 };
 
