@@ -9,12 +9,15 @@ const InputPopup = ({ trigger, children }: {
   children: any,
 }) => {
   return (
+    //@ts-ignore
     <Popup
       on={'hover'}
       trigger={<Container>{trigger}</Container>}
+      //@ts-ignore
       position="bottom"
       contentStyle={{ zIndex: 1000 }}
     >
+      //@ts-ignore
       {(close: any) => (
         <PopupContainer onClick={(e: any) => e.stopPropagation()}>
           {children}

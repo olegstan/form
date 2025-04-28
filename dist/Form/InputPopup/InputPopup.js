@@ -7,18 +7,21 @@ var _reactjsPopup = _interopRequireDefault(require("reactjs-popup"));var _jsxRun
 var InputPopup = function InputPopup(_ref)
 
 
-{var trigger = _ref.trigger,_children = _ref.children;
+{var trigger = _ref.trigger,children = _ref.children;
   return (/*#__PURE__*/
-    (0, _jsxRuntime.jsx)(_reactjsPopup["default"], {
+    //@ts-ignore
+    (0, _jsxRuntime.jsxs)(_reactjsPopup["default"], {
       on: 'hover',
-      trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, { children: trigger }),
-      position: "bottom",
-      contentStyle: { zIndex: 1000 }, children:
+      trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.Container, { children: trigger })
+      //@ts-ignore
+      , position: "bottom",
+      contentStyle: { zIndex: 1000 }, children: [
+      "//@ts-ignore",
 
-      function children(close) {return (/*#__PURE__*/
+      function (close) {return (/*#__PURE__*/
           (0, _jsxRuntime.jsx)(_styles.PopupContainer, { onClick: function onClick(e) {return e.stopPropagation();}, children:
-            _children }
-          ));} }
+            children }
+          ));}] }
 
     ));
 

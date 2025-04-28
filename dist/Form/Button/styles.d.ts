@@ -1,6 +1,8 @@
-export const sharedButtonStyle: any;
-export const StyledButton: any;
-export const Link: any;
-export const InlineLink: any;
-export const ButtonLink: any;
+export const sharedButtonStyle: import("styled-components").RuleSet<object>;
+export const StyledButton: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, never>> & string;
+export const Link: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
+export const InlineLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
+export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<Omit<import("react-router/dist/development/fog-of-war-BLArG-qZ").u & import("react").RefAttributes<HTMLAnchorElement>, "ref"> & {
+    ref?: ((instance: HTMLAnchorElement | null) => void) | import("react").RefObject<HTMLAnchorElement> | null | undefined;
+}, never>> & string & Omit<import("react").ForwardRefExoticComponent<import("react-router/dist/development/fog-of-war-BLArG-qZ").u & import("react").RefAttributes<HTMLAnchorElement>>, keyof import("react").Component<any, {}, any>>;
 //# sourceMappingURL=styles.d.ts.map
