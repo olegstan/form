@@ -24,9 +24,9 @@ export const MaskedStyledInput: import("styled-components/dist/types").IStyledCo
 } & React.RefAttributes<InputMask>, never>> & string & Omit<typeof InputMask, keyof React.Component<any, {}, any>>;
 export const Button: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, never>> & string;
 export const Link: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
-export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<Omit<import("react-router/dist/development/fog-of-war-BLArG-qZ").u & React.RefAttributes<HTMLAnchorElement>, "ref"> & {
+export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<Omit<import("react-router").NavLinkProps & React.RefAttributes<HTMLAnchorElement>, "ref"> & {
     ref?: ((instance: HTMLAnchorElement | null) => void) | React.RefObject<HTMLAnchorElement> | null | undefined;
-}, never>> & string & Omit<React.ForwardRefExoticComponent<import("react-router/dist/development/fog-of-war-BLArG-qZ").u & React.RefAttributes<HTMLAnchorElement>>, keyof React.Component<any, {}, any>>;
+}, never>> & string & Omit<React.ForwardRefExoticComponent<import("react-router").NavLinkProps & React.RefAttributes<HTMLAnchorElement>>, keyof React.Component<any, {}, any>>;
 export const ContainerTextArea: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
 export const Row: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;
 export const Checkbox: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>> & string;

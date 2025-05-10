@@ -4,7 +4,7 @@ export default interface CheckboxProps {
     name?: string;
     id?: string;
     checked?: boolean;
-    toggleCallback?: (checked: boolean) => void;
+    toggleCallback?: (checked: boolean, event: any) => void;
     text?: string;
     textStyle?: React.CSSProperties;
     checkboxStyle?: React.CSSProperties;

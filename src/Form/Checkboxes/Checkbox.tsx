@@ -41,7 +41,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
             <input
                 ref={inputRef}
                 className={checked ? 'active' : ''}
-                onChange={(e) => toggleCallback ? toggleCallback(e.target.checked) : () => {}} // Передаем новое состояние в callback
+                onChange={(event) => toggleCallback ? toggleCallback(event.target.checked, event) : () => {}} // Передаем новое состояние в callback
                 name={name}
                 type="checkbox"
                 value={value}

@@ -5,8 +5,8 @@ var useDropdownLogic = exports.useDropdownLogic = function useDropdownLogic(prop
   var _useState3 = (0, _react.useState)(false),_useState4 = _slicedToArray(_useState3, 2),focused = _useState4[0],setFocused = _useState4[1];
   var _useState5 = (0, _react.useState)(false),_useState6 = _slicedToArray(_useState5, 2),hovered = _useState6[0],setHovered = _useState6[1];
   var _useState7 = (0, _react.useState)(false),_useState8 = _slicedToArray(_useState7, 2),handleArrow = _useState8[0],setHandleArrow = _useState8[1];
-  var _useState9 = (0, _react.useState)(props.search || ''),_useState10 = _slicedToArray(_useState9, 2),searchValue = _useState10[0],setSearchValue = _useState10[1];
-  var _useState11 = (0, _react.useState)(null),_useState12 = _slicedToArray(_useState11, 2),selectedItem = _useState12[0],setSelectedItem = _useState12[1];
+  var _useState9 = (0, _react.useState)(props.search || ''),_useState0 = _slicedToArray(_useState9, 2),searchValue = _useState0[0],setSearchValue = _useState0[1];
+  var _useState1 = (0, _react.useState)(null),_useState10 = _slicedToArray(_useState1, 2),selectedItem = _useState10[0],setSelectedItem = _useState10[1];
 
   // Обработка клика вне компонента
   var handleClickOutside = (0, _react.useCallback)(function (e) {
