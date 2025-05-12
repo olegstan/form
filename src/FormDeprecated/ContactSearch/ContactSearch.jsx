@@ -1,12 +1,12 @@
 import React, {createRef} from 'react';
 import {
-  Add,
-  Container,
-  Input as StyledInput,
-  InputContainer,
-  InputWrapper,
-  Item,
-  Select as StyledSelect
+    Add,
+    Container,
+    Input as StyledInput,
+    InputContainer,
+    InputWrapper,
+    Item,
+    Select as StyledSelect
 } from './../Search/newstyles'
 import Search from "../Search/Search";
 

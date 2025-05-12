@@ -1,15 +1,10 @@
-import React, { useRef, useState, useCallback } from 'react';
-import styled from 'styled-components';
+import React, {useCallback, useRef, useState} from 'react';
 
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import MultiValue from './components/MultiValue';
 
 import useBaseInput from '../../hooks/useBaseInput';
-import useOnceWhen from '../../helpers/useOnceWhen';
-
-import { StyledSelect } from './styles';
-import { StyledInput } from '../../styles';
 
 import MultiSearchProps from '../../types/MultiSearchProps';
 
@@ -31,7 +26,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
                                                         search = '',
                                                         onSearch = () => {},
                                                         allowAdd = false,
-                                                        handleCreate = () => {}
+                                                        handleCreate = (newValue: any) => {}
                                                     }) => {
     const [selectOpen, setSelectOpen] = useState(false);
     const selectRef = useRef<any>(null);

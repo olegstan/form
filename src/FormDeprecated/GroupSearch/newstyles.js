@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import {
-  sharedInputStyle,
-  sharedItemStyle,
-  sharedSearchContainer,
-  sharedSearchContainerStyle,
-  sharedSearchInputWrapperStyle,
-  sharedSelectedStyle,
-  sharedSelectStyle
+    sharedInputStyle,
+    sharedItemStyle,
+    sharedSearchContainer,
+    sharedSearchContainerStyle,
+    sharedSearchInputWrapperStyle,
+    sharedSelectedStyle,
+    sharedSelectStyle
 } from '../newstyles'
 
 export const Container = styled.div`

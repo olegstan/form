@@ -14,5 +14,5 @@ export default interface MultiSearchProps extends InputProps {
      */
     onSearch: (text: string) => void;
     allowAdd?: boolean,
-    handleCreate?: () => {},
+    handleCreate?: (newValue: any) => {},
 }

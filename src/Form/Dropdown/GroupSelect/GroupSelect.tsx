@@ -5,7 +5,6 @@ import {StyledSelect} from "./styles";
 import {StyledFakeInput} from "../../styles";
 //@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
-import SelectProps from "../../types/SelectProps";
 import GroupResults from "../components/GroupResults";
 import GroupSelectProps from "../../types/GroupSelectProps";
 

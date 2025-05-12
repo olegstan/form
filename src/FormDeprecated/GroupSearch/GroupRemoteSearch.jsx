@@ -1,13 +1,13 @@
 import React, {createRef} from 'react';
 import BaseSearch from '../BaseSearch';
 import {
-  Container,
-  Input as StyledInput,
-  InputContainer,
-  InputWrapper,
-  Item,
-  Select as StyledSelect,
-  SubItem
+    Container,
+    Input as StyledInput,
+    InputContainer,
+    InputWrapper,
+    Item,
+    Select as StyledSelect,
+    SubItem
 } from './newstyles'
 import {Loader} from '../newstyles'
 import {ReactComponent as LoadImage} from '../../assets/loader.svg';

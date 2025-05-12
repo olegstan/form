@@ -1,4 +1,3 @@
-import React from 'react';
 // import {Modal} from "../../interface/modal/Modal";
 import Form from "./Form";
 

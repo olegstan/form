@@ -1,6 +1,6 @@
 import React from 'react';
-import { MultiValueProps } from 'react-select';
-import { TagText } from "../styles";
+import {MultiValueProps} from 'react-select';
+import {TagText} from "../styles";
 
 interface OptionType {
     label: string;

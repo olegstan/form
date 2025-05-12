@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import {
-  errorStyle,
-  placeholderStyle,
-  sharedInputStyle,
-  sharedItemStyle,
-  sharedSelectedStyle,
-  sharedSelectStyle
+    errorStyle,
+    placeholderStyle,
+    sharedInputStyle,
+    sharedItemStyle,
+    sharedSelectedStyle,
+    sharedSelectStyle
 } from './newstyles'
 
 export const Input = styled.input`

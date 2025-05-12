@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function getLink(Base)
 {
   class GetLink extends Base

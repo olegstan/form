@@ -10,7 +10,6 @@ import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
 import {formatDate} from "./utils/format";
 
 
-
 const DateInput: React.FC<DateInputProps> = ({
                        focused = false,
                        setFocused = () => {},
