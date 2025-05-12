@@ -7,6 +7,7 @@ export { default as Checkbox } from "./Form/Checkboxes/Checkbox";
 export { default as FileInput } from "./Form/FileInput";
 export { default as Select } from "./Form/Dropdown/Select/Select";
 export { default as MultiSelect } from "./Form/Dropdown/MultiSelect/MultiSelect";
+export { default as MultipleSearch } from "./Form/Dropdown/MultipleSearch/MultipleSearch";
 export { default as GroupSelect } from "./Form/Dropdown/GroupSelect/GroupSelect";
 export { default as Search } from "./Form/Dropdown/Search/Search";
 export { default as GroupSearch } from "./Form/Dropdown/GroupSearch/GroupSearch";

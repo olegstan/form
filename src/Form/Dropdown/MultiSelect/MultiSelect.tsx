@@ -20,7 +20,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                                    style = {},
                                    id,
                                    name,
-                                   values= [],
+                                   values = [],
                                    error,
                                    options = [],
                                    onChangeAll = () => {},
