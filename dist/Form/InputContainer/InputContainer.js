@@ -87,6 +87,7 @@ function InputContainer(_ref)
       case 'FileInput':
         return true;
       case 'MultiSelect':
+      case 'MultipleSearch':
         return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
       case 'GroupSearch':

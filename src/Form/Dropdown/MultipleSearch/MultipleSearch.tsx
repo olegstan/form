@@ -7,13 +7,14 @@ import MultiValue from './components/MultiValue';
 import useBaseInput from '../../hooks/useBaseInput';
 
 import MultiSearchProps from '../../types/MultiSearchProps';
+import {StyledSelect} from "./styles";
 
 const MultipleSearch: React.FC<MultiSearchProps> = ({
                                                         focused = false,
                                                         setFocused = () => {},
                                                         onBlur = () => {},
                                                         onKeyDown = () => {},
-                                                        onChange = () => {},
+                                                        onChange = (newValue: any, action: any) => {},
                                                         onClick = () => {},
                                                         disabled = false,
                                                         className = '',
@@ -44,8 +45,8 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
         onBlur
     });
 
-    const handleChange = useCallback((option: any) => {
-        onChange(option);
+    const handleChange = useCallback((newValue: any, action: any) => {
+        onChange(newValue, action);
         handleClose();
     }, [onChange]);
 
@@ -70,6 +71,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
     const customStyles = {
         control: (provided: any) => ({
             ...provided,
+            minHeight: '48px',
             border: 'none',
             boxShadow: 'none',
             background: 'transparent'
@@ -82,12 +84,17 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
 
     const Component = allowAdd ? CreatableSelect : Select;
 
-    const selectOptions = options.map(option => ({
-        value: option.id,
-        label: option.name,
-    }));
+    const selectOptions = Array.isArray(options)
+        ? options.map(option => ({
+            value: option.id ?? '',
+            label: option.name ?? ''
+        }))
+        : [];
+
+    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 
     return (
+        <StyledSelect>
             <Component
                 placeholder=""
                 id={id}
@@ -97,6 +104,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
                     IndicatorSeparator: () => null,
                     IndicatorsContainer: () => null
                 }}
+                className={inputClassName}
                 isMulti
                 noOptionsMessage={() => 'Нет вариантов'}
                 value={values}
@@ -116,6 +124,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
                 allowCreateWhileLoading={false}
                 isDisabled={disabled}
             />
+        </StyledSelect>
     );
 };
 

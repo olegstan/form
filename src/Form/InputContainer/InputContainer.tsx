@@ -87,6 +87,7 @@ function InputContainer({
             case 'FileInput':
                 return true;
             case 'MultiSelect':
+            case 'MultipleSearch':
                 return !!values?.length;
             case 'Search':
             case 'GroupSearch':
