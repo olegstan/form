@@ -31,13 +31,13 @@ var GroupResults = function GroupResults(_ref)
         id: "".concat(idPrefix, "-none") }, 'none'
       ) :
 
-      options.map(function (option, key) {return (/*#__PURE__*/
+      options.map(function (option, key) {var _option$innerId;return (/*#__PURE__*/
           (0, _jsxRuntime.jsx)(_GroupItem["default"], {
 
             item: option,
             onClick: handleClick,
             className: className,
-            id: "".concat(idPrefix, "-").concat(option.id) }, key
+            id: "".concat(idPrefix, "-").concat(option.id) }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
           ));}
       ) }
     )] }

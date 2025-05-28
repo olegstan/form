@@ -40,7 +40,7 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {var
           onClick: handleClickAll,
           className: className }
         ),
-        options.map(function (option) {return (/*#__PURE__*/
+        options.map(function (option) {var _option$innerId;return (/*#__PURE__*/
             (0, _jsxRuntime.jsx)(_ItemWithCheckbox["default"], {
 
               item: option
@@ -48,7 +48,7 @@ var ResultsWithCheckbox = function ResultsWithCheckbox(_ref) {var
               , checked: values === null || values === void 0 ? void 0 : values.includes(option.id),
               onClick: function onClick(e) {handleClick(e, option);},
               className: className,
-              id: "".concat(idPrefix, "-").concat(option.id) }, option.id
+              id: "".concat(idPrefix, "-").concat(option.id) }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
             ));}
         )] }
       ) }

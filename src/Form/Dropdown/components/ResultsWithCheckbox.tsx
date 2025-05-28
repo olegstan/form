@@ -42,7 +42,7 @@ const ResultsWithCheckbox = ({
                 />}
                 {options.map((option: any) => (
                     <ItemWithCheckbox
-                        key={option.id}
+                        key={option.innerId ?? option.id}
                         item={option}
                         //@ts-ignore
                         checked={values?.includes(option.id)}

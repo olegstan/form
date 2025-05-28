@@ -149,7 +149,7 @@ var Search = function Search(_ref)
       className: inputClassName,
       type: "text",
       name: getName(name),
-      value: search,
+      value: search !== null && search !== void 0 ? search : '',
       onChange: handleSearch }
     ), /*#__PURE__*/
     (0, _jsxRuntime.jsx)(_Results["default"], {

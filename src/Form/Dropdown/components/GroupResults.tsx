@@ -33,7 +33,7 @@ const GroupResults = ({
                 :
                 options.map((option: any, key: number) => (
                     <GroupItem
-                        key={key}
+                        key={option.innerId ?? option.id}
                         item={option}
                         onClick={handleClick}
                         className={className}

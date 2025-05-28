@@ -217,7 +217,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 className={inputClassName}
                 type='text'
                 name={getName(name)}
-                value={search}
+                value={search ?? ''}
                 onChange={handleSearch}
             />
             <GroupResults

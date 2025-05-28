@@ -149,7 +149,7 @@ const Search: React.FC<SearchProps> = ({
                 className={inputClassName}
                 type='text'
                 name={getName(name)}
-                value={search}
+                value={search ?? ''}
                 onChange={handleSearch}
             />
             <Results

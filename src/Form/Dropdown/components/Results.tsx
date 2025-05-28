@@ -32,7 +32,7 @@ const Results = ({
                 :
                 options.map((option: any) => (
                     <Item
-                        key={option.id}
+                        key={option.innerId ?? option.id}
                         item={option}
                         onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => handleClick(e, option)}
                         className={className}
