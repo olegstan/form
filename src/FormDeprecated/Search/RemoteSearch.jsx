@@ -3,8 +3,7 @@ import BaseSearch from '../BaseSearch';
 import {Container, Input as StyledInput, InputContainer, InputWrapper, Item, Select as StyledSelect} from './newstyles'
 import {Loader} from '../newstyles'
 import Search from "./Search";
-import {ReactComponent as LoadImage} from '../../assets/loader.svg';
-
+import LoadImage from '../../assets/loader.svg';
 
 class RemoteSearch extends BaseSearch
 {
@@ -284,7 +283,7 @@ class RemoteSearch extends BaseSearch
           {this.renderTooltipError()}
           {loading && <Loader id='loader-for-data'>
             <div onClick={() => {}}>
-              <LoadImage/>
+              <img src={LoadImage} alt="Loading" width="20" height="20" />
             </div>
           </Loader>}
         </InputContainer>
@@ -295,3 +294,5 @@ class RemoteSearch extends BaseSearch
 
 
 export default RemoteSearch
+
+export {RemoteSearch}

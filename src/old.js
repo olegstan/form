@@ -44,6 +44,8 @@ import getLink from "./FormDeprecated/functions/getLink"
 import receivePropsUserId from "./FormDeprecated/functions/receivePropsUserId"
 import setField from "./FormDeprecated/functions/setField"
 
+console.log(RemoteSearch)
+
 
 export {
   Button,

@@ -10,7 +10,7 @@ import {
     SubItem
 } from './newstyles'
 import {Loader} from '../newstyles'
-import {ReactComponent as LoadImage} from '../../assets/loader.svg';
+import LoadImage from '../../assets/loader.svg';
 
 class GroupRemoteSearch extends BaseSearch
 {
@@ -187,7 +187,7 @@ class GroupRemoteSearch extends BaseSearch
           {this.renderTooltipError()}
           {loading && <Loader id='loader-for-data'>
             <div onClick={() => {}}>
-              <LoadImage/>
+              <img src={LoadImage} alt="Loading" width="20" height="20" />
             </div>
           </Loader>}
         </InputContainer>

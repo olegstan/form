@@ -1,5 +1,5 @@
 export default RemoteSearch;
-declare class RemoteSearch extends BaseSearch {
+export class RemoteSearch extends BaseSearch {
     constructor(props: any);
     state: {
         error: null;

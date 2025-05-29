@@ -43,4 +43,6 @@ var _formSelect = _interopRequireDefault(require("./FormDeprecated/functions/for
 var _getLink = _interopRequireDefault(require("./FormDeprecated/functions/getLink"));
 var _receivePropsUserId = _interopRequireDefault(require("./FormDeprecated/functions/receivePropsUserId"));
 var _setField = _interopRequireDefault(require("./FormDeprecated/functions/setField"));function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };}
+
+console.log(_RemoteSearch["default"]);
 //# sourceMappingURL=old.js.map
