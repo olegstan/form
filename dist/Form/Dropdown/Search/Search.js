@@ -144,6 +144,7 @@ var Search = function Search(_ref)
 
     (0, _jsxRuntime.jsx)(_styles2.StyledInput, {
       id: id,
+      style: style,
       autoComplete: "off",
       disabled: disabled,
       className: inputClassName,

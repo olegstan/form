@@ -144,6 +144,7 @@ const Search: React.FC<SearchProps> = ({
         >
             <StyledInput
                 id={id}
+                style={style}
                 autoComplete="off"
                 disabled={disabled}
                 className={inputClassName}

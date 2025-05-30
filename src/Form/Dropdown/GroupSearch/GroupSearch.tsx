@@ -212,6 +212,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
         >
             <StyledInput
                 id={id}
+                style={style}
                 autoComplete="off"
                 disabled={disabled}
                 className={inputClassName}
