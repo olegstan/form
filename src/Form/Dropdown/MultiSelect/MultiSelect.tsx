@@ -1,9 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-//@ts-ignore
-import {StyledSelect} from "./styles";
-//@ts-ignore
+import {StyledSelect} from "./styles"
 import {StyledFakeInput} from "../../styles";
-//@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
 import MultiSelectProps from "../../types/MultiSelectProps";
 import ResultsWithCheckbox from "../components/ResultsWithCheckbox";

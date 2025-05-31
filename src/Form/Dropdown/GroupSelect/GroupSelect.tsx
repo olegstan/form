@@ -1,9 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-//@ts-ignore
 import {StyledSelect} from "./styles";
-//@ts-ignore
 import {StyledFakeInput} from "../../styles";
-//@ts-ignore
 import useBaseInput from "../../hooks/useBaseInput";
 import GroupResults from "../components/GroupResults";
 import GroupSelectProps from "../../types/GroupSelectProps";

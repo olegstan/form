@@ -3,10 +3,7 @@ import React, {useEffect, useMemo, useRef, useState} from 'react';
 import useBaseInput from "../../hooks/useBaseInput";
 import SelectProps from "../../types/SelectProps";
 import Results from "../components/Results";
-
-//@ts-ignore
 import {StyledFakeInput} from "../../styles";
-//@ts-ignore
 import {StyledSelect} from "./styles";
 
 const Select: React.FC<SelectProps> = ({

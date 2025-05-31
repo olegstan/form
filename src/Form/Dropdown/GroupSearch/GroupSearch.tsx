@@ -1,11 +1,7 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-//@ts-ignore
 import {StyledSelect} from './styles';
-//@ts-ignore
 import {StyledInput} from '../../styles';
-//@ts-ignore
 import useBaseInput from '../../hooks/useBaseInput';
-//@ts-ignore
 import useOnceWhen from "../../helpers/useOnceWhen";
 import GroupSearchProps from "../../types/GroupSearchProps";
 import GroupResults from "../components/GroupResults";

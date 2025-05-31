@@ -1,13 +1,9 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
-//@ts-ignore
 import {StyledSelect} from './styles';
-//@ts-ignore
 import {StyledInput} from '../../styles';
-//@ts-ignore
 import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
-//@ts-ignore
 import useOnceWhen from "../../helpers/useOnceWhen";
 
 const Search: React.FC<SearchProps> = ({
