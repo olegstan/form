@@ -152,6 +152,7 @@ const Search: React.FC<SearchProps> = ({
                 name={getName(name)}
                 value={search ?? ''}
                 onChange={handleSearch}
+                onBlur={handleBlur}
             />
             <Results
                 addButton={addButton}

@@ -220,6 +220,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 name={getName(name)}
                 value={search ?? ''}
                 onChange={handleSearch}
+                onBlur={handleBlur}
             />
             <GroupResults
                 addButton={addButton}

@@ -219,7 +219,8 @@ var GroupSearch = function GroupSearch(_ref)
       type: "text",
       name: getName(name),
       value: search !== null && search !== void 0 ? search : '',
-      onChange: handleSearch }
+      onChange: handleSearch,
+      onBlur: handleBlur }
     ), /*#__PURE__*/
     (0, _jsxRuntime.jsx)(_GroupResults["default"], {
       addButton: addButton,
