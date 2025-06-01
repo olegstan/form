@@ -205,7 +205,7 @@ NumberInput = exports["default"] = /*#__PURE__*/function (_BaseInput) {
             } }
           ),
           this.renderPlaceholder(),
-          !empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "close", src: require('./../assets/ic_close_only.svg')["default"], onClick: function onClick(e) {
+          !empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "close", src: require('./../assets/ic_close_only.svg'), onClick: function onClick(e) {
               _this2.props.onChange(e, {
                 name: _this2.props.name,
                 value: ''

@@ -59,7 +59,7 @@ export default class Input extends BaseInput {
       <InputContainer ref={this.wrapperRef}>
         {this.renderInput()}
         {this.renderPlaceholder()}
-        {!empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && <img className='close' src={require('./../assets/ic_close_only.svg')} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',

@@ -78,7 +78,7 @@ class MultipleSelect extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg').default;
+    return require('../../assets/arrow.svg');
   }
 
   handleShowSelect(select)

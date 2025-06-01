@@ -178,7 +178,7 @@ class ContactSearch extends Search
               <span>Добавить контакт</span>
             </Add>}
           </StyledSelect>
-          {!empty && this.props.showClearIcon && !this.props.disabled && <img style={clearImageStyle} className='close' src={require('./../../assets/ic_close_only.svg').default} onClick={(e) => {
+          {!empty && this.props.showClearIcon && !this.props.disabled && <img style={clearImageStyle} className='close' src={require('./../../assets/ic_close_only.svg')} onClick={(e) => {
             this.setState({
               search: '',
               hasError: false

@@ -9,8 +9,8 @@ import {
     sharedSelectStyle
 } from '../newstyles'
 
-let close = require('./../../assets/close_white.svg').default;
-let closeHovered = require('./../../assets/close_white_hovered.svg').default;
+let close = require('./../../assets/close_white.svg');
+let closeHovered = require('./../../assets/close_white_hovered.svg');
 
 export const Container = styled.div`
   ${sharedSearchContainer}

@@ -342,7 +342,7 @@ Search = /*#__PURE__*/function (_BaseSearch) {
               }, children:
               resItems.length ? resItems : selected ? '' : /*#__PURE__*/(0, _jsxRuntime.jsx)(_newstyles.Item, { className: this.props.className, children: /*#__PURE__*/(0, _jsxRuntime.jsx)("span", { children: typeof this.state.search === 'string' && this.state.search.length > 0 ? 'Ничего не найдено' : 'Ввидете запрос' }) }) }
             ),
-            !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { style: clearImageStyle, className: "close", src: require('./../../assets/ic_close_only.svg')["default"], onClick: function onClick(e) {
+            !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { style: clearImageStyle, className: "close", src: require('./../../assets/ic_close_only.svg'), onClick: function onClick(e) {
                 _this4.setState({
                   search: '',
                   hasError: false

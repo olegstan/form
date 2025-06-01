@@ -205,7 +205,7 @@ export default class NumberInput extends BaseInput {
           }}
         />
         {this.renderPlaceholder()}
-        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && <img className='close' src={require('./../assets/ic_close_only.svg').default} onClick={(e) => {
+        {!empty && typeof this.props.size === 'undefined' && !this.props.disabled && this.props.icon !== false && <img className='close' src={require('./../assets/ic_close_only.svg')} onClick={(e) => {
           this.props.onChange(e, {
             name: this.props.name,
             value: '',

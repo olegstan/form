@@ -128,7 +128,7 @@ class GroupMultipleSelect extends BaseInput
           ))}
         </StyledSelect>
         {this.renderPlaceholder()}
-        <img className='arrow' src={require('../../assets/arrow.svg').default} alt='' onClick={() => {
+        <img className='arrow' src={require('../../assets/arrow.svg')} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>
         {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() => {

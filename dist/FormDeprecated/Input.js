@@ -59,7 +59,7 @@ Input = exports["default"] = /*#__PURE__*/function (_BaseInput) {
         (0, _jsxRuntime.jsxs)(_newstyles.InputContainer, { ref: this.wrapperRef, children: [
           this.renderInput(),
           this.renderPlaceholder(),
-          !empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "close", src: require('./../assets/ic_close_only.svg')["default"], onClick: function onClick(e) {
+          !empty && typeof this.props.size === 'undefined' && this.props.icon !== false && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "close", src: require('./../assets/ic_close_only.svg'), onClick: function onClick(e) {
               _this2.props.onChange(e, {
                 name: _this2.props.name,
                 value: ''

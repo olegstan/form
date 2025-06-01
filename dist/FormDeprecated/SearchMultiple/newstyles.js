@@ -9,8 +9,8 @@ var _newstyles = require("../newstyles");var _templateObject, _templateObject2, 
 
 
 
-var close = require('./../../assets/close_white.svg')["default"];
-var closeHovered = require('./../../assets/close_white_hovered.svg')["default"];
+var close = require('./../../assets/close_white.svg');
+var closeHovered = require('./../../assets/close_white_hovered.svg');
 
 var Container = exports.Container = _styledComponents["default"].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  ", "\n  \n  min-height: 46px;\n  \n  &.multi-select\n  {\n    border: none;\n  }\n\n  &.multi-select label.placeholder.active{\n    top: 10px;\n    left: 10px;\n    transform: translate(0.25em,-15%) scale(.8);\n  }\n"])),
 _newstyles.sharedSearchContainer);

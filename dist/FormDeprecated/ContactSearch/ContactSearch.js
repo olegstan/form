@@ -178,7 +178,7 @@ ContactSearch = /*#__PURE__*/function (_Search) {
                 (0, _jsxRuntime.jsx)("span", { children: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043D\u0442\u0430\u043A\u0442" }) }, 'add'
               )] }
             ),
-            !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { style: clearImageStyle, className: "close", src: require('./../../assets/ic_close_only.svg')["default"], onClick: function onClick(e) {
+            !empty && this.props.showClearIcon && !this.props.disabled && /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { style: clearImageStyle, className: "close", src: require('./../../assets/ic_close_only.svg'), onClick: function onClick(e) {
                 _this2.setState({
                   search: '',
                   hasError: false

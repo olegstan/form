@@ -108,7 +108,7 @@ class AccountGroupSelect extends BaseInput
     {
 
     }
-    return require('../../assets/arrow.svg').default;
+    return require('../../assets/arrow.svg');
   }
 
   handleAddAccount()

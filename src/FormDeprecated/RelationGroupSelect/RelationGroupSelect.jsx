@@ -124,7 +124,7 @@ class RelationGroupSelect extends BaseInput
           })}
         </StyledSelect>
         {this.renderPlaceholder()}
-        <img className='arrow' src={require('../../assets/arrow.svg').default} alt='' />
+        <img className='arrow' src={require('../../assets/arrow.svg')} alt='' />
         {error && <label htmlFor={this.props.id} className={this.props.className + " error"} onClick={() => {
           this.handleShowSelect(true);
         }}>{error}</label>}

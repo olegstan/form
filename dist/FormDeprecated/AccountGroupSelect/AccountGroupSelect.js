@@ -108,7 +108,7 @@ AccountGroupSelect = exports.AccountGroupSelect = /*#__PURE__*/function (_BaseIn
       {
 
       }
-      return require('../../assets/arrow.svg')["default"];
+      return require('../../assets/arrow.svg');
     } }, { key: "handleAddAccount", value:
 
     function handleAddAccount()

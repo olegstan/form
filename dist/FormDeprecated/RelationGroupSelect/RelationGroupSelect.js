@@ -124,7 +124,7 @@ RelationGroupSelect = /*#__PURE__*/function (_BaseInput) {
             })] }
           ),
           this.renderPlaceholder(), /*#__PURE__*/
-          (0, _jsxRuntime.jsx)("img", { className: "arrow", src: require('../../assets/arrow.svg')["default"], alt: "" }),
+          (0, _jsxRuntime.jsx)("img", { className: "arrow", src: require('../../assets/arrow.svg'), alt: "" }),
           error && /*#__PURE__*/(0, _jsxRuntime.jsx)("label", { htmlFor: this.props.id, className: this.props.className + " error", onClick: function onClick() {
               _this3.handleShowSelect(true);
             }, children: error })] }

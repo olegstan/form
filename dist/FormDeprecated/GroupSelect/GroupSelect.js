@@ -94,7 +94,7 @@ GroupSelect = /*#__PURE__*/function (_BaseInput) {
       {
 
       }
-      return require('../../assets/arrow.svg')["default"];
+      return require('../../assets/arrow.svg');
     } }, { key: "render", value:
 
     function render()
