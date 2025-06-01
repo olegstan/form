@@ -145,7 +145,7 @@ Select = /*#__PURE__*/function (_BaseInput) {
             ) }
           ),
           this.renderPlaceholder(), /*#__PURE__*/
-          (0, _jsxRuntime.jsx)("img", { className: "arrow", src: this.getArrow(), alt: "", onClick: function onClick() {
+          (0, _jsxRuntime.jsx)("img", { className: "arrow", src: require('../../assets/arrow.svg'), alt: "", onClick: function onClick() {
               _this2.handleShowSelect(true);
             } }),
           this.renderTooltipError()] }

@@ -145,7 +145,7 @@ class Select extends BaseInput
           </Item>
         </StyledSelect>}
         {this.renderPlaceholder()}
-        <img className='arrow' src={this.getArrow()} alt='' onClick={() => {
+        <img className='arrow' src={require('../../assets/arrow.svg')} alt='' onClick={() => {
           this.handleShowSelect(true);
         }}/>
         {this.renderTooltipError()}
