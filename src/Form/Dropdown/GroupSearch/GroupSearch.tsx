@@ -60,6 +60,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
         const handleClickOutside = (event: any) => {
             // @ts-ignore
             if (focused && selectRef.current && !selectRef.current?.contains(event.target)) {
+                handleBlur()
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
@@ -216,7 +217,6 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 name={getName(name)}
                 value={search ?? ''}
                 onChange={handleSearch}
-                onBlur={handleBlur}
             />
             <GroupResults
                 addButton={addButton}

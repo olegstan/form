@@ -60,6 +60,7 @@ var GroupSearch = function GroupSearch(_ref)
     var handleClickOutside = function handleClickOutside(event) {var _selectRef$current;
       // @ts-ignore
       if (focused && selectRef.current && !((_selectRef$current = selectRef.current) !== null && _selectRef$current !== void 0 && _selectRef$current.contains(event.target))) {
+        handleBlur();
         handleClose();
         //если элемент не выбран, то очистим поле поиска
         if (!value) {
@@ -215,8 +216,7 @@ var GroupSearch = function GroupSearch(_ref)
       type: "text",
       name: getName(name),
       value: search !== null && search !== void 0 ? search : '',
-      onChange: handleSearch,
-      onBlur: handleBlur }
+      onChange: handleSearch }
     ), /*#__PURE__*/
     (0, _jsxRuntime.jsx)(_GroupResults["default"], {
       addButton: addButton,

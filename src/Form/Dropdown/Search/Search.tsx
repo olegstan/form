@@ -60,6 +60,7 @@ const Search: React.FC<SearchProps> = ({
         const handleClickOutside = (event: any) => {
             // @ts-ignore
             if (focused && selectRef.current && !selectRef.current?.contains(event.target)) {
+                handleBlur()
                 handleClose()
                 //если элемент не выбран, то очистим поле поиска
                 if (!value) {
@@ -148,7 +149,6 @@ const Search: React.FC<SearchProps> = ({
                 name={getName(name)}
                 value={search ?? ''}
                 onChange={handleSearch}
-                onBlur={handleBlur}
             />
             <Results
                 addButton={addButton}
