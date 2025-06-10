@@ -1,7 +1,8 @@
 /// <reference types="react" />
-export declare const useDateInput: ({ value, onChange, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError }: {
+export declare const useDateInput: ({ value, onChange, onBlur, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError }: {
     value: any;
     onChange: any;
+    onBlur: any;
     flatpickrInstance: any;
     setFocused: any;
     dateFormat: any;

@@ -52,6 +52,7 @@ const DateInput: React.FC<DateInputProps> = ({
     } = useDateInput({
         value,
         onChange,
+        onBlur,
         flatpickrInstance,
         setFocused,
         dateMask: '__.__.____',

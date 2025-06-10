@@ -34,7 +34,6 @@ var Checkbox = function Checkbox(_ref)
 
   return (/*#__PURE__*/
     (0, _jsxRuntime.jsxs)(_styles.StyledCheckbox, {
-      id: id,
       style: style,
       onClick: handleToggle // Общий обработчик клика для всего компонента
       , children: [/*#__PURE__*/

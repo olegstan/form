@@ -34,7 +34,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
     return (
         <StyledCheckbox
-            id={id}
             style={style}
             onClick={handleToggle} // Общий обработчик клика для всего компонента
         >

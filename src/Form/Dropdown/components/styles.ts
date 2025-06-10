@@ -168,6 +168,7 @@ export const OptionsWrapper = styled.div<OptionsWrapperProps>`
     z-index: ${zindex.input};
     display: flex;
     flex-direction: column;
+    min-height: 120px;
     max-height: 250px;
     pointer-events: ${({active}: any) => (active ? 'auto' : 'none')};
 

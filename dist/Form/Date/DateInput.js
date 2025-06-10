@@ -52,6 +52,7 @@ var DateInput = function DateInput(_ref)
     (0, _useDateInput2.useDateInput)({
       value: value,
       onChange: onChange,
+      onBlur: onBlur,
       flatpickrInstance: flatpickrInstance,
       setFocused: setFocused,
       dateMask: '__.__.____',

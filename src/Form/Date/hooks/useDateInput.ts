@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export const useDateInput = ({
                                 //@ts-ignore
-                                 value, onChange, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError
+                                 value, onChange, onBlur, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError
                             }) => {
     const [date, setDate] = useState(value);
     const [dateString, setDateString] = useState(formatDate(value, dateFormat));
@@ -42,6 +42,7 @@ export const useDateInput = ({
     };
 
     const handleBlur = () => {
+        onBlur && onBlur();
         setFocused(false);
 
         if (flatpickrInstance.current) {

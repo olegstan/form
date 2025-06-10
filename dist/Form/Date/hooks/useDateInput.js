@@ -4,7 +4,7 @@ var _moment = _interopRequireDefault(require("moment"));function _interopRequire
 var useDateInput = exports.useDateInput = function useDateInput(_ref)
 
 
-{var value = _ref.value,onChange = _ref.onChange,flatpickrInstance = _ref.flatpickrInstance,setFocused = _ref.setFocused,dateFormat = _ref.dateFormat,dateMask = _ref.dateMask,formatDate = _ref.formatDate,setInnerError = _ref.setInnerError;
+{var value = _ref.value,onChange = _ref.onChange,onBlur = _ref.onBlur,flatpickrInstance = _ref.flatpickrInstance,setFocused = _ref.setFocused,dateFormat = _ref.dateFormat,dateMask = _ref.dateMask,formatDate = _ref.formatDate,setInnerError = _ref.setInnerError;
   var _useState = (0, _react.useState)(value),_useState2 = _slicedToArray(_useState, 2),date = _useState2[0],setDate = _useState2[1];
   var _useState3 = (0, _react.useState)(formatDate(value, dateFormat)),_useState4 = _slicedToArray(_useState3, 2),dateString = _useState4[0],setDateString = _useState4[1];
 
@@ -42,6 +42,7 @@ var useDateInput = exports.useDateInput = function useDateInput(_ref)
   };
 
   var handleBlur = function handleBlur() {
+    onBlur && onBlur();
     setFocused(false);
 
     if (flatpickrInstance.current) {
