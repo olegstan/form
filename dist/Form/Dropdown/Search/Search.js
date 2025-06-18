@@ -152,6 +152,7 @@ var Search = function Search(_ref)
     ), /*#__PURE__*/
     (0, _jsxRuntime.jsx)(_Results["default"], {
       addButton: addButton,
+      className: "styled-input__results-list",
       active: selectOpen && !disabled,
       id: id,
       options: filteredOptions,

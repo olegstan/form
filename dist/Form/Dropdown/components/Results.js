@@ -22,7 +22,7 @@ var Results = function Results(_ref)
 {var id = _ref.id,options = _ref.options,handleClick = _ref.handleClick,className = _ref.className,idPrefix = _ref.idPrefix,active = _ref.active,addButton = _ref.addButton;
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.ParentContainer, { children: [
     active && addButton, /*#__PURE__*/
-    (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, { active: active !== null && active !== void 0 ? active : false, id: id ? "".concat(id, "-select") : undefined, className: className, children:
+    (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, { active: active !== null && active !== void 0 ? active : false, id: id ? "".concat(id, "-select") : undefined, className: "".concat(className, "__parent"), children:
       options.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_Item["default"], {
 
         item: { id: null, name: 'Нет элементов' },

@@ -19,17 +19,19 @@ var Item = function Item(_ref)
       return item.name;
     }
     // В противном случае рендерим как обычный текст
-    return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", { children: item.name });
+    return /*#__PURE__*/(0, _jsxRuntime.jsx)("span", { id: "option__".concat(item.id), children: item.name });
   };
 
-  return /*#__PURE__*/(0, _jsxRuntime.jsx)(_styles.StyledOption, {
+  return (/*#__PURE__*/
+    (0, _jsxRuntime.jsx)(_styles.StyledOption, {
 
-    className: "".concat(className, " item"),
-    id: id,
-    onClick: onClick, children:
+      className: "".concat(className, " item"),
+      id: id,
+      onClick: onClick, children:
 
-    renderName() }, item.id
-  );
+      renderName() }, item.id
+    ));
+
 };var _default = exports["default"] =
 
 Item;

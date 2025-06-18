@@ -152,6 +152,7 @@ const Search: React.FC<SearchProps> = ({
             />
             <Results
                 addButton={addButton}
+                className={`styled-input__results-list`}
                 active={selectOpen && !disabled}
                 id={id}
                 options={filteredOptions}
