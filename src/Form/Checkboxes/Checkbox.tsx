@@ -36,6 +36,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <StyledCheckbox
             style={style}
             onClick={handleToggle} // Общий обработчик клика для всего компонента
+            id={id}
         >
             <input
                 ref={inputRef}
@@ -44,7 +45,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
                 name={name}
                 type="checkbox"
                 value={value}
-                id={id}
                 checked={checked}
             />
             <span className="rotate-container" style={combinedCheckboxStyle}>

@@ -36,7 +36,8 @@ var Checkbox = function Checkbox(_ref)
     (0, _jsxRuntime.jsxs)(_styles.StyledCheckbox, {
       style: style,
       onClick: handleToggle // Общий обработчик клика для всего компонента
-      , children: [/*#__PURE__*/
+      , id: id, children: [/*#__PURE__*/
+
       (0, _jsxRuntime.jsx)("input", {
         ref: inputRef,
         className: checked ? 'active' : '',
@@ -44,7 +45,6 @@ var Checkbox = function Checkbox(_ref)
         , name: name,
         type: "checkbox",
         value: value,
-        id: id,
         checked: checked }
       ), /*#__PURE__*/
       (0, _jsxRuntime.jsx)("span", { className: "rotate-container", style: combinedCheckboxStyle, children: /*#__PURE__*/
