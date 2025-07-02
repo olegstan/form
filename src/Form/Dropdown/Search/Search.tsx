@@ -44,17 +44,6 @@ const Search: React.FC<SearchProps> = ({
         onBlur
     });
 
-    //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
-    useOnceWhen(value && options?.length, () => {
-        //@ts-ignore
-        const matchingOption = options.find(option => option.id === value);
-
-        if (matchingOption) {
-            // Здесь можно добавить любое другое действие
-            onSearch(matchingOption.name); // Например, вызов функции
-        }
-    });
-
 // // Обработка клика вне компонента
     useEffect(() => {
         const handleClickOutside = (event: any) => {

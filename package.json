@@ -1,6 +1,6 @@
 {
   "name": "finform",
-  "version": "1.5.90",
+  "version": "1.5.92",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
