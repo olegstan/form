@@ -133,12 +133,12 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
         className={`styled-input__select-wrapper`}
         onClick={handleOpen}
         ref={selectRef}
+        title={valueText}
     >
         <StyledFakeInput
             id={id}
             style={style}
             className={inputClassName}
-            title={valueText}
         >
             {valueText}
         </StyledFakeInput>

@@ -132,13 +132,13 @@ var GroupSelect = function GroupSelect(_ref)
     id: id ? 'wrapper-' + id : undefined,
     className: "styled-input__select-wrapper",
     onClick: handleOpen,
-    ref: selectRef, children: [/*#__PURE__*/
+    ref: selectRef,
+    title: valueText, children: [/*#__PURE__*/
 
     (0, _jsxRuntime.jsx)(_styles2.StyledFakeInput, {
       id: id,
       style: style,
-      className: inputClassName,
-      title: valueText, children:
+      className: inputClassName, children:
 
       valueText }
     ), /*#__PURE__*/
