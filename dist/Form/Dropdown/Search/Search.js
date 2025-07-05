@@ -44,17 +44,6 @@ var Search = function Search(_ref)
       onBlur: onBlur
     }),handleFocus = _useBaseInput.handleFocus,handleBlur = _useBaseInput.handleBlur,getName = _useBaseInput.getName;
 
-  //обработка когда пришёл новый список и значение, проверяем можно ли установить из него search
-  // useOnceWhen(value && options?.length, () => {
-  //     //@ts-ignore
-  //     const matchingOption = options.find(option => option.id === value);
-  //
-  //     if (matchingOption) {
-  //         // Здесь можно добавить любое другое действие
-  //         onSearch(matchingOption.name); // Например, вызов функции
-  //     }
-  // });
-
   // // Обработка клика вне компонента
   (0, _react.useEffect)(function () {
     var handleClickOutside = function handleClickOutside(event) {var _selectRef$current;

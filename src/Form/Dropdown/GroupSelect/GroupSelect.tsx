@@ -138,6 +138,7 @@ const GroupSelect: React.FC<GroupSelectProps> = ({
             id={id}
             style={style}
             className={inputClassName}
+            title={valueText}
         >
             {valueText}
         </StyledFakeInput>

@@ -137,7 +137,8 @@ var GroupSelect = function GroupSelect(_ref)
     (0, _jsxRuntime.jsx)(_styles2.StyledFakeInput, {
       id: id,
       style: style,
-      className: inputClassName, children:
+      className: inputClassName,
+      title: valueText, children:
 
       valueText }
     ), /*#__PURE__*/
