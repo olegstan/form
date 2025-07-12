@@ -154,50 +154,55 @@ export const ParentContainer = styled.div<{ theme: DefaultTheme }>`
     //display: inline-block; /* Чтобы занимать только необходимое место */
 `;
 
+interface OptionsWrapperProps {
+    active: boolean;
+    hasAddButton?: boolean;
+}
+
 // @ts-ignore
 export const OptionsWrapper = styled.div<OptionsWrapperProps>`
     position: absolute;
-    border-radius: 0 0 0 12px; /* Убираем закругление правого нижнего угла */
+    border-radius: 0 0 0 12px;
     top: 100%;
     left: 0;
     width: 100%;
-    box-shadow: 0 20px 48px ${({theme}: {theme: DefaultTheme}) => theme.selectShadowColor};
-    background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectWrapperOptionBackgroundColor};
+    box-shadow: 0 20px 48px ${({ theme }) => theme.selectShadowColor};
+    background-color: ${({ theme }) => theme.selectWrapperOptionBackgroundColor};
     overflow-y: auto;
     overflow-x: hidden;
     z-index: ${zindex.input};
     display: flex;
     flex-direction: column;
-    min-height: 120px;
     max-height: 250px;
-    pointer-events: ${({active}: any) => (active ? 'auto' : 'none')};
 
-    /* Анимация открытия */
+    /* Условное применение min-height */
+    min-height: ${({ hasAddButton }) => (hasAddButton ? '120px' : 'auto')};
 
-    /* При появлении (active: true) плавное изменение, при скрытии сразу */
-    opacity: ${({active}: any) => (active ? 1 : 0)};
-    transform: ${({active}: any) =>
+    pointer-events: ${({ active }) => (active ? 'auto' : 'none')};
+
+    opacity: ${({ active }) => (active ? 1 : 0)};
+    transform: ${({ active }) =>
             active ? 'translateY(0)' : 'translateY(-10px)'};
-    transition: ${({active}: any) =>
+    transition: ${({ active }) =>
             active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
 
     &::-webkit-scrollbar {
-        width: 8px; /* Фиксированная ширина скроллбара */
-        background-color: transparent; /* Прозрачный фон для области скроллбара */
+        width: 8px;
+        background-color: transparent;
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectScrollThumbColor}; /* Цвет ползунка */
-        border-radius: 0 0 8px 0; /* Закругляем только правый нижний угол */
-        border: 2px solid transparent; /* Эффект внутреннего отступа */
-        background-clip: padding-box; /* Ограничение фона ползунка */
+        background-color: ${({ theme }) => theme.selectScrollThumbColor};
+        border-radius: 0 0 8px 0;
+        border: 2px solid transparent;
+        background-clip: padding-box;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background-color: ${({theme}: {theme: DefaultTheme}) => theme.selectScrollThumbHoverColor}; /* Цвет ползунка при наведении */
+        background-color: ${({ theme }) => theme.selectScrollThumbHoverColor};
     }
 
     &::-webkit-scrollbar-track {
-        background-color: transparent; /* Прозрачный трек */
+        background-color: transparent;
     }
-`
+`;

@@ -154,8 +154,13 @@ var ParentContainer = exports.ParentContainer = _styledComponents["default"].div
 
 
 
+
+
+
+
+
 // @ts-ignore
-var OptionsWrapper = exports.OptionsWrapper = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    position: absolute;\n    border-radius: 0 0 0 12px; /* \u0423\u0431\u0438\u0440\u0430\u0435\u043C \u0437\u0430\u043A\u0440\u0443\u0433\u043B\u0435\u043D\u0438\u0435 \u043F\u0440\u0430\u0432\u043E\u0433\u043E \u043D\u0438\u0436\u043D\u0435\u0433\u043E \u0443\u0433\u043B\u0430 */\n    top: 100%;\n    left: 0;\n    width: 100%;\n    box-shadow: 0 20px 48px ", ";\n    background-color: ", ";\n    overflow-y: auto;\n    overflow-x: hidden;\n    z-index: ", ";\n    display: flex;\n    flex-direction: column;\n    min-height: 120px;\n    max-height: 250px;\n    pointer-events: ", ";\n\n    /* \u0410\u043D\u0438\u043C\u0430\u0446\u0438\u044F \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F */\n\n    /* \u041F\u0440\u0438 \u043F\u043E\u044F\u0432\u043B\u0435\u043D\u0438\u0438 (active: true) \u043F\u043B\u0430\u0432\u043D\u043E\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435, \u043F\u0440\u0438 \u0441\u043A\u0440\u044B\u0442\u0438\u0438 \u0441\u0440\u0430\u0437\u0443 */\n    opacity: ", ";\n    transform: ", ";\n    transition: ", ";\n\n    &::-webkit-scrollbar {\n        width: 8px; /* \u0424\u0438\u043A\u0441\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u0430\u044F \u0448\u0438\u0440\u0438\u043D\u0430 \u0441\u043A\u0440\u043E\u043B\u043B\u0431\u0430\u0440\u0430 */\n        background-color: transparent; /* \u041F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u044B\u0439 \u0444\u043E\u043D \u0434\u043B\u044F \u043E\u0431\u043B\u0430\u0441\u0442\u0438 \u0441\u043A\u0440\u043E\u043B\u043B\u0431\u0430\u0440\u0430 */\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: ", "; /* \u0426\u0432\u0435\u0442 \u043F\u043E\u043B\u0437\u0443\u043D\u043A\u0430 */\n        border-radius: 0 0 8px 0; /* \u0417\u0430\u043A\u0440\u0443\u0433\u043B\u044F\u0435\u043C \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u0430\u0432\u044B\u0439 \u043D\u0438\u0436\u043D\u0438\u0439 \u0443\u0433\u043E\u043B */\n        border: 2px solid transparent; /* \u042D\u0444\u0444\u0435\u043A\u0442 \u0432\u043D\u0443\u0442\u0440\u0435\u043D\u043D\u0435\u0433\u043E \u043E\u0442\u0441\u0442\u0443\u043F\u0430 */\n        background-clip: padding-box; /* \u041E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0435 \u0444\u043E\u043D\u0430 \u043F\u043E\u043B\u0437\u0443\u043D\u043A\u0430 */\n    }\n\n    &::-webkit-scrollbar-thumb:hover {\n        background-color: ", "; /* \u0426\u0432\u0435\u0442 \u043F\u043E\u043B\u0437\u0443\u043D\u043A\u0430 \u043F\u0440\u0438 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u0438\u0438 */\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: transparent; /* \u041F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u044B\u0439 \u0442\u0440\u0435\u043A */\n    }\n"])),
+var OptionsWrapper = exports.OptionsWrapper = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    position: absolute;\n    border-radius: 0 0 0 12px;\n    top: 100%;\n    left: 0;\n    width: 100%;\n    box-shadow: 0 20px 48px ", ";\n    background-color: ", ";\n    overflow-y: auto;\n    overflow-x: hidden;\n    z-index: ", ";\n    display: flex;\n    flex-direction: column;\n    max-height: 250px;\n\n    /* \u0423\u0441\u043B\u043E\u0432\u043D\u043E\u0435 \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435 min-height */\n    min-height: ", ";\n\n    pointer-events: ", ";\n\n    opacity: ", ";\n    transform: ", ";\n    transition: ", ";\n\n    &::-webkit-scrollbar {\n        width: 8px;\n        background-color: transparent;\n    }\n\n    &::-webkit-scrollbar-thumb {\n        background-color: ", ";\n        border-radius: 0 0 8px 0;\n        border: 2px solid transparent;\n        background-clip: padding-box;\n    }\n\n    &::-webkit-scrollbar-thumb:hover {\n        background-color: ", ";\n    }\n\n    &::-webkit-scrollbar-track {\n        background-color: transparent;\n    }\n"])),
 
 
 
@@ -170,15 +175,15 @@ _zindex["default"].input,
 
 
 
-function (_ref12) {var active = _ref12.active;return active ? 'auto' : 'none';},
 
+function (_ref12) {var hasAddButton = _ref12.hasAddButton;return hasAddButton ? '120px' : 'auto';},
 
+function (_ref13) {var active = _ref13.active;return active ? 'auto' : 'none';},
 
-
-function (_ref13) {var active = _ref13.active;return active ? 1 : 0;},
-function (_ref14) {var active = _ref14.active;return (
-    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref14) {var active = _ref14.active;return active ? 1 : 0;},
 function (_ref15) {var active = _ref15.active;return (
+    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref16) {var active = _ref16.active;return (
     active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none');},
 
 
@@ -187,12 +192,12 @@ function (_ref15) {var active = _ref15.active;return (
 
 
 
-function (_ref16) {var theme = _ref16.theme;return theme.selectScrollThumbColor;},
+function (_ref17) {var theme = _ref17.theme;return theme.selectScrollThumbColor;},
 
 
 
 
 
 
-function (_ref17) {var theme = _ref17.theme;return theme.selectScrollThumbHoverColor;});
+function (_ref18) {var theme = _ref18.theme;return theme.selectScrollThumbHoverColor;});
 //# sourceMappingURL=styles.js.map

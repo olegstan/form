@@ -21,27 +21,36 @@ var GroupResults = function GroupResults(_ref)
 
 
 {var id = _ref.id,options = _ref.options,handleClick = _ref.handleClick,className = _ref.className,idPrefix = _ref.idPrefix,active = _ref.active,addButton = _ref.addButton;
-  return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_styles.ParentContainer, { children: [
-    active && addButton, /*#__PURE__*/
-    (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, { active: active !== null && active !== void 0 ? active : false, id: id ? "".concat(id, "-select") : undefined, className: className, children:
-      options.length === 0 ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_Item["default"], {
-
-        item: { id: null, name: 'Нет элементов' },
+  return (/*#__PURE__*/
+    (0, _jsxRuntime.jsxs)(_styles.ParentContainer, { children: [
+      active && addButton, /*#__PURE__*/
+      (0, _jsxRuntime.jsx)(_styles.OptionsWrapper, {
+        active: active !== null && active !== void 0 ? active : false,
+        id: id ? "".concat(id, "-select") : undefined,
         className: className,
-        id: "".concat(idPrefix, "-none") }, 'none'
-      ) :
+        hasAddButton: !!addButton // Передаём флаг наличия кнопки
+        , children:
+        options.length === 0 ? /*#__PURE__*/
+        (0, _jsxRuntime.jsx)(_Item["default"], {
 
-      options.map(function (option, key) {var _option$innerId;return (/*#__PURE__*/
-          (0, _jsxRuntime.jsx)(_GroupItem["default"], {
+          item: { id: null, name: 'Нет элементов' },
+          className: className,
+          id: "".concat(idPrefix, "-none") }, 'none'
+        ) :
 
-            item: option,
-            onClick: handleClick,
-            className: className,
-            id: "".concat(idPrefix, "-").concat(option.id) }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
-          ));}
-      ) }
-    )] }
-  );
+        options.map(function (option, key) {var _option$innerId;return (/*#__PURE__*/
+            (0, _jsxRuntime.jsx)(_GroupItem["default"], {
+
+              item: option,
+              onClick: handleClick,
+              className: className,
+              id: "".concat(idPrefix, "-").concat(option.id) }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
+            ));}
+        ) }
+
+      )] }
+    ));
+
 };var _default = exports["default"] =
 
 GroupResults;

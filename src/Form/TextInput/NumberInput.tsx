@@ -1,37 +1,32 @@
 // NumberInput.js
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-//@ts-ignore
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useBaseInput from '../hooks/useBaseInput';
-//@ts-ignore
-import {StyledInput} from '../styles';
+import { StyledInput } from '../styles';
 import NumberInputProps from "../types/NumberInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
-import {formatForInput} from "./utils/formatNumber";
+import { formatForInput } from "./utils/formatNumber";
 
 const NumberInput: React.FC<NumberInputProps> = ({
-                         focused = false,
-                         setFocused = () => {},
-                         onKeyDown = () => {},
-                         onBlur = () => {},
-                         onChange = () => {},
-                         onClick = () => {},
-                         disabled = false,
-                         className = '',
-                         style = {},
-                         id,
-                         name,
-                         value,
-                         autoComplete = 'off',
-                         error,
-                         max = false,
-                         min = false,
-                         decimals = false,
-                     }) => {
-
-    // Локальный стейт для положения курсора
-    const [selectionStart, setSelectionStart] = useState(0);
-    const [selectionEnd, setSelectionEnd] = useState(0);
-
+                                                     focused = false,
+                                                     setFocused = () => {},
+                                                     onKeyDown = () => {},
+                                                     onBlur = () => {},
+                                                     onChange = () => {},
+                                                     onClick = () => {},
+                                                     disabled = false,
+                                                     className = '',
+                                                     style = {},
+                                                     id,
+                                                     name,
+                                                     value,
+                                                     autoComplete = 'off',
+                                                     error,
+                                                     max = false,
+                                                     min = false,
+                                                     decimals = false,
+                                                 }) => {
+    // Состояние для отслеживания позиции курсора
+    const [cursorPosition, setCursorPosition] = useState<number>(0);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     const {
@@ -48,125 +43,165 @@ const NumberInput: React.FC<NumberInputProps> = ({
         onBlur
     });
 
-    // Аналог componentDidUpdate(prevProps) для значения
-    // Если props.value меняется и у нас есть фокус, возвращаем курсор
+    // Восстанавливаем позицию курсора после изменения значения
     useEffect(() => {
         if (focused && inputRef.current) {
-            //@ts-ignore
-            inputRef.current.selectionStart = selectionStart;
-            //@ts-ignore
-            inputRef.current.selectionEnd = selectionEnd;
+            inputRef.current.setSelectionRange(cursorPosition, cursorPosition);
         }
-    }, [value, selectionStart, selectionEnd]);
+    }, [value, cursorPosition, focused]);
 
-    // handleChange — портируем вашу логику
-    const handleChange = useCallback(
-        (e: React.ChangeEvent<HTMLInputElement>) => {
-            const pattern = /^-?[0-9.\-\,\ ]+$/; // разрешаем цифры, точку, запятую, пробел, минус
+    // Нормализация входной строки - приводим к единому формату
+    const normalizeInput = useCallback((input: string): string => {
+        // Заменяем запятые на точки и убираем пробелы
+        return input.replace(/,/g, '.').replace(/\s/g, '');
+    }, []);
 
+    // Проверка валидности числа
+    const isValidNumber = useCallback((numStr: string): boolean => {
+        if (numStr === '' || numStr === '-') return true;
+
+        const num = parseFloat(numStr);
+        if (isNaN(num)) return false;
+
+        // Проверка на максимальное значение
+        if (max !== false && num > max) return false;
+
+        // Проверка на минимальное значение
+        if (min !== false && num < min) return false;
+
+        // Специальная проверка для min = 0
+        if (min === 0 && isNaN(num)) return false;
+
+        return true;
+    }, [max, min]);
+
+    // Обработка дробной части
+    const handleDecimalPart = useCallback((wholePart: string, decimalPart: string): string => {
+        if (decimalPart === undefined) {
+            // Нет дробной части
+            return formatForInput(wholePart, 0);
+        }
+
+        if (decimalPart === '') {
+            // Есть точка, но дробная часть пустая
+            return formatForInput(wholePart, 0) + '.';
+        }
+
+        // Проверяем ограничение на количество знаков после запятой
+        if (decimals !== false && decimalPart.length > decimals) {
             //@ts-ignore
-            if (e.target && e?.target?.value === '' || pattern.test(e?.target?.value)) {
-                //@ts-ignore
-                let val = e.target.value.replace(/,/g, '.').replace(/ /g, '');
+            return null; // Возвращаем null, чтобы прервать обработку
+        }
 
-                // Проверки на min/max
-                //@ts-ignore
-                if (max !== false && +val > max) {
-                    return;
-                }
-                //@ts-ignore
-                if (min === 0 && isNaN(val)) {
-                    return;
-                }
+        // Форматируем целую часть и добавляем дробную
+        return formatForInput(wholePart, 0) + '.' + decimalPart;
+    }, [decimals]);
 
-                //@ts-ignore
-                if (min !== false && +val < min) {
-                    return;
-                }
+    // Вычисление новой позиции курсора
+    const calculateCursorPosition = useCallback((
+        oldValue: string,
+        newValue: string,
+        currentPosition: number
+    ): number => {
+        const oldParts = oldValue.split('.');
+        const newParts = newValue.split('.');
 
-                // Позиция курсора
-                //@ts-ignore
-                let position = e?.target?.selectionStart;
+        const oldWholeLength = oldParts[0]?.length || 0;
+        const newWholeLength = newParts[0]?.length || 0;
 
-                if (val.length > 0) {
-                    let prefix = '';
-                    if (val[0] === '-') {
-                        prefix = '-';
-                        val = val.replace('-', '');
-                    }
-
-                    const parts = val.split('.');
-                    if (parts[1] !== undefined) {
-                        // Если есть дробная часть
-                        if (parts[1] !== '') {
-                            if (decimals !== false) {
-                                // Не даём вводить дробную часть длиннее decimals
-                                if (parts[1].length > decimals) {
-                                    return;
-                                }
-                            }
-                            val = formatForInput(val, parts[1].length);
-                        } else {
-                            // Если точка есть, но дробная часть пустая
-                            val = formatForInput(val, 0) + '.';
-                        }
-                    } else {
-                        // Нет дробной части
-                        val = formatForInput(val, 0);
-                    }
-
-                    // Логика с изменением длины целой части => сдвиг курсора
-                    const prevParts = value?.toString().split('.') || [''];
-                    const newParts = val.split('.');
-                    const prevLength = prevParts[0].length;
-                    const newLength = newParts[0].length;
-
-                    if (newLength > prevLength) {
-                        // Каждые 3 цифры + пробел? => возможно надо сдвинуть курсор
-                        if ((newLength - 1) % 4 === 0) {
-                            //@ts-ignore
-                            position += 1;
-                        }
-                    }
-
-                    // Вызываем onChange, пробрасывая prefix
-                    onChange(prefix + val);
-
-                    //@ts-ignore
-                    setSelectionStart(position);
-                    //@ts-ignore
-                    setSelectionEnd(position);
-                } else {
-                    // Если val пустое
-                    onChange('');
-                    //@ts-ignore
-                    setSelectionStart(position);
-                    //@ts-ignore
-                    setSelectionEnd(position);
-                }
+        if (newWholeLength > oldWholeLength) {
+            // Добавился разделитель тысяч (каждые 3 цифры + пробел)
+            if ((newWholeLength - 1) % 4 === 0) {
+                return currentPosition + 1;
             }
-        },
-        []
-    );
+        }
+
+        return currentPosition;
+    }, []);
+
+    // Основная функция обработки изменений
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = e.target.value;
+        const currentCursorPosition = e.target.selectionStart || 0;
+
+        // Проверяем, содержит ли ввод только допустимые символы
+        const allowedPattern = /^-?[0-9.,\s]*$/;
+        if (inputValue !== '' && !allowedPattern.test(inputValue)) {
+            return;
+        }
+
+        // Нормализуем ввод
+        const normalizedValue = normalizeInput(inputValue);
+
+        // Обработка пустого значения
+        if (normalizedValue === '') {
+            onChange('');
+            setCursorPosition(currentCursorPosition);
+            return;
+        }
+
+        // Извлекаем знак и число
+        const isNegative = normalizedValue.startsWith('-');
+        const numberPart = isNegative ? normalizedValue.slice(1) : normalizedValue;
+
+        // Проверяем валидность числа
+        if (!isValidNumber(normalizedValue)) {
+            return;
+        }
+
+        // Разделяем на целую и дробную части
+        const parts = numberPart.split('.');
+        const wholePart = parts[0] || '';
+        const decimalPart = parts[1];
+
+        // Обрабатываем дробную часть
+        const formattedValue = handleDecimalPart(wholePart, decimalPart);
+        if (formattedValue === null) {
+            return; // Превышено количество знаков после запятой
+        }
+
+        // Формируем финальное значение
+        const finalValue = (isNegative ? '-' : '') + formattedValue;
+
+        // Вычисляем новую позицию курсора
+        const newCursorPosition = calculateCursorPosition(
+            value?.toString() || '',
+            finalValue,
+            currentCursorPosition
+        );
+
+        // Обновляем состояние
+        onChange(finalValue);
+        setCursorPosition(newCursorPosition);
+    }, [
+        normalizeInput,
+        isValidNumber,
+        handleDecimalPart,
+        calculateCursorPosition,
+        onChange,
+        value
+    ]);
 
     const inputClassName = useInputClassNames(className, focused, error, disabled);
 
-    return (<StyledInput
-        ref={inputRef}
-        id={id}
-        style={style}
-        autoComplete={autoComplete || 'off'}
-        disabled={disabled}
-        className={inputClassName}
-        name={getName(name)}
-        value={value === undefined || value === null ? '' : String(value)}
-        onClick={handleClick}
-        onKeyDown={onKeyDown}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-    />);
-}
+    return (
+        <StyledInput
+            ref={inputRef}
+            id={id}
+            style={style}
+            autoComplete={autoComplete || 'off'}
+            disabled={disabled}
+            className={inputClassName}
+            name={getName(name)}
+            value={value === undefined || value === null ? '' : String(value)}
+            onClick={handleClick}
+            onKeyDown={onKeyDown}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+        />
+    );
+};
 
 NumberInput.displayName = 'NumberInput';
 

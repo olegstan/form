@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from './Item';
 //@ts-ignore
-import {OptionsWrapper, ParentContainer} from "./styles";
+import { OptionsWrapper, ParentContainer } from "./styles";
 import GroupItem from "./GroupItem";
 
 const GroupResults = ({
@@ -12,7 +12,7 @@ const GroupResults = ({
                           idPrefix,
                           active,
                           addButton
-}: {
+                      }: {
     options: any[],
     handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void,
     className?: string,
@@ -21,27 +21,36 @@ const GroupResults = ({
     active?: boolean,
     addButton?: any,
 }) => {
-    return <ParentContainer>
-        {active && addButton}
-        <OptionsWrapper active={active ?? false} id={id ? `${id}-select` : undefined} className={className}>
-            {options.length === 0 ? (<Item
-                    key={'none'}
-                    item={{id: null, name: 'Нет элементов'}}
-                    className={className}
-                    id={`${idPrefix}-none`}
-                />)
-                :
-                options.map((option: any, key: number) => (
-                    <GroupItem
-                        key={option.innerId ?? option.id}
-                        item={option}
-                        onClick={handleClick}
+    return (
+        <ParentContainer>
+            {active && addButton}
+            <OptionsWrapper
+                active={active ?? false}
+                id={id ? `${id}-select` : undefined}
+                className={className}
+                hasAddButton={!!addButton} // Передаём флаг наличия кнопки
+            >
+                {options.length === 0 ? (
+                    <Item
+                        key={'none'}
+                        item={{id: null, name: 'Нет элементов'}}
                         className={className}
-                        id={`${idPrefix}-${option.id}`}
+                        id={`${idPrefix}-none`}
                     />
-                ))}
-        </OptionsWrapper>
-    </ParentContainer>
+                ) : (
+                    options.map((option: any, key: number) => (
+                        <GroupItem
+                            key={option.innerId ?? option.id}
+                            item={option}
+                            onClick={handleClick}
+                            className={className}
+                            id={`${idPrefix}-${option.id}`}
+                        />
+                    ))
+                )}
+            </OptionsWrapper>
+        </ParentContainer>
+    );
 };
 
 export default GroupResults;

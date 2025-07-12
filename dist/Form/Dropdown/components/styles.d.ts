@@ -22,6 +22,10 @@ export declare const StyledCheckboxOption: import("styled-components/dist/types"
 export declare const ParentContainer: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     theme: DefaultTheme;
 }>> & string;
+interface OptionsWrapperProps {
+    active: boolean;
+    hasAddButton?: boolean;
+}
 export declare const OptionsWrapper: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, OptionsWrapperProps>> & string;
 export {};
 //# sourceMappingURL=styles.d.ts.map
