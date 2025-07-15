@@ -60,18 +60,29 @@ var NumberInput = function NumberInput(_ref)
 
   // Проверка валидности числа
   var isValidNumber = (0, _react.useCallback)(function (numStr) {
-    if (numStr === '' || numStr === '-') return true;
+    if (numStr === '' || numStr === '-') {
+      setInnerError(null);
+      return true;
+    }
 
     var num = parseFloat(numStr);
-    if (isNaN(num)) return false;
+    if (isNaN(num)) {
+      setInnerError(null);
+      return false;
+    }
+
+    console.log(numStr);
+    console.log(num);
+    console.log(max);
+    console.log(min);
 
     if (max !== false && num > max)
     {
-      setInnerError(['Ошибка, максимальное значение ' + max]);
+      setInnerError(['Ошибка, максимальное значение: ' + max]);
     } else if (min !== false && num < min) {
-      setInnerError(['Ошибка, минимальное значение ' + min]);
+      setInnerError(['Ошибка, минимальное значение: ' + min]);
     } else {
-      setInnerError([]);
+      setInnerError(null);
     }
 
     // Специальная проверка для min = 0

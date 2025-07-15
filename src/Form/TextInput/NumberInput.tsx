@@ -60,18 +60,29 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     // Проверка валидности числа
     const isValidNumber = useCallback((numStr: string): boolean => {
-        if (numStr === '' || numStr === '-') return true;
+        if (numStr === '' || numStr === '-'){
+            setInnerError(null);
+            return true;
+        }
 
         const num = parseFloat(numStr);
-        if (isNaN(num)) return false;
+        if (isNaN(num)){
+            setInnerError(null);
+            return false;
+        }
+
+        console.log(numStr)
+        console.log(num)
+        console.log(max)
+        console.log(min)
 
         if(max !== false && num > max)
         {
-            setInnerError(['Ошибка, максимальное значение ' + max]);
+            setInnerError(['Ошибка, максимальное значение: ' + max]);
         }else if(min !== false && num < min){
-            setInnerError(['Ошибка, минимальное значение ' + min]);
+            setInnerError(['Ошибка, минимальное значение: ' + min]);
         }else{
-            setInnerError([]);
+            setInnerError(null);
         }
 
         // Специальная проверка для min = 0
