@@ -61,9 +61,6 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     // Проверка валидности числа
     const isValidNumber = useCallback((numStr: string): boolean => {
-        console.log(min)
-        console.log(max)
-
         if (numStr === '' || numStr === '-'){
             setInnerError(null);
             return true;

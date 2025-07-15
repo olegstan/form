@@ -61,9 +61,6 @@ var NumberInput = function NumberInput(_ref)
 
   // Проверка валидности числа
   var isValidNumber = (0, _react.useCallback)(function (numStr) {
-    console.log(min);
-    console.log(max);
-
     if (numStr === '' || numStr === '-') {
       setInnerError(null);
       return true;
