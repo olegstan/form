@@ -27,6 +27,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
                                                      min = false,
                                                      decimals = false,
                                                  }) => {
+
     // Состояние для отслеживания позиции курсора
     const [cursorPosition, setCursorPosition] = useState<number>(0);
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -60,6 +61,9 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     // Проверка валидности числа
     const isValidNumber = useCallback((numStr: string): boolean => {
+        console.log(min)
+        console.log(max)
+
         if (numStr === '' || numStr === '-'){
             setInnerError(null);
             return true;
@@ -71,17 +75,12 @@ const NumberInput: React.FC<NumberInputProps> = ({
             return false;
         }
 
-        console.log(numStr)
-        console.log(num)
-        console.log(max)
-        console.log(min)
-
-        if(max !== false && num > max)
-        {
+        // Исправленные проверки
+        if(max !== false && max !== null && max !== undefined && num > max) {
             setInnerError(['Ошибка, максимальное значение: ' + max]);
-        }else if(min !== false && num < min){
+        } else if(min !== false && min !== null && min !== undefined && num < min) {
             setInnerError(['Ошибка, минимальное значение: ' + min]);
-        }else{
+        } else {
             setInnerError(null);
         }
 
@@ -195,7 +194,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         handleDecimalPart,
         calculateCursorPosition,
         onChange,
-        value
+        value,
     ]);
 
     const inputClassName = useInputClassNames(className, focused, error, disabled, innerError);
