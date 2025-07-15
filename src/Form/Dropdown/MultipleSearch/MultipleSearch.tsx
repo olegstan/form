@@ -8,6 +8,7 @@ import useBaseInput from '../../hooks/useBaseInput';
 
 import MultiSearchProps from '../../types/MultiSearchProps';
 import {StyledSelect} from "./styles";
+import useInputClassNames from "../../hooks/useInputClassNames";
 
 const MultipleSearch: React.FC<MultiSearchProps> = ({
                                                         focused = false,
@@ -91,7 +92,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
         }))
         : [];
 
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (
         <StyledSelect>

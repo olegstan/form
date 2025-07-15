@@ -11,6 +11,8 @@ const NumberInput: React.FC<NumberInputProps> = ({
                                                      setFocused = () => {},
                                                      onKeyDown = () => {},
                                                      onBlur = () => {},
+                                                     innerError = [],//метод чтобьы показывать ошибку, если ввели неверный формат даты
+                                                     setInnerError = () => {},//метод чтобьы показывать ошибку, если ввели неверный формат даты
                                                      onChange = () => {},
                                                      onClick = () => {},
                                                      disabled = false,
@@ -63,11 +65,14 @@ const NumberInput: React.FC<NumberInputProps> = ({
         const num = parseFloat(numStr);
         if (isNaN(num)) return false;
 
-        // Проверка на максимальное значение
-        if (max !== false && num > max) return false;
-
-        // Проверка на минимальное значение
-        if (min !== false && num < min) return false;
+        if(max !== false && num > max)
+        {
+            setInnerError(['Ошибка, максимальное значение ' + max]);
+        }else if(min !== false && num < min){
+            setInnerError(['Ошибка, минимальное значение ' + min]);
+        }else{
+            setInnerError([]);
+        }
 
         // Специальная проверка для min = 0
         if (min === 0 && isNaN(num)) return false;
@@ -182,7 +187,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         value
     ]);
 
-    const inputClassName = useInputClassNames(className, focused, error, disabled);
+    const inputClassName = useInputClassNames(className, focused, error, disabled, innerError);
 
     return (
         <StyledInput

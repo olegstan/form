@@ -1,17 +1,30 @@
 import {useEffect, useState} from 'react';
 
-export default function useInputClassNames(baseClassName: string | undefined, focused: boolean, error?: string | object | undefined, disabled?: boolean | undefined): string {
-    const [className, setClassName] = useState<string|undefined>(baseClassName);
+export default function useInputClassNames(
+    baseClassName: string | undefined,
+    focused: boolean,
+    error?: string | object | undefined,
+    disabled?: boolean | undefined,
+    innerError?: string | object | undefined
+): string {
+    const [className, setClassName] = useState<string>('input');
 
     useEffect(() => {
-        let newClassName = baseClassName ?? '';
+        let newClassName = 'input'; // Always start with 'input' class
+
+        // Add baseClassName if it exists
+        if (baseClassName) {
+            newClassName += ` ${baseClassName}`;
+        }
 
         if (focused) {
             newClassName += ' focused';
         }
 
+        // Check if either error or innerError exists
+        const hasError = error || innerError;
         // @ts-ignore
-        if (error?.[0]) {
+        if (hasError?.[0] || (typeof hasError === 'string' && hasError) || (typeof hasError === 'boolean' && hasError)) {
             newClassName += ' error';
         }
 
@@ -20,10 +33,7 @@ export default function useInputClassNames(baseClassName: string | undefined, fo
         }
 
         setClassName(newClassName.trim());
-    }, [baseClassName, focused, error, disabled]);
+    }, [baseClassName, focused, error, disabled, innerError]);
 
-    return className ?? '';
+    return className;
 }
-
-// Использование:
-// const inputClassName = useInputClassNames(className, focused, error, isDisabled);

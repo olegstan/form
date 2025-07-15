@@ -5,6 +5,7 @@ import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
 import useOnceWhen from "../../helpers/useOnceWhen";
+import useInputClassNames from "../../hooks/useInputClassNames";
 
 const Search: React.FC<SearchProps> = ({
                                            focused = false,
@@ -121,8 +122,7 @@ const Search: React.FC<SearchProps> = ({
         });
     }, [options, value, search]);
 
-    // @ts-ignore
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (<StyledSelect
             onClick={handleOpen}

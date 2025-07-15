@@ -5,6 +5,7 @@ import useBaseInput from '../../hooks/useBaseInput';
 import useOnceWhen from "../../helpers/useOnceWhen";
 import GroupSearchProps from "../../types/GroupSearchProps";
 import GroupResults from "../components/GroupResults";
+import useInputClassNames from "../../hooks/useInputClassNames";
 
 const GroupSearch: React.FC<GroupSearchProps> = ({
                                            focused = false,
@@ -200,8 +201,8 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
         });
     }, [options, value, search]);
 
-    // @ts-ignore
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (<StyledSelect
             onClick={handleOpen}

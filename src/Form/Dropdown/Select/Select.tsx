@@ -92,6 +92,8 @@ const Select: React.FC<SelectProps> = ({
         [options, value]
     );
     const valueText = selectedOption ? selectedOption.name : '';
+
+
     // @ts-ignore
     const inputClassName = `styled-input__pseudo-input input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
 

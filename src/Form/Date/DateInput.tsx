@@ -8,6 +8,7 @@ import DateInputProps from "../types/DateInputProps";
 import {useDateInput} from "./hooks/useDateInput";
 import {useFlatpickrMount} from "./hooks/useFlatpickrMount";
 import {formatDate} from "./utils/format";
+import useInputClassNames from "../hooks/useInputClassNames";
 
 
 const DateInput: React.FC<DateInputProps> = ({
@@ -91,8 +92,7 @@ const DateInput: React.FC<DateInputProps> = ({
         );
     }
 
-    // @ts-ignore
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] || innerError?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled, innerError);
 
     return (
         // @ts-ignore

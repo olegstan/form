@@ -92,6 +92,8 @@ var Select = function Select(_ref)
     [options, value]
   );
   var valueText = selectedOption ? selectedOption.name : '';
+
+
   // @ts-ignore
   var inputClassName = "styled-input__pseudo-input input ".concat(className).concat(focused ? ' focused' : '').concat(error !== null && error !== void 0 && error[0] ? ' error' : '');
 

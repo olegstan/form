@@ -1,2 +1,2 @@
-export default function useInputClassNames(baseClassName: string | undefined, focused: boolean, error?: string | object | undefined, disabled?: boolean | undefined): string;
+export default function useInputClassNames(baseClassName: string | undefined, focused: boolean, error?: string | object | undefined, disabled?: boolean | undefined, innerError?: string | object | undefined): string;
 //# sourceMappingURL=useInputClassNames.d.ts.map

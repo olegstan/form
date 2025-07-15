@@ -4,6 +4,7 @@ import {StyledFakeInput} from "../../styles";
 import useBaseInput from "../../hooks/useBaseInput";
 import MultiSelectProps from "../../types/MultiSelectProps";
 import ResultsWithCheckbox from "../components/ResultsWithCheckbox";
+import useInputClassNames from "../../hooks/useInputClassNames";
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
                                    focused = false,
@@ -106,7 +107,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         return `Выбрано: ${getPluralForm(count, pluralForms)}`;
     }, [values, getPluralForm]);
 
-    const inputClassName = `input ${className}${focused ? ' focused' : ''}${error?.[0] ? ' error' : ''}`;
+    const inputClassName = useInputClassNames(className, focused, error, disabled);
 
     return (<StyledSelect
         onClick={handleOpen}
