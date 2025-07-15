@@ -12,24 +12,29 @@ import useInputClassNames from "../hooks/useInputClassNames";
 
 
 const DateInput: React.FC<DateInputProps> = ({
-                       focused = false,
-                       setFocused = () => {},
-                       onBlur = () => {},
-                       innerError = [],//метод чтобьы показывать ошибку, если ввели неверный формат даты
-                       setInnerError = () => {},//метод чтобьы показывать ошибку, если ввели неверный формат даты
-                       onChange = () => {},
-                       onClick = () => {},
-                       disabled = false,
-                       placeholder = '',
-                       className = '',
-                       style = {},
-                       id,
-                       name,
-                       value,
-                       autoComplete = 'off',
-                       error,
-                       defaultDate = null
-                   }) => {
+                                                 focused = false,
+                                                 setFocused = () => {
+                                                 },
+                                                 onBlur = () => {
+                                                 },
+                                                 innerError = [],//метод чтобьы показывать ошибку, если ввели неверный формат даты
+                                                 setInnerError = () => {
+                                                 },//метод чтобьы показывать ошибку, если ввели неверный формат даты
+                                                 onChange = () => {
+                                                 },
+                                                 onClick = () => {
+                                                 },
+                                                 disabled = false,
+                                                 placeholder = '',
+                                                 className = '',
+                                                 style = {},
+                                                 id,
+                                                 name,
+                                                 value,
+                                                 autoComplete = 'off',
+                                                 error,
+                                                 defaultDate = null
+                                             }) => {
     const {
         handleFocus,
         getName,
@@ -42,7 +47,7 @@ const DateInput: React.FC<DateInputProps> = ({
         onBlur
     })
 
-    const { componentsLoaded, DateInputComponent, flatpickrInstance } = useFlatpickrMount();
+    const {componentsLoaded, DateInputComponent, flatpickrInstance} = useFlatpickrMount();
 
     const {
         date,
@@ -76,6 +81,8 @@ const DateInput: React.FC<DateInputProps> = ({
         return opts;
     };
 
+    const inputClassName = useInputClassNames(className, focused, error, disabled, innerError);
+
     if (!componentsLoaded || !DateInputComponent) return null;
 
     if (disabled) {
@@ -85,14 +92,13 @@ const DateInput: React.FC<DateInputProps> = ({
                 mask="99.99.9999"
                 value={dateString}
                 disabled
-                onChange={() => {}}
+                onChange={() => {
+                }}
             >
                 {(inputProps: any) => <input {...inputProps} />}
             </MaskedStyledInput>
         );
     }
-
-    const inputClassName = useInputClassNames(className, focused, error, disabled, innerError);
 
     return (
         // @ts-ignore

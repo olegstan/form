@@ -1,5 +1,4 @@
 import React from 'react';
-export declare function isNotEmpty(value: any): boolean;
 declare function InputContainer({ children, className, style, error, }: {
     children: React.ReactNode;
     className?: string;

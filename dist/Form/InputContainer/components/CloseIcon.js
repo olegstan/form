@@ -1,6 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", { value: true });exports["default"] = void 0;
 var _ic_close_only = _interopRequireDefault(require("../../../assets/ic_close_only.svg"));
-var _InputContainer = require("../InputContainer");var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} // @ts-ignore
+var _isNotEmpty = require("../utils/isNotEmpty");var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} // @ts-ignore
 
 var CloseIcon = function CloseIcon(_ref)
 
@@ -46,11 +46,11 @@ var CloseIcon = function CloseIcon(_ref)
         onChange === null || onChange === void 0 || onChange(null);
         onSearch === null || onSearch === void 0 || onSearch('');
       };
-      notEmpty = (0, _InputContainer.isNotEmpty)(search);
+      notEmpty = (0, _isNotEmpty.isNotEmpty)(search);
       break;
     default:
       action = function action() {onChange === null || onChange === void 0 || onChange('');};
-      notEmpty = (0, _InputContainer.isNotEmpty)(value);
+      notEmpty = (0, _isNotEmpty.isNotEmpty)(value);
       break;
   }
 

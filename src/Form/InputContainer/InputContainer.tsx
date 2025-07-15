@@ -7,12 +7,9 @@ import CloseIcon from "./components/CloseIcon";
 import InputIcon from "./components/InputIcon";
 //@ts-ignore
 import {useTheme} from 'styled-components';
+import {isNotEmpty} from "./utils/isNotEmpty";
 
-export function isNotEmpty(value: any) {
-    if (value === null || value === undefined) return false;
-    if (typeof value === 'number') return value.toString().length > 0;
-    return value.length > 0; // для строки (или массивов, если что-то такое)
-}
+
 
 interface ChildProps {
     placeholder?: string; // Значение плейсхолдера, строка (необязательное)
