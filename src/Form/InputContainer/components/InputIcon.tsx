@@ -11,10 +11,12 @@ import ArrowSvg from '../../../assets/arrow.svg';
 import LoadImage from '../../../assets/loader.svg';
 
 const InputIcon = memo(function InputIcon({
+                                              id,
                                               typeName,
                                               icon,
                                               loading
                                           }: {
+    id?: string;
     typeName?: string;
     icon?: boolean;
     loading?: boolean;
@@ -34,7 +36,7 @@ const InputIcon = memo(function InputIcon({
             return <img className="arrow" src={ArrowSvg} alt="arrow" />;
         case 'Search':
         case 'GroupSearch':
-            return loading ? <img className="loader" src={LoadImage} alt="loading" /> : null;
+            return loading ? <img id={'loader-' + id} className="loader" src={LoadImage} alt="loading" /> : null;
         default:
             return null;
     }

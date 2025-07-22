@@ -141,6 +141,7 @@ function InputContainer(_ref)
           onChange: onChange }
         ), /*#__PURE__*/
         (0, _jsxRuntime.jsx)(_InputIcon["default"], {
+          id: id,
           typeName: typeName,
           icon: icon,
           loading: loading }

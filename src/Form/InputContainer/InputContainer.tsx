@@ -141,6 +141,7 @@ function InputContainer({
                     onChange={onChange}
                 />
                 <InputIcon
+                    id={id}
                     typeName={typeName}
                     icon={icon}
                     loading={loading}

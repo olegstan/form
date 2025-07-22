@@ -18,7 +18,9 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref)
 
 
 
-  {var typeName = _ref.typeName,icon = _ref.icon,loading = _ref.loading;
+
+
+  {var id = _ref.id,typeName = _ref.typeName,icon = _ref.icon,loading = _ref.loading;
     // Если опция icon = false, в исходном коде вообще не рендерилась "доп. иконка".
     // Если нужно поведение "календарь/стрелку рендерить всегда, а icon управляет только крестиком",
     // уберите эту проверку или вынесите её в CloseIcon.
@@ -34,7 +36,7 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref)
         return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "arrow", src: _arrow["default"], alt: "arrow" });
       case 'Search':
       case 'GroupSearch':
-        return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "loader", src: _loader["default"], alt: "loading" }) : null;
+        return loading ? /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { id: 'loader-' + id, className: "loader", src: _loader["default"], alt: "loading" }) : null;
       default:
         return null;
     }

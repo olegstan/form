@@ -192,7 +192,7 @@ export const StyledCheckbox = styled.div`
     display: block;
     position: absolute;
     transform: rotate(45deg);
-    width: 7px;
+    width: 6px;
     height: 11px;
     top: 1px;
     z-index: 1000;
