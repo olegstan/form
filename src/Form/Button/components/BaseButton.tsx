@@ -47,7 +47,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
             aria-disabled={disabled || loading}
         >
             {loading ? (
-                <img src={LoaderGif} alt="Loading..." style={{ display: 'inline-block' }} />
+                <img src={LoaderGif} alt="Загрузка..." style={{ display: 'inline-block' }} />
             ) : (
                 children
             )}

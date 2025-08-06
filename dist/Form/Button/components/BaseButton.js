@@ -47,7 +47,7 @@ var BaseButton = function BaseButton(_ref)
       , "aria-disabled": disabled || loading, children:
 
       loading ? /*#__PURE__*/
-      (0, _jsxRuntime.jsx)("img", { src: _loader_white["default"], alt: "Loading...", style: { display: 'inline-block' } }) :
+      (0, _jsxRuntime.jsx)("img", { src: _loader_white["default"], alt: "\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430...", style: { display: 'inline-block' } }) :
 
       children })
 

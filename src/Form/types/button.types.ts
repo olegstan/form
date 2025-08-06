@@ -7,6 +7,7 @@ export type ButtonSize = 'narrow' | 'wide' | 'normal';
 
 // Базовые пропсы, общие для всех кнопок
 export interface BaseButtonCommonProps {
+    id?: string|number;
     loading?: boolean;
     disabled?: boolean;
     className?: string;

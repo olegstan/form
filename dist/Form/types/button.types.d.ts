@@ -2,6 +2,7 @@ import React from 'react';
 export type ButtonType = 'main' | 'cancel' | 'block' | 'transparent';
 export type ButtonSize = 'narrow' | 'wide' | 'normal';
 export interface BaseButtonCommonProps {
+    id?: string | number;
     loading?: boolean;
     disabled?: boolean;
     className?: string;
