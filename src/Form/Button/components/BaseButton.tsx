@@ -1,21 +1,7 @@
 import React from 'react';
 // @ts-ignore
 import LoaderGif from "../../../assets/loader_white.gif";
-
-// Интерфейс для пропсов кнопки
-export interface BaseButtonProps {
-    Component: React.ElementType; // Тип компонента (например, 'button', 'a', или кастомный компонент)
-    loading?: boolean; // Статус загрузки
-    disabled?: boolean; // Статус отключения
-    className?: string; // Дополнительные классы
-    children: React.ReactNode; // Содержимое кнопки
-    onClick?: () => void; // Обработчик клика
-    narrow?: boolean; // Узкая кнопка в высоту
-    wide?: boolean; //на всю ширину
-    withMargin?: boolean; // Кнопка с отступами
-    type?: 'main' | 'cancel' | 'block' | 'transparent'; // Тип кнопки
-    [key: string]: any; // Любые дополнительные пропсы
-}
+import {BaseButtonProps} from "../../types/button.types";
 
 const BaseButton: React.FC<BaseButtonProps> = ({
                                                    Component,
@@ -37,20 +23,31 @@ const BaseButton: React.FC<BaseButtonProps> = ({
         narrow && 'narrow',
         wide && 'wide',
         withMargin && 'margin',
-        type // Добавляем класс на основе типа кнопки
+        type
     ]
-        .filter(Boolean) // Убираем falsy значения
+        .filter(Boolean)
         .join(' ');
+
+    // Правильная типизация onClick в зависимости от компонента
+    const handleClick = (event: React.MouseEvent<any>) => {
+        if (disabled || loading) {
+            event.preventDefault();
+            return;
+        }
+        onClick?.(event);
+    };
 
     return (
         <Component
             {...props}
-            onClick={disabled || loading ? undefined : onClick} // Отключаем клик при disabled или loading
-            disabled={disabled}
-            className={classNames.trim()} // Применяем классы
+            onClick={handleClick}
+            disabled={Component === 'button' ? disabled : undefined}
+            className={classNames.trim()}
+            // Добавляем aria-disabled для accessibility
+            aria-disabled={disabled || loading}
         >
             {loading ? (
-                <img src={LoaderGif} alt="Loading..." />
+                <img src={LoaderGif} alt="Loading..." style={{ display: 'inline-block' }} />
             ) : (
                 children
             )}

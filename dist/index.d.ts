@@ -14,7 +14,6 @@ export { default as GroupSearch } from "./Form/Dropdown/GroupSearch/GroupSearch"
 export { default as TextArea } from "./Form/TextInput/TextArea";
 export { default as InputContainer } from "./Form/InputContainer/InputContainer";
 export { default as Button } from "./Form/Button/components/Button";
-export { default as LinkButton } from "./Form/Button/components/LinkButton";
 export { default as InlineLinkButton } from "./Form/Button/components/InlineLinkButton";
 export { default as HrefButton } from "./Form/Button/components/HrefButton";
 //# sourceMappingURL=index.d.ts.map

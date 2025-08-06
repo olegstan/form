@@ -1,12 +1,13 @@
 import React from 'react';
-// @ts-ignore
-import {ButtonLink} from './../styles';
+import { ButtonLink } from './../styles';
 import BaseButton from "./BaseButton";
+import {BaseButtonCommonProps, LinkElementProps} from "../../types/button.types";
 
-const LinkButton = (props: any) => {
-    return (
-        <BaseButton Component={ButtonLink} {...props} />
-    );
+export type LinkButtonProps = BaseButtonCommonProps & Omit<LinkElementProps, 'children'> & {
+    to?: string; // Для внутренней навигации
+    href?: string; // Для внешних ссылок
 };
 
-export default LinkButton;
+const LinkButton: React.FC<LinkButtonProps> = (props) => {
+    return <BaseButton Component={ButtonLink} {...props} />;
+};

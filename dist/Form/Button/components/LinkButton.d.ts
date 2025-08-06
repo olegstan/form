@@ -1,3 +1,6 @@
-declare const LinkButton: (props: any) => import("react/jsx-runtime").JSX.Element;
-export default LinkButton;
+import { BaseButtonCommonProps, LinkElementProps } from "../../types/button.types";
+export type LinkButtonProps = BaseButtonCommonProps & Omit<LinkElementProps, 'children'> & {
+    to?: string;
+    href?: string;
+};
 //# sourceMappingURL=LinkButton.d.ts.map

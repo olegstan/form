@@ -1,12 +1,12 @@
 import React from 'react';
-// @ts-ignore
-import {InlineLink} from './../styles';
+import { InlineLink } from './../styles';
 import BaseButton from "./BaseButton";
+import {BaseButtonCommonProps, LinkElementProps} from "../../types/button.types";
 
-const InlineLinkButton = (props: any) => {
-    return (
-        <BaseButton Component={InlineLink} {...props} />
-    );
+export type InlineLinkButtonProps = BaseButtonCommonProps & Omit<LinkElementProps, 'children'>;
+
+const InlineLinkButton: React.FC<InlineLinkButtonProps> = (props) => {
+    return <BaseButton Component={InlineLink} {...props} />;
 };
 
 export default InlineLinkButton;

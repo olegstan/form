@@ -1,17 +1,5 @@
 import React from 'react';
-export interface BaseButtonProps {
-    Component: React.ElementType;
-    loading?: boolean;
-    disabled?: boolean;
-    className?: string;
-    children: React.ReactNode;
-    onClick?: () => void;
-    narrow?: boolean;
-    wide?: boolean;
-    withMargin?: boolean;
-    type?: 'main' | 'cancel' | 'block' | 'transparent';
-    [key: string]: any;
-}
+import { BaseButtonProps } from "../../types/button.types";
 declare const BaseButton: React.FC<BaseButtonProps>;
 export default BaseButton;
 //# sourceMappingURL=BaseButton.d.ts.map
