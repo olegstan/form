@@ -1,70 +1,103 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 
+type UseDateInputParams = {
+    value: Date | null;
+    onChange: (v: Date | null) => void;
+    onBlur?: () => void;
+    flatpickrInstance?: React.MutableRefObject<any>;
+    setFocused?: (f: boolean) => void;
+    dateFormat: string;      // формат moment (например, 'DD.MM.YYYY')
+    dateMask: string;
+    formatDate: (date: Date | null, fmt: string) => string;
+    setInnerError?: (error: any) => void;
+};
+
+const isSameDateTime = (a: Date | null, b: Date | null) => {
+    if (!a && !b) return true;
+    if (!a || !b) return false;
+    return a.getTime() === b.getTime();
+};
+
 export const useDateInput = ({
-                                //@ts-ignore
-                                 value, onChange, onBlur, flatpickrInstance, setFocused, dateFormat, dateMask, formatDate, setInnerError
-                            }) => {
-    const [date, setDate] = useState(value);
-    const [dateString, setDateString] = useState(formatDate(value, dateFormat));
+                                 value,
+                                 onChange,
+                                 onBlur = () => {},
+                                 flatpickrInstance,
+                                 setFocused = () => {},
+                                 dateFormat,
+                                 dateMask,
+                                 formatDate,
+                                 setInnerError = () => {},
+                             }: UseDateInputParams) => {
+    const [date, setDate] = useState<Date | null>(value ?? null);
+    const [dateString, setDateString] = useState<string>(formatDate(value ?? null, dateFormat));
 
+    // последнее отданное наружу значение, чтобы не дублировать onChange
+    const lastEmittedRef = useRef<Date | null>(value ?? null);
+
+    // синхронизация при внешнем изменении value
     useEffect(() => {
-        if (value !== date) {
-            setDate(value);
-            setDateString(formatDate(value, dateFormat));
+        if (!isSameDateTime(value ?? null, date)) {
+            setDate(value ?? null);
+            setDateString(formatDate(value ?? null, dateFormat));
         }
-    }, [value, date, dateFormat]);
+        if (!isSameDateTime(value ?? null, lastEmittedRef.current)) {
+            lastEmittedRef.current = value ?? null;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value, dateFormat]);
 
-    const handleDateChange = (selectedDates: any) => {
-        const dateObj = selectedDates?.[0];
-        const newDateString = dateObj ? formatDate(dateObj, dateFormat) : '';
-        setDate(dateObj);
-        setDateString(newDateString);
-        if (typeof onChange === 'function') {
-            onChange(dateObj ?? null);
+    const emitIfChanged = (next: Date | null) => {
+        if (!isSameDateTime(next, lastEmittedRef.current)) {
+            lastEmittedRef.current = next;
+            onChange(next);
         }
     };
 
-    const handleInputChange = (e: any) => {
-        const val = e.target.value;
-        setDateString(val);
-        if (val && !val.includes('_')) {
-            const parsedDate = moment(val, dateFormat);
-            if (parsedDate.isValid()) {
-                setDate(parsedDate.toDate());
-                if (typeof onChange === 'function') {
-                    onChange(parsedDate.toDate());
-                }
-            }else{
-                setInnerError(['Ошибка, неверный формат даты']);
-            }
+    // Клик по календарю / изменение от flatpickr
+    const handleDateChange = (selectedDates: Date[]) => {
+        const next = selectedDates && selectedDates.length ? selectedDates[0] : null;
+
+        setDate(next);
+        setDateString(formatDate(next, dateFormat));
+        setInnerError(false); // было: null
+
+        emitIfChanged(next);
+    };
+
+    // Ручной ввод
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const raw = e.target.value || '';
+        setDateString(raw);
+
+        if (raw.trim() === '') {
+            setDate(null);
+            setInnerError(false); // было: null
+            emitIfChanged(null);
+            return;
+        }
+
+        const parsed = moment(raw, dateFormat, true);
+        if (parsed.isValid()) {
+            const next = parsed.toDate();
+            setDate(next);
+            setInnerError(null); // было: null
+            emitIfChanged(next);
+        } else {
+            console.log(`Неверный формат даты: ${raw}`);
         }
     };
 
     const handleBlur = () => {
-        onBlur && onBlur();
-        setFocused(false);
-
-        if (flatpickrInstance.current) {
-            if (
-                typeof dateString === 'string' &&
-                dateString !== dateMask &&
-                //@ts-ignore
-                !dateString.includes('_')
-            ) {
-                const parsedDate = moment(dateString, dateFormat);
-                if (parsedDate.isValid()) {
-                    onChange(parsedDate.toDate());
-                    setInnerError(null);
-                } else {
-                    onChange(null);
-                    setDateString('');
-                }
-            } else {
-                onChange(null);
-                setDateString('');
-            }
+        if (dateString && !moment(dateString, dateFormat, true).isValid()) {
+            setDate(null);
+            setDateString('');
+            setInnerError(false); // было: null
+            emitIfChanged(null);
         }
+        onBlur?.();
+        setFocused(false);
     };
 
     return { date, dateString, handleDateChange, handleInputChange, handleBlur, setDateString };
