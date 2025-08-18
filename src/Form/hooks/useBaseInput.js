@@ -41,7 +41,7 @@ export default function useBaseInput({
     onChange(e.target.value);
   }, [disabled, onChange]);
 
-  const handleFocus = useCallback(() => {
+  const handleFocus = useCallback((e) => {
     if (disabled) {
       // Если инпут отключен, не устанавливаем фокус
       return;

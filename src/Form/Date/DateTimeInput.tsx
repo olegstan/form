@@ -95,11 +95,13 @@ const DateTimeInput: React.FC<DateTimeInputProps> = ({
         return (
             // @ts-ignore
             <MaskedStyledInput
+                id={id}
                 mask="99.99.9999 99:99:99"
                 value={dateString}
+                style={style}
+                className={inputClassName}
                 disabled
-                onChange={() => {
-                }}
+                readOnly
             >
                 {(inputProps: any) => <input {...inputProps} />}
             </MaskedStyledInput>

@@ -41,7 +41,7 @@ function useBaseInput(_ref)
     onChange(e.target.value);
   }, [disabled, onChange]);
 
-  var handleFocus = (0, _react.useCallback)(function () {
+  var handleFocus = (0, _react.useCallback)(function (e) {
     if (disabled) {
       // Если инпут отключен, не устанавливаем фокус
       return;

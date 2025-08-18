@@ -95,11 +95,13 @@ var DateTimeInput = function DateTimeInput(_ref)
     return (/*#__PURE__*/
       // @ts-ignore
       (0, _jsxRuntime.jsx)(_styles.MaskedStyledInput, {
+        id: id,
         mask: "99.99.9999 99:99:99",
         value: dateString,
+        style: style,
+        className: inputClassName,
         disabled: true,
-        onChange: function onChange() {
-        }, children:
+        readOnly: true, children:
 
         function children(inputProps) {return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({}, inputProps));} }
       ));

@@ -15,7 +15,7 @@ export default function useBaseInput({ disabled, name, onClick, onBlur, onChange
 }): {
     handleClick: (e: any) => void;
     handleChange: (e: any) => void;
-    handleFocus: () => void;
+    handleFocus: (e: any) => void;
     handleBlur: () => void;
     getName: (name: any) => any;
 };
