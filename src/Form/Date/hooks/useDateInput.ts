@@ -13,10 +13,40 @@ type UseDateInputParams = {
     setInnerError?: (error: any) => void;
 };
 
+// Utility function to safely check if a value is a valid Date
+const isValidDate = (date: any): date is Date => {
+    return date instanceof Date && !isNaN(date.getTime());
+};
+
+// Utility function to normalize input to Date | null
+const normalizeDate = (value: any): Date | null => {
+    if (value === null || value === undefined) {
+        return null;
+    }
+
+    if (isValidDate(value)) {
+        return value;
+    }
+
+    // If it's a string, try to parse it
+    if (typeof value === 'string') {
+        const parsed = new Date(value);
+        return isValidDate(parsed) ? parsed : null;
+    }
+
+    // For any other type, return null
+    return null;
+};
+
 const isSameDateTime = (a: Date | null, b: Date | null) => {
-    if (!a && !b) return true;
-    if (!a || !b) return false;
-    return a.getTime() === b.getTime();
+    // Normalize both inputs
+    const dateA = normalizeDate(a);
+    const dateB = normalizeDate(b);
+
+    if (!dateA && !dateB) return true;
+    if (!dateA || !dateB) return false;
+
+    return dateA.getTime() === dateB.getTime();
 };
 
 export const useDateInput = ({
@@ -30,38 +60,44 @@ export const useDateInput = ({
                                  formatDate,
                                  setInnerError = () => {},
                              }: UseDateInputParams) => {
-    const [date, setDate] = useState<Date | null>(value ?? null);
-    const [dateString, setDateString] = useState<string>(formatDate(value ?? null, dateFormat));
+    // Normalize the initial value
+    const normalizedValue = normalizeDate(value);
+
+    const [date, setDate] = useState<Date | null>(normalizedValue);
+    const [dateString, setDateString] = useState<string>(formatDate(normalizedValue, dateFormat));
 
     // последнее отданное наружу значение, чтобы не дублировать onChange
-    const lastEmittedRef = useRef<Date | null>(value ?? null);
+    const lastEmittedRef = useRef<Date | null>(normalizedValue);
 
     // синхронизация при внешнем изменении value
     useEffect(() => {
-        if (!isSameDateTime(value ?? null, date)) {
-            setDate(value ?? null);
-            setDateString(formatDate(value ?? null, dateFormat));
+        const normalizedValue = normalizeDate(value);
+
+        if (!isSameDateTime(normalizedValue, date)) {
+            setDate(normalizedValue);
+            setDateString(formatDate(normalizedValue, dateFormat));
         }
-        if (!isSameDateTime(value ?? null, lastEmittedRef.current)) {
-            lastEmittedRef.current = value ?? null;
+        if (!isSameDateTime(normalizedValue, lastEmittedRef.current)) {
+            lastEmittedRef.current = normalizedValue;
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value, dateFormat]);
 
     const emitIfChanged = (next: Date | null) => {
-        if (!isSameDateTime(next, lastEmittedRef.current)) {
-            lastEmittedRef.current = next;
-            onChange(next);
+        const normalizedNext = normalizeDate(next);
+        if (!isSameDateTime(normalizedNext, lastEmittedRef.current)) {
+            lastEmittedRef.current = normalizedNext;
+            onChange(normalizedNext);
         }
     };
 
     // Клик по календарю / изменение от flatpickr
     const handleDateChange = (selectedDates: Date[]) => {
-        const next = selectedDates && selectedDates.length ? selectedDates[0] : null;
+        const next = selectedDates && selectedDates.length ? normalizeDate(selectedDates[0]) : null;
 
         setDate(next);
         setDateString(formatDate(next, dateFormat));
-        setInnerError(false); // было: null
+        setInnerError(false);
 
         emitIfChanged(next);
     };
@@ -73,7 +109,7 @@ export const useDateInput = ({
 
         if (raw.trim() === '') {
             setDate(null);
-            setInnerError(false); // было: null
+            setInnerError(false);
             emitIfChanged(null);
             return;
         }
@@ -81,9 +117,10 @@ export const useDateInput = ({
         const parsed = moment(raw, dateFormat, true);
         if (parsed.isValid()) {
             const next = parsed.toDate();
-            setDate(next);
-            setInnerError(null); // было: null
-            emitIfChanged(next);
+            const normalizedNext = normalizeDate(next);
+            setDate(normalizedNext);
+            setInnerError(null);
+            emitIfChanged(normalizedNext);
         } else {
             console.log(`Неверный формат даты: ${raw}`);
         }
@@ -93,7 +130,7 @@ export const useDateInput = ({
         if (dateString && !moment(dateString, dateFormat, true).isValid()) {
             setDate(null);
             setDateString('');
-            setInnerError(false); // было: null
+            setInnerError(false);
             emitIfChanged(null);
         }
         onBlur?.();
