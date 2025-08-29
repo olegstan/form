@@ -4,6 +4,7 @@ export { default as MaskedInput } from "./Form/TextInput/MaskedInput";
 export { default as NumberInput } from "./Form/TextInput/NumberInput";
 export { default as Input } from "./Form/TextInput/Input";
 export { default as Checkbox } from "./Form/Checkboxes/Checkbox";
+export { default as RoundCheckbox } from "./Form/Checkboxes/RoundCheckbox";
 export { default as FileInput } from "./Form/FileInput";
 export { default as Select } from "./Form/Dropdown/Select/Select";
 export { default as MultiSelect } from "./Form/Dropdown/MultiSelect/MultiSelect";

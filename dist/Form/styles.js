@@ -1,8 +1,8 @@
-"use strict";function _typeof(o) {"@babel/helpers - typeof";return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {return typeof o;} : function (o) {return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;}, _typeof(o);}Object.defineProperty(exports, "__esModule", { value: true });exports.webkitAutofillStyles = exports.StyledTextArea = exports.StyledInput = exports.StyledFakeInput = exports.StyledCheckbox = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = void 0;
+"use strict";function _typeof(o) {"@babel/helpers - typeof";return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {return typeof o;} : function (o) {return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;}, _typeof(o);}Object.defineProperty(exports, "__esModule", { value: true });exports.webkitAutofillStyles = exports.StyledTextArea = exports.StyledInput = exports.StyledFakeInput = exports.MaskedStyledInput = exports.InputContainerStyled = exports.Container = void 0;
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 var _react = _interopRequireWildcard(require("react"));
 var _reactInputMask = _interopRequireDefault(require("react-input-mask"));
-var _sharedStyles = require("./sharedStyles");var _jsxRuntime = require("react/jsx-runtime");var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject0, _templateObject1; // styles/containerStyle.js
+var _sharedStyles = require("./sharedStyles");var _jsxRuntime = require("react/jsx-runtime");var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject0; // styles/containerStyle.js
 function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };}function _interopRequireWildcard(e, t) {if ("function" == typeof WeakMap) var r = new WeakMap(),n = new WeakMap();return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {if (!t && e && e.__esModule) return e;var o,i,f = { __proto__: null, "default": e };if (null === e || "object" != _typeof(e) && "function" != typeof e) return f;if (o = t ? n : r) {if (o.has(e)) return o.get(e);o.set(e, f);}for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);return f;})(e, t);}function ownKeys(e, r) {var t = Object.keys(e);if (Object.getOwnPropertySymbols) {var o = Object.getOwnPropertySymbols(e);r && (o = o.filter(function (r) {return Object.getOwnPropertyDescriptor(e, r).enumerable;})), t.push.apply(t, o);}return t;}function _objectSpread(e) {for (var r = 1; r < arguments.length; r++) {var t = null != arguments[r] ? arguments[r] : {};r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {_defineProperty(e, r, t[r]);}) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));});}return e;}function _defineProperty(e, r, t) {return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e;}function _toPropertyKey(t) {var i = _toPrimitive(t, "string");return "symbol" == _typeof(i) ? i : i + "";}function _toPrimitive(t, r) {if ("object" != _typeof(t) || !t) return t;var e = t[Symbol.toPrimitive];if (void 0 !== e) {var i = e.call(t, r || "default");if ("object" != _typeof(i)) return i;throw new TypeError("@@toPrimitive must return a primitive value.");}return ("string" === r ? String : Number)(t);}function _taggedTemplateLiteral(e, t) {return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, { raw: { value: Object.freeze(t) } }));}
 var rotate = (0, _styledComponents.keyframes)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  from {\n    transform: rotate(0deg);\n  }\n\n  to {\n    transform: rotate(360deg);\n  }\n"])));
 
@@ -147,88 +147,20 @@ rotate,
 placeholder);
 
 
-
-var StyledCheckbox = exports.StyledCheckbox = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  flex: 1;\n  display: flex;\n  padding: 5px 12px;\n  align-items: center;\n  color: ", ";\n  cursor: pointer;\n  transition: opacity 0.3s;\n  margin: 0;\n  user-select: none;\n  \n\n  & > div {\n    font-size: 14px;\n    font-weight: 400;\n    line-height: 18px;\n    letter-spacing: 0;\n    color: #E9E9EA;\n  }\n\n  & > input {\n    height: 0;\n    width: 0;\n    opacity: 0;\n    z-index: -10;\n    position: absolute;\n  }\n\n  & > span.rotate-container {\n    border: 2px solid ", ";\n    height: 18px;\n    width: 18px;\n    box-sizing: border-box;\n    margin-right: 10px;\n    background-color: ", ";\n    border-radius: 6px;\n    display: flex;\n    position: relative;\n  }\n\n  & > span > span {\n    display: block;\n    position: absolute;\n    transform: rotate(45deg);\n    width: 6px;\n    height: 11px;\n    top: 1px;\n    z-index: 1000;\n    left: 5px;\n    box-sizing: border-box;\n  }\n\n  & > input:checked + span {\n    background-color: ", ";\n    border: 2px solid ", ";\n  }\n\n  & > input:checked + span > span {\n    border-bottom: 3px solid ", ";\n    border-right: 3px solid ", ";\n  }\n\n  &:hover {\n    opacity: 0.7;\n  }\n"])),
-
-
-
-
-function (_ref1) {var theme = _ref1.theme;return theme.checkMarkColor;},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function (_ref10) {var theme = _ref10.theme;return theme.checkMarkColor;},
-
-
-
-
-function (_ref11) {var theme = _ref11.theme;return theme.checkMarkColor;},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function (_ref12) {var theme = _ref12.theme;return theme.checkboxColor;},
-function (_ref13) {var theme = _ref13.theme;return theme.checkboxColor;},
-
-
-
-function (_ref14) {var theme = _ref14.theme;return theme.checkMarkColor;},
-function (_ref15) {var theme = _ref15.theme;return theme.checkMarkColor;});
-
-
-
-
-
-
-
-var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])),
+var StyledInput = exports.StyledInput = _styledComponents["default"].input(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n  ", "\n"])),
 _sharedStyles.sharedInputStyle);
 
 //чтобы рендерить не текст а Symbol(react.element)
-var StyledFakeInput = exports.StyledFakeInput = _styledComponents["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n"])),
+var StyledFakeInput = exports.StyledFakeInput = _styledComponents["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n  ", "\n"])),
 _sharedStyles.sharedInputStyle);
 
 
 var MaskedStyledInput = exports.MaskedStyledInput = (0, _styledComponents["default"])(/*#__PURE__*/(0, _react.forwardRef)(function (props, ref) {return (/*#__PURE__*/
     (0, _jsxRuntime.jsx)(_reactInputMask["default"], _objectSpread(_objectSpread({}, props), {}, { ref: ref })));}
-))(_templateObject0 || (_templateObject0 = _taggedTemplateLiteral(["\n  ", "\n"])),
+))(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n  ", "\n"])),
 _sharedStyles.sharedInputStyle);
 
 
-var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject1 || (_templateObject1 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  line-height: 18px;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n  font-weight: 500;\n"])),
+var StyledTextArea = exports.StyledTextArea = _styledComponents["default"].textarea(_templateObject0 || (_templateObject0 = _taggedTemplateLiteral(["\n  ", "\n\n  width: 100%;\n  resize: vertical;\n  line-height: 18px;\n  overflow-y: hidden;\n  min-height: 57px;\n  height: auto;\n  font-weight: 500;\n"])),
 _sharedStyles.sharedInputStyle);
 //# sourceMappingURL=styles.js.map

@@ -1,62 +1,11 @@
-import React, {useRef} from 'react';
+import React from 'react';
 // @ts-ignore
-import {StyledCheckbox} from '../styles';
+import { StyledCheckbox } from './styles';
+import BaseCheckbox from './BaseCheckbox';
 import CheckboxProps from '../types/CheckboxProps';
 
-const Checkbox: React.FC<CheckboxProps> = ({
-                                               value = 1,
-                                               name = '',
-                                               toggleCallback = () => {},
-                                               textStyle,
-                                               id,
-                                               checked,
-                                               checkboxStyle,
-                                               style,
-                                               text,
-                                           }) => {
-    // Реф на <input>
-    const inputRef = useRef<HTMLInputElement | null>(null);
-
-    // Обработчик клика для всего компонента
-    const handleToggle = () => {
-        if (inputRef.current) {
-            inputRef.current.click(); // Имитируем клик на чекбоксе
-        }
-    };
-
-    const combinedTextStyle = textStyle ? { ...textStyle } : {};
-    const combinedCheckboxStyle = checkboxStyle
-        ? { ...checkboxStyle }
-        : {
-            backgroundColor: '#4378FF',
-            border: '1px solid #4378FF',
-        };
-
-    return (
-        <StyledCheckbox
-            style={style}
-            onClick={handleToggle} // Общий обработчик клика для всего компонента
-            id={id}
-        >
-            <input
-                ref={inputRef}
-                className={checked ? 'active' : ''}
-                onChange={(event) => toggleCallback ? toggleCallback(event.target.checked, event) : () => {}} // Передаем новое состояние в callback
-                name={name}
-                type="checkbox"
-                value={value}
-                checked={checked}
-            />
-            <span className="rotate-container" style={combinedCheckboxStyle}>
-                <span className="rotate" />
-            </span>
-            {text && (
-                <div style={combinedTextStyle} className="text">
-                    {text}
-                </div>
-            )}
-        </StyledCheckbox>
-    );
+const Checkbox: React.FC<CheckboxProps> = (props) => {
+    return <BaseCheckbox {...props} StyledComponent={StyledCheckbox} />;
 };
 
 export default Checkbox;
