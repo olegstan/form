@@ -18,6 +18,7 @@ const Input: React.FC<InputProps> = ({
                                         type = 'text',
                                         style = {},
                                         id,
+                                        icon = true,
                                         name,
                                         value,
                                         autoComplete = 'off',
