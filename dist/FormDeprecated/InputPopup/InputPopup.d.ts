@@ -1,7 +1,6 @@
-export default class InputPopup extends React.Component<any, any, any> {
-    constructor(props: any);
-    constructor(props: any, context: any);
-    render(): import("react/jsx-runtime").JSX.Element;
-}
-import React from "react";
+export default InputPopup;
+declare function InputPopup({ trigger, children }: {
+    trigger: any;
+    children: any;
+}): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=InputPopup.d.ts.map

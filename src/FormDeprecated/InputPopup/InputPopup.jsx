@@ -1,18 +1,34 @@
-import React, {Component} from 'react';
-import {Container, PopupContainer} from './styles'
-import Popup from 'reactjs-popup';
+import React, { useState, useEffect } from 'react';
+import { Container, PopupContainer } from './styles';
 
-export default class InputPopup extends Component
-{
-  //TODO сделать чтобы закрывалось при клиие внутри или снаружи
-  render()
-  {
-    return <Popup on={'hover'} trigger={<Container>{this.props.trigger}</Container>} position="bottom" contentStyle={{zIndex: 1000}}>
-      {close => (
-        <PopupContainer>
-          {this.props.children}
-        </PopupContainer>
-      )}
-    </Popup>
+const InputPopup = ({ trigger, children }) => {
+  const [Popup, setPopup] = useState(null);
+
+  useEffect(() => {
+    import('reactjs-popup').then((module) => {
+      setPopup(() => module.default);
+    });
+  }, []);
+
+  if (!Popup) {
+    return <Container>{trigger}</Container>;
   }
-}
+
+  //TODO сделать чтобы закрывалось при клике внутри или снаружи
+  return (
+      <Popup
+          on={'hover'}
+          trigger={<Container>{trigger}</Container>}
+          position="bottom"
+          contentStyle={{ zIndex: 1000 }}
+      >
+        {close => (
+            <PopupContainer>
+              {children}
+            </PopupContainer>
+        )}
+      </Popup>
+  );
+};
+
+export default InputPopup;

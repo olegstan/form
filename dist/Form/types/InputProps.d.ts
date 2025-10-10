@@ -17,5 +17,6 @@ export default interface InputProps<T = HTMLInputElement> {
     autoComplete?: string;
     error?: string[];
     required?: boolean;
+    icon?: boolean;
 }
 //# sourceMappingURL=InputProps.d.ts.map
