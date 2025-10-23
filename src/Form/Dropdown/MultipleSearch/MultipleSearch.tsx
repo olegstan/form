@@ -1,7 +1,5 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useRef, useState, useEffect} from 'react';
 
-import Select from 'react-select';
-import CreatableSelect from 'react-select/creatable';
 import MultiValue from './components/MultiValue';
 
 import useBaseInput from '../../hooks/useBaseInput';
@@ -31,7 +29,31 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
                                                         handleCreate = (newValue: any) => {}
                                                     }) => {
     const [selectOpen, setSelectOpen] = useState(false);
+    const [SelectComponent, setSelectComponent] = useState<any>(null);
+    const [CreatableComponent, setCreatableComponent] = useState<any>(null);
+    const [isLoading, setIsLoading] = useState(true);
     const selectRef = useRef<any>(null);
+
+    // Динамический импорт через useEffect
+    useEffect(() => {
+        const loadComponents = async () => {
+            try {
+                const [selectModule, creatableModule] = await Promise.all([
+                    import('react-select'),
+                    import('react-select/creatable')
+                ]);
+
+                setSelectComponent(() => selectModule.default);
+                setCreatableComponent(() => creatableModule.default);
+            } catch (error) {
+                console.error('Failed to load select components:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadComponents();
+    }, []);
 
     const {
         handleFocus,
@@ -60,7 +82,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
         setSelectOpen(false);
         setFocused(false);
     }, [setFocused]);
-    //
+
     const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
         // onKeyDown(e);
     }, [onKeyDown]);
@@ -83,8 +105,6 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
         })
     };
 
-    const Component = allowAdd ? CreatableSelect : Select;
-
     const selectOptions = Array.isArray(options)
         ? options.map(option => ({
             value: option.id ?? '',
@@ -93,6 +113,13 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
         : [];
 
     const inputClassName = useInputClassNames(className, focused, error, disabled);
+
+    // Показываем загрузку пока компоненты не загружены
+    if (isLoading || !SelectComponent || !CreatableComponent) {
+        return <StyledSelect><div>Loading...</div></StyledSelect>;
+    }
+
+    const Component = allowAdd ? CreatableComponent : SelectComponent;
 
     return (
         <StyledSelect>
@@ -121,7 +148,7 @@ const MultipleSearch: React.FC<MultiSearchProps> = ({
                 onBlur={handleBlur}
                 onKeyDown={handleKeyDown}
                 onCreateOption={handleCreate}
-                formatCreateLabel={(inputValue) => `Создать новый тег: "${inputValue}"`}
+                formatCreateLabel={(inputValue: any) => `Создать новый тег: "${inputValue}"`}
                 allowCreateWhileLoading={false}
                 isDisabled={disabled}
             />

@@ -1,5 +1,4 @@
 import React from 'react';
-import {MultiValueProps} from 'react-select';
 import {TagText} from "../styles";
 
 interface OptionType {
@@ -7,7 +6,17 @@ interface OptionType {
     value: any;
 }
 
-const MultiValue: React.FC<MultiValueProps<OptionType, true>> = ({ data, removeProps }) => {
+// Используем собственный интерфейс вместо MultiValueProps из react-select
+interface CustomMultiValueProps {
+    data: OptionType;
+    removeProps: {
+        onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+        onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void;
+        onTouchEnd?: (event: React.TouchEvent<HTMLElement>) => void;
+    };
+}
+
+const MultiValue: React.FC<CustomMultiValueProps> = ({ data, removeProps }) => {
     return (
         <TagText {...removeProps}>
             {data.label}
@@ -15,10 +24,7 @@ const MultiValue: React.FC<MultiValueProps<OptionType, true>> = ({ data, removeP
                 type="button"
                 onClick={(e) => {
                     e.stopPropagation();
-                    // Приводим тип event.target к EventTarget, чтобы избежать несоответствия
-                    (removeProps.onClick as ((event: React.MouseEvent<HTMLElement>) => void))?.(
-                        e as React.MouseEvent<HTMLElement>
-                    );
+                    removeProps.onClick?.(e as React.MouseEvent<HTMLElement>);
                 }}
                 style={{
                     marginLeft: 8,

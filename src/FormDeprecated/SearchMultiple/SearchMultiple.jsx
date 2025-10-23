@@ -1,8 +1,6 @@
 import React, {createRef} from 'react';
 import BaseInput from '../BaseInput';
 import {Container, InputWrapper, TagText} from './newstyles'
-import Select from 'react-select';
-import CreatableSelect from 'react-select/creatable';
 
 const MultiValue = (props) => {
   const {data} = props;
@@ -22,19 +20,43 @@ class SearchMultiple extends BaseInput
     super(props);
 
     this.state = {
-      options: [
-      ],
+      options: [],
       selectedOption: null,
       error: null,
       select: false,
       focused: false,
       hovered: false,
       hasError: false,
-      search: props.search ? props.search : ''
+      search: props.search ? props.search : '',
+      // Добавляем состояния для динамически загруженных компонентов
+      SelectComponent: null,
+      CreatableSelectComponent: null,
+      isLoading: true
     };
 
     this.wrapperRef = createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  async componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+
+    // Динамическая загрузка компонентов
+    try {
+      const [selectModule, creatableModule] = await Promise.all([
+        import('react-select'),
+        import('react-select/creatable')
+      ]);
+
+      this.setState({
+        SelectComponent: selectModule.default,
+        CreatableSelectComponent: creatableModule.default,
+        isLoading: false
+      });
+    } catch (error) {
+      console.error('Failed to load select components:', error);
+      this.setState({ isLoading: false });
+    }
   }
 
   componentDidUpdate(prevProps)
@@ -83,12 +105,8 @@ class SearchMultiple extends BaseInput
   {
     if(typeof this.props.onSearch === 'function')
     {
-        this.props.onSearch(search);
+      this.props.onSearch(search);
     }
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
@@ -134,49 +152,48 @@ class SearchMultiple extends BaseInput
   getComponent(resItems, customStyles)
   {
     const { selected } = this.props;
+    const { SelectComponent, CreatableSelectComponent, isLoading } = this.state;
+
+    // Показываем загрузку, если компоненты еще не загружены
+    if (isLoading || !SelectComponent || !CreatableSelectComponent) {
+      return <div>Loading...</div>;
+    }
+
+    const commonProps = {
+      placeholder: '',
+      id: this.props.id,
+      components: {
+        MultiValue: MultiValue,
+        DropdownIndicator: () => null,
+        IndicatorSeparator: () => null,
+        IndicatorsContainer: () => null
+      },
+      onChange: this.handleChange.bind(this),
+      options: resItems,
+      value: selected,
+      isMulti: true,
+      noOptionsMessage: () => '',
+      styles: customStyles,
+      onFocus: () => {
+        this.setState({
+          focused: true,
+          hasError: false
+        })
+      }
+    };
 
     if(this.props.allowAdd)
     {
-      return <CreatableSelect
-        placeholder={''}
-        id={this.props.id}
-        components={{ MultiValue: MultiValue, DropdownIndicator:() => null, IndicatorSeparator:() => null, IndicatorsContainer:() => null }}
-        onChange={this.handleChange.bind(this)}
-        options={resItems}
-        value={selected}
-        isMulti={true}
-        noOptionsMessage={() => ''}
-        allowCreateWhileLoading={false}
-        styles={customStyles}
-        onCreateOption={this.handleCreate.bind(this)}
-        formatCreateLabel={(inputValue) => {
-          return 'Создать новый тег: "' + inputValue + '"';
-        }}
-        onFocus={() => {
-          this.setState({
-            focused: true,
-            hasError: false
-          })
-        }}
+      return <CreatableSelectComponent
+          {...commonProps}
+          allowCreateWhileLoading={false}
+          onCreateOption={this.handleCreate.bind(this)}
+          formatCreateLabel={(inputValue) => {
+            return 'Создать новый тег: "' + inputValue + '"';
+          }}
       />
     }else{
-      return <Select
-        placeholder={''}
-        id={this.props.id}
-        components={{ MultiValue: MultiValue, DropdownIndicator:() => null, IndicatorSeparator:() => null, IndicatorsContainer:() => null }}
-        onChange={this.handleChange.bind(this)}
-        options={resItems}
-        value={selected}
-        isMulti={true}
-        noOptionsMessage={() => ''}
-        styles={customStyles}
-        onFocus={() => {
-          this.setState({
-            focused: true,
-            hasError: false
-          })
-        }}
-      />
+      return <SelectComponent {...commonProps} />
     }
   }
 
@@ -185,9 +202,9 @@ class SearchMultiple extends BaseInput
     const { items, size, selected } = this.props;
 
     let resItems = items ? items
-      .map((item, key) => {
-        return {value: item.id, label: item.name}
-      }) : [];
+        .map((item, key) => {
+          return {value: item.id, label: item.name}
+        }) : [];
 
     let style = {}
 
@@ -204,12 +221,6 @@ class SearchMultiple extends BaseInput
     style.border = focus;
 
     const customStyles = {
-      // option: (provided, state) => ({
-      //   ...provided,
-      //   borderBottom: '1px dotted pink',
-      //   // color: state.isSelected ? 'red' : 'blue',
-      //   padding: '2px 2px 2px 4px',
-      // }),
       valueContainer: (provided, state) => ({
         ...provided,
         marginTop: "12px",
@@ -226,7 +237,6 @@ class SearchMultiple extends BaseInput
       }),
     }
 
-
     if(this.props.containerStyle)
     {
       customStyles.container = () => this.props.containerStyle;
@@ -236,13 +246,13 @@ class SearchMultiple extends BaseInput
       e.stopPropagation();
     }}>
       <InputWrapper
-        className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
-        style={{...style, ...{zIndex: this.state.focused ? '1000' : 'auto'}}}
-        size={size}
-        ref={this.wrapperRef}
-        onClick={(e) => {
-          e.stopPropagation();
-        }}>
+          className={'wrapper ' + (this.state.select && resItems.length ? 'select' : '') + (this.props.disabled ? ' disabled' : '')}
+          style={{...style, ...{zIndex: this.state.focused ? '1000' : 'auto'}}}
+          size={size}
+          ref={this.wrapperRef}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}>
         {this.getComponent(resItems, customStyles)}
         {this.renderPlaceholder()}
         {error ? <label htmlFor={this.props.id} className={this.props.className + " error"}>{error}</label> : ''}
@@ -250,6 +260,5 @@ class SearchMultiple extends BaseInput
     </Container>
   }
 }
-
 
 export default SearchMultiple

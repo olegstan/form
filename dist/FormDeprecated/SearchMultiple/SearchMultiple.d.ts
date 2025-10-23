@@ -10,8 +10,12 @@ declare class SearchMultiple extends BaseInput {
         hovered: boolean;
         hasError: boolean;
         search: any;
+        SelectComponent: null;
+        CreatableSelectComponent: null;
+        isLoading: boolean;
     };
     wrapperRef: React.RefObject<any>;
+    componentDidMount(): Promise<void>;
     onSearch(search: any): void;
     handleShowSelect(bool: any): void;
     handleChange(newValue: any, actionMeta: any): void;

@@ -1,9 +1,16 @@
 import React from 'react';
-import { MultiValueProps } from 'react-select';
 interface OptionType {
     label: string;
     value: any;
 }
-declare const MultiValue: React.FC<MultiValueProps<OptionType, true>>;
+interface CustomMultiValueProps {
+    data: OptionType;
+    removeProps: {
+        onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+        onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void;
+        onTouchEnd?: (event: React.TouchEvent<HTMLElement>) => void;
+    };
+}
+declare const MultiValue: React.FC<CustomMultiValueProps>;
 export default MultiValue;
 //# sourceMappingURL=MultiValue.d.ts.map
