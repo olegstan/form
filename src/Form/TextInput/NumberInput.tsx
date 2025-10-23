@@ -1,10 +1,10 @@
 // NumberInput.js
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import useBaseInput from '../hooks/useBaseInput';
-import { StyledInput } from '../styles';
+import {StyledInput} from '../styles';
 import NumberInputProps from "../types/NumberInputProps";
 import useInputClassNames from "../hooks/useInputClassNames";
-import { formatForInput } from "./utils/formatNumber";
+import {formatForInput} from "./utils/formatNumber";
 
 const NumberInput: React.FC<NumberInputProps> = ({
                                                      focused = false,

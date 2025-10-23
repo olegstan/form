@@ -1,4 +1,4 @@
-import {useCallback, useRef} from 'react';
+import {useCallback} from 'react';
 
 /**
  * Универсальный хук, повторяющий логику BaseInput:

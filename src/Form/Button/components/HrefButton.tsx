@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from './../styles';
+import {Link} from './../styles';
 import BaseButton from "./BaseButton";
 import {BaseButtonCommonProps, LinkElementProps} from "../../types/button.types";
 

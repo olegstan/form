@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, PopupContainer } from './styles';
+import React, {useEffect, useState} from 'react';
+import {Container, PopupContainer} from './styles';
 
 const InputPopup = ({ trigger, children }) => {
   const [Popup, setPopup] = useState(null);

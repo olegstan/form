@@ -1,6 +1,6 @@
 import React from 'react';
 // @ts-ignore
-import { StyledRoundCheckbox } from './styles';
+import {StyledRoundCheckbox} from './styles';
 import BaseCheckbox from './BaseCheckbox';
 import CheckboxProps from '../types/CheckboxProps';
 

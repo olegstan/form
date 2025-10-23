@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledButton } from './../styles';
+import {StyledButton} from './../styles';
 import BaseButton from "./BaseButton";
 import {BaseButtonCommonProps, ButtonElementProps} from "../../types/button.types";
 

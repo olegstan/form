@@ -10,7 +10,6 @@ import {useTheme} from 'styled-components';
 import {isNotEmpty} from "./utils/isNotEmpty";
 
 
-
 interface ChildProps {
     placeholder?: string; // Значение плейсхолдера, строка (необязательное)
     id?: string; // Идентификатор, строка (необязательное)

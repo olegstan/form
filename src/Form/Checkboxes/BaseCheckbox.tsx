@@ -1,4 +1,4 @@
-import React, { useRef, ComponentType } from 'react';
+import React, {ComponentType, useRef} from 'react';
 import CheckboxProps from '../types/CheckboxProps';
 
 interface BaseCheckboxProps extends CheckboxProps {

@@ -4,7 +4,6 @@ import {StyledInput} from '../../styles';
 import useBaseInput from '../../hooks/useBaseInput';
 import SearchProps from "../../types/SearchProps";
 import Results from "../components/Results";
-import useOnceWhen from "../../helpers/useOnceWhen";
 import useInputClassNames from "../../hooks/useInputClassNames";
 
 const Search: React.FC<SearchProps> = ({

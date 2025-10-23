@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from './Item';
 //@ts-ignore
-import { OptionsWrapper, ParentContainer } from "./styles";
+import {OptionsWrapper, ParentContainer} from "./styles";
 import GroupItem from "./GroupItem";
 
 const GroupResults = ({
