@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Item from './Item';
 //@ts-ignore
-import {OptionsWrapper, ParentContainer} from "./styles";
+import {OptionsWrapper, ParentContainer, SearchInput, SearchInputWrapper} from "./styles";
 import GroupItem from "./GroupItem";
+//@ts-ignore
+import SearchIcon from './../../../assets/ic_seach.svg';
 
 const GroupResults = ({
                           id,
@@ -11,7 +13,8 @@ const GroupResults = ({
                           className,
                           idPrefix,
                           active,
-                          addButton
+                          addButton,
+                          searchable = false
                       }: {
     options: any[],
     handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void,
@@ -20,25 +23,71 @@ const GroupResults = ({
     idPrefix?: string,
     active?: boolean,
     addButton?: any,
+    searchable?: boolean,
 }) => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const filterOptions = (options: any[], query: string): any[] => {
+        if (!query.trim()) return options;
+
+        const lowerQuery = query.toLowerCase();
+
+        return options.map(option => {
+            // Если у опции есть children, фильтруем их
+            if (option.children && option.children.length > 0) {
+                const filteredChildren = option.children.filter((child: any) =>
+                    child.name?.toLowerCase().includes(lowerQuery)
+                );
+
+                // Если есть подходящие дочерние элементы, возвращаем родителя с отфильтрованными детьми
+                if (filteredChildren.length > 0) {
+                    return {
+                        ...option,
+                        children: filteredChildren
+                    };
+                }
+            }
+
+            // Проверяем сам элемент
+            if (option.name?.toLowerCase().includes(lowerQuery)) {
+                return option;
+            }
+
+            return null;
+        }).filter(Boolean);
+    };
+
+    const displayOptions = searchable ? filterOptions(options, searchQuery) : options;
+
     return (
         <ParentContainer>
-            {active && addButton}
             <OptionsWrapper
                 active={active ?? false}
                 id={id ? `${id}-select` : undefined}
                 className={className}
-                hasAddButton={!!addButton} // Передаём флаг наличия кнопки
+                hasAddButton={!!addButton}
             >
-                {options.length === 0 ? (
+                {active && searchable && (
+                    <SearchInputWrapper>
+                        <img src={SearchIcon} alt="Search" />
+                        <SearchInput
+                            type="text"
+                            placeholder="Поиск"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </SearchInputWrapper>
+                )}
+                {active && addButton}
+                {displayOptions.length === 0 ? (
                     <Item
                         key={'none'}
-                        item={{id: null, name: 'Нет элементов'}}
+                        item={{id: null, name: searchable && searchQuery ? 'Ничего не найдено' : 'Нет элементов'}}
                         className={className}
                         id={`${idPrefix}-none`}
                     />
                 ) : (
-                    options.map((option: any, key: number) => (
+                    displayOptions.map((option: any, key: number) => (
                         <GroupItem
                             key={option.innerId ?? option.id}
                             item={option}

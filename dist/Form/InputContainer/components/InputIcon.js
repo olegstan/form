@@ -32,6 +32,7 @@ var InputIcon = /*#__PURE__*/(0, _react.memo)(function InputIcon(_ref)
         return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "calendar", src: _calendar["default"], alt: "calendar" });
       case 'Select':
       case 'GroupSelect':
+      case 'GroupSelectWithSearch':
       case 'MultiSelect':
         return /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { className: "arrow", src: _arrow["default"], alt: "arrow" });
       case 'Search':

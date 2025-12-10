@@ -18,11 +18,12 @@ var GroupItem = function GroupItem(_ref) {var _item$items;var
     (0, _jsxRuntime.jsxs)(_styles.StyledGroupOption, {
 
       className: "".concat(className, " item"),
-      id: id
-      // @ts-ignore
-      , onClick: _onClick, children: [/*#__PURE__*/
+      id: id, children: [/*#__PURE__*/
 
-      (0, _jsxRuntime.jsx)("span", { children: item.name }), /*#__PURE__*/
+      (0, _jsxRuntime.jsxs)(_styles.StyledGroupTitle, { children: [/*#__PURE__*/
+        (0, _jsxRuntime.jsx)("span", { className: "group-name", children: item.name }), /*#__PURE__*/
+        (0, _jsxRuntime.jsx)("span", { className: "group-description", children: item.description })] }
+      ), /*#__PURE__*/
       (0, _jsxRuntime.jsx)(_styles.StyledSubItemsContainer, { children:
         item === null || item === void 0 || (_item$items = item.items) === null || _item$items === void 0 ? void 0 : _item$items.map(function (subOption, subKey) {return (/*#__PURE__*/
             (0, _jsxRuntime.jsx)(_SubItem["default"], {

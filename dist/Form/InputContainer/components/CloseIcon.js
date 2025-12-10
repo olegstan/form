@@ -34,6 +34,7 @@ var CloseIcon = function CloseIcon(_ref)
 
     case 'Select':
     case 'GroupSelect':
+    case 'GroupSelectWithSearch':
     case 'DateInput':
     case 'DateTimeInput':
       //там и так будет иконка календаря

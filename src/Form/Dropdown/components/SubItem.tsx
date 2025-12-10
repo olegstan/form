@@ -1,25 +1,31 @@
 import React from 'react';
 //@ts-ignore
-import {StyledSubOption} from './styles';
+import {StyledSubOption, StyledSubOptionContent, StyledSubOptionLeft, StyledSubOptionRight} from './styles';
 
 const SubItem = ({
-                item,
-                onClick,
-                className,
-                id
-} : {
-  item: any,
-  onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
-  className?: string,
-  id?: string,
+                     item,
+                     onClick,
+                     className,
+                     id
+                 } : {
+    item: any,
+    onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
+    className?: string,
+    id?: string,
 }) => {
     const renderName = () => {
         if (React.isValidElement(item.name)) {
-            // Если item.name - React-элемент, рендерим его как есть
             return item.name;
         }
-        // В противном случае рендерим как обычный текст
-        return <span>{item.name}</span>;
+        return <span className="item-name">{item.name}</span>;
+    };
+
+    const renderDescription = () => {
+        if (!item.description) return null;
+        if (React.isValidElement(item.description)) {
+            return item.description;
+        }
+        return <span className="item-description">{item.description}</span>;
     };
 
     return <StyledSubOption
@@ -28,7 +34,17 @@ const SubItem = ({
         id={id}
         onClick={onClick}
     >
-        {renderName()}
+        <StyledSubOptionContent hasSum={!!item.sum}>
+            <StyledSubOptionLeft>
+                {renderName()}
+                {renderDescription()}
+            </StyledSubOptionLeft>
+            {item.sum !== undefined && (
+                <StyledSubOptionRight>
+                    {item.sum}
+                </StyledSubOptionRight>
+            )}
+        </StyledSubOptionContent>
     </StyledSubOption>
 };
 
