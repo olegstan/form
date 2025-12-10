@@ -24,7 +24,9 @@ var GroupResults = function GroupResults(_ref)
 
 
 
-{var id = _ref.id,options = _ref.options,handleClick = _ref.handleClick,className = _ref.className,idPrefix = _ref.idPrefix,active = _ref.active,addButton = _ref.addButton,_ref$searchable = _ref.searchable,searchable = _ref$searchable === void 0 ? false : _ref$searchable;
+
+
+{var id = _ref.id,options = _ref.options,handleClick = _ref.handleClick,className = _ref.className,idPrefix = _ref.idPrefix,active = _ref.active,addButton = _ref.addButton,_ref$searchable = _ref.searchable,searchable = _ref$searchable === void 0 ? false : _ref$searchable,selectedValue = _ref.selectedValue;
   var _useState = (0, _react.useState)(''),_useState2 = _slicedToArray(_useState, 2),searchQuery = _useState2[0],setSearchQuery = _useState2[1];
 
   var filterOptions = function filterOptions(options, query) {
@@ -34,8 +36,8 @@ var GroupResults = function GroupResults(_ref)
 
     return options.map(function (option) {var _option$name;
       // Если у опции есть children, фильтруем их
-      if (option.children && option.children.length > 0) {
-        var filteredChildren = option.children.filter(function (child) {var _child$name;return (_child$name =
+      if (option.items && option.items.length > 0) {
+        var filteredChildren = option.items.filter(function (child) {var _child$name;return (_child$name =
           child.name) === null || _child$name === void 0 ? void 0 : _child$name.toLowerCase().includes(lowerQuery);}
         );
 
@@ -43,7 +45,7 @@ var GroupResults = function GroupResults(_ref)
         if (filteredChildren.length > 0) {
           return _objectSpread(_objectSpread({},
           option), {}, {
-            children: filteredChildren });
+            items: filteredChildren });
 
         }
       }
@@ -93,7 +95,8 @@ var GroupResults = function GroupResults(_ref)
               item: option,
               onClick: handleClick,
               className: className,
-              id: "".concat(idPrefix, "-").concat(option.id) }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
+              id: "".concat(idPrefix, "-").concat(option.id),
+              selectedValue: selectedValue }, (_option$innerId = option.innerId) !== null && _option$innerId !== void 0 ? _option$innerId : option.id
             ));}
         )] }
 

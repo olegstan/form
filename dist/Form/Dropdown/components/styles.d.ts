@@ -24,6 +24,7 @@ export declare const StyledSubOptionRight: import("styled-components/dist/types"
 }>> & string;
 export declare const StyledSubOption: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     theme: DefaultTheme;
+    isSelected?: boolean | undefined;
 }>> & string;
 export declare const StyledOption: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components/dist/types").Substitute<import("react").DetailedHTMLProps<import("react").HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {
     theme: DefaultTheme;

@@ -12,7 +12,9 @@ var SubItem = function SubItem(_ref)
 
 
 
-{var item = _ref.item,onClick = _ref.onClick,className = _ref.className,id = _ref.id;
+
+
+{var item = _ref.item,onClick = _ref.onClick,className = _ref.className,id = _ref.id,_ref$isSelected = _ref.isSelected,isSelected = _ref$isSelected === void 0 ? false : _ref$isSelected;
   var renderName = function renderName() {
     if (/*#__PURE__*/_react["default"].isValidElement(item.name)) {
       return item.name;
@@ -32,7 +34,8 @@ var SubItem = function SubItem(_ref)
 
     className: "".concat(className, " item"),
     id: id,
-    onClick: onClick, children: /*#__PURE__*/
+    onClick: onClick,
+    isSelected: isSelected, children: /*#__PURE__*/
 
     (0, _jsxRuntime.jsxs)(_styles.StyledSubOptionContent, { hasSum: !!item.sum, children: [/*#__PURE__*/
       (0, _jsxRuntime.jsxs)(_styles.StyledSubOptionLeft, { children: [

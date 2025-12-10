@@ -14,7 +14,8 @@ const GroupResults = ({
                           idPrefix,
                           active,
                           addButton,
-                          searchable = false
+                          searchable = false,
+                          selectedValue
                       }: {
     options: any[],
     handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void,
@@ -24,6 +25,7 @@ const GroupResults = ({
     active?: boolean,
     addButton?: any,
     searchable?: boolean,
+    selectedValue?: any,
 }) => {
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -34,8 +36,8 @@ const GroupResults = ({
 
         return options.map(option => {
             // Если у опции есть children, фильтруем их
-            if (option.children && option.children.length > 0) {
-                const filteredChildren = option.children.filter((child: any) =>
+            if (option.items && option.items.length > 0) {
+                const filteredChildren = option.items.filter((child: any) =>
                     child.name?.toLowerCase().includes(lowerQuery)
                 );
 
@@ -43,7 +45,7 @@ const GroupResults = ({
                 if (filteredChildren.length > 0) {
                     return {
                         ...option,
-                        children: filteredChildren
+                        items: filteredChildren
                     };
                 }
             }
@@ -94,6 +96,7 @@ const GroupResults = ({
                             onClick={handleClick}
                             className={className}
                             id={`${idPrefix}-${option.id}`}
+                            selectedValue={selectedValue}
                         />
                     ))
                 )}

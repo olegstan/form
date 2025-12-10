@@ -7,7 +7,9 @@ var GroupItem = function GroupItem(_ref) {var _item$items;var
     item = _ref.item,
     _onClick = _ref.onClick,
     className = _ref.className,
-    id = _ref.id;return (/*#__PURE__*/
+    id = _ref.id,
+    selectedValue = _ref.selectedValue;return (/*#__PURE__*/
+
 
 
 
@@ -32,7 +34,8 @@ var GroupItem = function GroupItem(_ref) {var _item$items;var
               item: subOption
               // @ts-ignore
               , onClick: function onClick(e) {return _onClick(e, subOption);},
-              className: className }, subKey
+              className: className,
+              isSelected: selectedValue === subOption.id }, subKey
             ));}
         ) }
       )] }, item.id

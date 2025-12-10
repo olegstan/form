@@ -1,5 +1,5 @@
 import React from 'react';
-declare const GroupResults: ({ id, options, handleClick, className, idPrefix, active, addButton, searchable }: {
+declare const GroupResults: ({ id, options, handleClick, className, idPrefix, active, addButton, searchable, selectedValue }: {
     options: any[];
     handleClick: (event: React.MouseEvent<HTMLInputElement>, option: any) => void;
     className?: string | undefined;
@@ -8,6 +8,7 @@ declare const GroupResults: ({ id, options, handleClick, className, idPrefix, ac
     active?: boolean | undefined;
     addButton?: any;
     searchable?: boolean | undefined;
+    selectedValue?: any;
 }) => import("react/jsx-runtime").JSX.Element;
 export default GroupResults;
 //# sourceMappingURL=GroupResults.d.ts.map

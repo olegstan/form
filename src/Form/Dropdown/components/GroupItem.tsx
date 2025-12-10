@@ -7,13 +7,15 @@ const GroupItem = ({
                        item,
                        onClick,
                        className,
-                       id
+                       id,
+                       selectedValue
                    } : {
     item: any,
     className?: string,
 //@ts-ignore
     onClick?: (event: MouseEvent<HTMLInputElement, MouseEvent>, option: any) => void,
     id?: string,
+    selectedValue?: any,
 }) => (
     <StyledGroupOption
         key={item.id}
@@ -33,6 +35,7 @@ const GroupItem = ({
                     // @ts-ignore
                     onClick={(e: any) => onClick(e, subOption)}
                     className={className}
+                    isSelected={selectedValue === subOption.id}
                 />
             ))}
         </StyledSubItemsContainer>

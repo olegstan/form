@@ -262,6 +262,7 @@ const GroupSelectWithSearch: React.FC<GroupSearchProps> = ({
             options={filteredOptions}
             handleClick={handleChange}
             idPrefix={getName(name)}
+            selectedValue={value}
         />
     </StyledSelect>)
 }

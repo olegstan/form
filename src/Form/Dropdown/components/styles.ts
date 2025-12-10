@@ -93,16 +93,21 @@ export const StyledSubOptionRight = styled.div<{ theme: DefaultTheme }>`
     white-space: nowrap;
 `;
 
-export const StyledSubOption = styled.div<{ theme: DefaultTheme }>`
+export const StyledSubOption = styled.div<{ theme: DefaultTheme, isSelected?: boolean }>`
     display: flex;
     align-items: center;
     padding: 10px 12px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    background-color: ${({theme, isSelected}: {theme: DefaultTheme, isSelected?: boolean}) =>
+    isSelected ? (theme.subItemSelectedBackground || 'rgba(67, 120, 255, 0.1)') : 'transparent'};
+    border-radius: 6px;
 
     &:hover {
-        background-color: ${({theme}: {theme: DefaultTheme}) => theme.subItemHoverBackground || 'rgba(0, 0, 0, 0.05)'};
-        border-radius: 6px;
+        background-color: ${({theme, isSelected}: {theme: DefaultTheme, isSelected?: boolean}) =>
+    isSelected
+        ? (theme.subItemSelectedHoverBackground || 'rgba(67, 120, 255, 0.15)')
+        : (theme.subItemHoverBackground || 'rgba(0, 0, 0, 0.05)')};
     }
 `;
 
@@ -201,7 +206,7 @@ export const SearchInputWrapper = styled.div`
     border-radius: 12px;
     padding: 10px 16px 0 16px;
     display: flex;
-    
+
     img {
         position: absolute;
         left: 30px;
@@ -254,9 +259,9 @@ export const OptionsWrapper = styled.div<OptionsWrapperProps>`
 
     opacity: ${({ active }) => (active ? 1 : 0)};
     transform: ${({ active }) =>
-            active ? 'translateY(0)' : 'translateY(-10px)'};
+    active ? 'translateY(0)' : 'translateY(-10px)'};
     transition: ${({ active }) =>
-            active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
+    active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none'};
 
     &::-webkit-scrollbar {
         width: 8px;

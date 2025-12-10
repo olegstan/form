@@ -6,12 +6,14 @@ const SubItem = ({
                      item,
                      onClick,
                      className,
-                     id
+                     id,
+                     isSelected = false
                  } : {
     item: any,
     onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
     className?: string,
     id?: string,
+    isSelected?: boolean,
 }) => {
     const renderName = () => {
         if (React.isValidElement(item.name)) {
@@ -33,6 +35,7 @@ const SubItem = ({
         className={`${className} item`}
         id={id}
         onClick={onClick}
+        isSelected={isSelected}
     >
         <StyledSubOptionContent hasSum={!!item.sum}>
             <StyledSubOptionLeft>

@@ -8,25 +8,25 @@ import GroupResults from "../components/GroupResults";
 import useInputClassNames from "../../hooks/useInputClassNames";
 
 const GroupSearch: React.FC<GroupSearchProps> = ({
-                                           focused = false,
-                                           setFocused = () => {},
-                                           onBlur = () => {},
-                                           onKeyDown = () => {},
-                                           onChange = () => {},
-                                           onClick = () => {},
-                                           disabled = false,
-                                           className = '',
-                                           style = {},
-                                           id,
-                                           name,
-                                           value,
-                                           error,
-                                           options = [],
-                                           search = '',
-                                           onSearch = () => {},
-                                           clearOnClickOutside = true,
-                                           addButton = false
-                                       }) => {
+                                                     focused = false,
+                                                     setFocused = () => {},
+                                                     onBlur = () => {},
+                                                     onKeyDown = () => {},
+                                                     onChange = () => {},
+                                                     onClick = () => {},
+                                                     disabled = false,
+                                                     className = '',
+                                                     style = {},
+                                                     id,
+                                                     name,
+                                                     value,
+                                                     error,
+                                                     options = [],
+                                                     search = '',
+                                                     onSearch = () => {},
+                                                     clearOnClickOutside = true,
+                                                     addButton = false
+                                                 }) => {
 
     const [selectOpen, setSelectOpen] = useState(false);
     const selectRef = useRef(null);
@@ -226,6 +226,7 @@ const GroupSearch: React.FC<GroupSearchProps> = ({
                 options={filteredOptions}
                 handleClick={handleChange}
                 idPrefix={getName(name) ?? id}
+                selectedValue={value}
             />
         </StyledSelect>
     );

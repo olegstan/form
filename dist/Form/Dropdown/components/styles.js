@@ -93,22 +93,27 @@ function (_ref7) {var theme = _ref7.theme;return theme.subItemTextColor || '#000
 
 
 
-var StyledSubOption = exports.StyledSubOption = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    padding: 10px 12px;\n    cursor: pointer;\n    transition: background-color 0.2s ease;\n\n    &:hover {\n        background-color: ", ";\n        border-radius: 6px;\n    }\n"])),
+var StyledSubOption = exports.StyledSubOption = _styledComponents["default"].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    align-items: center;\n    padding: 10px 12px;\n    cursor: pointer;\n    transition: background-color 0.2s ease;\n    background-color: ", ";\n    border-radius: 6px;\n\n    &:hover {\n        background-color: ", ";\n    }\n"])),
 
 
 
 
 
+function (_ref8) {var theme = _ref8.theme,isSelected = _ref8.isSelected;return (
+    isSelected ? theme.subItemSelectedBackground || 'rgba(67, 120, 255, 0.1)' : 'transparent');},
 
 
-function (_ref8) {var theme = _ref8.theme;return theme.subItemHoverBackground || 'rgba(0, 0, 0, 0.05)';});
 
+function (_ref9) {var theme = _ref9.theme,isSelected = _ref9.isSelected;return (
+    isSelected ?
+    theme.subItemSelectedHoverBackground || 'rgba(67, 120, 255, 0.15)' :
+    theme.subItemHoverBackground || 'rgba(0, 0, 0, 0.05)');});
 
 
 
 var StyledOption = exports.StyledOption = _styledComponents["default"].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    align-items: center;\n    color: ", ";\n    line-height: 24px;\n    display: flex;\n    padding: 0 15px;\n    font-size: 14px;\n    font-weight: 500;\n    user-select: none;\n    text-align: left;\n    flex-wrap: wrap;\n    cursor: pointer;\n    transition: background-color 0.2s ease, transform 0.2s ease;\n\n    background-color: ", ";\n\n    span {\n        text-align: left;\n        font-size: 14px;\n        width: 100%;\n        padding: 4px 8px;\n        margin: 10px 0;\n    }\n\n    &:last-child span {\n        border-bottom: none;\n    }\n\n    &:last-child {\n        border-bottom-left-radius: 8px;\n        border-bottom-right-radius: 8px;\n    }\n\n    span:hover {\n        background-color: ", ";\n        border-radius: 8px;\n    }\n"])),
 
-function (_ref9) {var theme = _ref9.theme;return theme.selectOptionTextColor;},
+function (_ref0) {var theme = _ref0.theme;return theme.selectOptionTextColor;},
 
 
 
@@ -120,7 +125,7 @@ function (_ref9) {var theme = _ref9.theme;return theme.selectOptionTextColor;},
 
 
 
-function (_ref0) {var theme = _ref0.theme;return theme.inputDisabledContainerBackground;},
+function (_ref1) {var theme = _ref1.theme;return theme.inputDisabledContainerBackground;},
 
 
 
@@ -140,7 +145,7 @@ function (_ref0) {var theme = _ref0.theme;return theme.inputDisabledContainerBac
 
 
 
-function (_ref1) {var theme = _ref1.theme;return theme.selectOptionBackgroundHovererColor;});
+function (_ref10) {var theme = _ref10.theme;return theme.selectOptionBackgroundHovererColor;});
 
 
 
@@ -148,7 +153,7 @@ function (_ref1) {var theme = _ref1.theme;return theme.selectOptionBackgroundHov
 // @ts-ignore
 var StyledCheckboxOption = exports.StyledCheckboxOption = _styledComponents["default"].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    align-items: center;\n    color: ", ";\n    line-height: 24px;\n    display: flex;\n    padding: 0 15px;\n    font-size: 14px;\n    font-weight: 500;\n    user-select: none;\n    text-align: left;\n    flex-wrap: wrap;\n    cursor: pointer;\n    transition: backtground-color 0.2s ease, transform 0.2s ease;\n\n    background-color: ", ";\n\n    & > span {\n        text-align: left;\n        font-size: 14px;\n        width: 100%;\n        padding: 4px 8px;\n        margin: 10px 0;\n        display: flex;\n        align-items: center;\n        justify-content: space-between;\n        position: relative;\n    }\n\n    &:last-child {\n        border-bottom-left-radius: 8px;\n        border-bottom-right-radius: 8px;\n    }\n\n    & > span:hover {\n        //@ts-ignore\n        background-color: ", ";\n        border-radius: 8px;\n    }\n"])),
 
-function (_ref10) {var theme = _ref10.theme;return theme.selectOptionTextColor;},
+function (_ref11) {var theme = _ref11.theme;return theme.selectOptionTextColor;},
 
 
 
@@ -160,7 +165,7 @@ function (_ref10) {var theme = _ref10.theme;return theme.selectOptionTextColor;}
 
 
 
-function (_ref11) {var theme = _ref11.theme;return theme.inputDisabledContainerBackground;},
+function (_ref12) {var theme = _ref12.theme;return theme.inputDisabledContainerBackground;},
 
 
 
@@ -181,7 +186,7 @@ function (_ref11) {var theme = _ref11.theme;return theme.inputDisabledContainerB
 
 
 
-function (_ref12) {var theme = _ref12.theme;return theme.selectOptionBackgroundHovererColor || '';});
+function (_ref13) {var theme = _ref13.theme;return theme.selectOptionBackgroundHovererColor || '';});
 
 
 
@@ -195,7 +200,7 @@ var ParentContainer = exports.ParentContainer = _styledComponents["default"].div
 
 
 
-var SearchInputWrapper = exports.SearchInputWrapper = _styledComponents["default"].div(_templateObject1 || (_templateObject1 = _taggedTemplateLiteral(["\n    position: relative;\n    width: calc(100% - 32px);\n    border-radius: 12px;\n    padding: 10px 16px 0 16px;\n    display: flex;\n    \n    img {\n        position: absolute;\n        left: 30px;\n        top: 30px;\n        transform: translateY(-50%);\n        width: 20px;\n        height: 20px;\n        pointer-events: none;\n        opacity: 0.5;\n    }\n"])));
+var SearchInputWrapper = exports.SearchInputWrapper = _styledComponents["default"].div(_templateObject1 || (_templateObject1 = _taggedTemplateLiteral(["\n    position: relative;\n    width: calc(100% - 32px);\n    border-radius: 12px;\n    padding: 10px 16px 0 16px;\n    display: flex;\n\n    img {\n        position: absolute;\n        left: 30px;\n        top: 30px;\n        transform: translateY(-50%);\n        width: 20px;\n        height: 20px;\n        pointer-events: none;\n        opacity: 0.5;\n    }\n"])));
 
 
 
@@ -239,8 +244,8 @@ var OptionsWrapper = exports.OptionsWrapper = _styledComponents["default"].div(_
 
 
 
-function (_ref13) {var theme = _ref13.theme;return theme.selectShadowColor;},
-function (_ref14) {var theme = _ref14.theme;return theme.selectWrapperOptionBackgroundColor;},
+function (_ref14) {var theme = _ref14.theme;return theme.selectShadowColor;},
+function (_ref15) {var theme = _ref15.theme;return theme.selectWrapperOptionBackgroundColor;},
 
 
 _zindex["default"].input,
@@ -248,14 +253,14 @@ _zindex["default"].input,
 
 
 
-function (_ref15) {var hasAddButton = _ref15.hasAddButton;return hasAddButton ? '120px' : 'auto';},
+function (_ref16) {var hasAddButton = _ref16.hasAddButton;return hasAddButton ? '120px' : 'auto';},
 
-function (_ref16) {var active = _ref16.active;return active ? 'auto' : 'none';},
+function (_ref17) {var active = _ref17.active;return active ? 'auto' : 'none';},
 
-function (_ref17) {var active = _ref17.active;return active ? 1 : 0;},
-function (_ref18) {var active = _ref18.active;return (
-    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref18) {var active = _ref18.active;return active ? 1 : 0;},
 function (_ref19) {var active = _ref19.active;return (
+    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref20) {var active = _ref20.active;return (
     active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none');},
 
 
@@ -264,12 +269,12 @@ function (_ref19) {var active = _ref19.active;return (
 
 
 
-function (_ref20) {var theme = _ref20.theme;return theme.selectScrollThumbColor;},
+function (_ref21) {var theme = _ref21.theme;return theme.selectScrollThumbColor;},
 
 
 
 
 
 
-function (_ref21) {var theme = _ref21.theme;return theme.selectScrollThumbHoverColor;});
+function (_ref22) {var theme = _ref22.theme;return theme.selectScrollThumbHoverColor;});
 //# sourceMappingURL=styles.js.map

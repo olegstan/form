@@ -225,7 +225,8 @@ var GroupSearch = function GroupSearch(_ref)
       id: id,
       options: filteredOptions,
       handleClick: handleChange,
-      idPrefix: (_getName = getName(name)) !== null && _getName !== void 0 ? _getName : id }
+      idPrefix: (_getName = getName(name)) !== null && _getName !== void 0 ? _getName : id,
+      selectedValue: value }
     )] }
   );
 

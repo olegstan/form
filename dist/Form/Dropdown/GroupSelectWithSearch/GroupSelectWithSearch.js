@@ -261,7 +261,8 @@ var GroupSelectWithSearch = function GroupSelectWithSearch(_ref)
       id: id,
       options: filteredOptions,
       handleClick: handleChange,
-      idPrefix: getName(name) }
+      idPrefix: getName(name),
+      selectedValue: value }
     )] }
   );
 };

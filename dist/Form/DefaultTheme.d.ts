@@ -33,5 +33,7 @@ export interface DefaultTheme {
     subItemsContainerBackground: string;
     subItemTextColor: string;
     subItemHoverBackground: string;
+    subItemSelectedBackground: string;
+    subItemSelectedHoverBackground: string;
 }
 //# sourceMappingURL=DefaultTheme.d.ts.map
