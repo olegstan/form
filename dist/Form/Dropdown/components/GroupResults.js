@@ -67,6 +67,7 @@ var GroupResults = function GroupResults(_ref)
         className: className,
         hasAddButton: !!addButton, children: [
 
+        active && addButton,
         active && searchable && /*#__PURE__*/
         (0, _jsxRuntime.jsxs)(_styles.SearchInputWrapper, { children: [/*#__PURE__*/
           (0, _jsxRuntime.jsx)("img", { src: _ic_seach["default"], alt: "Search" }), /*#__PURE__*/
@@ -78,7 +79,6 @@ var GroupResults = function GroupResults(_ref)
           )] }
         ),
 
-        active && addButton,
         displayOptions.length === 0 ? /*#__PURE__*/
         (0, _jsxRuntime.jsx)(_Item["default"], {
 

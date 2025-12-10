@@ -67,6 +67,7 @@ const GroupResults = ({
                 className={className}
                 hasAddButton={!!addButton}
             >
+                {active && addButton}
                 {active && searchable && (
                     <SearchInputWrapper>
                         <img src={SearchIcon} alt="Search" />
@@ -78,7 +79,6 @@ const GroupResults = ({
                         />
                     </SearchInputWrapper>
                 )}
-                {active && addButton}
                 {displayOptions.length === 0 ? (
                     <Item
                         key={'none'}
