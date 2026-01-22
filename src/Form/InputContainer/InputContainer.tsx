@@ -96,10 +96,6 @@ function InputContainer({
     const containerClassName = `${className}${disabled ? ' disabled' : ''}`;
 
     const containerStyle = useMemo(() => {
-
-        console.log('-----------')
-        console.log(typeName)
-
         switch (typeName) {
             case 'Select':
             case 'MultiSelect':
