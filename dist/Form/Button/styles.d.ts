@@ -2,7 +2,7 @@ export const sharedButtonStyle: import("styled-components").RuleSet<object>;
 export const StyledButton: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, never>> & string;
 export const Link: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
 export const InlineLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<import("react").DetailedHTMLProps<import("react").AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>, never>> & string;
-export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<Omit<import("react-router").NavLinkProps & import("react").RefAttributes<HTMLAnchorElement>, "ref"> & {
+export const ButtonLink: import("styled-components/dist/types").IStyledComponentBase<"web", import("styled-components").FastOmit<Omit<import("react-router/dist/development/index-react-server-client-Cv5Q9lf0").N & import("react").RefAttributes<HTMLAnchorElement>, "ref"> & {
     ref?: ((instance: HTMLAnchorElement | null) => void) | import("react").RefObject<HTMLAnchorElement> | null | undefined;
-}, never>> & string & Omit<import("react").ForwardRefExoticComponent<import("react-router").NavLinkProps & import("react").RefAttributes<HTMLAnchorElement>>, keyof import("react").Component<any, {}, any>>;
+}, never>> & string & Omit<import("react").ForwardRefExoticComponent<import("react-router/dist/development/index-react-server-client-Cv5Q9lf0").N & import("react").RefAttributes<HTMLAnchorElement>>, keyof import("react").Component<any, {}, any>>;
 //# sourceMappingURL=styles.d.ts.map

@@ -87,6 +87,7 @@ function InputContainer({
                 return !!values?.length;
             case 'Search':
             case 'GroupSearch':
+            case 'GroupSelectWithSearch':
                 return isNotEmpty(search);
             default:
                 return isNotEmpty(value);

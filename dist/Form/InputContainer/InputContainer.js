@@ -87,6 +87,7 @@ function InputContainer(_ref)
         return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
       case 'GroupSearch':
+      case 'GroupSelectWithSearch':
         return (0, _isNotEmpty.isNotEmpty)(search);
       default:
         return (0, _isNotEmpty.isNotEmpty)(value);
