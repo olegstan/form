@@ -87,7 +87,6 @@ function InputContainer(_ref)
         return !!(values !== null && values !== void 0 && values.length);
       case 'Search':
       case 'GroupSearch':
-      case 'GroupSelectWithSearch':
         return (0, _isNotEmpty.isNotEmpty)(search);
       default:
         return (0, _isNotEmpty.isNotEmpty)(value);
@@ -98,11 +97,18 @@ function InputContainer(_ref)
 
   var containerStyle = (0, _react.useMemo)(function () {
 
+    console.log('-----------');
+    console.log(typeName);
+
     switch (typeName) {
       case 'Select':
       case 'MultiSelect':
       case 'GroupSelect':
       case 'GroupSelectWithSearch':
+        console.log(1);
+        console.log(style);
+        //@ts-ignore
+        console.log(theme === null || theme === void 0 ? void 0 : theme.selectBackgroundColor);
         //@ts-ignore
         return _objectSpread(_objectSpread({}, style), { backgroundColor: theme.selectBackgroundColor });
       default:

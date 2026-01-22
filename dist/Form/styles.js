@@ -64,7 +64,7 @@ function (_ref7) {var theme = _ref7.theme;return theme.inputContainerBorder;},
 function (_ref8) {var disabled = _ref8.disabled;return disabled && disabledStyles;});
 
 
-var placeholder = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  & .placeholder {\n    pointer-events: none;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    width: 75%;\n    transition: transform 0.25s, opacity 0.25s ease-in-out;\n    transform-origin: 0 0;\n    padding: 25px 12px;\n    font-size: 14px;\n    z-index: 1500;\n  }\n\n  // \u0415\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n\n  & .placeholder.active {\n    transform: translate(0.25em, -15%) scale(0.8);\n  }\n"])),
+var placeholder = (0, _styledComponents.css)(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  & .placeholder {\n    pointer-events: none;\n    line-height: 0.1;\n    display: block;\n    position: absolute;\n    top: 0;\n    left: 0;\n    user-select: none;\n    text-align: left;\n    color: ", ";\n    width: 95%;\n    transition: transform 0.25s, opacity 0.25s ease-in-out;\n    transform-origin: 0 0;\n    padding: 25px 12px;\n    font-size: 14px;\n    z-index: 1500;\n\n    /* \u0410\u0434\u0430\u043F\u0442\u0430\u0446\u0438\u044F \u0434\u043B\u044F \u043D\u043E\u0443\u0442\u0431\u0443\u043A\u043E\u0432 (\u044D\u043A\u0440\u0430\u043D\u044B \u043E\u0442 1024px \u0434\u043E 1440px) */\n    @media (min-width: 1024px) and (max-width: 1440px) {\n      padding: 25px 10px;\n      font-size: 13px;\n    }\n\n    /* \u0410\u0434\u0430\u043F\u0442\u0430\u0446\u0438\u044F \u0434\u043B\u044F \u0431\u043E\u043B\u044C\u0448\u0438\u0445 \u043D\u043E\u0443\u0442\u0431\u0443\u043A\u043E\u0432 \u0438 \u043C\u043E\u043D\u0438\u0442\u043E\u0440\u043E\u0432 (\u043E\u0442 1440px) */\n    @media (min-width: 1440px) {\n      padding: 25px 14px;\n      font-size: 15px;\n    }\n\n    /* \u0410\u0434\u0430\u043F\u0442\u0430\u0446\u0438\u044F \u0434\u043B\u044F \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u0445 \u043D\u043E\u0443\u0442\u0431\u0443\u043A\u043E\u0432 (\u043E\u0442 768px \u0434\u043E 1024px) */\n    @media (min-width: 768px) and (max-width: 1023px) {\n      padding: 25px 10px;\n      font-size: 12px;\n    }\n  }\n\n  // \u0415\u0441\u043B\u0438 \u043F\u043E\u043B\u0435 \u043D\u0435 \u043F\u0443\u0441\u0442\u043E\u0435 \u0438\u043B\u0438 \u0432 \u0444\u043E\u043A\u0443\u0441\u0435, \u0442\u043E placeholder \u0434\u043E\u043B\u0436\u0435\u043D \u0431\u044B\u0442\u044C \u0441\u0432\u0435\u0440\u0445\u0443 \n\n  & .placeholder.active {\n    transform: translate(0.25em, -15%) scale(0.8);\n  }\n"])),
 
 
 
@@ -75,6 +75,24 @@ var placeholder = (0, _styledComponents.css)(_templateObject5 || (_templateObjec
 
 
 function (_ref9) {var theme = _ref9.theme;return theme.inputPlaceholderTextColor;});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

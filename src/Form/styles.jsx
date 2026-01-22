@@ -75,12 +75,30 @@ const placeholder = css`
     user-select: none;
     text-align: left;
     color: ${({ theme }) => theme.inputPlaceholderTextColor};
-    width: 75%;
+    width: 95%;
     transition: transform 0.25s, opacity 0.25s ease-in-out;
     transform-origin: 0 0;
     padding: 25px 12px;
     font-size: 14px;
     z-index: 1500;
+
+    /* Адаптация для ноутбуков (экраны от 1024px до 1440px) */
+    @media (min-width: 1024px) and (max-width: 1440px) {
+      padding: 25px 10px;
+      font-size: 13px;
+    }
+
+    /* Адаптация для больших ноутбуков и мониторов (от 1440px) */
+    @media (min-width: 1440px) {
+      padding: 25px 14px;
+      font-size: 15px;
+    }
+
+    /* Адаптация для маленьких ноутбуков (от 768px до 1024px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      padding: 25px 10px;
+      font-size: 12px;
+    }
   }
 
   // Если поле не пустое или в фокусе, то placeholder должен быть сверху 
