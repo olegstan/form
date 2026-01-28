@@ -101,10 +101,6 @@ function InputContainer(_ref)
       case 'MultiSelect':
       case 'GroupSelect':
       case 'GroupSelectWithSearch':
-        console.log(1);
-        console.log(style);
-        //@ts-ignore
-        console.log(theme === null || theme === void 0 ? void 0 : theme.selectBackgroundColor);
         //@ts-ignore
         return _objectSpread(_objectSpread({}, style), { backgroundColor: theme.selectBackgroundColor });
       default:
