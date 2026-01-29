@@ -27,6 +27,7 @@ export interface ButtonElementProps {
     autoFocus?: boolean;
     name?: string;
     value?: string;
+    style?: any;
 }
 
 export interface LinkElementProps {
