@@ -10,6 +10,11 @@ const DateTimeInput: React.FC<DateTimeInputProps> = (props) => {
         enableTime: true,
         enableSeconds: true,
         disableMobile: 'true',
+        // Добавляем обработчик, который срабатывает при изменении значения
+        onChange: (selectedDates: Date[], dateStr: string, instance: any) => {
+            // Этот коллбек срабатывает при выборе даты/времени
+            // Но НЕ закрывает календарь автоматически
+        }
     };
 
     return (

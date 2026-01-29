@@ -100,6 +100,12 @@ export const useDateInput = ({
         setInnerError(false);
 
         emitIfChanged(next);
+
+        // Для режима с временем снимаем фокус сразу
+        // это можно передать как параметр или определить по формату
+        if (dateFormat.includes('HH:mm')) {
+            setFocused(false);
+        }
     };
 
     // Ручной ввод

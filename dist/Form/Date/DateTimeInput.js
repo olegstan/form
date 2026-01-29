@@ -9,9 +9,14 @@ var DateTimeInput = function DateTimeInput(props) {
     allowInput: true,
     enableTime: true,
     enableSeconds: true,
-    disableMobile: 'true'
-  };
+    disableMobile: 'true',
+    // Добавляем обработчик, который срабатывает при изменении значения
+    onChange: function onChange(selectedDates, dateStr, instance) {
 
+
+      // Этот коллбек срабатывает при выборе даты/времени
+      // Но НЕ закрывает календарь автоматически
+    } };
   return (/*#__PURE__*/
     //@ts-ignore
     (0, _jsxRuntime.jsx)(_BaseDateInput["default"], _objectSpread(_objectSpread({},
