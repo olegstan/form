@@ -43,7 +43,7 @@
 ### Структура использования
 
 ```tsx
-import { InputContainer, Input } from './Form';
+import { InputContainer, Input } from 'finform';
 
 <InputContainer error={errorMessage}>
   <Input
@@ -80,7 +80,7 @@ import { InputContainer, Input } from './Form';
 #### Input
 
 ```tsx
-import { InputContainer, Input } from './Form';
+import { InputContainer, Input } from 'finform';
 
 const [value, setValue] = useState('');
 const [error, setError] = useState<string | null>(null);
@@ -102,7 +102,7 @@ const [error, setError] = useState<string | null>(null);
 #### TextArea
 
 ```tsx
-import { InputContainer, TextArea } from './Form';
+import { InputContainer, TextArea } from 'finform';
 
 const [value, setValue] = useState('');
 const [error, setError] = useState<string | null>(null);
@@ -128,7 +128,7 @@ const [error, setError] = useState<string | null>(null);
 #### NumberInput
 
 ```tsx
-import { InputContainer, NumberInput } from './Form';
+import { InputContainer, NumberInput } from 'finform';
 
 const [value, setValue] = useState<number | null>(null);
 const [error, setError] = useState<string | null>(null);
@@ -152,7 +152,7 @@ const [error, setError] = useState<string | null>(null);
 #### MaskedInput
 
 ```tsx
-import { InputContainer, MaskedInput } from './Form';
+import { InputContainer, MaskedInput } from 'finform';
 
 const [value, setValue] = useState('');
 const [error, setError] = useState<string | null>(null);
@@ -177,7 +177,7 @@ const [error, setError] = useState<string | null>(null);
 #### Select
 
 ```tsx
-import { InputContainer, Select } from './Form';
+import { InputContainer, Select } from 'finform';
 
 interface Option {
   id: string | number;
@@ -212,7 +212,7 @@ const [error, setError] = useState<string | null>(null);
 #### MultiSelect
 
 ```tsx
-import { InputContainer, MultiSelect } from './Form';
+import { InputContainer, MultiSelect } from 'finform';
 
 const options: Option[] = [
   { id: 1, name: 'Опция 1' },
@@ -251,7 +251,7 @@ const [error, setError] = useState<string | null>(null);
 #### Search
 
 ```tsx
-import { InputContainer, Search } from './Form';
+import { InputContainer, Search } from 'finform';
 
 const [search, setSearch] = useState('');
 const [value, setValue] = useState<number | null>(null);
@@ -280,7 +280,7 @@ const [error, setError] = useState<string | null>(null);
 #### MultipleSearch
 
 ```tsx
-import { InputContainer, MultipleSearch } from './Form';
+import { InputContainer, MultipleSearch } from 'finform';
 
 const [search, setSearch] = useState('');
 const [values, setValues] = useState<number[]>([]);
@@ -314,7 +314,7 @@ const [error, setError] = useState<string | null>(null);
 #### GroupSelect
 
 ```tsx
-import { InputContainer, GroupSelect } from './Form';
+import { InputContainer, GroupSelect } from 'finform';
 
 interface GroupOption {
   id: string | number;
@@ -354,7 +354,7 @@ const [error, setError] = useState<string | null>(null);
 #### GroupSearch
 
 ```tsx
-import { InputContainer, GroupSearch } from './Form';
+import { InputContainer, GroupSearch } from 'finform';
 
 const [search, setSearch] = useState('');
 const [value, setValue] = useState<number | null>(null);
@@ -383,7 +383,7 @@ const [error, setError] = useState<string | null>(null);
 #### GroupSelectWithSearch
 
 ```tsx
-import { InputContainer, GroupSelectWithSearch } from './Form';
+import { InputContainer, GroupSelectWithSearch } from 'finform';
 
 const [search, setSearch] = useState('');
 const [value, setValue] = useState<number | null>(null);
@@ -414,7 +414,7 @@ const [error, setError] = useState<string | null>(null);
 #### DateInput
 
 ```tsx
-import { InputContainer, DateInput } from './Form';
+import { InputContainer, DateInput } from 'finform';
 
 const [value, setValue] = useState<Date | null>(null);
 const [error, setError] = useState<string | null>(null);
@@ -436,7 +436,7 @@ const [error, setError] = useState<string | null>(null);
 #### DateTimeInput
 
 ```tsx
-import { InputContainer, DateTimeInput } from './Form';
+import { InputContainer, DateTimeInput } from 'finform';
 
 const [value, setValue] = useState<Date | null>(null);
 const [error, setError] = useState<string | null>(null);
@@ -460,7 +460,7 @@ const [error, setError] = useState<string | null>(null);
 #### FileInput
 
 ```tsx
-import { InputContainer, FileInput } from './Form';
+import { InputContainer, FileInput } from 'finform';
 
 const [file, setFile] = useState<File | null>(null);
 const [error, setError] = useState<string | null>(null);
@@ -485,7 +485,7 @@ const [error, setError] = useState<string | null>(null);
 #### Checkbox
 
 ```tsx
-import { Checkbox } from './Form';
+import { Checkbox } from 'finform';
 
 const [checked, setChecked] = useState(false);
 
@@ -504,7 +504,7 @@ const [checked, setChecked] = useState(false);
 #### RoundCheckbox
 
 ```tsx
-import { RoundCheckbox } from './Form';
+import { RoundCheckbox } from 'finform';
 
 const [checked, setChecked] = useState(false);
 
@@ -523,7 +523,7 @@ const [checked, setChecked] = useState(false);
 ### Пример 1: Простая валидация
 
 ```tsx
-import { InputContainer, Input } from './Form';
+import { InputContainer, Input } from 'finform';
 import { useState } from 'react';
 
 function MyForm() {
@@ -567,7 +567,7 @@ function MyForm() {
 Если валидация возвращает массив ошибок, используйте первую ошибку или объедините их:
 
 ```tsx
-import { InputContainer, Input } from './Form';
+import { InputContainer, Input } from 'finform';
 import { useState } from 'react';
 
 function MyForm() {
