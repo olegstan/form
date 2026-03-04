@@ -33,6 +33,7 @@ var _useInputClassNames = _interopRequireDefault(require("../hooks/useInputClass
 
 
 
+
 var BaseDateInput = function BaseDateInput(_ref)
 
 
@@ -57,7 +58,8 @@ var BaseDateInput = function BaseDateInput(_ref)
 
 
 
-{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,_ref$innerError = _ref.innerError,innerError = _ref$innerError === void 0 ? [] : _ref$innerError,_ref$setInnerError = _ref.setInnerError,setInnerError = _ref$setInnerError === void 0 ? function () {} : _ref$setInnerError,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$placeholder = _ref.placeholder,placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,_ref$defaultDate = _ref.defaultDate,defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate,dateMask = _ref.dateMask,inputMask = _ref.inputMask,dateFormat = _ref.dateFormat,formatDateFn = _ref.formatDateFn,flatpickrOptions = _ref.flatpickrOptions;
+
+{var _ref$focused = _ref.focused,focused = _ref$focused === void 0 ? false : _ref$focused,_ref$setFocused = _ref.setFocused,setFocused = _ref$setFocused === void 0 ? function () {} : _ref$setFocused,_ref$onBlur = _ref.onBlur,onBlur = _ref$onBlur === void 0 ? function () {} : _ref$onBlur,onKeyDown = _ref.onKeyDown,_ref$innerError = _ref.innerError,innerError = _ref$innerError === void 0 ? [] : _ref$innerError,_ref$setInnerError = _ref.setInnerError,setInnerError = _ref$setInnerError === void 0 ? function () {} : _ref$setInnerError,_ref$onChange = _ref.onChange,onChange = _ref$onChange === void 0 ? function () {} : _ref$onChange,_ref$onClick = _ref.onClick,onClick = _ref$onClick === void 0 ? function () {} : _ref$onClick,_ref$disabled = _ref.disabled,disabled = _ref$disabled === void 0 ? false : _ref$disabled,_ref$placeholder = _ref.placeholder,placeholder = _ref$placeholder === void 0 ? '' : _ref$placeholder,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,id = _ref.id,name = _ref.name,value = _ref.value,_ref$autoComplete = _ref.autoComplete,autoComplete = _ref$autoComplete === void 0 ? 'off' : _ref$autoComplete,error = _ref.error,_ref$defaultDate = _ref.defaultDate,defaultDate = _ref$defaultDate === void 0 ? null : _ref$defaultDate,dateMask = _ref.dateMask,inputMask = _ref.inputMask,dateFormat = _ref.dateFormat,formatDateFn = _ref.formatDateFn,flatpickrOptions = _ref.flatpickrOptions;
   var _useBaseInput =
 
 
@@ -170,7 +172,7 @@ var BaseDateInput = function BaseDateInput(_ref)
           className: restProps.className,
           onFocus: handleFocus, children:
 
-          function children(inputProps) {return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread({ ref: refEl }, inputProps));} }
+          function children(inputProps) {return /*#__PURE__*/(0, _jsxRuntime.jsx)("input", _objectSpread(_objectSpread({ ref: refEl }, inputProps), {}, { onKeyDown: onKeyDown }));} }
         );
       } }
     ));

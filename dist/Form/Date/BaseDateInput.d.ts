@@ -3,6 +3,7 @@ interface BaseDateInputProps {
     focused?: boolean;
     setFocused?: (focused: boolean) => void;
     onBlur?: () => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     innerError?: any[];
     setInnerError?: (error: any[]) => void;
     onChange?: (value: any) => void;

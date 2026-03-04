@@ -11,6 +11,7 @@ interface BaseDateInputProps {
     focused?: boolean;
     setFocused?: (focused: boolean) => void;
     onBlur?: () => void;
+    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     innerError?: any[];
     setInnerError?: (error: any[]) => void;
     onChange?: (value: any) => void;
@@ -37,6 +38,7 @@ const BaseDateInput: React.FC<BaseDateInputProps> = ({
                                                          focused = false,
                                                          setFocused = () => {},
                                                          onBlur = () => {},
+                                                         onKeyDown,
                                                          innerError = [],
                                                          setInnerError = () => {},
                                                          onChange = () => {},
@@ -170,7 +172,7 @@ const BaseDateInput: React.FC<BaseDateInputProps> = ({
                     className={restProps.className}
                     onFocus={handleFocus}
                 >
-                    {(inputProps: any) => <input ref={refEl} {...inputProps} />}
+                    {(inputProps: any) => <input ref={refEl} {...inputProps} onKeyDown={onKeyDown} />}
                 </MaskedStyledInput>
             }}
         />
