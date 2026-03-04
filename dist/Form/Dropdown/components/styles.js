@@ -200,12 +200,15 @@ var ParentContainer = exports.ParentContainer = _styledComponents["default"].div
 
 
 
-var SearchInputWrapper = exports.SearchInputWrapper = _styledComponents["default"].div(_templateObject1 || (_templateObject1 = _taggedTemplateLiteral(["\n    position: relative;\n    width: calc(100% - 32px);\n    border-radius: 12px;\n    padding: 10px 16px 0 16px;\n    display: flex;\n\n    img {\n        position: absolute;\n        left: 30px;\n        top: 30px;\n        transform: translateY(-50%);\n        width: 20px;\n        height: 20px;\n        pointer-events: none;\n        opacity: 0.5;\n    }\n"])));
+var SearchInputWrapper = exports.SearchInputWrapper = _styledComponents["default"].div(_templateObject1 || (_templateObject1 = _taggedTemplateLiteral(["\n    position: sticky;\n    top: 0;\n    z-index: 1;\n    width: calc(100% - 32px);\n    border-radius: 12px;\n    padding: 10px 16px 8px 16px;\n    display: flex;\n    background-color: ", ";\n\n    img {\n        position: absolute;\n        left: 30px;\n        top: 30px;\n        transform: translateY(-50%);\n        width: 20px;\n        height: 20px;\n        pointer-events: none;\n        opacity: 0.5;\n    }\n"])),
 
 
 
 
 
+
+
+function (_ref14) {var theme = _ref14.theme;return theme.selectWrapperOptionBackgroundColor;});
 
 
 
@@ -244,8 +247,8 @@ var OptionsWrapper = exports.OptionsWrapper = _styledComponents["default"].div(_
 
 
 
-function (_ref14) {var theme = _ref14.theme;return theme.selectShadowColor;},
-function (_ref15) {var theme = _ref15.theme;return theme.selectWrapperOptionBackgroundColor;},
+function (_ref15) {var theme = _ref15.theme;return theme.selectShadowColor;},
+function (_ref16) {var theme = _ref16.theme;return theme.selectWrapperOptionBackgroundColor;},
 
 
 _zindex["default"].input,
@@ -253,14 +256,14 @@ _zindex["default"].input,
 
 
 
-function (_ref16) {var hasAddButton = _ref16.hasAddButton;return hasAddButton ? '120px' : 'auto';},
+function (_ref17) {var hasAddButton = _ref17.hasAddButton;return hasAddButton ? '120px' : 'auto';},
 
-function (_ref17) {var active = _ref17.active;return active ? 'auto' : 'none';},
+function (_ref18) {var active = _ref18.active;return active ? 'auto' : 'none';},
 
-function (_ref18) {var active = _ref18.active;return active ? 1 : 0;},
-function (_ref19) {var active = _ref19.active;return (
-    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref19) {var active = _ref19.active;return active ? 1 : 0;},
 function (_ref20) {var active = _ref20.active;return (
+    active ? 'translateY(0)' : 'translateY(-10px)');},
+function (_ref21) {var active = _ref21.active;return (
     active ? 'opacity 0.35s ease, transform 0.35s ease' : 'none');},
 
 
@@ -269,12 +272,12 @@ function (_ref20) {var active = _ref20.active;return (
 
 
 
-function (_ref21) {var theme = _ref21.theme;return theme.selectScrollThumbColor;},
+function (_ref22) {var theme = _ref22.theme;return theme.selectScrollThumbColor;},
 
 
 
 
 
 
-function (_ref22) {var theme = _ref22.theme;return theme.selectScrollThumbHoverColor;});
+function (_ref23) {var theme = _ref23.theme;return theme.selectScrollThumbHoverColor;});
 //# sourceMappingURL=styles.js.map

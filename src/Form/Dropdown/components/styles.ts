@@ -200,12 +200,15 @@ interface OptionsWrapperProps {
     hasAddButton?: boolean;
 }
 
-export const SearchInputWrapper = styled.div`
-    position: relative;
+export const SearchInputWrapper = styled.div<{ theme: DefaultTheme }>`
+    position: sticky;
+    top: 0;
+    z-index: 1;
     width: calc(100% - 32px);
     border-radius: 12px;
-    padding: 10px 16px 0 16px;
+    padding: 10px 16px 8px 16px;
     display: flex;
+    background-color: ${({ theme }: { theme: DefaultTheme }) => theme.selectWrapperOptionBackgroundColor};
 
     img {
         position: absolute;
