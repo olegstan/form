@@ -5,25 +5,73 @@
 var _react = require("react");
 var _InputPopup = _interopRequireDefault(require("../../InputPopup/InputPopup"));
 
-var _error = _interopRequireDefault(require("./../../../assets/error.svg"));var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} /**
+var _error = _interopRequireDefault(require("./../../../assets/error.svg"));
+
+var _info = _interopRequireDefault(require("./../../../assets/info.svg"));var _jsxRuntime = require("react/jsx-runtime");function _interopRequireDefault(e) {return e && e.__esModule ? e : { "default": e };} /**
  * Компонент для отображения ошибки (иконка + popup).
  * Мемоизирован.
  */ // @ts-ignore
+// @ts-ignore
+var resolveTooltipKind = function resolveTooltipKind(hasError, hasInfo) {
+  switch (true) {
+    case hasError:
+      return 'error';
+    case hasInfo:
+      return 'info';
+    default:
+      return null;
+  }
+};
+
 var ErrorTooltip = /*#__PURE__*/(0, _react.memo)(function ErrorTooltip(_ref)
 
 
 
-  {var error = _ref.error,id = _ref.id;
-    if (!error) return null;
 
-    return (/*#__PURE__*/
-      (0, _jsxRuntime.jsx)(_InputPopup["default"], { trigger: /*#__PURE__*/(0, _jsxRuntime.jsx)("img", { id: "tooltip-".concat(id), src: _error["default"], alt: "error" }), children: /*#__PURE__*/
-        (0, _jsxRuntime.jsx)("label", { htmlFor: id, className: "error", children:
-          error }
-        ) }
-      ));
 
-  });var _default = exports["default"] =
+
+
+{var error = _ref.error,info = _ref.info,id = _ref.id;
+  var hasError = Boolean(error);
+  var hasInfo = !hasError && Boolean(info === null || info === void 0 ? void 0 : info.length);
+  var tooltipKind = resolveTooltipKind(hasError, hasInfo);
+
+  if (!tooltipKind) return null;
+
+  var trigger = tooltipKind === 'error' ? /*#__PURE__*/
+  (0, _jsxRuntime.jsx)("img", { id: "tooltip-".concat(id), src: _error["default"], alt: "error" }) : /*#__PURE__*/
+  (0, _jsxRuntime.jsx)("img", { id: "tooltip-".concat(id), src: _info["default"], alt: "info" });
+
+  var renderTooltipContent = function renderTooltipContent() {
+    switch (tooltipKind) {
+      case 'error':
+        return (/*#__PURE__*/
+          (0, _jsxRuntime.jsx)("label", { htmlFor: id, className: "error", children:
+            error }
+          ));
+
+      case 'info':
+        return (/*#__PURE__*/
+          (0, _jsxRuntime.jsx)("div", { className: "info-tooltip", children:
+            info === null || info === void 0 ? void 0 : info.map(function (item, index) {return (/*#__PURE__*/
+                (0, _jsxRuntime.jsxs)("div", { className: "info-tooltip-row", children: [/*#__PURE__*/
+                  (0, _jsxRuntime.jsx)("span", { className: "info-tooltip-label", children: item.label }), /*#__PURE__*/
+                  (0, _jsxRuntime.jsx)("span", { className: "info-tooltip-value", children: item.value })] }, "".concat(item.label, "-").concat(index)
+                ));}
+            ) }
+          ));
+
+      default:
+        return null;
+    }
+  };
+
+  return (/*#__PURE__*/
+    (0, _jsxRuntime.jsx)(_InputPopup["default"], { trigger: trigger, children:
+      renderTooltipContent() }
+    ));
+
+});var _default = exports["default"] =
 
 ErrorTooltip;
 //# sourceMappingURL=ErrorTooltip.js.map
