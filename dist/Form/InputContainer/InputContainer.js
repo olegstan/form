@@ -24,6 +24,11 @@ var _isNotEmpty = require("./utils/isNotEmpty");var _jsxRuntime = require("react
 
 
 
+
+
+
+
+
 function InputContainer(_ref)
 
 
@@ -34,7 +39,9 @@ function InputContainer(_ref)
 
 
 
-{var _child$type, _child$type2;var children = _ref.children,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,_ref$error = _ref.error,error = _ref$error === void 0 ? null : _ref$error;
+
+
+{var _child$type, _child$type2;var children = _ref.children,_ref$className = _ref.className,className = _ref$className === void 0 ? '' : _ref$className,_ref$style = _ref.style,style = _ref$style === void 0 ? {} : _ref$style,_ref$error = _ref.error,error = _ref$error === void 0 ? null : _ref$error,_ref$info = _ref.info,info = _ref$info === void 0 ? null : _ref$info;
   var _useState = (0, _react.useState)(false),_useState2 = _slicedToArray(_useState, 2),focused = _useState2[0],setFocused = _useState2[1]; // аналог this.state.focused
   var _useState3 = (0, _react.useState)(false),_useState4 = _slicedToArray(_useState3, 2),innerError = _useState4[0],setInnerError = _useState4[1]; // аналог this.state.focused
 
@@ -125,6 +132,7 @@ function InputContainer(_ref)
         ), /*#__PURE__*/
         (0, _jsxRuntime.jsx)(_ErrorTooltip["default"], {
           error: error || innerError,
+          info: info,
           id: id }
         ), /*#__PURE__*/
         (0, _jsxRuntime.jsx)(_CloseIcon["default"]
