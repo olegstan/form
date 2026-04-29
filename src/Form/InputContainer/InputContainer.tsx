@@ -24,16 +24,23 @@ interface ChildProps {
     onSearch?: (query: string) => void; // Обработчик поиска, принимает строку запроса
 }
 
+export interface InfoTooltipItem {
+    label: string;
+    value: string | number;
+}
+
 function InputContainer({
                             children,
                             className = '',
                             style = {},
                             error = null,
+                            info = null,
                         }: {
     children: React.ReactNode;
     className?: string;
     style?: React.CSSProperties;
     error?: string|null;
+    info?: InfoTooltipItem[] | null;
 }) {
     const [focused, setFocused] = useState(false);  // аналог this.state.focused
     const [innerError, setInnerError] = useState(false);  // аналог this.state.focused
@@ -125,6 +132,7 @@ function InputContainer({
                 />
                 <ErrorTooltip
                     error={error || innerError}
+                    info={info}
                     id={id}
                 />
                 <CloseIcon
