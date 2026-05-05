@@ -13,7 +13,7 @@ export const StyledSelect = styled.div`
   transition: border-color .25s ease-in-out;
   border: none;
   background-color: transparent;
-  padding: 24px 12px 8px 14px;
+  padding: 22px 12px 6px 14px;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -28,6 +28,7 @@ export const StyledSelect = styled.div`
     color: ${({theme}) => theme.selectTextColor};
     background-color: ${({theme}) => theme.selectBackgroundColor};
     padding: 0 !important;
+    line-height: 20px;
   }
 
   ${placeholderActiveStyle}
